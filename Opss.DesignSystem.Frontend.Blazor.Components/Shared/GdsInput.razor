@@ -1,0 +1,41 @@
+﻿@inherits Models.GdsInputModel
+
+<div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses">
+    @if (LabelTemplate != null)
+    {
+        @LabelTemplate
+    }
+    @if (HintTemplate != null)
+    {
+        @HintTemplate
+    }
+    @if (ErrorMessageTemplate != null)
+    {
+        @ErrorMessageTemplate
+    }
+
+    @if (PrefixTemplate != null || SuffixTemplate != null)
+    {
+        <div class="govuk-input__wrapper">
+            @if (PrefixTemplate != null)
+            {
+                @PrefixTemplate
+            }
+
+            <input id="@Id" class="govuk-input @Classes @(ErrorMessageTemplate != null ? "govuk-input--error" : "")" name="@Name" type="@(Type ?? "text")"
+                   spellcheck="@Spellcheck" value="@Value" aria-describedby="@DescribedBy"
+                   autocomplete="@Autocomplete" pattern="@Pattern" inputmode="@Inputmode" @attributes="@Attributes" />
+
+            @if (SuffixTemplate != null)
+            {
+                @SuffixTemplate
+            }
+        </div>
+    }
+    else
+    {
+        <input id="@Id" class="govuk-input @Classes @(ErrorMessageTemplate != null ? "govuk-input--error" : "")" name="@Name" type="@(Type ?? "text")"
+               spellcheck="@Spellcheck" value="@Value" aria-describedby="@DescribedBy"
+               autocomplete="@Autocomplete" pattern="@Pattern" inputmode="@Inputmode" @attributes="@Attributes" />
+    }
+</div>

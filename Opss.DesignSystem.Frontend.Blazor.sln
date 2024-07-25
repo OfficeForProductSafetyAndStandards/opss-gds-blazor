@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35004.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!Solution Items", "!Solution Items", "{AB5F7EDF-631D-48AA-8B9C-3C3FD47E65D7}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.build.props = Directory.build.props
+		govuk-icon-128.png = govuk-icon-128.png
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Opss.DesignSystem.Frontend.Blazor.Components", "Opss.DesignSystem.Frontend.Blazor.Components\Opss.DesignSystem.Frontend.Blazor.Components.csproj", "{0CA9CA42-21C9-4B08-A14C-40AAF1A4B656}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Opss.DesignSystem.Frontend.Blazor.Showcase", "Opss.DesignSystem.Frontend.Blazor.Showcase\Opss.DesignSystem.Frontend.Blazor.Showcase.csproj", "{D60122CB-35D8-4B73-B9AC-54114630D28D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opss.DesignSystem.Frontend.Blazor.UnitTests", "Opss.DesignSystem.Frontend.Blazor.UnitTests\Opss.DesignSystem.Frontend.Blazor.UnitTests.csproj", "{EDAC8924-261D-4555-B431-C81918E39BAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CA9CA42-21C9-4B08-A14C-40AAF1A4B656}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{0CA9CA42-21C9-4B08-A14C-40AAF1A4B656}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{0CA9CA42-21C9-4B08-A14C-40AAF1A4B656}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CA9CA42-21C9-4B08-A14C-40AAF1A4B656}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D60122CB-35D8-4B73-B9AC-54114630D28D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D60122CB-35D8-4B73-B9AC-54114630D28D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D60122CB-35D8-4B73-B9AC-54114630D28D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D60122CB-35D8-4B73-B9AC-54114630D28D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDAC8924-261D-4555-B431-C81918E39BAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDAC8924-261D-4555-B431-C81918E39BAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDAC8924-261D-4555-B431-C81918E39BAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDAC8924-261D-4555-B431-C81918E39BAF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A3B7C8E9-46FF-486E-B9D0-B24D99A663C1}
+	EndGlobalSection
+EndGlobal

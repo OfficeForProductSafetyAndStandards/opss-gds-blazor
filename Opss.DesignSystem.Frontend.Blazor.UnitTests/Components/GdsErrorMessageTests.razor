@@ -1,0 +1,105 @@
+@inherits BunitContext
+
+@code {
+	[Fact]
+	public void OutputsErrorMessage()
+	{
+		// Arrange
+		var id = "hello-world";
+		var message = "Hello World";
+		var component = Render(@<GdsErrorMessage Id=@id>@message</GdsErrorMessage>);
+
+		// Assert that content of the paragraph shows counter at zero
+		component.Find("p").MarkupMatches(
+	@<p id=@id class="govuk-error-message">
+		<span class="govuk-visually-hidden">Error:</span>
+		@message
+	</p>
+	);
+	}
+
+	[Fact]
+	public void OutputsStandardHiddenMessage_WhenMessageIsEmpty()
+	{
+		// Arrange
+		var id = "hello-world";
+		var message = "Hello World";
+		var visuallyHiddenMessage = "";
+		var component = Render(@<GdsErrorMessage Id=@id VisuallyHiddenText=@visuallyHiddenMessage>@message</GdsErrorMessage>);
+
+		// Assert that content of the paragraph shows counter at zero
+		component.Find("p").MarkupMatches(
+	@<p id=@id class="govuk-error-message">
+		<span class="govuk-visually-hidden">Error:</span>
+		@message
+	</p>);
+	}
+
+	[Fact]
+	public void OutputsStandardHiddenMessage_WhenMessageIsNull()
+	{
+		// Arrange
+		var id = "hello-world";
+		var message = "Hello World";
+		var component = Render(@<GdsErrorMessage Id=@id VisuallyHiddenText=@null>@message</GdsErrorMessage>);
+
+		// Assert that content of the paragraph shows counter at zero
+		component.Find("p").MarkupMatches(
+	@<p id=@id class="govuk-error-message">
+		<span class="govuk-visually-hidden">Error:</span>
+		@message
+	</p>);
+	}
+
+	[Fact]
+	public void OutputsHiddenMessage()
+	{
+		// Arrange
+		var id = "hello-world";
+		var message = "Hello World";
+		var visuallyHiddenMessage = "The Error";
+		var component = Render(@<GdsErrorMessage Id=@id VisuallyHiddenText=@visuallyHiddenMessage>@message</GdsErrorMessage>);
+
+		// Assert that content of the paragraph shows counter at zero
+		component.Find("p").MarkupMatches(
+	@<p id=@id class="govuk-error-message">
+		<span class="govuk-visually-hidden">@visuallyHiddenMessage:</span>
+		@message
+	</p>);
+	}
+
+	[Fact]
+	public void IncludesAdditionalClassess()
+	{
+		// Arrange
+		var id = "hello-world";
+		var message = "Hello World";
+		var extraClasses = "additional-class";
+		var component = Render(@<GdsErrorMessage Id=@id Classes=@extraClasses>@message</GdsErrorMessage>);
+
+		// Assert that content of the paragraph shows counter at zero
+		component.Find("p").MarkupMatches(
+	@<p id=@id class="govuk-error-message @extraClasses">
+		<span class="govuk-visually-hidden">Error:</span>
+		@message
+	</p>
+	);
+	}
+
+	[Fact]
+	public void IncludesAdditionalAttributes()
+	{
+		// Arrange
+		var id = "hello-world";
+		var message = "Hello World";
+		var extraAttributes = new Dictionary<string, object> { { "attribute", "value" } };
+		var component = Render(@<GdsErrorMessage Id=@id Attributes=@extraAttributes>@message</GdsErrorMessage>);
+
+		// Assert that content of the paragraph shows counter at zero
+		component.Find("p").MarkupMatches(
+	@<p id=@id class="govuk-error-message" attribute="value">
+		<span class="govuk-visually-hidden">Error:</span>
+		@message
+	</p>);
+	}
+}
