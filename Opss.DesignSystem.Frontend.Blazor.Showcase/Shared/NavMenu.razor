@@ -1,0 +1,32 @@
+﻿<nav aria-label="Menu" class="govuk-header__navigation">
+    <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>
+        Menu
+    </button>
+    <ul id="navigation" class="govuk-header__navigation-list">
+        <li class="govuk-header__navigation-item @GetActive("", NavLinkMatch.All)">
+            <NavLink class="govuk-header__link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </li>
+        <li class="govuk-header__navigation-item @GetActive("Input", NavLinkMatch.All)">
+            <NavLink class="govuk-header__link" href="Input">
+                <span class="oi oi-input" aria-hidden="true"></span> Input
+            </NavLink>
+        </li>
+    </ul>
+</nav>
+
+@code {
+    [Inject]
+    NavigationManager NavigationManager { get; set; }
+
+    protected override void OnInitialized() => NavigationManager.LocationChanged += (s, e) => StateHasChanged();
+
+    bool IsActive(string href, NavLinkMatch navLinkMatch = NavLinkMatch.Prefix)
+    {
+        var relativePath = NavigationManager.ToBaseRelativePath(NavigationManager.Uri).ToLower();
+        return navLinkMatch == NavLinkMatch.All ? relativePath == href.ToLower() : relativePath.StartsWith(href.ToLower());
+    }
+
+    string GetActive(string href, NavLinkMatch navLinkMatch = NavLinkMatch.Prefix) => IsActive(href, navLinkMatch) ? "govuk-header__navigation-item--active" : "";
+}

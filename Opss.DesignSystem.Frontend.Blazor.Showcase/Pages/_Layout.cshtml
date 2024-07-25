@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@namespace Opss.DesignSystem.Frontend.Showcase.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en" class="govuk-template">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="~/" />
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="css/Opss.css" rel="stylesheet" />
+
+    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+</head>
+<body class="govuk-frontend-supported govuk-template__body">
+    <script>
+        document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+    </script>
+
+    <div id="blazor-error-ui" class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                Error
+            </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+            <p class="govuk-notification-banner__heading">
+                <environment include="Staging,Production">
+                    An error has occurred. This application may no longer respond until reloaded.
+                </environment>
+                <environment include="Development">
+                    An unhandled exception has occurred. See browser dev tools for details.
+                </environment>
+            </p>
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <script src="js/Opss.js"></script>
+    <script>
+        window.GOVUKFrontend.initAll()
+    </script>
+
+    <script src="_framework/blazor.server.js"></script>
+</body>
+</html>
