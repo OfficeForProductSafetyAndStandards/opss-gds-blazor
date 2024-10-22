@@ -9,7 +9,7 @@
   "author": "Richard priddy",
   "license": "ISC",
   "dependencies": {
-    "govuk-frontend": "^5.4.1"
+    "govuk-frontend": "^5.6.0"
   },
   "devDependencies": {
     "async": "^3.2.5",

@@ -6,7 +6,7 @@ namespace Opss.DesignSystem.Frontend.Blazor.Components.Models;
 public class GdsLabelModel : GdsWithContent
 {
     /// <summary>
-    /// The value of the for attribute, the ID of the input the label is associated with.
+    /// The value of the `for` attribute, the ID of the input the label is associated with.
     /// </summary>
     [Parameter]
     public string? For { get; set; }
