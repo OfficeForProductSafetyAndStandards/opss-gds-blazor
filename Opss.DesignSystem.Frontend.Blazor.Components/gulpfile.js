@@ -18,7 +18,7 @@ const copyGovukAssets = () =>
 const copyGovukJs = () =>
 	gulp.src(["node_modules/govuk-frontend/dist/govuk/all.bundle.js"])
 		.pipe(uglify())
-		.pipe(rename("Opss.js"))
+		.pipe(rename("govuk.js"))
 		.pipe(gulp.dest("wwwroot/js/"));
 
 const copyGovukFavicon = () =>
