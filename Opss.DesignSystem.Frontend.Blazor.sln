@@ -16,7 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Opss.DesignSystem.Frontend.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Opss.DesignSystem.Frontend.Blazor.Showcase", "Opss.DesignSystem.Frontend.Blazor.Showcase\Opss.DesignSystem.Frontend.Blazor.Showcase.csproj", "{D60122CB-35D8-4B73-B9AC-54114630D28D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opss.DesignSystem.Frontend.Blazor.UnitTests", "Opss.DesignSystem.Frontend.Blazor.UnitTests\Opss.DesignSystem.Frontend.Blazor.UnitTests.csproj", "{EDAC8924-261D-4555-B431-C81918E39BAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Opss.DesignSystem.Frontend.Blazor.UnitTests", "Opss.DesignSystem.Frontend.Blazor.UnitTests\Opss.DesignSystem.Frontend.Blazor.UnitTests.csproj", "{EDAC8924-261D-4555-B431-C81918E39BAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

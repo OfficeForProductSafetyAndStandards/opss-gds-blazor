@@ -5,12 +5,12 @@
     <ul id="navigation" class="govuk-header__navigation-list">
         <li class="govuk-header__navigation-item @GetActive("", NavLinkMatch.All)">
             <NavLink class="govuk-header__link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
+                Home
             </NavLink>
         </li>
-        <li class="govuk-header__navigation-item @GetActive("Input", NavLinkMatch.All)">
-            <NavLink class="govuk-header__link" href="Input">
-                <span class="oi oi-input" aria-hidden="true"></span> Input
+        <li class="govuk-header__navigation-item @GetActive("Components/", NavLinkMatch.Prefix)">
+            <NavLink class="govuk-header__link" href="Components/TextInput">
+                Components
             </NavLink>
         </li>
     </ul>

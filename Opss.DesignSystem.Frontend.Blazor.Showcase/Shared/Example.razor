@@ -1,0 +1,19 @@
+﻿
+@inherits Models.ExampleModel
+
+<div class="app-example-wrapper" id="text-input-example" data-module="app-tabs" data-app-tabs-init="">
+    <div class="app-example ">
+        <div class="app-example__toolbar govuk-body">
+            Example
+        </div>
+        <div class="app-example__component">
+            @ChildContent
+        </div>
+    </div>
+
+    <div class="app-example__code" data-module="app-copy" data-app-copy-init="">
+        <Blazor.HighlightJS.Code Language="razor">
+            @CodeExampleContent
+        </Blazor.HighlightJS.Code>
+    </div>
+</div>

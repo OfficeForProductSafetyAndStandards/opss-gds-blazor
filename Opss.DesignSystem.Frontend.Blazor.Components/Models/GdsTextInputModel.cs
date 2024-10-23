@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace Opss.DesignSystem.Frontend.Blazor.Components.Models;
 
-public partial class GdsInputModel : GdsViewModel
+public partial class GdsTextInputModel : GdsViewModel
 {
     /// <summary>
     /// The name of the input, which is submitted with the form data.
@@ -88,5 +88,11 @@ public partial class GdsInputModel : GdsViewModel
         public const string Width4 = "govuk-input--width-4";
         public const string Width3 = "govuk-input--width-3";
         public const string Width2 = "govuk-input--width-2";
+    }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Type is specific to its parent")]
+    public static class Lettering
+    {
+        public const string ExtraLetterWidth = "govuk-input--extra-letter-spacing";
     }
 }
