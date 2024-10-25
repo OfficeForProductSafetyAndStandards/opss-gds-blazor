@@ -18,7 +18,16 @@ public partial class GdsTextInputModel : GdsViewModel
     public string? Type { get; set; }
 
     [Parameter]
-    public string? Inputmode { get; set; }
+    public string? Inputmode { 
+        get => _inputmode; 
+        set { 
+            _inputmode = value; 
+            if(_inputmode == "numeric")
+            {
+                Spellcheck = false;
+            }
+        } 
+    }
 
     /// <summary>
     /// Optional initial value of the input.
@@ -27,6 +36,8 @@ public partial class GdsTextInputModel : GdsViewModel
     public string? Value { get; set; }
 
     private string? _describedBy;
+    private string? _inputmode;
+
     /// <summary>
     /// One or more element IDs to add to the aria-describedby attribute, used to provide additional descriptive information for screenreader users.
     /// </summary>
@@ -36,8 +47,8 @@ public partial class GdsTextInputModel : GdsViewModel
         get
         {
             var fullText = _describedBy ?? "";
-            if (ErrorMessageTemplate != null) fullText += $" {Id}-error";
             if (HintTemplate != null) fullText += $" {Id}-hint";
+            if (ErrorMessageTemplate != null) fullText += $" {Id}-error";
             return string.IsNullOrWhiteSpace(fullText) ? null : fullText;
         }
         set => _describedBy = value;
@@ -76,7 +87,7 @@ public partial class GdsTextInputModel : GdsViewModel
     /// Optional field to enable or disable the spellcheck attribute on the input.
     /// </summary>
     [Parameter]
-    public bool Spellcheck { get; set; }
+    public bool? Spellcheck { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Type is specific to its parent")]
     public static class Width
