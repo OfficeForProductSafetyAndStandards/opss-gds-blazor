@@ -23,7 +23,7 @@
             }
 
             <input id="@Id" class="govuk-input @Classes @(ErrorMessageTemplate != null ? "govuk-input--error" : "")" name="@Name" type="@(Type ?? "text")"
-                   spellcheck="@Spellcheck" value="@Value" aria-describedby="@DescribedBy"
+                   spellcheck="@Spellcheck?.ToString().ToLower()" value="@Value" aria-describedby="@DescribedBy?.Trim()"
                    autocomplete="@Autocomplete" pattern="@Pattern" inputmode="@Inputmode" @attributes="@Attributes" />
 
             @if (SuffixTemplate != null)
@@ -35,7 +35,7 @@
     else
     {
         <input id="@Id" class="govuk-input @Classes @(ErrorMessageTemplate != null ? "govuk-input--error" : "")" name="@Name" type="@(Type ?? "text")"
-               spellcheck="@Spellcheck" value="@Value" aria-describedby="@DescribedBy"
+               spellcheck="@Spellcheck?.ToString().ToLower()" value="@Value" aria-describedby="@DescribedBy?.Trim()"
                autocomplete="@Autocomplete" pattern="@Pattern" inputmode="@Inputmode" @attributes="@Attributes" />
     }
 </div>

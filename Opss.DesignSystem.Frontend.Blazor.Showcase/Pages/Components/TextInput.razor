@@ -270,7 +270,7 @@
         </GdsLabel>
     </LabelTemplate>
     <HintTemplate>
-        <GdsHint>The event's name</GdsHint>
+        <GdsHint Id=""event-name-hint"">The event's name</GdsHint>
     </HintTemplate>
 </GdsTextInput>")">
     <GdsTextInput Id="event-name"
@@ -283,7 +283,7 @@
             </GdsLabel>
         </LabelTemplate>
         <HintTemplate>
-            <GdsHint>The event's name</GdsHint>
+            <GdsHint Id="event-name-hint">The event's name</GdsHint>
         </HintTemplate>
     </GdsTextInput>
 </Example>
@@ -304,7 +304,7 @@
         </GdsLabel>
     </LabelTemplate>
     <HintTemplate>
-        <GdsHint>Must be between 6 and 8 digits long</GdsHint>
+        <GdsHint Id=""account-number-hint"">Must be between 6 and 8 digits long</GdsHint>
     </HintTemplate>
 </GdsTextInput>")">
     <GdsTextInput Id="account-number"
@@ -319,7 +319,7 @@
             </GdsLabel>
         </LabelTemplate>
         <HintTemplate>
-            <GdsHint>Must be between 6 and 8 digits long</GdsHint>
+            <GdsHint Id="account-number-hint">Must be between 6 and 8 digits long</GdsHint>
         </HintTemplate>
     </GdsTextInput>
 </Example>
@@ -328,7 +328,8 @@
 
 <Example CodeExampleContent="@(@"<GdsTextInput Id=""weight""
               Name=""weight""
-              Classes=""@GdsTextInputModel.Width.Width5"">
+              Classes=""@GdsTextInputModel.Width.Width5""
+			  spellcheck=""@false"">
     <LabelTemplate>
         <GdsLabel For=""weight"">
             What is the weight in kilograms?
@@ -340,7 +341,8 @@
 </GdsTextInput>")">
     <GdsTextInput Id="weight"
                   Name="weight"
-                  Classes="@GdsTextInputModel.Width.Width5">
+                  Classes="@GdsTextInputModel.Width.Width5"
+				  spellcheck="@false">
         <LabelTemplate>
             <GdsLabel For="weight">
                 What is the weight in kilograms?
@@ -357,27 +359,29 @@
 <Example CodeExampleContent="@(@"<GdsTextInput Id=""authentication-code""
               Name=""authentication-code""
               Classes=@(@GdsTextInputModel.Width.Width5 + "" "" + @GdsTextInputModel.Lettering.ExtraLetterWidth)
-              Value=""NC1701"">
+              Value=""NC1701""
+			  spellcheck=""@false"">
     <LabelTemplate>
         <GdsLabel For=""authentication-code"">
             Company authentication code
         </GdsLabel>
     </LabelTemplate>
     <HintTemplate>
-        <GdsHint>This is on the company incorporation letter sent to the registered office address</GdsHint>
+        <GdsHint Id=""authentication-code-hint"">This is on the company incorporation letter sent to the registered office address</GdsHint>
     </HintTemplate>
 </GdsTextInput>")">
     <GdsTextInput Id="authentication-code"
                   Name="authentication-code"
                   Classes=@(@GdsTextInputModel.Width.Width5 + " " + @GdsTextInputModel.Lettering.ExtraLetterWidth)
-                  Value="NC1701">
+                  Value="NC1701"
+				  spellcheck="@false">
         <LabelTemplate>
             <GdsLabel For="authentication-code">
                 Company authentication code
             </GdsLabel>
         </LabelTemplate>
         <HintTemplate>
-            <GdsHint>This is on the company incorporation letter sent to the registered office address</GdsHint>
+            <GdsHint Id="authentication-code-hint">This is on the company incorporation letter sent to the registered office address</GdsHint>
         </HintTemplate>
     </GdsTextInput>
 </Example>
@@ -386,7 +390,8 @@
 
 <Example CodeExampleContent="@(@"<GdsTextInput Id=""cost""
               Name=""cost""
-              Classes=""@GdsTextInputModel.Width.Width5"">
+              Classes=""@GdsTextInputModel.Width.Width5""
+			  spellcheck=""@false"">
     <LabelTemplate>
         <GdsLabel For=""cost""
                   Classes=""@GdsLabelModel.Size.Large""
@@ -403,7 +408,8 @@
 </GdsTextInput>")">
     <GdsTextInput Id="cost"
                   Name="cost"
-                  Classes="@GdsTextInputModel.Width.Width5">
+                  Classes="@GdsTextInputModel.Width.Width5"
+                  spellcheck="@false">
         <LabelTemplate>
             <GdsLabel For="cost"
                       Classes="@GdsLabelModel.Size.Large"

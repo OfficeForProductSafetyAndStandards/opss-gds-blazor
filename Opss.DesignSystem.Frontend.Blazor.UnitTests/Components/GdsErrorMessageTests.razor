@@ -11,11 +11,11 @@
 
 		// Assert that content of the paragraph shows counter at zero
 		component.Find("p").MarkupMatches(
-	@<p id=@id class="govuk-error-message">
-		<span class="govuk-visually-hidden">Error:</span>
-		@message
-	</p>
-	);
+			@<p id=@id class="govuk-error-message">
+				<span class="govuk-visually-hidden">Error:</span>
+				@message
+			</p>
+		);
 	}
 
 	[Fact]
@@ -29,10 +29,11 @@
 
 		// Assert that content of the paragraph shows counter at zero
 		component.Find("p").MarkupMatches(
-	@<p id=@id class="govuk-error-message">
-		<span class="govuk-visually-hidden">Error:</span>
-		@message
-	</p>);
+			@<p id=@id class="govuk-error-message">
+				<span class="govuk-visually-hidden">Error:</span>
+				@message
+			</p>
+		);
 	}
 
 	[Fact]
@@ -45,10 +46,11 @@
 
 		// Assert that content of the paragraph shows counter at zero
 		component.Find("p").MarkupMatches(
-	@<p id=@id class="govuk-error-message">
-		<span class="govuk-visually-hidden">Error:</span>
-		@message
-	</p>);
+			@<p id=@id class="govuk-error-message">
+				<span class="govuk-visually-hidden">Error:</span>
+				@message
+			</p>
+		);
 	}
 
 	[Fact]
@@ -62,10 +64,11 @@
 
 		// Assert that content of the paragraph shows counter at zero
 		component.Find("p").MarkupMatches(
-	@<p id=@id class="govuk-error-message">
-		<span class="govuk-visually-hidden">@visuallyHiddenMessage:</span>
-		@message
-	</p>);
+			@<p id=@id class="govuk-error-message">
+				<span class="govuk-visually-hidden">@visuallyHiddenMessage:</span>
+				@message
+			</p>
+		);
 	}
 
 	[Fact]
@@ -79,11 +82,11 @@
 
 		// Assert that content of the paragraph shows counter at zero
 		component.Find("p").MarkupMatches(
-	@<p id=@id class="govuk-error-message @extraClasses">
-		<span class="govuk-visually-hidden">Error:</span>
-		@message
-	</p>
-	);
+			@<p id=@id class="govuk-error-message @extraClasses">
+				<span class="govuk-visually-hidden">Error:</span>
+				@message
+			</p>
+		);
 	}
 
 	[Fact]
@@ -97,9 +100,10 @@
 
 		// Assert that content of the paragraph shows counter at zero
 		component.Find("p").MarkupMatches(
-	@<p id=@id class="govuk-error-message" attribute="value">
-		<span class="govuk-visually-hidden">Error:</span>
-		@message
-	</p>);
+			@<p id=@id class="govuk-error-message" attribute="value">
+				<span class="govuk-visually-hidden">Error:</span>
+				@message
+			</p>
+		);
 	}
 }
