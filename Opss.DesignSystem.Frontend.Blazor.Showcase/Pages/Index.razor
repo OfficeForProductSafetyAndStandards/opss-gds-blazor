@@ -106,17 +106,14 @@
                 <Blazor.HighlightJS.Code Language="xml">@(@"<header class=""govuk-header"" data-module=""govuk-header"" @ref=AppHeader>")</Blazor.HighlightJS.Code>
             </li>
             <li>
-                Execute the js function after first render:
+                Execute the js function after render:
                 <Blazor.HighlightJS.Code Language="csharp">
                     @(@"@code {
     ElementReference AppHeader;
 
     protected override Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
-        {
-            JSRuntime.InvokeVoidAsync(""initGOVUKFrontend"", AppHeader);
-        }
+        JSRuntime.InvokeVoidAsync(""initGOVUKFrontend"", AppHeader);
         return base.OnAfterRenderAsync(firstRender);
     }
     }")

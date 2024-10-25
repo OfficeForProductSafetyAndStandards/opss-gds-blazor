@@ -89,10 +89,7 @@
 
     protected override Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
-        {
-            JSRuntime.InvokeVoidAsync("initGOVUKFrontend", AppHeader);
-        }
+        JSRuntime.InvokeVoidAsync("initGOVUKFrontend", AppHeader);
         return base.OnAfterRenderAsync(firstRender);
     }
 }
