@@ -13,7 +13,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <Version>1.0.0-alpha.2</Version>
+    <Version>1.0.0-alpha.3</Version>
   </PropertyGroup>
 
 <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
@@ -43,10 +43,6 @@
   <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
-
-  <ItemGroup>
-	<Folder Include="wwwroot\" />
-  </ItemGroup>
 	<ItemGroup>
 		<Content Update="wwwroot\**\*">
 			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
@@ -73,6 +69,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\js\init.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

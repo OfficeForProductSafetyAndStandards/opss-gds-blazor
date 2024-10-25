@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@inject IJSRuntime JSRuntime
 @using Microsoft.AspNetCore.Components.Sections
 
 <PageTitle>Opss.DesignSystem.Frontend.Showcase</PageTitle>
@@ -7,7 +8,7 @@
     document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
 </script>
 <a href="#main-content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
-<header class="govuk-header" data-module="govuk-header">
+<header class="govuk-header" data-module="govuk-header" @ref=AppHeader>
     <div class="govuk-header__container app-width-container app-header__container">
         <div class="govuk-header__logo">
             <a href="#" class="govuk-header__link govuk-header__link--homepage">
@@ -82,3 +83,16 @@
         </div>
     </div>
 </footer>
+
+@code{
+    ElementReference AppHeader;
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            JSRuntime.InvokeVoidAsync("initGOVUKFrontend", AppHeader);
+        }
+        return base.OnAfterRenderAsync(firstRender);
+    }
+}
