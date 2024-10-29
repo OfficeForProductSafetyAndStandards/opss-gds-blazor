@@ -5,6 +5,11 @@
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-quarter">
             <ul id="sub-navigation" class="app-subnav__section">
+                <li class="app-subnav__section-item @GetActive("Components/ErrorMessage", NavLinkMatch.All)">
+                    <NavLink class="app-subnav__link govuk-link govuk-link--no-visited-state govuk-link--no-underline" href="Components/ErrorMessage">
+                        Error message
+                    </NavLink>
+                </li>
                 <li class="app-subnav__section-item @GetActive("Components/TextInput", NavLinkMatch.All)">
                     <NavLink class="app-subnav__link govuk-link govuk-link--no-visited-state govuk-link--no-underline" href="Components/TextInput">
                         Text input
