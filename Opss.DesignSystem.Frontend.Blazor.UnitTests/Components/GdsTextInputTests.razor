@@ -753,6 +753,37 @@
 					<div class="govuk-input__suffix" aria-hidden="true">per item</div>
 				</div>
 			</div>
+	);
+	}
+
+	/// <summary>
+	/// A test to demonstrate how one could conditionally include / exclude a child component
+	/// </summary>
+	[Fact]
+	public void OutputsQuestion_With_ConditionalLabel()
+	{
+		// Arrange
+		var component = Render(
+			@<GdsTextInput Id="postcode"
+						   			Name="postcode"
+						   			Classes="@GdsTextInputModel.Width.Width10"
+						   			Autocomplete="postal-code">
+							   
+				<LabelTemplate>
+				@if(false){
+					<GdsLabel For="postcode">
+						Postcode
+					</GdsLabel>
+				}
+				</LabelTemplate>
+							   
+			</GdsTextInput>
+		);
+
+		component.Find("div").MarkupMatches(
+			@<div class="govuk-form-group">
+				<input class="govuk-input govuk-input--width-10" id="postcode" name="postcode" type="text" autocomplete="postal-code">
+			</div>
 		);
 	}
 }
