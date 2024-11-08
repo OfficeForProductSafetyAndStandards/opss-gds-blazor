@@ -11,9 +11,9 @@
 
 		// Assert that content of the paragraph shows counter at zero
 		component.Find("div").MarkupMatches(
-	@<div id=@id class="govuk-hint">
-		@message
-	</div>
+			@<div id=@id class="govuk-hint">
+				@message
+			</div>
 		);
 	}
 
@@ -28,9 +28,9 @@
 
 		// Assert that content of the paragraph shows counter at zero
 		component.Find("div").MarkupMatches(
-	@<div id=@id class="govuk-hint @customClass">
-		@message
-	</div>
+			@<div id=@id class="govuk-hint @customClass">
+				@message
+			</div>
 	);
 	}
 
@@ -48,9 +48,9 @@
 
 		// Assert that content of the paragraph shows counter at zero
 		component.Find("div").MarkupMatches(
-	@<div id=@id class="govuk-hint" aria-label="Hello">
-		@message
-	</div>
+			@<div id=@id class="govuk-hint" aria-label="Hello">
+				@message
+			</div>
 		);
 	}
 }
