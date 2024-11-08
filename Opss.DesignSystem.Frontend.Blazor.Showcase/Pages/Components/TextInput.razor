@@ -1,0 +1,631 @@
+﻿@page "/Components/TextInput"
+@layout _ComponentsLayout
+
+<PageTitle>Text input</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Text input</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/text-input/" class="govuk-link">Text input</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsTextInput Id=""event-name""
+              Name=""event-name"">
+    <LabelTemplate>
+        <GdsLabel For=""event-name"" 
+                  Classes=""@GdsLabelModel.Size.Large""
+                  IsPageHeading=""true"">
+            What is the name of the event?
+        </GdsLabel>
+    </LabelTemplate>
+    <HintTemplate>
+        <GdsHint>The event's name</GdsHint>
+    </HintTemplate>
+</GdsTextInput>")">
+    <GdsTextInput Id="event-name"
+                  Name="event-name">
+        <LabelTemplate>
+            <GdsLabel For="event-name" 
+                      Classes="@GdsLabelModel.Size.Large" 
+                      IsPageHeading="true">
+                What is the name of the event?
+            </GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint>The event's name</GdsHint>
+        </HintTemplate>
+    </GdsTextInput>
+</Example>
+
+<h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
+
+<h3 class="govuk-heading-m" id="if-youre-asking-one-question-on-the-page">If you’re asking one question on the page</h3>
+
+<Example CodeExampleContent="@(@"<GdsTextInput Id=""event-name""
+              Name=""event-name"">
+    <LabelTemplate>
+        <GdsLabel For=""event-name""
+                  Classes=""@GdsLabelModel.Size.Large""
+                  IsPageHeading=""true"">
+            What is the name of the event?
+        </GdsLabel>
+    </LabelTemplate>
+</GdsTextInput>")">
+    <GdsTextInput Id="event-name"
+                  Name="event-name">
+        <LabelTemplate>
+            <GdsLabel For="event-name" Classes="@GdsLabelModel.Size.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
+        </LabelTemplate>
+    </GdsTextInput>
+</Example>
+
+<h3 class="govuk-heading-m" id="if-youre-asking-more-than-one-question-on-the-page">If you’re asking more than one question on the page</h3>
+
+<Example CodeExampleContent="@(@"<GdsTextInput Id=""event-name""
+              Name=""event-name"">
+    <LabelTemplate>
+        <GdsLabel For=""event-name"">
+            What is the name of the event?
+        </GdsLabel>
+    </LabelTemplate>
+</GdsTextInput>")">
+    <GdsTextInput Id="event-name"
+                  Name="event-name">
+        <LabelTemplate>
+            <GdsLabel For="event-name">What is the name of the event?</GdsLabel>
+        </LabelTemplate>
+    </GdsTextInput>
+</Example>
+
+<h3 class="govuk-heading-m" id="use-appropriately-sized-text-inputs">Use appropriately-sized text inputs</h3>
+
+<h4 class="govuk-heading-s" id="fixed-width-inputs">Fixed width inputs</h4>
+<Example CodeExampleContent="@(@"<GdsTextInput Id=""20-character-width""
+              Name=""event-name""
+              Classes=""@GdsTextInputModel.Width.Width20"">
+    <LabelTemplate>
+        <GdsLabel For=""20-character-width"">20 character width</GdsLabel>
+    </LabelTemplate>
+</GdsTextInput>
+<GdsTextInput Id=""10-character-width""
+                Name=""event-name""
+                Classes=""@GdsTextInputModel.Width.Width10"">
+    <LabelTemplate>
+        <GdsLabel For=""10-character-width"">10 character width</GdsLabel>
+    </LabelTemplate>
+</GdsTextInput>
+<GdsTextInput Id=""5-character-width""
+                Name=""event-name""
+                Classes=""@GdsTextInputModel.Width.Width5"">
+    <LabelTemplate>
+        <GdsLabel For=""5-character-width"">5 character width</GdsLabel>
+    </LabelTemplate>
+</GdsTextInput>
+<GdsTextInput Id=""4-character-width""
+                Name=""event-name""
+                Classes=""@GdsTextInputModel.Width.Width4"">
+    <LabelTemplate>
+        <GdsLabel For=""4-character-width"">4 character width</GdsLabel>
+    </LabelTemplate>
+</GdsTextInput>
+<GdsTextInput Id=""3-character-width""
+                Name=""event-name""
+                Classes=""@GdsTextInputModel.Width.Width3"">
+    <LabelTemplate>
+        <GdsLabel For=""3-character-width"">3 character width</GdsLabel>
+    </LabelTemplate>
+</GdsTextInput>
+<GdsTextInput Id=""2-character-width""
+                Name=""event-name""
+                Classes=""@GdsTextInputModel.Width.Width2"">
+    <LabelTemplate>
+        <GdsLabel For=""2-character-width"">2 character width</GdsLabel>
+    </LabelTemplate>
+</GdsTextInput>")">
+    <GdsTextInput Id="20-character-width"
+                  Name="event-name"
+                  Classes="@GdsTextInputModel.Width.Width20">
+        <LabelTemplate>
+            <GdsLabel For="20-character-width">20 character width</GdsLabel>
+        </LabelTemplate>
+    </GdsTextInput>
+    <GdsTextInput Id="10-character-width"
+                  Name="event-name"
+                  Classes="@GdsTextInputModel.Width.Width10">
+        <LabelTemplate>
+            <GdsLabel For="10-character-width">10 character width</GdsLabel>
+        </LabelTemplate>
+    </GdsTextInput>
+    <GdsTextInput Id="5-character-width"
+                  Name="event-name"
+                  Classes="@GdsTextInputModel.Width.Width5">
+        <LabelTemplate>
+            <GdsLabel For="5-character-width">5 character width</GdsLabel>
+        </LabelTemplate>
+    </GdsTextInput>
+    <GdsTextInput Id="4-character-width"
+                  Name="event-name"
+                  Classes="@GdsTextInputModel.Width.Width4">
+        <LabelTemplate>
+            <GdsLabel For="4-character-width">4 character width</GdsLabel>
+        </LabelTemplate>
+    </GdsTextInput>
+    <GdsTextInput Id="3-character-width"
+                  Name="event-name"
+                  Classes="@GdsTextInputModel.Width.Width3">
+        <LabelTemplate>
+            <GdsLabel For="3-character-width">3 character width</GdsLabel>
+        </LabelTemplate>
+    </GdsTextInput>
+    <GdsTextInput Id="2-character-width"
+                  Name="event-name"
+                  Classes="@GdsTextInputModel.Width.Width2">
+        <LabelTemplate>
+            <GdsLabel For="2-character-width">2 character width</GdsLabel>
+        </LabelTemplate>
+    </GdsTextInput>
+</Example>
+
+<h4 class="govuk-heading-s" id="fluid-width-inputs">Fluid width inputs</h4>
+<Example CodeExampleContent="@(@"<GdsTextInput Id=""full""
+              Name=""event-name""
+              Classes=""@GdsLayoutModel.Width.Full"">
+    <LabelTemplate>
+        <GdsLabel For=""full"">Full width</GdsLabel>
+    </LabelTemplate>
+</GdsTextInput>
+<GdsTextInput Id=""three-quarters""
+                Name=""event-name""
+                Classes=""@GdsLayoutModel.Width.ThreeQuarters"">
+    <LabelTemplate>
+        <GdsLabel For=""three-quarters"">Three quarters width</GdsLabel>
+    </LabelTemplate>
+</GdsTextInput>
+<GdsTextInput Id=""two-thirds""
+                Name=""event-name""
+                Classes=""@GdsLayoutModel.Width.TwoThirds"">
+    <LabelTemplate>
+        <GdsLabel For=""two-thirds"">Two-thirds width</GdsLabel>
+    </LabelTemplate>
+</GdsTextInput>
+<GdsTextInput Id=""one-half""
+                Name=""event-name""
+                Classes=""@GdsLayoutModel.Width.OneHalf"">
+    <LabelTemplate>
+        <GdsLabel For=""one-half"">One-half width</GdsLabel>
+    </LabelTemplate>
+</GdsTextInput>
+<GdsTextInput Id=""one-third""
+                Name=""event-name""
+                Classes=""@GdsLayoutModel.Width.OneThird"">
+    <LabelTemplate>
+        <GdsLabel For=""one-third"">
+            One-third width
+        </GdsLabel>
+    </LabelTemplate>
+</GdsTextInput>
+<GdsTextInput Id=""one-quarter""
+                Name=""event-name""
+                Classes=""@GdsLayoutModel.Width.OneQuarter"">
+    <LabelTemplate>
+        <GdsLabel For=""one-quarter"">One-quarter width</GdsLabel>
+    </LabelTemplate>
+</GdsTextInput>")">
+    <GdsTextInput Id="full"
+                  Name="event-name"
+                  Classes="@GdsLayoutModel.Width.Full">
+        <LabelTemplate>
+            <GdsLabel For="full">Full width</GdsLabel>
+        </LabelTemplate>
+    </GdsTextInput>
+    <GdsTextInput Id="three-quarters"
+                  Name="event-name"
+                  Classes="@GdsLayoutModel.Width.ThreeQuarters">
+        <LabelTemplate>
+            <GdsLabel For="three-quarters">Three quarters width</GdsLabel>
+        </LabelTemplate>
+    </GdsTextInput>
+    <GdsTextInput Id="two-thirds"
+                  Name="event-name"
+                  Classes="@GdsLayoutModel.Width.TwoThirds">
+        <LabelTemplate>
+            <GdsLabel For="two-thirds">Two-thirds width</GdsLabel>
+        </LabelTemplate>
+    </GdsTextInput>
+    <GdsTextInput Id="one-half"
+                  Name="event-name"
+                  Classes="@GdsLayoutModel.Width.OneHalf">
+        <LabelTemplate>
+            <GdsLabel For="one-half">One-half width</GdsLabel>
+        </LabelTemplate>
+    </GdsTextInput>
+    <GdsTextInput Id="one-third"
+                  Name="event-name"
+                  Classes="@GdsLayoutModel.Width.OneThird">
+        <LabelTemplate>
+            <GdsLabel For="one-third">
+                One-third width
+            </GdsLabel>
+        </LabelTemplate>
+    </GdsTextInput>
+    <GdsTextInput Id="one-quarter"
+                  Name="event-name"
+                  Classes="@GdsLayoutModel.Width.OneQuarter">
+        <LabelTemplate>
+            <GdsLabel For="one-quarter">One-quarter width</GdsLabel>
+        </LabelTemplate>
+    </GdsTextInput>
+</Example>
+
+<h3 class="govuk-heading-m" id="hint-text">Hint text</h3>
+
+<Example CodeExampleContent="@(@"<GdsTextInput Id=""event-name""
+              Name=""event-name"">
+    <LabelTemplate>
+        <GdsLabel For=""event-name""
+                  Classes=""@GdsLabelModel.Size.Large""
+                  IsPageHeading=""true"">
+            What is the name of the event?
+        </GdsLabel>
+    </LabelTemplate>
+    <HintTemplate>
+        <GdsHint Id=""event-name-hint"">The event's name</GdsHint>
+    </HintTemplate>
+</GdsTextInput>")">
+    <GdsTextInput Id="event-name"
+                  Name="event-name">
+        <LabelTemplate>
+            <GdsLabel For="event-name"
+                      Classes="@GdsLabelModel.Size.Large"
+                      IsPageHeading="true">
+                What is the name of the event?
+            </GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint Id="event-name-hint">The event's name</GdsHint>
+        </HintTemplate>
+    </GdsTextInput>
+</Example>
+
+<h3 class="govuk-heading-m" id="numbers">Numbers</h3>
+
+<h4 class="govuk-heading-s" id="asking-for-whole-numbers">Asking for whole numbers</h4>
+
+<Example CodeExampleContent="@(@"<GdsTextInput Id=""account-number""
+              Name=""account-number""
+              Classes=""@GdsTextInputModel.Width.Width10""
+              Inputmode=""numeric"">
+    <LabelTemplate>
+        <GdsLabel For=""account-number""
+                  Classes=""@GdsLabelModel.Size.Large""
+                  IsPageHeading=""true"">
+            What is your account number?
+        </GdsLabel>
+    </LabelTemplate>
+    <HintTemplate>
+        <GdsHint Id=""account-number-hint"">Must be between 6 and 8 digits long</GdsHint>
+    </HintTemplate>
+</GdsTextInput>")">
+    <GdsTextInput Id="account-number"
+                  Name="account-number"
+                  Classes="@GdsTextInputModel.Width.Width10"
+                  Inputmode="numeric">
+        <LabelTemplate>
+            <GdsLabel For="account-number"
+                      Classes="@GdsLabelModel.Size.Large"
+                      IsPageHeading="true">
+                What is your account number?
+            </GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint Id="account-number-hint">Must be between 6 and 8 digits long</GdsHint>
+        </HintTemplate>
+    </GdsTextInput>
+</Example>
+
+<h4 class="govuk-heading-s" id="asking-for-decimal-numbers">Asking for decimal numbers</h4>
+
+<Example CodeExampleContent="@(@"<GdsTextInput Id=""weight""
+              Name=""weight""
+              Classes=""@GdsTextInputModel.Width.Width5""
+			  spellcheck=""@false"">
+    <LabelTemplate>
+        <GdsLabel For=""weight"">
+            What is the weight in kilograms?
+        </GdsLabel>
+    </LabelTemplate>
+    <SuffixTemplate>
+        <GdsSuffix>kg</GdsSuffix>
+    </SuffixTemplate>
+</GdsTextInput>")">
+    <GdsTextInput Id="weight"
+                  Name="weight"
+                  Classes="@GdsTextInputModel.Width.Width5"
+				  spellcheck="@false">
+        <LabelTemplate>
+            <GdsLabel For="weight">
+                What is the weight in kilograms?
+            </GdsLabel>
+        </LabelTemplate>
+        <SuffixTemplate>
+            <GdsSuffix>kg</GdsSuffix>
+        </SuffixTemplate>
+    </GdsTextInput>
+</Example>
+
+<h3 class="govuk-heading-m" id="codes-and-sequences">Codes and sequences</h3>
+
+<Example CodeExampleContent="@(@"<GdsTextInput Id=""authentication-code""
+              Name=""authentication-code""
+              Classes=@(@GdsTextInputModel.Width.Width5 + "" "" + @GdsTextInputModel.Lettering.ExtraLetterWidth)
+              Value=""NC1701""
+			  spellcheck=""@false"">
+    <LabelTemplate>
+        <GdsLabel For=""authentication-code"">
+            Company authentication code
+        </GdsLabel>
+    </LabelTemplate>
+    <HintTemplate>
+        <GdsHint Id=""authentication-code-hint"">This is on the company incorporation letter sent to the registered office address</GdsHint>
+    </HintTemplate>
+</GdsTextInput>")">
+    <GdsTextInput Id="authentication-code"
+                  Name="authentication-code"
+                  Classes=@(@GdsTextInputModel.Width.Width5 + " " + @GdsTextInputModel.Lettering.ExtraLetterWidth)
+                  Value="NC1701"
+				  spellcheck="@false">
+        <LabelTemplate>
+            <GdsLabel For="authentication-code">
+                Company authentication code
+            </GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint Id="authentication-code-hint">This is on the company incorporation letter sent to the registered office address</GdsHint>
+        </HintTemplate>
+    </GdsTextInput>
+</Example>
+
+<h3 class="govuk-heading-m" id="prefixes-and-suffixes">Prefixes and suffixes</h3>
+
+<Example CodeExampleContent="@(@"<GdsTextInput Id=""cost""
+              Name=""cost""
+              Classes=""@GdsTextInputModel.Width.Width5""
+			  spellcheck=""@false"">
+    <LabelTemplate>
+        <GdsLabel For=""cost""
+                  Classes=""@GdsLabelModel.Size.Large""
+                  IsPageHeading=""true"">
+            What is the cost per item, in pounds?
+        </GdsLabel>
+    </LabelTemplate>
+    <PrefixTemplate>
+        <GdsPrefix>£</GdsPrefix>
+    </PrefixTemplate>
+    <SuffixTemplate>
+        <GdsSuffix>per item</GdsSuffix>
+    </SuffixTemplate>
+</GdsTextInput>")">
+    <GdsTextInput Id="cost"
+                  Name="cost"
+                  Classes="@GdsTextInputModel.Width.Width5"
+                  spellcheck="@false">
+        <LabelTemplate>
+            <GdsLabel For="cost"
+                      Classes="@GdsLabelModel.Size.Large"
+                      IsPageHeading="true">
+                What is the cost per item, in pounds?
+            </GdsLabel>
+        </LabelTemplate>
+        <PrefixTemplate>
+            <GdsPrefix>£</GdsPrefix>
+        </PrefixTemplate>
+        <SuffixTemplate>
+            <GdsSuffix>per item</GdsSuffix>
+        </SuffixTemplate>
+    </GdsTextInput>
+</Example>
+
+<h4 class="govuk-heading-s" id="text-inputs-with-a-prefix">Text inputs with a prefix</h4>
+
+<Example CodeExampleContent="@(@"<GdsTextInput Id=""cost""
+              Name=""cost""
+              Classes=""@GdsTextInputModel.Width.Width5"">
+    <LabelTemplate>
+        <GdsLabel For=""cost""
+                  Classes=""@GdsLabelModel.Size.Large""
+                  IsPageHeading=""true"">
+            What is the cost per item, in pounds?
+        </GdsLabel>
+    </LabelTemplate>
+    <PrefixTemplate>
+        <GdsPrefix>£</GdsPrefix>
+    </PrefixTemplate>
+</GdsTextInput>")">
+    <GdsTextInput Id="cost"
+                  Name="cost"
+                  Classes="@GdsTextInputModel.Width.Width5">
+        <LabelTemplate>
+            <GdsLabel For="cost"
+                      Classes="@GdsLabelModel.Size.Large"
+                      IsPageHeading="true">
+                What is the cost per item, in pounds?
+            </GdsLabel>
+        </LabelTemplate>
+        <PrefixTemplate>
+            <GdsPrefix>£</GdsPrefix>
+        </PrefixTemplate>
+    </GdsTextInput>
+</Example>
+
+<h4 class="govuk-heading-s" id="text-inputs-with-a-suffix">Text inputs with a suffix</h4>
+
+<Example CodeExampleContent="@(@"<GdsTextInput Id=""weight""
+              Name=""weight""
+              Classes=""@GdsTextInputModel.Width.Width5"">
+    <LabelTemplate>
+        <GdsLabel For=""weight""
+                  Classes=""@GdsLabelModel.Size.Large""
+                  IsPageHeading=""true"">
+            What is the weight in kilograms?
+        </GdsLabel>
+    </LabelTemplate>
+    <SuffixTemplate>
+        <GdsSuffix>kg</GdsSuffix>
+    </SuffixTemplate>
+</GdsTextInput>")">
+    <GdsTextInput Id="weight"
+                  Name="weight"
+                  Classes="@GdsTextInputModel.Width.Width5">
+        <LabelTemplate>
+            <GdsLabel For="weight"
+                      Classes="@GdsLabelModel.Size.Large"
+                      IsPageHeading="true">
+                What is the weight in kilograms?
+            </GdsLabel>
+        </LabelTemplate>
+        <SuffixTemplate>
+            <GdsSuffix>kg</GdsSuffix>
+        </SuffixTemplate>
+    </GdsTextInput>
+</Example>
+
+<h3 class="govuk-heading-m" id="use-the-autocomplete-attribute">Use the autocomplete attribute</h3>
+
+<Example CodeExampleContent="@(@"<GdsTextInput Id=""postcode""
+              Name=""postcode""
+              Classes=""@GdsTextInputModel.Width.Width5""
+              Autocomplete=""postal-code"">
+    <LabelTemplate>
+        <GdsLabel For=""postcode""
+                  Classes=""@GdsLabelModel.Size.Large""
+                  IsPageHeading=""true"">
+            What is your postcode?
+        </GdsLabel>
+    </LabelTemplate>
+</GdsTextInput>")">
+    <GdsTextInput Id="postcode"
+                  Name="postcode"
+                  Classes="@GdsTextInputModel.Width.Width5"
+                  Autocomplete="postal-code">
+        <LabelTemplate>
+            <GdsLabel For="postcode"
+                      Classes="@GdsLabelModel.Size.Large"
+                      IsPageHeading="true">
+                What is your postcode?
+            </GdsLabel>
+        </LabelTemplate>
+    </GdsTextInput>
+</Example>
+
+<h3 class="govuk-heading-m" id="how-and-when-to-spellcheck-a-users-input">How and when to spellcheck a user’s input</h3>
+
+<Example CodeExampleContent="@(@"<GdsTextInput Id=""reference-number""
+              Name=""reference-number""
+              Classes=""@GdsTextInputModel.Width.Width10""
+              Spellcheck=""false"">
+    <LabelTemplate>
+        <GdsLabel For=""reference-number""
+                  Classes=""@GdsLabelModel.Size.Large""
+                  IsPageHeading=""true"">
+            What is your reference number?
+        </GdsLabel>
+    </LabelTemplate>
+</GdsTextInput>")">
+    <GdsTextInput Id="reference-number"
+                  Name="reference-number"
+                  Classes="@GdsTextInputModel.Width.Width10"
+                  Spellcheck="false">
+        <LabelTemplate>
+            <GdsLabel For="reference-number"
+                      Classes="@GdsLabelModel.Size.Large"
+                      IsPageHeading="true">
+                What is your reference number?
+            </GdsLabel>
+        </LabelTemplate>
+    </GdsTextInput>
+</Example>
+
+<h3 class="govuk-heading-m" id="error-messages">Error messages</h3>
+
+<Example CodeExampleContent="@(@"<GdsTextInput Id=""event-name-error""
+              Name=""event-name""
+              Classes=""@GdsTextInputModel.Width.Width20"">
+    <LabelTemplate>
+        <GdsLabel For=""event-name-error""
+                  Classes=""@GdsLabelModel.Size.Large""
+                  IsPageHeading=""true"">
+            What is the name of the event?
+        </GdsLabel>
+    </LabelTemplate>
+    <HintTemplate>
+        <GdsHint>The event's name</GdsHint>
+    </HintTemplate>
+    <ErrorMessageTemplate>
+        <GdsErrorMessage Id=""event-name-error"">
+            Must be at least 3 characters
+        </GdsErrorMessage>
+    </ErrorMessageTemplate>
+</GdsTextInput>")">
+    <GdsTextInput Id="event-name-error"
+                  Name="event-name"
+                  Classes="@GdsTextInputModel.Width.Width20">
+        <LabelTemplate>
+            <GdsLabel For="event-name-error" Classes="@GdsLabelModel.Size.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint>The event's name</GdsHint>
+        </HintTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage Id="event-name-error">Must be at least 3 characters</GdsErrorMessage>
+        </ErrorMessageTemplate>
+    </GdsTextInput>
+</Example>
+
+<h4 class="govuk-heading-s" id="if-the-input-has-a-prefix-or-a-suffix">If the input has a prefix or a suffix</h4>
+
+<Example CodeExampleContent="@(@"<GdsTextInput Id=""cost""
+              Name=""cost""
+              Classes=""@GdsTextInputModel.Width.Width5"">
+    <LabelTemplate>
+        <GdsLabel For=""cost""
+                    Classes=""@GdsLabelModel.Size.Large""
+                    IsPageHeading=""true"">
+            What is the cost per item, in pounds?
+        </GdsLabel>
+    </LabelTemplate>
+    <PrefixTemplate>
+        <GdsPrefix>£</GdsPrefix>
+    </PrefixTemplate>
+    <SuffixTemplate>
+        <GdsSuffix>per item</GdsSuffix>
+    </SuffixTemplate>
+    <ErrorMessageTemplate>
+        <GdsErrorMessage Id=""cost-error"">
+            Enter a cost per item, in pounds
+        </GdsErrorMessage>
+    </ErrorMessageTemplate>
+</GdsTextInput>")">
+    <GdsTextInput Id="cost"
+                  Name="cost"
+                  Classes="@GdsTextInputModel.Width.Width5">
+        <LabelTemplate>
+            <GdsLabel For="cost"
+                      Classes="@GdsLabelModel.Size.Large"
+                      IsPageHeading="true">
+                What is the cost per item, in pounds?
+            </GdsLabel>
+        </LabelTemplate>
+        <PrefixTemplate>
+            <GdsPrefix>£</GdsPrefix>
+        </PrefixTemplate>
+        <SuffixTemplate>
+            <GdsSuffix>per item</GdsSuffix>
+        </SuffixTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage Id="cost-error">
+                Enter a cost per item, in pounds
+            </GdsErrorMessage>
+        </ErrorMessageTemplate>
+    </GdsTextInput>
+</Example>

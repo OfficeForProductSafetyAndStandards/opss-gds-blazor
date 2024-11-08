@@ -1,0 +1,19 @@
+﻿@inherits Models.GdsLabelModel
+
+@if (ChildContent != null)
+{
+    if (IsPageHeading)
+    {
+        <h1 class="govuk-label-wrapper">
+            <label id="@Id" class="govuk-label @Classes" for="@For" @attributes="@Attributes">
+                @ChildContent
+            </label>
+        </h1>
+    }
+    else
+    {
+        <label id="@Id" class="govuk-label @Classes" for="@For" @attributes="@Attributes">
+            @ChildContent
+        </label>
+    }
+}

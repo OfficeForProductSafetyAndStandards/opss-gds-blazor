@@ -1,0 +1,120 @@
+﻿@page "/"
+
+<PageTitle>Get started</PageTitle>
+
+<h1 class="govuk-heading-l">Get started</h1>
+
+<p class="govuk-body">
+    The examples in the GOV.UK Design System come with code to make it easy for you to use them in your project. <br />
+    Currently, this component library has only been developed against and tested with a Blazor Server App.
+</p>
+
+<p class="govuk-body">
+    To install and use these components, create a new Blazor Server App and add the Opss.DesignSystem.Frontend.Blazor.Components nuget package:
+</p>
+
+<div class="govuk-tabs" data-module="govuk-tabs">
+    <h2 class="govuk-tabs__title">
+        Contents
+    </h2>
+    <ul class="govuk-tabs__list">
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+            <a class="govuk-tabs__tab" href="#net-cli">
+                .NET CLI
+            </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+            <a class="govuk-tabs__tab" href="#package-manager">
+                Package Manager
+            </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+            <a class="govuk-tabs__tab" href="#package-reference">
+                PackageReference
+            </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+            <a class="govuk-tabs__tab" href="#packet-cli">
+                Packet CLI
+            </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+            <a class="govuk-tabs__tab" href="#scrpt-and-interactive">
+                Script &amp; Interactive
+            </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+            <a class="govuk-tabs__tab" href="#cake">
+                Cake
+            </a>
+        </li>
+    </ul>
+    <div class="govuk-tabs__panel" id="net-cli">
+        <Blazor.HighlightJS.Code Language="plaintext">dotnet add package Opss.DesignSystem.Frontend.Blazor.Components --version 1.0.0-alpha.3</Blazor.HighlightJS.Code>
+    </div>
+    <div class="govuk-tabs__panel" id="package-manager">
+        <Blazor.HighlightJS.Code Language="plaintext">NuGet\Install-Package Opss.DesignSystem.Frontend.Blazor.Components -Version 1.0.0-alpha.3</Blazor.HighlightJS.Code>
+    </div>
+    <div class="govuk-tabs__panel" id="package-reference">
+        <Blazor.HighlightJS.Code Language="xml">@(@"<PackageReference Include=""Opss.DesignSystem.Frontend.Blazor.Components"" Version=""1.0.0-alpha.3"" />")</Blazor.HighlightJS.Code>
+    </div>
+    <div class="govuk-tabs__panel" id="packet-cli">
+        <Blazor.HighlightJS.Code Language="plaintext">paket add Opss.DesignSystem.Frontend.Blazor.Components --version 1.0.0-alpha.3</Blazor.HighlightJS.Code>
+    </div>
+    <div class="govuk-tabs__panel" id="scrpt-and-interactive">
+        <Blazor.HighlightJS.Code Language="plaintext">#r "nuget: Opss.DesignSystem.Frontend.Blazor.Components, 1.0.0-alpha.3"</Blazor.HighlightJS.Code>
+    </div>
+    <div class="govuk-tabs__panel" id="cake">
+        <Blazor.HighlightJS.Code Language="plaintext">
+            @(@"// Install Opss.DesignSystem.Frontend.Blazor.Components as a Cake Addin
+#addin nuget:?package=Opss.DesignSystem.Frontend.Blazor.Components&version=1.0.0-alpha.3&prerelease
+
+// Install Opss.DesignSystem.Frontend.Blazor.Components as a Cake Tool
+#tool nuget:?package=Opss.DesignSystem.Frontend.Blazor.Components&version=1.0.0-alpha.3&prerelease")
+        </Blazor.HighlightJS.Code>
+    </div>
+</div>
+
+<p class="govuk-body">
+    Once the package has been installed, you will have to build Pages/_layout.cshtml and Shared/MainLayout.razor:
+</p>
+<ul class="govuk-list govuk-list--bullet">
+    <li>
+        Include the govuk css file from the import into _layout.cshtml:
+        <Blazor.HighlightJS.Code Language="xml">@(@"<link href=""/_content/Opss.DesignSystem.Frontend.Blazor.Components/css/govuk.css"" rel=""stylesheet"" />")</Blazor.HighlightJS.Code>
+    </li>
+    <li>
+        Include the govuk and init js files from the import into _layout.cshtml:
+        <Blazor.HighlightJS.Code Language="xml">
+            @(@"<script src=""/_content/Opss.DesignSystem.Frontend.Blazor.Components/js/init.js""></script>
+<script src=""/_content/Opss.DesignSystem.Frontend.Blazor.Components/js/govuk.js""></script>")
+        </Blazor.HighlightJS.Code>
+    </li>
+    <li>
+        Update MainLayout.razor to execute the initGOVUKFrontend function in init.js when the page is loaded:
+        <ul class="govuk-list govuk-list--bullet">
+            <li>
+                Inject the JSRuntime:
+                <Blazor.HighlightJS.Code Language="csharp">@(@"@inject IJSRuntime JSRuntime")</Blazor.HighlightJS.Code>
+            </li>
+            <li>
+                Update the header to incldue a ref:
+                <Blazor.HighlightJS.Code Language="xml">@(@"<header class=""govuk-header"" data-module=""govuk-header"" @ref=AppHeader>")</Blazor.HighlightJS.Code>
+            </li>
+            <li>
+                Execute the js function after render:
+                <Blazor.HighlightJS.Code Language="csharp">
+                    @(@"@code {
+    ElementReference AppHeader;
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        JSRuntime.InvokeVoidAsync(""initGOVUKFrontend"", AppHeader);
+        return base.OnAfterRenderAsync(firstRender);
+    }
+}")
+                </Blazor.HighlightJS.Code>
+            </li>
+        </ul>
+    </li>
+</ul>

@@ -1,0 +1,56 @@
+@inherits BunitContext
+
+@code {
+	[Fact]
+	public void OutputsHint()
+	{
+		// Arrange
+		var id = "hello-world";
+		var message = "Hello World";
+		var component = Render(@<GdsHint Id=@id>@message</GdsHint>);
+
+		// Assert that content of the paragraph shows counter at zero
+		component.Find("div").MarkupMatches(
+			@<div id=@id class="govuk-hint">
+				@message
+			</div>
+		);
+	}
+
+	[Fact]
+	public void OutputsHintWithAdditionalClass()
+	{
+		// Arrange
+		var id = "hello-world";
+		var message = "Hello World";
+		var customClass = "custom-hint";
+		var component = Render(@<GdsHint Id=@id Classes=@customClass>@message</GdsHint>);
+
+		// Assert that content of the paragraph shows counter at zero
+		component.Find("div").MarkupMatches(
+			@<div id=@id class="govuk-hint @customClass">
+				@message
+			</div>
+	);
+	}
+
+	[Fact]
+	public void OutputsHintWithAdditionalAttributes()
+	{
+		// Arrange
+		var id = "hello-world";
+		var message = "Hello World";
+		var customAttributes = new Dictionary<string, object>
+		{
+			{"aria-label", "Hello"}
+		};
+		var component = Render(@<GdsHint Id=@id Attributes=@customAttributes>@message</GdsHint>);
+
+		// Assert that content of the paragraph shows counter at zero
+		component.Find("div").MarkupMatches(
+			@<div id=@id class="govuk-hint" aria-label="Hello">
+				@message
+			</div>
+		);
+	}
+}
