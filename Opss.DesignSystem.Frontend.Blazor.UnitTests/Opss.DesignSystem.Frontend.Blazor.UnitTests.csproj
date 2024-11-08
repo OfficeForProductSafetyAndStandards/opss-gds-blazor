@@ -38,6 +38,12 @@
 	  <ProjectReference Include="..\Opss.DesignSystem.Frontend.Blazor.Components\Opss.DesignSystem.Frontend.Blazor.Components.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Content Update="Components\GdsHintTests.razor">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	  </Content>
+	</ItemGroup>
+
 
 
 </Project>
