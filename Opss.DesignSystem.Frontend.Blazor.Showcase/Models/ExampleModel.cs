@@ -9,5 +9,8 @@ namespace Opss.DesignSystem.Frontend.Blazor.Showcase.Models
 
         [Parameter]
         public string CodeExampleContent { get; set; }
+
+        [Parameter]
+        public string Classes { get; set; }
     }
 }

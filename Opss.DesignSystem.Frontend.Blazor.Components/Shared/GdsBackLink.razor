@@ -1,0 +1,12 @@
+﻿@inherits Models.GdsBackLinkModel
+
+<a id="@Id" href="@Href" class="govuk-back-link @(IsOnDarkBackground ? "govuk-back-link--inverse" : "") @Classes" @attributes="@Attributes">
+    @if (ChildContent != null)
+    {
+        @ChildContent
+    }
+    else
+    {
+        @("Back")
+    }
+</a>
