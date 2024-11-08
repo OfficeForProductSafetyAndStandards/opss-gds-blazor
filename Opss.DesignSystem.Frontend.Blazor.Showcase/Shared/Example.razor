@@ -1,14 +1,17 @@
 ﻿
 @inherits Models.ExampleModel
 
-<div class="app-example-wrapper" id="text-input-example" data-module="app-tabs" data-app-tabs-init="">
-    <div class="app-example ">
+<div class="app-example-wrapper" data-module="app-tabs" data-app-tabs-init="">
+    <div class="app-example">
         <div class="app-example__toolbar govuk-body">
             Example
         </div>
-        <div class="app-example__component @Classes">
-            @ChildContent
-        </div>
+        @if (ChildContent != null)
+        {
+            <div class="app-example__component @Classes">
+                @ChildContent
+            </div>
+        }
     </div>
 
     <div class="app-example__code" data-module="app-copy" data-app-copy-init="">
