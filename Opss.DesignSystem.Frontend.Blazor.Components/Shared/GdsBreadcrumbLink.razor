@@ -1,0 +1,32 @@
+﻿@inherits GdsWithHref
+
+@if (string.IsNullOrEmpty(Href))
+{
+    @ChildContent
+} else {
+    <a id=@Id
+       class="govuk-breadcrumbs__link @Classes"
+       href=@Href
+       @attributes="@Attributes"
+    >
+        @ChildContent
+    </a>
+}
+
+@code {
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsBreadcrumbLink must exist within a GdsBreadcrumb");
+
+        base.OnInitialized();
+        if(Register)
+            Parent.AddLink(this);
+    }
+
+    [CascadingParameter]
+    private GdsBreadcrumbs Parent { get; set; }
+
+    [Parameter]
+    public bool Register { get; set; } = true;
+}
