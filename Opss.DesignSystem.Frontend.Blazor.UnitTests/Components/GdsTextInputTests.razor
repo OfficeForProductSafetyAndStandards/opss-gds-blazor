@@ -8,7 +8,7 @@
 		var component = Render(
 			@<GdsTextInput Id="event-name" Name="eventName">
 				<LabelTemplate>
-					<GdsLabel For="event-name" Classes="@GdsLabelModel.Size.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
+					<GdsLabel For="event-name" Classes="@LabelSize.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
 				</LabelTemplate>
 			</GdsTextInput>
 		);
@@ -54,7 +54,7 @@
 		var component = Render(
 			@<GdsTextInput Id="width-20"
                   Name="width20"
-                  Classes="@GdsTextInputModel.Width.Width20">
+                  Classes="@TextInputWidth.Width20">
 				<LabelTemplate>
 					<GdsLabel For="width-20">20 character width</GdsLabel>
 				</LabelTemplate>
@@ -78,7 +78,7 @@
 		var component = Render(
 			@<GdsTextInput Id="width-10"
                   Name="width10"
-                  Classes="@GdsTextInputModel.Width.Width10">
+                  Classes="@TextInputWidth.Width10">
 				<LabelTemplate>
 			<GdsLabel For="width-10">10 character width</GdsLabel>
 				</LabelTemplate>
@@ -102,7 +102,7 @@
 		var component = Render(
 			@<GdsTextInput Id="width-5"
                   Name="width5"
-                  Classes="@GdsTextInputModel.Width.Width5">
+                  Classes="@TextInputWidth.Width5">
 				<LabelTemplate>
 			<GdsLabel For="width-5">5 character width</GdsLabel>
 				</LabelTemplate>
@@ -126,7 +126,7 @@
 		var component = Render(
 			@<GdsTextInput Id="width-4"
                   Name="width4"
-                  Classes="@GdsTextInputModel.Width.Width4">
+                  Classes="@TextInputWidth.Width4">
 				<LabelTemplate>
 			<GdsLabel For="width-4">4 character width</GdsLabel>
 				</LabelTemplate>
@@ -150,7 +150,7 @@
 		var component = Render(
 			@<GdsTextInput Id="width-3"
                   Name="width3"
-                  Classes="@GdsTextInputModel.Width.Width3">
+                  Classes="@TextInputWidth.Width3">
 				<LabelTemplate>
 			<GdsLabel For="width-3">3 character width</GdsLabel>
 				</LabelTemplate>
@@ -174,7 +174,7 @@
 		var component = Render(
 			@<GdsTextInput Id="width-2"
                   Name="width2"
-                  Classes="@GdsTextInputModel.Width.Width2">
+                  Classes="@TextInputWidth.Width2">
 				<LabelTemplate>
 			<GdsLabel For="width-2">2 character width</GdsLabel>
 				</LabelTemplate>
@@ -198,7 +198,7 @@
 		var component = Render(
 			@<GdsTextInput Id="full"
                   Name="full"
-                  Classes="@GdsLayoutModel.Width.Full">
+                  Classes="@LayoutWidth.Full">
 				<LabelTemplate>
 					<GdsLabel For="full">Full width</GdsLabel>
 				</LabelTemplate>
@@ -222,7 +222,7 @@
 		var component = Render(
 			@<GdsTextInput Id="three-quarters"
                   Name="threeQuarters"
-                  Classes="@GdsLayoutModel.Width.ThreeQuarters">
+                  Classes="@LayoutWidth.ThreeQuarters">
 				<LabelTemplate>
 					<GdsLabel For="three-quarters">Three-quarters width</GdsLabel>
 				</LabelTemplate>
@@ -246,7 +246,7 @@
 		var component = Render(
 			@<GdsTextInput Id="two-thirds"
                   Name="twoThirds"
-                  Classes="@GdsLayoutModel.Width.TwoThirds">
+                  Classes="@LayoutWidth.TwoThirds">
 				<LabelTemplate>
 					<GdsLabel For="two-thirds">Two-thirds width</GdsLabel>
 				</LabelTemplate>
@@ -270,7 +270,7 @@
 		var component = Render(
 			@<GdsTextInput Id="one-half"
                   Name="oneHalf"
-                  Classes="@GdsLayoutModel.Width.OneHalf">
+                  Classes="@LayoutWidth.OneHalf">
 				<LabelTemplate>
 					<GdsLabel For="one-half">One-half width</GdsLabel>
 				</LabelTemplate>
@@ -294,7 +294,7 @@
 		var component = Render(
 			@<GdsTextInput Id="one-third"
                   Name="oneThird"
-                  Classes="@GdsLayoutModel.Width.OneThird">
+                  Classes="@LayoutWidth.OneThird">
 				<LabelTemplate>
 					<GdsLabel For="one-third">
 						One-third width
@@ -320,7 +320,7 @@
 		var component = Render(
 			@<GdsTextInput Id="one-quarter"
                   Name="oneQuarter"
-                  Classes="@GdsLayoutModel.Width.OneQuarter">
+                  Classes="@LayoutWidth.OneQuarter">
 				<LabelTemplate>
 					<GdsLabel For="one-quarter">One-quarter width</GdsLabel>
 				</LabelTemplate>
@@ -346,7 +346,7 @@
                   Name="eventName">
 				<LabelTemplate>
 					<GdsLabel For="event-name"
-							  Classes="@GdsLabelModel.Size.Large"
+							  Classes="@LabelSize.Large"
 							  IsPageHeading="true">
 						What is the name of the event?
 					</GdsLabel>
@@ -379,11 +379,11 @@
 		var component = Render(
 			@<GdsTextInput Id="account-number"
                   Name="accountNumber"
-                  Classes="@GdsTextInputModel.Width.Width10"
+                  Classes="@TextInputWidth.Width10"
                   Inputmode="numeric">
 				<LabelTemplate>
 					<GdsLabel For="account-number"
-							  Classes="@GdsLabelModel.Size.Large"
+							  Classes="@LabelSize.Large"
 							  IsPageHeading="true">
 						What is your account number?
 					</GdsLabel>
@@ -416,7 +416,7 @@
 		var component = Render(
 			@<GdsTextInput Id="weight"
                   Name="weight"
-                  Classes="@GdsTextInputModel.Width.Width5"
+                  Classes="@TextInputWidth.Width5"
 				  spellcheck="@false">
 				<LabelTemplate>
 					<GdsLabel For="weight">
@@ -449,7 +449,7 @@
 		var component = Render(
 			@<GdsTextInput Id="authentication-code"
                   Name="authenticationCode"
-                  Classes=@(@GdsTextInputModel.Width.Width5 + " " + @GdsTextInputModel.Lettering.ExtraLetterWidth)
+                  Classes=@(@TextInputWidth.Width5 + " " + @TextInputLettering.ExtraLetterWidth)
                   Value="NC1701"
 				  spellcheck="@false">
 				<LabelTemplate>
@@ -483,11 +483,11 @@
 		var component = Render(
 			@<GdsTextInput Id="cost-per-item"
                   Name="costPerItem"
-                  Classes="@GdsTextInputModel.Width.Width5"
+                  Classes="@TextInputWidth.Width5"
 				  spellcheck="@false">
 				<LabelTemplate>
 					<GdsLabel For="cost-per-item"
-							  Classes="@GdsLabelModel.Size.Large"
+							  Classes="@LabelSize.Large"
 							  IsPageHeading="true">
 						What is the cost per item, in pounds?
 					</GdsLabel>
@@ -524,11 +524,11 @@
 		var component = Render(
 			@<GdsTextInput Id="cost"
                   Name="cost"
-                  Classes="@GdsTextInputModel.Width.Width5"
+                  Classes="@TextInputWidth.Width5"
 				  spellcheck="@false">
 				<LabelTemplate>
 					<GdsLabel For="cost"
-							  Classes="@GdsLabelModel.Size.Large"
+							  Classes="@LabelSize.Large"
 							  IsPageHeading="true">
 				What is the cost in pounds?
 					</GdsLabel>
@@ -561,11 +561,11 @@
 		var component = Render(
 			@<GdsTextInput Id="weight"
                   Name="weight"
-                  Classes="@GdsTextInputModel.Width.Width5"
+                  Classes="@TextInputWidth.Width5"
 				  spellcheck="@false">
 				<LabelTemplate>
 					<GdsLabel For="weight"
-							  Classes="@GdsLabelModel.Size.Large"
+							  Classes="@LabelSize.Large"
 							  IsPageHeading="true">
 						What is the weight in kilograms?
 					</GdsLabel>
@@ -598,7 +598,7 @@
 		var component = Render(
 			@<GdsTextInput Id="postcode"
                   Name="postcode"
-                  Classes="@GdsTextInputModel.Width.Width10"
+                  Classes="@TextInputWidth.Width10"
                   Autocomplete="postal-code">
 				<LabelTemplate>
 					<GdsLabel For="postcode">
@@ -678,7 +678,7 @@
 			@<GdsTextInput Id="event-name"
                   Name="eventName">
 				<LabelTemplate>
-					<GdsLabel For="event-name" Classes="@GdsLabelModel.Size.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
+					<GdsLabel For="event-name" Classes="@LabelSize.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
 				</LabelTemplate>
 				<HintTemplate>
 					<GdsHint id="event-name-hint">The name you’ll use on promotional material</GdsHint>
@@ -714,11 +714,11 @@
 		var component = Render(
 			@<GdsTextInput Id="cost-per-item-error"
                   Name="costPerItemError"
-                  Classes="@GdsTextInputModel.Width.Width5"
+                  Classes="@TextInputWidth.Width5"
 				  spellcheck="@false">
 				<LabelTemplate>
 					<GdsLabel For="cost-per-item-error"
-							  Classes="@GdsLabelModel.Size.Large"
+							  Classes="@LabelSize.Large"
 							  IsPageHeading="true">
 						What is the cost per item, in pounds?
 					</GdsLabel>
@@ -766,7 +766,7 @@
 		var component = Render(
 			@<GdsTextInput Id="postcode"
 						   			Name="postcode"
-						   			Classes="@GdsTextInputModel.Width.Width10"
+						   			Classes="@TextInputWidth.Width10"
 						   			Autocomplete="postal-code">
 							   
 				<LabelTemplate>

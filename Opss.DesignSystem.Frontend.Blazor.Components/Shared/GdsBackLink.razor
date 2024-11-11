@@ -1,4 +1,4 @@
-﻿@inherits Models.GdsBackLinkModel
+﻿@inherits GdsWithHref
 
 <a id="@Id" href="@Href" class="govuk-back-link @(IsOnDarkBackground ? "govuk-back-link--inverse" : "") @Classes" @attributes="@Attributes">
     @if (ChildContent != null)
@@ -10,3 +10,13 @@
         @("Back")
     }
 </a>
+
+@code {
+    public GdsBackLink()
+    {
+        if(string.IsNullOrEmpty(Href))
+        {
+            Href = "#";
+        }
+    }
+}
