@@ -1,0 +1,44 @@
+﻿@inherits GdsWithContent;
+
+﻿<CascadingValue Value="this">
+    <nav id=@Id class="govuk-breadcrumbs @Classes @(CollapseOnMobile ? "govuk-breadcrumbs--collapse-on-mobile" : "") @(IsOnDarkBackground ? "govuk-breadcrumbs--inverse" : "") " aria-label="Breadcrumb" @attributes="@Attributes">
+        <ol class="govuk-breadcrumbs__list">
+            @foreach (GdsBreadcrumbLink link in Links)
+            {
+                <li class="govuk-breadcrumbs__list-item">
+                    <GdsBreadcrumbLink 
+                        Attributes=@link.Attributes
+                        ChildContent=@link.ChildContent
+                        Classes=@link.Classes
+                        Href=@link.Href
+                        Id=@link.Id
+                        Register=@false
+                    />
+                </li>                
+            }
+        </ol>
+        <span hidden>@ChildContent</span>
+    </nav>
+</CascadingValue>
+
+@code {
+    /// <summary>
+    /// When true, the breadcrumbs will collapse to the first and last item only on tablet breakpoint and below.
+    /// </summary>
+    [Parameter]
+    public bool CollapseOnMobile { get; set; }
+
+    /// <summary>
+    /// Indicates that the component is on a dark background and should utilise the inverse class
+    /// </summary>
+    [Parameter]
+    public bool IsOnDarkBackground { get; set; }
+
+    List<GdsBreadcrumbLink> Links = new List<GdsBreadcrumbLink>();
+
+    internal void AddLink(GdsBreadcrumbLink link)
+    {
+        Links.Add(link);
+        StateHasChanged();
+    }
+}

@@ -1,6 +1,19 @@
-﻿@inherits Models.GdsErrorMessageModel
+﻿@inherits GdsWithContent
+
+@* <summary>
+    Follow the validation pattern and show an error message when there is a validation error.
+    In the error message explain what went wrong and how to fix it.
+</summary> *@
 
 <p id="@Id" class="govuk-error-message @Classes" @attributes="@Attributes">
     <span class="govuk-visually-hidden">@(string.IsNullOrEmpty(VisuallyHiddenText) ? "Error" : VisuallyHiddenText):</span>
     @ChildContent
 </p>
+
+@code {
+    /// <summary>
+    /// A visually hidden prefix used before the error message.
+    /// </summary>
+    [Parameter]
+    public string? VisuallyHiddenText { get; set; }
+}

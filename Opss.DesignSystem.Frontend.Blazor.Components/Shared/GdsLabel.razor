@@ -1,4 +1,4 @@
-﻿@inherits Models.GdsLabelModel
+﻿@inherits GdsWithContent
 
 @if (ChildContent != null)
 {
@@ -16,4 +16,18 @@
             @ChildContent
         </label>
     }
+}
+
+@code{
+    /// <summary>
+    /// The value of the `for` attribute, the ID of the input the label is associated with.
+    /// </summary>
+    [Parameter]
+    public string? For { get; set; }
+
+    /// <summary>
+    /// Whether the label also acts as the heading for the page.
+    /// </summary>
+    [Parameter]
+    public bool IsPageHeading { get; set; }
 }

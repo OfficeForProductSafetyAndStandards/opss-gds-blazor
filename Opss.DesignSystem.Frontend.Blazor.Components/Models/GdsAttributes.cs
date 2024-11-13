@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Opss.DesignSystem.Frontend.Blazor.Components.Models.Base;
+namespace Opss.DesignSystem.Frontend.Blazor.Components.Models;
 
 public abstract class GdsAttributes : ComponentBase
 {

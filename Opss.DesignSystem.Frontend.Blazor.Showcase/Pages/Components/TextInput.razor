@@ -14,7 +14,7 @@
               Name=""event-name"">
     <LabelTemplate>
         <GdsLabel For=""event-name"" 
-                  Classes=""@GdsLabelModel.Size.Large""
+                  Classes=""@LabelSize.Large""
                   IsPageHeading=""true"">
             What is the name of the event?
         </GdsLabel>
@@ -27,7 +27,7 @@
                   Name="event-name">
         <LabelTemplate>
             <GdsLabel For="event-name" 
-                      Classes="@GdsLabelModel.Size.Large" 
+                      Classes="@LabelSize.Large" 
                       IsPageHeading="true">
                 What is the name of the event?
             </GdsLabel>
@@ -46,7 +46,7 @@
               Name=""event-name"">
     <LabelTemplate>
         <GdsLabel For=""event-name""
-                  Classes=""@GdsLabelModel.Size.Large""
+                  Classes=""@LabelSize.Large""
                   IsPageHeading=""true"">
             What is the name of the event?
         </GdsLabel>
@@ -55,7 +55,7 @@
     <GdsTextInput Id="event-name"
                   Name="event-name">
         <LabelTemplate>
-            <GdsLabel For="event-name" Classes="@GdsLabelModel.Size.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
+            <GdsLabel For="event-name" Classes="@LabelSize.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
         </LabelTemplate>
     </GdsTextInput>
 </Example>
@@ -83,84 +83,84 @@
 <h4 class="govuk-heading-s" id="fixed-width-inputs">Fixed width inputs</h4>
 <Example CodeExampleContent="@(@"<GdsTextInput Id=""20-character-width""
               Name=""event-name""
-              Classes=""@GdsTextInputModel.Width.Width20"">
+              Classes=""@TextInputWidth.Width20"">
     <LabelTemplate>
         <GdsLabel For=""20-character-width"">20 character width</GdsLabel>
     </LabelTemplate>
 </GdsTextInput>
 <GdsTextInput Id=""10-character-width""
                 Name=""event-name""
-                Classes=""@GdsTextInputModel.Width.Width10"">
+                Classes=""@TextInputWidth.Width10"">
     <LabelTemplate>
         <GdsLabel For=""10-character-width"">10 character width</GdsLabel>
     </LabelTemplate>
 </GdsTextInput>
 <GdsTextInput Id=""5-character-width""
                 Name=""event-name""
-                Classes=""@GdsTextInputModel.Width.Width5"">
+                Classes=""@TextInputWidth.Width5"">
     <LabelTemplate>
         <GdsLabel For=""5-character-width"">5 character width</GdsLabel>
     </LabelTemplate>
 </GdsTextInput>
 <GdsTextInput Id=""4-character-width""
                 Name=""event-name""
-                Classes=""@GdsTextInputModel.Width.Width4"">
+                Classes=""@TextInputWidth.Width4"">
     <LabelTemplate>
         <GdsLabel For=""4-character-width"">4 character width</GdsLabel>
     </LabelTemplate>
 </GdsTextInput>
 <GdsTextInput Id=""3-character-width""
                 Name=""event-name""
-                Classes=""@GdsTextInputModel.Width.Width3"">
+                Classes=""@TextInputWidth.Width3"">
     <LabelTemplate>
         <GdsLabel For=""3-character-width"">3 character width</GdsLabel>
     </LabelTemplate>
 </GdsTextInput>
 <GdsTextInput Id=""2-character-width""
                 Name=""event-name""
-                Classes=""@GdsTextInputModel.Width.Width2"">
+                Classes=""@TextInputWidth.Width2"">
     <LabelTemplate>
         <GdsLabel For=""2-character-width"">2 character width</GdsLabel>
     </LabelTemplate>
 </GdsTextInput>")">
     <GdsTextInput Id="20-character-width"
                   Name="event-name"
-                  Classes="@GdsTextInputModel.Width.Width20">
+                  Classes="@TextInputWidth.Width20">
         <LabelTemplate>
             <GdsLabel For="20-character-width">20 character width</GdsLabel>
         </LabelTemplate>
     </GdsTextInput>
     <GdsTextInput Id="10-character-width"
                   Name="event-name"
-                  Classes="@GdsTextInputModel.Width.Width10">
+                  Classes="@TextInputWidth.Width10">
         <LabelTemplate>
             <GdsLabel For="10-character-width">10 character width</GdsLabel>
         </LabelTemplate>
     </GdsTextInput>
     <GdsTextInput Id="5-character-width"
                   Name="event-name"
-                  Classes="@GdsTextInputModel.Width.Width5">
+                  Classes="@TextInputWidth.Width5">
         <LabelTemplate>
             <GdsLabel For="5-character-width">5 character width</GdsLabel>
         </LabelTemplate>
     </GdsTextInput>
     <GdsTextInput Id="4-character-width"
                   Name="event-name"
-                  Classes="@GdsTextInputModel.Width.Width4">
+                  Classes="@TextInputWidth.Width4">
         <LabelTemplate>
             <GdsLabel For="4-character-width">4 character width</GdsLabel>
         </LabelTemplate>
     </GdsTextInput>
     <GdsTextInput Id="3-character-width"
                   Name="event-name"
-                  Classes="@GdsTextInputModel.Width.Width3">
+                  Classes="@TextInputWidth.Width3">
         <LabelTemplate>
             <GdsLabel For="3-character-width">3 character width</GdsLabel>
         </LabelTemplate>
     </GdsTextInput>
     <GdsTextInput Id="2-character-width"
                   Name="event-name"
-                  Classes="@GdsTextInputModel.Width.Width2">
+                  Classes="@TextInputWidth.Width2">
         <LabelTemplate>
             <GdsLabel For="2-character-width">2 character width</GdsLabel>
         </LabelTemplate>
@@ -170,35 +170,35 @@
 <h4 class="govuk-heading-s" id="fluid-width-inputs">Fluid width inputs</h4>
 <Example CodeExampleContent="@(@"<GdsTextInput Id=""full""
               Name=""event-name""
-              Classes=""@GdsLayoutModel.Width.Full"">
+              Classes=""@LayoutWidth.Full"">
     <LabelTemplate>
         <GdsLabel For=""full"">Full width</GdsLabel>
     </LabelTemplate>
 </GdsTextInput>
 <GdsTextInput Id=""three-quarters""
                 Name=""event-name""
-                Classes=""@GdsLayoutModel.Width.ThreeQuarters"">
+                Classes=""@LayoutWidth.ThreeQuarters"">
     <LabelTemplate>
         <GdsLabel For=""three-quarters"">Three quarters width</GdsLabel>
     </LabelTemplate>
 </GdsTextInput>
 <GdsTextInput Id=""two-thirds""
                 Name=""event-name""
-                Classes=""@GdsLayoutModel.Width.TwoThirds"">
+                Classes=""@LayoutWidth.TwoThirds"">
     <LabelTemplate>
         <GdsLabel For=""two-thirds"">Two-thirds width</GdsLabel>
     </LabelTemplate>
 </GdsTextInput>
 <GdsTextInput Id=""one-half""
                 Name=""event-name""
-                Classes=""@GdsLayoutModel.Width.OneHalf"">
+                Classes=""@LayoutWidth.OneHalf"">
     <LabelTemplate>
         <GdsLabel For=""one-half"">One-half width</GdsLabel>
     </LabelTemplate>
 </GdsTextInput>
 <GdsTextInput Id=""one-third""
                 Name=""event-name""
-                Classes=""@GdsLayoutModel.Width.OneThird"">
+                Classes=""@LayoutWidth.OneThird"">
     <LabelTemplate>
         <GdsLabel For=""one-third"">
             One-third width
@@ -207,42 +207,42 @@
 </GdsTextInput>
 <GdsTextInput Id=""one-quarter""
                 Name=""event-name""
-                Classes=""@GdsLayoutModel.Width.OneQuarter"">
+                Classes=""@LayoutWidth.OneQuarter"">
     <LabelTemplate>
         <GdsLabel For=""one-quarter"">One-quarter width</GdsLabel>
     </LabelTemplate>
 </GdsTextInput>")">
     <GdsTextInput Id="full"
                   Name="event-name"
-                  Classes="@GdsLayoutModel.Width.Full">
+                  Classes="@LayoutWidth.Full">
         <LabelTemplate>
             <GdsLabel For="full">Full width</GdsLabel>
         </LabelTemplate>
     </GdsTextInput>
     <GdsTextInput Id="three-quarters"
                   Name="event-name"
-                  Classes="@GdsLayoutModel.Width.ThreeQuarters">
+                  Classes="@LayoutWidth.ThreeQuarters">
         <LabelTemplate>
             <GdsLabel For="three-quarters">Three quarters width</GdsLabel>
         </LabelTemplate>
     </GdsTextInput>
     <GdsTextInput Id="two-thirds"
                   Name="event-name"
-                  Classes="@GdsLayoutModel.Width.TwoThirds">
+                  Classes="@LayoutWidth.TwoThirds">
         <LabelTemplate>
             <GdsLabel For="two-thirds">Two-thirds width</GdsLabel>
         </LabelTemplate>
     </GdsTextInput>
     <GdsTextInput Id="one-half"
                   Name="event-name"
-                  Classes="@GdsLayoutModel.Width.OneHalf">
+                  Classes="@LayoutWidth.OneHalf">
         <LabelTemplate>
             <GdsLabel For="one-half">One-half width</GdsLabel>
         </LabelTemplate>
     </GdsTextInput>
     <GdsTextInput Id="one-third"
                   Name="event-name"
-                  Classes="@GdsLayoutModel.Width.OneThird">
+                  Classes="@LayoutWidth.OneThird">
         <LabelTemplate>
             <GdsLabel For="one-third">
                 One-third width
@@ -251,7 +251,7 @@
     </GdsTextInput>
     <GdsTextInput Id="one-quarter"
                   Name="event-name"
-                  Classes="@GdsLayoutModel.Width.OneQuarter">
+                  Classes="@LayoutWidth.OneQuarter">
         <LabelTemplate>
             <GdsLabel For="one-quarter">One-quarter width</GdsLabel>
         </LabelTemplate>
@@ -264,7 +264,7 @@
               Name=""event-name"">
     <LabelTemplate>
         <GdsLabel For=""event-name""
-                  Classes=""@GdsLabelModel.Size.Large""
+                  Classes=""@LabelSize.Large""
                   IsPageHeading=""true"">
             What is the name of the event?
         </GdsLabel>
@@ -277,7 +277,7 @@
                   Name="event-name">
         <LabelTemplate>
             <GdsLabel For="event-name"
-                      Classes="@GdsLabelModel.Size.Large"
+                      Classes="@LabelSize.Large"
                       IsPageHeading="true">
                 What is the name of the event?
             </GdsLabel>
@@ -294,11 +294,11 @@
 
 <Example CodeExampleContent="@(@"<GdsTextInput Id=""account-number""
               Name=""account-number""
-              Classes=""@GdsTextInputModel.Width.Width10""
+              Classes=""@TextInputWidth.Width10""
               Inputmode=""numeric"">
     <LabelTemplate>
         <GdsLabel For=""account-number""
-                  Classes=""@GdsLabelModel.Size.Large""
+                  Classes=""@LabelSize.Large""
                   IsPageHeading=""true"">
             What is your account number?
         </GdsLabel>
@@ -309,11 +309,11 @@
 </GdsTextInput>")">
     <GdsTextInput Id="account-number"
                   Name="account-number"
-                  Classes="@GdsTextInputModel.Width.Width10"
+                  Classes="@TextInputWidth.Width10"
                   Inputmode="numeric">
         <LabelTemplate>
             <GdsLabel For="account-number"
-                      Classes="@GdsLabelModel.Size.Large"
+                      Classes="@LabelSize.Large"
                       IsPageHeading="true">
                 What is your account number?
             </GdsLabel>
@@ -328,7 +328,7 @@
 
 <Example CodeExampleContent="@(@"<GdsTextInput Id=""weight""
               Name=""weight""
-              Classes=""@GdsTextInputModel.Width.Width5""
+              Classes=""@TextInputWidth.Width5""
 			  spellcheck=""@false"">
     <LabelTemplate>
         <GdsLabel For=""weight"">
@@ -341,7 +341,7 @@
 </GdsTextInput>")">
     <GdsTextInput Id="weight"
                   Name="weight"
-                  Classes="@GdsTextInputModel.Width.Width5"
+                  Classes="@TextInputWidth.Width5"
 				  spellcheck="@false">
         <LabelTemplate>
             <GdsLabel For="weight">
@@ -358,7 +358,7 @@
 
 <Example CodeExampleContent="@(@"<GdsTextInput Id=""authentication-code""
               Name=""authentication-code""
-              Classes=@(@GdsTextInputModel.Width.Width5 + "" "" + @GdsTextInputModel.Lettering.ExtraLetterWidth)
+              Classes=@(@TextInputWidth.Width5 + "" "" + @TextInputLettering.ExtraLetterWidth)
               Value=""NC1701""
 			  spellcheck=""@false"">
     <LabelTemplate>
@@ -372,7 +372,7 @@
 </GdsTextInput>")">
     <GdsTextInput Id="authentication-code"
                   Name="authentication-code"
-                  Classes=@(@GdsTextInputModel.Width.Width5 + " " + @GdsTextInputModel.Lettering.ExtraLetterWidth)
+                  Classes=@(@TextInputWidth.Width5 + " " + @TextInputLettering.ExtraLetterWidth)
                   Value="NC1701"
 				  spellcheck="@false">
         <LabelTemplate>
@@ -390,11 +390,11 @@
 
 <Example CodeExampleContent="@(@"<GdsTextInput Id=""cost""
               Name=""cost""
-              Classes=""@GdsTextInputModel.Width.Width5""
+              Classes=""@TextInputWidth.Width5""
 			  spellcheck=""@false"">
     <LabelTemplate>
         <GdsLabel For=""cost""
-                  Classes=""@GdsLabelModel.Size.Large""
+                  Classes=""@LabelSize.Large""
                   IsPageHeading=""true"">
             What is the cost per item, in pounds?
         </GdsLabel>
@@ -408,11 +408,11 @@
 </GdsTextInput>")">
     <GdsTextInput Id="cost"
                   Name="cost"
-                  Classes="@GdsTextInputModel.Width.Width5"
+                  Classes="@TextInputWidth.Width5"
                   spellcheck="@false">
         <LabelTemplate>
             <GdsLabel For="cost"
-                      Classes="@GdsLabelModel.Size.Large"
+                      Classes="@LabelSize.Large"
                       IsPageHeading="true">
                 What is the cost per item, in pounds?
             </GdsLabel>
@@ -430,10 +430,10 @@
 
 <Example CodeExampleContent="@(@"<GdsTextInput Id=""cost""
               Name=""cost""
-              Classes=""@GdsTextInputModel.Width.Width5"">
+              Classes=""@TextInputWidth.Width5"">
     <LabelTemplate>
         <GdsLabel For=""cost""
-                  Classes=""@GdsLabelModel.Size.Large""
+                  Classes=""@LabelSize.Large""
                   IsPageHeading=""true"">
             What is the cost per item, in pounds?
         </GdsLabel>
@@ -444,10 +444,10 @@
 </GdsTextInput>")">
     <GdsTextInput Id="cost"
                   Name="cost"
-                  Classes="@GdsTextInputModel.Width.Width5">
+                  Classes="@TextInputWidth.Width5">
         <LabelTemplate>
             <GdsLabel For="cost"
-                      Classes="@GdsLabelModel.Size.Large"
+                      Classes="@LabelSize.Large"
                       IsPageHeading="true">
                 What is the cost per item, in pounds?
             </GdsLabel>
@@ -462,10 +462,10 @@
 
 <Example CodeExampleContent="@(@"<GdsTextInput Id=""weight""
               Name=""weight""
-              Classes=""@GdsTextInputModel.Width.Width5"">
+              Classes=""@TextInputWidth.Width5"">
     <LabelTemplate>
         <GdsLabel For=""weight""
-                  Classes=""@GdsLabelModel.Size.Large""
+                  Classes=""@LabelSize.Large""
                   IsPageHeading=""true"">
             What is the weight in kilograms?
         </GdsLabel>
@@ -476,10 +476,10 @@
 </GdsTextInput>")">
     <GdsTextInput Id="weight"
                   Name="weight"
-                  Classes="@GdsTextInputModel.Width.Width5">
+                  Classes="@TextInputWidth.Width5">
         <LabelTemplate>
             <GdsLabel For="weight"
-                      Classes="@GdsLabelModel.Size.Large"
+                      Classes="@LabelSize.Large"
                       IsPageHeading="true">
                 What is the weight in kilograms?
             </GdsLabel>
@@ -494,11 +494,11 @@
 
 <Example CodeExampleContent="@(@"<GdsTextInput Id=""postcode""
               Name=""postcode""
-              Classes=""@GdsTextInputModel.Width.Width5""
+              Classes=""@TextInputWidth.Width5""
               Autocomplete=""postal-code"">
     <LabelTemplate>
         <GdsLabel For=""postcode""
-                  Classes=""@GdsLabelModel.Size.Large""
+                  Classes=""@LabelSize.Large""
                   IsPageHeading=""true"">
             What is your postcode?
         </GdsLabel>
@@ -506,11 +506,11 @@
 </GdsTextInput>")">
     <GdsTextInput Id="postcode"
                   Name="postcode"
-                  Classes="@GdsTextInputModel.Width.Width5"
+                  Classes="@TextInputWidth.Width5"
                   Autocomplete="postal-code">
         <LabelTemplate>
             <GdsLabel For="postcode"
-                      Classes="@GdsLabelModel.Size.Large"
+                      Classes="@LabelSize.Large"
                       IsPageHeading="true">
                 What is your postcode?
             </GdsLabel>
@@ -522,11 +522,11 @@
 
 <Example CodeExampleContent="@(@"<GdsTextInput Id=""reference-number""
               Name=""reference-number""
-              Classes=""@GdsTextInputModel.Width.Width10""
+              Classes=""@TextInputWidth.Width10""
               Spellcheck=""false"">
     <LabelTemplate>
         <GdsLabel For=""reference-number""
-                  Classes=""@GdsLabelModel.Size.Large""
+                  Classes=""@LabelSize.Large""
                   IsPageHeading=""true"">
             What is your reference number?
         </GdsLabel>
@@ -534,11 +534,11 @@
 </GdsTextInput>")">
     <GdsTextInput Id="reference-number"
                   Name="reference-number"
-                  Classes="@GdsTextInputModel.Width.Width10"
+                  Classes="@TextInputWidth.Width10"
                   Spellcheck="false">
         <LabelTemplate>
             <GdsLabel For="reference-number"
-                      Classes="@GdsLabelModel.Size.Large"
+                      Classes="@LabelSize.Large"
                       IsPageHeading="true">
                 What is your reference number?
             </GdsLabel>
@@ -550,10 +550,10 @@
 
 <Example CodeExampleContent="@(@"<GdsTextInput Id=""event-name-error""
               Name=""event-name""
-              Classes=""@GdsTextInputModel.Width.Width20"">
+              Classes=""@TextInputWidth.Width20"">
     <LabelTemplate>
         <GdsLabel For=""event-name-error""
-                  Classes=""@GdsLabelModel.Size.Large""
+                  Classes=""@LabelSize.Large""
                   IsPageHeading=""true"">
             What is the name of the event?
         </GdsLabel>
@@ -569,9 +569,9 @@
 </GdsTextInput>")">
     <GdsTextInput Id="event-name-error"
                   Name="event-name"
-                  Classes="@GdsTextInputModel.Width.Width20">
+                  Classes="@TextInputWidth.Width20">
         <LabelTemplate>
-            <GdsLabel For="event-name-error" Classes="@GdsLabelModel.Size.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
+            <GdsLabel For="event-name-error" Classes="@LabelSize.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
         </LabelTemplate>
         <HintTemplate>
             <GdsHint>The event's name</GdsHint>
@@ -586,10 +586,10 @@
 
 <Example CodeExampleContent="@(@"<GdsTextInput Id=""cost""
               Name=""cost""
-              Classes=""@GdsTextInputModel.Width.Width5"">
+              Classes=""@TextInputWidth.Width5"">
     <LabelTemplate>
         <GdsLabel For=""cost""
-                    Classes=""@GdsLabelModel.Size.Large""
+                    Classes=""@LabelSize.Large""
                     IsPageHeading=""true"">
             What is the cost per item, in pounds?
         </GdsLabel>
@@ -608,10 +608,10 @@
 </GdsTextInput>")">
     <GdsTextInput Id="cost"
                   Name="cost"
-                  Classes="@GdsTextInputModel.Width.Width5">
+                  Classes="@TextInputWidth.Width5">
         <LabelTemplate>
             <GdsLabel For="cost"
-                      Classes="@GdsLabelModel.Size.Large"
+                      Classes="@LabelSize.Large"
                       IsPageHeading="true">
                 What is the cost per item, in pounds?
             </GdsLabel>
