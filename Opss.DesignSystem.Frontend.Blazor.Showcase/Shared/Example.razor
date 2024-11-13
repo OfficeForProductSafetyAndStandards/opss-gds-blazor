@@ -1,5 +1,5 @@
 ﻿
-@inherits Models.ExampleModel
+@inherits ComponentBase
 
 <div class="app-example-wrapper" data-module="app-tabs" data-app-tabs-init="">
     <div class="app-example">
@@ -20,3 +20,14 @@
         </Blazor.HighlightJS.Code>
     </div>
 </div>
+
+@code {    
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string CodeExampleContent { get; set; }
+
+    [Parameter]
+    public string Classes { get; set; }
+}

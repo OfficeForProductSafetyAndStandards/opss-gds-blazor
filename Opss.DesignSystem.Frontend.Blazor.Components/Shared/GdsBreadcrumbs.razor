@@ -1,7 +1,16 @@
 ﻿@inherits GdsWithContent;
 
+@* <summary>
+    The breadcrumbs component helps users to understand where they are within a website's structure and move between levels.
+</summary> *@
+
 ﻿<CascadingValue Value="this">
-    <nav id=@Id class="govuk-breadcrumbs @Classes @(CollapseOnMobile ? "govuk-breadcrumbs--collapse-on-mobile" : "") @(IsOnDarkBackground ? "govuk-breadcrumbs--inverse" : "") " aria-label="Breadcrumb" @attributes="@Attributes">
+    <nav id=@Id class="govuk-breadcrumbs 
+         @Classes @(CollapseOnMobile ? "govuk-breadcrumbs--collapse-on-mobile" : "") 
+         @(IsOnDarkBackground ? "govuk-breadcrumbs--inverse" : "") " 
+         aria-label="Breadcrumb" 
+         @attributes="@Attributes"
+    >
         <ol class="govuk-breadcrumbs__list">
             @foreach (GdsBreadcrumbLink link in Links)
             {

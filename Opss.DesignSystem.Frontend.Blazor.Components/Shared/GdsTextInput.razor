@@ -1,6 +1,14 @@
 ﻿@inherits GdsViewModel
 
-<div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses">
+@* <summary>
+    Use the text input component when you need to let users enter text that’s no 
+    longer than a single line, such as their name or phone number.
+</summary> *@
+
+<div class="govuk-form-group
+     @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") 
+     @FormGroupClasses"
+>
     @if (LabelTemplate != null)
     {
         @LabelTemplate
@@ -22,9 +30,18 @@
                 @PrefixTemplate
             }
 
-            <input id="@Id" class="govuk-input @Classes @(ErrorMessageTemplate != null ? "govuk-input--error" : "")" name="@Name" type="@(Type ?? "text")"
-                   spellcheck="@Spellcheck?.ToString().ToLower()" value="@Value" aria-describedby="@DescribedBy?.Trim()"
-                   autocomplete="@Autocomplete" pattern="@Pattern" inputmode="@Inputmode" @attributes="@Attributes" />
+            <input id="@Id" 
+                   class="govuk-input 
+                   @Classes @(ErrorMessageTemplate != null ? "govuk-input--error" : "")" 
+                   name="@Name" type="@(Type ?? "text")"
+                   spellcheck="@Spellcheck?.ToString().ToLower()" 
+                   value="@Value" 
+                   aria-describedby="@DescribedBy?.Trim()"
+                   autocomplete="@Autocomplete" 
+                   pattern="@Pattern" 
+                   inputmode="@Inputmode" 
+                   @attributes="@Attributes"
+            />
 
             @if (SuffixTemplate != null)
             {
@@ -34,9 +51,19 @@
     }
     else
     {
-        <input id="@Id" class="govuk-input @Classes @(ErrorMessageTemplate != null ? "govuk-input--error" : "")" name="@Name" type="@(Type ?? "text")"
-               spellcheck="@Spellcheck?.ToString().ToLower()" value="@Value" aria-describedby="@DescribedBy?.Trim()"
-               autocomplete="@Autocomplete" pattern="@Pattern" inputmode="@Inputmode" @attributes="@Attributes" />
+        <input id="@Id" 
+               class="govuk-input 
+               @Classes @(ErrorMessageTemplate != null ? "govuk-input--error" : "")" 
+               name="@Name" 
+               type="@(Type ?? "text")"
+               spellcheck="@Spellcheck?.ToString().ToLower()" 
+               value="@Value" 
+               aria-describedby="@DescribedBy?.Trim()"
+               autocomplete="@Autocomplete" 
+               pattern="@Pattern" 
+               inputmode="@Inputmode" 
+               @attributes="@Attributes"
+        />
     }
 </div>
 
@@ -53,6 +80,9 @@
     [Parameter]
     public string? Type { get; set; }
 
+    /// <summary>
+    /// none, text, decimal, numeric, tel, search, email, url
+    /// </summary>
     [Parameter]
     public string? Inputmode
     {
@@ -77,7 +107,8 @@
     private string? _inputmode;
 
     /// <summary>
-    /// One or more element IDs to add to the aria-describedby attribute, used to provide additional descriptive information for screenreader users.
+    /// One or more element IDs to add to the aria-describedby attribute, used to provide 
+    /// additional descriptive information for screenreader users.
     /// </summary>
     [Parameter]
     public string? DescribedBy
@@ -116,7 +147,8 @@
     public string? Autocomplete { get; set; }
 
     /// <summary>
-    /// Attribute to provide a regular expression pattern, used to match allowed character combinations for the input value.
+    /// Attribute to provide a regular expression pattern, used to match allowed character combinations 
+    // for the input value.
     /// </summary>
     [Parameter]
     public string? Pattern { get; set; }
