@@ -1,0 +1,141 @@
+﻿@inherits GdsWithHref
+
+@* <summary>
+    Use the button component to help users carry out an action like starting an application or saving their information.
+</summary> *@
+
+@* Bit of a mess, nunjucks combines some of this but it's still crazy due to the three different elements that can be rendered *@
+@switch (Element)
+{
+    case ButtonType.Anchor:
+        <a id=@Id
+           href=@(Href ?? "#")
+           role="button" 
+           draggable="false" 
+           class="govuk-button @AllClasses()" 
+           data-module="govuk-button" 
+           @attributes=@Attributes
+        >
+            @ChildContent
+            @if (IsStartButton)
+            {
+              <svg class="govuk-button__start-icon" 
+                   xmlns="http://www.w3.org/2000/svg" 
+                   width="17.5" 
+                   height="19" 
+                   viewBox="0 0 33 40" 
+                   aria-hidden="true" 
+                   focusable="false"
+              >
+                <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"/>
+              </svg>
+            }
+        </a>
+        break;
+    case ButtonType.Button:
+        <button id=@Id
+                value=@Value
+                type=@Type
+                name=@Name
+                disabled=@(Disabled ? "disabled" : null)
+                aria-disabled=@(Disabled ? "true" : null)
+                data-prevent-double-click=@(PreventDoubleClick ? "true" : null)
+                class="govuk-button @AllClasses()" 
+                data-module="govuk-button" 
+                @onclick=@OnClick
+                @attributes=@Attributes
+        >
+            @ChildContent
+            @if (IsStartButton)
+            {
+                <svg class="govuk-button__start-icon" 
+                     xmlns="http://www.w3.org/2000/svg" 
+                     width="17.5" 
+                     height="19" 
+                     viewBox="0 0 33 40" 
+                     aria-hidden="true" 
+                     focusable="false"
+                >
+                    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"/>
+                </svg>
+            }
+        </button>
+        break;
+    case ButtonType.Input:
+        <input id="@Id" 
+               value="@Value" 
+               type="@(Type ?? "submit")"
+               name="@Name"
+               disabled=@(Disabled ? "disabled" : null)
+               aria-disabled=@(Disabled ? "true" : null)
+               data-prevent-double-click=@(PreventDoubleClick ? "true" : null)
+               class="govuk-button @AllClasses()" 
+               data-module="govuk-button" 
+               @attributes=@Attributes
+        />
+        break;
+}
+
+@code {
+    private ButtonType? _element;
+    /// <summary>
+    /// Whether to use an input, button or a element to create the button.
+    /// In most cases you will not need to set this as it will be configured automatically.
+    /// </summary>
+    [Parameter]
+    public ButtonType Element
+    {
+        get => _element ?? (string.IsNullOrEmpty(Href) ? ButtonType.Button : ButtonType.Anchor);
+        set => _element = value;
+    }
+
+    /// <summary>
+    /// Event to call on click event of button type elements
+    /// </summary>
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+    /// <summary>
+    /// Name for the input or button.
+    /// This has no effect on a elements.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// Type of input or button – button, submit or reset.
+    /// Defaults to submit. This has no effect on a elements.
+    /// </summary>
+    [Parameter]
+    public string? Type { get; set; }
+
+    /// <summary>
+    /// Value for the button tag.
+    /// This has no effect on a or input elements.
+    /// </summary>
+    [Parameter]
+    public string? Value { get; set; }
+
+    /// <summary>
+    /// Whether the button should be disabled.
+    /// For button and input elements, disabled and aria-disabled attributes will be set automatically.
+    /// </summary>
+    [Parameter]
+    public bool Disabled { get; set; }
+
+    /// <summary>
+    /// Prevent accidental double clicks on submit buttons from submitting forms multiple times.
+    /// </summary>
+    [Parameter]
+    public bool PreventDoubleClick { get; set; }
+
+    /// <summary>
+    /// Use for the main call to action on your service's start page.
+    /// </summary>
+    [Parameter]
+    public bool IsStartButton { get; set; }
+
+    public string AllClasses() => Classes +
+                                  (IsStartButton ? " govuk-button--start" : "") +
+                                  (IsOnDarkBackground ? " govuk-button--inverse" : "");
+}
