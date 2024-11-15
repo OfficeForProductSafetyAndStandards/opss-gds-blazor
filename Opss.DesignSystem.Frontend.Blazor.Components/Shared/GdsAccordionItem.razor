@@ -1,0 +1,65 @@
+﻿@inherits GdsWithContent
+
+@* <summary>
+    The accordion item component must be used as a child of the accordion component.
+</summary> *@
+
+<div class="govuk-accordion__section@(Expanded ? " govuk-accordion__section--expanded" : "")">
+    <div class="govuk-accordion__section-header">
+        <GdsHeading HeadingLevel=@HeadingLevel Classes="govuk-accordion__section-heading">
+            <span class="govuk-accordion__section-button" id="@(Parent.Id)-heading-@Index">
+                @Heading
+            </span>
+        </GdsHeading>
+        @if (!string.IsNullOrEmpty(Summary))
+        {
+            <div class="govuk-accordion__section-summary govuk-body" id="@(Parent.Id)-summary-@Index">
+                @Summary
+            </div>
+        }
+    </div>
+    <div id="@(Parent.Id)-content-@Index" class="govuk-accordion__section-content">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    /// <summary>
+    /// Heading level, from 1 to 6.
+    /// </summary>
+    [Parameter]
+    public int HeadingLevel { get; set; } = 2;
+
+    /// <summary>
+    /// The title of each section.
+    /// </summary>
+    [Parameter]
+    public string Heading { get; set; }
+
+    /// <summary>
+    /// The content for the summary line.
+    /// The summary line is inside the HTML &lt;button&gt; element, so you can only add phrasing content to it.
+    /// </summary>
+    [Parameter]
+    public string Summary { get; set; }
+
+    /// <summary>
+    /// Sets whether the section should be expanded when the page loads for the first time.
+    /// </summary>
+    [Parameter]
+    public bool Expanded { get; set; }
+
+    public int Index { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsAccordionItem must exist within a GdsAccordion");
+
+        base.OnInitialized();
+        Parent.AddItem(this);
+    }
+
+    [CascadingParameter]
+    private GdsAccordion Parent { get; set; }
+}

@@ -6,7 +6,9 @@
 </summary> *@
 
 <p id="@Id" class="govuk-error-message @Classes" @attributes="@Attributes">
-    <span class="govuk-visually-hidden">@(string.IsNullOrEmpty(VisuallyHiddenText) ? "Error" : VisuallyHiddenText):</span>
+    <span class="govuk-visually-hidden">
+        @(string.IsNullOrEmpty(VisuallyHiddenText) ? "Error" : VisuallyHiddenText):
+    </span>
     @ChildContent
 </p>
 

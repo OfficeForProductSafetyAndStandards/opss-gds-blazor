@@ -1,0 +1,23 @@
+﻿@inherits GdsWithContent
+
+@* <summary>
+    The accordion component lets users show and hide sections of related content on a page.
+</summary> *@
+
+﻿<CascadingValue Value="this">
+    <div class="govuk-accordion @Classes" data-module="govuk-accordion" id="@Id" @attributes="@Attributes">
+        @ChildContent
+    </div>
+</CascadingValue>
+
+@code {
+    List<GdsAccordionItem> Items = new List<GdsAccordionItem>();
+
+    internal void AddItem(GdsAccordionItem item)
+    {
+        item.Index = Items.Count + 1;
+        Items.Add(item);
+        StateHasChanged();
+    }
+
+}
