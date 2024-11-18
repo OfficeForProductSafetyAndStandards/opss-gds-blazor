@@ -1,0 +1,26 @@
+﻿@inherits GdsWithContent
+
+<div id=@Id 
+     class="moj-button-menu" 
+     data-module="moj-button-menu" 
+     data-button-text=@MenuTitle
+     data-button-classes=@(string.IsNullOrEmpty(Classes) ? null : Classes)
+     data-align-menu=@(RightAlignMenu ? "right" : null )
+     @attributes=@Attributes
+>
+    @ChildContent
+</div>
+
+@code {
+    /// <summary>
+    /// Text for the menu title button.
+    /// </summary>
+    [Parameter]
+    public string MenuTitle { get; set; }
+
+    /// <summary>
+    /// Identifies that menu items should be right aligned
+    /// </summary>
+    [Parameter]
+    public bool RightAlignMenu { get; set; }
+}

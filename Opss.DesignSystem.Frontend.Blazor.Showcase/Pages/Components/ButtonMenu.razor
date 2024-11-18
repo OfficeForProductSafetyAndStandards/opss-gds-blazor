@@ -1,0 +1,113 @@
+﻿@page "/Components/ButtonMenu"
+@layout _ComponentsLayout
+
+<PageTitle>Button menu</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Button menu</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the MoJ GDS <a href="https://design-patterns.service.justice.gov.uk/components/button-menu/" class="govuk-link">Button menu</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsButtonMenu MenuTitle=""Menu title"">
+    <GdsButton Type=""submit"" 
+               Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+        Menu item 1
+    </GdsButton>
+    <GdsButton Type=""submit"" 
+               Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+        Menu item 2
+    </GdsButton>
+    <GdsButton Type=""submit""
+               Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+        Menu item 3
+    </GdsButton>
+</GdsButtonMenu>")">
+    <GdsButtonMenu MenuTitle="Menu title">
+        <GdsButton Type="submit" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Menu item 1</GdsButton>
+        <GdsButton Type="submit" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Menu item 2</GdsButton>
+        <GdsButton Type="submit" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Menu item 3</GdsButton>
+    </GdsButtonMenu>
+</Example>
+
+<h2 class="govuk-heading-l" id="how-to-use">How to use</h2>
+
+<h3 class="govuk-heading-m" id="left-aligned-menu-items">Left-aligned menu items</h3>
+
+<Example CodeExampleContent="@(@"<GdsButtonMenu MenuTitle=""Review"" Classes=@ButtonStyle.Secondary>
+    <GdsButton Href=""#""
+               Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+        Menu item 1
+    </GdsButton>
+    <GdsButton Href=""#""
+               Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+        Menu item 2
+    </GdsButton>
+    <GdsButton Href=""#""
+               Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+        Menu item 3
+    </GdsButton>
+</GdsButtonMenu>")">
+    <GdsButtonMenu MenuTitle="Review" Classes=@ButtonStyle.Secondary>
+        <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Approve</GdsButton>
+        <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Request more information</GdsButton>
+        <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Reject with reason</GdsButton>
+    </GdsButtonMenu>
+</Example>
+
+<h3 class="govuk-heading-m" id="right-aligned-menu-items">Right-aligned menu items</h3>
+<Example CodeExampleContent="@(@"<GdsButtonMenu MenuTitle=""Review"" Classes=@ButtonStyle.Secondary RightAlignMenu=@true>
+    <GdsButton Href=""#""
+               Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+        Menu item 1
+    </GdsButton>
+    <GdsButton Href=""#""
+               Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+        Menu item 2
+    </GdsButton>
+    <GdsButton Href=""#""
+               Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+        Menu item 3
+    </GdsButton>
+</GdsButtonMenu>")">
+    <div style="display: flex; flex-direction: row-reverse;">
+    <GdsButtonMenu MenuTitle="Review" Classes=@ButtonStyle.Secondary RightAlignMenu=@true>
+        <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Approve</GdsButton>
+        <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Request more information</GdsButton>
+        <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Reject with reason</GdsButton>
+    </GdsButtonMenu>
+    </div>
+</Example>
+
+<h3 class="govuk-heading-m" id="grouping buttons">Grouping buttons</h3>
+
+<Example CodeExampleContent="@(@"<div class=""moj-button-group moj-button-group--inline"">
+    <GdsButton Type=""submit"">Accept booking</GdsButton>
+    <GdsButtonMenu MenuTitle=""Review booking"" Classes=@ButtonStyle.Secondary>
+        <GdsButton Href=""#"" 
+                   Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+            Cancel
+        </GdsButton>
+        <GdsButton Href=""#"" 
+                   Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+            Put on hold
+        </GdsButton>
+        <GdsButton Href=""#"" 
+                   Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+            Request more information
+        </GdsButton>
+    </GdsButtonMenu>
+</div>")">
+    <div class="moj-button-group moj-button-group--inline">
+        <GdsButton Type="submit">Accept booking</GdsButton>
+        <GdsButtonMenu MenuTitle="Review booking" Classes=@ButtonStyle.Secondary>
+            <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Cancel</GdsButton>
+            <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Put on hold</GdsButton>
+            <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Request more information</GdsButton>
+        </GdsButtonMenu>
+    </div>
+</Example>
+@code {
+
+}

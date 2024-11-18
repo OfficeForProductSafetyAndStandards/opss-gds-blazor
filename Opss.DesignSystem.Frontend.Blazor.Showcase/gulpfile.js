@@ -25,9 +25,21 @@ const copyGovukFavicon = () =>
 	gulp.src(["node_modules/govuk-frontend/dist/govuk/assets/images/favicon.ico"])
 		.pipe(gulp.dest("wwwroot/"));
 
+const copyMoJAssets = () =>
+	gulp.src(["node_modules/@ministryofjustice/frontend/moj/assets/**/*"], { encoding: false })
+		.pipe(gulp.dest("wwwroot/assets"));
+
+const copyMoJJs = () =>
+	gulp.src(["node_modules/@ministryofjustice/frontend/moj/all.js"])
+		.pipe(uglify())
+		.pipe(rename("moj.js"))
+		.pipe(gulp.dest("wwwroot/js/"));
+
 gulp.task("build-fe", () => {
 	return async.series([
 		(next) => buildSass().on("end", next),
+		(next) => copyMoJJs().on("end", next),
+		(next) => copyMoJAssets().on("end", next),
 		(next) => copyGovukFavicon().on("end", next),
 		(next) => copyGovukJs().on("end", next),
 		(next) => copyGovukAssets().on("end", next)
