@@ -36,7 +36,7 @@
 	public void OutputsSecondaryButton()
 	{
 		// Arrange
-		var component = Render(@<GdsButton Type="submit" Classes=@ButtonColours.Secondary>Find address</GdsButton>);
+		var component = Render(@<GdsButton Type="submit" Classes=@ButtonStyle.Secondary>Find address</GdsButton>);
 
 		// Assert that content of the paragraph shows counter at zero
 		component.Find("button").MarkupMatches(
@@ -50,7 +50,7 @@
 	public void OutputsWarningButton()
 	{
 		// Arrange
-		var component = Render(@<GdsButton Type="submit" Classes=@ButtonColours.Warning>Delete account</GdsButton>);
+		var component = Render(@<GdsButton Type="submit" Classes=@ButtonStyle.Warning>Delete account</GdsButton>);
 
 		// Assert that content of the paragraph shows counter at zero
 		component.Find("button").MarkupMatches(
@@ -94,7 +94,7 @@
 		// Arrange
 		var component = Render(@<GdsButtonGroup>
 		<GdsButton Type="submit">Save and continue</GdsButton>
-		<GdsButton Type="submit" Classes=@ButtonColours.Secondary>Save as draft</GdsButton>
+		<GdsButton Type="submit" Classes=@ButtonStyle.Secondary>Save as draft</GdsButton>
 	</GdsButtonGroup>);
 
 		// Assert that content of the paragraph shows counter at zero

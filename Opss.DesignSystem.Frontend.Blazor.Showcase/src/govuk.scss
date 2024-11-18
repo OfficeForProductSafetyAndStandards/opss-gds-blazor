@@ -1,5 +1,6 @@
 ﻿$govuk-assets-path: "/assets/";
 @import "../node_modules/govuk-frontend/dist/govuk/all";
+@import "../node_modules/@ministryofjustice/frontend/moj/all";
 
 .app-header__container {
     margin-left: max(30px, calc(15px + env(safe-area-inset-left)));
