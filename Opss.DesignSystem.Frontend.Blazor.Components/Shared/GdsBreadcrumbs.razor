@@ -12,21 +12,8 @@
          @attributes="@Attributes"
     >
         <ol class="govuk-breadcrumbs__list">
-            @foreach (GdsBreadcrumbLink link in Links)
-            {
-                <li class="govuk-breadcrumbs__list-item">
-                    <GdsBreadcrumbLink 
-                        Attributes=@link.Attributes
-                        ChildContent=@link.ChildContent
-                        Classes=@link.Classes
-                        Href=@link.Href
-                        Id=@link.Id
-                        Register=@false
-                    />
-                </li>                
-            }
+            @ChildContent
         </ol>
-        <span hidden>@ChildContent</span>
     </nav>
 </CascadingValue>
 
@@ -42,12 +29,4 @@
     /// </summary>
     [Parameter]
     public bool IsOnDarkBackground { get; set; }
-
-    List<GdsBreadcrumbLink> Links = new List<GdsBreadcrumbLink>();
-
-    internal void AddLink(GdsBreadcrumbLink link)
-    {
-        Links.Add(link);
-        StateHasChanged();
-    }
 }

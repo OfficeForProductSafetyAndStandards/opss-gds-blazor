@@ -1,0 +1,91 @@
+﻿@inherits BunitContext
+
+@code {
+	[Fact]
+	public void OutputsErrorSummary()
+	{
+		// Arrange
+		var component = Render(@<GdsErrorSummary>
+		<GdsErrorSummaryItem Href="#">Enter your full name</GdsErrorSummaryItem>
+		<GdsErrorSummaryItem Href="#">The date your passport was issued must be in the past</GdsErrorSummaryItem>
+	</GdsErrorSummary>);
+
+		// Assert that content of the paragraph shows counter at zero
+        component.Find("div").MarkupMatches(
+    @<div class="govuk-error-summary" data-module="govuk-error-summary">
+        <div role="alert">
+            <h2 class="govuk-error-summary__title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    <li>
+                        <a href="#">Enter your full name</a>
+                    </li>
+                    <li>
+                        <a href="#">The date your passport was issued must be in the past</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void OutputsErrorSummaryLinkingToInput()
+    {
+        // Arrange
+        var component = Render(@<div>
+    <GdsErrorSummary>
+        <GdsErrorSummaryItem Href="#full-name-input">
+            Enter your full name
+        </GdsErrorSummaryItem>
+    </GdsErrorSummary>
+    <h1 class="govuk-heading-l">Your details</h1>
+    <GdsTextInput Id="full-name-input"
+                  Name="name"
+                  Autocomplete="name">
+        <LabelTemplate>
+            <GdsLabel For="full-name-input">
+                Full name
+            </GdsLabel>
+        </LabelTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage Id="full-name-input-error">
+                Enter your full name
+            </GdsErrorMessage>
+        </ErrorMessageTemplate>
+    </GdsTextInput>
+</div>);
+
+        // Assert that content of the paragraph shows counter at zero
+        component.Find("div").MarkupMatches(@<div>
+        ﻿<div class="govuk-error-summary " data-module="govuk-error-summary">
+            <div role="alert">
+                <h2 class="govuk-error-summary__title">
+                    There is a problem
+                </h2>
+                <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list">
+                        <li>
+                            <a href="#full-name-input">Enter your full name</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <h1 class="govuk-heading-l">Your details</h1>
+        <div class="govuk-form-group govuk-form-group--error">
+            <label class="govuk-label" for="full-name-input">
+                Full name
+            </label>
+            <p id="full-name-input-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Enter your full name
+            </p>
+            <input class="govuk-input govuk-input--error" id="full-name-input" name="name" type="text" aria-describedby="full-name-input-error" autocomplete="name">
+        </div>
+</div>);
+    }
+
+}

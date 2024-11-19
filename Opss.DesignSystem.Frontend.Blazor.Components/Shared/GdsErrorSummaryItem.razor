@@ -1,16 +1,12 @@
 ﻿@inherits GdsWithHref
 
-@* <summary>
-    The breadcrumb link component must be used as a child of breadcrumbs.
-</summary> *@
-
-<li class="govuk-breadcrumbs__list-item">
+<li>
     @if (string.IsNullOrEmpty(Href))
     {
         @ChildContent
     } else {
         <a id=@Id
-           class="govuk-breadcrumbs__link @Classes"
+           class=@(string.IsNullOrEmpty(Classes) ? null : Classes)
            href=@Href
            @attributes="@Attributes"
         >
@@ -23,11 +19,13 @@
     protected override void OnInitialized()
     {
         if (Parent == null)
-            throw new ArgumentNullException(nameof(Parent), "GdsBreadcrumbLink must exist within a GdsBreadcrumb");
+            throw new ArgumentNullException(
+                nameof(Parent), 
+                "GdsErrorSummaryItem must exist within a GdsErrorSummary");
 
         base.OnInitialized();
     }
 
     [CascadingParameter]
-    private GdsBreadcrumbs? Parent { get; set; }
+    private GdsErrorSummary? Parent { get; set; }
 }

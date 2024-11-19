@@ -1,16 +1,16 @@
-﻿@page "/Components/TextArea"
+﻿@page "/Components/Textarea"
 @layout _ComponentsLayout
 
 <PageTitle>Text area</PageTitle>
 
 <span class="govuk-caption-xl">Components</span>
-<h1 class="govuk-heading-xl">Text area</h1>
+<h1 class="govuk-heading-xl">Textarea</h1>
 
 <p class="govuk-body">
-    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/text-area/" class="govuk-link">Text area</a>.
+    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/text-area/" class="govuk-link">Textarea</a>.
 </p>
 
-<Example CodeExampleContent="@(@"<GdsTextArea Id=""more-detail""
+<Example CodeExampleContent="@(@"<GdsTextarea Id=""more-detail""
               Name=""moreDetail"">
     <LabelTemplate>
         <GdsLabel For=""more-detail"" 
@@ -26,8 +26,8 @@
             details
         </GdsHint>
     </HintTemplate>
-</GdsTextArea>")">
-    <GdsTextArea Id="more-detail"
+</GdsTextarea>")">
+    <GdsTextarea Id="more-detail"
                  Name="moreDetail">
         <LabelTemplate>
             <GdsLabel For="more-detail"
@@ -43,12 +43,12 @@
                 details
             </GdsHint>
         </HintTemplate>
-    </GdsTextArea>
+    </GdsTextarea>
 </Example>
 
 <h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
 
-<Example CodeExampleContent="@(@"<GdsTextArea Id=""more-detail""
+<Example CodeExampleContent="@(@"<GdsTextarea Id=""more-detail""
               Name=""moreDetail"">
     <LabelTemplate>
         <GdsLabel For=""more-detail""
@@ -64,8 +64,8 @@
             details
         </GdsHint>
     </HintTemplate>
-</GdsTextArea>")">
-    <GdsTextArea Id="more-detail"
+</GdsTextarea>")">
+    <GdsTextarea Id="more-detail"
                  Name="moreDetail">
         <LabelTemplate>
             <GdsLabel For="more-detail"
@@ -81,12 +81,12 @@
                 details
             </GdsHint>
         </HintTemplate>
-    </GdsTextArea>
+    </GdsTextarea>
 </Example>
 
 <h3 class="govuk-heading-m" id="use-appropriately-sized">Use appropriately-sized textareas</h3>
 
-<Example CodeExampleContent="@(@"<GdsTextArea Id=""more-detail""
+<Example CodeExampleContent="@(@"<GdsTextarea Id=""more-detail""
               Name=""moreDetail""
               Rows=""8"">
     <LabelTemplate>
@@ -103,8 +103,8 @@
             details
         </GdsHint>
     </HintTemplate>
-</GdsTextArea>")">
-    <GdsTextArea Id="more-detail"
+</GdsTextarea>")">
+    <GdsTextarea Id="more-detail"
                  Name="moreDetail"
                  Rows="8">
         <LabelTemplate>
@@ -121,36 +121,36 @@
                 details
             </GdsHint>
         </HintTemplate>
-    </GdsTextArea>
+    </GdsTextarea>
 </Example>
 
 <h3 class="govuk-heading-m" id="asking-more-than-one-question">
     If you’re asking more than one question on the page
 </h3>
 
-<Example CodeExampleContent="@(@"<GdsTextArea Id=""more-detail""
+<Example CodeExampleContent="@(@"<GdsTextarea Id=""more-detail""
               Name=""moreDetail"">
     <LabelTemplate>
         <GdsLabel For=""more-detail"">
             Can you provide more detail?
         </GdsLabel>
     </LabelTemplate>
-</GdsTextArea>")">
-    <GdsTextArea Id="more-detail"
+</GdsTextarea>")">
+    <GdsTextarea Id="more-detail"
                  Name="moreDetail">
         <LabelTemplate>
             <GdsLabel For="more-detail">
                 Can you provide more detail?
             </GdsLabel>
         </LabelTemplate>
-    </GdsTextArea>
+    </GdsTextarea>
 </Example>
 
 <h3 class="govuk-heading-m" id="error-message">
     Error messages
 </h3>
 
-<Example CodeExampleContent="@(@"<GdsTextArea Id=""more-detail""
+<Example CodeExampleContent="@(@"<GdsTextarea Id=""more-detail""
                 Name=""moreDetail"">
     <LabelTemplate>
         <GdsLabel For=""more-detail""
@@ -169,8 +169,8 @@
     <ErrorMessageTemplate>
         <GdsErrorMessage Id=""more-detail-error"">Enter more detail</GdsErrorMessage>
     </ErrorMessageTemplate>
-</GdsTextArea>")">
-    <GdsTextArea Id="more-detail"
+</GdsTextarea>")">
+    <GdsTextarea Id="more-detail"
                  Name="moreDetail">
         <LabelTemplate>
             <GdsLabel For="more-detail"
@@ -189,5 +189,5 @@
         <ErrorMessageTemplate>
             <GdsErrorMessage Id="more-detail-error">Enter more detail</GdsErrorMessage>
         </ErrorMessageTemplate>
-    </GdsTextArea>
+    </GdsTextarea>
 </Example>

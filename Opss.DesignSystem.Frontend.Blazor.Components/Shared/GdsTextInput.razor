@@ -5,10 +5,7 @@
     longer than a single line, such as their name or phone number.
 </summary> *@
 
-<div class="govuk-form-group
-     @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") 
-     @FormGroupClasses"
->
+<div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses">
     @if (LabelTemplate != null)
     {
         @LabelTemplate
@@ -52,8 +49,7 @@
     else
     {
         <input id="@Id" 
-               class="govuk-input 
-               @Classes @(ErrorMessageTemplate != null ? "govuk-input--error" : "")" 
+               class="govuk-input @Classes @(ErrorMessageTemplate != null ? "govuk-input--error" : "")" 
                name="@Name" 
                type="@(Type ?? "text")"
                spellcheck="@Spellcheck?.ToString().ToLower()" 

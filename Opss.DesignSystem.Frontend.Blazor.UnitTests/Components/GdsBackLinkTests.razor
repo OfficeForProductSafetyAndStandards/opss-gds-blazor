@@ -6,7 +6,7 @@
 	{
 		// Arrange
 		var id = "hello-world";
-		var component = Render(@<GdsBackLink Id=@id></GdsBackLink>);
+		var component = Render(@<GdsBackLink Href="#" Id=@id></GdsBackLink>);
 
 		// Assert that content of the paragraph shows counter at zero
 		component.Find("a").MarkupMatches(
@@ -36,7 +36,7 @@
 	{
 		// Arrange
 		var id = "hello-world";
-		var component = Render(@<GdsBackLink Id=@id>Go Back</GdsBackLink>);
+		var component = Render(@<GdsBackLink Href="#" Id=@id>Go Back</GdsBackLink>);
 
 		// Assert that content of the paragraph shows counter at zero
 		component.Find("a").MarkupMatches(
@@ -52,7 +52,7 @@
 		// Arrange
 		var id = "hello-world";
 		var customClass = "custom-back";
-		var component = Render(@<GdsBackLink Id=@id Classes=@customClass></GdsBackLink>);
+		var component = Render(@<GdsBackLink Href="#" Id=@id Classes=@customClass></GdsBackLink>);
 
 		// Assert that content of the paragraph shows counter at zero
 		component.Find("a").MarkupMatches(
@@ -71,7 +71,7 @@
 		{
 			{"aria-label", "Hello"}
 		};
-		var component = Render(@<GdsBackLink Id=@id Attributes=@customAttributes></GdsBackLink>);
+		var component = Render(@<GdsBackLink Href="#" Id=@id Attributes=@customAttributes></GdsBackLink>);
 
 		// Assert that content of the paragraph shows counter at zero
 		component.Find("a").MarkupMatches(
@@ -85,7 +85,7 @@
 	{
 		// Arrange
 		var id = "hello-world";
-		var component = Render(@<GdsBackLink Id=@id IsOnDarkBackground=@true></GdsBackLink>);
+		var component = Render(@<GdsBackLink Href="#" Id=@id IsOnDarkBackground=@true></GdsBackLink>);
 
 		// Assert that content of the paragraph shows counter at zero
 		component.Find("a").MarkupMatches(

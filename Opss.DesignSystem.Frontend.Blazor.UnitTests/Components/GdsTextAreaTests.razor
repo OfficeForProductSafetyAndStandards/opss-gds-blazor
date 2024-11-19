@@ -2,11 +2,11 @@
 
 @code {
 	[Fact]
-	public void OutputsTextArea()
+	public void OutputsTextarea()
 	{
 		// Arrange
 		var component = Render(
-	@<GdsTextArea Id="more-detail"
+	@<GdsTextarea Id="more-detail"
 				  	Name="moreDetail">
 		<LabelTemplate>
 			<GdsLabel For="more-detail"
@@ -22,7 +22,7 @@
 				details
 			</GdsHint>
 		</HintTemplate>
-	</GdsTextArea>
+	</GdsTextarea>
 	);
 
 		component.Find("div").MarkupMatches(
@@ -41,11 +41,11 @@
 	}
 
 	[Fact]
-	public void OutputsTextAreaWithSetRows()
+	public void OutputsTextareaWithSetRows()
 	{
 		// Arrange
 		var component = Render(
-	@<GdsTextArea Id="more-detail"
+	@<GdsTextarea Id="more-detail"
 				  Name="moreDetail"
                   Rows="8">
 		<LabelTemplate>
@@ -62,7 +62,7 @@
 				details
 			</GdsHint>
 		</HintTemplate>
-	</GdsTextArea>
+	</GdsTextarea>
 	);
 
 		component.Find("div").MarkupMatches(
@@ -85,14 +85,14 @@
 	{
 		// Arrange
 		var component = Render(
-	@<GdsTextArea Id="more-detail"
+	@<GdsTextarea Id="more-detail"
                  Name="moreDetail">
         <LabelTemplate>
             <GdsLabel For="more-detail">
                 Can you provide more detail?
             </GdsLabel>
         </LabelTemplate>
-    </GdsTextArea>
+    </GdsTextarea>
 	);
 
 		component.Find("div").MarkupMatches(
@@ -110,7 +110,7 @@
 	{
 		// Arrange
 		var component = Render(
-	@<GdsTextArea Id="more-detail"
+	@<GdsTextarea Id="more-detail"
                  Name="moreDetail">
         <LabelTemplate>
             <GdsLabel For="more-detail"
@@ -129,7 +129,7 @@
         <ErrorMessageTemplate>
             <GdsErrorMessage Id="more-detail-error">Enter more detail</GdsErrorMessage>
         </ErrorMessageTemplate>
-    </GdsTextArea>
+    </GdsTextarea>
 	);
 
 		component.Find("div").MarkupMatches(
