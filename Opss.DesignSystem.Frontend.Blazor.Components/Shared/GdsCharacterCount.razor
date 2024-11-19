@@ -1,0 +1,144 @@
+﻿@inherits GdsViewModel
+
+@* <summary>
+    Only use the character count component when there is a good reason for
+    limiting the number of characters users can enter.
+</summary> *@
+
+<div class="govuk-form-group govuk-character-count
+            @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "")
+            @FormGroupClasses"
+     data-module="govuk-character-count" 
+     data-maxlength="@MaxLength" 
+     data-threshold="@Threshold" 
+     data-maxwords="@MaxWords"
+>
+    @if (LabelTemplate != null)
+    {
+        @LabelTemplate
+    }
+    @if (HintTemplate != null)
+    {
+        @HintTemplate
+    }
+    @if (ErrorMessageTemplate != null)
+    {
+        @ErrorMessageTemplate
+    }
+
+    <textarea id=@Id
+              class="govuk-textarea govuk-js-character-count @Classes @(ErrorMessageTemplate != null ? "govuk-textarea--error" : "")"
+              name="@Name"
+              rows="@(Rows ?? 5)"
+              spellcheck="@Spellcheck?.ToString().ToLower()"
+              aria-describedby="@DescribedBy"
+              autocomplete="@Autocomplete"
+              @attributes="@Attributes">
+        @Value
+    </textarea>
+    <GdsHint Id=@(Id + "-info")
+             Classes=@("govuk-character-count__message " + CountMessageClasses ?? "")>
+        @remainingCharacterHintText
+    </GdsHint>
+</div>
+@code {
+    /// <summary>
+    /// The maximum number of characters.
+    /// If <c>MaxWords</c> is provided, the <c>MaxLength</c> option will be ignored.
+    /// </summary>
+    [Parameter]
+    public int? MaxLength { get; set; }
+
+    /// <summary>
+    /// The maximum number of words.
+    /// If <c>MaxWords</c> is provided, the <c>MaxLength</c> option will be ignored.
+    /// </summary>
+    [Parameter]
+    public int? MaxWords { get; set; }
+
+    /// <summary>
+    /// The percentage value of the limit at which point the count message is displayed.
+    /// If this attribute is set, the count message will be hidden by default.
+    /// </summary>
+    [Parameter]
+    public int? Threshold { get; set; }
+
+    /// <summary>
+    /// Classes to add to the count message.
+    /// </summary>
+    [Parameter]
+    public string? CountMessageClasses { get; set; }
+    /// <summary>
+    /// The name of the input, which is submitted with the form data.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// Optional number of textarea rows.
+    /// </summary>
+    [Parameter]
+    public int? Rows { get; set; }
+
+    /// <summary>
+    /// Optional initial value of the input.
+    /// </summary>
+    [Parameter]
+    public string? Value { get; set; }
+
+    private string? _describedBy;
+    private string? _inputmode;
+
+    /// <summary>
+    /// One or more element IDs to add to the aria-describedby attribute, used to provide
+    /// additional descriptive information for screenreader users.
+    /// </summary>
+    [Parameter]
+    public string? DescribedBy
+    {
+        get
+        {
+            var fullText = _describedBy ?? "";
+            fullText += $" {Id}-info";
+            if (HintTemplate != null) fullText += $" {Id}-hint";
+            if (ErrorMessageTemplate != null) fullText += $" {Id}-error";
+            return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
+        }
+        set => _describedBy = value;
+    }
+
+    [Parameter]
+    public RenderFragment? LabelTemplate { get; set; }
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
+    [Parameter]
+    public RenderFragment? ErrorMessageTemplate { get; set; }
+
+    /// <summary>
+    /// Classes to add to the form group (for example to show error state for the whole group).
+    /// </summary>
+    [Parameter]
+    public string? FormGroupClasses { get; set; }
+
+    /// <summary>
+    /// Attribute to identify input purpose, for instance "postal-code" or "username".
+    /// </summary>
+    [Parameter]
+    public string? Autocomplete { get; set; }
+
+    /// <summary>
+    /// Optional field to enable or disable the spellcheck attribute on the input.
+    /// </summary>
+    [Parameter]
+    public bool? Spellcheck { get; set; }
+
+    public string? FallbackHintText { get; set; }
+
+    private string remainingCharacterHintText
+    {
+        get
+        {
+            return (FallbackHintText ?? ("You can enter up to %{count} " + (MaxWords.HasValue ? "words" : "characters"))).Replace("%{count}", $"{MaxWords ?? MaxLength ?? 0}");
+        }
+    }
+}
