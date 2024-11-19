@@ -31,7 +31,7 @@
     <Content Update="Pages\Components\ButtonMenu.razor">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>
-    <Content Update="Pages\Components\TextArea.razor">
+    <Content Update="Pages\Components\Textarea.razor">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>
   </ItemGroup>
