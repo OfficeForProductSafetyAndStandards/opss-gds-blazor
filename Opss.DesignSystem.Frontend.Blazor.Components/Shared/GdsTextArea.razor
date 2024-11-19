@@ -1,0 +1,100 @@
+﻿@inherits GdsViewModel
+
+@* <summary>
+    Use the textarea component when you need to let users enter an amount of text 
+    that’s longer than a single line.
+</summary> *@
+
+<div class="govuk-form-group
+     @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "")
+     @FormGroupClasses">
+    @if (LabelTemplate != null)
+    {
+        @LabelTemplate
+    }
+    @if (HintTemplate != null)
+    {
+        @HintTemplate
+    }
+    @if (ErrorMessageTemplate != null)
+    {
+        @ErrorMessageTemplate
+    }
+
+    <textarea id=@Id 
+              class="govuk-textarea @Classes @(ErrorMessageTemplate != null ? "govuk-textarea--error" : "")"
+              name="@Name" 
+              rows="@(Rows ?? 5)"
+              spellcheck="@Spellcheck?.ToString().ToLower()"
+              aria-describedby="@DescribedBy" 
+              autocomplete="@Autocomplete"
+              @attributes="@Attributes"
+    >
+        @Value
+    </textarea>
+</div>
+
+@code {
+    /// <summary>
+    /// The name of the input, which is submitted with the form data.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// Optional number of textarea rows.
+    /// </summary>
+    [Parameter]
+    public int? Rows { get; set; }
+
+    /// <summary>
+    /// Optional initial value of the input.
+    /// </summary>
+    [Parameter]
+    public string? Value { get; set; }
+
+    private string? _describedBy;
+    private string? _inputmode;
+
+    /// <summary>
+    /// One or more element IDs to add to the aria-describedby attribute, used to provide
+    /// additional descriptive information for screenreader users.
+    /// </summary>
+    [Parameter]
+    public string? DescribedBy
+    {
+        get
+        {
+            var fullText = _describedBy ?? "";
+            if (HintTemplate != null) fullText += $" {Id}-hint";
+            if (ErrorMessageTemplate != null) fullText += $" {Id}-error";
+            return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
+        }
+        set => _describedBy = value;
+    }
+
+    [Parameter]
+    public RenderFragment? LabelTemplate { get; set; }
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
+    [Parameter]
+    public RenderFragment? ErrorMessageTemplate { get; set; }
+
+    /// <summary>
+    /// Classes to add to the form group (for example to show error state for the whole group).
+    /// </summary>
+    [Parameter]
+    public string? FormGroupClasses { get; set; }
+
+    /// <summary>
+    /// Attribute to identify input purpose, for instance "postal-code" or "username".
+    /// </summary>
+    [Parameter]
+    public string? Autocomplete { get; set; }
+
+    /// <summary>
+    /// Optional field to enable or disable the spellcheck attribute on the input.
+    /// </summary>
+    [Parameter]
+    public bool? Spellcheck { get; set; }
+}
