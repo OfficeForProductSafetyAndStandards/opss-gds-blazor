@@ -1,0 +1,152 @@
+﻿@inherits BunitContext
+
+@code {
+	[Fact]
+	public void OutputsTextArea()
+	{
+		// Arrange
+		var component = Render(
+	@<GdsTextArea Id="more-detail"
+				  	Name="moreDetail">
+		<LabelTemplate>
+			<GdsLabel For="more-detail"
+				  	Classes=@LabelSize.Large
+				  	IsPageHeading="true">
+				Can you provide more detail?
+			</GdsLabel>
+		</LabelTemplate>
+		<HintTemplate>
+			<GdsHint Id="more-detail-hint">
+				Do not include personal or financial information,
+				like your National Insurance number or credit card
+				details
+			</GdsHint>
+		</HintTemplate>
+	</GdsTextArea>
+	);
+
+		component.Find("div").MarkupMatches(
+	@<div class="govuk-form-group">
+		<h1 class="govuk-label-wrapper">
+			<label class="govuk-label govuk-label--l" for="more-detail">
+				Can you provide more detail?
+			</label>
+		</h1>
+		<div id="more-detail-hint" class="govuk-hint">
+			Do not include personal or financial information, like your National Insurance number or credit card details
+		</div>
+		<textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint"></textarea>
+	</div>
+		);
+	}
+
+	[Fact]
+	public void OutputsTextAreaWithSetRows()
+	{
+		// Arrange
+		var component = Render(
+	@<GdsTextArea Id="more-detail"
+				  Name="moreDetail"
+                  Rows="8">
+		<LabelTemplate>
+			<GdsLabel For="more-detail"
+				  	Classes=@LabelSize.Large
+				  	IsPageHeading="true">
+				Can you provide more detail?
+			</GdsLabel>
+		</LabelTemplate>
+		<HintTemplate>
+			<GdsHint Id="more-detail-hint">
+				Do not include personal or financial information,
+				like your National Insurance number or credit card
+				details
+			</GdsHint>
+		</HintTemplate>
+	</GdsTextArea>
+	);
+
+		component.Find("div").MarkupMatches(
+	@<div class="govuk-form-group">
+  <h1 class="govuk-label-wrapper">
+    <label class="govuk-label govuk-label--l" for="more-detail">
+      Can you provide more detail?
+    </label>
+  </h1>
+  <div id="more-detail-hint" class="govuk-hint">
+    Do not include personal or financial information, like your National Insurance number or credit card details
+  </div>
+  <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="8" aria-describedby="more-detail-hint"></textarea>
+</div>
+		);
+	}
+
+	[Fact]
+	public void OutputsTextAreaWithNoHeading()
+	{
+		// Arrange
+		var component = Render(
+	@<GdsTextArea Id="more-detail"
+                 Name="moreDetail">
+        <LabelTemplate>
+            <GdsLabel For="more-detail">
+                Can you provide more detail?
+            </GdsLabel>
+        </LabelTemplate>
+    </GdsTextArea>
+	);
+
+		component.Find("div").MarkupMatches(
+	@<div class="govuk-form-group">
+  <label class="govuk-label" for="more-detail">
+    Can you provide more detail?
+  </label>
+  <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5"></textarea>
+</div>
+		);
+	}
+
+	[Fact]
+	public void OutputsTextAreaWithErrorMessage()
+	{
+		// Arrange
+		var component = Render(
+	@<GdsTextArea Id="more-detail"
+                 Name="moreDetail">
+        <LabelTemplate>
+            <GdsLabel For="more-detail"
+                      Classes="@LabelSize.Large"
+                      IsPageHeading="true">
+                Can you provide more detail?
+            </GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint Id="more-detail-hint">
+                Do not include personal or financial information,
+                like your National Insurance number or credit card
+                details
+            </GdsHint>
+        </HintTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage Id="more-detail-error">Enter more detail</GdsErrorMessage>
+        </ErrorMessageTemplate>
+    </GdsTextArea>
+	);
+
+		component.Find("div").MarkupMatches(
+	@<div class="govuk-form-group govuk-form-group--error">
+  <h1 class="govuk-label-wrapper">
+    <label class="govuk-label govuk-label--l" for="more-detail">
+      Can you provide more detail?
+    </label>
+  </h1>
+  <div id="more-detail-hint" class="govuk-hint">
+    Do not include personal or financial information, like your National Insurance number or credit card details
+  </div>
+  <p id="more-detail-error" class="govuk-error-message">
+    <span class="govuk-visually-hidden">Error:</span> Enter more detail
+  </p>
+  <textarea class="govuk-textarea govuk-textarea--error" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint more-detail-error"></textarea>
+</div>
+		);
+	}
+}
