@@ -8,12 +8,12 @@
 		var component = Render(
 			@<GdsTextInput Id="event-name" Name="eventName">
 				<LabelTemplate>
-					<GdsLabel For="event-name" Classes="@LabelSize.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
+					<GdsLabel Classes="@LabelSize.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
 				</LabelTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<h1 class="govuk-label-wrapper">
 					<label class="govuk-label govuk-label--l" for="event-name">
@@ -21,8 +21,8 @@
 					</label>
 				</h1>
 				<input class="govuk-input" id="event-name" name="eventName" type="text">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -32,19 +32,19 @@
 		var component = Render(
 			@<GdsTextInput Id="event-name" Name="eventName">
 				<LabelTemplate>
-					<GdsLabel For="event-name">What is the name of the event?</GdsLabel>
+					<GdsLabel>What is the name of the event?</GdsLabel>
 				</LabelTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<label class="govuk-label" for="event-name">
 					What is the name of the event?
 				</label>
 				<input class="govuk-input" id="event-name" name="eventName" type="text">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -56,19 +56,19 @@
                   Name="width20"
                   Classes="@TextInputWidth.Width20">
 				<LabelTemplate>
-					<GdsLabel For="width-20">20 character width</GdsLabel>
+					<GdsLabel>20 character width</GdsLabel>
 				</LabelTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<label class="govuk-label" for="width-20">
 					20 character width
 				</label>
 				<input class="govuk-input govuk-input--width-20" id="width-20" name="width20" type="text">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -80,19 +80,19 @@
                   Name="width10"
                   Classes="@TextInputWidth.Width10">
 				<LabelTemplate>
-			<GdsLabel For="width-10">10 character width</GdsLabel>
+			<GdsLabel>10 character width</GdsLabel>
 				</LabelTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<label class="govuk-label" for="width-10">
 					10 character width
 				</label>
 				<input class="govuk-input govuk-input--width-10" id="width-10" name="width10" type="text">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -104,19 +104,19 @@
                   Name="width5"
                   Classes="@TextInputWidth.Width5">
 				<LabelTemplate>
-			<GdsLabel For="width-5">5 character width</GdsLabel>
+			<GdsLabel>5 character width</GdsLabel>
 				</LabelTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<label class="govuk-label" for="width-5">
 					5 character width
 				</label>
 				<input class="govuk-input govuk-input--width-5" id="width-5" name="width5" type="text">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -128,19 +128,19 @@
                   Name="width4"
                   Classes="@TextInputWidth.Width4">
 				<LabelTemplate>
-			<GdsLabel For="width-4">4 character width</GdsLabel>
+			<GdsLabel>4 character width</GdsLabel>
 				</LabelTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<label class="govuk-label" for="width-4">
 					4 character width
 				</label>
 				<input class="govuk-input govuk-input--width-4" id="width-4" name="width4" type="text">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -152,19 +152,19 @@
                   Name="width3"
                   Classes="@TextInputWidth.Width3">
 				<LabelTemplate>
-			<GdsLabel For="width-3">3 character width</GdsLabel>
+			<GdsLabel>3 character width</GdsLabel>
 				</LabelTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<label class="govuk-label" for="width-3">
 					3 character width
 				</label>
 				<input class="govuk-input govuk-input--width-3" id="width-3" name="width3" type="text">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -176,19 +176,19 @@
                   Name="width2"
                   Classes="@TextInputWidth.Width2">
 				<LabelTemplate>
-			<GdsLabel For="width-2">2 character width</GdsLabel>
+			<GdsLabel>2 character width</GdsLabel>
 				</LabelTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<label class="govuk-label" for="width-2">
 					2 character width
 				</label>
 				<input class="govuk-input govuk-input--width-2" id="width-2" name="width2" type="text">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -200,19 +200,19 @@
                   Name="full"
                   Classes="@LayoutWidth.Full">
 				<LabelTemplate>
-					<GdsLabel For="full">Full width</GdsLabel>
+					<GdsLabel>Full width</GdsLabel>
 				</LabelTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<label class="govuk-label" for="full">
 					Full width
 				</label>
 				<input class="govuk-input govuk-!-width-full" id="full" name="full" type="text">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -224,19 +224,19 @@
                   Name="threeQuarters"
                   Classes="@LayoutWidth.ThreeQuarters">
 				<LabelTemplate>
-					<GdsLabel For="three-quarters">Three-quarters width</GdsLabel>
+					<GdsLabel>Three-quarters width</GdsLabel>
 				</LabelTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<label class="govuk-label" for="three-quarters">
 					Three-quarters width
 				</label>
 				<input class="govuk-input govuk-!-width-three-quarters" id="three-quarters" name="threeQuarters" type="text">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -248,19 +248,19 @@
                   Name="twoThirds"
                   Classes="@LayoutWidth.TwoThirds">
 				<LabelTemplate>
-					<GdsLabel For="two-thirds">Two-thirds width</GdsLabel>
+					<GdsLabel>Two-thirds width</GdsLabel>
 				</LabelTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<label class="govuk-label" for="two-thirds">
 					Two-thirds width
 				</label>
 				<input class="govuk-input govuk-!-width-two-thirds" id="two-thirds" name="twoThirds" type="text">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -272,19 +272,19 @@
                   Name="oneHalf"
                   Classes="@LayoutWidth.OneHalf">
 				<LabelTemplate>
-					<GdsLabel For="one-half">One-half width</GdsLabel>
+					<GdsLabel>One-half width</GdsLabel>
 				</LabelTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<label class="govuk-label" for="one-half">
 					One-half width
 				</label>
 				<input class="govuk-input govuk-!-width-one-half" id="one-half" name="oneHalf" type="text">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -296,21 +296,21 @@
                   Name="oneThird"
                   Classes="@LayoutWidth.OneThird">
 				<LabelTemplate>
-					<GdsLabel For="one-third">
+					<GdsLabel>
 						One-third width
 					</GdsLabel>
 				</LabelTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<label class="govuk-label" for="one-third">
 					One-third width
 				</label>
 				<input class="govuk-input govuk-!-width-one-third" id="one-third" name="oneThird" type="text">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -322,19 +322,19 @@
                   Name="oneQuarter"
                   Classes="@LayoutWidth.OneQuarter">
 				<LabelTemplate>
-					<GdsLabel For="one-quarter">One-quarter width</GdsLabel>
+					<GdsLabel>One-quarter width</GdsLabel>
 				</LabelTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<label class="govuk-label" for="one-quarter">
 					One-quarter width
 				</label>
 				<input class="govuk-input govuk-!-width-one-quarter" id="one-quarter" name="oneQuarter" type="text">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -345,19 +345,18 @@
 			@<GdsTextInput Id="event-name"
                   Name="eventName">
 				<LabelTemplate>
-					<GdsLabel For="event-name"
-							  Classes="@LabelSize.Large"
+					<GdsLabel Classes="@LabelSize.Large"
 							  IsPageHeading="true">
 						What is the name of the event?
 					</GdsLabel>
 				</LabelTemplate>
 				<HintTemplate>
-					<GdsHint Id="event-name-hint">The name you値l use on promotional material</GdsHint>
+					<GdsHint>The name you値l use on promotional material</GdsHint>
 				</HintTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<h1 class="govuk-label-wrapper">
 					<label class="govuk-label govuk-label--l" for="event-name">
@@ -368,8 +367,8 @@
 					The name you値l use on promotional material
 				</div>
 				<input class="govuk-input" id="event-name" name="eventName" type="text" aria-describedby="event-name-hint">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -382,19 +381,18 @@
                   Classes="@TextInputWidth.Width10"
                   Inputmode="numeric">
 				<LabelTemplate>
-					<GdsLabel For="account-number"
-							  Classes="@LabelSize.Large"
+					<GdsLabel Classes="@LabelSize.Large"
 							  IsPageHeading="true">
 						What is your account number?
 					</GdsLabel>
 				</LabelTemplate>
 				<HintTemplate>
-					<GdsHint Id="account-number-hint">Must be between 6 and 8 digits long</GdsHint>
+					<GdsHint>Must be between 6 and 8 digits long</GdsHint>
 				</HintTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<h1 class="govuk-label-wrapper">
 					<label class="govuk-label govuk-label--l" for="account-number">
@@ -405,8 +403,8 @@
 					Must be between 6 and 8 digits long
 				</div>
 				<input class="govuk-input govuk-input--width-10" id="account-number" name="accountNumber" type="text" spellcheck="false" aria-describedby="account-number-hint" inputmode="numeric">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -419,7 +417,7 @@
                   Classes="@TextInputWidth.Width5"
 				  spellcheck="@false">
 				<LabelTemplate>
-					<GdsLabel For="weight">
+					<GdsLabel>
 						Weight, in kilograms
 					</GdsLabel>
 				</LabelTemplate>
@@ -429,7 +427,7 @@
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<label class="govuk-label" for="weight">
 					Weight, in kilograms
@@ -438,8 +436,8 @@
 					<input class="govuk-input govuk-input--width-5" id="weight" name="weight" type="text" spellcheck="false">
 					<div class="govuk-input__suffix" aria-hidden="true">kg</div>
 				</div>
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -453,17 +451,17 @@
                   Value="NC1701"
 				  spellcheck="@false">
 				<LabelTemplate>
-					<GdsLabel For="authentication-code">
+					<GdsLabel>
 						Company authentication code
 					</GdsLabel>
 				</LabelTemplate>
 				<HintTemplate>
-					<GdsHint Id="authentication-code-hint">This is on the company incorporation letter sent to the registered office address</GdsHint>
+					<GdsHint>This is on the company incorporation letter sent to the registered office address</GdsHint>
 				</HintTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<label class="govuk-label" for="authentication-code">
 					Company authentication code
@@ -472,8 +470,8 @@
 					This is on the company incorporation letter sent to the registered office address
 				</div>
 				<input class="govuk-input govuk-input--width-5 govuk-input--extra-letter-spacing" id="authentication-code" name="authenticationCode" type="text" spellcheck="false" value="NC1701" aria-describedby="authentication-code-hint">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -486,8 +484,7 @@
                   Classes="@TextInputWidth.Width5"
 				  spellcheck="@false">
 				<LabelTemplate>
-					<GdsLabel For="cost-per-item"
-							  Classes="@LabelSize.Large"
+					<GdsLabel Classes="@LabelSize.Large"
 							  IsPageHeading="true">
 						What is the cost per item, in pounds?
 					</GdsLabel>
@@ -501,7 +498,7 @@
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<h1 class="govuk-label-wrapper">
 					<label class="govuk-label govuk-label--l" for="cost-per-item">
@@ -513,8 +510,8 @@
 					<input class="govuk-input govuk-input--width-5" id="cost-per-item" name="costPerItem" type="text" spellcheck="false">
 					<div class="govuk-input__suffix" aria-hidden="true">per item</div>
 				</div>
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -527,8 +524,7 @@
                   Classes="@TextInputWidth.Width5"
 				  spellcheck="@false">
 				<LabelTemplate>
-					<GdsLabel For="cost"
-							  Classes="@LabelSize.Large"
+					<GdsLabel Classes="@LabelSize.Large"
 							  IsPageHeading="true">
 				What is the cost in pounds?
 					</GdsLabel>
@@ -539,7 +535,7 @@
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<h1 class="govuk-label-wrapper">
 					<label class="govuk-label govuk-label--l" for="cost">
@@ -550,8 +546,8 @@
 					<div class="govuk-input__prefix" aria-hidden="true">｣</div>
 					<input class="govuk-input govuk-input--width-5" id="cost" name="cost" type="text" spellcheck="false">
 				</div>
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -564,8 +560,7 @@
                   Classes="@TextInputWidth.Width5"
 				  spellcheck="@false">
 				<LabelTemplate>
-					<GdsLabel For="weight"
-							  Classes="@LabelSize.Large"
+					<GdsLabel Classes="@LabelSize.Large"
 							  IsPageHeading="true">
 						What is the weight in kilograms?
 					</GdsLabel>
@@ -576,7 +571,7 @@
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<h1 class="govuk-label-wrapper">
 					<label class="govuk-label govuk-label--l" for="weight">
@@ -587,8 +582,8 @@
 					<input class="govuk-input govuk-input--width-5" id="weight" name="weight" type="text" spellcheck="false">
 					<div class="govuk-input__suffix" aria-hidden="true">kg</div>
 				</div>
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -601,21 +596,21 @@
                   Classes="@TextInputWidth.Width10"
                   Autocomplete="postal-code">
 				<LabelTemplate>
-					<GdsLabel For="postcode">
+					<GdsLabel>
 						Postcode
 					</GdsLabel>
 				</LabelTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<label class="govuk-label" for="postcode">
 					Postcode
 				</label>
 				<input class="govuk-input govuk-input--width-10" id="postcode" name="postcode" type="text" autocomplete="postal-code">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -627,21 +622,21 @@
                   Name="referenceNumber"
                   Spellcheck="false">
 				<LabelTemplate>
-					<GdsLabel For="reference-number">
+					<GdsLabel>
 						Reference number
 					</GdsLabel>
 				</LabelTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<label class="govuk-label" for="reference-number">
 					Reference number
 				</label>
 				<input class="govuk-input" id="reference-number" name="referenceNumber" type="text" spellcheck="false">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -653,21 +648,21 @@
                   Name="details"
                   Spellcheck="true">
 				<LabelTemplate>
-					<GdsLabel For="details">
+					<GdsLabel>
 						Details
 					</GdsLabel>
 				</LabelTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<label class="govuk-label" for="details">
 							Details
 						</label>
 				<input class="govuk-input" id="details" name="details" type="text" spellcheck="true">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -678,18 +673,18 @@
 			@<GdsTextInput Id="event-name"
                   Name="eventName">
 				<LabelTemplate>
-					<GdsLabel For="event-name" Classes="@LabelSize.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
+					<GdsLabel Classes="@LabelSize.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
 				</LabelTemplate>
 				<HintTemplate>
-					<GdsHint id="event-name-hint">The name you値l use on promotional material</GdsHint>
+					<GdsHint>The name you値l use on promotional material</GdsHint>
 				</HintTemplate>
 				<ErrorMessageTemplate>
-			<GdsErrorMessage Id="event-name-error">Enter an event name</GdsErrorMessage>
+			<GdsErrorMessage>Enter an event name</GdsErrorMessage>
 				</ErrorMessageTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group govuk-form-group--error">
 				<h1 class="govuk-label-wrapper">
 					<label class="govuk-label govuk-label--l" for="event-name">
@@ -703,8 +698,8 @@
 					<span class="govuk-visually-hidden">Error:</span> Enter an event name
 				</p>
 				<input class="govuk-input govuk-input--error" id="event-name" name="eventName" type="text" aria-describedby="event-name-hint event-name-error">
-			</div>
-		);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 	
 	[Fact]
@@ -717,8 +712,7 @@
                   Classes="@TextInputWidth.Width5"
 				  spellcheck="@false">
 				<LabelTemplate>
-					<GdsLabel For="cost-per-item-error"
-							  Classes="@LabelSize.Large"
+					<GdsLabel Classes="@LabelSize.Large"
 							  IsPageHeading="true">
 						What is the cost per item, in pounds?
 					</GdsLabel>
@@ -730,14 +724,14 @@
 					<GdsSuffix>per item</GdsSuffix>
 				</SuffixTemplate>
 				<ErrorMessageTemplate>
-					<GdsErrorMessage Id="cost-per-item-error-error">
+					<GdsErrorMessage>
 						Enter a cost per item, in pounds
 					</GdsErrorMessage>
 				</ErrorMessageTemplate>
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group govuk-form-group--error">
 				<h1 class="govuk-label-wrapper">
 					<label class="govuk-label govuk-label--l" for="cost-per-item-error">
@@ -752,8 +746,8 @@
 					<input class="govuk-input govuk-input--width-5 govuk-input--error" id="cost-per-item-error" name="costPerItemError" type="text" spellcheck="false" aria-describedby="cost-per-item-error-error">
 					<div class="govuk-input__suffix" aria-hidden="true">per item</div>
 				</div>
-			</div>
-	);
+	</div>
+	).MarkupMatches(component.bUnitMarkup());
 	}
 
 	/// <summary>
@@ -765,13 +759,13 @@
 		// Arrange
 		var component = Render(
 			@<GdsTextInput Id="postcode"
-						   			Name="postcode"
-						   			Classes="@TextInputWidth.Width10"
-						   			Autocomplete="postal-code">
+						   Name="postcode"
+						   Classes="@TextInputWidth.Width10"
+						   Autocomplete="postal-code">
 							   
 				<LabelTemplate>
 				@if(false){
-					<GdsLabel For="postcode">
+					<GdsLabel>
 						Postcode
 					</GdsLabel>
 				}
@@ -780,10 +774,10 @@
 			</GdsTextInput>
 		);
 
-		component.Find("div").MarkupMatches(
+		Render(
 			@<div class="govuk-form-group">
 				<input class="govuk-input govuk-input--width-10" id="postcode" name="postcode" type="text" autocomplete="postal-code">
-			</div>
-		);
+	</div>
+		).MarkupMatches(component.bUnitMarkup());
 	}
 }

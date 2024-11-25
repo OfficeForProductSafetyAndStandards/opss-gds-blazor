@@ -31,10 +31,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Models\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <ProjectReference Include="..\Opss.DesignSystem.Frontend.Blazor.Components\Opss.DesignSystem.Frontend.Blazor.Components.csproj" />
 	</ItemGroup>
 

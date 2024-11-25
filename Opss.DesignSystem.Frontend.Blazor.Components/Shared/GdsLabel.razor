@@ -18,16 +18,24 @@
     }
 }
 
-@code{
-    /// <summary>
-    /// The value of the `for` attribute, the ID of the input the label is associated with.
-    /// </summary>
-    [Parameter]
-    public string? For { get; set; }
-
+@code {
     /// <summary>
     /// Whether the label also acts as the heading for the page.
     /// </summary>
     [Parameter]
     public bool IsPageHeading { get; set; }
+
+    private string? _for;
+    /// <summary>
+    /// The value of the `for` attribute, the ID of the input the label is associated with.
+    /// </summary>
+    [Parameter]
+    public string? For { 
+        get { return ParentId ?? _for; } 
+        set { _for = value; } 
+    }
+
+
+    [CascadingParameter]
+    public string? ParentId { get; set; }
 }

@@ -5,29 +5,32 @@
     limiting the number of characters users can enter.
 </summary> *@
 
-<div class="govuk-form-group govuk-character-count
-            @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "")
-            @FormGroupClasses"
-     data-module="govuk-character-count" 
-     data-maxlength="@MaxLength" 
-     data-threshold="@Threshold" 
-     data-maxwords="@MaxWords"
->
+<div class=@generatedClasses
+     data-module="govuk-character-count"
+     data-maxlength="@MaxLength"
+     data-threshold="@Threshold"
+     data-maxwords="@MaxWords">
     @if (LabelTemplate != null)
     {
-        @LabelTemplate
+        ﻿<CascadingValue Value="@Id">
+            @LabelTemplate
+        </CascadingValue>
     }
     @if (HintTemplate != null)
     {
-        @HintTemplate
+        ﻿<CascadingValue Value="@Id">
+            @HintTemplate
+        </CascadingValue>
     }
     @if (ErrorMessageTemplate != null)
     {
-        @ErrorMessageTemplate
+        ﻿<CascadingValue Value="@Id">
+            @ErrorMessageTemplate
+        </CascadingValue>
     }
 
     <textarea id=@Id
-              class="govuk-textarea govuk-js-character-count @Classes @(ErrorMessageTemplate != null ? "govuk-textarea--error" : "")"
+              class=@generatedTextAreaClasses
               name="@Name"
               rows="@(Rows ?? 5)"
               spellcheck="@Spellcheck?.ToString().ToLower()"
@@ -36,55 +39,55 @@
               @attributes="@Attributes">
         @Value
     </textarea>
-    <GdsHint Id=@(Id + "-info")
+    <GdsHint OverrideId=@(Id + "-info")
              Classes=@("govuk-character-count__message " + CountMessageClasses ?? "")>
         @remainingCharacterHintText
     </GdsHint>
 </div>
 @code {
-    /// <summary>
-    /// The maximum number of characters.
-    /// If <c>MaxWords</c> is provided, the <c>MaxLength</c> option will be ignored.
-    /// </summary>
-    [Parameter]
-    public int? MaxLength { get; set; }
+        /// <summary>
+        /// The maximum number of characters.
+        /// If <c>MaxWords</c> is provided, the <c>MaxLength</c> option will be ignored.
+        /// </summary>
+        [Parameter]
+        public int? MaxLength { get; set; }
 
-    /// <summary>
-    /// The maximum number of words.
-    /// If <c>MaxWords</c> is provided, the <c>MaxLength</c> option will be ignored.
-    /// </summary>
-    [Parameter]
-    public int? MaxWords { get; set; }
+        /// <summary>
+        /// The maximum number of words.
+        /// If <c>MaxWords</c> is provided, the <c>MaxLength</c> option will be ignored.
+        /// </summary>
+        [Parameter]
+        public int? MaxWords { get; set; }
 
-    /// <summary>
-    /// The percentage value of the limit at which point the count message is displayed.
-    /// If this attribute is set, the count message will be hidden by default.
-    /// </summary>
-    [Parameter]
-    public int? Threshold { get; set; }
+        /// <summary>
+        /// The percentage value of the limit at which point the count message is displayed.
+        /// If this attribute is set, the count message will be hidden by default.
+        /// </summary>
+        [Parameter]
+        public int? Threshold { get; set; }
 
-    /// <summary>
-    /// Classes to add to the count message.
-    /// </summary>
-    [Parameter]
-    public string? CountMessageClasses { get; set; }
-    /// <summary>
-    /// The name of the input, which is submitted with the form data.
-    /// </summary>
-    [Parameter]
-    public string? Name { get; set; }
+        /// <summary>
+        /// Classes to add to the count message.
+        /// </summary>
+        [Parameter]
+        public string? CountMessageClasses { get; set; }
+        /// <summary>
+        /// The name of the input, which is submitted with the form data.
+        /// </summary>
+        [Parameter]
+        public string? Name { get; set; }
 
-    /// <summary>
-    /// Optional number of textarea rows.
-    /// </summary>
-    [Parameter]
-    public int? Rows { get; set; }
+        /// <summary>
+        /// Optional number of textarea rows.
+        /// </summary>
+        [Parameter]
+        public int? Rows { get; set; }
 
-    /// <summary>
-    /// Optional initial value of the input.
-    /// </summary>
-    [Parameter]
-    public string? Value { get; set; }
+        /// <summary>
+        /// Optional initial value of the input.
+        /// </summary>
+        [Parameter]
+        public string? Value { get; set; }
 
     private string? _describedBy;
     private string? _inputmode;
@@ -139,6 +142,41 @@
         get
         {
             return (FallbackHintText ?? ("You can enter up to %{count} " + (MaxWords.HasValue ? "words" : "characters"))).Replace("%{count}", $"{MaxWords ?? MaxLength ?? 0}");
+        }
+    }
+
+    private string generatedClasses
+    {
+        get
+        {
+            var classes = "govuk-form-group govuk-character-count";
+            if (ErrorMessageTemplate != null)
+            {
+                classes += " govuk-form-group--error";
+            }
+            if (FormGroupClasses != null)
+            {
+                classes += $" {FormGroupClasses}";
+            }
+            return classes;
+        }
+    }
+
+    private string generatedTextAreaClasses
+    {
+        get
+        {
+            var classes = "govuk-textarea govuk-js-character-count";
+            if (Classes != null)
+            {
+                classes += $" {Classes}";
+            }
+            if (ErrorMessageTemplate != null)
+            {
+                classes += " govuk-textarea--error";
+
+            }
+            return classes;
         }
     }
 }

@@ -1,0 +1,14 @@
+﻿@inherits GdsWithContent
+
+<div class="govuk-form-group @(HasError ? "govuk-form-group--error" : "") @Classes" @attributes=@Attributes>
+    @ChildContent
+</div>
+
+@code {
+    /// <summary>
+    /// Indicates if the child component has an error
+    /// </summary>
+    [Parameter]
+    public bool HasError { get; set; }
+
+}

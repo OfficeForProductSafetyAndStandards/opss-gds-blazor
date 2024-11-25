@@ -18,4 +18,27 @@
     /// </summary>
     [Parameter]
     public string? VisuallyHiddenText { get; set; }
+
+    [CascadingParameter]
+    public string? ParentId { get; set; }
+
+    /// <summary>
+    /// The calculated id of the element
+    /// This is based on the cascaded Parent Id value
+    /// </summary>
+    public new string Id
+    {
+        get
+        {
+            return ParentId + "-error";
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        if (ParentId == null)
+            throw new ArgumentNullException(nameof(ParentId), "GdsErrorMessage must exist within a valid control");
+
+        base.OnInitialized();
+    }
 }

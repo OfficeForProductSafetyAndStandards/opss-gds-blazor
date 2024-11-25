@@ -7,11 +7,11 @@
 		// Arrange
 		var id = "hello-world";
 		var message = "Hello World";
-		var component = Render(@<GdsHint Id=@id>@message</GdsHint>);
+		var component = Render(@<CascadingValue Value=@id><GdsHint>@message</GdsHint></CascadingValue>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("div").MarkupMatches(
-			@<div id=@id class="govuk-hint">
+		component.MarkupMatches(
+	@<div id="@id-hint" class="govuk-hint">
 				@message
 			</div>
 		);
@@ -24,11 +24,11 @@
 		var id = "hello-world";
 		var message = "Hello World";
 		var customClass = "custom-hint";
-		var component = Render(@<GdsHint Id=@id Classes=@customClass>@message</GdsHint>);
+		var component = Render(@<CascadingValue Value=@id><GdsHint Classes=@customClass>@message</GdsHint></CascadingValue>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("div").MarkupMatches(
-			@<div id=@id class="govuk-hint @customClass">
+		component.MarkupMatches(
+	@<div id="@id-hint" class="govuk-hint @customClass">
 				@message
 			</div>
 	);
@@ -44,11 +44,11 @@
 		{
 			{"aria-label", "Hello"}
 		};
-		var component = Render(@<GdsHint Id=@id Attributes=@customAttributes>@message</GdsHint>);
+		var component = Render(@<CascadingValue Value=@id><GdsHint Attributes=@customAttributes>@message</GdsHint></CascadingValue>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("div").MarkupMatches(
-			@<div id=@id class="govuk-hint" aria-label="Hello">
+		component.MarkupMatches(
+			@<div id="@id-hint" class="govuk-hint" aria-label="Hello">
 				@message
 			</div>
 		);

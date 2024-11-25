@@ -12,7 +12,7 @@
 	</GdsButtonMenu>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("div").MarkupMatches(
+		component.MarkupMatches(
 	@<div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Menu title">
 		<button type="submit" class="govuk-button moj-button-menu__item govuk-button--secondary" data-module="govuk-button">
 			Menu item 1
@@ -38,7 +38,7 @@
 	</GdsButtonMenu>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("div").MarkupMatches(
+		component.MarkupMatches(
 	@<div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Review" data-button-classes="govuk-button--secondary">
 		<a href="#" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary" data-module="govuk-button">
 			Approve
@@ -64,7 +64,7 @@
 	</GdsButtonMenu>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("div").MarkupMatches(
+		component.MarkupMatches(
 	@<div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Review" data-button-classes="govuk-button--secondary" data-align-menu="right">
 		<a href="#" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary" data-module="govuk-button">
 			Approve
@@ -93,7 +93,7 @@
 	</div>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("div").MarkupMatches(
+		component.MarkupMatches(
 	@<div class="moj-button-group moj-button-group--inline">
 		<button type="submit" class="govuk-button" data-module="govuk-button">
 			Accept booking

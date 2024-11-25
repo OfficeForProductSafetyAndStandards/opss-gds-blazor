@@ -8,7 +8,7 @@
 		var component = Render(@<GdsHeading HeadingLevel="1" Classes="@HeadingSize.Large">govuk-heading-l</GdsHeading>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("h1").MarkupMatches(
+		component.MarkupMatches(
 	@<h1 class="govuk-heading-l">govuk-heading-l</h1>
 		);
 	}
@@ -20,7 +20,7 @@
 		var component = Render(@<GdsHeading HeadingLevel="2" Classes="@HeadingSize.Medium">govuk-heading-m</GdsHeading>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("h2").MarkupMatches(
+		component.MarkupMatches(
 	@<h2 class="govuk-heading-m">govuk-heading-m</h2>
 		);
 	}
@@ -32,7 +32,7 @@
 		var component = Render(@<GdsHeading HeadingLevel="3" Classes="@HeadingSize.Small">govuk-heading-s</GdsHeading>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("h3").MarkupMatches(
+		component.MarkupMatches(
 	@<h3 class="govuk-heading-s">govuk-heading-s</h3>
 		);
 	}
@@ -47,7 +47,7 @@
 	</GdsHeading>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("h1").MarkupMatches(
+		component.MarkupMatches(
 	@<h1 class="govuk-heading-l">
 		<span class="govuk-caption-l">govuk-caption-l</span>
 		govuk-heading-l
