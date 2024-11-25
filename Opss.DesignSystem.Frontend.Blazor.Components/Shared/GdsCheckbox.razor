@@ -1,0 +1,117 @@
+﻿@inherits GdsWithContent
+
+<div class="govuk-checkboxes__item">
+    <input class="govuk-checkboxes__input @Classes" id="@Id" name="@Parent.Name" type="checkbox" value="@Value"
+           aria-describedby="@DescribedBy?.Trim()"
+           data-behaviour="@(IsExclusive ? "exclusive" : null)"
+           checked=@Checked
+           data-aria-controls=@conditionalId
+           @attributes="@Attributes" />
+    <label class="govuk-label govuk-checkboxes__label" for="@Id">
+        @if(Text != null)
+        {
+            @Text
+        } 
+        else
+        {
+            @ChildContent
+        }
+    </label>
+    @if (HintTemplate != null)
+    {
+        ﻿<CascadingValue Value="@hintId">
+            @HintTemplate
+        </CascadingValue>
+    }
+</div>
+@if (ConditionalTemplate != null)
+{
+    <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="@conditionalId">
+        @ConditionalTemplate
+    </div>
+}
+
+@code {
+    private string? conditionalId
+    {
+        get
+        {
+            if (ConditionalTemplate == null) return null;
+
+            return $"conditional-{Id}";
+        }
+    }
+
+    [Parameter]
+    public bool IsExclusive { get; set; } = false;
+
+    [Parameter]
+    public bool Checked { get; set; } = false;
+
+    [Parameter]
+    public string? Value { get; set; }
+
+    [Parameter]
+    public string? Text { get; set; }
+
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment? ConditionalTemplate { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsCheckbox must exist within a GdsCheckboxes");
+
+        Parent.Register(this);
+
+        base.OnInitialized();
+    }
+
+    private string hintId {
+        get
+        {
+            return Id + "-item";
+        } }
+
+    private string? _describedBy;
+
+    /// <summary>
+    /// One or more element IDs to add to the aria-describedby attribute, used to provide
+    /// additional descriptive information for screenreader users.
+    /// </summary>
+    [Parameter]
+    public string? DescribedBy
+    {
+        get
+        {
+            var fullText = _describedBy ?? "";
+            if (HintTemplate != null) fullText += $" {Id}-item-hint";
+            //if (ErrorMessageTemplate != null) fullText += $" {Id}-error";
+            return string.IsNullOrWhiteSpace(fullText) ? null : fullText;
+        }
+        set => _describedBy = value;
+    }
+
+    public int Index = 0;
+
+    public new string Id
+    {
+        get
+        {
+            var id = Parent.ParentId ?? Parent.Id;
+            if(Index == 1)
+            {
+                return id;
+            } else
+            {
+                return id + "-" + Index;
+            }
+        }
+    }
+
+    [CascadingParameter]
+    private GdsCheckboxes? Parent { get; set; }
+}

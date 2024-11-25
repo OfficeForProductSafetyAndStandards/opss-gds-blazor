@@ -1,0 +1,25 @@
+﻿@inherits GdsWithContent
+
+<div id="@Id" 
+     class="govuk-checkboxes__divider @Classes"
+     @attributes="@Attributes">
+    @ChildContent
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsCheckbox must exist within a GdsCheckboxes");
+
+        Parent.Register(this);
+
+        base.OnInitialized();
+    }
+
+    public int Index = 0;
+
+    [CascadingParameter]
+    private GdsCheckboxes? Parent { get; set; }
+}

@@ -1,0 +1,74 @@
+﻿@inherits GdsWithContent
+
+@* <summary>
+    Let users select one or more options by using the checkboxes component.
+</summary> *@
+
+    @if (HintTemplate != null)
+    {
+        <CascadingValue Value="@id">
+            @HintTemplate
+        </CascadingValue>
+    }
+    @if (ErrorMessageTemplate != null)
+    {
+        @ErrorMessageTemplate
+    }
+    <div id="@id" class="govuk-checkboxes @Classes" @attributes=@Attributes data-module="govuk-checkboxes">   
+    ﻿    <CascadingValue Value="this">
+            @ChildContent
+        </CascadingValue>
+    </div>
+
+@code {
+    [CascadingParameter]
+    public string? ParentId { get; set; }
+
+    private string? id
+    {
+        get
+        {
+            return ParentId ?? Id;
+        }
+    }
+
+    /// <summary>
+    /// The name of the input, which is submitted with the form data.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// Optional initial value of the input.
+    /// </summary>
+    [Parameter]
+    public string?[] Values { get; set; }
+
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment? ErrorMessageTemplate { get; set; }
+
+    /// <summary>
+    /// Track the child checkboxes
+    /// </summary>
+    private List<GdsCheckbox> checkboxes = new List<GdsCheckbox>();
+
+    /// <summary>
+    /// Track the number of dividers to allow checkbox id values to be
+    /// correctly calculated.
+    /// </summary>
+    private int dividerCount = 0;
+
+    public void Register(GdsCheckbox checkbox)
+    {
+        checkboxes.Add(checkbox);
+        checkbox.Index = checkboxes.Count + dividerCount;
+    }
+
+    public void Register(GdsCheckboxDivider divider)
+    {
+        dividerCount = dividerCount + 1;
+    }
+}

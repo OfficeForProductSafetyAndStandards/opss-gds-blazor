@@ -38,7 +38,7 @@
     protected override void OnInitialized()
     {
         if (ParentId == null && OverrideId == null)
-            throw new ArgumentNullException(nameof(ParentId), "GdsHint must exist within a valid control, or an Id must be supplied");
+            throw new ArgumentNullException(nameof(OverrideId), "GdsHint must exist within a valid control, or an Id must be supplied");
 
         base.OnInitialized();
     }

@@ -1,15 +1,26 @@
 ﻿@inherits GdsWithContent
 
-<fieldset id="@Id" class="govuk-fieldset @Classes" role="@Role" aria-describedby="@DescribedBy" @attributes="@Attributes">
+<fieldset class="govuk-fieldset @Classes" role="@Role" aria-describedby="@describedBy" @attributes="@Attributes">
     @if (LegendTemplate != null)
     {
         @LegendTemplate
     }
     @if (HintTemplate != null)
-    {
-        @HintTemplate
-    }
-    @ChildContent
+    {        ﻿
+        <CascadingValue Value="@InputId">
+            @HintTemplate
+        </CascadingValue>
+    }﻿
+    @if (ErrorTemplate != null)
+    {        ﻿
+        <CascadingValue Value="@InputId">
+            @ErrorTemplate
+        </CascadingValue>
+    }﻿
+
+    <CascadingValue Value="@InputId">
+        @ChildContent
+    </CascadingValue>
 </fieldset>
 
 @code {
@@ -19,16 +30,48 @@
     [Parameter]
     public string? DescribedBy { get; set; }
 
+    private string? describedBy
+    {
+        get
+        {
+            var describedBy = new List<string>();
+            if(DescribedBy != null)
+            {
+                return DescribedBy;
+            }
+            if(HintTemplate != null)
+            {
+                describedBy.Add(InputId +"-hint");
+            }
+            if(ErrorTemplate != null)
+            {
+                describedBy.Add(InputId + "-error");
+            }
+            if (describedBy.Any())
+                return string.Join(" ", describedBy);
+            else return null;
+        }
+    }
+
     /// <summary>
     /// Optional ARIA role attribute.
     /// </summary>
     [Parameter]
     public string? Role { get; set; }
 
+    /// <summary>
+    /// The cascading Id of the fieldset's input element Id
+    /// </summary>
+    [Parameter]
+    public string? InputId { get; set; }
+
     [Parameter]
     public RenderFragment? LegendTemplate { get; set; }
 
     [Parameter]
     public RenderFragment? HintTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment? ErrorTemplate { get; set; }
 
 }
