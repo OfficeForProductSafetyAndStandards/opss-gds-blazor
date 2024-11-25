@@ -8,15 +8,21 @@
 <div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses">
     @if (LabelTemplate != null)
     {
-        @LabelTemplate
+        ﻿<CascadingValue Value="@Id">
+            @LabelTemplate
+        </CascadingValue>
     }
     @if (HintTemplate != null)
     {
-        @HintTemplate
+        ﻿<CascadingValue Value="@Id">
+            @HintTemplate
+        </CascadingValue>
     }
     @if (ErrorMessageTemplate != null)
     {
-        @ErrorMessageTemplate
+        ﻿<CascadingValue Value="@Id">
+            @ErrorMessageTemplate
+        </CascadingValue>
     }
 
     @if (PrefixTemplate != null || SuffixTemplate != null)
@@ -36,9 +42,8 @@
                    aria-describedby="@DescribedBy?.Trim()"
                    autocomplete="@Autocomplete" 
                    pattern="@Pattern" 
-                   inputmode="@Inputmode" 
-                   @attributes="@Attributes"
-            />
+                   inputmode="@Inputmode"                   
+                   @attributes="@Attributes" />
 
             @if (SuffixTemplate != null)
             {
@@ -57,9 +62,8 @@
                aria-describedby="@DescribedBy?.Trim()"
                autocomplete="@Autocomplete" 
                pattern="@Pattern" 
-               inputmode="@Inputmode" 
-               @attributes="@Attributes"
-        />
+               inputmode="@Inputmode"
+               @attributes="@Attributes" />
     }
 </div>
 

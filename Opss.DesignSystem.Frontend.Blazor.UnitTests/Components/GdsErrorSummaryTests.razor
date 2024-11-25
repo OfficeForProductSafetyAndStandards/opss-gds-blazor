@@ -11,7 +11,7 @@
 	</GdsErrorSummary>);
 
 		// Assert that content of the paragraph shows counter at zero
-        component.Find("div").MarkupMatches(
+        Render(
     @<div class="govuk-error-summary" data-module="govuk-error-summary">
         <div role="alert">
             <h2 class="govuk-error-summary__title">
@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-    );
+        ).MarkupMatches(component.bUnitMarkup());
     }
 
     [Fact]
@@ -47,12 +47,12 @@
                   Name="name"
                   Autocomplete="name">
         <LabelTemplate>
-            <GdsLabel For="full-name-input">
+            <GdsLabel>
                 Full name
             </GdsLabel>
         </LabelTemplate>
         <ErrorMessageTemplate>
-            <GdsErrorMessage Id="full-name-input-error">
+            <GdsErrorMessage>
                 Enter your full name
             </GdsErrorMessage>
         </ErrorMessageTemplate>
@@ -60,8 +60,8 @@
 </div>);
 
         // Assert that content of the paragraph shows counter at zero
-        component.Find("div").MarkupMatches(@<div>
-        ﻿<div class="govuk-error-summary " data-module="govuk-error-summary">
+        Render(@<div>
+        <div class="govuk-error-summary " data-module="govuk-error-summary">
             <div role="alert">
                 <h2 class="govuk-error-summary__title">
                     There is a problem
@@ -85,7 +85,8 @@
             </p>
             <input class="govuk-input govuk-input--error" id="full-name-input" name="name" type="text" aria-describedby="full-name-input-error" autocomplete="name">
         </div>
-</div>);
+    </div>
+    ).MarkupMatches(component.bUnitMarkup());
     }
 
 }

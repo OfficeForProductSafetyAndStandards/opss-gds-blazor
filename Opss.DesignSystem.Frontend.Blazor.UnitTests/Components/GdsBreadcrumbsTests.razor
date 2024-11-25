@@ -18,7 +18,7 @@
 	</GdsBreadcrumbs>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("nav").MarkupMatches(
+		Render(
 	@<nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
 		<ol class="govuk-breadcrumbs__list">
 			<li class="govuk-breadcrumbs__list-item">
@@ -32,7 +32,7 @@
 			</li>
 		</ol>
 	</nav>
-		);
+		).MarkupMatches(component.bUnitMarkup());
 	}
 
 	[Fact]
@@ -58,7 +58,7 @@
 	</GdsBreadcrumbs>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("nav").MarkupMatches(
+		Render(
 	@<nav class="govuk-breadcrumbs govuk-breadcrumbs--collapse-on-mobile" aria-label="Breadcrumb">
 		<ol class="govuk-breadcrumbs__list">
 			<li class="govuk-breadcrumbs__list-item">
@@ -78,7 +78,7 @@
 			</li>
         </ol>
 	</nav>
-		);
+		).MarkupMatches(component.bUnitMarkup());
 	}
 	[Fact]
 	public void OutputsBreadcrumbsOnDarkBackground()
@@ -97,7 +97,7 @@
 	</GdsBreadcrumbs>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("nav").MarkupMatches(
+		Render(
 	@<nav class="govuk-breadcrumbs govuk-breadcrumbs--inverse" aria-label="Breadcrumb">
 		<ol class="govuk-breadcrumbs__list">
 			<li class="govuk-breadcrumbs__list-item">
@@ -111,6 +111,6 @@
 			</li>
 		</ol>
 	</nav>
-		);
+		).MarkupMatches(component.bUnitMarkup());
 	}
 }

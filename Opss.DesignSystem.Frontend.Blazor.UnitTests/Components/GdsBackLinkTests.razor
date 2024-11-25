@@ -9,7 +9,7 @@
 		var component = Render(@<GdsBackLink Href="#" Id=@id></GdsBackLink>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("a").MarkupMatches(
+		component.MarkupMatches(
 			@<a id=@id href="#" class="govuk-back-link">
 				Back
 			</a>
@@ -25,7 +25,7 @@
 		var component = Render(@<GdsBackLink Id=@id Href=@href></GdsBackLink>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("a").MarkupMatches(
+		component.MarkupMatches(
 			@<a id=@id href=@href class="govuk-back-link">
 				Back
 			</a>
@@ -39,7 +39,7 @@
 		var component = Render(@<GdsBackLink Href="#" Id=@id>Go Back</GdsBackLink>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("a").MarkupMatches(
+		component.MarkupMatches(
 			@<a id=@id href="#" class="govuk-back-link">
 				Go Back
 			</a>
@@ -55,7 +55,7 @@
 		var component = Render(@<GdsBackLink Href="#" Id=@id Classes=@customClass></GdsBackLink>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("a").MarkupMatches(
+		component.MarkupMatches(
 			@<a id=@id href="#" class="govuk-back-link @customClass">
 				Back
 			</a>
@@ -74,7 +74,7 @@
 		var component = Render(@<GdsBackLink Href="#" Id=@id Attributes=@customAttributes></GdsBackLink>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("a").MarkupMatches(
+		component.MarkupMatches(
 			@<a id=@id href="#" class="govuk-back-link" aria-label="Hello">
 				Back
 			</a>
@@ -88,7 +88,7 @@
 		var component = Render(@<GdsBackLink Href="#" Id=@id IsOnDarkBackground=@true></GdsBackLink>);
 
 		// Assert that content of the paragraph shows counter at zero
-		component.Find("a").MarkupMatches(
+		component.MarkupMatches(
 	@<a id=@id href="#" class="govuk-back-link govuk-back-link--inverse">
 		Back
 	</a>

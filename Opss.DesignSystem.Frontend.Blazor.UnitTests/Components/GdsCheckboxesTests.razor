@@ -1,0 +1,602 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void OutputsCheckboxes()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsFormGroup HasError=@false>
+        <GdsFieldset InputId="waste">
+            <LegendTemplate>
+                <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                    Which types of waste do you transport?
+                </GdsLegend>
+            </LegendTemplate>
+            <HintTemplate>
+                <GdsHint>
+                    Select all that apply
+                </GdsHint>
+            </HintTemplate>
+            <ChildContent>
+                <GdsCheckboxes Name="waste">
+                    <GdsCheckbox Value="carcasses">Waste from animal carcasses</GdsCheckbox>
+                    <GdsCheckbox Value="mines">Waste from mines or quarries</GdsCheckbox>
+                    <GdsCheckbox Value="farm">Farm or agricultural waste</GdsCheckbox>
+                </GdsCheckboxes>
+            </ChildContent>
+        </GdsFieldset>
+    </GdsFormGroup>
+    );
+
+        Render(
+    @<div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                    Which types of waste do you transport?
+                </h1>
+            </legend>
+            <div id="waste-hint" class="govuk-hint">
+                Select all that apply
+            </div>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
+                    <label class="govuk-label govuk-checkboxes__label" for="waste">
+                        Waste from animal carcasses
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
+                    <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+                        Waste from mines or quarries
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
+                    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+                        Farm or agricultural waste
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    ).MarkupMatches(component.bUnitMarkup());
+    }
+
+    [Fact]
+    public void OutputsCheckboxesWithLabel()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsFormGroup HasError=@false>
+        <GdsFieldset InputId="waste">
+            <LegendTemplate>
+                <GdsLegend>
+                    Which types of waste do you transport?
+                </GdsLegend>
+            </LegendTemplate>
+            <HintTemplate>
+                <GdsHint>
+                    Select all that apply
+                </GdsHint>
+            </HintTemplate>
+            <ChildContent>
+                <GdsCheckboxes Name="waste">
+                    <GdsCheckbox Value="carcasses">Waste from animal carcasses</GdsCheckbox>
+                    <GdsCheckbox Value="mines">Waste from mines or quarries</GdsCheckbox>
+                    <GdsCheckbox Value="farm">Farm or agricultural waste</GdsCheckbox>
+                </GdsCheckboxes>
+            </ChildContent>
+        </GdsFieldset>
+    </GdsFormGroup>
+    );
+
+        Render(
+    @<div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+            <legend class="govuk-fieldset__legend">
+                Which types of waste do you transport?
+            </legend>
+            <div id="waste-hint" class="govuk-hint">
+                Select all that apply
+            </div>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
+                    <label class="govuk-label govuk-checkboxes__label" for="waste">
+                        Waste from animal carcasses
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
+                    <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+                        Waste from mines or quarries
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
+                    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+                        Farm or agricultural waste
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+        ).MarkupMatches(component.bUnitMarkup());
+    }
+
+    [Fact]
+    public void OutputsCheckboxesWithItemHints()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsFormGroup HasError=@false>
+        <GdsFieldset InputId="nationality">
+            <LegendTemplate>
+                <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                    What is your nationality?
+                </GdsLegend>
+            </LegendTemplate>
+            <HintTemplate>
+                <GdsHint>
+                    If you have dual nationality, select all options that are relevant to you.
+                </GdsHint>
+            </HintTemplate>
+            <ChildContent>
+                <GdsCheckboxes Name="nationality">
+                    <GdsCheckbox Value="british">
+                    <HintTemplate>
+                        <GdsHint Classes="govuk-checkboxes__hint">including English, Scottish, Welsh and Northern Irish</GdsHint>
+                    </HintTemplate>
+                        <ChildContent>British</ChildContent>
+                    </GdsCheckbox>
+                    <GdsCheckbox Value="irish">Irish</GdsCheckbox>
+                    <GdsCheckbox Value="other">Citizen of another country</GdsCheckbox>
+                </GdsCheckboxes>
+            </ChildContent>
+        </GdsFieldset>
+    </GdsFormGroup>
+        );
+
+        Render(
+    @<div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                    What is your nationality?
+                </h1>
+            </legend>
+            <div id="nationality-hint" class="govuk-hint">
+                If you have dual nationality, select all options that are relevant to you.
+            </div>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="nationality" name="nationality" type="checkbox" value="british" aria-describedby="nationality-item-hint">
+                    <label class="govuk-label govuk-checkboxes__label" for="nationality">
+                        British
+                    </label>
+                    <div id="nationality-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                        including English, Scottish, Welsh and Northern Irish
+                    </div>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="nationality-2" name="nationality" type="checkbox" value="irish">
+                    <label class="govuk-label govuk-checkboxes__label" for="nationality-2">
+                        Irish
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="nationality-3" name="nationality" type="checkbox" value="other">
+                    <label class="govuk-label govuk-checkboxes__label" for="nationality-3">
+                        Citizen of another country
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+        ).MarkupMatches(component.bUnitMarkup());
+    }
+
+    [Fact]
+    public void OutputsCheckboxesWithNone()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsFormGroup HasError=@false>
+        <GdsFieldset InputId="countries">
+            <LegendTemplate>
+                <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                    Will you be travelling to any of these countries?
+                </GdsLegend>
+            </LegendTemplate>
+            <HintTemplate>
+                <GdsHint>
+                    Select all countries that apply
+                </GdsHint>
+            </HintTemplate>
+            <ChildContent>
+                <GdsCheckboxes Name="countries">
+                    <GdsCheckbox Value="france">France</GdsCheckbox>
+                    <GdsCheckbox Value="portugal">Portugal</GdsCheckbox>
+                    <GdsCheckbox Value="spain">Spain</GdsCheckbox>
+                    <GdsCheckboxDivider>or</GdsCheckboxDivider>
+                    <GdsCheckbox Value="none" IsExclusive=@true>No, I will not be travelling to any of these countries</GdsCheckbox>
+                </GdsCheckboxes>
+            </ChildContent>
+        </GdsFieldset>
+    </GdsFormGroup>
+    );
+
+        Render(
+    @<div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="countries-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                    Will you be travelling to any of these countries?
+                </h1>
+            </legend>
+            <div id="countries-hint" class="govuk-hint">
+                Select all countries that apply
+            </div>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="countries" name="countries" type="checkbox" value="france">
+                    <label class="govuk-label govuk-checkboxes__label" for="countries">
+                        France
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="countries-2" name="countries" type="checkbox" value="portugal">
+                    <label class="govuk-label govuk-checkboxes__label" for="countries-2">
+                        Portugal
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="countries-3" name="countries" type="checkbox" value="spain">
+                    <label class="govuk-label govuk-checkboxes__label" for="countries-3">
+                        Spain
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__divider">or</div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="countries-5" name="countries" type="checkbox" value="none" data-behaviour="exclusive">
+                    <label class="govuk-label govuk-checkboxes__label" for="countries-5">
+                        No, I will not be travelling to any of these countries
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    ).MarkupMatches(component.bUnitMarkup());
+    }
+
+    [Fact]
+    public void OutputsCheckboxesWithNoneAndErrorIfDoubleChecked()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsFormGroup HasError=@true>
+        <GdsFieldset InputId="countries">
+            <LegendTemplate>
+                <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                    Will you be travelling to any of these countries?
+                </GdsLegend>
+            </LegendTemplate>
+            <ErrorTemplate>
+                <GdsErrorMessage>
+                    Select countries you will be travelling to, or select ‘No, I will not be travelling to any of these countries’
+                </GdsErrorMessage>
+            </ErrorTemplate>
+            <ChildContent>
+                <GdsCheckboxes Name="countries">
+                    <GdsCheckbox Checked=@true Value="france">France</GdsCheckbox>
+                    <GdsCheckbox Value="portugal">Portugal</GdsCheckbox>
+                    <GdsCheckbox Value="spain">Spain</GdsCheckbox>
+                    <GdsCheckboxDivider>or</GdsCheckboxDivider>
+                    <GdsCheckbox Checked=@true Value="none" IsExclusive=@true>No, I will not be travelling to any of these countries</GdsCheckbox>
+                </GdsCheckboxes>
+            </ChildContent>
+        </GdsFieldset>
+    </GdsFormGroup>
+    );
+
+        Render(
+    @<div class="govuk-form-group govuk-form-group--error">
+        <fieldset class="govuk-fieldset" aria-describedby="countries-error">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                    Will you be travelling to any of these countries?
+                </h1>
+            </legend>
+            <p id="countries-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Select countries you will be travelling to, or select ‘No, I will not be travelling to any of these countries’
+            </p>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="countries" name="countries" type="checkbox" value="france" checked>
+                    <label class="govuk-label govuk-checkboxes__label" for="countries">
+                        France
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="countries-2" name="countries" type="checkbox" value="portugal">
+                    <label class="govuk-label govuk-checkboxes__label" for="countries-2">
+                        Portugal
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="countries-3" name="countries" type="checkbox" value="spain">
+                    <label class="govuk-label govuk-checkboxes__label" for="countries-3">
+                        Spain
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__divider">or</div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="countries-5" name="countries" type="checkbox" value="none" checked data-behaviour="exclusive">
+                    <label class="govuk-label govuk-checkboxes__label" for="countries-5">
+                        No, I will not be travelling to any of these countries
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    ).MarkupMatches(component.bUnitMarkup());
+    }
+
+    [Fact]
+    public void OutputsCheckboxesWithConditionalQuestions()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsFormGroup HasError=@false>
+        <GdsFieldset InputId="contact">
+            <LegendTemplate>
+                <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                    How would you like to be contacted?
+                </GdsLegend>
+            </LegendTemplate>
+            <HintTemplate>
+                <GdsHint>
+                    Select all options that are relevant to you
+                </GdsHint>
+            </HintTemplate>
+            <ChildContent>
+                <GdsCheckboxes Name="contact">
+                    <GdsCheckbox Value="email" Text="Email">
+                    <ConditionalTemplate>
+                        <GdsTextInput Id="contact-by-email" Name="contactByEmail" Type="email" Autocomplete="email" Spellcheck="false" Classes=@LayoutWidth.OneThird>
+                            <LabelTemplate>
+                                <GdsLabel>Email address</GdsLabel>
+                            </LabelTemplate>
+                        </GdsTextInput>
+                        </ConditionalTemplate>
+                    </GdsCheckbox>
+                    <GdsCheckbox Value="phone" Text="Phone">
+                    <ConditionalTemplate>
+                        <GdsTextInput Id="contact-by-phone" Name="contactByPhone" Type="tel" Autocomplete="tel" Classes=@LayoutWidth.OneThird>
+                            <LabelTemplate>
+                                <GdsLabel>Phone number</GdsLabel>
+                            </LabelTemplate>
+                        </GdsTextInput>
+                        </ConditionalTemplate>
+                    </GdsCheckbox>
+                    <GdsCheckbox Value="text message" Text="Text message">
+                    <ConditionalTemplate>
+                        <GdsTextInput Id="contact-by-text" Name="contactByText" Type="tel" Autocomplete="tel" Classes=@LayoutWidth.OneThird>
+                            <LabelTemplate>
+                                <GdsLabel>Mobile phone number</GdsLabel>
+                            </LabelTemplate>
+                        </GdsTextInput>
+                        </ConditionalTemplate>
+                    </GdsCheckbox>
+                </GdsCheckboxes>
+            </ChildContent>
+        </GdsFieldset>
+    </GdsFormGroup>
+        );
+
+        Render(
+    @<div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                    How would you like to be contacted?
+                </h1>
+            </legend>
+            <div id="contact-hint" class="govuk-hint">
+                Select all options that are relevant to you
+            </div>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="contact" name="contact" type="checkbox" value="email" data-aria-controls="conditional-contact">
+                    <label class="govuk-label govuk-checkboxes__label" for="contact">
+                        Email
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="contact-by-email">
+                            Email address
+                        </label>
+                        <input class="govuk-input govuk-!-width-one-third" id="contact-by-email" name="contactByEmail" type="email" spellcheck="false" autocomplete="email">
+                    </div>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="contact-2" name="contact" type="checkbox" value="phone" data-aria-controls="conditional-contact-2">
+                    <label class="govuk-label govuk-checkboxes__label" for="contact-2">
+                        Phone
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-2">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="contact-by-phone">
+                            Phone number
+                        </label>
+                        <input class="govuk-input govuk-!-width-one-third" id="contact-by-phone" name="contactByPhone" type="tel" autocomplete="tel">
+                    </div>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="contact-3" name="contact" type="checkbox" value="text message" data-aria-controls="conditional-contact-3">
+                    <label class="govuk-label govuk-checkboxes__label" for="contact-3">
+                        Text message
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-3">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="contact-by-text">
+                            Mobile phone number
+                        </label>
+                        <input class="govuk-input govuk-!-width-one-third" id="contact-by-text" name="contactByText" type="tel" autocomplete="tel">
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    ).MarkupMatches(component.bUnitMarkup());
+    }
+
+
+    [Fact]
+    public void OutputsCheckboxesWithSmallcheckboxes()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsFormGroup HasError=@false>
+        <GdsFieldset InputId="organisation">
+            <LegendTemplate>
+                <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Medium>
+                    Organisation
+                </GdsLegend>
+            </LegendTemplate>
+            <ChildContent>
+                <GdsCheckboxes Name="organisation" Classes=@CheckboxSize.Small>
+                    <GdsCheckbox Value="hmrc">
+                        HM Revenue and Customs (HMRC)
+                    </GdsCheckbox>
+                    <GdsCheckbox Value="employment-tribunal">Employment Tribunal</GdsCheckbox>
+                    <GdsCheckbox Value="MOD">Ministry of Defence</GdsCheckbox>
+                    <GdsCheckbox Value="DfT">Department for Transport</GdsCheckbox>
+                </GdsCheckboxes>
+            </ChildContent>
+        </GdsFieldset>
+    </GdsFormGroup>
+        );
+
+        Render(
+    @<div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h1 class="govuk-fieldset__heading">
+                    Organisation
+                </h1>
+            </legend>
+            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="organisation" name="organisation" type="checkbox" value="hmrc">
+                    <label class="govuk-label govuk-checkboxes__label" for="organisation">
+                        HM Revenue and Customs (HMRC)
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="organisation-2" name="organisation" type="checkbox" value="employment-tribunal">
+                    <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+                        Employment Tribunal
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="organisation-3" name="organisation" type="checkbox" value="MOD">
+                    <label class="govuk-label govuk-checkboxes__label" for="organisation-3">
+                        Ministry of Defence
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="organisation-4" name="organisation" type="checkbox" value="DfT">
+                    <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                        Department for Transport
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    ).MarkupMatches(component.bUnitMarkup());
+    }
+
+    [Fact]
+    public void OutputsCheckboxesWithErrorMessage()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsFormGroup HasError=@true>
+        <GdsFieldset InputId="nationality">
+            <LegendTemplate>
+                <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                    What is your nationality?
+                </GdsLegend>
+            </LegendTemplate>
+            <HintTemplate>
+                <GdsHint>
+                    If you have dual nationality, select all options that are relevant to you
+                </GdsHint>
+            </HintTemplate>
+            <ErrorTemplate>
+                <GdsErrorMessage>Select if you are British, Irish or a citizen of a different country</GdsErrorMessage>
+            </ErrorTemplate>
+            <ChildContent>
+                <GdsCheckboxes Name="nationality">
+                    <GdsCheckbox Value="british" Text="British">
+                        <HintTemplate>
+                            <GdsHint Classes="govuk-checkboxes__hint">including English, Scottish, Welsh and Northern Irish</GdsHint>
+                        </HintTemplate>
+                    </GdsCheckbox>
+                    <GdsCheckbox Value="irish">Irish</GdsCheckbox>
+                    <GdsCheckbox Value="other">Citizen of another country</GdsCheckbox>
+                </GdsCheckboxes>
+            </ChildContent>
+        </GdsFieldset>
+    </GdsFormGroup>
+    );
+
+        Render(
+    @<div class="govuk-form-group govuk-form-group--error">
+        <fieldset class="govuk-fieldset" aria-describedby="nationality-hint nationality-error">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                    What is your nationality?
+                </h1>
+            </legend>
+            <div id="nationality-hint" class="govuk-hint">
+                If you have dual nationality, select all options that are relevant to you
+            </div>
+            <p id="nationality-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Select if you are British, Irish or a citizen of a different country
+            </p>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="nationality" name="nationality" type="checkbox" value="british" aria-describedby="nationality-item-hint">
+                    <label class="govuk-label govuk-checkboxes__label" for="nationality">
+                        British
+                    </label>
+                    <div id="nationality-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                        including English, Scottish, Welsh and Northern Irish
+                    </div>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="nationality-2" name="nationality" type="checkbox" value="irish">
+                    <label class="govuk-label govuk-checkboxes__label" for="nationality-2">
+                        Irish
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="nationality-3" name="nationality" type="checkbox" value="other">
+                    <label class="govuk-label govuk-checkboxes__label" for="nationality-3">
+                        Citizen of another country
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+        ).MarkupMatches(component.bUnitMarkup());
+    }
+}
