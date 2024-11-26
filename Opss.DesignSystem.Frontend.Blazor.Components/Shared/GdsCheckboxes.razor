@@ -3,32 +3,76 @@
 @* <summary>
     Let users select one or more options by using the checkboxes component.
 </summary> *@
-
-    @if (HintTemplate != null)
-    {
-        <CascadingValue Value="@id">
-            @HintTemplate
-        </CascadingValue>
-    }
-    @if (ErrorMessageTemplate != null)
-    {
-        @ErrorMessageTemplate
-    }
-    <div id="@id" class="govuk-checkboxes @Classes" @attributes=@Attributes data-module="govuk-checkboxes">   
-    ﻿    <CascadingValue Value="this">
-            @ChildContent
-        </CascadingValue>
-    </div>
+<div class="govuk-form-group @(HasError ? "govuk-form-group--error" : "") @FormGroupClasses" @attributes=@Attributes>
+    <fieldset class="govuk-fieldset" role="@Role" aria-describedby="@describedBy">
+        @if (LegendTemplate != null)
+        {
+            @LegendTemplate
+        }
+        @if (HintTemplate != null)
+        {
+            <CascadingValue Value="@id">
+                @HintTemplate
+            </CascadingValue>
+        }
+        @if (ErrorTemplate != null)
+        {
+            <CascadingValue Value="@id">
+                @ErrorTemplate
+            </CascadingValue>
+        }
+        <div class="govuk-checkboxes @Classes" data-module="govuk-checkboxes">
+            ﻿   <CascadingValue Value="this">
+                @ChildContent
+            </CascadingValue>
+        </div>
+    </fieldset>
+</div>
 
 @code {
-    [CascadingParameter]
-    public string? ParentId { get; set; }
+    [Parameter]
+    public bool HasError { get; set; }
 
     private string? id
     {
         get
         {
-            return ParentId ?? Id;
+            return Id;
+        }
+    }
+
+    /// <summary>
+    /// Classes to add to the form group (for example to show error state for the whole group).
+    /// </summary>
+    [Parameter]
+    public string? FormGroupClasses { get; set; }
+
+    /// <summary>
+    /// One or more element IDs to add to the aria-describedby attribute, used to provide additional descriptive information for screenreader users.
+    /// </summary>
+    [Parameter]
+    public string? DescribedBy { get; set; }
+
+    private string? describedBy
+    {
+        get
+        {
+            var describedBy = new List<string>();
+            if (DescribedBy != null)
+            {
+                return DescribedBy;
+            }
+            if (HintTemplate != null)
+            {
+                describedBy.Add(id + "-hint");
+            }
+            if (ErrorTemplate != null)
+            {
+                describedBy.Add(id + "-error");
+            }
+            if (describedBy.Any())
+                return string.Join(" ", describedBy);
+            else return null;
         }
     }
 
@@ -39,16 +83,19 @@
     public string? Name { get; set; }
 
     /// <summary>
-    /// Optional initial value of the input.
+    /// Optional ARIA role attribute.
     /// </summary>
     [Parameter]
-    public string?[] Values { get; set; }
+    public string? Role { get; set; }
 
     [Parameter]
     public RenderFragment? HintTemplate { get; set; }
 
     [Parameter]
-    public RenderFragment? ErrorMessageTemplate { get; set; }
+    public RenderFragment? ErrorTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment? LegendTemplate { get; set; }
 
     /// <summary>
     /// Track the child checkboxes
