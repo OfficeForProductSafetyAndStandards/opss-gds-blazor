@@ -1,0 +1,337 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void OutputsDateInput()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsDateInput Id="passport-issued" Name="passport-issued">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                When was your passport issued?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>For example, 27 3 2007</GdsHint>
+        </HintTemplate>
+        <DateInputFields>
+            <GdsDateInputField DatePart="@DateParts.Day" />
+            <GdsDateInputField DatePart="@DateParts.Month" />
+            <GdsDateInputField DatePart="@DateParts.Year" />
+        </DateInputFields>
+    </GdsDateInput>
+    );
+
+        Render(
+    @<div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                    When was your passport issued?
+                </h1>
+            </legend>
+            <div id="passport-issued-hint" class="govuk-hint">
+                For example, 27 3 2007
+            </div>
+            <div class="govuk-date-input" id="passport-issued">
+                <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+                            Day
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="passport-issued-day" type="text" inputmode="numeric">
+                    </div>
+                </div>
+                <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+                            Month
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-month" name="passport-issued-month" type="text" inputmode="numeric">
+                    </div>
+                </div>
+                <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                            Year
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="text" inputmode="numeric">
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    ).MarkupMatches(component.bUnitMarkup());
+    }
+
+    [Fact]
+    public void OutputsDateInputWithLabel()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsDateInput Id="passport-issued" Name="passport-issued">
+        <LegendTemplate>
+            <GdsLegend>
+                When was your passport issued?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>For example, 27 3 2007</GdsHint>
+        </HintTemplate>
+        <DateInputFields>
+            <GdsDateInputField DatePart="@DateParts.Day" />
+            <GdsDateInputField DatePart="@DateParts.Month" />
+            <GdsDateInputField DatePart="@DateParts.Year" />
+        </DateInputFields>
+    </GdsDateInput>
+    );
+
+        Render(
+    @<div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint">
+            <legend class="govuk-fieldset__legend">
+                When was your passport issued?
+            </legend>
+            <div id="passport-issued-hint" class="govuk-hint">
+                For example, 27 3 2007
+            </div>
+            <div class="govuk-date-input" id="passport-issued">
+                <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+                            Day
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="passport-issued-day" type="text" inputmode="numeric">
+                    </div>
+                </div>
+                <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+                            Month
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-month" name="passport-issued-month" type="text" inputmode="numeric">
+                    </div>
+                </div>
+                <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                            Year
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="text" inputmode="numeric">
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    ).MarkupMatches(component.bUnitMarkup());
+    }
+
+    [Fact]
+    public void OutputsDateInputWithAutocomplete()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsDateInput Id="dob" Name="dob">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                What is your date of birth?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>For example, 31 3 1980</GdsHint>
+        </HintTemplate>
+        <DateInputFields>
+            <GdsDateInputField DatePart="@DateParts.Day" Autocomplete="bday-day" />
+            <GdsDateInputField DatePart="@DateParts.Month" Autocomplete="bday-month" />
+            <GdsDateInputField DatePart="@DateParts.Year" Autocomplete="bday-year" />
+        </DateInputFields>
+    </GdsDateInput>
+    );
+
+        Render(
+    @<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" role="group" aria-describedby="dob-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        What is your date of birth?
+      </h1>
+    </legend>
+    <div id="dob-hint" class="govuk-hint">
+      For example, 31 3 1980
+    </div>
+    <div class="govuk-date-input" id="dob">
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="dob-day">
+            Day
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-day" name="dob-day" type="text" autocomplete="bday-day" inputmode="numeric">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="dob-month">
+            Month
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-month" name="dob-month" type="text" autocomplete="bday-month" inputmode="numeric">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="dob-year">
+            Year
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="dob-year" name="dob-year" type="text" autocomplete="bday-year" inputmode="numeric">
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+    ).MarkupMatches(component.bUnitMarkup());
+    }
+
+    [Fact]
+    public void OutputsDateInputWithErrorMessage()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsDateInput Id="passport-issued" Name="passport-issued">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                When was your passport issued?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>For example, 27 3 2007</GdsHint>
+        </HintTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>
+                The date your passport was issued must be in the past
+            </GdsErrorMessage>
+        </ErrorMessageTemplate>
+        <DateInputFields>
+            <GdsDateInputField HasError=@true DatePart="@DateParts.Day" Value="6" />
+            <GdsDateInputField HasError=@true DatePart="@DateParts.Month" Value="3" />
+            <GdsDateInputField HasError=@true DatePart="@DateParts.Year" Value="2076" />
+        </DateInputFields>
+    </GdsDateInput>
+    );
+
+        Render(
+    @<div class="govuk-form-group govuk-form-group--error">
+  <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint passport-issued-error">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        When was your passport issued?
+      </h1>
+    </legend>
+    <div id="passport-issued-hint" class="govuk-hint">
+      For example, 27 3 2007
+    </div>
+    <p id="passport-issued-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> The date your passport was issued must be in the past
+    </p>
+    <div class="govuk-date-input" id="passport-issued">
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+            Day
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="passport-issued-day" name="passport-issued-day" type="text" value="6" inputmode="numeric">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+            Month
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="passport-issued-month" name="passport-issued-month" type="text" value="3" inputmode="numeric">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+            Year
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error" id="passport-issued-year" name="passport-issued-year" type="text" value="2076" inputmode="numeric">
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+    ).MarkupMatches(component.bUnitMarkup());
+    }
+
+    [Fact]
+    public void OutputsDateInputWithSingleErrorMessage()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsDateInput Id="passport-issued" Name="passport-issued">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                When was your passport issued?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>For example, 27 3 2007</GdsHint>
+        </HintTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>
+                The date your passport was issued must include a year
+            </GdsErrorMessage>
+        </ErrorMessageTemplate>
+        <DateInputFields>
+            <GdsDateInputField DatePart="@DateParts.Day" Value="6" />
+            <GdsDateInputField DatePart="@DateParts.Month" Value="3" />
+            <GdsDateInputField HasError=@true DatePart="@DateParts.Year" />
+        </DateInputFields>
+    </GdsDateInput>
+        );
+
+        Render(
+    @<div class="govuk-form-group govuk-form-group--error">
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint passport-issued-error">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                    When was your passport issued?
+                </h1>
+            </legend>
+            <div id="passport-issued-hint" class="govuk-hint">
+                For example, 27 3 2007
+            </div>
+            <p id="passport-issued-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> The date your passport was issued must include a year
+            </p>
+            <div class="govuk-date-input" id="passport-issued">
+                <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+                            Day
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="passport-issued-day" type="text" value="6" inputmode="numeric">
+                    </div>
+                </div>
+                <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+                            Month
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-month" name="passport-issued-month" type="text" value="3" inputmode="numeric">
+                    </div>
+                </div>
+                <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                            Year
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error" id="passport-issued-year" name="passport-issued-year" type="text" inputmode="numeric">
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    ).MarkupMatches(component.bUnitMarkup());
+    }
+}

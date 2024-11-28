@@ -1,0 +1,100 @@
+﻿@inherits GdsViewModel
+
+@* <summary>
+    Use the date input component to help users enter a memorable date or one 
+    they can easily look up.
+</summary> *@
+
+<div class=@classes>
+    <fieldset class="govuk-fieldset" 
+              role="group" 
+              aria-describedby=@describedBy?.Trim()>
+        @if (LegendTemplate != null)
+        {
+            ﻿<CascadingValue Value=@Id>
+                @LegendTemplate
+            </CascadingValue>
+        }
+        @if (HintTemplate != null)
+        {
+            ﻿<CascadingValue Value=@Id>
+                @HintTemplate
+            </CascadingValue>
+        }
+        @if (ErrorMessageTemplate != null)
+        {
+            ﻿<CascadingValue Value=@Id>
+                @ErrorMessageTemplate
+            </CascadingValue>
+        }
+
+        <div id=@Id
+             class ="govuk-date-input"
+        >
+            ﻿<CascadingValue Value=this>
+                @DateInputFields
+            </CascadingValue>
+        </div>
+    </fieldset>
+</div>
+
+@code {
+    #region Public Parameters
+    [Parameter]
+    public RenderFragment? DateInputFields { get; set; }
+
+    [Parameter]
+    public RenderFragment? LegendTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment? ErrorMessageTemplate { get; set; }
+
+    /// <summary>
+    /// The name of the input, which is submitted with the form data.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// Classes to add to the form group (for example to show error state for the whole group).
+    /// </summary>
+    [Parameter]
+    public string? FormGroupClasses { get; set; }
+    #endregion
+
+    #region Private Properties
+    private string? describedBy
+    {
+        get
+        {
+            var describedBy = new List<string>();
+
+            if (HintTemplate != null)
+                describedBy.Add(Id + "-hint");
+            if (ErrorMessageTemplate != null)
+                describedBy.Add(Id + "-error");
+
+            if (describedBy.Any())
+                return string.Join(" ", describedBy);
+            else
+                return null;
+        }
+    }
+
+    private string classes
+    {
+        get
+        {
+            var classBuilder = "govuk-form-group";
+            if (Classes != null)
+                classBuilder += $" {Classes}";
+            if (ErrorMessageTemplate != null)
+                classBuilder += " govuk-form-group--error";
+            return classBuilder;
+        }
+    }
+    #endregion
+}
