@@ -7,7 +7,11 @@
     Also, not all users are aware of the back button.
 </summary> *@
 
-<a id="@Id" href="@Href" class="govuk-back-link @(IsOnDarkBackground ? "govuk-back-link--inverse" : "") @Classes" @attributes="@Attributes">
+<a id=@Id 
+   class="govuk-back-link @(IsOnDarkBackground ? "govuk-back-link--inverse" : "") @Classes"
+   href=@Href
+   @attributes=@Attributes
+>
     @if (ChildContent != null)
     {
         @ChildContent

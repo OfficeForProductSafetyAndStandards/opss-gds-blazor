@@ -4,20 +4,20 @@
     The breadcrumbs component helps users to understand where they are within a website's structure and move between levels.
 </summary> *@
 
-﻿<CascadingValue Value="this">
-    <nav id=@Id class="govuk-breadcrumbs 
-         @Classes @(CollapseOnMobile ? "govuk-breadcrumbs--collapse-on-mobile" : "") 
-         @(IsOnDarkBackground ? "govuk-breadcrumbs--inverse" : "") " 
-         aria-label="Breadcrumb" 
-         @attributes="@Attributes"
-    >
-        <ol class="govuk-breadcrumbs__list">
+<nav id=@Id
+     class=@classes
+     aria-label="Breadcrumb"
+     @attributes=@Attributes>
+    <ol class="govuk-breadcrumbs__list">
+        ﻿
+        <CascadingValue Value="this">
             @ChildContent
-        </ol>
-    </nav>
-</CascadingValue>
+        </CascadingValue>
+    </ol>
+</nav>
 
 @code {
+    #region Public Parameters
     /// <summary>
     /// When true, the breadcrumbs will collapse to the first and last item only on tablet breakpoint and below.
     /// </summary>
@@ -29,4 +29,23 @@
     /// </summary>
     [Parameter]
     public bool IsOnDarkBackground { get; set; }
+    #endregion
+
+    #region Private Properties
+    private string classes
+    {
+        get
+        {
+            var classBuilder = "govuk-breadcrumbs";
+            if (CollapseOnMobile)
+                classBuilder += " govuk-breadcrumbs--collapse-on-mobile";
+            if (IsOnDarkBackground)
+                classBuilder += " govuk-breadcrumbs--inverse";
+            if (!string.IsNullOrEmpty(Classes))
+                classBuilder += $" {Classes}";
+
+            return classBuilder;
+        }
+    }
+    #endregion
 }

@@ -15,15 +15,4 @@ public abstract class GdsViewModel : GdsAttributes
     /// </summary>
     [Parameter]
     public string? Classes { get; set; }
-
-    protected GdsViewModel(string? id, string? classes = "", Dictionary<string, object>? attributes = null)
-    {
-        Id = id;
-        Classes = classes;
-        Attributes = attributes;
-    }
-
-    protected GdsViewModel() : this(null)
-    {
-    }
 }

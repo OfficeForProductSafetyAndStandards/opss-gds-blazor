@@ -8,19 +8,19 @@
 <div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses">
     @if (LabelTemplate != null)
     {
-        ﻿<CascadingValue Value="@Id">
+        ﻿<CascadingValue Value=@Id>
             @LabelTemplate
         </CascadingValue>
     }
     @if (HintTemplate != null)
     {
-        ﻿<CascadingValue Value="@Id">
+        ﻿<CascadingValue Value=@Id>
             @HintTemplate
         </CascadingValue>
     }
     @if (ErrorMessageTemplate != null)
     {
-        ﻿<CascadingValue Value="@Id">
+        ﻿<CascadingValue Value=@Id>
             @ErrorMessageTemplate
         </CascadingValue>
     }
@@ -33,17 +33,19 @@
                 @PrefixTemplate
             }
 
-            <input id="@Id" 
-                   class="govuk-input 
-                   @Classes @(ErrorMessageTemplate != null ? "govuk-input--error" : "")" 
-                   name="@Name" type="@(Type ?? "text")"
-                   spellcheck="@Spellcheck?.ToString().ToLower()" 
-                   value="@Value" 
-                   aria-describedby="@DescribedBy?.Trim()"
-                   autocomplete="@Autocomplete" 
-                   pattern="@Pattern" 
-                   inputmode="@Inputmode"                   
-                   @attributes="@Attributes" />
+            <input id=@Id
+                   class="govuk-input @Classes @(ErrorMessageTemplate != null ? "govuk-input--error" : "")" 
+                   name=@Name
+                   type=@(Type ?? "text")
+                   spellcheck=@Spellcheck?.ToString().ToLower()
+                   aria-describedby=@describedBy?.Trim()
+                   autocomplete=@Autocomplete
+                   pattern=@Pattern
+                   inputmode=@Inputmode
+                   value=@Value
+                   @oninput=OnValueChanged
+                   @attributes=@Attributes
+            />
 
             @if (SuffixTemplate != null)
             {
@@ -53,21 +55,39 @@
     }
     else
     {
-        <input id="@Id" 
+        <input id=@Id
                class="govuk-input @Classes @(ErrorMessageTemplate != null ? "govuk-input--error" : "")" 
-               name="@Name" 
-               type="@(Type ?? "text")"
-               spellcheck="@Spellcheck?.ToString().ToLower()" 
-               value="@Value" 
-               aria-describedby="@DescribedBy?.Trim()"
-               autocomplete="@Autocomplete" 
-               pattern="@Pattern" 
-               inputmode="@Inputmode"
-               @attributes="@Attributes" />
+               name=@Name
+               type=@(Type ?? "text")
+               spellcheck=@spellcheck
+               aria-describedby=@describedBy?.Trim()
+               autocomplete=@Autocomplete
+               pattern=@Pattern
+               inputmode=@Inputmode
+               value=@Value
+               @oninput=OnValueChanged
+               @attributes=@Attributes
+        />
     }
 </div>
 
 @code {
+    #region Public Parameters
+    [Parameter]
+    public RenderFragment? LabelTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment? ErrorMessageTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment? PrefixTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment? SuffixTemplate { get; set; }
+
     /// <summary>
     /// The name of the input, which is submitted with the form data.
     /// </summary>
@@ -80,59 +100,14 @@
     [Parameter]
     public string? Type { get; set; }
 
+    [Parameter]
+    public string? Value { get; set; }
+
     /// <summary>
     /// none, text, decimal, numeric, tel, search, email, url
     /// </summary>
     [Parameter]
-    public string? Inputmode
-    {
-        get => _inputmode;
-        set
-        {
-            _inputmode = value;
-            if (_inputmode == "numeric")
-            {
-                Spellcheck = false;
-            }
-        }
-    }
-
-    /// <summary>
-    /// Optional initial value of the input.
-    /// </summary>
-    [Parameter]
-    public string? Value { get; set; }
-
-    private string? _describedBy;
-    private string? _inputmode;
-
-    /// <summary>
-    /// One or more element IDs to add to the aria-describedby attribute, used to provide 
-    /// additional descriptive information for screenreader users.
-    /// </summary>
-    [Parameter]
-    public string? DescribedBy
-    {
-        get
-        {
-            var fullText = _describedBy ?? "";
-            if (HintTemplate != null) fullText += $" {Id}-hint";
-            if (ErrorMessageTemplate != null) fullText += $" {Id}-error";
-            return string.IsNullOrWhiteSpace(fullText) ? null : fullText;
-        }
-        set => _describedBy = value;
-    }
-
-    [Parameter]
-    public RenderFragment? LabelTemplate { get; set; }
-    [Parameter]
-    public RenderFragment? HintTemplate { get; set; }
-    [Parameter]
-    public RenderFragment? ErrorMessageTemplate { get; set; }
-    [Parameter]
-    public RenderFragment? PrefixTemplate { get; set; }
-    [Parameter]
-    public RenderFragment? SuffixTemplate { get; set; }
+    public string? Inputmode { get; set; }
 
     /// <summary>
     /// Classes to add to the form group (for example to show error state for the whole group).
@@ -158,4 +133,45 @@
     /// </summary>
     [Parameter]
     public bool? Spellcheck { get; set; }
+    #endregion
+
+    #region Event Handlers
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+
+    protected Task OnValueChanged(ChangeEventArgs e)
+    {
+        Value = e.Value.ToString();
+
+        return ValueChanged.InvokeAsync(Value);
+    }
+    #endregion
+
+    #region Private Properties
+    private string? spellcheck
+    {
+        get
+        {
+            if (Spellcheck != null)
+                return Spellcheck?.ToString().ToLower();
+
+            if (Inputmode == "numeric")
+                return false.ToString().ToLower();
+
+            return Spellcheck?.ToString().ToLower();
+        }
+    }
+
+
+    private string? describedBy
+    {
+        get
+        {
+            var fullText = "";
+            if (HintTemplate != null) fullText += $" {Id}-hint";
+            if (ErrorMessageTemplate != null) fullText += $" {Id}-error";
+            return string.IsNullOrWhiteSpace(fullText) ? null : fullText;
+        }
+    }
+    #endregion
 }

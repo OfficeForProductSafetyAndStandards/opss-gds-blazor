@@ -214,7 +214,7 @@
     </GdsCheckboxes>
 </Example>
 
-<Example CodeExampleContent="@(@"<GdsCheckboxes Id=""countries"" Name=""countries"" HasError=@true>
+<Example CodeExampleContent="@(@"<GdsCheckboxes Id=""countries"" Name=""countries"" Values=""@countryValues"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             Will you be travelling to any of these countries?
@@ -226,14 +226,18 @@
         </GdsErrorMessage>
     </ErrorTemplate>
     <ChildContent>
-        <GdsCheckbox Checked=@true Value=""france"">France</GdsCheckbox>
+        <GdsCheckbox Value=""france"">France</GdsCheckbox>
         <GdsCheckbox Value=""portugal"">Portugal</GdsCheckbox>
         <GdsCheckbox Value=""spain"">Spain</GdsCheckbox>
         <GdsCheckboxDivider>or</GdsCheckboxDivider>
-        <GdsCheckbox Checked=@true Value=""none"" IsExclusive=@true>No, I will not be travelling to any of these countries</GdsCheckbox>
+        <GdsCheckbox Value=""none"" IsExclusive=@true>No, I will not be travelling to any of these countries</GdsCheckbox>
     </ChildContent>
-</GdsCheckboxes>")">
-    <GdsCheckboxes Id="countries" Name="countries" HasError=@true>
+</GdsCheckboxes>
+
+@code {
+    List<string> countryErrorValues = new List<string> { ""france"", ""none"" };
+}")">
+    <GdsCheckboxes Id="countries" Name="countries" Values="@countryValues">
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
                 Will you be travelling to any of these countries?
@@ -245,14 +249,18 @@
             </GdsErrorMessage>
         </ErrorTemplate>
         <ChildContent>
-            <GdsCheckbox Checked=@true Value="france">France</GdsCheckbox>
+            <GdsCheckbox Value="france">France</GdsCheckbox>
             <GdsCheckbox Value="portugal">Portugal</GdsCheckbox>
             <GdsCheckbox Value="spain">Spain</GdsCheckbox>
             <GdsCheckboxDivider>or</GdsCheckboxDivider>
-            <GdsCheckbox Checked=@true Value="none" IsExclusive=@true>No, I will not be travelling to any of these countries</GdsCheckbox>
+            <GdsCheckbox Value="none" IsExclusive=@true>No, I will not be travelling to any of these countries</GdsCheckbox>
         </ChildContent>
     </GdsCheckboxes>
 </Example>
+
+@code {
+    List<string> countryValues = new List<string> { "france", "none" };
+}
 
 <h3 class="govuk-heading-m" id="conditionally-revealing-a-related-question">Conditionally revealing a related question</h3>
 
@@ -376,7 +384,7 @@
 
 <h3 class="govuk-heading-m" id="error-messages">Error messages</h3>
 
-<Example CodeExampleContent="@(@"<GdsCheckboxes Id=""nationality"" Name=""nationality"" HasError=@true>
+<Example CodeExampleContent="@(@"<GdsCheckboxes Id=""nationality"" Name=""nationality"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             What is your nationality?
@@ -400,7 +408,7 @@
         <GdsCheckbox Value=""other"">Citizen of another country</GdsCheckbox>
     </ChildContent>
 </GdsCheckboxes>")">
-    <GdsCheckboxes Id="nationality" Name="nationality" HasError=@true>
+    <GdsCheckboxes Id="nationality" Name="nationality">
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
                 What is your nationality?
@@ -427,5 +435,4 @@
 </Example>
 
 @code {
-
 }

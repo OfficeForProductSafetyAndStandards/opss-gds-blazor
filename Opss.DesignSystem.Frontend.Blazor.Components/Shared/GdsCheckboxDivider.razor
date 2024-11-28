@@ -1,13 +1,21 @@
 ﻿@inherits GdsWithContent
 
-<div id="@Id" 
+<div id=@Id
      class="govuk-checkboxes__divider @Classes"
-     @attributes="@Attributes">
+     @attributes=@Attributes
+>
     @ChildContent
 </div>
 
 @code {
+    #region Public properties
+    /// <summary>
+    /// Set by the parent to identify this element's index
+    /// </summary>
+    public int Index { get; set; }
+    #endregion
 
+    #region Cascading Value - Parent
     protected override void OnInitialized()
     {
         if (Parent == null)
@@ -18,8 +26,7 @@
         base.OnInitialized();
     }
 
-    public int Index = 0;
-
     [CascadingParameter]
     private GdsCheckboxes? Parent { get; set; }
+    #endregion
 }

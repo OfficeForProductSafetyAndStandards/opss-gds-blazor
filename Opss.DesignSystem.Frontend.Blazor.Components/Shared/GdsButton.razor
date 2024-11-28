@@ -5,89 +5,80 @@
 </summary> *@
 
 @* Bit of a mess, nunjucks combines some of this but it's still crazy due to the three different elements that can be rendered *@
-@switch (Element)
+@switch (element)
 {
     case ButtonType.Anchor:
         <a id=@Id
+           class=@classes
            href=@(Href ?? "#")
-           role="button" 
-           draggable="false" 
-           class="govuk-button @AllClasses()" 
-           data-module="govuk-button" 
-           @attributes=@Attributes
-        >
+           role="button"
+           draggable="false"
+           data-module="govuk-button"
+           @attributes=@Attributes>
             @ChildContent
             @if (IsStartButton)
             {
-              <svg class="govuk-button__start-icon" 
-                   xmlns="http://www.w3.org/2000/svg" 
-                   width="17.5" 
-                   height="19" 
-                   viewBox="0 0 33 40" 
-                   aria-hidden="true" 
-                   focusable="false"
-              >
-                <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"/>
-              </svg>
+                <svg class="govuk-button__start-icon"
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="17.5"
+                     height="19"
+                     viewBox="0 0 33 40"
+                     aria-hidden="true"
+                     focusable="false">
+                    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+                </svg>
             }
         </a>
         break;
     case ButtonType.Button:
         <button id=@Id
+                class=@classes
                 value=@Value
                 type=@Type
                 name=@Name
                 disabled=@(Disabled ? "disabled" : null)
                 aria-disabled=@(Disabled ? "true" : null)
                 data-prevent-double-click=@(PreventDoubleClick ? "true" : null)
-                class="govuk-button @AllClasses()" 
-                data-module="govuk-button" 
+                data-module="govuk-button"
                 @onclick=@OnClick
-                @attributes=@Attributes
-        >
+                @attributes=@Attributes>
             @ChildContent
             @if (IsStartButton)
             {
-                <svg class="govuk-button__start-icon" 
-                     xmlns="http://www.w3.org/2000/svg" 
-                     width="17.5" 
-                     height="19" 
-                     viewBox="0 0 33 40" 
-                     aria-hidden="true" 
-                     focusable="false"
-                >
-                    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"/>
+                <svg class="govuk-button__start-icon"
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="17.5"
+                     height="19"
+                     viewBox="0 0 33 40"
+                     aria-hidden="true"
+                     focusable="false">
+                    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
                 </svg>
             }
         </button>
         break;
     case ButtonType.Input:
-        <input id="@Id" 
-               value="@Value" 
-               type="@(Type ?? "submit")"
-               name="@Name"
+        <input id=@Id
+               class=@classes
+               value=@Value
+               type=@(Type ?? "submit")
+               name=@Name
                disabled=@(Disabled ? "disabled" : null)
                aria-disabled=@(Disabled ? "true" : null)
                data-prevent-double-click=@(PreventDoubleClick ? "true" : null)
-               class="govuk-button @AllClasses()" 
-               data-module="govuk-button" 
-               @attributes=@Attributes
-        />
+               data-module="govuk-button"
+               @attributes=@Attributes />
         break;
 }
 
 @code {
-    private ButtonType? _element;
+    #region Public Parameters
     /// <summary>
     /// Whether to use an input, button or a element to create the button.
     /// In most cases you will not need to set this as it will be configured automatically.
     /// </summary>
     [Parameter]
-    public ButtonType Element
-    {
-        get => _element ?? (string.IsNullOrEmpty(Href) ? ButtonType.Button : ButtonType.Anchor);
-        set => _element = value;
-    }
+    public ButtonType? Element { get; set; }
 
     /// <summary>
     /// Event to call on click event of button type elements
@@ -134,8 +125,31 @@
     /// </summary>
     [Parameter]
     public bool IsStartButton { get; set; }
+    #endregion
 
-    public string AllClasses() => Classes +
-                                  (IsStartButton ? " govuk-button--start" : "") +
-                                  (IsOnDarkBackground ? " govuk-button--inverse" : "");
+    #region Private Properties
+    private ButtonType? element
+    {
+        get
+        {
+            return Element ?? (string.IsNullOrEmpty(Href) ? ButtonType.Button : ButtonType.Anchor);
+        }
+    }
+
+    private string classes
+    {
+        get
+        {
+            var classBuilder = "govuk-button";
+            if (IsStartButton)
+                classBuilder += " govuk-button--start";
+            if (IsOnDarkBackground)
+                classBuilder += " govuk-button--inverse";
+            if (!string.IsNullOrEmpty(Classes))
+                classBuilder += $" {Classes}";
+
+            return classBuilder;
+        }
+    }
+    #endregion
 }

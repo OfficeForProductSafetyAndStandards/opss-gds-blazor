@@ -1,31 +1,32 @@
 ﻿@inherits GdsWithContent;
 
-﻿<CascadingValue Value="this">
-    <div id=@Id
-         class="govuk-error-summary @Classes"
-         data-module="govuk-error-summary"
-         data-disable-auto-focus="@DisableAutoFocus?.ToString().ToLowerInvariant()"
-         @attributes="@Attributes">
-        <div role="alert">
-            <h2 class="govuk-error-summary__title">
-                @Title
-            </h2>
-            <div class="govuk-error-summary__body">
-                @if (Description != null)
-                {
-                    <p>
-                        @Description
-                    </p>
-                }
-                <ul class="govuk-list govuk-error-summary__list">
+<div id=@Id
+     class="govuk-error-summary @Classes"
+     data-module="govuk-error-summary"
+     data-disable-auto-focus=@DisableAutoFocus?.ToString().ToLowerInvariant()
+     @attributes=@Attributes>
+    <div role="alert">
+        <h2 class="govuk-error-summary__title">
+            @Title
+        </h2>
+        <div class="govuk-error-summary__body">
+            @if (Description != null)
+            {
+                <p>
+                    @Description
+                </p>
+            }
+            <ul class="govuk-list govuk-error-summary__list">                ﻿
+                <CascadingValue Value=this>
                     @ChildContent
-                </ul>
-            </div>
+                </CascadingValue>
+            </ul>
         </div>
     </div>
-</CascadingValue>
+</div>
 
 @code {
+    #region Public Parameters
     /// <summary>
     /// Content to use for the heading of the error summary block.
     /// </summary>
@@ -41,5 +42,7 @@
     /// <summary>
     /// Prevent moving focus to the error summary when the page loads.
     /// </summary>
+    [Parameter]
     public bool? DisableAutoFocus { get; set; }
+    #endregion
 }

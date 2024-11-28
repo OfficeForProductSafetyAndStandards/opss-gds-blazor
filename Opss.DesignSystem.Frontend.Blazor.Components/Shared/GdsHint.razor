@@ -1,21 +1,23 @@
 ﻿@inherits GdsWithContent
 
-<div id="@Id" class="govuk-hint @Classes.Trim()" @attributes="@Attributes">
+<div id=@Id
+     class="govuk-hint @Classes?.Trim()" 
+     @attributes=@Attributes
+>
     @ChildContent
 </div>
 
 @code {
+    #region Public Parameters
     /// <summary>
     /// Whether the label also acts as the heading for the page.
     /// </summary>
     [Parameter]
     public bool IsPageHeading { get; set; }
 
-    [CascadingParameter]
-    public string? ParentId { get; set; }
-
     [Parameter]
     public string? OverrideId{ get; set; }
+    #endregion
 
     /// <summary>
     /// The calculated id of the element
@@ -35,6 +37,7 @@
         }
     }
 
+    #region Cascading Value - ParentId
     protected override void OnInitialized()
     {
         if (ParentId == null && OverrideId == null)
@@ -42,4 +45,8 @@
 
         base.OnInitialized();
     }
+
+    [CascadingParameter]
+    public string? ParentId { get; set; }
+    #endregion
 }
