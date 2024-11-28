@@ -12,15 +12,17 @@
 </div>
 
 @code {
+    #region Public Parameters
     /// <summary>
     /// Text for the menu title button.
     /// </summary>
     [Parameter]
-    public string MenuTitle { get; set; }
+    public string? MenuTitle { get; set; }
 
     /// <summary>
     /// Identifies that menu items should be right aligned
     /// </summary>
     [Parameter]
     public bool RightAlignMenu { get; set; }
+    #endregion
 }

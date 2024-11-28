@@ -1,6 +1,9 @@
 ﻿@inherits GdsWithContent
 
-<legend id="@Id" class="govuk-fieldset__legend @Classes" @attributes="@Attributes">
+<legend id=@Id
+        class="govuk-fieldset__legend @Classes" 
+        @attributes=@Attributes
+>
     @if (IsPageHeading)
     {
         <h1 class="govuk-fieldset__heading">
@@ -14,9 +17,11 @@
 </legend>
 
 @code {
+    #region Public Parameters
     /// <summary>
     /// Whether the legend also acts as the heading for the page.
     /// </summary>
     [Parameter]
     public bool IsPageHeading { get; set; }
+    #endregion
 }

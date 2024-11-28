@@ -12,7 +12,7 @@
         <a id=@Id
            class="govuk-breadcrumbs__link @Classes"
            href=@Href
-           @attributes="@Attributes"
+           @attributes=@Attributes
         >
             @ChildContent
         </a>
@@ -20,6 +20,7 @@
 </li>
 
 @code {
+    #region Cascading Value - Parent
     protected override void OnInitialized()
     {
         if (Parent == null)
@@ -30,4 +31,5 @@
 
     [CascadingParameter]
     private GdsBreadcrumbs? Parent { get; set; }
+    #endregion
 }

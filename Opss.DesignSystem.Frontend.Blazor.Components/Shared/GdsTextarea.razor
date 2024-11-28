@@ -8,37 +8,48 @@
 <div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses">
     @if (LabelTemplate != null)
     {
-        ﻿<CascadingValue Value="@Id">
+        ﻿<CascadingValue Value=@Id>
             @LabelTemplate
         </CascadingValue>
     }
     @if (HintTemplate != null)
     {
-        ﻿<CascadingValue Value="@Id">
+        ﻿<CascadingValue Value=@Id>
             @HintTemplate
         </CascadingValue>
     }
     @if (ErrorMessageTemplate != null)
     {
-        ﻿<CascadingValue Value="@Id">
+        ﻿<CascadingValue Value=@Id>
             @ErrorMessageTemplate
         </CascadingValue>
     }
 
     <textarea id=@Id 
               class="govuk-textarea @Classes @(ErrorMessageTemplate != null ? "govuk-textarea--error" : "")"
-              name="@Name" 
-              rows="@(Rows ?? 5)"
-              spellcheck="@Spellcheck?.ToString().ToLower()"
-              aria-describedby="@DescribedBy" 
-              autocomplete="@Autocomplete"
-              @attributes="@Attributes"
+              name=@Name 
+              rows=@(Rows ?? 5)
+              spellcheck=@Spellcheck?.ToString().ToLower()
+              aria-describedby=@describedBy
+              autocomplete=@Autocomplete
+              @oninput=OnValueChanged
+              @attributes=@Attributes
     >
         @Value
     </textarea>
 </div>
 
 @code {
+    #region Public Parameters
+    [Parameter]
+    public RenderFragment? LabelTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment? ErrorMessageTemplate { get; set; }
+
     /// <summary>
     /// The name of the input, which is submitted with the form data.
     /// </summary>
@@ -51,38 +62,15 @@
     [Parameter]
     public int? Rows { get; set; }
 
-    /// <summary>
-    /// Optional initial value of the input.
-    /// </summary>
     [Parameter]
     public string? Value { get; set; }
-
-    private string? _describedBy;
-    private string? _inputmode;
 
     /// <summary>
     /// One or more element IDs to add to the aria-describedby attribute, used to provide
     /// additional descriptive information for screenreader users.
     /// </summary>
     [Parameter]
-    public string? DescribedBy
-    {
-        get
-        {
-            var fullText = _describedBy ?? "";
-            if (HintTemplate != null) fullText += $" {Id}-hint";
-            if (ErrorMessageTemplate != null) fullText += $" {Id}-error";
-            return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
-        }
-        set => _describedBy = value;
-    }
-
-    [Parameter]
-    public RenderFragment? LabelTemplate { get; set; }
-    [Parameter]
-    public RenderFragment? HintTemplate { get; set; }
-    [Parameter]
-    public RenderFragment? ErrorMessageTemplate { get; set; }
+    public string? DescribedBy { get; set; }
 
     /// <summary>
     /// Classes to add to the form group (for example to show error state for the whole group).
@@ -101,4 +89,30 @@
     /// </summary>
     [Parameter]
     public bool? Spellcheck { get; set; }
+    #endregion
+
+    #region Event Handlers
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+
+    protected Task OnValueChanged(ChangeEventArgs e)
+    {
+        Value = e.Value.ToString();
+
+        return ValueChanged.InvokeAsync(Value);
+    }
+    #endregion
+
+    #region Private Properties
+    private string? describedBy
+    {
+        get
+        {
+            var fullText = DescribedBy ?? "";
+            if (HintTemplate != null) fullText += $" {Id}-hint";
+            if (ErrorMessageTemplate != null) fullText += $" {Id}-error";
+            return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
+        }
+    }
+    #endregion
 }

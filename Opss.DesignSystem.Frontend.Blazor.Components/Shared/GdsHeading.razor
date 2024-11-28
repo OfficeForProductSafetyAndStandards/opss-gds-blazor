@@ -16,7 +16,7 @@
         break;
     case 2:
         <h2 id=@Id
-            class="@Classes"
+            class=@Classes
             @attributes=@Attributes
         >
             @ChildContent
@@ -57,9 +57,11 @@
 }
 
 @code {
+    #region Public Parameters
     /// <summary>
     /// Heading level, from 1 to 6.
     /// </summary>
     [Parameter]
     public int? HeadingLevel { get; set; }
+    #endregion
 }

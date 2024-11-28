@@ -3,26 +3,31 @@
 @* <summary>
     Let users select one or more options by using the checkboxes component.
 </summary> *@
-<div class="govuk-form-group @(HasError ? "govuk-form-group--error" : "") @FormGroupClasses" @attributes=@Attributes>
-    <fieldset class="govuk-fieldset" role="@Role" aria-describedby="@describedBy">
+<div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses" 
+     @attributes=@Attributes
+>
+    <fieldset class="govuk-fieldset" 
+              role=@Role
+              aria-describedby=@describedBy>
         @if (LegendTemplate != null)
         {
             @LegendTemplate
         }
         @if (HintTemplate != null)
         {
-            <CascadingValue Value="@id">
+            <CascadingValue Value=@Id>
                 @HintTemplate
             </CascadingValue>
         }
-        @if (ErrorTemplate != null)
+        @if (ErrorMessageTemplate != null)
         {
-            <CascadingValue Value="@id">
-                @ErrorTemplate
+            <CascadingValue Value=@Id>
+                @ErrorMessageTemplate
             </CascadingValue>
         }
-        <div class="govuk-checkboxes @Classes" data-module="govuk-checkboxes">
-            ﻿   <CascadingValue Value="this">
+        <div class="govuk-checkboxes @Classes" 
+             data-module="govuk-checkboxes">
+            ﻿<CascadingValue Value=this>
                 @ChildContent
             </CascadingValue>
         </div>
@@ -30,51 +35,15 @@
 </div>
 
 @code {
+    #region Public Parameters
     [Parameter]
-    public bool HasError { get; set; }
+    public RenderFragment? HintTemplate { get; set; }
 
-    private string? id
-    {
-        get
-        {
-            return Id;
-        }
-    }
-
-    /// <summary>
-    /// Classes to add to the form group (for example to show error state for the whole group).
-    /// </summary>
     [Parameter]
-    public string? FormGroupClasses { get; set; }
+    public RenderFragment? ErrorMessageTemplate { get; set; }
 
-    /// <summary>
-    /// One or more element IDs to add to the aria-describedby attribute, used to provide additional descriptive information for screenreader users.
-    /// </summary>
     [Parameter]
-    public string? DescribedBy { get; set; }
-
-    private string? describedBy
-    {
-        get
-        {
-            var describedBy = new List<string>();
-            if (DescribedBy != null)
-            {
-                return DescribedBy;
-            }
-            if (HintTemplate != null)
-            {
-                describedBy.Add(id + "-hint");
-            }
-            if (ErrorTemplate != null)
-            {
-                describedBy.Add(id + "-error");
-            }
-            if (describedBy.Any())
-                return string.Join(" ", describedBy);
-            else return null;
-        }
-    }
+    public RenderFragment? LegendTemplate { get; set; }
 
     /// <summary>
     /// The name of the input, which is submitted with the form data.
@@ -88,18 +57,67 @@
     [Parameter]
     public string? Role { get; set; }
 
+    /// <summary>
+    /// Classes to add to the form group (for example to show error state for the whole group).
+    /// </summary>
     [Parameter]
-    public RenderFragment? HintTemplate { get; set; }
-
-    [Parameter]
-    public RenderFragment? ErrorTemplate { get; set; }
-
-    [Parameter]
-    public RenderFragment? LegendTemplate { get; set; }
+    public string? FormGroupClasses { get; set; }
 
     /// <summary>
-    /// Track the child checkboxes
+    /// One or more element IDs to add to the aria-describedby attribute, used to provide additional descriptive information for screenreader users.
     /// </summary>
+    [Parameter]
+    public string? DescribedBy { get; set; }
+
+    /// <summary>
+    /// The list of values of the checked checkboxes
+    /// </summary>
+    [Parameter]
+    public List<string>? Values { get; set; }
+    #endregion
+
+    #region Event Handlers
+    [Parameter]
+    public EventCallback<List<string>> ValuesChanged { get; set; }
+
+    public Task CheckboxChanged(bool isChecked, string value)
+    {
+        if (Values == null) return Task.CompletedTask;
+
+        if(!isChecked && Values.Contains(value))
+        {
+            Values.Remove(value);
+        } else if (isChecked)
+        {
+            Values.Add(value);
+        }
+        return ValuesChanged.InvokeAsync(Values);
+    }
+    #endregion
+
+    #region Private Properties
+    private string? describedBy
+    {
+        get
+        {
+            var describedBy = new List<string>();
+            if (DescribedBy != null)
+                return DescribedBy;
+
+            if (HintTemplate != null)
+                describedBy.Add(Id + "-hint");
+            if (ErrorMessageTemplate != null)
+                describedBy.Add(Id + "-error");
+
+            if (describedBy.Any())
+                return string.Join(" ", describedBy);
+            else 
+                return null;
+        }
+    }
+    #endregion
+
+    #region Cascading Value - Child Items
     private List<GdsCheckbox> checkboxes = new List<GdsCheckbox>();
 
     /// <summary>
@@ -118,4 +136,5 @@
     {
         dividerCount = dividerCount + 1;
     }
+    #endregion
 }

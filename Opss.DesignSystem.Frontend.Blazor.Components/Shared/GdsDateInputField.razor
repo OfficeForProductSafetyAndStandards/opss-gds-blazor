@@ -1,0 +1,116 @@
+﻿@inherits GdsWithContent
+
+<div class="govuk-date-input__item">
+    <div class="govuk-form-group">
+        <label class="govuk-label govuk-date-input__label" 
+               for="@Id-@DatePart.ToLower()"
+        >
+            @if(ChildContent == null)
+            {
+                @DatePart
+            }
+            else
+            {
+                @ChildContent
+            }
+        </label>
+        <input id="@Id-@DatePart.ToLower()"
+               class=@classes
+               name="@(Parent.Name)-@DatePart.ToLower()"
+               type="text"
+               inputmode="numeric"
+               autocomplete=@Autocomplete
+               value=@Value
+               @oninput=OnValueChanged
+               @attributes=@Attributes>
+    </div>
+</div>
+
+@code {
+    #region Public Parameters
+    [Parameter]
+    public bool? HasError { get; set; }
+
+    [Parameter]
+    public string? DatePart { get; set; }
+
+    [Parameter]
+    public string? Value { get; set; }
+
+    [Parameter]
+    public string? Autocomplete { get; set; }
+    #endregion
+
+    #region Public Override Properties
+    /// <summary>
+    /// The calculated id of the element
+    /// This is based on the cascaded Parent Id value
+    /// </summary>
+    public new string? Id
+    {
+        get
+        {
+            return Parent?.Id;
+        }
+    }
+    #endregion
+
+    #region Event Handlers
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+
+    protected Task OnValueChanged(ChangeEventArgs e)
+    {
+        Value = e.Value?.ToString();
+
+        return ValueChanged.InvokeAsync(Value);
+    }
+    #endregion
+
+    #region Private Properties
+    private string classes
+    {
+        get
+        {
+            var classBuilder = "govuk-input govuk-date-input__input";
+            if (datePartClass != null)
+                classBuilder += $" {datePartClass}";
+            if (Classes != null)
+                classBuilder += $" {Classes}";
+            if (HasError.HasValue && HasError.Value)
+                classBuilder += " govuk-input--error";
+            return classBuilder;
+        }
+    }
+
+    private string datePartClass
+    {
+        get
+        {
+            switch (DatePart)
+            {
+                case DateParts.Day:
+                case DateParts.Month:
+                    return "govuk-input--width-2";
+                case DateParts.Year:
+                    return "govuk-input--width-4";
+                default:
+                    return "";
+            }
+        }
+    }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsDateInputField must exist within a GdsDateInput");
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsDateInput Parent { get; set; }
+    #endregion
+}

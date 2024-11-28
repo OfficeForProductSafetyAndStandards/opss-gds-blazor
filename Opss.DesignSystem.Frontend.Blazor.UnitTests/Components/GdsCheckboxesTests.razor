@@ -261,23 +261,23 @@
     {
         // Arrange
         var component = Render(
-    @<GdsCheckboxes Id="countries" Name="countries" HasError=@true>
+    @<GdsCheckboxes Id="countries" Name="countries" Values=@(new List<string> { "france", "none" })>
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
                 Will you be travelling to any of these countries?
             </GdsLegend>
         </LegendTemplate>
-        <ErrorTemplate>
+        <ErrorMessageTemplate>
             <GdsErrorMessage>
                 Select countries you will be travelling to, or select ‘No, I will not be travelling to any of these countries’
             </GdsErrorMessage>
-        </ErrorTemplate>
+        </ErrorMessageTemplate>
         <ChildContent>
-            <GdsCheckbox Checked=@true Value="france">France</GdsCheckbox>
+            <GdsCheckbox Value="france">France</GdsCheckbox>
             <GdsCheckbox Value="portugal">Portugal</GdsCheckbox>
             <GdsCheckbox Value="spain">Spain</GdsCheckbox>
             <GdsCheckboxDivider>or</GdsCheckboxDivider>
-            <GdsCheckbox Checked=@true Value="none" IsExclusive=@true>No, I will not be travelling to any of these countries</GdsCheckbox>
+            <GdsCheckbox Value="none" IsExclusive=@true>No, I will not be travelling to any of these countries</GdsCheckbox>
         </ChildContent>
     </GdsCheckboxes>
     );
@@ -500,7 +500,7 @@
     {
         // Arrange
         var component = Render(
-    @<GdsCheckboxes Id="nationality" Name="nationality" HasError=@true>
+    @<GdsCheckboxes Id="nationality" Name="nationality">
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
                 What is your nationality?
@@ -511,9 +511,9 @@
                 If you have dual nationality, select all options that are relevant to you
             </GdsHint>
         </HintTemplate>
-        <ErrorTemplate>
+        <ErrorMessageTemplate>
             <GdsErrorMessage>Select if you are British, Irish or a citizen of a different country</GdsErrorMessage>
-        </ErrorTemplate>
+        </ErrorMessageTemplate>
         <ChildContent>
             <GdsCheckbox Value="british" Text="British">
                 <HintTemplate>

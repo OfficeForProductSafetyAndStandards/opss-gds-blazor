@@ -1,37 +1,116 @@
 ﻿@inherits GdsWithContent
 
 <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input @Classes" id="@Id" name="@Parent.Name" type="checkbox" value="@Value"
-           aria-describedby="@DescribedBy?.Trim()"
-           data-behaviour="@(IsExclusive ? "exclusive" : null)"
-           checked=@Checked
+    <input id=@Id
+           class="govuk-checkboxes__input @Classes"
+           name=@Parent?.Name
+           type="checkbox" 
+           value=@Value
+           aria-describedby=@describedBy
+           data-behaviour=@(IsExclusive ? "exclusive" : null)
+           checked=@isChecked
            data-aria-controls=@conditionalId
-           @attributes="@Attributes" />
-    <label class="govuk-label govuk-checkboxes__label" for="@Id">
+           @oninput=CheckboxChanged
+           @attributes=@Attributes 
+    />
+    <label class="govuk-label govuk-checkboxes__label" 
+           for=@Id
+    >
         @if(Text != null)
-        {
             @Text
-        } 
         else
-        {
             @ChildContent
-        }
     </label>
     @if (HintTemplate != null)
     {
-        ﻿<CascadingValue Value="@hintId">
+        ﻿<CascadingValue Value=@hintId>
             @HintTemplate
         </CascadingValue>
     }
 </div>
 @if (ConditionalTemplate != null)
 {
-    <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="@conditionalId">
+    <div id=@conditionalId
+         class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden"
+    >
         @ConditionalTemplate
     </div>
 }
 
 @code {
+    #region Public Parameters
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment? ConditionalTemplate { get; set; }
+
+    [Parameter]
+    public bool IsExclusive { get; set; } = false;
+
+    [Parameter]
+    public string? Value { get; set; }
+
+    [Parameter]
+    public string? Text { get; set; }
+
+    /// <summary>
+    /// One or more element IDs to add to the aria-describedby attribute, used to provide
+    /// additional descriptive information for screenreader users.
+    /// </summary>
+    [Parameter]
+    public string? DescribedBy { get; set; }
+    #endregion
+
+    #region Public Properties
+    /// <summary>
+    /// Set by the parent to identify this element's index
+    /// </summary>
+    public int Index { get; set; }
+    #endregion
+
+    #region Public Override Properties
+    /// <summary>
+    /// The calculated id of the element
+    /// This is based on the cascaded Parent Id value
+    /// </summary>
+    public new string? Id
+    {
+        get
+        {
+            var id = Parent?.Id;
+            if(Index == 1)
+            {
+                return id;
+            } else
+            {
+                return id + "-" + Index;
+            }
+        }
+    }
+    #endregion
+
+    #region Event Handlers
+    private Task CheckboxChanged(ChangeEventArgs e)
+    {
+        // get the checkbox state
+        var value = bool.Parse(e.Value.ToString());
+
+        return Parent.CheckboxChanged(value, Value);
+    }
+    #endregion
+
+    #region Private Properties
+    private string? describedBy
+    {
+        get
+        {
+            var fullText = DescribedBy ?? "";
+            if (HintTemplate != null) fullText += $" {Id}-item-hint";
+            return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
+        }
+    }
+
     private string? conditionalId
     {
         get
@@ -42,24 +121,27 @@
         }
     }
 
-    [Parameter]
-    public bool IsExclusive { get; set; } = false;
+    private string hintId
+    {
+        get
+        {
+            return Id + "-item";
+        }
+    }
 
-    [Parameter]
-    public bool Checked { get; set; } = false;
+    private bool isChecked
+    {
+        get
+        {
+            if (Parent == null || Parent.Values == null || Value == null) 
+                return false;
 
-    [Parameter]
-    public string? Value { get; set; }
+            return Parent.Values.Contains(Value);
+        }
+    }
+    #endregion
 
-    [Parameter]
-    public string? Text { get; set; }
-
-    [Parameter]
-    public RenderFragment? HintTemplate { get; set; }
-
-    [Parameter]
-    public RenderFragment? ConditionalTemplate { get; set; }
-
+    #region Cascading Value - Parent
     protected override void OnInitialized()
     {
         if (Parent == null)
@@ -70,48 +152,7 @@
         base.OnInitialized();
     }
 
-    private string hintId {
-        get
-        {
-            return Id + "-item";
-        } }
-
-    private string? _describedBy;
-
-    /// <summary>
-    /// One or more element IDs to add to the aria-describedby attribute, used to provide
-    /// additional descriptive information for screenreader users.
-    /// </summary>
-    [Parameter]
-    public string? DescribedBy
-    {
-        get
-        {
-            var fullText = _describedBy ?? "";
-            if (HintTemplate != null) fullText += $" {Id}-item-hint";
-            //if (ErrorMessageTemplate != null) fullText += $" {Id}-error";
-            return string.IsNullOrWhiteSpace(fullText) ? null : fullText;
-        }
-        set => _describedBy = value;
-    }
-
-    public int Index = 0;
-
-    public new string Id
-    {
-        get
-        {
-            var id = Parent.Id;
-            if(Index == 1)
-            {
-                return id;
-            } else
-            {
-                return id + "-" + Index;
-            }
-        }
-    }
-
     [CascadingParameter]
     private GdsCheckboxes? Parent { get; set; }
+    #endregion
 }

@@ -5,7 +5,10 @@
     In the error message explain what went wrong and how to fix it.
 </summary> *@
 
-<p id="@Id" class="govuk-error-message @Classes" @attributes="@Attributes">
+<p id=@Id 
+   class="govuk-error-message @Classes" 
+   @attributes=@Attributes
+>
     <span class="govuk-visually-hidden">
         @(string.IsNullOrEmpty(VisuallyHiddenText) ? "Error" : VisuallyHiddenText):
     </span>
@@ -13,27 +16,29 @@
 </p>
 
 @code {
+    #region Public Parameters
     /// <summary>
     /// A visually hidden prefix used before the error message.
     /// </summary>
     [Parameter]
     public string? VisuallyHiddenText { get; set; }
+    #endregion
 
-    [CascadingParameter]
-    public string? ParentId { get; set; }
-
+    #region Public Override Properties
     /// <summary>
     /// The calculated id of the element
     /// This is based on the cascaded Parent Id value
     /// </summary>
-    public new string Id
+    public new string? Id
     {
         get
         {
             return ParentId + "-error";
         }
     }
+    #endregion
 
+    #region Cascading Value - ParentId
     protected override void OnInitialized()
     {
         if (ParentId == null)
@@ -41,4 +46,8 @@
 
         base.OnInitialized();
     }
+
+    [CascadingParameter]
+    public string? ParentId { get; set; }
+    #endregion
 }

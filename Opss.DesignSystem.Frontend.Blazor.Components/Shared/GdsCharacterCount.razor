@@ -5,38 +5,40 @@
     limiting the number of characters users can enter.
 </summary> *@
 
-<div class=@generatedClasses
+<div class=@classes
      data-module="govuk-character-count"
-     data-maxlength="@MaxLength"
-     data-threshold="@Threshold"
-     data-maxwords="@MaxWords">
+     data-maxlength=@MaxLength
+     data-threshold=@Threshold
+     data-maxwords=@MaxWords>
     @if (LabelTemplate != null)
     {
-        ﻿<CascadingValue Value="@Id">
+        ﻿<CascadingValue Value=@Id>
             @LabelTemplate
         </CascadingValue>
     }
     @if (HintTemplate != null)
     {
-        ﻿<CascadingValue Value="@Id">
+        ﻿<CascadingValue Value=@Id>
             @HintTemplate
         </CascadingValue>
     }
     @if (ErrorMessageTemplate != null)
     {
-        ﻿<CascadingValue Value="@Id">
+        ﻿<CascadingValue Value=@Id>
             @ErrorMessageTemplate
         </CascadingValue>
     }
 
     <textarea id=@Id
-              class=@generatedTextAreaClasses
-              name="@Name"
-              rows="@(Rows ?? 5)"
-              spellcheck="@Spellcheck?.ToString().ToLower()"
-              aria-describedby="@DescribedBy"
-              autocomplete="@Autocomplete"
-              @attributes="@Attributes">
+              class=@textAreaClasses
+              name=@Name
+              rows=@(Rows ?? 5)
+              spellcheck=@Spellcheck?.ToString().ToLower()
+              aria-describedby=@describedBy
+              autocomplete=@Autocomplete
+              @oninput="OnValueChanged"
+              @attributes=@Attributes
+    >
         @Value
     </textarea>
     <GdsHint OverrideId=@(Id + "-info")
@@ -45,77 +47,66 @@
     </GdsHint>
 </div>
 @code {
-        /// <summary>
-        /// The maximum number of characters.
-        /// If <c>MaxWords</c> is provided, the <c>MaxLength</c> option will be ignored.
-        /// </summary>
-        [Parameter]
-        public int? MaxLength { get; set; }
+    #region Public Parameters
+    [Parameter]
+    public RenderFragment? LabelTemplate { get; set; }
 
-        /// <summary>
-        /// The maximum number of words.
-        /// If <c>MaxWords</c> is provided, the <c>MaxLength</c> option will be ignored.
-        /// </summary>
-        [Parameter]
-        public int? MaxWords { get; set; }
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
 
-        /// <summary>
-        /// The percentage value of the limit at which point the count message is displayed.
-        /// If this attribute is set, the count message will be hidden by default.
-        /// </summary>
-        [Parameter]
-        public int? Threshold { get; set; }
+    [Parameter]
+    public RenderFragment? ErrorMessageTemplate { get; set; }
 
-        /// <summary>
-        /// Classes to add to the count message.
-        /// </summary>
-        [Parameter]
-        public string? CountMessageClasses { get; set; }
-        /// <summary>
-        /// The name of the input, which is submitted with the form data.
-        /// </summary>
-        [Parameter]
-        public string? Name { get; set; }
+    /// <summary>
+    /// The maximum number of characters.
+    /// If <c>MaxWords</c> is provided, the <c>MaxLength</c> option will be ignored.
+    /// </summary>
+    [Parameter]
+    public int? MaxLength { get; set; }
 
-        /// <summary>
-        /// Optional number of textarea rows.
-        /// </summary>
-        [Parameter]
-        public int? Rows { get; set; }
+    /// <summary>
+    /// The maximum number of words.
+    /// If <c>MaxWords</c> is provided, the <c>MaxLength</c> option will be ignored.
+    /// </summary>
+    [Parameter]
+    public int? MaxWords { get; set; }
 
-        /// <summary>
-        /// Optional initial value of the input.
-        /// </summary>
-        [Parameter]
-        public string? Value { get; set; }
+    /// <summary>
+    /// The percentage value of the limit at which point the count message is displayed.
+    /// If this attribute is set, the count message will be hidden by default.
+    /// </summary>
+    [Parameter]
+    public int? Threshold { get; set; }
 
-    private string? _describedBy;
-    private string? _inputmode;
+    /// <summary>
+    /// Classes to add to the count message.
+    /// </summary>
+    [Parameter]
+    public string? CountMessageClasses { get; set; }
+    /// <summary>
+    /// The name of the input, which is submitted with the form data.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// Optional number of textarea rows.
+    /// </summary>
+    [Parameter]
+    public int? Rows { get; set; }
+
+    /// <summary>
+    /// Optional initial value of the input.
+    /// </summary>
+    [Parameter]
+    public string? Value { get; set; }
 
     /// <summary>
     /// One or more element IDs to add to the aria-describedby attribute, used to provide
     /// additional descriptive information for screenreader users.
     /// </summary>
     [Parameter]
-    public string? DescribedBy
-    {
-        get
-        {
-            var fullText = _describedBy ?? "";
-            fullText += $" {Id}-info";
-            if (HintTemplate != null) fullText += $" {Id}-hint";
-            if (ErrorMessageTemplate != null) fullText += $" {Id}-error";
-            return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
-        }
-        set => _describedBy = value;
-    }
-
-    [Parameter]
-    public RenderFragment? LabelTemplate { get; set; }
-    [Parameter]
-    public RenderFragment? HintTemplate { get; set; }
-    [Parameter]
-    public RenderFragment? ErrorMessageTemplate { get; set; }
+    public string? DescribedBy { get; set; }
 
     /// <summary>
     /// Classes to add to the form group (for example to show error state for the whole group).
@@ -134,49 +125,65 @@
     /// </summary>
     [Parameter]
     public bool? Spellcheck { get; set; }
+    #endregion
 
-    public string? FallbackHintText { get; set; }
+    #region Event Handlers
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
 
+    protected Task OnValueChanged(ChangeEventArgs e)
+    {
+        Value = e.Value.ToString();
+
+        return ValueChanged.InvokeAsync(Value);
+    }
+    #endregion
+
+    #region Private Properties
     private string remainingCharacterHintText
     {
         get
         {
-            return (FallbackHintText ?? ("You can enter up to %{count} " + (MaxWords.HasValue ? "words" : "characters"))).Replace("%{count}", $"{MaxWords ?? MaxLength ?? 0}");
+            return $"You can enter up to {MaxWords ?? MaxLength ?? 0} " + (MaxWords.HasValue ? "words" : "characters");
         }
     }
 
-    private string generatedClasses
+    private string? describedBy
     {
         get
         {
-            var classes = "govuk-form-group govuk-character-count";
+            var fullText = DescribedBy ?? "";
+            fullText += $" {Id}-info";
+            if (HintTemplate != null) fullText += $" {Id}-hint";
+            if (ErrorMessageTemplate != null) fullText += $" {Id}-error";
+            return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
+        }
+    }
+
+    private string classes
+    {
+        get
+        {
+            var classBuilder = "govuk-form-group govuk-character-count";
             if (ErrorMessageTemplate != null)
-            {
-                classes += " govuk-form-group--error";
-            }
+                classBuilder += " govuk-form-group--error";
             if (FormGroupClasses != null)
-            {
-                classes += $" {FormGroupClasses}";
-            }
-            return classes;
+                classBuilder += $" {FormGroupClasses}";
+            return classBuilder;
         }
     }
 
-    private string generatedTextAreaClasses
+    private string textAreaClasses
     {
         get
         {
-            var classes = "govuk-textarea govuk-js-character-count";
+            var classBuilder = "govuk-textarea govuk-js-character-count";
             if (Classes != null)
-            {
-                classes += $" {Classes}";
-            }
+                classBuilder += $" {Classes}";
             if (ErrorMessageTemplate != null)
-            {
-                classes += " govuk-textarea--error";
-
-            }
-            return classes;
+                classBuilder += " govuk-textarea--error";
+            return classBuilder;
         }
     }
+    #endregion
 }
