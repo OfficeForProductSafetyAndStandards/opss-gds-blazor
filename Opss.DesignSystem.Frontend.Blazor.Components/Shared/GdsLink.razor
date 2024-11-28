@@ -1,10 +1,10 @@
 ﻿@inherits GdsWithHref
 
-<a id=@Id 
+<a id=@Id
    class="govuk-link @(IsOnDarkBackground ? "govuk-link--inverse" : "") @Classes"
-   href=@Href 
-   target=@(OpenInNewTab ? "_blank" : null) 
-   rel=@(OpenInNewTab ? "noreferrer noopener" : null) 
+   href=@Href
+   target=@(OpenInNewTab ? "_blank" : null)
+   rel=@(OpenInNewTab ? "noreferrer noopener" : null)
    @attributes=@Attributes
 >
     @ChildContent

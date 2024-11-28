@@ -4,7 +4,7 @@
     <input id=@Id
            class="govuk-checkboxes__input @Classes"
            name=@Parent?.Name
-           type="checkbox" 
+           type="checkbox"
            value=@Value
            aria-describedby=@describedBy
            data-behaviour=@(IsExclusive ? "exclusive" : null)
@@ -13,7 +13,7 @@
            @oninput=CheckboxChanged
            @attributes=@Attributes 
     />
-    <label class="govuk-label govuk-checkboxes__label" 
+    <label class="govuk-label govuk-checkboxes__label"
            for=@Id
     >
         @if(Text != null)
@@ -23,7 +23,7 @@
     </label>
     @if (HintTemplate != null)
     {
-        ﻿<CascadingValue Value=@hintId>
+        <CascadingValue Value=@hintId>
             @HintTemplate
         </CascadingValue>
     }

@@ -3,7 +3,7 @@
 <div class="govuk-date-input__item">
     <div class="govuk-form-group">
         <label class="govuk-label govuk-date-input__label" 
-               for="@Id-@DatePart.ToLower()"
+               for="@Id-@DatePart?.ToLower()"
         >
             @if(ChildContent == null)
             {
@@ -14,9 +14,9 @@
                 @ChildContent
             }
         </label>
-        <input id="@Id-@DatePart.ToLower()"
+        <input id="@Id-@DatePart?.ToLower()"
                class=@classes
-               name="@(Parent.Name)-@DatePart.ToLower()"
+               name="@(Parent.Name)-@DatePart?.ToLower()"
                type="text"
                inputmode="numeric"
                autocomplete=@Autocomplete

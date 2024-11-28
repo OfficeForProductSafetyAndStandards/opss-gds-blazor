@@ -86,8 +86,115 @@
     </GdsTextInput>
 </Example>
 
-<!-- Example with Legend for Date Input -->
-<!-- Example with Legend for Checkboxes -->
+<Example CodeExampleContent="@(@"<GdsErrorSummary>
+    <GdsErrorSummaryItem Href=""#passport-issued-year"">
+        The date your passport was issued must include a year
+    </GdsErrorSummaryItem>
+    </GdsErrorSummary><GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            When was your passport issued?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>For example, 27 3 2007</GdsHint>
+    </HintTemplate>
+    <ErrorMessageTemplate>
+        <GdsErrorMessage>
+            The date your passport was issued must include a year
+        </GdsErrorMessage>
+    </ErrorMessageTemplate>
+    <DateInputFields>
+        <GdsDateInputField DatePart=""@DateParts.Day"" Value=""6"" />
+        <GdsDateInputField DatePart=""@DateParts.Month"" Value=""3"" />
+        <GdsDateInputField HasError=@true DatePart=""@DateParts.Year"" />
+    </DateInputFields>
+</GdsDateInput>")">
+    <GdsErrorSummary>
+        <GdsErrorSummaryItem Href="#passport-issued-year">
+            The date your passport was issued must include a year
+        </GdsErrorSummaryItem>
+    </GdsErrorSummary>
+    <GdsDateInput Id="passport-issued" Name="passport-issued">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                When was your passport issued?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>For example, 27 3 2007</GdsHint>
+        </HintTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>
+                The date your passport was issued must include a year
+            </GdsErrorMessage>
+        </ErrorMessageTemplate>
+        <DateInputFields>
+            <GdsDateInputField DatePart="@DateParts.Day" Value="6" />
+            <GdsDateInputField DatePart="@DateParts.Month" Value="3" />
+            <GdsDateInputField HasError=@true DatePart="@DateParts.Year" />
+        </DateInputFields>
+    </GdsDateInput>
+</Example>
+
+<Example CodeExampleContent="@(@"<GdsErrorSummary>
+    <GdsErrorSummaryItem Href=""#nationality"">
+        Select if you are British, Irish or a citizen of a different country
+    </GdsErrorSummaryItem>
+    </GdsErrorSummary><GdsCheckboxes Id=""nationality"" Name=""nationality"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            What is your nationality?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>
+            If you have dual nationality, select all options that are relevant to you
+        </GdsHint>
+    </HintTemplate>
+    <ErrorMessageTemplate>
+        <GdsErrorMessage>Select if you are British, Irish or a citizen of a different country</GdsErrorMessage>
+    </ErrorMessageTemplate>
+    <ChildContent>
+        <GdsCheckbox Value=""british"" Text=""British"">
+            <HintTemplate>
+                <GdsHint Classes=""govuk-checkboxes__hint"">including English, Scottish, Welsh and Northern Irish</GdsHint>
+            </HintTemplate>
+        </GdsCheckbox>
+        <GdsCheckbox Value=""irish"">Irish</GdsCheckbox>
+        <GdsCheckbox Value=""other"">Citizen of another country</GdsCheckbox>
+    </ChildContent>
+</GdsCheckboxes>")">
+    <GdsErrorSummary>
+        <GdsErrorSummaryItem Href="#nationality">
+            Select if you are British, Irish or a citizen of a different country
+        </GdsErrorSummaryItem>
+    </GdsErrorSummary>
+    <GdsCheckboxes Id="nationality" Name="nationality">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                What is your nationality?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>
+                If you have dual nationality, select all options that are relevant to you
+            </GdsHint>
+        </HintTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>Select if you are British, Irish or a citizen of a different country</GdsErrorMessage>
+        </ErrorMessageTemplate>
+        <ChildContent>
+            <GdsCheckbox Value="british" Text="British">
+                <HintTemplate>
+                    <GdsHint Classes="govuk-checkboxes__hint">including English, Scottish, Welsh and Northern Irish</GdsHint>
+                </HintTemplate>
+            </GdsCheckbox>
+            <GdsCheckbox Value="irish">Irish</GdsCheckbox>
+            <GdsCheckbox Value="other">Citizen of another country</GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+</Example>
 
 @code {
 
