@@ -1,8 +1,7 @@
 ﻿namespace Opss.DesignSystem.Frontend.Blazor.Components.Classes;
 
-public enum ButtonType
+public enum ExitPageType
 {
-    Anchor = 0,
-    Button = 1,
-    Input = 2
+    Button = 0,
+    SkipLink = 1
 }

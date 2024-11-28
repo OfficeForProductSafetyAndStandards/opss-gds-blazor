@@ -1,0 +1,47 @@
+﻿@inherits GdsWithHref
+
+@* <summary>
+    Give users a way to quickly and safely exit a service, website or application.
+</summary> *@
+
+@switch (ButtonType)
+{
+    case ExitPageType.Button:
+        <div id=@Id
+             class="govuk-exit-this-page @Classes"
+             data-module="govuk-exit-this-page"
+             @attributes=@Attributes
+        >
+            <a href=@Href
+               role="button"
+               draggable="false"
+               class="govuk-button govuk-button--warning govuk-exit-this-page__button govuk-js-exit-this-page-button"
+               data-module="govuk-button"
+               rel="nofollow noreferrer">
+                <span class="govuk-visually-hidden">Emergency</span> Exit this page
+            </a>
+        </div>
+        break;
+    case ExitPageType.SkipLink:
+        <a id=@Id
+           href=@Href
+           class="govuk-skip-link govuk-js-exit-this-page-skiplink @Classes"
+           rel="nofollow noreferrer"
+           data-module="govuk-skip-link"
+           @attributes=@Attributes
+        >
+            Exit this page
+        </a>
+        break;
+}
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Switches between an Emergency Button and a SkipLink
+    /// Defaults to Button
+    /// </summary>
+    [Parameter]
+    public ExitPageType ButtonType { get; set; } = ExitPageType.Button;
+    #endregion
+}
