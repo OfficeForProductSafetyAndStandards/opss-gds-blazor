@@ -8,19 +8,19 @@
 <div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses">
     @if (LabelTemplate != null)
     {
-        ﻿<CascadingValue Value=@Id>
+        <CascadingValue Value=@Id>
             @LabelTemplate
         </CascadingValue>
     }
     @if (HintTemplate != null)
     {
-        ﻿<CascadingValue Value=@Id>
+        <CascadingValue Value=@Id>
             @HintTemplate
         </CascadingValue>
     }
     @if (ErrorMessageTemplate != null)
     {
-        ﻿<CascadingValue Value=@Id>
+        <CascadingValue Value=@Id>
             @ErrorMessageTemplate
         </CascadingValue>
     }

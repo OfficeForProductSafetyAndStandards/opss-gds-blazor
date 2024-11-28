@@ -10,7 +10,47 @@
     A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/error-message/" class="govuk-link">Error message</a>.
 </p>
 
-<!-- Example with DatePicker -->
+<Example CodeExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            When was your passport issued?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>For example, 27 3 2007</GdsHint>
+    </HintTemplate>
+    <ErrorMessageTemplate>
+        <GdsErrorMessage>
+            The date your passport was issued must be in the past
+        </GdsErrorMessage>
+    </ErrorMessageTemplate>
+    <DateInputFields>
+        <GdsDateInputField HasError=@true DatePart=""@DateParts.Day"" Value=""6"" />
+        <GdsDateInputField HasError=@true DatePart=""@DateParts.Month"" Value=""3"" />
+        <GdsDateInputField HasError=@true DatePart=""@DateParts.Year"" Value=""2076"" />
+    </DateInputFields>
+</GdsDateInput>")">
+    <GdsDateInput Id="passport-issued" Name="passport-issued">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                When was your passport issued?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>For example, 27 3 2007</GdsHint>
+        </HintTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>
+                The date your passport was issued must be in the past
+            </GdsErrorMessage>
+        </ErrorMessageTemplate>
+        <DateInputFields>
+            <GdsDateInputField HasError=@true DatePart="@DateParts.Day" Value="6" />
+            <GdsDateInputField HasError=@true DatePart="@DateParts.Month" Value="3" />
+            <GdsDateInputField HasError=@true DatePart="@DateParts.Year" Value="2076" />
+        </DateInputFields>
+    </GdsDateInput>
+</Example>
 
 <h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
 
@@ -21,7 +61,55 @@
 
 <h3 class="govuk-heading-m" id="legend">Legend</h3>
 
-<!-- Example with Legend for Checkboxes -->
+<Example CodeExampleContent="@(@"<GdsCheckboxes Id=""nationality"" Name=""nationality"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            What is your nationality?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>
+            If you have dual nationality, select all options that are relevant to you
+        </GdsHint>
+    </HintTemplate>
+    <ErrorMessageTemplate>
+        <GdsErrorMessage>Select if you are British, Irish or a citizen of a different country</GdsErrorMessage>
+    </ErrorMessageTemplate>
+    <ChildContent>
+        <GdsCheckbox Value=""british"" Text=""British"">
+            <HintTemplate>
+                <GdsHint Classes=""govuk-checkboxes__hint"">including English, Scottish, Welsh and Northern Irish</GdsHint>
+            </HintTemplate>
+        </GdsCheckbox>
+        <GdsCheckbox Value=""irish"">Irish</GdsCheckbox>
+        <GdsCheckbox Value=""other"">Citizen of another country</GdsCheckbox>
+    </ChildContent>
+</GdsCheckboxes>")">
+    <GdsCheckboxes Id="nationality" Name="nationality">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                What is your nationality?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>
+                If you have dual nationality, select all options that are relevant to you
+            </GdsHint>
+        </HintTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>Select if you are British, Irish or a citizen of a different country</GdsErrorMessage>
+        </ErrorMessageTemplate>
+        <ChildContent>
+            <GdsCheckbox Value="british" Text="British">
+                <HintTemplate>
+                    <GdsHint Classes="govuk-checkboxes__hint">including English, Scottish, Welsh and Northern Irish</GdsHint>
+                </HintTemplate>
+            </GdsCheckbox>
+            <GdsCheckbox Value="irish">Irish</GdsCheckbox>
+            <GdsCheckbox Value="other">Citizen of another country</GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+</Example>
 
 <h3 class="govuk-heading-m" id="label">Label</h3>
 

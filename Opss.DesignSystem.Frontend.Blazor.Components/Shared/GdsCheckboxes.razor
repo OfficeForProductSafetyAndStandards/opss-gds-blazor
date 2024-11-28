@@ -3,10 +3,10 @@
 @* <summary>
     Let users select one or more options by using the checkboxes component.
 </summary> *@
-<div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses" 
+<div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses"
      @attributes=@Attributes
 >
-    <fieldset class="govuk-fieldset" 
+    <fieldset class="govuk-fieldset"
               role=@Role
               aria-describedby=@describedBy>
         @if (LegendTemplate != null)
@@ -25,9 +25,9 @@
                 @ErrorMessageTemplate
             </CascadingValue>
         }
-        <div class="govuk-checkboxes @Classes" 
+        <div class="govuk-checkboxes @Classes"
              data-module="govuk-checkboxes">
-            ﻿<CascadingValue Value=this>
+            <CascadingValue Value=this>
                 @ChildContent
             </CascadingValue>
         </div>
