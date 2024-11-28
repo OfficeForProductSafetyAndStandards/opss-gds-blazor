@@ -24,17 +24,19 @@
     public string? VisuallyHiddenText { get; set; }
     #endregion
 
+    #region Public Override Properties
     /// <summary>
     /// The calculated id of the element
     /// This is based on the cascaded Parent Id value
     /// </summary>
-    public new string Id
+    public new string? Id
     {
         get
         {
             return ParentId + "-error";
         }
     }
+    #endregion
 
     #region Cascading Value - ParentId
     protected override void OnInitialized()

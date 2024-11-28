@@ -69,6 +69,27 @@
     public int Index { get; set; }
     #endregion
 
+    #region Public Override Properties
+    /// <summary>
+    /// The calculated id of the element
+    /// This is based on the cascaded Parent Id value
+    /// </summary>
+    public new string? Id
+    {
+        get
+        {
+            var id = Parent?.Id;
+            if(Index == 1)
+            {
+                return id;
+            } else
+            {
+                return id + "-" + Index;
+            }
+        }
+    }
+    #endregion
+
     #region Event Handlers
     private Task CheckboxChanged(ChangeEventArgs e)
     {
@@ -119,25 +140,6 @@
         }
     }
     #endregion
-
-    /// <summary>
-    /// The calculated id of the element
-    /// This is based on the cascaded Parent Id value
-    /// </summary>
-    public new string? Id
-    {
-        get
-        {
-            var id = Parent?.Id;
-            if(Index == 1)
-            {
-                return id;
-            } else
-            {
-                return id + "-" + Index;
-            }
-        }
-    }
 
     #region Cascading Value - Parent
     protected override void OnInitialized()

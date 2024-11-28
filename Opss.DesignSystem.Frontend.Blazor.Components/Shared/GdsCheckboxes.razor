@@ -3,7 +3,7 @@
 @* <summary>
     Let users select one or more options by using the checkboxes component.
 </summary> *@
-<div class="govuk-form-group @(ErrorTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses" 
+<div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses" 
      @attributes=@Attributes
 >
     <fieldset class="govuk-fieldset" 
@@ -19,10 +19,10 @@
                 @HintTemplate
             </CascadingValue>
         }
-        @if (ErrorTemplate != null)
+        @if (ErrorMessageTemplate != null)
         {
             <CascadingValue Value=@Id>
-                @ErrorTemplate
+                @ErrorMessageTemplate
             </CascadingValue>
         }
         <div class="govuk-checkboxes @Classes" 
@@ -40,7 +40,7 @@
     public RenderFragment? HintTemplate { get; set; }
 
     [Parameter]
-    public RenderFragment? ErrorTemplate { get; set; }
+    public RenderFragment? ErrorMessageTemplate { get; set; }
 
     [Parameter]
     public RenderFragment? LegendTemplate { get; set; }
@@ -106,7 +106,7 @@
 
             if (HintTemplate != null)
                 describedBy.Add(Id + "-hint");
-            if (ErrorTemplate != null)
+            if (ErrorMessageTemplate != null)
                 describedBy.Add(Id + "-error");
 
             if (describedBy.Any())
