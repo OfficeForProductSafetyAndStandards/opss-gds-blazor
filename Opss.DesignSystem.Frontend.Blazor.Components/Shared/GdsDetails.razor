@@ -1,0 +1,36 @@
+﻿@inherits GdsWithContent
+
+@* <summary>
+Make a page easier to scan by letting users reveal more detailed information only if they need it.
+</summary> *@
+
+<details id=@Id 
+         class="govuk-details @Classes"
+         open=@Open
+         @attributes=@Attributes
+>
+    <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+            @Summary
+        </span>
+    </summary>
+    <div class="govuk-details__text">
+        @ChildContent
+    </div>
+</details>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// If true, details element will be expanded.
+    /// </summary>
+    [Parameter]
+    public bool Open { get; set; }
+
+    /// <summary>
+    /// Content to use within the summary element (the visible part of the details element).
+    /// </summary>
+    [Parameter]
+    public string? Summary { get; set; }
+    #endregion
+}

@@ -1,0 +1,55 @@
+﻿@page "/Components/Details"
+@layout _ComponentsLayout
+
+<PageTitle>Details</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Details</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/details/" class="govuk-link">Details</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsDetails Summary=""Help with nationality"">
+    We need to know your nationality so we can work out which elections 
+    you’re entitled to vote in. If you cannot provide your nationality,
+    you’ll have to send copies of identity documents through the post.
+</GdsDetails>")">
+    <GdsDetails Summary="Help with nationality">
+        We need to know your nationality so we can work out which elections 
+        you’re entitled to vote in. If you cannot provide your nationality,
+        you’ll have to send copies of identity documents through the post.
+    </GdsDetails>
+</Example>
+
+<h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
+
+<Example CodeExampleContent="@(@"<GdsDetails Summary=""Help with nationality"">
+    We need to know your nationality so we can work out which elections
+    you’re entitled to vote in. If you cannot provide your nationality,
+    you’ll have to send copies of identity documents through the post.
+</GdsDetails>")">
+    <GdsDetails Summary="Help with nationality">
+        We need to know your nationality so we can work out which elections
+        you’re entitled to vote in. If you cannot provide your nationality,
+        you’ll have to send copies of identity documents through the post.
+    </GdsDetails>
+</Example>
+
+<h3 class="govuk-heading-m" id="initialise-open">Initialise open</h3>
+
+<Example CodeExampleContent="@(@"<GdsDetails Summary=""Help with nationality"" Open=@true>
+    We need to know your nationality so we can work out which elections
+    you’re entitled to vote in. If you cannot provide your nationality,
+    you’ll have to send copies of identity documents through the post.
+</GdsDetails>")">
+    <GdsDetails Summary="Help with nationality" Open=@true>
+        We need to know your nationality so we can work out which elections
+        you’re entitled to vote in. If you cannot provide your nationality,
+        you’ll have to send copies of identity documents through the post.
+    </GdsDetails>
+</Example>
+
+@code {
+
+}
