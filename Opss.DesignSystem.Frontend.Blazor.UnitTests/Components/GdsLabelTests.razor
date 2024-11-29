@@ -11,7 +11,6 @@
 
         var component = Render(@<GdsLabel Id=@id For=@forValue>@message</GdsLabel>);
 
-        // Assert that content of the paragraph shows counter at zero
         component.MarkupMatches(
     @<label id=@id class="govuk-label" for=@forValue>
         @message
@@ -29,7 +28,6 @@
 
         var component = Render(@<CascadingValue Value=@forValue><GdsLabel Id=@id>@message</GdsLabel></CascadingValue>);
 
-        // Assert that content of the paragraph shows counter at zero
         component.MarkupMatches(
     @<label id=@id class="govuk-label" for=@forValue>
         @message
@@ -48,7 +46,6 @@
 
         var component = Render(@<GdsLabel Id=@id Classes=@customClass For=@forValue>@message</GdsLabel>);
 
-        // Assert that content of the paragraph shows counter at zero
         component.MarkupMatches(
     @<label id=@id class="govuk-label @customClass" for=@forValue>
         @message
@@ -69,7 +66,6 @@
         };
         var component = Render(@<GdsLabel Id=@id Attributes=@customAttributes For=@forValue>@message</GdsLabel>);
 
-        // Assert that content of the paragraph shows counter at zero
         component.MarkupMatches(
     @<label id=@id class="govuk-label" aria-label="Hello" for=@forValue>
         @message
@@ -86,7 +82,6 @@
 
         var component = Render(@<GdsLabel Id=@id For=@forValue IsPageHeading=@true>@message</GdsLabel>);
 
-        // Assert that content of the paragraph shows counter at zero
         component.MarkupMatches(
     @<h1 class="govuk-label-wrapper">
         <label id=@id class="govuk-label" for=@forValue>
@@ -107,7 +102,6 @@
 
         var component = Render(@<GdsLabel Id=@id Classes=@customClass IsPageHeading=@true For=@forValue>@message</GdsLabel>);
 
-        // Assert that content of the paragraph shows counter at zero
         component.MarkupMatches(
     @<h1 class="govuk-label-wrapper">
         <label id=@id class="govuk-label @customClass" for=@forValue>
@@ -130,7 +124,6 @@
         };
         var component = Render(@<GdsLabel Id=@id Attributes=@customAttributes IsPageHeading=@true For=@forValue>@message</GdsLabel>);
 
-        // Assert that content of the paragraph shows counter at zero
         component.MarkupMatches(
     @<h1 class="govuk-label-wrapper">
         <label id=@id class="govuk-label" aria-label="Hello" for=@forValue>

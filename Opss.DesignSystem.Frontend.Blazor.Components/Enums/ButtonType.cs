@@ -1,4 +1,4 @@
-﻿namespace Opss.DesignSystem.Frontend.Blazor.Components.Classes;
+﻿namespace Opss.DesignSystem.Frontend.Blazor.Components.Enums;
 
 public enum ButtonType
 {

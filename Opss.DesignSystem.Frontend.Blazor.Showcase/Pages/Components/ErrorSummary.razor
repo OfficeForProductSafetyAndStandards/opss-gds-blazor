@@ -105,9 +105,9 @@
         </GdsErrorMessage>
     </ErrorMessageTemplate>
     <DateInputFields>
-        <GdsDateInputField DatePart=""@DateParts.Day"" Value=""6"" />
-        <GdsDateInputField DatePart=""@DateParts.Month"" Value=""3"" />
-        <GdsDateInputField HasError=@true DatePart=""@DateParts.Year"" />
+        <GdsDateInputField DatePart=""@DateInputFieldType.Day"" Value=""6"" />
+        <GdsDateInputField DatePart=""@DateInputFieldType.Month"" Value=""3"" />
+        <GdsDateInputField HasError=@true DatePart=""@DateInputFieldType.Year"" />
     </DateInputFields>
 </GdsDateInput>")">
     <GdsErrorSummary>
@@ -130,9 +130,9 @@
             </GdsErrorMessage>
         </ErrorMessageTemplate>
         <DateInputFields>
-            <GdsDateInputField DatePart="@DateParts.Day" Value="6" />
-            <GdsDateInputField DatePart="@DateParts.Month" Value="3" />
-            <GdsDateInputField HasError=@true DatePart="@DateParts.Year" />
+            <GdsDateInputField DatePart="@DateInputFieldType.Day" Value="6" />
+            <GdsDateInputField DatePart="@DateInputFieldType.Month" Value="3" />
+            <GdsDateInputField HasError=@true DatePart="@DateInputFieldType.Year" />
         </DateInputFields>
     </GdsDateInput>
 </Example>

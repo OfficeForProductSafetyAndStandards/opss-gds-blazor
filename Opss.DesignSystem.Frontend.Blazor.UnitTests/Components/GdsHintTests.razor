@@ -9,7 +9,6 @@
         var message = "Hello World";
         var component = Render(@<CascadingValue Value=@id><GdsHint>@message</GdsHint></CascadingValue>);
 
-        // Assert that content of the paragraph shows counter at zero
         component.MarkupMatches(
     @<div id="@id-hint" class="govuk-hint">
         @message
@@ -26,7 +25,6 @@
         var customClass = "custom-hint";
         var component = Render(@<CascadingValue Value=@id><GdsHint Classes=@customClass>@message</GdsHint></CascadingValue>);
 
-        // Assert that content of the paragraph shows counter at zero
         component.MarkupMatches(
     @<div id="@id-hint" class="govuk-hint @customClass">
         @message
@@ -46,7 +44,6 @@
         };
         var component = Render(@<CascadingValue Value=@id><GdsHint Attributes=@customAttributes>@message</GdsHint></CascadingValue>);
 
-        // Assert that content of the paragraph shows counter at zero
         component.MarkupMatches(
     @<div id="@id-hint" class="govuk-hint" aria-label="Hello">
         @message
