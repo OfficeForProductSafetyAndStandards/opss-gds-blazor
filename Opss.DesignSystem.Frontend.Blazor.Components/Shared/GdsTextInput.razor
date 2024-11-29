@@ -73,12 +73,21 @@
 
 @code {
     #region Public Parameters
+    /// <summary>
+    /// The label used by the text input component.
+    /// </summary>
     [Parameter]
     public RenderFragment? LabelTemplate { get; set; }
 
+    /// <summary>
+    /// Can be used to add a hint to the text input component.
+    /// </summary>
     [Parameter]
     public RenderFragment? HintTemplate { get; set; }
 
+    /// <summary>
+    /// Can be used to add an error message to the text input component.
+    /// </summary>
     [Parameter]
     public RenderFragment? ErrorMessageTemplate { get; set; }
 

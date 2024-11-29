@@ -39,18 +39,34 @@
 
 @code {
     #region Public Parameters
+    /// <summary>
+    /// Can be used to add a hint to the checkboxes component.
+    /// </summary>
     [Parameter]
     public RenderFragment? HintTemplate { get; set; }
 
+    /// <summary>
+    /// 	Provide additional content to reveal when the checkbox is checked.
+    /// </summary>
     [Parameter]
     public RenderFragment? ConditionalTemplate { get; set; }
 
+    /// <summary>
+    /// If set, implements a ‘None of these’ type behaviour via 
+    /// JavaScript when checkboxes are clicked.
+    /// </summary>
     [Parameter]
     public bool IsExclusive { get; set; } = false;
 
+    /// <summary>
+    /// Value for the checkbox input.
+    /// </summary>
     [Parameter]
     public string? Value { get; set; }
 
+    /// <summary>
+    /// Text to use within each checkbox item label.
+    /// </summary>
     [Parameter]
     public string? Text { get; set; }
 

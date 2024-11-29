@@ -48,12 +48,21 @@
 </div>
 @code {
     #region Public Parameters
+    /// <summary>
+    /// The label used by the character count component.
+    /// </summary>
     [Parameter]
     public RenderFragment? LabelTemplate { get; set; }
 
+    /// <summary>
+    /// Can be used to add a hint to the character count component.
+    /// </summary>
     [Parameter]
     public RenderFragment? HintTemplate { get; set; }
 
+    /// <summary>
+    /// Can be used to add an error message to the character count component.
+    /// </summary>
     [Parameter]
     public RenderFragment? ErrorMessageTemplate { get; set; }
 

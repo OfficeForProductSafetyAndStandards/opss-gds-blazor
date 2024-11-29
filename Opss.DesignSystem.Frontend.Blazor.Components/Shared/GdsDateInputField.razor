@@ -28,15 +28,27 @@
 
 @code {
     #region Public Parameters
+    /// <summary>
+    /// If set, the error classes will be set
+    /// </summary>
     [Parameter]
     public bool? HasError { get; set; }
 
+    /// <summary>
+    /// The <see cref="DateParts">Date Part</see> of the date.
+    /// </summary>
     [Parameter]
     public string? DatePart { get; set; }
 
+    /// <summary>
+    /// Value of the input.
+    /// </summary>
     [Parameter]
     public string? Value { get; set; }
 
+    /// <summary>
+    /// Attribute to identify input purpose, for instance "bday-day".
+    /// </summary>
     [Parameter]
     public string? Autocomplete { get; set; }
     #endregion
