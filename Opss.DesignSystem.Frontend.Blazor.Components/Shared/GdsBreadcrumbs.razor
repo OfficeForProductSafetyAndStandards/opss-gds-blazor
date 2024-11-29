@@ -6,7 +6,7 @@
 
 <nav id=@Id
      class=@classes
-     aria-label="Breadcrumb"
+     aria-label=@LabelText
      @attributes=@Attributes>
     <ol class="govuk-breadcrumbs__list">
         
@@ -29,6 +29,12 @@
     /// </summary>
     [Parameter]
     public bool IsOnDarkBackground { get; set; }
+
+    /// <summary>
+    /// Plain text label identifying the landmark to screen readers. Defaults to “Breadcrumb”.
+    /// </summary>
+    [Parameter]
+    public string LabelText { get; set; } = "Breadcrumb";
     #endregion
 
     #region Private Properties
