@@ -7,9 +7,9 @@
         // Arrange
         var component = Render(
     @<GdsNotificationBanner>
-        <p class="govuk-notification-banner__heading">
+        <p class=@NotificationBannerClasses.Heading>
             You have 7 days left to send your application.
-            <a class="govuk-notification-banner__link" href="#">View application</a>.
+            <a class=@NotificationBannerClasses.Link href="#">View application</a>.
         </p>
     </GdsNotificationBanner>);
 
@@ -59,6 +59,15 @@
     {
         // Arrange
         var component = Render(
+    @<GdsNotificationBanner Type=NotificationBannerType.Success>
+        <GdsHeading HeadingLevel="3" Classes=@NotificationBannerClasses.Heading>
+            Training outcome recorded and trainee withdrawn
+        </GdsHeading>
+        <p class="govuk-body">Contact <a class=@NotificationBannerClasses.Link href="#">example@department.gov.uk</a> if you think there’s a problem.</p>
+    </GdsNotificationBanner>
+    );
+
+        component.MarkupMatches(
     @<div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
   <div class="govuk-notification-banner__header">
     <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">

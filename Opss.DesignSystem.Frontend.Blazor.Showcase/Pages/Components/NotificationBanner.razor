@@ -11,15 +11,15 @@
 </p>
 
 <Example CodeExampleContent="@(@"<GdsNotificationBanner>
-    <p class=""govuk-notification-banner__heading"">
+    <p class=@NotificationBannerClasses.Heading>
         You have 7 days left to send your application.
-        <a class=""govuk-notification-banner__link"" href=""#"">View application</a>.
+        <a class=@NotificationBannerClasses.Link href=""#"">View application</a>.
     </p>
 </GdsNotificationBanner>")">
     <GdsNotificationBanner>
-        <p class="govuk-notification-banner__heading">
+        <p class=@NotificationBannerClasses.Heading>
             You have 7 days left to send your application.
-            <a class="govuk-notification-banner__link" href="#">View application</a>.
+            <a class=@NotificationBannerClasses.Link href="#">View application</a>.
         </p>
     </GdsNotificationBanner>
 </Example>
@@ -33,15 +33,15 @@
 <h2 class="govuk-heading-l" id="telling-the-user-about-something-thats-happening-elsewhere">Telling the user about something that’s happening elsewhere</h2>
 
 <Example CodeExampleContent="@(@"<GdsNotificationBanner>
-    <p class=""govuk-notification-banner__heading"">
+    <p class=@NotificationBannerClasses.Heading>
         You have 7 days left to send your application.
-        <a class=""govuk-notification-banner__link"" href=""#"">View application</a>.
+        <a class=@NotificationBannerClasses.Link href=""#"">View application</a>.
     </p>
 </GdsNotificationBanner>")">
     <GdsNotificationBanner>
-        <p class="govuk-notification-banner__heading">
+        <p class=@NotificationBannerClasses.Heading>
             You have 7 days left to send your application.
-            <a class="govuk-notification-banner__link" href="#">View application</a>.
+            <a class=@NotificationBannerClasses.Link href="#">View application</a>.
         </p>
     </GdsNotificationBanner>
 </Example>
@@ -49,16 +49,16 @@
 <h2 class="govuk-heading-l" id="reacting-to-something-the-user-has-done">Reacting to something the user has done</h2>
 
 <Example CodeExampleContent="@(@"<GdsNotificationBanner Type=""NotificationBannerType.Success"">
-        <h3 class=""govuk-notification-banner__heading"">
+        <GdsHeading HeadingLevel=""3"" Classes=@NotificationBannerClasses.Heading>
             Training outcome recorded and trainee withdrawn
-        </h3>
-        <p class=""govuk-body"">Contact <a class=""govuk-notification-banner__link"" href=""#"">example@department.gov.uk</a> if you think there’s a problem.</p>
+        </GdsHeading>
+        <p class=""govuk-body"">Contact <a class=@NotificationBannerClasses.Link href=""#"">example@department.gov.uk</a> if you think there’s a problem.</p>
     </GdsNotificationBanner>")">
     <GdsNotificationBanner Type="NotificationBannerType.Success">
-        <h3 class="govuk-notification-banner__heading">
+        <GdsHeading HeadingLevel="3" Classes=@NotificationBannerClasses.Heading>
             Training outcome recorded and trainee withdrawn
-        </h3>
-        <p class="govuk-body">Contact <a class="govuk-notification-banner__link" href="#">example@department.gov.uk</a> if you think there’s a problem.</p>
+        </GdsHeading>
+        <p class="govuk-body">Contact <a class=@NotificationBannerClasses.Link href="#">example@department.gov.uk</a> if you think there’s a problem.</p>
     </GdsNotificationBanner>
 </Example>
 
