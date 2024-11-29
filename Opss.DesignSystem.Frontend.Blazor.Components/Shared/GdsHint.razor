@@ -15,6 +15,10 @@
     [Parameter]
     public bool IsPageHeading { get; set; }
 
+    /// <summary>
+    /// If specified, the hint will use this Id, rather than
+    /// the generated "ParentId-hint" value.
+    /// </summary>
     [Parameter]
     public string? OverrideId{ get; set; }
     #endregion
