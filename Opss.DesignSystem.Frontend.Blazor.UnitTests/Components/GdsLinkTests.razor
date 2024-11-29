@@ -1,93 +1,93 @@
 ﻿@inherits BunitContext
 
 @code {
-	[Fact]
-	public void OutputsLink()
-	{
-		// Arrange
-		var id = "hello-world";
-		var message = "Hello World";
-		var href = "/linky";
+    [Fact]
+    public void OutputsLink()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var href = "/linky";
 
-		var component = Render(@<GdsLink Id=@id Href=@href>@message</GdsLink>);
+        var component = Render(@<GdsLink Id=@id Href=@href>@message</GdsLink>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-	@<a id=@id class="govuk-link" href=@href>
-		@message
-	</a>
-		);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<a id=@id class="govuk-link" href=@href>
+        @message
+    </a>
+        );
+    }
 
-	[Fact]
-	public void OutputsLinkWithNoVisitedState()
-	{
-		// Arrange
-		var id = "hello-world";
-		var message = "Hello World";
-		var href = "/linky";
+    [Fact]
+    public void OutputsLinkWithNoVisitedState()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var href = "/linky";
 
-		var component = Render(@<GdsLink Id=@id Href=@href Classes=@LinkClasses.NoVisitedState>@message</GdsLink>);
+        var component = Render(@<GdsLink Id=@id Href=@href Classes=@LinkClasses.NoVisitedState>@message</GdsLink>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-	@<a id=@id class="govuk-link govuk-link--no-visited-state" href=@href>
-		@message
-	</a>
-		);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<a id=@id class="govuk-link govuk-link--no-visited-state" href=@href>
+        @message
+    </a>
+        );
+    }
 
-	[Fact]
-	public void OutputsLinkInNewTab()
-	{
-		// Arrange
-		var id = "hello-world";
-		var message = "Hello World";
-		var href = "/linky";
+    [Fact]
+    public void OutputsLinkInNewTab()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var href = "/linky";
 
-		var component = Render(@<GdsLink Id=@id Href=@href OpenInNewTab=@true>@message</GdsLink>);
+        var component = Render(@<GdsLink Id=@id Href=@href OpenInNewTab=@true>@message</GdsLink>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-	@<a id=@id class="govuk-link" href=@href rel="noreferrer noopener" target="_blank">
-		@message
-	</a>
-		);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<a id=@id class="govuk-link" href=@href rel="noreferrer noopener" target="_blank">
+        @message
+    </a>
+        );
+    }
 
-	[Fact]
-	public void OutputsLinkForDarkBackground()
-	{
-		// Arrange
-		var id = "hello-world";
-		var message = "Hello World";
-		var href = "/linky";
+    [Fact]
+    public void OutputsLinkForDarkBackground()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var href = "/linky";
 
-		var component = Render(@<GdsLink Id=@id Href=@href IsOnDarkBackground=@true>@message</GdsLink>);
+        var component = Render(@<GdsLink Id=@id Href=@href IsOnDarkBackground=@true>@message</GdsLink>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-	@<a id=@id class="govuk-link govuk-link--inverse" href=@href>
-		@message
-	</a>
-		);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<a id=@id class="govuk-link govuk-link--inverse" href=@href>
+        @message
+    </a>
+        );
+    }
 
-	[Fact]
-	public void OutputsLinkWithNoUnderline()
-	{
-		// Arrange
-		var id = "hello-world";
-		var message = "Hello World";
-		var href = "/linky";
+    [Fact]
+    public void OutputsLinkWithNoUnderline()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var href = "/linky";
 
-		var component = Render(@<GdsLink Id=@id Href=@href Classes=@LinkClasses.NoUnderline>@message</GdsLink>);
+        var component = Render(@<GdsLink Id=@id Href=@href Classes=@LinkClasses.NoUnderline>@message</GdsLink>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-	@<a id=@id class="govuk-link govuk-link--no-underline" href=@href>
-		@message
-	</a>
-		);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<a id=@id class="govuk-link govuk-link--no-underline" href=@href>
+        @message
+    </a>
+        );
+    }
 }

@@ -5,7 +5,8 @@
     public void OutputsAccordion()
     {
         // Arrange
-        var component = Render(@<GdsAccordion Id="accordion-default">
+        var component = Render(
+    @<GdsAccordion Id="accordion-default">
         <GdsAccordionItem Heading="Writing well for the web">
             <p class="govuk-body">This is the content for Writing well for the web.</p>
         </GdsAccordionItem>
@@ -18,10 +19,11 @@
         <GdsAccordionItem Heading="How people read">
             <p class="govuk-body">This is the content for How people read.</p>
         </GdsAccordionItem>
-    </GdsAccordion>);
+    </GdsAccordion>
+        );
 
         // Assert that content of the paragraph shows counter at zero
-        Render(
+        component.MarkupMatches(
     @<div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
         <div class="govuk-accordion__section">
             <div class="govuk-accordion__section-header">
@@ -72,14 +74,15 @@
             </div>
         </div>
     </div>
-        ).MarkupMatches(component.bUnitMarkup());
+    );
     }
 
     [Fact]
     public void OutputsAccordionWithSummary()
     {
         // Arrange
-        var component = Render(@<GdsAccordion Id="accordion-with-summary-sections">
+        var component = Render(
+    @<GdsAccordion Id="accordion-with-summary-sections">
         <GdsAccordionItem Heading="Understanding agile project management" Summary="Introductions, methods, core features.">
             <ul class="govuk-list">
                 <li>
@@ -160,10 +163,10 @@
             </ul>
         </GdsAccordionItem>
     </GdsAccordion>
-        );
+    );
 
         // Assert that content of the paragraph shows counter at zero
-        Render(
+        component.MarkupMatches(
     @<div class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-summary-sections">
         <div class="govuk-accordion__section">
             <div class="govuk-accordion__section-header">
@@ -293,6 +296,6 @@
             </div>
         </div>
     </div>
-        ).MarkupMatches(component.bUnitMarkup());
+        );
     }
 }

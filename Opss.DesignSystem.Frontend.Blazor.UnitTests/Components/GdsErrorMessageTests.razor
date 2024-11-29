@@ -1,109 +1,109 @@
 @inherits BunitContext
 
 @code {
-	[Fact]
-	public void OutputsErrorMessage()
-	{
-		// Arrange
-		var id = "hello-world";
-		var message = "Hello World";
-		var component = Render(@<CascadingValue Value=@id><GdsErrorMessage>@message</GdsErrorMessage></CascadingValue>);
+    [Fact]
+    public void OutputsErrorMessage()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var component = Render(@<CascadingValue Value=@id><GdsErrorMessage>@message</GdsErrorMessage></CascadingValue>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-			@<p id="@id-error" class="govuk-error-message">
-				<span class="govuk-visually-hidden">Error:</span>
-				@message
-			</p>
-	);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<p id="@id-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span>
+        @message
+    </p>
+    );
+    }
 
-	[Fact]
-	public void OutputsStandardHiddenMessage_WhenMessageIsEmpty()
-	{
-		// Arrange
-		var id = "hello-world";
-		var message = "Hello World";
-		var visuallyHiddenMessage = "";
-		var component = Render(@<CascadingValue Value=@id><GdsErrorMessage VisuallyHiddenText=@visuallyHiddenMessage>@message</GdsErrorMessage></CascadingValue>);
+    [Fact]
+    public void OutputsStandardHiddenMessage_WhenMessageIsEmpty()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var visuallyHiddenMessage = "";
+        var component = Render(@<CascadingValue Value=@id><GdsErrorMessage VisuallyHiddenText=@visuallyHiddenMessage>@message</GdsErrorMessage></CascadingValue>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-			@<p id="@id-error" class="govuk-error-message">
-				<span class="govuk-visually-hidden">Error:</span>
-				@message
-			</p>
-		);
-		}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<p id="@id-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span>
+        @message
+    </p>
+        );
+    }
 
-		[Fact]
-		public void OutputsStandardHiddenMessage_WhenMessageIsNull()
-		{
-			// Arrange
-			var id = "hello-world";
-			var message = "Hello World";
-			var component = Render(@<CascadingValue Value=@id><GdsErrorMessage VisuallyHiddenText=@null>@message</GdsErrorMessage></CascadingValue>);
+    [Fact]
+    public void OutputsStandardHiddenMessage_WhenMessageIsNull()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var component = Render(@<CascadingValue Value=@id><GdsErrorMessage VisuallyHiddenText=@null>@message</GdsErrorMessage></CascadingValue>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-			@<p id="@id-error" class="govuk-error-message">
-				<span class="govuk-visually-hidden">Error:</span>
-				@message
-			</p>
-	);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<p id="@id-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span>
+        @message
+    </p>
+    );
+    }
 
-	[Fact]
-	public void OutputsHiddenMessage()
-	{
-		// Arrange
-		var id = "hello-world";
-		var message = "Hello World";
-		var visuallyHiddenMessage = "The Error";
-		var component = Render(@<CascadingValue Value=@id><GdsErrorMessage VisuallyHiddenText=@visuallyHiddenMessage>@message</GdsErrorMessage></CascadingValue>);
+    [Fact]
+    public void OutputsHiddenMessage()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var visuallyHiddenMessage = "The Error";
+        var component = Render(@<CascadingValue Value=@id><GdsErrorMessage VisuallyHiddenText=@visuallyHiddenMessage>@message</GdsErrorMessage></CascadingValue>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-			@<p id="@id-error" class="govuk-error-message">
-				<span class="govuk-visually-hidden">@visuallyHiddenMessage:</span>
-				@message
-			</p>
-	);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<p id="@id-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">@visuallyHiddenMessage:</span>
+        @message
+    </p>
+    );
+    }
 
-	[Fact]
-	public void IncludesAdditionalClassess()
-	{
-		// Arrange
-		var id = "hello-world";
-		var message = "Hello World";
-		var extraClasses = "additional-class";
-		var component = Render(@<CascadingValue Value=@id><GdsErrorMessage Classes=@extraClasses>@message</GdsErrorMessage></CascadingValue>);
+    [Fact]
+    public void IncludesAdditionalClassess()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var extraClasses = "additional-class";
+        var component = Render(@<CascadingValue Value=@id><GdsErrorMessage Classes=@extraClasses>@message</GdsErrorMessage></CascadingValue>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-			@<p id="@id-error" class="govuk-error-message @extraClasses">
-				<span class="govuk-visually-hidden">Error:</span>
-				@message
-			</p>
-		);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<p id="@id-error" class="govuk-error-message @extraClasses">
+        <span class="govuk-visually-hidden">Error:</span>
+        @message
+    </p>
+        );
+    }
 
-	[Fact]
-	public void IncludesAdditionalAttributes()
-	{
-		// Arrange
-		var id = "hello-world";
-		var message = "Hello World";
-		var extraAttributes = new Dictionary<string, object> { { "attribute", "value" } };
-		var component = Render(@<CascadingValue Value=@id><GdsErrorMessage Attributes=@extraAttributes>@message</GdsErrorMessage></CascadingValue>);
+    [Fact]
+    public void IncludesAdditionalAttributes()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var extraAttributes = new Dictionary<string, object> { { "attribute", "value" } };
+        var component = Render(@<CascadingValue Value=@id><GdsErrorMessage Attributes=@extraAttributes>@message</GdsErrorMessage></CascadingValue>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-			@<p id="@id-error" class="govuk-error-message" attribute="value">
-				<span class="govuk-visually-hidden">Error:</span>
-				@message
-			</p>
-		);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<p id="@id-error" class="govuk-error-message" attribute="value">
+        <span class="govuk-visually-hidden">Error:</span>
+        @message
+    </p>
+        );
+    }
 }

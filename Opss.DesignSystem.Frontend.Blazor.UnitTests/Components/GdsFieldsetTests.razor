@@ -5,7 +5,8 @@
     public void OutputsFieldset()
     {
         // Arrange
-        var component = Render(@<GdsFieldset>
+        var component = Render(
+    @<GdsFieldset>
         <LegendTemplate>
             <GdsLegend Classes=@FieldsetLegendSize.Large
                        IsPageHeading=@true>
@@ -47,7 +48,7 @@
     </GdsFieldset>);
 
         // Assert that content of the paragraph shows counter at zero
-        Render(
+        component.MarkupMatches(
     @<fieldset class="govuk-fieldset">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
         <h1 class="govuk-fieldset__heading">
@@ -79,15 +80,16 @@
         <input class="govuk-input govuk-input--width-10" id="address-postcode" name="addressPostcode" type="text" autocomplete="postal-code">
     </div>
 </fieldset>
-        ).MarkupMatches(component.bUnitMarkup());
+    );
     }
-    
+
     [Fact]
     public void OutputsFieldsetLegendAsPageHeading()
     {
         // Arrange
-        var component = Render(@<GdsFieldset>
-            <LegendTemplate>
+        var component = Render(
+    @<GdsFieldset>
+        <LegendTemplate>
             <GdsLegend Classes=@FieldsetLegendSize.Large
                        IsPageHeading=@true>
                 Legend as page heading
@@ -96,14 +98,14 @@
     </GdsFieldset>);
 
         // Assert that content of the paragraph shows counter at zero
-        Render(
+        component.MarkupMatches(
     @<fieldset class="govuk-fieldset">
-  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-    <h1 class="govuk-fieldset__heading">
-      Legend as page heading
-    </h1>
-  </legend>
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        <h1 class="govuk-fieldset__heading">
+            Legend as page heading
+        </h1>
+    </legend>
 </fieldset>
-        ).MarkupMatches(component.bUnitMarkup());
+        );
     }
 }
