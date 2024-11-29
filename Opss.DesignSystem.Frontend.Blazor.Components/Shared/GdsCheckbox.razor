@@ -1,20 +1,21 @@
 ﻿@inherits GdsWithContent
 
 <div class="govuk-checkboxes__item">
-    <input id=@Id
+    <input id=@id
            class="govuk-checkboxes__input @Classes"
-           name=@Parent?.Name
+           name=@(Name ?? Parent?.Name)
            type="checkbox"
            value=@Value
            aria-describedby=@describedBy
            data-behaviour=@(IsExclusive ? "exclusive" : null)
            checked=@isChecked
            data-aria-controls=@conditionalId
+           disabled=@Disabled
            @oninput=CheckboxChanged
            @attributes=@Attributes 
     />
     <label class="govuk-label govuk-checkboxes__label"
-           for=@Id
+           for=@id
     >
         @if(Text != null)
             @Text
@@ -71,11 +72,23 @@
     public string? Text { get; set; }
 
     /// <summary>
+    /// Specific name for the checkbox item. If omitted, then component global name string will be applied.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    /// <summary>
     /// One or more element IDs to add to the aria-describedby attribute, used to provide
     /// additional descriptive information for screenreader users.
     /// </summary>
     [Parameter]
     public string? DescribedBy { get; set; }
+
+    /// <summary>
+    /// If true, checkbox will be disabled.
+    /// </summary>
+    [Parameter]
+    public bool? Disabled { get; set; }
     #endregion
 
     #region Public Properties
@@ -83,27 +96,6 @@
     /// Set by the parent to identify this element's index
     /// </summary>
     public int Index { get; set; }
-    #endregion
-
-    #region Public Override Properties
-    /// <summary>
-    /// The calculated id of the element
-    /// This is based on the cascaded Parent Id value
-    /// </summary>
-    public new string? Id
-    {
-        get
-        {
-            var id = Parent?.Id;
-            if(Index == 1)
-            {
-                return id;
-            } else
-            {
-                return id + "-" + Index;
-            }
-        }
-    }
     #endregion
 
     #region Event Handlers
@@ -117,12 +109,28 @@
     #endregion
 
     #region Private Properties
+    private string? id
+    {
+        get
+        {
+            var id = Id ?? Parent?.IdPrefix ?? Parent?.Name;
+            if (Index == 1)
+            {
+                return id;
+            }
+            else
+            {
+                return id + "-" + Index;
+            }
+        }
+    }
+
     private string? describedBy
     {
         get
         {
             var fullText = DescribedBy ?? "";
-            if (HintTemplate != null) fullText += $" {Id}-item-hint";
+            if (HintTemplate != null) fullText += $" {id}-item-hint";
             return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
         }
     }
@@ -133,7 +141,7 @@
         {
             if (ConditionalTemplate == null) return null;
 
-            return $"conditional-{Id}";
+            return $"conditional-{id}";
         }
     }
 
@@ -141,7 +149,7 @@
     {
         get
         {
-            return Id + "-item";
+            return id + "-item";
         }
     }
 
