@@ -2,21 +2,20 @@
 
 <div class="govuk-date-input__item">
     <div class="govuk-form-group">
-        <label class="govuk-label govuk-date-input__label" 
-               for="@Id-@DatePart?.ToLower()"
-        >
-            @if(ChildContent == null)
+        <label class="govuk-label govuk-date-input__label"
+               for="@Id-@datePartText?.ToLower()">
+            @if (ChildContent == null)
             {
-                @DatePart
+                @datePartText
             }
             else
             {
                 @ChildContent
             }
         </label>
-        <input id="@Id-@DatePart?.ToLower()"
+        <input id="@Id-@datePartText?.ToLower()"
                class=@classes
-               name="@(Parent.Name)-@DatePart?.ToLower()"
+               name="@(Parent.Name)-@datePartText?.ToLower()"
                type="text"
                inputmode="numeric"
                autocomplete=@Autocomplete
@@ -35,10 +34,10 @@
     public bool? HasError { get; set; }
 
     /// <summary>
-    /// The <see cref="DateParts">Date Part</see> of the date.
+    /// Set the part of the date to input.
     /// </summary>
     [Parameter]
-    public string? DatePart { get; set; }
+    public DateInputFieldType? DatePart { get; set; }
 
     /// <summary>
     /// Value of the input.
@@ -101,11 +100,29 @@
         {
             switch (DatePart)
             {
-                case DateParts.Day:
-                case DateParts.Month:
+                case DateInputFieldType.Day:
+                case DateInputFieldType.Month:
                     return "govuk-input--width-2";
-                case DateParts.Year:
+                case DateInputFieldType.Year:
                     return "govuk-input--width-4";
+                default:
+                    return "";
+            }
+        }
+    }
+
+    private string datePartText
+    {
+        get
+        {
+            switch (DatePart)
+            {
+                case DateInputFieldType.Day:
+                    return "Day";
+                case DateInputFieldType.Month:
+                    return "Month";
+                case DateInputFieldType.Year:
+                    return "Year";
                 default:
                     return "";
             }

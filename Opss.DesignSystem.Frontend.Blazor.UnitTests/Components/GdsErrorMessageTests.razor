@@ -80,7 +80,6 @@
         var extraClasses = "additional-class";
         var component = Render(@<CascadingValue Value=@id><GdsErrorMessage Classes=@extraClasses>@message</GdsErrorMessage></CascadingValue>);
 
-        // Assert that content of the paragraph shows counter at zero
         component.MarkupMatches(
     @<p id="@id-error" class="govuk-error-message @extraClasses">
         <span class="govuk-visually-hidden">Error:</span>
@@ -98,7 +97,6 @@
         var extraAttributes = new Dictionary<string, object> { { "attribute", "value" } };
         var component = Render(@<CascadingValue Value=@id><GdsErrorMessage Attributes=@extraAttributes>@message</GdsErrorMessage></CascadingValue>);
 
-        // Assert that content of the paragraph shows counter at zero
         component.MarkupMatches(
     @<p id="@id-error" class="govuk-error-message" attribute="value">
         <span class="govuk-visually-hidden">Error:</span>

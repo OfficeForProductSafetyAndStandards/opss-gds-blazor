@@ -12,7 +12,6 @@
         <GdsButton Type="submit" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Menu item 3</GdsButton>
     </GdsButtonMenu>);
 
-        // Assert that content of the paragraph shows counter at zero
         component.MarkupMatches(
     @<div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Menu title">
         <button type="submit" class="govuk-button moj-button-menu__item govuk-button--secondary" data-module="govuk-button">
@@ -39,7 +38,6 @@
         <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Reject with reason</GdsButton>
     </GdsButtonMenu>);
 
-        // Assert that content of the paragraph shows counter at zero
         component.MarkupMatches(
     @<div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Review" data-button-classes="govuk-button--secondary">
         <a href="#" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary" data-module="govuk-button">
@@ -66,7 +64,6 @@
         <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Reject with reason</GdsButton>
     </GdsButtonMenu>);
 
-        // Assert that content of the paragraph shows counter at zero
         component.MarkupMatches(
     @<div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Review" data-button-classes="govuk-button--secondary" data-align-menu="right">
         <a href="#" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary" data-module="govuk-button">
@@ -96,7 +93,6 @@
         </GdsButtonMenu>
     </div>);
 
-        // Assert that content of the paragraph shows counter at zero
         component.MarkupMatches(
     @<div class="moj-button-group moj-button-group--inline">
         <button type="submit" class="govuk-button" data-module="govuk-button">
