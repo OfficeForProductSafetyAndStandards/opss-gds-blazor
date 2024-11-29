@@ -4,44 +4,52 @@
     Let users select one or more options by using the checkboxes component.
 </summary> *@
 <div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses"
-     @attributes=@Attributes
->
-    <fieldset class="govuk-fieldset"
-              role=@Role
-              aria-describedby=@describedBy>
-        @if (LegendTemplate != null)
-        {
+     @attributes=@Attributes>
+    <GdsFieldset Role=@Role
+                 DescribedBy=@describedBy?.Trim()>
+        <LegendTemplate>
             @LegendTemplate
-        }
-        @if (HintTemplate != null)
-        {
-            <CascadingValue Value=@Id>
-                @HintTemplate
-            </CascadingValue>
-        }
-        @if (ErrorMessageTemplate != null)
-        {
-            <CascadingValue Value=@Id>
-                @ErrorMessageTemplate
-            </CascadingValue>
-        }
-        <div class="govuk-checkboxes @Classes"
-             data-module="govuk-checkboxes">
-            <CascadingValue Value=this>
-                @ChildContent
-            </CascadingValue>
-        </div>
-    </fieldset>
+        </LegendTemplate>
+        <ChildContent>
+            @if (HintTemplate != null)
+            {
+                <CascadingValue Value=@Id>
+                    @HintTemplate
+                </CascadingValue>
+            }
+            @if (ErrorMessageTemplate != null)
+            {
+                <CascadingValue Value=@Id>
+                    @ErrorMessageTemplate
+                </CascadingValue>
+            }
+            <div class="govuk-checkboxes @Classes"
+                 data-module="govuk-checkboxes">
+                <CascadingValue Value=this>
+                    @ChildContent
+                </CascadingValue>
+            </div>
+        </ChildContent>
+    </GdsFieldset>
 </div>
 
 @code {
     #region Public Parameters
+    /// <summary>
+    /// Can be used to add a hint to the checkboxes component.
+    /// </summary>
     [Parameter]
     public RenderFragment? HintTemplate { get; set; }
 
+    /// <summary>
+    /// Can be used to add an error message to the checkboxes component.
+    /// </summary>
     [Parameter]
     public RenderFragment? ErrorMessageTemplate { get; set; }
 
+    /// <summary>
+    /// The legend for the fieldset component.
+    /// </summary>
     [Parameter]
     public RenderFragment? LegendTemplate { get; set; }
 
@@ -84,10 +92,11 @@
     {
         if (Values == null) return Task.CompletedTask;
 
-        if(!isChecked && Values.Contains(value))
+        if (!isChecked && Values.Contains(value))
         {
             Values.Remove(value);
-        } else if (isChecked)
+        }
+        else if (isChecked)
         {
             Values.Add(value);
         }
@@ -111,7 +120,7 @@
 
             if (describedBy.Any())
                 return string.Join(" ", describedBy);
-            else 
+            else
                 return null;
         }
     }

@@ -6,36 +6,34 @@
 </summary> *@
 
 <div class=@classes>
-    <fieldset class="govuk-fieldset"
-              role="group"
-              aria-describedby=@describedBy?.Trim()>
-        @if (LegendTemplate != null)
-        {
-            <CascadingValue Value=@Id>
-                @LegendTemplate
-            </CascadingValue>
-        }
-        @if (HintTemplate != null)
-        {
-            <CascadingValue Value=@Id>
-                @HintTemplate
-            </CascadingValue>
-        }
-        @if (ErrorMessageTemplate != null)
-        {
-            <CascadingValue Value=@Id>
-                @ErrorMessageTemplate
-            </CascadingValue>
-        }
+    <GdsFieldset Role="group"
+                 DescribedBy=@describedBy?.Trim()
+    >
+        <LegendTemplate>
+            @LegendTemplate
+        </LegendTemplate>
+        <ChildContent>
+            @if (HintTemplate != null)
+            {
+                <CascadingValue Value=@Id>
+                    @HintTemplate
+                </CascadingValue>
+            }
+            @if (ErrorMessageTemplate != null)
+            {
+                <CascadingValue Value=@Id>
+                    @ErrorMessageTemplate
+                </CascadingValue>
+            }
 
-        <div id=@Id
-             class ="govuk-date-input"
-        >
-            <CascadingValue Value=this>
-                @DateInputFields
-            </CascadingValue>
-        </div>
-    </fieldset>
+            <div id=@Id
+                 class="govuk-date-input">
+                <CascadingValue Value=this>
+                    @DateInputFields
+                </CascadingValue>
+            </div>
+        </ChildContent>
+    </GdsFieldset>
 </div>
 
 @code {
