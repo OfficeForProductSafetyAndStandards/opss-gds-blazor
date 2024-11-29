@@ -1,17 +1,18 @@
 ﻿@inherits BunitContext
 
 @code {
-	[Fact]
-	public void OutputsErrorSummary()
-	{
-		// Arrange
-		var component = Render(@<GdsErrorSummary>
-		<GdsErrorSummaryItem Href="#">Enter your full name</GdsErrorSummaryItem>
-		<GdsErrorSummaryItem Href="#">The date your passport was issued must be in the past</GdsErrorSummaryItem>
-	</GdsErrorSummary>);
+    [Fact]
+    public void OutputsErrorSummary()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsErrorSummary>
+        <GdsErrorSummaryItem Href="#">Enter your full name</GdsErrorSummaryItem>
+        <GdsErrorSummaryItem Href="#">The date your passport was issued must be in the past</GdsErrorSummaryItem>
+    </GdsErrorSummary>);
 
-		// Assert that content of the paragraph shows counter at zero
-        Render(
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
     @<div class="govuk-error-summary" data-module="govuk-error-summary">
         <div role="alert">
             <h2 class="govuk-error-summary__title">
@@ -29,38 +30,39 @@
             </div>
         </div>
     </div>
-        ).MarkupMatches(component.bUnitMarkup());
+    );
     }
 
     [Fact]
     public void OutputsErrorSummaryLinkingToInput()
     {
         // Arrange
-        var component = Render(@<div>
-    <GdsErrorSummary>
-        <GdsErrorSummaryItem Href="#full-name-input">
-            Enter your full name
-        </GdsErrorSummaryItem>
-    </GdsErrorSummary>
-    <h1 class="govuk-heading-l">Your details</h1>
-    <GdsTextInput Id="full-name-input"
-                  Name="name"
-                  Autocomplete="name">
-        <LabelTemplate>
-            <GdsLabel>
-                Full name
-            </GdsLabel>
-        </LabelTemplate>
-        <ErrorMessageTemplate>
-            <GdsErrorMessage>
+        var component = Render(
+    @<div>
+        <GdsErrorSummary>
+            <GdsErrorSummaryItem Href="#full-name-input">
                 Enter your full name
-            </GdsErrorMessage>
-        </ErrorMessageTemplate>
-    </GdsTextInput>
-</div>);
+            </GdsErrorSummaryItem>
+        </GdsErrorSummary>
+        <h1 class="govuk-heading-l">Your details</h1>
+        <GdsTextInput Id="full-name-input"
+                      Name="name"
+                      Autocomplete="name">
+            <LabelTemplate>
+                <GdsLabel>
+                    Full name
+                </GdsLabel>
+            </LabelTemplate>
+            <ErrorMessageTemplate>
+                <GdsErrorMessage>
+                    Enter your full name
+                </GdsErrorMessage>
+            </ErrorMessageTemplate>
+        </GdsTextInput>
+    </div>);
 
         // Assert that content of the paragraph shows counter at zero
-        Render(@<div>
+        component.MarkupMatches(@<div>
         <div class="govuk-error-summary " data-module="govuk-error-summary">
             <div role="alert">
                 <h2 class="govuk-error-summary__title">
@@ -86,7 +88,7 @@
             <input class="govuk-input govuk-input--error" id="full-name-input" name="name" type="text" aria-describedby="full-name-input-error" autocomplete="name">
         </div>
     </div>
-    ).MarkupMatches(component.bUnitMarkup());
+    );
     }
 
 }

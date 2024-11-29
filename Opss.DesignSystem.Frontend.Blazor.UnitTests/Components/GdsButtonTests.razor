@@ -1,146 +1,146 @@
 ﻿@inherits BunitContext
 
 @code {
-	[Fact]
-	public void OutputsButton()
-	{
-		// Arrange
-		var component = Render(@<GdsButton Type="submit">Save and continue</GdsButton>);
+    [Fact]
+    public void OutputsButton()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Type="submit">Save and continue</GdsButton>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-	@<button type="submit" class="govuk-button" data-module="govuk-button">
-		Save and continue
-	</button>
-		);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<button type="submit" class="govuk-button" data-module="govuk-button">
+        Save and continue
+    </button>
+        );
+    }
 
-	[Fact]
-	public void OutputStartsButton()
-	{
-		// Arrange
-		var component = Render(@<GdsButton Href="#" IsStartButton=@true>Start now</GdsButton>);
+    [Fact]
+    public void OutputStartsButton()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Href="#" IsStartButton=@true>Start now</GdsButton>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-	@<a href="#" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
-		Start now
-		<svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-			<path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-		</svg>
-	</a>
-		);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<a href="#" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+        Start now
+        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+        </svg>
+    </a>
+        );
+    }
 
-	[Fact]
-	public void OutputsSecondaryButton()
-	{
-		// Arrange
-		var component = Render(@<GdsButton Type="submit" Classes=@ButtonStyle.Secondary>Find address</GdsButton>);
+    [Fact]
+    public void OutputsSecondaryButton()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Type="submit" Classes=@ButtonStyle.Secondary>Find address</GdsButton>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-	@<button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-		Find address
-	</button>
-		);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Find address
+    </button>
+        );
+    }
 
-	[Fact]
-	public void OutputsWarningButton()
-	{
-		// Arrange
-		var component = Render(@<GdsButton Type="submit" Classes=@ButtonStyle.Warning>Delete account</GdsButton>);
+    [Fact]
+    public void OutputsWarningButton()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Type="submit" Classes=@ButtonStyle.Warning>Delete account</GdsButton>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-	@<button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button">
-		Delete account
-	</button>
-		);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button">
+        Delete account
+    </button>
+        );
+    }
 
-	[Fact]
-	public void OutputsButtonOnDarkBackground()
-	{
-		// Arrange
-		var component = Render(@<GdsButton Type="submit" IsOnDarkBackground=@true>Create an account</GdsButton>);
+    [Fact]
+    public void OutputsButtonOnDarkBackground()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Type="submit" IsOnDarkBackground=@true>Create an account</GdsButton>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-	@<button type="submit" class="govuk-button govuk-button--inverse" data-module="govuk-button">
-		Create an account
-	</button>
-		);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<button type="submit" class="govuk-button govuk-button--inverse" data-module="govuk-button">
+        Create an account
+    </button>
+        );
+    }
 
-	[Fact]
-	public void OutputsDisabledButton()
-	{
-		// Arrange
-		var component = Render(@<GdsButton Type="submit" Disabled=@true>Disabled button</GdsButton>);
+    [Fact]
+    public void OutputsDisabledButton()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Type="submit" Disabled=@true>Disabled button</GdsButton>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-	@<button type="submit" disabled aria-disabled="true" class="govuk-button" data-module="govuk-button">
-		Disabled button
-	</button>
-		);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<button type="submit" disabled aria-disabled="true" class="govuk-button" data-module="govuk-button">
+        Disabled button
+    </button>
+        );
+    }
 
-	[Fact]
-	public void OutputsButtonGroup()
-	{
-		// Arrange
-		var component = Render(@<GdsButtonGroup>
-		<GdsButton Type="submit">Save and continue</GdsButton>
-		<GdsButton Type="submit" Classes=@ButtonStyle.Secondary>Save as draft</GdsButton>
-	</GdsButtonGroup>);
+    [Fact]
+    public void OutputsButtonGroup()
+    {
+        // Arrange
+        var component = Render(@<GdsButtonGroup>
+        <GdsButton Type="submit">Save and continue</GdsButton>
+        <GdsButton Type="submit" Classes=@ButtonStyle.Secondary>Save as draft</GdsButton>
+    </GdsButtonGroup>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-	@<div class="govuk-button-group">
-		<button type="submit" class="govuk-button" data-module="govuk-button">
-			Save and continue
-		</button>
-		<button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-			Save as draft
-		</button>
-	</div>
-		);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+            Save and continue
+        </button>
+        <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Save as draft
+        </button>
+    </div>
+        );
+    }
 
-	[Fact]
-	public void OutputsButtonGroupWithLink()
-	{
-		// Arrange
-		var component = Render(@<GdsButtonGroup>
-		<GdsButton Type="submit">Continue</GdsButton>
-		<GdsLink Href="#">Cancel</GdsLink>
-	</GdsButtonGroup>);
+    [Fact]
+    public void OutputsButtonGroupWithLink()
+    {
+        // Arrange
+        var component = Render(@<GdsButtonGroup>
+        <GdsButton Type="submit">Continue</GdsButton>
+        <GdsLink Href="#">Cancel</GdsLink>
+    </GdsButtonGroup>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-	@<div class="govuk-button-group">
-		<button type="submit" class="govuk-button" data-module="govuk-button">
-			Continue
-		</button>
-		<a class="govuk-link" href="#">Cancel</a>
-	</div>
-		);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+            Continue
+        </button>
+        <a class="govuk-link" href="#">Cancel</a>
+    </div>
+        );
+    }
 
-	[Fact]
-	public void OutputsButtonPreventingDoulbeClick()
-	{
-		// Arrange
-		var component = Render(@<GdsButton Type="submit" PreventDoubleClick=@true>Confirm and send</GdsButton>);
+    [Fact]
+    public void OutputsButtonPreventingDoulbeClick()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Type="submit" PreventDoubleClick=@true>Confirm and send</GdsButton>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.MarkupMatches(
-	@<button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button">
-		Confirm and send
-	</button>
-		);
-	}
+        // Assert that content of the paragraph shows counter at zero
+        component.MarkupMatches(
+    @<button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button">
+        Confirm and send
+    </button>
+        );
+    }
 }

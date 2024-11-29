@@ -7,9 +7,8 @@
         // Arrange
         var component = Render(
     @<GdsCharacterCount Id="with-hint"
-                                    Name="withHint"
-                                    MaxLength="200"
-                            >
+                            Name="withHint"
+                            MaxLength="200">
         <LabelTemplate>
             <GdsLabel For="with-hint"
                       Classes="@LabelSize.Large"
@@ -23,12 +22,12 @@
             </GdsHint>
         </HintTemplate>
     </GdsCharacterCount>
-    );
+        );
 
-        Render(
+        component.MarkupMatches(
     @<div class="govuk-form-group govuk-character-count"
-                      data-module="govuk-character-count"
-                      data-maxlength="200">
+              data-module="govuk-character-count"
+              data-maxlength="200">
         <h1 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--l" for="with-hint">
                 Can you provide more detail?
@@ -42,7 +41,7 @@
             You can enter up to 200 characters
         </div>
     </div>
-    ).MarkupMatches(component.bUnitMarkup());
+        );
     }
 
     [Fact]
@@ -59,9 +58,9 @@
             </GdsLabel>
         </LabelTemplate>
     </GdsCharacterCount>
-    );
+        );
 
-        Render(
+        component.MarkupMatches(
     @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="200">
         <label class="govuk-label" for="label-as-page-heading">
             Describe the nature of your event
@@ -71,7 +70,7 @@
             You can enter up to 200 characters
         </div>
     </div>
-        ).MarkupMatches(component.bUnitMarkup());
+    );
     }
 
     [Fact]
@@ -89,9 +88,9 @@
             </GdsLabel>
         </LabelTemplate>
     </GdsCharacterCount>
-        );
+    );
 
-        Render(
+        component.MarkupMatches(
     @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxwords="150">
         <h1 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--l" for="word-count">
@@ -103,7 +102,7 @@
             You can enter up to 150 words
         </div>
     </div>
-        ).MarkupMatches(component.bUnitMarkup());
+    );
     }
 
     [Fact]
@@ -123,9 +122,9 @@
             </GdsLabel>
         </LabelTemplate>
     </GdsCharacterCount>
-    );
+        );
 
-        Render(
+        component.MarkupMatches(
     @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="15" data-threshold="8">
         <h1 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--l" for="threshold">
@@ -133,13 +132,13 @@
             </label>
         </h1>
         <textarea class="govuk-textarea govuk-js-character-count" id="threshold" name="threshold" rows="5" aria-describedby="threshold-info">
-                This example of a textarea has a character limit of 15 characters.
-            </textarea>
+                    This example of a textarea has a character limit of 15 characters.
+                </textarea>
         <div id="threshold-info" class="govuk-hint govuk-character-count__message">
             You can enter up to 15 characters
         </div>
     </div>
-    ).MarkupMatches(component.bUnitMarkup());
+        );
     }
 
     [Fact]
@@ -163,9 +162,9 @@
             </GdsErrorMessage>
         </ErrorMessageTemplate>
     </GdsCharacterCount>
-    );
+        );
 
-        Render(
+        component.MarkupMatches(
     @<div class="govuk-form-group govuk-form-group--error govuk-character-count" data-module="govuk-character-count" data-maxlength="15">
         <h1 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--l" for="exceeding-characters">
@@ -180,6 +179,6 @@
             You can enter up to 15 characters
         </div>
     </div>
-        ).MarkupMatches(component.bUnitMarkup());
+        );
     }
 }

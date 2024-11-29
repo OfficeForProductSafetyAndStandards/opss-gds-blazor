@@ -23,9 +23,9 @@
             <GdsCheckbox Value="farm">Farm or agricultural waste</GdsCheckbox>
         </ChildContent>
     </GdsCheckboxes>
-    );
+        );
 
-        Render(
+        component.MarkupMatches(
     @<div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -58,7 +58,7 @@
             </div>
         </fieldset>
     </div>
-    ).MarkupMatches(component.bUnitMarkup());
+        );
     }
 
     [Fact]
@@ -83,9 +83,9 @@
             <GdsCheckbox Value="farm">Farm or agricultural waste</GdsCheckbox>
         </ChildContent>
     </GdsCheckboxes>
-    );
+        );
 
-        Render(
+        component.MarkupMatches(
     @<div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
             <legend class="govuk-fieldset__legend">
@@ -116,7 +116,7 @@
             </div>
         </fieldset>
     </div>
-        ).MarkupMatches(component.bUnitMarkup());
+    );
     }
 
     [Fact]
@@ -146,9 +146,9 @@
             <GdsCheckbox Value="other">Citizen of another country</GdsCheckbox>
         </ChildContent>
     </GdsCheckboxes>
-        );
+    );
 
-        Render(
+        component.MarkupMatches(
     @<div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -184,7 +184,7 @@
             </div>
         </fieldset>
     </div>
-        ).MarkupMatches(component.bUnitMarkup());
+    );
     }
 
     [Fact]
@@ -211,9 +211,9 @@
             <GdsCheckbox Value="none" IsExclusive=@true>No, I will not be travelling to any of these countries</GdsCheckbox>
         </ChildContent>
     </GdsCheckboxes>
-    );
+        );
 
-        Render(
+        component.MarkupMatches(
     @<div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="countries-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -253,7 +253,7 @@
             </div>
         </fieldset>
     </div>
-    ).MarkupMatches(component.bUnitMarkup());
+        );
     }
 
     [Fact]
@@ -280,9 +280,9 @@
             <GdsCheckbox Value="none" IsExclusive=@true>No, I will not be travelling to any of these countries</GdsCheckbox>
         </ChildContent>
     </GdsCheckboxes>
-    );
+        );
 
-        Render(
+        component.MarkupMatches(
     @<div class="govuk-form-group govuk-form-group--error">
         <fieldset class="govuk-fieldset" aria-describedby="countries-error">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -322,7 +322,7 @@
             </div>
         </fieldset>
     </div>
-    ).MarkupMatches(component.bUnitMarkup());
+        );
     }
 
     [Fact]
@@ -371,9 +371,9 @@
             </GdsCheckbox>
         </ChildContent>
     </GdsCheckboxes>
-        );
+    );
 
-        Render(
+        component.MarkupMatches(
     @<div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -430,7 +430,7 @@
             </div>
         </fieldset>
     </div>
-    ).MarkupMatches(component.bUnitMarkup());
+        );
     }
 
 
@@ -454,9 +454,9 @@
             <GdsCheckbox Value="DfT">Department for Transport</GdsCheckbox>
         </ChildContent>
     </GdsCheckboxes>
-        );
+    );
 
-        Render(
+        component.MarkupMatches(
     @<div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
@@ -492,7 +492,7 @@
             </div>
         </fieldset>
     </div>
-    ).MarkupMatches(component.bUnitMarkup());
+        );
     }
 
     [Fact]
@@ -524,9 +524,9 @@
             <GdsCheckbox Value="other">Citizen of another country</GdsCheckbox>
         </ChildContent>
     </GdsCheckboxes>
-    );
+        );
 
-        Render(
+        component.MarkupMatches(
     @<div class="govuk-form-group govuk-form-group--error">
         <fieldset class="govuk-fieldset" aria-describedby="nationality-hint nationality-error">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -565,6 +565,6 @@
             </div>
         </fieldset>
     </div>
-        ).MarkupMatches(component.bUnitMarkup());
+        );
     }
 }
