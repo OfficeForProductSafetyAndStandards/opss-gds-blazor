@@ -25,9 +25,18 @@
             }
             <div class="govuk-checkboxes @Classes"
                  data-module="govuk-checkboxes">
+
+                @if (BeforeInputsTemplate != null)
+                {
+                    @BeforeInputsTemplate
+                }
                 <CascadingValue Value=this>
                     @ChildContent
                 </CascadingValue>
+                @if (AfterInputsTemplate != null)
+                {
+                    @AfterInputsTemplate
+                }
             </div>
         </ChildContent>
     </GdsFieldset>
@@ -54,6 +63,18 @@
     public RenderFragment? LegendTemplate { get; set; }
 
     /// <summary>
+    /// Content to add before all checkbox items within the checkboxes component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? BeforeInputsTemplate { get; set; }
+
+    /// <summary>
+    /// Content to add after all checkbox items within the checkboxes component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? AfterInputsTemplate { get; set; }
+
+    /// <summary>
     /// The name of the input, which is submitted with the form data.
     /// </summary>
     [Parameter]
@@ -64,6 +85,13 @@
     /// </summary>
     [Parameter]
     public string? Role { get; set; }
+
+    /// <summary>
+    /// Optional prefix. This is used to prefix the id attribute for each checkbox
+    /// item input, hint and error message, separated by -. Defaults to the name option value.
+    /// </summary>
+    [Parameter]
+    public string? IdPrefix { get; set; }
 
     /// <summary>
     /// Classes to add to the form group (for example to show error state for the whole group).
