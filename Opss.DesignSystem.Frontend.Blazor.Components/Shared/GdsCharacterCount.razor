@@ -9,7 +9,13 @@
      data-module="govuk-character-count"
      data-maxlength=@MaxLength
      data-threshold=@Threshold
-     data-maxwords=@MaxWords>
+     data-maxwords=@MaxWords
+     data-i18n.characters-under-limit=@replaceCountTemplate(CharactersUnderLimitText)
+     data-i18n.characters-at-limit=@CharactersAtLimitText
+     data-i18n.characters-over-limit=@replaceCountTemplate(CharactersOverLimitText)
+     data-i18n.words-under-limit=@replaceCountTemplate(WordsUnderLimitText)
+     data-i18n.words-at-limit=@WordsAtLimitText
+     data-i18n.words-over-limit=@replaceCountTemplate(WordsOverLimitText)>
     @if (LabelTemplate != null)
     {
         <CascadingValue Value=@Id>
@@ -29,6 +35,10 @@
         </CascadingValue>
     }
 
+    @if(BeforeInputTemplate != null)
+    {
+        @BeforeInputTemplate
+    }
     <textarea id=@Id
               class=@textAreaClasses
               name=@Name
@@ -41,10 +51,20 @@
     >
         @Value
     </textarea>
+    @if (TextareaDescriptionText != null)
+    {
+        <div id="@Id-info" class="govuk-hint govuk-character-count__message govuk-visually-hidden">
+            @replaceCountTemplate(TextareaDescriptionText)
+        </div>
+    }
     <GdsHint OverrideId=@(Id + "-info")
              Classes=@("govuk-character-count__message " + CountMessageClasses ?? "")>
         @remainingCharacterHintText
     </GdsHint>
+    @if (AfterInputTemplate != null)
+    {
+        @AfterInputTemplate
+    }
 </div>
 @code {
     #region Public Parameters
@@ -65,6 +85,18 @@
     /// </summary>
     [Parameter]
     public RenderFragment? ErrorMessageTemplate { get; set; }
+
+    /// <summary>
+    /// Content to add before the textarea used by the character count component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? BeforeInputTemplate { get; set; }
+
+    /// <summary>
+    /// Content to add after the textarea used by the character count component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? AfterInputTemplate { get; set; }
 
     /// <summary>
     /// The maximum number of characters.
@@ -134,6 +166,63 @@
     /// </summary>
     [Parameter]
     public bool? Spellcheck { get; set; }
+
+    /// <summary>
+    /// Message made available to assistive technologies to describe that the component
+    /// accepts only a limited amount of content. It is visible on the page when JavaScript 
+    /// is unavailable. The component will replace the %{count} placeholder with the value 
+    /// of the maxlength or maxwords parameter.
+    /// </summary>
+    [Parameter]
+    public string? TextareaDescriptionText { get; set; }
+
+    /// <summary>
+    /// Message displayed when the number of characters is under the configured maximum,
+    /// maxlength. This message is displayed visually and through assistive technologies.
+    /// The component will replace the %{count} placeholder with the number of remaining
+    /// characters.
+    /// </summary>
+    [Parameter]
+    public string? CharactersUnderLimitText{ get; set; }
+
+    /// <summary>
+    /// Message displayed when the number of characters reaches the configured maximum,
+    /// maxlength. This message is displayed visually and through assistive technologies.
+    /// </summary>
+    [Parameter]
+    public string? CharactersAtLimitText{ get; set; }
+
+    /// <summary>
+    /// Message displayed when the number of characters is over the configured maximum,
+    /// maxlength. This message is displayed visually and through assistive technologies.
+    /// The component will replace the %{count} placeholder with the number of characters
+    /// above the maximum.
+    /// </summary>
+    [Parameter]
+    public string? CharactersOverLimitText { get; set; }
+
+    /// <summary>
+    /// Message displayed when the number of words is under the configured maximum, maxwords.
+    /// This message is displayed visually and through assistive technologies. The component
+    /// will replace the %{count} placeholder with the number of remaining words.
+    /// </summary>
+    [Parameter]
+    public string? WordsUnderLimitText { get; set; }
+
+    /// <summary>
+    /// Message displayed when the number of words reaches the configured maximum, maxwords.
+    /// This message is displayed visually and through assistive technologies.
+    /// </summary>
+    [Parameter]
+    public string? WordsAtLimitText { get; set; }
+
+    /// <summary>
+    /// Message displayed when the number of words is over the configured maximum, maxwords.
+    /// This message is displayed visually and through assistive technologies. The component
+    /// will replace the %{count} placeholder with the number of characters above the maximum.
+    /// </summary>
+    [Parameter]
+    public string? WordsOverLimitText { get; set; }
     #endregion
 
     #region Event Handlers
@@ -193,6 +282,13 @@
                 classBuilder += " govuk-textarea--error";
             return classBuilder;
         }
+    }
+    #endregion
+
+    #region Private Functions
+    private string? replaceCountTemplate(string? template)
+    {
+        return template?.Replace("%{count}", (MaxWords ?? MaxLength ?? 0).ToString());
     }
     #endregion
 }
