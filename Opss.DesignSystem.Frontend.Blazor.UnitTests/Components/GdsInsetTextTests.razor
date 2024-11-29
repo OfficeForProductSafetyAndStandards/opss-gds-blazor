@@ -1,0 +1,20 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void OutputsInsetText()
+    {
+        // Arrange
+        var component = Render(@<GdsInsetText>
+        It can take up to 8 weeks to register a lasting power of attorney if
+        there are no mistakes in the application.
+    </GdsInsetText>);
+
+        // Assert that content of the paragraph shows counter at zero
+        Render(
+    @<div class="govuk-inset-text">
+        It can take up to 8 weeks to register a lasting power of attorney if there are no mistakes in the application.
+    </div>
+        ).MarkupMatches(component.bUnitMarkup());
+    }
+}
