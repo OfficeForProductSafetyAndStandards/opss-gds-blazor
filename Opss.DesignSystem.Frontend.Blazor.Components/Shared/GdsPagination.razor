@@ -72,10 +72,21 @@
     public int NumberOfPagesToShowBesideActive { get; set; } = 1;
 
     /// <summary>
+    /// The active page number
+    /// </summary>
+    [Parameter]
+    public string? ActivePageNumber { get; set; }
+
+    /// <summary>
     /// Called on a page change, will return the page number
     /// </summary>
     [Parameter]
     public EventCallback<string> OnPageChanged { get; set; }
+    #endregion
+
+    #region Event Handlers
+    [Parameter]
+    public EventCallback<string?> ActivePageNumberChanged { get; set; }
     #endregion
 
     #region Private Properties
@@ -131,6 +142,7 @@
             links[currentIndex + NumberOfPagesToShowBesideActive + 1].Ellipsis = true;
 
         OnPageChanged.InvokeAsync(links[currentIndex].Number);
+        ActivePageNumberChanged.InvokeAsync(links[currentIndex].Number);
 
         this.StateHasChanged();
     }
@@ -158,7 +170,7 @@
         this.links.Add(link);
 
         maxPageIndex++;
-        if (link.IsCurrentOnLoad == true)
+        if (link.Number == ActivePageNumber)
         {
             currentIndex = maxPageIndex;
             SetCurrentLink(link.Number);
@@ -168,9 +180,10 @@
 
     protected override Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender && links.Any(link => link.IsCurrentOnLoad == true))
+        if (firstRender && !string.IsNullOrEmpty(ActivePageNumber)
+            && links.Any(link => link.Number == ActivePageNumber))
         {
-            var currentLink = links.First(link => link.IsCurrentOnLoad == true);
+            var currentLink = links.First(link => link.Number == ActivePageNumber);
             currentIndex = links.IndexOf(currentLink);
             SetCurrentLink(currentLink.Number);
 

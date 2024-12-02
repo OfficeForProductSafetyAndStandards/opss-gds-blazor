@@ -10,33 +10,42 @@
     A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/pagination/" class="govuk-link">Pagination</a>.
 </p>
 
-<Example CodeExampleContent="@(@"<GdsPagination>
+<Example CodeExampleContent="@(@"<GdsPagination @bind-ActivePageNumber=@activePageNumber>
     <PreviousTemplate>
         <GdsPaginationPreviousLink />
     </PreviousTemplate>
     <ChildContent>
         <GdsPaginationLink Number=""1"" />
-        <GdsPaginationLink Number=""2"" IsCurrentOnLoad=@true />
+        <GdsPaginationLink Number=""2"" />
         <GdsPaginationLink Number=""3"" />
     </ChildContent>
     <NextTemplate>
         <GdsPaginationNextLink />
     </NextTemplate>
-</GdsPagination>")">
-    <GdsPagination>
+</GdsPagination>
+
+@code{
+    string activePageNumber = ""2"";
+}")">
+    <GdsPagination @bind-ActivePageNumber=@active>
         <PreviousTemplate>
             <GdsPaginationPreviousLink />
         </PreviousTemplate>
         <ChildContent>
             <GdsPaginationLink Number="1" />
-            <GdsPaginationLink Number="2" IsCurrentOnLoad=@true />
+            <GdsPaginationLink Number="2" />
             <GdsPaginationLink Number="3" />
         </ChildContent>
         <NextTemplate>
             <GdsPaginationNextLink />
         </NextTemplate>
     </GdsPagination>
+    @active
 </Example>
+
+@code{
+    string active = "2";
+}
 
 <h2 class="govuk-heading-l" id="for-navigating-between-content-pages">For navigating between content pages</h2>
 
@@ -60,7 +69,7 @@
 
 <h2 class="govuk-heading-l" id="for-navigating-between-pages-of-items">For navigating between pages of items</h2>
 
-<Example CodeExampleContent="@(@"<GdsPagination>
+<Example CodeExampleContent="@(@"<GdsPagination ActivePageNumber=""7"">
     <PreviousTemplate>
         <GdsPaginationPreviousLink />
     </PreviousTemplate>
@@ -71,7 +80,7 @@
         <GdsPaginationLink Number=""4"" />
         <GdsPaginationLink Number=""5"" />
         <GdsPaginationLink Number=""6"" />
-        <GdsPaginationLink Number=""7"" IsCurrentOnLoad=@true />
+        <GdsPaginationLink Number=""7"" />
         <GdsPaginationLink Number=""8"" />
         <GdsPaginationLink Number=""9"" />
         <GdsPaginationLink Number=""10"" />
@@ -105,7 +114,7 @@
             <GdsPaginationLink Number="4" />
             <GdsPaginationLink Number="5" />
             <GdsPaginationLink Number="6" />
-            <GdsPaginationLink Number="7" IsCurrentOnLoad=@true />
+            <GdsPaginationLink Number="7" />
             <GdsPaginationLink Number="8" />
             <GdsPaginationLink Number="9" />
             <GdsPaginationLink Number="10" />
@@ -160,14 +169,14 @@
     </GdsPagination>
 </Example>
 
-<Example CodeExampleContent="@(@"<GdsPagination>
+<Example CodeExampleContent="@(@"<GdsPagination ActivePageNumber=""3"">
     <PreviousTemplate>
         <GdsPaginationPreviousLink />
     </PreviousTemplate>
     <ChildContent>
         <GdsPaginationLink Number=""1"" />
         <GdsPaginationLink Number=""2"" />
-        <GdsPaginationLink Number=""3"" IsCurrentOnLoad=@true />
+        <GdsPaginationLink Number=""3"" />
     </ChildContent>
     <NextTemplate>
         <GdsPaginationNextLink />
@@ -180,7 +189,7 @@
         <ChildContent>
             <GdsPaginationLink Number="1" />
             <GdsPaginationLink Number="2" />
-            <GdsPaginationLink Number="3" IsCurrentOnLoad=@true />
+            <GdsPaginationLink Number="3" />
         </ChildContent>
         <NextTemplate>
             <GdsPaginationNextLink />
