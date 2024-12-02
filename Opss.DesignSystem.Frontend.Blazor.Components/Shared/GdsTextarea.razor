@@ -25,6 +25,10 @@
         </CascadingValue>
     }
 
+    @if (BeforeInputsTemplate != null)
+    {
+        @BeforeInputsTemplate
+    }
     <textarea id=@Id 
               class="govuk-textarea @Classes @(ErrorMessageTemplate != null ? "govuk-textarea--error" : "")"
               name=@Name 
@@ -32,26 +36,49 @@
               spellcheck=@Spellcheck?.ToString().ToLower()
               aria-describedby=@describedBy
               autocomplete=@Autocomplete
+              disabled=@Disabled
               @oninput=OnValueChanged
               @attributes=@Attributes
     >
         @Value
     </textarea>
+    @if (AfterInputsTemplate != null)
+    {
+        @AfterInputsTemplate
+    }
 </div>
 
 @code {
     #region Public Parameters
     /// <summary>
-    /// The label used by the text area component.
+    /// The label used by the textarea component.
     /// </summary>
     [Parameter]
     public RenderFragment? LabelTemplate { get; set; }
 
+    /// <summary>
+    /// Can be used to add a hint to the textarea component.
+    /// </summary>
     [Parameter]
     public RenderFragment? HintTemplate { get; set; }
 
+    /// <summary>
+    /// Can be used to add an error message to the textarea component.
+    /// </summary>
     [Parameter]
     public RenderFragment? ErrorMessageTemplate { get; set; }
+
+    /// <summary>
+    /// Content to add before all checkbox items within the textarea component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? BeforeInputsTemplate { get; set; }
+
+    /// <summary>
+    /// Content to add after all checkbox items within the textarea component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? AfterInputsTemplate { get; set; }
 
     /// <summary>
     /// The name of the input, which is submitted with the form data.
@@ -92,6 +119,12 @@
     /// </summary>
     [Parameter]
     public bool? Spellcheck { get; set; }
+
+    /// <summary>
+    /// If true, textarea will be disabled.
+    /// </summary>
+    [Parameter]
+    public bool? Disabled { get; set; }
     #endregion
 
     #region Event Handlers
