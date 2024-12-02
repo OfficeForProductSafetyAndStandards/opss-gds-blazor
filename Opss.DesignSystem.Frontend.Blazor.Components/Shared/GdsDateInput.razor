@@ -28,9 +28,17 @@
 
             <div id=@Id
                  class="govuk-date-input">
+                @if (BeforeInputTemplate != null)
+                {
+                    @BeforeInputTemplate
+                }
                 <CascadingValue Value=this>
                     @DateInputFields
                 </CascadingValue>
+                @if (AfterInputTemplate != null)
+                {
+                    @AfterInputTemplate
+                }
             </div>
         </ChildContent>
     </GdsFieldset>
@@ -63,10 +71,22 @@
     public RenderFragment? ErrorMessageTemplate { get; set; }
 
     /// <summary>
-    /// The name of the input, which is submitted with the form data.
+    /// Content to add before the textarea used by the date input component.
     /// </summary>
     [Parameter]
-    public string? Name { get; set; }
+    public RenderFragment? BeforeInputTemplate { get; set; }
+
+    /// <summary>
+    /// Content to add after the textarea used by the date input component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? AfterInputTemplate { get; set; }
+
+    /// <summary>
+    /// Optional prefix. This is used to prefix each item name, separated by -.
+    /// </summary>
+    [Parameter]
+    public string? NamePrefix { get; set; }
 
     /// <summary>
     /// Classes to add to the form group (for example to show error state for the whole group).
