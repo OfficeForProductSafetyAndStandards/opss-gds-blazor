@@ -27,7 +27,7 @@
 
     @if (PrefixTemplate != null || SuffixTemplate != null)
     {
-        <div class="govuk-input__wrapper">
+        <div class="govuk-input__wrapper @InputWrapperClasses">
             @if (PrefixTemplate != null)
             {
                 @PrefixTemplate
@@ -43,6 +43,8 @@
                    pattern=@Pattern
                    inputmode=@Inputmode
                    value=@Value
+                   disabled=@Disabled
+                   autocapitalize=@Autocapitalize
                    @oninput=OnValueChanged
                    @attributes=@Attributes
             />
@@ -65,6 +67,8 @@
                pattern=@Pattern
                inputmode=@Inputmode
                value=@Value
+               disabled=@Disabled
+               autocapitalize=@Autocapitalize
                @oninput=OnValueChanged
                @attributes=@Attributes
         />
@@ -131,6 +135,13 @@
     public string? Autocomplete { get; set; }
 
     /// <summary>
+    /// Optional field to enable or disable autocapitalisation of user input.
+    /// "default", "none", "sentences", "words", "characters"
+    /// </summary>
+    [Parameter]
+    public string? Autocapitalize { get; set; }
+
+    /// <summary>
     /// Attribute to provide a regular expression pattern, used to match allowed character combinations 
     // for the input value.
     /// </summary>
@@ -142,6 +153,18 @@
     /// </summary>
     [Parameter]
     public bool? Spellcheck { get; set; }
+
+    /// <summary>
+    /// If true, input will be disabled.
+    /// </summary>
+    [Parameter]
+    public bool? Disabled { get; set; }
+
+    /// <summary>
+    /// Classes to add to the wrapping element.
+    /// </summary>
+    [Parameter]
+    public string? InputWrapperClasses { get; set; }
     #endregion
 
     #region Event Handlers
