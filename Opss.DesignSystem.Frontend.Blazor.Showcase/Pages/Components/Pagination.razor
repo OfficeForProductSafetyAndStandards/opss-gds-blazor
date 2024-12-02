@@ -1,0 +1,192 @@
+﻿@page "/Components/Pagination"
+@layout _ComponentsLayout
+
+<PageTitle>Pagination</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Pagination</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/pagination/" class="govuk-link">Pagination</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsPagination>
+    <PreviousTemplate>
+        <GdsPaginationPreviousLink />
+    </PreviousTemplate>
+    <ChildContent>
+        <GdsPaginationLink Number=""1"" />
+        <GdsPaginationLink Number=""2"" IsCurrentOnLoad=@true />
+        <GdsPaginationLink Number=""3"" />
+    </ChildContent>
+    <NextTemplate>
+        <GdsPaginationNextLink />
+    </NextTemplate>
+</GdsPagination>")">
+    <GdsPagination>
+        <PreviousTemplate>
+            <GdsPaginationPreviousLink />
+        </PreviousTemplate>
+        <ChildContent>
+            <GdsPaginationLink Number="1" />
+            <GdsPaginationLink Number="2" IsCurrentOnLoad=@true />
+            <GdsPaginationLink Number="3" />
+        </ChildContent>
+        <NextTemplate>
+            <GdsPaginationNextLink />
+        </NextTemplate>
+    </GdsPagination>
+</Example>
+
+<h2 class="govuk-heading-l" id="for-navigating-between-content-pages">For navigating between content pages</h2>
+
+<Example CodeExampleContent="@(@"<GdsPagination UseBlockStyle=@true>
+    <PreviousTemplate>
+        <GdsPaginationPreviousLink LabelText=""Applying for a provisional lorry or bus licence"" />
+    </PreviousTemplate>
+    <NextTemplate>
+        <GdsPaginationNextLink LabelText=""Driver CPC part 1 test: theory"" />
+    </NextTemplate>
+</GdsPagination>")">
+    <GdsPagination UseBlockStyle=@true>
+        <PreviousTemplate>
+            <GdsPaginationPreviousLink LabelText="Applying for a provisional lorry or bus licence" />
+        </PreviousTemplate>
+        <NextTemplate>
+            <GdsPaginationNextLink LabelText="Driver CPC part 1 test: theory" />
+        </NextTemplate>
+    </GdsPagination>
+</Example>
+
+<h2 class="govuk-heading-l" id="for-navigating-between-pages-of-items">For navigating between pages of items</h2>
+
+<Example CodeExampleContent="@(@"<GdsPagination>
+    <PreviousTemplate>
+        <GdsPaginationPreviousLink />
+    </PreviousTemplate>
+    <ChildContent>
+        <GdsPaginationLink Number=""1"" />
+        <GdsPaginationLink Number=""2"" />
+        <GdsPaginationLink Number=""3"" />
+        <GdsPaginationLink Number=""4"" />
+        <GdsPaginationLink Number=""5"" />
+        <GdsPaginationLink Number=""6"" />
+        <GdsPaginationLink Number=""7"" IsCurrentOnLoad=@true />
+        <GdsPaginationLink Number=""8"" />
+        <GdsPaginationLink Number=""9"" />
+        <GdsPaginationLink Number=""10"" />
+        <GdsPaginationLink Number=""11"" />
+        <GdsPaginationLink Number=""12"" />
+        <GdsPaginationLink Number=""13"" />
+        <GdsPaginationLink Number=""14"" />
+        <GdsPaginationLink Number=""15"" />
+        <GdsPaginationLink Number=""16"" />
+        <GdsPaginationLink Number=""17"" />
+        <GdsPaginationLink Number=""18"" />
+        <GdsPaginationLink Number=""19"" />
+        <GdsPaginationLink Number=""20"" />
+        <GdsPaginationLink Number=""21"" />
+        <GdsPaginationLink Number=""22"" />
+        <GdsPaginationLink Number=""23"" />
+        <GdsPaginationLink Number=""24"" />
+    </ChildContent>
+    <NextTemplate>
+        <GdsPaginationNextLink />
+    </NextTemplate>
+</GdsPagination>")">
+    <GdsPagination>
+        <PreviousTemplate>
+            <GdsPaginationPreviousLink />
+        </PreviousTemplate>
+        <ChildContent>
+            <GdsPaginationLink Number="1" />
+            <GdsPaginationLink Number="2" />
+            <GdsPaginationLink Number="3" />
+            <GdsPaginationLink Number="4" />
+            <GdsPaginationLink Number="5" />
+            <GdsPaginationLink Number="6" />
+            <GdsPaginationLink Number="7" IsCurrentOnLoad=@true />
+            <GdsPaginationLink Number="8" />
+            <GdsPaginationLink Number="9" />
+            <GdsPaginationLink Number="10" />
+            <GdsPaginationLink Number="11" />
+            <GdsPaginationLink Number="12" />
+            <GdsPaginationLink Number="13" />
+            <GdsPaginationLink Number="14" />
+            <GdsPaginationLink Number="15" />
+            <GdsPaginationLink Number="16" />
+            <GdsPaginationLink Number="17" />
+            <GdsPaginationLink Number="18" />
+            <GdsPaginationLink Number="19" />
+            <GdsPaginationLink Number="20" />
+            <GdsPaginationLink Number="21" />
+            <GdsPaginationLink Number="22" />
+            <GdsPaginationLink Number="23" />
+            <GdsPaginationLink Number="24" />
+        </ChildContent>
+        <NextTemplate>
+            <GdsPaginationNextLink />
+        </NextTemplate>
+    </GdsPagination>
+</Example>
+
+<h3 class="govuk-heading-m" id="first-and-last-pages">First and last pages</h3>
+
+<Example CodeExampleContent="@(@"<GdsPagination>
+    <PreviousTemplate>
+        <GdsPaginationPreviousLink />
+    </PreviousTemplate>
+    <ChildContent>
+        <GdsPaginationLink Number=""1"" />
+        <GdsPaginationLink Number=""2"" />
+        <GdsPaginationLink Number=""3"" />
+    </ChildContent>
+    <NextTemplate>
+        <GdsPaginationNextLink />
+    </NextTemplate>
+</GdsPagination>")">
+    <GdsPagination>
+        <PreviousTemplate>
+            <GdsPaginationPreviousLink />
+        </PreviousTemplate>
+        <ChildContent>
+            <GdsPaginationLink Number="1" />
+            <GdsPaginationLink Number="2" />
+            <GdsPaginationLink Number="3" />
+        </ChildContent>
+        <NextTemplate>
+            <GdsPaginationNextLink />
+        </NextTemplate>
+    </GdsPagination>
+</Example>
+
+<Example CodeExampleContent="@(@"<GdsPagination>
+    <PreviousTemplate>
+        <GdsPaginationPreviousLink />
+    </PreviousTemplate>
+    <ChildContent>
+        <GdsPaginationLink Number=""1"" />
+        <GdsPaginationLink Number=""2"" />
+        <GdsPaginationLink Number=""3"" IsCurrentOnLoad=@true />
+    </ChildContent>
+    <NextTemplate>
+        <GdsPaginationNextLink />
+    </NextTemplate>
+</GdsPagination>")">
+    <GdsPagination>
+        <PreviousTemplate>
+            <GdsPaginationPreviousLink />
+        </PreviousTemplate>
+        <ChildContent>
+            <GdsPaginationLink Number="1" />
+            <GdsPaginationLink Number="2" />
+            <GdsPaginationLink Number="3" IsCurrentOnLoad=@true />
+        </ChildContent>
+        <NextTemplate>
+            <GdsPaginationNextLink />
+        </NextTemplate>
+    </GdsPagination>
+</Example>
+
+@code {
+}
