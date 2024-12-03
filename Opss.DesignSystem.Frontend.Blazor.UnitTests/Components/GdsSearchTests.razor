@@ -18,31 +18,28 @@
             </GdsHint>
         </HintTemplate>
     </GdsSearch>
-        );
+    );
 
         component.MarkupMatches(
     @<div class="moj-search">
 
-        <form action="#" method="post">
+        <div class="govuk-form-group">
+            <label class="govuk-label moj-search__label govuk-!-font-weight-bold" for="search">
+                Find a person
+            </label>
 
-            <div class="govuk-form-group">
-                <label class="govuk-label moj-search__label govuk-!-font-weight-bold" for="search">
-                    Find a person
-                </label>
-
-                <div id="search-hint" class="govuk-hint moj-search__hint ">
-                    You can search by name, date of birth or national insurance number
-                </div>
-
-                <input class="govuk-input moj-search__input " id="search" name="search" type="search" aria-describedby="search-hint">
-
+            <div id="search-hint" class="govuk-hint moj-search__hint ">
+                You can search by name, date of birth or national insurance number
             </div>
 
-            <button type="submit" class="govuk-button moj-search__button " data-module="govuk-button">
-                Search
-            </button>
+            <input class="govuk-input moj-search__input " id="search" name="search" type="search" aria-describedby="search-hint">
 
-        </form>
+        </div>
+
+        <button type="submit" class="govuk-button moj-search__button " data-module="govuk-button">
+            Search
+        </button>
+
     </div>
 
     );
