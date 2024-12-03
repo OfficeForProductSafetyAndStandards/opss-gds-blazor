@@ -1,0 +1,20 @@
+﻿@inherits GdsWithContent
+
+<strong class="govuk-tag @Classes" @attributes=@Attributes>
+    @ChildContent
+</strong>
+
+@code{
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (PhaseBanner != null)
+            Classes += " govuk-phase-banner__content__tag";
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsPhaseBanner? PhaseBanner { get; set; }
+    #endregion
+}
