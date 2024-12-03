@@ -7,13 +7,13 @@
         // Arrange
         var component = Render(
     @<GdsTag>Completed</GdsTag>
-        );
+    );
 
         component.MarkupMatches(
     @<strong class="govuk-tag">
         Completed
     </strong>
-    );
+        );
     }
 
     [Fact]
@@ -22,7 +22,7 @@
         // Arrange
         var component = Render(
     @<GdsTag Classes=@TagClasses.Red>Urgent</GdsTag>
-    );
+        );
 
         component.MarkupMatches(
     @<strong class="govuk-tag govuk-tag--red">
