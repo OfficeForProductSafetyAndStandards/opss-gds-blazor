@@ -1,0 +1,33 @@
+﻿@page "/Components/Panel"
+@layout _ComponentsLayout
+
+<PageTitle>Panel</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Panel</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/panel/" class="govuk-link">Panel</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsPanel TitleText=""Application complete"">
+    Your reference number<br><strong>HDJ2123F</strong>
+</GdsPanel>")">
+    <GdsPanel TitleText="Application complete">
+        Your reference number<br><strong>HDJ2123F</strong>
+    </GdsPanel>
+</Example>
+
+<h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
+
+<Example CodeExampleContent="@(@"<GdsPanel TitleText=""Application complete"">
+    Your reference number<br><strong>HDJ2123F</strong>
+</GdsPanel>")">
+    <GdsPanel TitleText="Application complete">
+        Your reference number<br><strong>HDJ2123F</strong>
+    </GdsPanel>
+</Example>
+
+@code {
+
+}
