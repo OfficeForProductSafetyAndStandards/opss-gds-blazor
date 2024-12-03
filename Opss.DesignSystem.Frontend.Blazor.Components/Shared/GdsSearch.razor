@@ -1,0 +1,124 @@
+﻿@inherits GdsViewModel
+
+@* <summary>
+    Use the search component to let users search by word or phrase.
+</summary> *@
+
+<div class="moj-search">
+    <div class="govuk-form-group @FormGroupClasses">
+        @if (LabelTemplate != null)
+        {
+            <CascadingValue Value=@Id>
+                @LabelTemplate
+            </CascadingValue>
+        }
+        @if (HintTemplate != null)
+        {
+            <CascadingValue Value=@Id>
+                @HintTemplate
+            </CascadingValue>
+        }
+
+        <input class="govuk-input moj-search__input @Classes" 
+               id=@Id 
+               name=@Name 
+               type="search"
+               value=@Value
+               @oninput=OnValueChanged
+               aria-describedby="search-hint" 
+               @attributes=@Attributes>
+    </div>
+
+    <button type="submit" 
+            class="govuk-button moj-search__button @ButtonClasses"
+            data-module="govuk-button"
+            @onclick=@OnClick
+    >
+        @ButtonText
+    </button>
+</div>
+
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// The label used by the text input component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? LabelTemplate { get; set; }
+
+    /// <summary>
+    /// Can be used to add a hint to the text input component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
+
+    /// <summary>
+    /// The name of the input, which is submitted with the form data.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// Value of the input.
+    /// </summary>
+    [Parameter]
+    public string? Value { get; set; }
+
+    /// <summary>
+    /// One or more element IDs to add to the aria-describedby
+    /// attribute, used to provide additional descriptive
+    /// information for screenreader users.
+    /// </summary>
+    [Parameter]
+    public string? DescribedBy { get; set; }
+
+    /// <summary>
+    /// Classes to add to the form group (for example to show error state for the whole group).
+    /// </summary>
+    [Parameter]
+    public string? FormGroupClasses { get; set; }
+
+    /// <summary>
+    /// Classes to add to the button.
+    /// </summary>
+    [Parameter]
+    public string? ButtonClasses { get; set; }
+
+    /// <summary>
+    /// Button text. Defaults to "Search".
+    /// </summary>
+    [Parameter]
+    public string ButtonText { get; set; } = "Search";
+
+    /// <summary>
+    /// Event to call on click event of serach button
+    /// </summary>
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+    #endregion
+
+    #region Private Properties
+    private string? describedBy
+    {
+        get
+        {
+            var fullText = DescribedBy;
+            if (HintTemplate != null) fullText += $" {Id}-hint";
+            return string.IsNullOrWhiteSpace(fullText) ? null : fullText;
+        }
+    }
+    #endregion
+
+    #region Event Handlers
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+
+    protected Task OnValueChanged(ChangeEventArgs e)
+    {
+        Value = e.Value.ToString();
+
+        return ValueChanged.InvokeAsync(Value);
+    }
+    #endregion
+}

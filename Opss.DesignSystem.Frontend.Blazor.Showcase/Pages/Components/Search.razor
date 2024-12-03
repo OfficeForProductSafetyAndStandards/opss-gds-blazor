@@ -1,0 +1,30 @@
+﻿@page "/Components/Search"
+@layout _ComponentsLayout
+
+<PageTitle>Search</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Search</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the MoJ GDS <a href="https://design-patterns.service.justice.gov.uk/components/search/" class="govuk-link">Search</a>.
+</p>
+
+<Example CodeExampleContent="@(@"")">
+    <GdsSearch Id="search" Name="search">
+        <LabelTemplate>
+            <GdsLabel Classes="moj-search__label govuk-!-font-weight-bold">
+                Find a person
+            </GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint Classes="govuk-hint moj-search__hint">
+                You can search by name, date of birth or national insurance number
+            </GdsHint>
+        </HintTemplate>
+    </GdsSearch>
+</Example>
+
+@code {
+
+}
