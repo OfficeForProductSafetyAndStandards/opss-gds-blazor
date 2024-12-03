@@ -11,8 +11,15 @@
         <GdsHeading Id=@TitleId
                     HeadingLevel=@TitleHeadingLevel
                     Classes="govuk-notification-banner__title">
+            @if (TitleTemplate == null)
+            {
                 @titleText
+            }
         </GdsHeading>
+        @if (TitleTemplate != null)
+        {
+            @TitleTemplate
+        }
     </div>
     <div class="govuk-notification-banner__content">
         @if (ChildContent == null)
@@ -36,6 +43,7 @@
     ///  The available default values are ‘Important’, ‘Success’, and null:
     ///  - if you do not set type, titleText defaults to "Important"
     ///  - if you set type to success, titleText defaults to "Success"
+    ///  - if you set titleTemplate, this option is ignored
     /// </summary>
     [Parameter]
     public string? TitleText { get; set; }
@@ -46,6 +54,15 @@
     /// </summary>
     [Parameter]
     public int? TitleHeadingLevel { get; set; } = 2;
+
+    /// <summary>
+    /// The title HTML to use within the notification banner.
+    /// You can use any string with this option. Use this option
+    /// to set text that contains HTML. If you set titleTemplate, the
+    /// titleText option is ignored.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? TitleTemplate { get; set; }
 
     /// <summary>
     /// The type of notification to render. You can use only "success"
