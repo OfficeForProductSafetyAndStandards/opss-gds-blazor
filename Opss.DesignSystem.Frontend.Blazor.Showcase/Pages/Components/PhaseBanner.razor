@@ -1,0 +1,73 @@
+﻿@page "/Components/PhaseBanner"
+@layout _ComponentsLayout
+
+<PageTitle>Phase banner</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Phase banner</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-patterns.service.justice.gov.uk/components/phase-banner/" class="govuk-link">Phase banner</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsPhaseBanner>
+    <TagTemplate>
+        <GdsTag>Alpha</GdsTag>
+    </TagTemplate>
+    <ChildContent>
+        This is a new service. Help us improve it and <a class=""govuk-link"" href=""#"">give your feedback by email</a>.
+    </ChildContent>
+</GdsPhaseBanner>")">
+    <GdsPhaseBanner>
+        <TagTemplate>
+            <GdsTag>Alpha</GdsTag>
+        </TagTemplate>
+        <ChildContent>
+            This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback by email</a>.
+        </ChildContent>
+    </GdsPhaseBanner>
+</Example>
+
+<h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
+
+<h3 class="govuk-heading-l" id="add-a-feedback-link">Add a feedback link</h3>
+
+<Example CodeExampleContent="@(@"<GdsPhaseBanner>
+    <TagTemplate>
+        <GdsTag>Alpha</GdsTag>
+    </TagTemplate>
+    <ChildContent>
+        This is a new service. Help us improve it and <a class=""govuk-link"" href=""#"">give your feedback by email</a>.
+    </ChildContent>
+</GdsPhaseBanner>")">
+    <GdsPhaseBanner>
+        <TagTemplate>
+            <GdsTag>Alpha</GdsTag>
+        </TagTemplate>
+        <ChildContent>
+            This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback by email</a>.
+        </ChildContent>
+    </GdsPhaseBanner>
+</Example>
+
+<Example CodeExampleContent="@(@"<GdsPhaseBanner>
+    <TagTemplate>
+        <GdsTag>Beta</GdsTag>
+    </TagTemplate>
+    <ChildContent>
+        This is a new service. Help us improve it and <a class=""govuk-link"" href=""#"">give your feedback (opens in new tab)</a>.
+    </ChildContent>
+</GdsPhaseBanner>")">
+    <GdsPhaseBanner>
+        <TagTemplate>
+            <GdsTag>Beta</GdsTag>
+        </TagTemplate>
+        <ChildContent>
+            This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
+        </ChildContent>
+    </GdsPhaseBanner>
+</Example>
+
+@code {
+
+}

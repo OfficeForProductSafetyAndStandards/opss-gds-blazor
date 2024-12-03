@@ -1,0 +1,475 @@
+﻿@page "/Components/Tag"
+@layout _ComponentsLayout
+
+<PageTitle>Tag</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Tag</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-patterns.service.justice.gov.uk/components/tag/" class="govuk-link">Tag</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsTag>Completed</GdsTag>")">
+    <GdsTag>Completed</GdsTag>
+</Example>
+
+<h2 class="govuk-heading-l" id="showing-one-or-two-statuses">Showing one or two statuses</h2>
+
+<Example CodeExampleContent="@(@"<table class=""govuk-table"">
+    <thead class=""govuk-table__head"">
+        <tr class=""govuk-table__row"">
+            <th class=""govuk-table__header"" scope=""col""> Name of user </th>
+            <th class=""govuk-table__header"" scope=""col""> Status </th>
+        </tr>
+    </thead>
+    <tbody class=""govuk-table__body"">
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                Rachel Silver
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Grey>Inactive</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                Jesse Smith
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Grey>Inactive</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                Joshua Wessel
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag>Active</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                Rachael Pepper
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag>Active</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                Stuart Say
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Grey>Inactive</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                Laura Frith
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag>Active</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                Tim Harvey
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Grey>Inactive</GdsTag>
+            </td>
+        </tr>
+    </tbody>
+</table>")">
+    <table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="col"> Name of user </th>
+                <th class="govuk-table__header" scope="col"> Status </th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    Rachel Silver
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Grey>Inactive</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    Jesse Smith
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Grey>Inactive</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    Joshua Wessel
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag>Active</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    Rachael Pepper
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag>Active</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    Stuart Say
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Grey>Inactive</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    Laura Frith
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag>Active</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    Tim Harvey
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Grey>Inactive</GdsTag>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</Example>
+
+<h2 class="govuk-heading-l" id="showing-multiple-statuses">Showing multiple statuses</h2>
+
+<Example CodeExampleContent="@(@"<table class=""govuk-table"">
+    <thead class=""govuk-table__head"">
+        <tr class=""govuk-table__row"">
+            <th class=""govuk-table__header"" scope=""col""> Application </th>
+            <th class=""govuk-table__header"" scope=""col""> Status </th>
+        </tr>
+    </thead>
+    <tbody class=""govuk-table__body"">
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                Joshua Wessel
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Red>Urgent</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                Rachel Silver
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Blue>New</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                Laura Frith
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Blue>New</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                Paul French
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Blue>New</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                Jesse Smith
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Blue>New</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                Rachael Pepper
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Green>Finished</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                Emma Tennant
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Yellow>Waiting on</GdsTag>
+            </td>
+        </tr>
+    </tbody>
+</table>")">
+    <table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="col"> Application </th>
+                <th class="govuk-table__header" scope="col"> Status </th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    Joshua Wessel
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Red>Urgent</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    Rachel Silver
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Blue>New</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    Laura Frith
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Blue>New</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    Paul French
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Blue>New</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    Jesse Smith
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Blue>New</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    Rachael Pepper
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Green>Finished</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    Emma Tennant
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Yellow>Waiting on</GdsTag>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</Example>
+
+<h2 class="govuk-heading-l" id="using-colour-with-tags">Using colour with tags</h2>
+
+<Example CodeExampleContent="@(@"<table class=""govuk-table"">
+    <thead class=""govuk-table__head"">
+        <tr class=""govuk-table__row"">
+            <th class=""govuk-table__header"" scope=""col""> Class name </th>
+            <th class=""govuk-table__header"" scope=""col""> Tag </th>
+        </tr>
+    </thead>
+    <tbody class=""govuk-table__body"">
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                <code> govuk-tag--grey </code>
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Grey>Inactive</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                <code> govuk-tag--green </code>
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Green>New</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                <code> govuk-tag--turquoise </code>
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Turquoise>Active</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                <code> govuk-tag--blue </code>
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Blue>Pending</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                <code> govuk-tag--light-blue </code>
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.LightBlue>In progress</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                <code> govuk-tag--purple </code>
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Purple>Received</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                <code> govuk-tag--pink </code>
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Pink>Sent</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                <code> govuk-tag--red </code>
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Red>Rejected</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                <code> govuk-tag--orange </code>
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Orange>Declined</GdsTag>
+            </td>
+        </tr>
+        <tr class=""govuk-table__row"">
+            <td class=""govuk-table__cell"">
+                <code> govuk-tag--yellow </code>
+            </td>
+            <td class=""govuk-table__cell"">
+                <GdsTag Classes=@TagClasses.Yellow>Delayed</GdsTag>
+            </td>
+        </tr>
+    </tbody>
+</table>")">
+    <table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="col"> Class name </th>
+                <th class="govuk-table__header" scope="col"> Tag </th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    <code> govuk-tag--grey </code>
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Grey>Inactive</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    <code> govuk-tag--green </code>
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Green>New</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    <code> govuk-tag--turquoise </code>
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Turquoise>Active</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    <code> govuk-tag--blue </code>
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Blue>Pending</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    <code> govuk-tag--light-blue </code>
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.LightBlue>In progress</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    <code> govuk-tag--purple </code>
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Purple>Received</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    <code> govuk-tag--pink </code>
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Pink>Sent</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    <code> govuk-tag--red </code>
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Red>Rejected</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    <code> govuk-tag--orange </code>
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Orange>Declined</GdsTag>
+                </td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                    <code> govuk-tag--yellow </code>
+                </td>
+                <td class="govuk-table__cell">
+                    <GdsTag Classes=@TagClasses.Yellow>Delayed</GdsTag>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</Example>
+
+@code {
+
+}
