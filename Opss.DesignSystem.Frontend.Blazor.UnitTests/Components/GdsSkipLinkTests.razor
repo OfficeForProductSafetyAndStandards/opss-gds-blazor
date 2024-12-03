@@ -1,0 +1,16 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void OutputsSkipLink()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSkipLink Href="#">Skip to main content</GdsSkipLink>
+    );
+
+        component.MarkupMatches(
+    @<a href="#" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+    );
+    }
+}
