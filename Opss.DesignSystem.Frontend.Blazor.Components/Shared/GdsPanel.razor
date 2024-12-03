@@ -1,5 +1,10 @@
 ﻿@inherits GdsWithContent
 
+@* <summary>
+    The panel component is a visible container used on confirmation or results
+    pages to highlight important content.
+</summary> *@
+
 <div class="govuk-panel govuk-panel--confirmation @Classes" @attributes=@Attributes>
     <GdsHeading HeadingLevel=@HeadingLevel Classes="govuk-panel__title">
         @if (TitleTemplate == null)
