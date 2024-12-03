@@ -11,7 +11,14 @@ Make a page easier to scan by letting users reveal more detailed information onl
 >
     <summary class="govuk-details__summary">
         <span class="govuk-details__summary-text">
-            @Summary
+            @if (SummaryTemplate == null)
+            {
+                @SummaryText
+            }
+            else
+            {
+                @SummaryTemplate
+            }
         </span>
     </summary>
     <div class="govuk-details__text">
@@ -28,9 +35,22 @@ Make a page easier to scan by letting users reveal more detailed information onl
     public bool Open { get; set; }
 
     /// <summary>
-    /// Content to use within the summary element (the visible part of the details element).
+    /// If summaryTemplate is set, this is not required.
+    /// Text to use within the summary element (the
+    /// visible part of the details element). If
+    /// summaryTemplate is provided, the summaryText
+    /// option will be ignored.
     /// </summary>
     [Parameter]
-    public string? Summary { get; set; }
+    public string? SummaryText { get; set; }
+
+    /// <summary>
+    /// If summmaryText is set, this is not required. HTML
+    /// to use within the summary element (the visible
+    /// part of the details element). If summaryTemplate is
+    /// provided, the summaryText option will be ignored.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? SummaryTemplate { get; set; }
     #endregion
 }
