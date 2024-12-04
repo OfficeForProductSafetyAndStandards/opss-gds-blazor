@@ -178,7 +178,7 @@
     public void ThrowsExceptionWhenSummaryTextAndHtmlAreMissing()
     {
         // Act & Assert
-        var exception = Assert.Throws<InvalidOperationException>(() =>
+        var exception = Assert.Throws<ArgumentNullException>(() =>
             Render(
                 @<GdsDetails>
                     We need to know your nationality so we can work out which elections
@@ -188,23 +188,22 @@
         );
 
         // Assert
-        Assert.Equal("Either summaryText or summaryHtml must be provided.", exception.Message);
+        Assert.Equal("GdsDetails must have either summary text or a summary template provided. (Parameter 'SummaryText and SummaryTemplate')", exception.Message);
     }
 
     [Fact]
     public void ThrowsExceptionWhenTextAndHtmlAreMissing()
     {
         // Act & Assert
-        var exception = Assert.Throws<InvalidOperationException>(() =>
+        var exception = Assert.Throws<ArgumentNullException>(() =>
         {
             Render(
-                @<GdsDetails SummaryText="Help with nationality">
-                </GdsDetails>
+                @<GdsDetails SummaryText="Help with nationality" />
             );
         });
 
         // Assert
-        Assert.Equal("Either text or html must be provided for the details content.", exception.Message);
+        Assert.Equal("GdsDetails must have child content provided. (Parameter 'ChildContent')", exception.Message);
     }
 
 }

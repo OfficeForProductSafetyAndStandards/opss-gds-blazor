@@ -53,4 +53,17 @@ Make a page easier to scan by letting users reveal more detailed information onl
     [Parameter]
     public RenderFragment? SummaryTemplate { get; set; }
     #endregion
+
+    #region Initialization Logic
+    protected override void OnInitialized()
+    {
+        if (ChildContent == null)
+            throw new ArgumentNullException(nameof(ChildContent), "GdsDetails must have child content provided.");
+
+        if (SummaryText == null && SummaryTemplate == null)
+            throw new ArgumentNullException($"{nameof(SummaryText)} and {nameof(SummaryTemplate)}", "GdsDetails must have either summary text or a summary template provided.");
+
+        base.OnInitialized();
+    }
+    #endregion
 }
