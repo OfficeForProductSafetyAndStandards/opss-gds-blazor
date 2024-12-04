@@ -1,0 +1,41 @@
+﻿@inherits GdsWithContent
+
+@* <summary>
+    Allow users to accept or reject cookies which are not essential to
+    making your service work.
+</summary> *@
+
+<div id=@Id
+     class="govuk-cookie-banner @Classes" 
+     data-nosnippet role="region" 
+     aria-label=@AriaLabel 
+     hidden=@(Hidden == true) 
+     @attributes=@Attributes
+>
+    <CascadingValue Value=this>
+        @ChildContent
+    </CascadingValue>
+</div>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// The text for the aria-label which labels the cookie banner
+    /// region. This region applies to all messages that the cookie
+    /// banner includes. For example, the cookie message and the
+    /// confirmation message. Defaults to "Cookie banner".
+    /// </summary>
+    [Parameter]
+    public string AriaLabel { get; set; } = "Cookie banner";
+
+    /// <summary>
+    /// Defaults to false. If you set this option to true, the whole
+    /// cookie banner is hidden, including all messages within the
+    /// banner. You can use hidden for client-side implementations
+    /// where the cookie banner HTML is present, but hidden until
+    /// the cookie banner is shown using JavaScript.
+    /// </summary>
+    [Parameter]
+    public bool? Hidden { get; set; }
+    #endregion
+}

@@ -1,0 +1,88 @@
+﻿@inherits GdsWithContent
+<div class="govuk-cookie-banner__message govuk-width-container @Classes"
+     hidden=@(Hidden == true)
+     role=@Role
+     @attributes=@Attributes>
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            @if (HeadingTemplate != null || HeadingText != null)
+            {
+                <h2 class="govuk-cookie-banner__heading govuk-heading-m">
+                    @HeadingText
+                </h2>
+                @if (HeadingTemplate != null)
+                {
+                    @HeadingTemplate
+                }
+            }
+            <div class="govuk-cookie-banner__content">
+                @ChildContent
+            </div>
+        </div>
+    </div>
+    <div class="govuk-button-group">
+        <CascadingValue Value=this>
+            @ActionsTemplate
+        </CascadingValue>
+    </div>
+</div>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// The heading text that displays in the message.
+    /// You can use any string with this option. If you
+    /// set headingTemplate, headingText is ignored.
+    /// </summary>
+    [Parameter]
+    public string? HeadingText { get; set; }
+
+    /// <summary>
+    /// The heading HTML to use within the message. You
+    /// can use any string with this option. If you set
+    /// headingTemplatel, headingText is ignored. If you
+    /// are not passing HTML, use headingText.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? HeadingTemplate { get; set; }
+
+    /// <summary>
+    /// Defaults to false. If you set it to true, the
+    /// message is hidden. You can use hidden for client-side
+    /// implementations where the confirmation message
+    /// HTML is present, but hidden on the page.
+    /// </summary>
+    [Parameter]
+    public bool? Hidden { get; set; }
+
+    /// <summary>
+    /// Set role to "alert" on confirmation messages to allow
+    /// assistive tech to automatically read the message. You
+    /// will also need to move focus to the confirmation message
+    /// using JavaScript you have written yourself.
+    /// </summary>
+    [Parameter]
+    public string? Role { get; set; }
+
+    /// <summary>
+    /// The buttons and links that you want to display in the message.
+    /// actions defaults to "button" unless you set href, which renders
+    /// the action as a link.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ActionsTemplate { get; set; }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsCookieBannerMessage must exist within a GdsCookieBanner");
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsCookieBanner? Parent { get; set; }
+    #endregion
+}
