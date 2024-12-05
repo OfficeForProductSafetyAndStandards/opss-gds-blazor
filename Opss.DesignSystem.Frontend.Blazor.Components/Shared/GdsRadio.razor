@@ -12,7 +12,7 @@
            type="radio" 
            value=@Value
            disabled=@Disabled
-           checked=@Checked
+           checked=@isChecked
            data-aria-controls=@conditionalId
            aria-describedBy=@describedBy?.Trim()
            @oninput=RadioChanged
@@ -37,7 +37,7 @@
 @if (ConditionalTemplate != null)
 {
     <div id=@conditionalId
-         class="govuk-radios__conditional @(Checked == true ? "" : "govuk-radios__conditional--hidden")">
+         class="govuk-radios__conditional @(isChecked == true ? "" : "govuk-radios__conditional--hidden")">
         @ConditionalTemplate
     </div>
 }
@@ -108,6 +108,11 @@
     /// Set by the parent to identify this element's index
     /// </summary>
     public int Index { get; set; }
+
+    /// <summary>
+    /// Mark the checkbox as checked.
+    /// </summary>
+    public void Check() => isChecked = true;
     #endregion
 
     #region Event Handlers
@@ -164,11 +169,15 @@
             return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
         }
     }
+
+    private bool? isChecked;
     #endregion
 
     #region Cascading Value - Parent
     protected override void OnInitialized()
     {
+        isChecked = Checked;
+
         if (Parent == null)
             throw new ArgumentNullException(nameof(Parent), "GdsRadio must exist within a GdsRadios");
 
