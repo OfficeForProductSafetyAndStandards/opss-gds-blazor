@@ -1,8 +1,7 @@
 ﻿@inherits GdsWithContent
 
-<div class="govuk-checkboxes__divider @Classes"
-     @attributes=@Attributes
->
+<div class="govuk-radios__divider @Classes"
+     @attributes=@Attributes>
     @ChildContent
 </div>
 
@@ -11,7 +10,7 @@
     protected override void OnInitialized()
     {
         if (Parent == null)
-            throw new ArgumentNullException(nameof(Parent), "GdsCheckboxDivider must exist within a GdsCheckboxes");
+            throw new ArgumentNullException(nameof(Parent), "GdsRadioDivider must exist within a GdsRadios");
 
         Parent.Register(this);
 
@@ -19,6 +18,6 @@
     }
 
     [CascadingParameter]
-    private GdsCheckboxes? Parent { get; set; }
+    private GdsRadios? Parent { get; set; }
     #endregion
 }

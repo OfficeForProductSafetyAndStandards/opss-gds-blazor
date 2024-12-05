@@ -1,0 +1,267 @@
+﻿@inherits GdsWithContent
+
+@* <summary>
+    Use the radios component when users can only select one option from a list.
+</summary> *@
+
+<div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses"
+     @attributes=@FormGroupAttributes
+>
+    @if (includeFieldset)
+    {
+        <GdsFieldset DescribedBy=@fieldsetDescribedBy
+                     Classes=@FieldsetClasses
+                     Role=@FieldsetRole
+                     @attributes=@Attributes>
+            <LegendTemplate>
+                @LegendTemplate
+            </LegendTemplate>
+            <ChildContent>
+                @if (HintTemplate != null)
+                {
+                    <CascadingValue Value=@Name>
+                        @HintTemplate
+                    </CascadingValue>
+                }
+                @if (ErrorMessageTemplate != null)
+                {
+                    <CascadingValue Value=@Name>
+                        @ErrorMessageTemplate
+                    </CascadingValue>
+                }
+
+                <div class="govuk-radios @Classes" data-module="govuk-radios">
+
+                    @if(BeforeInputs != null)
+                    {
+                        @BeforeInputs
+                    }
+                    <CascadingValue Value=this>
+                        @ChildContent
+                    </CascadingValue>
+                    @if(AfterInputs != null)
+                    {
+                        @AfterInputs
+                    }
+
+                </div>
+            </ChildContent>
+        </GdsFieldset>
+    }
+    else
+    {
+        @if (HintTemplate != null)
+        {
+            <CascadingValue Value=@Name>
+                @HintTemplate
+            </CascadingValue>
+        }
+        @if (ErrorMessageTemplate != null)
+        {
+            <CascadingValue Value=@Name>
+                @ErrorMessageTemplate
+            </CascadingValue>
+        }
+
+        <div class="govuk-radios" data-module="govuk-radios">
+
+            @if (BeforeInputs != null)
+            {
+                @BeforeInputs
+            }
+            <CascadingValue Value=this>
+                @ChildContent
+            </CascadingValue>
+            @if (AfterInputs != null)
+            {
+                @AfterInputs
+            }
+
+        </div>
+    }
+</div>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Should the radios be used by the radios component?
+    /// Defaults to false, unless Legend, FieldsetClasses,
+    /// FieldsetRole or FieldsetAttributes are set.
+    /// </summary>
+    [Parameter]
+    public bool? IncludeFieldset { get; set; }
+
+    /// <summary>
+    /// The legend for the fieldset component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? LegendTemplate { get; set; }
+
+    /// <summary>
+    /// Classes to add to the fieldset container.
+    /// </summary>
+    [Parameter]
+    public string? FieldsetClasses { get; set; }
+
+    /// <summary>
+    /// One or more element IDs to add to the aria-describedby attribute, used
+    /// to provide additional descriptive information for screenreader users.
+    /// Will override the calculated described by value.
+    /// </summary>
+    [Parameter]
+    public string? FieldsetDescribedBy { get; set; }
+
+    /// <summary>
+    /// Optional ARIA role attribute.
+    /// </summary>
+    [Parameter]
+    public string? FieldsetRole { get; set; }
+
+    /// <summary>
+    /// HTML attributes (for example data attributes) to add to the fieldset container.
+    /// </summary>
+    [Parameter]
+    [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Component parameters should have a public setter")]
+    public Dictionary<string, object>? FieldsetAttributes { get; set; } = new Dictionary<string, object>();
+
+    /// <summary>
+    /// Can be used to add a hint to the radios component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
+
+    /// <summary>
+    /// Can be used to add an error message to the radios component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ErrorMessageTemplate { get; set; }
+
+    /// <summary>
+    /// Classes to add to the form group (for example to show error state for the whole group).
+    /// </summary>
+    [Parameter]
+    public string? FormGroupClasses { get; set; }
+
+    /// <summary>
+    /// HTML attributes (for example data attributes) to add to the form group.
+    /// </summary>
+    [Parameter]
+    [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Component parameters should have a public setter")]
+    public Dictionary<string, object>? FormGroupAttributes { get; set; } = new Dictionary<string, object>();
+
+    /// <summary>
+    /// Content to add before all radio items within the checkboxes component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? BeforeInputs { get; set; }
+
+    /// <summary>
+    /// Content to add after all radio items within the checkboxes component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? AfterInputs { get; set; }
+
+    /// <summary>
+    /// Optional prefix. This is used to prefix the id attribute for each
+    /// radio input, hint and error message, separated by -.
+    /// Defaults to the name option value.
+    /// </summary>
+    [Parameter]
+    public string? IdPrefix { get; set; }
+
+    /// <summary>
+    /// Required. Name attribute for the radio items.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// The value for the radio which should be checked when the page loads.
+    /// Use this as an alternative to setting the checked option on each
+    /// individual item.
+    /// </summary>
+    [Parameter]
+    public string? Value { get; set; }
+    #endregion
+
+    #region Event Handlers
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+
+    public Task RadioChanged(string? value)
+    {
+        return ValueChanged.InvokeAsync(value);
+    }
+    #endregion
+
+    #region Private Properties
+    /// <summary>
+    /// If any of the Fieldset properties are specified, we should return true.
+    /// Otherwise, return the IncludeFieldset value or false.
+    /// </summary>
+    private bool includeFieldset
+    {
+        get
+        {
+            if (LegendTemplate != null || FieldsetClasses != null || FieldsetRole != null || FieldsetAttributes != null)
+                return true;
+
+            return IncludeFieldset ?? false;
+        }
+    }
+
+    /// <summary>
+    /// Calculate the Fieldset's Described By attribute
+    /// If FieldsetDescribedBy is provided, it will override
+    /// any calculated value.
+    /// </summary>
+    private string fieldsetDescribedBy
+    {
+        get
+        {
+            var describedBy = new List<string>();
+            if (FieldsetDescribedBy != null)
+                return FieldsetDescribedBy;
+
+            if (HintTemplate != null)
+                describedBy.Add(Name + "-hint");
+            if (ErrorMessageTemplate != null)
+                describedBy.Add(Name + "-error");
+
+            if (describedBy.Any())
+                return string.Join(" ", describedBy);
+            else
+                return null;
+        }
+    }
+    #endregion
+
+    #region Cascading Value - Child Items
+    private List<GdsRadio> radios = new List<GdsRadio>();
+
+    /// <summary>
+    /// Track the number of dividers to allow checkbox id values to be
+    /// correctly calculated.
+    /// </summary>
+    private int dividerCount = 0;
+
+    public void Register(GdsRadio radio)
+    {
+        if (radio.Checked == true)
+        {
+            RadioChanged(radio.Value);
+        }
+        if(radio.Value == Value)
+        {
+            radio.Checked = true;
+        }
+        radios.Add(radio);
+        radio.Index = radios.Count + dividerCount;
+    }
+
+    public void Register(GdsRadioDivider radio)
+    {
+        dividerCount = dividerCount + 1;
+    }
+    #endregion
+}

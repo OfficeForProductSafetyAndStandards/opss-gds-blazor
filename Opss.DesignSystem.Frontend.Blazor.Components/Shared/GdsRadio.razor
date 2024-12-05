@@ -1,0 +1,183 @@
+﻿@using System.Diagnostics.CodeAnalysis
+@inherits GdsWithContent
+
+@* <summary>
+    The radio item within the radios component.
+</summary> *@
+
+<div class="govuk-radios__item">
+    <input class="govuk-radios__input" 
+           id=@id
+           name=@Parent?.Name
+           type="radio" 
+           value=@Value
+           disabled=@Disabled
+           checked=@Checked
+           data-aria-controls=@conditionalId
+           aria-describedBy=@describedBy?.Trim()
+           @oninput=RadioChanged
+           @attributes=@Attributes
+    >
+    <label class="govuk-label govuk-radios__label @LabelClasses"
+           for=@id
+           @attributes=@LabelAttributes>
+        @if (Text != null)
+            @Text
+        else
+            @ChildContent
+
+    </label>
+    @if(HintTemplate != null)
+    {
+        <CascadingValue Value=@hintId>
+            @HintTemplate
+        </CascadingValue>
+    }
+</div>
+@if (ConditionalTemplate != null)
+{
+    <div id=@conditionalId
+         class="govuk-radios__conditional @(Checked == true ? "" : "govuk-radios__conditional--hidden")">
+        @ConditionalTemplate
+    </div>
+}
+
+@code {
+    #region
+    /// <summary>
+    /// Specific ID attribute for the radio item. If omitted,
+    /// then idPrefix string will be applied.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
+    /// Required. Value for the radio input.
+    /// </summary>
+    [Parameter]
+    public string? Value { get; set; }
+
+    /// <summary>
+    /// Text to use within each radio item label.
+    /// </summary>
+    [Parameter]
+    public string? Text { get; set; }
+
+    /// <summary>
+    /// Can be used to add a hint to each radio item within the
+    /// radios component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
+
+    /// <summary>
+    /// Whether the radio should be checked when the page loads.
+    /// Takes precedence over the top-level value option.
+    /// </summary>
+    [Parameter]
+    public bool? Checked { get; set; }
+
+    /// <summary>
+    /// Provide additional content to reveal when the radio is checked.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ConditionalTemplate { get; set; }
+
+    /// <summary>
+    /// If true, radio will be disabled.
+    /// </summary>
+    [Parameter]
+    public bool? Disabled { get; set; }
+
+    /// <summary>
+    /// Classes to add to the label tag.
+    /// </summary>
+    [Parameter]
+    public string? LabelClasses { get; set; }
+
+    /// <summary>
+    /// HTML attributes (for example data attributes) to add to the label tag.
+    /// </summary>
+    [Parameter]
+    [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Component parameters should have a public setter")]
+    public Dictionary<string, object>? LabelAttributes { get; set; } = new Dictionary<string, object>();
+    #endregion
+
+    #region Public Properties
+    /// <summary>
+    /// Set by the parent to identify this element's index
+    /// </summary>
+    public int Index { get; set; }
+    #endregion
+
+    #region Event Handlers
+    private Task RadioChanged(ChangeEventArgs e)
+    {
+        return Parent.RadioChanged(Value);
+    }
+    #endregion
+
+    #region Private Properties
+    private string? id
+    {
+        get
+        {
+            if (!string.IsNullOrEmpty(Id))
+                return Id;
+
+            var id = Parent?.IdPrefix ?? Parent?.Name;
+            if (Index == 1)
+            {
+                return id;
+            }
+            else
+            {
+                return id + "-" + Index;
+            }
+        }
+    }
+
+    private string hintId
+    {
+        get
+        {
+            return id + "-item";
+        }
+    }
+
+    private string? conditionalId
+    {
+        get
+        {
+            if (ConditionalTemplate == null) return null;
+
+            return $"conditional-{id}";
+        }
+    }
+
+    private string? describedBy
+    {
+        get
+        {
+            var fullText = "";
+            if (HintTemplate != null) fullText += $" {id}-item-hint";
+            return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
+        }
+    }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsRadio must exist within a GdsRadios");
+
+        Parent.Register(this);
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsRadios? Parent { get; set; }
+    #endregion
+}
