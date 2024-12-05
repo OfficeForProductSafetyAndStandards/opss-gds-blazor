@@ -21,3 +21,13 @@
         @("Back")
     }
 </a>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Indicates that the component is on a dark background and should utilise the inverse class
+    /// </summary>
+    [Parameter]
+    public bool IsOnDarkBackground { get; set; }
+    #endregion
+}
