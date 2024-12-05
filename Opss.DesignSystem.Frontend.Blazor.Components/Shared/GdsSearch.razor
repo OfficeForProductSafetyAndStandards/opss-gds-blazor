@@ -42,6 +42,11 @@
 @code {
     #region Public Parameters
     /// <summary>
+    /// Required. The Id of the input.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+    /// <summary>
     /// The label used by the text input component.
     /// </summary>
     [Parameter]

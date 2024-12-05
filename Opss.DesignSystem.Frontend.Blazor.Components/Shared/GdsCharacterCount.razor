@@ -69,6 +69,12 @@
 @code {
     #region Public Parameters
     /// <summary>
+    /// Required. The ID of the textarea.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
     /// The label used by the character count component.
     /// </summary>
     [Parameter]

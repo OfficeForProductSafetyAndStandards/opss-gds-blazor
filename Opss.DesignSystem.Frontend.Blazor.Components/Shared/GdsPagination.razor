@@ -5,8 +5,7 @@
     For example, search results or guidance that’s divided into multiple website pages
 </summary> *@
 
-<nav id=@Id
-     class="govuk-pagination @Classes @(UseBlockStyle == true ? " govuk-pagination--block" : "")"
+<nav class="govuk-pagination @Classes @(UseBlockStyle == true ? " govuk-pagination--block" : "")"
      aria-label="Pagination"
      @attributes=@Attributes>
     @if (PreviousTemplate != null && (currentIndex > 0 || UseBlockStyle == true))

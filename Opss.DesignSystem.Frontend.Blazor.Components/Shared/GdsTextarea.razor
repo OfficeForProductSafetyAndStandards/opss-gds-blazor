@@ -51,6 +51,12 @@
 @code {
     #region Public Parameters
     /// <summary>
+    /// Required. The ID of the textarea.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
     /// The label used by the textarea component.
     /// </summary>
     [Parameter]
@@ -81,7 +87,7 @@
     public RenderFragment? AfterInputsTemplate { get; set; }
 
     /// <summary>
-    /// The name of the input, which is submitted with the form data.
+    /// Required. The name of the input, which is submitted with the form data.
     /// </summary>
     [Parameter]
     public string? Name { get; set; }
@@ -92,6 +98,9 @@
     [Parameter]
     public int? Rows { get; set; }
 
+    /// <summary>
+    /// Value of the textarea.
+    /// </summary>
     [Parameter]
     public string? Value { get; set; }
 

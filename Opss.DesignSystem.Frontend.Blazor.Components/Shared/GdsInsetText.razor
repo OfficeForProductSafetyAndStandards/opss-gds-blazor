@@ -11,3 +11,13 @@
 >
     @ChildContent
 </div>
+
+@code{
+    #region Public Parameters
+    /// <summary>
+    /// Id attribute to add to the inset text container.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+    #endregion
+}

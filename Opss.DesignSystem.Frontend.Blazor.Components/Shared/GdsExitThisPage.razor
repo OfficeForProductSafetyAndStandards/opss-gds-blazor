@@ -55,6 +55,12 @@
 @code {
     #region Public Parameters
     /// <summary>
+    /// Id attribute to add to the exit this page container.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
     /// Switches between an Emergency Button and a SkipLink
     /// Defaults to Button
     /// </summary>
