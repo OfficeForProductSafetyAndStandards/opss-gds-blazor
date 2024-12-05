@@ -32,16 +32,16 @@
 
                 <div class="govuk-radios @Classes" data-module="govuk-radios">
 
-                    @if(BeforeInputs != null)
+                    @if(BeforeInputsTemplate != null)
                     {
-                        @BeforeInputs
+                        @BeforeInputsTemplate
                     }
                     <CascadingValue Value=this>
                         @ChildContent
                     </CascadingValue>
-                    @if(AfterInputs != null)
+                    @if(AfterInputsTemplate != null)
                     {
-                        @AfterInputs
+                        @AfterInputsTemplate
                     }
 
                 </div>
@@ -63,18 +63,18 @@
             </CascadingValue>
         }
 
-        <div class="govuk-radios" data-module="govuk-radios">
+        <div class="govuk-radios @Classes" data-module="govuk-radios">
 
-            @if (BeforeInputs != null)
+            @if (BeforeInputsTemplate != null)
             {
-                @BeforeInputs
+                @BeforeInputsTemplate
             }
             <CascadingValue Value=this>
                 @ChildContent
             </CascadingValue>
-            @if (AfterInputs != null)
+            @if (AfterInputsTemplate != null)
             {
-                @AfterInputs
+                @AfterInputsTemplate
             }
 
         </div>
@@ -153,13 +153,13 @@
     /// Content to add before all radio items within the checkboxes component.
     /// </summary>
     [Parameter]
-    public RenderFragment? BeforeInputs { get; set; }
+    public RenderFragment? BeforeInputsTemplate { get; set; }
 
     /// <summary>
     /// Content to add after all radio items within the checkboxes component.
     /// </summary>
     [Parameter]
-    public RenderFragment? AfterInputs { get; set; }
+    public RenderFragment? AfterInputsTemplate { get; set; }
 
     /// <summary>
     /// Optional prefix. This is used to prefix the id attribute for each
@@ -253,7 +253,7 @@
         }
         if(radio.Value == Value)
         {
-            radio.Checked = true;
+            radio.Check();
         }
         radios.Add(radio);
         radio.Index = radios.Count + dividerCount;

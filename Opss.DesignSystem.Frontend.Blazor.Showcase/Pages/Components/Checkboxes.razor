@@ -10,7 +10,7 @@
     A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/checkboxes/" class="govuk-link">Checkboxes</a>.
 </p>
 
-<Example CodeExampleContent="@(@"<GdsCheckboxes Id=""waste"" Name=""waste"">
+<Example CodeExampleContent="@(@"<GdsCheckboxes Name=""waste"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             Which types of waste do you transport?
@@ -27,7 +27,7 @@
         <GdsCheckbox Value=""farm"">Farm or agricultural waste</GdsCheckbox>
     </ChildContent>
 </GdsCheckboxes>")">
-    <GdsCheckboxes Id="waste" Name="waste">
+    <GdsCheckboxes Name="waste">
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
                 Which types of waste do you transport?
@@ -50,7 +50,7 @@
 
 <h3 class="govuk-heading-m" id="if-youre-asking-one-question-on-the-page">If you’re asking one question on the page</h3>
 
-<Example CodeExampleContent="@(@"<GdsCheckboxes Id=""waste"" Name=""waste"">
+<Example CodeExampleContent="@(@"<GdsCheckboxes Name=""waste"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             Which types of waste do you transport?
@@ -67,7 +67,7 @@
         <GdsCheckbox Value=""farm"">Farm or agricultural waste</GdsCheckbox>
     </ChildContent>
 </GdsCheckboxes>")">
-    <GdsCheckboxes Id="waste" Name="waste">
+    <GdsCheckboxes Name="waste">
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
                 Which types of waste do you transport?
@@ -88,7 +88,7 @@
 
 <h3 class="govuk-heading-m" id="if-youre-asking-more-than-one-question-on-the-page">If you’re asking more than one question on the page</h3>
 
-<Example CodeExampleContent="@(@"<GdsCheckboxes Id=""waste"" Name=""waste"">
+<Example CodeExampleContent="@(@"<GdsCheckboxes Name=""waste"">
     <LegendTemplate>
         <GdsLegend>
             Which types of waste do you transport?
@@ -105,7 +105,7 @@
         <GdsCheckbox Value=""farm"">Farm or agricultural waste</GdsCheckbox>
     </ChildContent>
 </GdsCheckboxes>")">
-    <GdsCheckboxes Id="waste" Name="waste">
+    <GdsCheckboxes Name="waste">
         <LegendTemplate>
             <GdsLegend>
                 Which types of waste do you transport?
@@ -126,7 +126,7 @@
 
 <h3 class="govuk-heading-m" id="checkbox-items-with-hints">Checkbox items with hints</h3>
 
-<Example CodeExampleContent="@(@"<GdsCheckboxes Id=""nationality"" Name=""nationality"">
+<Example CodeExampleContent="@(@"<GdsCheckboxes Name=""nationality"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             What is your nationality?
@@ -148,7 +148,7 @@
         <GdsCheckbox Value=""other"">Citizen of another country</GdsCheckbox>
     </ChildContent>
 </GdsCheckboxes>")">
-    <GdsCheckboxes Id="nationality" Name="nationality">
+    <GdsCheckboxes Name="nationality">
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
                 What is your nationality?
@@ -174,7 +174,7 @@
 
 <h3 class="govuk-heading-m" id="add-an-option-for-none">Add an option for ‘none’</h3>
 
-<Example CodeExampleContent="@(@"<GdsCheckboxes Id=""countries"" Name=""countries"">
+<Example CodeExampleContent="@(@"<GdsCheckboxes Name=""countries"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             Will you be travelling to any of these countries?
@@ -193,7 +193,7 @@
         <GdsCheckbox Value=""none"" IsExclusive=@true>No, I will not be travelling to any of these countries</GdsCheckbox>
     </ChildContent>
 </GdsCheckboxes>")">
-    <GdsCheckboxes Id="countries" Name="countries">
+    <GdsCheckboxes Name="countries">
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
                 Will you be travelling to any of these countries?
@@ -237,7 +237,7 @@
 @code {
     List<string> countryErrorValues = new List<string> { ""france"", ""none"" };
 }")">
-    <GdsCheckboxes Id="countries" Name="countries" Values="@countryValues">
+    <GdsCheckboxes Name="countries" Values="@countryValues">
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
                 Will you be travelling to any of these countries?
@@ -264,7 +264,7 @@
 
 <h3 class="govuk-heading-m" id="conditionally-revealing-a-related-question">Conditionally revealing a related question</h3>
 
-<Example CodeExampleContent="@(@"<GdsCheckboxes Id=""contact"" Name=""contact"">
+<Example CodeExampleContent="@(@"<GdsCheckboxes Name=""contact"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             How would you like to be contacted?
@@ -305,7 +305,7 @@
         </GdsCheckbox>
     </ChildContent>
 </GdsCheckboxes>")">
-    <GdsCheckboxes Id="contact" Name="contact">
+    <GdsCheckboxes Name="contact">
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
                 How would you like to be contacted?
@@ -350,7 +350,7 @@
 
 <h3 class="govuk-heading-m" id="smaller-checkboxes">Smaller checkboxes</h3>
 
-<Example CodeExampleContent="@(@"<GdsCheckboxes Id=""organisation"" Name=""organisation"" Classes=@CheckboxSize.Small>
+<Example CodeExampleContent="@(@"<GdsCheckboxes Name=""organisation"" Classes=@CheckboxSize.Small>
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Medium>
             Organisation
@@ -365,7 +365,7 @@
         <GdsCheckbox Value=""DfT"">Department for Transport</GdsCheckbox>
     </ChildContent>
 </GdsCheckboxes>")">
-    <GdsCheckboxes Id="organisation" Name="organisation" Classes=@CheckboxSize.Small>
+    <GdsCheckboxes Name="organisation" Classes=@CheckboxSize.Small>
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Medium>
                 Organisation
@@ -384,7 +384,7 @@
 
 <h3 class="govuk-heading-m" id="error-messages">Error messages</h3>
 
-<Example CodeExampleContent="@(@"<GdsCheckboxes Id=""nationality"" Name=""nationality"">
+<Example CodeExampleContent="@(@"<GdsCheckboxes Name=""nationality"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             What is your nationality?
@@ -408,7 +408,7 @@
         <GdsCheckbox Value=""other"">Citizen of another country</GdsCheckbox>
     </ChildContent>
 </GdsCheckboxes>")">
-    <GdsCheckboxes Id="nationality" Name="nationality">
+    <GdsCheckboxes Name="nationality">
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
                 What is your nationality?
@@ -433,6 +433,3 @@
         </ChildContent>
     </GdsCheckboxes>
 </Example>
-
-@code {
-}

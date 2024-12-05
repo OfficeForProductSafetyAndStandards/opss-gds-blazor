@@ -32,8 +32,7 @@
 @if (ConditionalTemplate != null)
 {
     <div id=@conditionalId
-         class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden"
-    >
+         class="govuk-checkboxes__conditional @(isChecked == true ? "" : "govuk-checkboxes__conditional--hidden")">
         @ConditionalTemplate
     </div>
 }
@@ -48,25 +47,6 @@
     public string? Id { get; set; }
 
     /// <summary>
-    /// Can be used to add a hint to the checkboxes component.
-    /// </summary>
-    [Parameter]
-    public RenderFragment? HintTemplate { get; set; }
-
-    /// <summary>
-    /// Provide additional content to reveal when the checkbox is checked.
-    /// </summary>
-    [Parameter]
-    public RenderFragment? ConditionalTemplate { get; set; }
-
-    /// <summary>
-    /// If set, implements a ‘None of these’ type behaviour via 
-    /// JavaScript when checkboxes are clicked.
-    /// </summary>
-    [Parameter]
-    public bool IsExclusive { get; set; } = false;
-
-    /// <summary>
     /// Required. Value for the checkbox input.
     /// </summary>
     [Parameter]
@@ -77,6 +57,38 @@
     /// </summary>
     [Parameter]
     public string? Text { get; set; }
+
+    /// <summary>
+    /// Can be used to add a hint to the checkboxes component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
+
+    /// <summary>
+    /// Whether the checkbox should be checked when the page loads.
+    /// Takes precedence over the top-level value option.
+    /// </summary>
+    [Parameter]
+    public bool? Checked { get; set; }
+
+    /// <summary>
+    /// Provide additional content to reveal when the checkbox is checked.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ConditionalTemplate { get; set; }
+
+    /// <summary>
+    /// If true, checkbox will be disabled.
+    /// </summary>
+    [Parameter]
+    public bool? Disabled { get; set; }
+
+    /// <summary>
+    /// If set, implements a ‘None of these’ type behaviour via 
+    /// JavaScript when checkboxes are clicked.
+    /// </summary>
+    [Parameter]
+    public bool IsExclusive { get; set; } = false;
 
     /// <summary>
     /// Specific name for the checkbox item. If omitted, then component global
@@ -93,10 +105,17 @@
     public string? DescribedBy { get; set; }
 
     /// <summary>
-    /// If true, checkbox will be disabled.
+    /// Classes to add to the label tag.
     /// </summary>
     [Parameter]
-    public bool? Disabled { get; set; }
+    public string? LabelClasses { get; set; }
+
+    /// <summary>
+    /// HTML attributes (for example data attributes) to add to the label tag.
+    /// </summary>
+    [Parameter]
+    [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Component parameters should have a public setter")]
+    public Dictionary<string, object>? LabelAttributes { get; set; } = new Dictionary<string, object>();
     #endregion
 
     #region Public Properties
@@ -104,6 +123,11 @@
     /// Set by the parent to identify this element's index
     /// </summary>
     public int Index { get; set; }
+
+    /// <summary>
+    /// Mark the checkbox as checked.
+    /// </summary>
+    public void Check() => isChecked = true;
     #endregion
 
     #region Event Handlers
@@ -133,13 +157,11 @@
         }
     }
 
-    private string? describedBy
+    private string hintId
     {
         get
         {
-            var fullText = DescribedBy ?? "";
-            if (HintTemplate != null) fullText += $" {id}-item-hint";
-            return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
+            return id + "-item";
         }
     }
 
@@ -153,29 +175,24 @@
         }
     }
 
-    private string hintId
+    private string? describedBy
     {
         get
         {
-            return id + "-item";
+            var fullText = DescribedBy ?? "";
+            if (HintTemplate != null) fullText += $" {id}-item-hint";
+            return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
         }
     }
 
-    private bool isChecked
-    {
-        get
-        {
-            if (Parent == null || Parent.Values == null || Value == null) 
-                return false;
-
-            return Parent.Values.Contains(Value);
-        }
-    }
+    private bool? isChecked;
     #endregion
 
     #region Cascading Value - Parent
     protected override void OnInitialized()
     {
+        isChecked = Checked;
+
         if (Parent == null)
             throw new ArgumentNullException(nameof(Parent), "GdsCheckbox must exist within a GdsCheckboxes");
 
