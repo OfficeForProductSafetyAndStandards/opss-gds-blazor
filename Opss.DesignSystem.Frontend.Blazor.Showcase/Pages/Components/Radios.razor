@@ -1,0 +1,477 @@
+﻿@page "/Components/Radios"
+@layout _ComponentsLayout
+
+<PageTitle>Radios</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Radios</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-patterns.service.justice.gov.uk/components/radios/" class="govuk-link">Radios</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsRadios Name=""whereDoYouLive"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            Where do you live?
+        </GdsLegend>
+    </LegendTemplate>
+    <ChildContent>
+        <GdsRadio Value=""england"">England</GdsRadio>
+        <GdsRadio Value=""scotland"">Scotland</GdsRadio>
+        <GdsRadio Value=""wales"">Wales</GdsRadio>
+        <GdsRadio Value=""northern-ireland"">Northern Ireland</GdsRadio>
+    </ChildContent>
+</GdsRadios>")">
+    <GdsRadios Name="whereDoYouLive">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                Where do you live?
+            </GdsLegend>
+        </LegendTemplate>
+        <ChildContent>
+            <GdsRadio Value="england">England</GdsRadio>
+            <GdsRadio Value="scotland">Scotland</GdsRadio>
+            <GdsRadio Value="wales">Wales</GdsRadio>
+            <GdsRadio Value="northern-ireland">Northern Ireland</GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+</Example>
+
+<h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
+
+<h3 class="govuk-heading-m" id="if-youre-asking-one-question-on-the-page">If you’re asking one question on the page</h3>
+
+<Example CodeExampleContent="@(@"<GdsRadios Name=""whereDoYouLive"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            Where do you live?
+        </GdsLegend>
+    </LegendTemplate>
+    <ChildContent>
+        <GdsRadio Value=""england"">England</GdsRadio>
+        <GdsRadio Value=""scotland"">Scotland</GdsRadio>
+        <GdsRadio Value=""wales"">Wales</GdsRadio>
+        <GdsRadio Value=""northern-ireland"">Northern Ireland</GdsRadio>
+    </ChildContent>
+</GdsRadios>")">
+    <GdsRadios Name="whereDoYouLive">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                Where do you live?
+            </GdsLegend>
+        </LegendTemplate>
+        <ChildContent>
+            <GdsRadio Value="england">England</GdsRadio>
+            <GdsRadio Value="scotland">Scotland</GdsRadio>
+            <GdsRadio Value="wales">Wales</GdsRadio>
+            <GdsRadio Value="northern-ireland">Northern Ireland</GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+</Example>
+
+<h3 class="govuk-heading-m" id="if-youre-asking-more-than-one-question-on-the-page">If you’re asking more than one question on the page</h3>
+
+<Example CodeExampleContent="@(@"<GdsRadios Name=""whereDoYouLive"">
+    <LegendTemplate>
+        <GdsLegend>
+            Where do you live?
+        </GdsLegend>
+    </LegendTemplate>
+    <ChildContent>
+        <GdsRadio Value=""england"">England</GdsRadio>
+        <GdsRadio Value=""scotland"">Scotland</GdsRadio>
+        <GdsRadio Value=""wales"">Wales</GdsRadio>
+        <GdsRadio Value=""northern-ireland"">Northern Ireland</GdsRadio>
+    </ChildContent>
+</GdsRadios>")">
+    <GdsRadios Name="whereDoYouLive">
+        <LegendTemplate>
+            <GdsLegend>
+                Where do you live?
+            </GdsLegend>
+        </LegendTemplate>
+        <ChildContent>
+            <GdsRadio Value="england">England</GdsRadio>
+            <GdsRadio Value="scotland">Scotland</GdsRadio>
+            <GdsRadio Value="wales">Wales</GdsRadio>
+            <GdsRadio Value="northern-ireland">Northern Ireland</GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+</Example>
+
+<h3 class="govuk-heading-m" id="inline-radios">Inline radios</h3>
+
+<Example CodeExampleContent="@(@"<GdsRadios Name=""changedName"" Classes=@RadioClasses.Inline>
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            Have you changed your name?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>
+            This includes changing your last name or spelling your name differently
+        </GdsHint>
+    </HintTemplate>
+    <ChildContent>
+        <GdsRadio Value=""yes"">Yes</GdsRadio>
+        <GdsRadio Value=""no"">No</GdsRadio>
+    </ChildContent>
+</GdsRadios>")">
+    <GdsRadios Name="changedName" Classes=@RadioClasses.Inline>
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                Have you changed your name?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>
+                This includes changing your last name or spelling your name differently
+            </GdsHint>
+        </HintTemplate>
+        <ChildContent>
+            <GdsRadio Value="yes">Yes</GdsRadio>
+            <GdsRadio Value="no">No</GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+</Example>
+
+<h3 class="govuk-heading-m" id="radio-items-with-hints">Radio items with hints</h3>
+
+<Example CodeExampleContent="@(@"<GdsRadios Name=""signIn"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            How do you want to sign in?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint Classes=""govuk-radios__hint"">
+            You’ll need an account to prove your identity and complete your Self Assessment
+        </GdsHint>
+    </HintTemplate>
+    <ChildContent>
+    <GdsRadio Value=""government-gateway"">
+        <HintTemplate>
+            <GdsHint Classes=""govuk-radios__hint"">
+                You’ll have a user ID if you’ve registered for Self Assessment or filed a tax return online before
+            </GdsHint>
+        </HintTemplate>
+        <ChildContent>
+            Sign in with Government Gateway
+        </ChildContent>
+    </GdsRadio>
+    <GdsRadio Value=""govuk-one-login"">
+        <HintTemplate>
+            <GdsHint Classes=""govuk-radios__hint"">
+                If you don’t have a GOV.UK One Login, you can create one
+            </GdsHint>
+        </HintTemplate>
+        <ChildContent>
+            Sign in with GOV.UK One Login
+        </ChildContent>
+        </GdsRadio>
+    </ChildContent>
+</GdsRadios>")">
+    <GdsRadios Name="signIn">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                How do you want to sign in?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint Classes="govuk-radios__hint">
+                You’ll need an account to prove your identity and complete your Self Assessment
+            </GdsHint>
+        </HintTemplate>
+        <ChildContent>
+        <GdsRadio Value="government-gateway">
+            <HintTemplate>
+                <GdsHint Classes="govuk-radios__hint">
+                    You’ll have a user ID if you’ve registered for Self Assessment or filed a tax return online before
+                </GdsHint>
+            </HintTemplate>
+            <ChildContent>
+                Sign in with Government Gateway
+            </ChildContent>
+        </GdsRadio>
+        <GdsRadio Value="govuk-one-login">
+            <HintTemplate>
+                <GdsHint Classes="govuk-radios__hint">
+                    If you don’t have a GOV.UK One Login, you can create one
+                </GdsHint>
+            </HintTemplate>
+            <ChildContent>
+                Sign in with GOV.UK One Login
+            </ChildContent>
+            </GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+</Example>
+
+<h3 class="govuk-heading-m" id="radio-items-with-a-text-divider">Radio items with a text divider</h3>
+
+<Example CodeExampleContent="@(@"<GdsRadios Name=""whereDoYouLive"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            Where do you live?
+        </GdsLegend>
+    </LegendTemplate>
+    <ChildContent>
+        <GdsRadio Value=""england"">England</GdsRadio>
+        <GdsRadio Value=""scotland"">Scotland</GdsRadio>
+        <GdsRadio Value=""wales"">Wales</GdsRadio>
+        <GdsRadio Value=""northern-ireland"">Northern Ireland</GdsRadio>
+        <GdsRadioDivider>or</GdsRadioDivider>
+        <GdsRadio Value=""abroad"">I am a British citizen living abroad</GdsRadio>
+    </ChildContent>
+</GdsRadios>")">
+    <GdsRadios Name="whereDoYouLive">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                Where do you live?
+            </GdsLegend>
+        </LegendTemplate>
+        <ChildContent>
+            <GdsRadio Value="england">England</GdsRadio>
+            <GdsRadio Value="scotland">Scotland</GdsRadio>
+            <GdsRadio Value="wales">Wales</GdsRadio>
+            <GdsRadio Value="northern-ireland">Northern Ireland</GdsRadio>
+            <GdsRadioDivider>or</GdsRadioDivider>
+            <GdsRadio Value="abroad">I am a British citizen living abroad</GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+</Example>
+
+<h3 class="govuk-heading-m" id="conditionally-revealing-a-related-question">Conditionally revealing a related question</h3>
+
+<Example CodeExampleContent="@(@"<GdsRadios Name=""contact"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            How would you prefer to be contacted?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>Select one option</GdsHint>
+    </HintTemplate>
+    <ChildContent>
+        <GdsRadio Value=""email"" Text=""Email"">
+            <ConditionalTemplate>
+                <GdsTextInput Id=""contact-by-email"" Name=""contactByEmail"" Type=""email"" Autocomplete=""email"" Spellcheck=""false"" Classes=@LayoutWidth.OneThird>
+                    <LabelTemplate>
+                        <GdsLabel>Email address</GdsLabel>
+                    </LabelTemplate>
+                </GdsTextInput>
+            </ConditionalTemplate>
+        </GdsRadio>
+        <GdsRadio Value=""phone"" Text=""Phone"">
+            <ConditionalTemplate>
+                <GdsTextInput Id=""contact-by-phone"" Name=""contactByPhone"" Type=""tel"" Autocomplete=""tel"" Classes=@LayoutWidth.OneThird>
+                    <LabelTemplate>
+                        <GdsLabel>Phone number</GdsLabel>
+                    </LabelTemplate>
+                </GdsTextInput>
+            </ConditionalTemplate>
+        </GdsRadio>
+        <GdsRadio Value=""text message"" Text=""Text message"">
+            <ConditionalTemplate>
+                <GdsTextInput Id=""contact-by-text"" Name=""contactByText"" Type=""tel"" Autocomplete=""tel"" Classes=@LayoutWidth.OneThird>
+                    <LabelTemplate>
+                        <GdsLabel>Mobile phone number</GdsLabel>
+                    </LabelTemplate>
+                </GdsTextInput>
+            </ConditionalTemplate>
+        </GdsRadio>
+    </ChildContent>
+</GdsRadios>")">
+    <GdsRadios Name="contact">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                How would you prefer to be contacted?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>Select one option</GdsHint>
+        </HintTemplate>
+        <ChildContent>
+            <GdsRadio Value="email" Text="Email">
+                <ConditionalTemplate>
+                    <GdsTextInput Id="contact-by-email" Name="contactByEmail" Type="email" Autocomplete="email" Spellcheck="false" Classes=@LayoutWidth.OneThird>
+                        <LabelTemplate>
+                            <GdsLabel>Email address</GdsLabel>
+                        </LabelTemplate>
+                    </GdsTextInput>
+                </ConditionalTemplate>
+            </GdsRadio>
+            <GdsRadio Value="phone" Text="Phone">
+                <ConditionalTemplate>
+                    <GdsTextInput Id="contact-by-phone" Name="contactByPhone" Type="tel" Autocomplete="tel" Classes=@LayoutWidth.OneThird>
+                        <LabelTemplate>
+                            <GdsLabel>Phone number</GdsLabel>
+                        </LabelTemplate>
+                    </GdsTextInput>
+                </ConditionalTemplate>
+            </GdsRadio>
+            <GdsRadio Value="text" Text="Text message">
+                <ConditionalTemplate>
+                    <GdsTextInput Id="contact-by-text" Name="contactByText" Type="tel" Autocomplete="tel" Classes=@LayoutWidth.OneThird>
+                        <LabelTemplate>
+                            <GdsLabel>Mobile phone number</GdsLabel>
+                        </LabelTemplate>
+                    </GdsTextInput>
+                </ConditionalTemplate>
+            </GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+</Example>
+
+<h3 class="govuk-heading-m" id="smaller-radios">Smaller radios</h3>
+
+<Example CodeExampleContent="@(@"<GdsRadios Name=""changedName"" Classes=@RadioClasses.Small>
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Medium>
+                Filter
+            </GdsLegend>
+        </LegendTemplate>
+        <ChildContent>
+            <GdsRadio Value=""month"">Monthly</GdsRadio>
+            <GdsRadio Value=""year"">Yearly</GdsRadio>
+        </ChildContent>
+    </GdsRadios>")">
+    <GdsRadios Name="changedName" Classes=@RadioClasses.Small>
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Medium>
+                Filter
+            </GdsLegend>
+        </LegendTemplate>
+        <ChildContent>
+            <GdsRadio Value="month">Monthly</GdsRadio>
+            <GdsRadio Value="year">Yearly</GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+</Example>
+
+<h3 class="govuk-heading-m" id="error-messages">Error messages</h3>
+
+<Example CodeExampleContent="@(@"<GdsRadios Name=""whereDoYouLive"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            Where do you live?
+        </GdsLegend>
+    </LegendTemplate>
+    <ChildContent>
+        <GdsRadio Value=""england"">England</GdsRadio>
+        <GdsRadio Value=""scotland"">Scotland</GdsRadio>
+        <GdsRadio Value=""wales"">Wales</GdsRadio>
+        <GdsRadio Value=""northern-ireland"">Northern Ireland</GdsRadio>
+    </ChildContent>
+</GdsRadios>")">
+    <GdsRadios Name="whereDoYouLive">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                Where do you live?
+            </GdsLegend>
+        </LegendTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>
+                Select the country where you live
+            </GdsErrorMessage>
+        </ErrorMessageTemplate>
+        <ChildContent>
+            <GdsRadio Value="england">England</GdsRadio>
+            <GdsRadio Value="scotland">Scotland</GdsRadio>
+            <GdsRadio Value="wales">Wales</GdsRadio>
+            <GdsRadio Value="northern-ireland">Northern Ireland</GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+</Example>
+
+<h4 class="govuk-heading-s" id="if-its-a-conditionally-revealed-question">If it’s a conditionally revealed question</h4>
+
+<Example CodeExampleContent="@(@"<GdsRadios Name=""contact"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            How would you prefer to be contacted?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>Select one option</GdsHint>
+    </HintTemplate>
+    <ChildContent>
+        <GdsRadio Value=""email"" Text=""Email"" Checked=@true>
+            <ConditionalTemplate>
+                <GdsTextInput Id=""contact-by-email"" Name=""contactByEmail"" Type=""email"" Autocomplete=""email"" Spellcheck=""false"" Classes=@LayoutWidth.OneThird>
+                    <LabelTemplate>
+                        <GdsLabel>Email address</GdsLabel>
+                    </LabelTemplate>
+                    <ErrorMessageTemplate>
+                        <GdsErrorMessage>Email address cannot be blank</GdsErrorMessage>
+                    </ErrorMessageTemplate>
+                </GdsTextInput>
+            </ConditionalTemplate>
+        </GdsRadio>
+        <GdsRadio Value=""phone"" Text=""Phone"">
+            <ConditionalTemplate>
+                <GdsTextInput Id=""contact-by-phone"" Name=""contactByPhone"" Type=""tel"" Autocomplete=""tel"" Classes=@LayoutWidth.OneThird>
+                    <LabelTemplate>
+                        <GdsLabel>Phone number</GdsLabel>
+                    </LabelTemplate>
+                </GdsTextInput>
+            </ConditionalTemplate>
+        </GdsRadio>
+        <GdsRadio Value=""text"" Text=""Text message"">
+            <ConditionalTemplate>
+                <GdsTextInput Id=""contact-by-text"" Name=""contactByText"" Type=""tel"" Autocomplete=""tel"" Classes=@LayoutWidth.OneThird>
+                    <LabelTemplate>
+                        <GdsLabel>Mobile phone number</GdsLabel>
+                    </LabelTemplate>
+                </GdsTextInput>
+            </ConditionalTemplate>
+        </GdsRadio>
+    </ChildContent>
+</GdsRadios>")">
+    <GdsRadios Name="contact">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                How would you prefer to be contacted?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>Select one option</GdsHint>
+        </HintTemplate>
+        <ChildContent>
+            <GdsRadio Value="email" Text="Email" Checked=@true>
+                <ConditionalTemplate>
+                    <GdsTextInput Id="contact-by-email" Name="contactByEmail" Type="email" Autocomplete="email" Spellcheck="false" Classes=@LayoutWidth.OneThird>
+                        <LabelTemplate>
+                            <GdsLabel>Email address</GdsLabel>
+                        </LabelTemplate>
+                        <ErrorMessageTemplate>
+                            <GdsErrorMessage>Email address cannot be blank</GdsErrorMessage>
+                        </ErrorMessageTemplate>
+                    </GdsTextInput>
+                </ConditionalTemplate>
+            </GdsRadio>
+            <GdsRadio Value="phone" Text="Phone">
+                <ConditionalTemplate>
+                    <GdsTextInput Id="contact-by-phone" Name="contactByPhone" Type="tel" Autocomplete="tel" Classes=@LayoutWidth.OneThird>
+                        <LabelTemplate>
+                            <GdsLabel>Phone number</GdsLabel>
+                        </LabelTemplate>
+                    </GdsTextInput>
+                </ConditionalTemplate>
+            </GdsRadio>
+            <GdsRadio Value="text" Text="Text message">
+                <ConditionalTemplate>
+                    <GdsTextInput Id="contact-by-text" Name="contactByText" Type="tel" Autocomplete="tel" Classes=@LayoutWidth.OneThird>
+                        <LabelTemplate>
+                            <GdsLabel>Mobile phone number</GdsLabel>
+                        </LabelTemplate>
+                    </GdsTextInput>
+                </ConditionalTemplate>
+            </GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+</Example>
+
+@code {
+}
