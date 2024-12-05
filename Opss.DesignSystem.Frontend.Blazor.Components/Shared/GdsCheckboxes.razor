@@ -14,13 +14,13 @@
         <ChildContent>
             @if (HintTemplate != null)
             {
-                <CascadingValue Value=@Id>
+                <CascadingValue Value=@Name>
                     @HintTemplate
                 </CascadingValue>
             }
             @if (ErrorMessageTemplate != null)
             {
-                <CascadingValue Value=@Id>
+                <CascadingValue Value=@Name>
                     @ErrorMessageTemplate
                 </CascadingValue>
             }
@@ -76,7 +76,7 @@
     public RenderFragment? AfterInputsTemplate { get; set; }
 
     /// <summary>
-    /// The name of the input, which is submitted with the form data.
+    /// Required. The name of the input, which is submitted with the form data.
     /// </summary>
     [Parameter]
     public string? Name { get; set; }
@@ -143,9 +143,9 @@
                 return DescribedBy;
 
             if (HintTemplate != null)
-                describedBy.Add(Id + "-hint");
+                describedBy.Add(Name + "-hint");
             if (ErrorMessageTemplate != null)
-                describedBy.Add(Id + "-error");
+                describedBy.Add(Name + "-error");
 
             if (describedBy.Any())
                 return string.Join(" ", describedBy);

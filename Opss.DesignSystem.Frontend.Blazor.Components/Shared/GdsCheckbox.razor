@@ -41,6 +41,13 @@
 @code {
     #region Public Parameters
     /// <summary>
+    /// Specific ID attribute for the checkbox item. If omitted,
+    /// then component global idPrefix option will be applied.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
     /// Can be used to add a hint to the checkboxes component.
     /// </summary>
     [Parameter]
@@ -60,7 +67,7 @@
     public bool IsExclusive { get; set; } = false;
 
     /// <summary>
-    /// Value for the checkbox input.
+    /// Required. Value for the checkbox input.
     /// </summary>
     [Parameter]
     public string? Value { get; set; }
@@ -72,7 +79,8 @@
     public string? Text { get; set; }
 
     /// <summary>
-    /// Specific name for the checkbox item. If omitted, then component global name string will be applied.
+    /// Specific name for the checkbox item. If omitted, then component global
+    /// name string will be applied.
     /// </summary>
     [Parameter]
     public string? Name { get; set; }

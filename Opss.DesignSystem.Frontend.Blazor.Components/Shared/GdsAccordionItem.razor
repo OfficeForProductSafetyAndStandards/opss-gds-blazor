@@ -2,6 +2,7 @@
 
 @* <summary>
     The accordion item component must be used as a child of the accordion component.
+    The sections within the accordion.
 </summary> *@
 
 <div class="govuk-accordion__section@(Expanded ? " govuk-accordion__section--expanded" : "")">
@@ -39,7 +40,7 @@
     public int HeadingLevel { get; set; } = 2;
 
     /// <summary>
-    /// The title of each section.
+    /// Required. The title of each section.
     /// </summary>
     [Parameter]
     public string? Heading { get; set; }

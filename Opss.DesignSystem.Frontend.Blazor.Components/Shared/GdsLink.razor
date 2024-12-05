@@ -5,8 +5,7 @@
    href=@Href
    target=@(OpenInNewTab ? "_blank" : null)
    rel=@(OpenInNewTab ? "noreferrer noopener" : null)
-   @attributes=@Attributes
->
+   @attributes=@Attributes>
     @ChildContent
 
     @if (!string.IsNullOrEmpty(VisuallyHiddenText))
@@ -17,6 +16,12 @@
 
 @code {
     #region Public Parameters
+    /// <summary>
+    /// The Id attached to the link element.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
     /// <summary>
     /// A visually hidden prefix used after the link.
     /// </summary>
@@ -29,5 +34,11 @@
     /// </summary>
     [Parameter]
     public bool OpenInNewTab { get; set; }
+
+    /// <summary>
+    /// Indicates that the component is on a dark background and should utilise the inverse class
+    /// </summary>
+    [Parameter]
+    public bool IsOnDarkBackground { get; set; }
     #endregion
 }

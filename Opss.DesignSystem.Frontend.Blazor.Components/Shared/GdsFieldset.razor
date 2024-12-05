@@ -1,15 +1,12 @@
 ﻿@inherits GdsWithContent
 
-<fieldset id=@Id
-          class="govuk-fieldset @Classes"
+<fieldset class="govuk-fieldset @Classes"
           role=@Role
           aria-describedby=@DescribedBy
           @attributes=@Attributes>
     @if (LegendTemplate != null)
     {
-        <CascadingValue Value=@Id>
-            @LegendTemplate
-        </CascadingValue>
+        @LegendTemplate
     }
     @ChildContent
 </fieldset>

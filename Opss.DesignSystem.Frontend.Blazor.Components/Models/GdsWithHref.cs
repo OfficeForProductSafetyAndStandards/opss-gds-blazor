@@ -9,10 +9,4 @@ public abstract class GdsWithHref : GdsWithContent
     /// </summary>
     [Parameter]
     public string? Href { get; set; }
-
-    /// <summary>
-    /// Indicates that the component is on a dark background and should utilise the inverse class
-    /// </summary>
-    [Parameter]
-    public bool IsOnDarkBackground { get; set; }
 }

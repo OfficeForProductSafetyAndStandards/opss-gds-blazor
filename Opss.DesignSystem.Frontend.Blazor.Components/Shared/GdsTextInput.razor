@@ -78,6 +78,12 @@
 @code {
     #region Public Parameters
     /// <summary>
+    /// Required. The Id of the input.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
     /// The label used by the text input component.
     /// </summary>
     [Parameter]
@@ -95,9 +101,15 @@
     [Parameter]
     public RenderFragment? ErrorMessageTemplate { get; set; }
 
+    /// <summary>
+    /// Can be used to add a prefix to the text input component.
+    /// </summary>
     [Parameter]
     public RenderFragment? PrefixTemplate { get; set; }
 
+    /// <summary>
+    /// Can be used to add a suffix to the text input component.
+    /// </summary>
     [Parameter]
     public RenderFragment? SuffixTemplate { get; set; }
 
@@ -113,6 +125,9 @@
     [Parameter]
     public string? Type { get; set; }
 
+    /// <summary>
+    /// Value of the input.
+    /// </summary>
     [Parameter]
     public string? Value { get; set; }
 

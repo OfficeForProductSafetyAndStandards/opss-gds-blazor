@@ -69,7 +69,13 @@
 @code {
     #region Public Parameters
     /// <summary>
-    /// The label used by the character count component.
+    /// Required. The ID of the textarea.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
+    /// Required. The label used by the character count component.
     /// </summary>
     [Parameter]
     public RenderFragment? LabelTemplate { get; set; }
@@ -99,15 +105,15 @@
     public RenderFragment? AfterInputTemplate { get; set; }
 
     /// <summary>
-    /// The maximum number of characters.
-    /// If <c>MaxWords</c> is provided, the <c>MaxLength</c> option will be ignored.
+    /// Required. The maximum number of characters.
+    /// If MaxWords is provided, the MaxLength option will be ignored.
     /// </summary>
     [Parameter]
     public int? MaxLength { get; set; }
 
     /// <summary>
-    /// The maximum number of words.
-    /// If <c>MaxWords</c> is provided, the <c>MaxLength</c> option will be ignored.
+    /// Required. The maximum number of words.
+    /// If MaxWords is provided, the MaxLength option will be ignored.
     /// </summary>
     [Parameter]
     public int? MaxWords { get; set; }
@@ -124,8 +130,9 @@
     /// </summary>
     [Parameter]
     public string? CountMessageClasses { get; set; }
+
     /// <summary>
-    /// The name of the input, which is submitted with the form data.
+    /// Required. The name of the input, which is submitted with the form data.
     /// </summary>
     [Parameter]
     public string? Name { get; set; }

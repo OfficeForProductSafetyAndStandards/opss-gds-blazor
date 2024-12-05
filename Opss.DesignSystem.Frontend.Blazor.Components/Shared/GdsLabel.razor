@@ -29,6 +29,12 @@
 @code {
     #region Public Parameters
     /// <summary>
+    /// The Id attached to the label control.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
     /// Whether the label also acts as the heading for the page.
     /// </summary>
     [Parameter]

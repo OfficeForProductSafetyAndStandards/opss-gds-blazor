@@ -47,6 +47,12 @@
 @code {
     #region Public Parameters
     /// <summary>
+    /// Required. This is used for the main component and to compose
+    /// the ID attribute for each item.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+    /// <summary>
     /// A collection of DateInputFields to collect each date part.
     /// </summary>
     [Parameter]

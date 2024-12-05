@@ -29,6 +29,13 @@
 @code {
     #region Public Parameters
     /// <summary>
+    /// Item-specific ID. If provided, it will be used 
+    /// instead of the generated ID.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
     /// If set, the error classes will be set
     /// </summary>
     [Parameter]
