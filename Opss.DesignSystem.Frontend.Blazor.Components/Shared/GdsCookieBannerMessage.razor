@@ -47,6 +47,14 @@
     public RenderFragment? HeadingTemplate { get; set; }
 
     /// <summary>
+    /// The buttons and links that you want to display in the message.
+    /// actions defaults to "button" unless you set href, which renders
+    /// the action as a link.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ActionsTemplate { get; set; }
+
+    /// <summary>
     /// Defaults to false. If you set it to true, the
     /// message is hidden. You can use hidden for client-side
     /// implementations where the confirmation message
@@ -63,14 +71,6 @@
     /// </summary>
     [Parameter]
     public string? Role { get; set; }
-
-    /// <summary>
-    /// The buttons and links that you want to display in the message.
-    /// actions defaults to "button" unless you set href, which renders
-    /// the action as a link.
-    /// </summary>
-    [Parameter]
-    public RenderFragment? ActionsTemplate { get; set; }
     #endregion
 
     #region Cascading Value - Parent

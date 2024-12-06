@@ -12,7 +12,7 @@
         <GdsFieldset DescribedBy=@fieldsetDescribedBy
                      Classes=@FieldsetClasses
                      Role=@FieldsetRole
-                     @attributes=@Attributes>
+                     @attributes=@FieldsetAttributes>
             <LegendTemplate>
                 @LegendTemplate
             </LegendTemplate>
@@ -30,7 +30,8 @@
                     </CascadingValue>
                 }
                 <div class="govuk-checkboxes @Classes"
-                     data-module="govuk-checkboxes">
+                     data-module="govuk-checkboxes"
+                     @attributes=@Attributes>
 
                     @if (BeforeInputsTemplate != null)
                     {
