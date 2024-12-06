@@ -1,0 +1,67 @@
+﻿@inherits GdsAttributes
+
+<option value=@Value 
+        selected=@isSelected
+        disabled=@Disabled
+>
+    @ChildContent
+</option>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Value for the option. If this is omitted, the value is taken from the text content of the option element.
+    /// </summary>
+    [Parameter]
+    public string? Value { get; set; }
+
+    /// <summary>
+    /// Required. Text for the option item.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// Whether the option should be selected when the page loads.
+    /// Takes precedence over the top-level value option.
+    /// </summary>
+    [Parameter]
+    public bool? Selected { get; set; }
+
+    /// <summary>
+    /// Sets the option item as disabled.
+    /// </summary>
+    [Parameter]
+    public bool? Disabled { get; set; }
+    #endregion
+
+    #region Public Properties
+
+    /// <summary>
+    /// Mark the item as selected.
+    /// </summary>
+    public void Select() => isSelected = true;
+    #endregion
+
+    #region Private Properties
+
+    private bool? isSelected;
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        isSelected = Selected;
+
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsSelectOption must exist within a GdsSelect");
+
+        Parent.Register(this);
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsSelect? Parent { get; set; }
+    #endregion
+}

@@ -104,11 +104,11 @@
             The date your passport was issued must include a year
         </GdsErrorMessage>
     </ErrorMessageTemplate>
-    <DateInputFields>
+    <ChildContent>
         <GdsDateInputField DatePart=""@DateInputFieldType.Day"" Value=""6"" />
         <GdsDateInputField DatePart=""@DateInputFieldType.Month"" Value=""3"" />
         <GdsDateInputField HasError=@true DatePart=""@DateInputFieldType.Year"" />
-    </DateInputFields>
+    </ChildContent>
 </GdsDateInput>")">
     <GdsErrorSummary>
         <GdsErrorSummaryItem Href="#passport-issued-year">
@@ -129,11 +129,11 @@
                 The date your passport was issued must include a year
             </GdsErrorMessage>
         </ErrorMessageTemplate>
-        <DateInputFields>
+        <ChildContent>
             <GdsDateInputField DatePart="@DateInputFieldType.Day" Value="6" />
             <GdsDateInputField DatePart="@DateInputFieldType.Month" Value="3" />
             <GdsDateInputField HasError=@true DatePart="@DateInputFieldType.Year" />
-        </DateInputFields>
+        </ChildContent>
     </GdsDateInput>
 </Example>
 

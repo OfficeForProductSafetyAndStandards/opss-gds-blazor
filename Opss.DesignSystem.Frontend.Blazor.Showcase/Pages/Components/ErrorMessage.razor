@@ -24,11 +24,11 @@
             The date your passport was issued must be in the past
         </GdsErrorMessage>
     </ErrorMessageTemplate>
-    <DateInputFields>
+    <ChildContent>
         <GdsDateInputField HasError=@true DatePart=""@DateInputFieldType.Day"" Value=""6"" />
         <GdsDateInputField HasError=@true DatePart=""@DateInputFieldType.Month"" Value=""3"" />
         <GdsDateInputField HasError=@true DatePart=""@DateInputFieldType.Year"" Value=""2076"" />
-    </DateInputFields>
+    </ChildContent>
 </GdsDateInput>")">
     <GdsDateInput Id="passport-issued" NamePrefix="passport-issued">
         <LegendTemplate>
@@ -44,11 +44,11 @@
                 The date your passport was issued must be in the past
             </GdsErrorMessage>
         </ErrorMessageTemplate>
-        <DateInputFields>
+        <ChildContent>
             <GdsDateInputField HasError=@true DatePart="@DateInputFieldType.Day" Value="6" />
             <GdsDateInputField HasError=@true DatePart="@DateInputFieldType.Month" Value="3" />
             <GdsDateInputField HasError=@true DatePart="@DateInputFieldType.Year" Value="2076" />
-        </DateInputFields>
+        </ChildContent>
     </GdsDateInput>
 </Example>
 

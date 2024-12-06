@@ -1,0 +1,159 @@
+﻿@page "/Components/Select"
+@layout _ComponentsLayout
+
+<PageTitle>Select</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Select</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-patterns.service.justice.gov.uk/components/select/" class="govuk-link">Select</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsSelect Id=""sort"" Name=""sort"">
+    <LabelTemplate>
+        <GdsLabel>Sort by</GdsLabel>
+    </LabelTemplate>
+    <ChildContent>
+        <GdsSelectOption Value=""published"">Recently published</GdsSelectOption>
+        <GdsSelectOption Value=""updated"" Selected=@true>Recently updated</GdsSelectOption>
+        <GdsSelectOption Value=""views"">Most views</GdsSelectOption>
+        <GdsSelectOption Value=""comments"">Most comments</GdsSelectOption>
+    </ChildContent>
+</GdsSelect>")">
+    <GdsSelect Id="sort" Name="sort">
+        <LabelTemplate>
+            <GdsLabel>Sort by</GdsLabel>
+        </LabelTemplate>
+        <ChildContent>
+            <GdsSelectOption Value="published">Recently published</GdsSelectOption>
+            <GdsSelectOption Value="updated" Selected=@true>Recently updated</GdsSelectOption>
+            <GdsSelectOption Value="views">Most views</GdsSelectOption>
+            <GdsSelectOption Value="comments">Most comments</GdsSelectOption>
+        </ChildContent>
+    </GdsSelect>
+</Example>
+
+<h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
+
+<Example CodeExampleContent="@(@"<GdsSelect Id=""sort"" Name=""sort"">
+    <LabelTemplate>
+        <GdsLabel>Sort by</GdsLabel>
+    </LabelTemplate>
+    <ChildContent>
+        <GdsSelectOption Value=""published"">Recently published</GdsSelectOption>
+        <GdsSelectOption Value=""updated"" Selected=@true>Recently updated</GdsSelectOption>
+        <GdsSelectOption Value=""views"">Most views</GdsSelectOption>
+        <GdsSelectOption Value=""comments"">Most comments</GdsSelectOption>
+    </ChildContent>
+</GdsSelect>")">
+    <GdsSelect Id="sort" Name="sort">
+        <LabelTemplate>
+            <GdsLabel>Sort by</GdsLabel>
+        </LabelTemplate>
+        <ChildContent>
+            <GdsSelectOption Value="published">Recently published</GdsSelectOption>
+            <GdsSelectOption Value="updated" Selected=@true>Recently updated</GdsSelectOption>
+            <GdsSelectOption Value="views">Most views</GdsSelectOption>
+            <GdsSelectOption Value="comments">Most comments</GdsSelectOption>
+        </ChildContent>
+    </GdsSelect>
+</Example>
+
+<h3 class="govuk-heading-m" id="select-with-hint">Select with hint</h3>
+
+<Example CodeExampleContent="@(@"<GdsSelect Id=""location"" Name=""location"">
+    <LabelTemplate>
+        <GdsLabel>Choose location</GdsLabel>
+    </LabelTemplate>
+    <HintTemplate>
+        <GdsHint>This can be different to where you went before</GdsHint>
+    </HintTemplate>
+    <ChildContent>
+        <GdsSelectOption Value=""choose"" Selected=@true>Choose location</GdsSelectOption>
+        <GdsSelectOption Value=""eastmidlands"">East Midlands</GdsSelectOption>
+        <GdsSelectOption Value=""eastofengland"">East of England</GdsSelectOption>
+        <GdsSelectOption Value=""london"">London</GdsSelectOption>
+        <GdsSelectOption Value=""northeast"">North East</GdsSelectOption>
+        <GdsSelectOption Value=""northwest"">North West</GdsSelectOption>
+        <GdsSelectOption Value=""southeast"">South East</GdsSelectOption>
+        <GdsSelectOption Value=""southwest"">South West</GdsSelectOption>
+        <GdsSelectOption Value=""westmidlands"">West Midlands</GdsSelectOption>
+        <GdsSelectOption Value=""yorkshire"">Yorkshire and the Humber</GdsSelectOption>
+    </ChildContent>
+</GdsSelect>")">
+    <GdsSelect Id="location" Name="location">
+        <LabelTemplate>
+            <GdsLabel>Choose location</GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint>This can be different to where you went before</GdsHint>
+        </HintTemplate>
+        <ChildContent>
+            <GdsSelectOption Value="choose" Selected=@true>Choose location</GdsSelectOption>
+            <GdsSelectOption Value="eastmidlands">East Midlands</GdsSelectOption>
+            <GdsSelectOption Value="eastofengland">East of England</GdsSelectOption>
+            <GdsSelectOption Value="london">London</GdsSelectOption>
+            <GdsSelectOption Value="northeast">North East</GdsSelectOption>
+            <GdsSelectOption Value="northwest">North West</GdsSelectOption>
+            <GdsSelectOption Value="southeast">South East</GdsSelectOption>
+            <GdsSelectOption Value="southwest">South West</GdsSelectOption>
+            <GdsSelectOption Value="westmidlands">West Midlands</GdsSelectOption>
+            <GdsSelectOption Value="yorkshire">Yorkshire and the Humber</GdsSelectOption>
+        </ChildContent>
+    </GdsSelect>
+</Example>
+
+<h3 class="govuk-heading-m" id="error-messages">Error messages</h3>
+
+<Example CodeExampleContent="@(@"<GdsSelect Id=""location"" Name=""location"">
+    <LabelTemplate>
+        <GdsLabel>Choose location</GdsLabel>
+    </LabelTemplate>
+    <HintTemplate>
+        <GdsHint>This can be different to where you went before</GdsHint>
+    </HintTemplate>
+    <ErrorMessageTemplate>
+        <GdsErrorMessage>Select a location</GdsErrorMessage>
+    </ErrorMessageTemplate>
+    <ChildContent>
+        <GdsSelectOption Value=""choose"" Selected=@true>Choose location</GdsSelectOption>
+        <GdsSelectOption Value=""eastmidlands"">East Midlands</GdsSelectOption>
+        <GdsSelectOption Value=""eastofengland"">East of England</GdsSelectOption>
+        <GdsSelectOption Value=""london"">London</GdsSelectOption>
+        <GdsSelectOption Value=""northeast"">North East</GdsSelectOption>
+        <GdsSelectOption Value=""northwest"">North West</GdsSelectOption>
+        <GdsSelectOption Value=""southeast"">South East</GdsSelectOption>
+        <GdsSelectOption Value=""southwest"">South West</GdsSelectOption>
+        <GdsSelectOption Value=""westmidlands"">West Midlands</GdsSelectOption>
+        <GdsSelectOption Value=""yorkshire"">Yorkshire and the Humber</GdsSelectOption>
+    </ChildContent>
+</GdsSelect>")">
+    <GdsSelect Id="location" Name="location">
+        <LabelTemplate>
+            <GdsLabel>Choose location</GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint>This can be different to where you went before</GdsHint>
+        </HintTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>Select a location</GdsErrorMessage>
+        </ErrorMessageTemplate>
+        <ChildContent>
+            <GdsSelectOption Value="choose" Selected=@true>Choose location</GdsSelectOption>
+            <GdsSelectOption Value="eastmidlands">East Midlands</GdsSelectOption>
+            <GdsSelectOption Value="eastofengland">East of England</GdsSelectOption>
+            <GdsSelectOption Value="london">London</GdsSelectOption>
+            <GdsSelectOption Value="northeast">North East</GdsSelectOption>
+            <GdsSelectOption Value="northwest">North West</GdsSelectOption>
+            <GdsSelectOption Value="southeast">South East</GdsSelectOption>
+            <GdsSelectOption Value="southwest">South West</GdsSelectOption>
+            <GdsSelectOption Value="westmidlands">West Midlands</GdsSelectOption>
+            <GdsSelectOption Value="yorkshire">Yorkshire and the Humber</GdsSelectOption>
+        </ChildContent>
+    </GdsSelect>
+</Example>
+
+@code {
+
+}
