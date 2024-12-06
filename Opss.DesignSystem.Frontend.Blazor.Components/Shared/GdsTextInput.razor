@@ -5,7 +5,8 @@
     longer than a single line, such as their name or phone number.
 </summary> *@
 
-<div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses">
+<div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses"
+     @attributes=@FormGroupAttributes>
     @if (LabelTemplate != null)
     {
         <CascadingValue Value=@Id>
@@ -84,6 +85,44 @@
     public string? Id { get; set; }
 
     /// <summary>
+    /// The name of the input, which is submitted with the form data.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// Type of input control to render, for example, a password input control.
+    /// </summary>
+    [Parameter]
+    public string? Type { get; set; }
+
+    /// <summary>
+    /// none, text, decimal, numeric, tel, search, email, url
+    /// </summary>
+    [Parameter]
+    public string? Inputmode { get; set; }
+
+    /// <summary>
+    /// Value of the input.
+    /// </summary>
+    [Parameter]
+    public string? Value { get; set; }
+
+    /// <summary>
+    /// If true, input will be disabled.
+    /// </summary>
+    [Parameter]
+    public bool? Disabled { get; set; }
+
+    /// <summary>
+    /// One or more element IDs to add to the aria-describedby attribute,
+    /// used to provide additional descriptive information for screenreader
+    /// users.
+    /// </summary>
+    [Parameter]
+    public string? DescribedBy { get; set; }
+
+    /// <summary>
     /// The label used by the text input component.
     /// </summary>
     [Parameter]
@@ -114,34 +153,17 @@
     public RenderFragment? SuffixTemplate { get; set; }
 
     /// <summary>
-    /// The name of the input, which is submitted with the form data.
-    /// </summary>
-    [Parameter]
-    public string? Name { get; set; }
-
-    /// <summary>
-    /// Type of input control to render, for example, a password input control.
-    /// </summary>
-    [Parameter]
-    public string? Type { get; set; }
-
-    /// <summary>
-    /// Value of the input.
-    /// </summary>
-    [Parameter]
-    public string? Value { get; set; }
-
-    /// <summary>
-    /// none, text, decimal, numeric, tel, search, email, url
-    /// </summary>
-    [Parameter]
-    public string? Inputmode { get; set; }
-
-    /// <summary>
     /// Classes to add to the form group (for example to show error state for the whole group).
     /// </summary>
     [Parameter]
     public string? FormGroupClasses { get; set; }
+
+    /// <summary>
+    /// HTML attributes (for example data attributes) to add to the form group.
+    /// </summary>
+    [Parameter]
+    [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Component parameters should have a public setter")]
+    public Dictionary<string, object>? FormGroupAttributes { get; set; } = new Dictionary<string, object>();
 
     /// <summary>
     /// Attribute to identify input purpose, for instance "postal-code" or "username".
@@ -150,15 +172,8 @@
     public string? Autocomplete { get; set; }
 
     /// <summary>
-    /// Optional field to enable or disable autocapitalisation of user input.
-    /// "default", "none", "sentences", "words", "characters"
-    /// </summary>
-    [Parameter]
-    public string? Autocapitalize { get; set; }
-
-    /// <summary>
-    /// Attribute to provide a regular expression pattern, used to match allowed character combinations 
-    // for the input value.
+    /// Attribute to provide a regular expression pattern, used to match allowed character combinations
+    /// for the input value.
     /// </summary>
     [Parameter]
     public string? Pattern { get; set; }
@@ -170,10 +185,11 @@
     public bool? Spellcheck { get; set; }
 
     /// <summary>
-    /// If true, input will be disabled.
+    /// Optional field to enable or disable autocapitalisation of user input.
+    /// "default", "none", "sentences", "words", "characters"
     /// </summary>
     [Parameter]
-    public bool? Disabled { get; set; }
+    public string? Autocapitalize { get; set; }
 
     /// <summary>
     /// Classes to add to the wrapping element.
@@ -213,7 +229,7 @@
     {
         get
         {
-            var fullText = "";
+            var fullText = DescribedBy;
             if (HintTemplate != null) fullText += $" {Id}-hint";
             if (ErrorMessageTemplate != null) fullText += $" {Id}-error";
             return string.IsNullOrWhiteSpace(fullText) ? null : fullText;

@@ -29,18 +29,6 @@
 @code {
     #region Public Parameters
     /// <summary>
-    /// Id to add to the details element.
-    /// </summary>
-    [Parameter]
-    public string? Id { get; set; }
-
-    /// <summary>
-    /// If true, details element will be expanded.
-    /// </summary>
-    [Parameter]
-    public bool Open { get; set; }
-
-    /// <summary>
     /// If summaryTemplate is set, this is not required.
     /// Text to use within the summary element (the
     /// visible part of the details element). If
@@ -58,6 +46,18 @@
     /// </summary>
     [Parameter]
     public RenderFragment? SummaryTemplate { get; set; }
+
+    /// <summary>
+    /// Id to add to the details element.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
+    /// If true, details element will be expanded.
+    /// </summary>
+    [Parameter]
+    public bool Open { get; set; }
     #endregion
 
     #region Initialization Logic

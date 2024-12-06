@@ -74,23 +74,11 @@
 @code {
     #region Public Parameters
     /// <summary>
-    /// The Id of the button.
-    /// </summary>
-    [Parameter]
-    public string? Id { get; set; }
-
-    /// <summary>
     /// Whether to use an input, button or a element to create the button.
     /// In most cases you will not need to set this as it will be configured automatically.
     /// </summary>
     [Parameter]
     public ButtonType? Element { get; set; }
-
-    /// <summary>
-    /// Event to call on click event of button type elements
-    /// </summary>
-    [Parameter]
-    public EventCallback<MouseEventArgs> OnClick { get; set; }
 
     /// <summary>
     /// Name for the input or button.
@@ -133,10 +121,22 @@
     public bool IsStartButton { get; set; }
 
     /// <summary>
+    /// The Id of the button.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
     /// Indicates that the component is on a dark background and should utilise the inverse class
     /// </summary>
     [Parameter]
     public bool IsOnDarkBackground { get; set; }
+
+    /// <summary>
+    /// Event to call on click event of button type elements
+    /// </summary>
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
     #endregion
 
     #region Private Properties

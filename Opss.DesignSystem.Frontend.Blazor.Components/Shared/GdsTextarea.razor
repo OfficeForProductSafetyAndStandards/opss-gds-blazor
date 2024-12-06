@@ -5,7 +5,8 @@
     that’s longer than a single line.
 </summary> *@
 
-<div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses">
+<div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses"
+     @attributes=@FormGroupAttributes>
     @if (LabelTemplate != null)
     {
         <CascadingValue Value=@Id>
@@ -57,6 +58,43 @@
     public string? Id { get; set; }
 
     /// <summary>
+    /// Required. The name of the input, which is submitted with the form data.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// Optional field to enable or disable the spellcheck attribute on the input.
+    /// </summary>
+    [Parameter]
+    public bool? Spellcheck { get; set; }
+
+    /// <summary>
+    /// Optional number of textarea rows.
+    /// </summary>
+    [Parameter]
+    public int? Rows { get; set; }
+
+    /// <summary>
+    /// Value of the textarea.
+    /// </summary>
+    [Parameter]
+    public string? Value { get; set; }
+
+    /// <summary>
+    /// If true, textarea will be disabled.
+    /// </summary>
+    [Parameter]
+    public bool? Disabled { get; set; }
+
+    /// <summary>
+    /// One or more element IDs to add to the aria-describedby attribute, used to provide
+    /// additional descriptive information for screenreader users.
+    /// </summary>
+    [Parameter]
+    public string? DescribedBy { get; set; }
+
+    /// <summary>
     /// The label used by the textarea component.
     /// </summary>
     [Parameter]
@@ -75,6 +113,19 @@
     public RenderFragment? ErrorMessageTemplate { get; set; }
 
     /// <summary>
+    /// Classes to add to the form group (for example to show error state for the whole group).
+    /// </summary>
+    [Parameter]
+    public string? FormGroupClasses { get; set; }
+
+    /// <summary>
+    /// HTML attributes (for example data attributes) to add to the form group.
+    /// </summary>
+    [Parameter]
+    [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Component parameters should have a public setter")]
+    public Dictionary<string, object>? FormGroupAttributes { get; set; } = new Dictionary<string, object>();
+
+    /// <summary>
     /// Content to add before all checkbox items within the textarea component.
     /// </summary>
     [Parameter]
@@ -87,53 +138,10 @@
     public RenderFragment? AfterInputsTemplate { get; set; }
 
     /// <summary>
-    /// Required. The name of the input, which is submitted with the form data.
-    /// </summary>
-    [Parameter]
-    public string? Name { get; set; }
-
-    /// <summary>
-    /// Optional number of textarea rows.
-    /// </summary>
-    [Parameter]
-    public int? Rows { get; set; }
-
-    /// <summary>
-    /// Value of the textarea.
-    /// </summary>
-    [Parameter]
-    public string? Value { get; set; }
-
-    /// <summary>
-    /// One or more element IDs to add to the aria-describedby attribute, used to provide
-    /// additional descriptive information for screenreader users.
-    /// </summary>
-    [Parameter]
-    public string? DescribedBy { get; set; }
-
-    /// <summary>
-    /// Classes to add to the form group (for example to show error state for the whole group).
-    /// </summary>
-    [Parameter]
-    public string? FormGroupClasses { get; set; }
-
-    /// <summary>
     /// Attribute to identify input purpose, for instance "postal-code" or "username".
     /// </summary>
     [Parameter]
     public string? Autocomplete { get; set; }
-
-    /// <summary>
-    /// Optional field to enable or disable the spellcheck attribute on the input.
-    /// </summary>
-    [Parameter]
-    public bool? Spellcheck { get; set; }
-
-    /// <summary>
-    /// If true, textarea will be disabled.
-    /// </summary>
-    [Parameter]
-    public bool? Disabled { get; set; }
     #endregion
 
     #region Event Handlers
