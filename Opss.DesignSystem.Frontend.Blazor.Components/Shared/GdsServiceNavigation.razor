@@ -1,0 +1,151 @@
+﻿@inherits GdsWithContent
+
+@if (string.IsNullOrEmpty(ServiceName))
+{
+    <div class="govuk-service-navigation @Classes"
+    data-module="govuk-service-navigation"
+    aria-label=@ariaLabel
+    @attributes=@Attributes>
+        <div class="govuk-width-container">
+            <div class="govuk-service-navigation__container">
+                @if (ChildContent != null)
+                {
+                    <nav class="govuk-service-navigation__wrapper @NavigationClasses
+                    "
+                    aria-label=@(NavigationLabel ?? "Menu")>
+                    <button type="button"
+                            class="govuk-service-navigation__toggle govuk-js-service-navigation-toggle"
+                            aria-controls=@(NavigationId ?? "navigation")
+                            aria-label=@MenuButtonLabel
+                            hidden>
+                        @(MenuButtonText ?? "Menu")
+                    </button>
+                    <ul class="govuk-service-navigation__list" id=@(NavigationId ?? "navigation")>
+                        <CascadingValue Value=this>
+                            @ChildContent
+                        </CascadingValue>
+                    </ul>
+                </nav>
+                }
+            </div>
+        </div>
+    </div>
+}
+else
+{
+
+    <section class="govuk-service-navigation @Classes"
+         data-module="govuk-service-navigation"
+         aria-label=@ariaLabel
+         @attributes=@Attributes>
+        <div class="govuk-width-container">
+            <div class="govuk-service-navigation__container">
+                
+                    <span class="govuk-service-navigation__service-name">
+                        @if (string.IsNullOrEmpty(ServiceUrl))
+                        {
+                            <span class="govuk-service-navigation__text">
+                                @ServiceName
+                            </span>
+                        }
+                        else
+                        {
+                            <a href=@ServiceUrl
+                               class="govuk-service-navigation__link">
+                                @ServiceName
+                            </a>
+                        }
+                    </span>
+                @if (ChildContent != null)
+                {
+                    <nav class="govuk-service-navigation__wrapper @NavigationClasses
+                            "
+                         aria-label=@(NavigationLabel ?? "Menu")>
+                        <button type="button"
+                                class="govuk-service-navigation__toggle govuk-js-service-navigation-toggle"
+                                aria-controls=@(NavigationId ?? "navigation")
+                                aria-label=@MenuButtonLabel
+                                hidden>
+                            @(MenuButtonText ?? "Menu")
+                        </button>
+                        <ul class="govuk-service-navigation__list" id=@(NavigationId ?? "navigation")>
+                            <CascadingValue Value=this>
+                                @ChildContent
+                            </CascadingValue>
+                        </ul>
+                    </nav>
+                }
+            </div>
+        </div>
+    </section>
+}
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// The text for the aria-label which labels the service
+    /// navigation container when a service name is included.
+    /// Defaults to "Service information".
+    /// </summary>
+    [Parameter]
+    public string? AriaLabel { get; set; }
+
+    /// <summary>
+    /// The text of the mobile navigation menu toggle.
+    /// </summary>
+    [Parameter]
+    public string? MenuButtonText { get; set; }
+
+    /// <summary>
+    /// The screen reader label for the mobile navigation menu toggle.
+    /// Defaults to the same value as menuButtonText if not specified.
+    /// </summary>
+    [Parameter]
+    public string? MenuButtonLabel { get; set; }
+
+    /// <summary>
+    /// The screen reader label for the mobile navigation menu. Defaults
+    /// to the same value as menuButtonText if not specified.
+    /// </summary>
+    [Parameter]
+    public string? NavigationLabel { get; set; }
+
+    /// <summary>
+    /// The ID used to associate the mobile navigation toggle with the
+    /// navigation menu. Defaults to navigation.
+    /// </summary>
+    [Parameter]
+    public string? NavigationId { get; set; }
+
+    /// <summary>
+    /// Classes to add to the navigation menu container.
+    /// </summary>
+    [Parameter]
+    public string? NavigationClasses { get; set; }
+
+    /// <summary>
+    /// The name of your service.
+    /// </summary>
+    [Parameter]
+    public string? ServiceName { get; set; }
+
+    /// <summary>
+    /// The homepage of your service.
+    /// </summary>
+    [Parameter]
+    public string? ServiceUrl { get; set; }
+    #endregion
+
+    #region Private Properties
+    private string? ariaLabel
+    {
+        get
+        {
+            if (!string.IsNullOrEmpty(ServiceName))
+            {
+                return AriaLabel ?? "Service information";
+            }
+            return null;
+        }
+    }
+    #endregion
+}
