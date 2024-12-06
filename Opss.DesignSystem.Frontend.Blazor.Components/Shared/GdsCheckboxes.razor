@@ -84,6 +84,13 @@
 @code {
     #region Public Parameters
     /// <summary>
+    /// One or more element IDs to add to the aria-describedby attribute, used to provide
+    /// additional descriptive information for screenreader users.
+    /// </summary>
+    [Parameter]
+    public string? DescribedBy { get; set; }
+
+    /// <summary>
     /// Should the radios be used by the checkboxes component?
     /// Defaults to false, unless Legend, FieldsetClasses,
     /// FieldsetRole or FieldsetAttributes are set.

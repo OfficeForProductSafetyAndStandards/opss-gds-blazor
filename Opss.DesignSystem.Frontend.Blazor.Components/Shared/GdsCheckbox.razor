@@ -12,15 +12,14 @@
            data-aria-controls=@conditionalId
            disabled=@Disabled
            @oninput=CheckboxChanged
-           @attributes=@Attributes 
-    />
+           @attributes=@Attributes />
     <label class="govuk-label govuk-checkboxes__label"
-           for=@id
-    >
-        @if(Text != null)
+           for=@id>
+        @if (Text != null)
             @Text
         else
             @ChildContent
+
     </label>
     @if (HintTemplate != null)
     {
@@ -84,7 +83,7 @@
     public bool? Disabled { get; set; }
 
     /// <summary>
-    /// If set, implements a ‘None of these’ type behaviour via 
+    /// If set, implements a ‘None of these’ type behaviour via
     /// JavaScript when checkboxes are clicked.
     /// </summary>
     [Parameter]
@@ -96,13 +95,6 @@
     /// </summary>
     [Parameter]
     public string? Name { get; set; }
-
-    /// <summary>
-    /// One or more element IDs to add to the aria-describedby attribute, used to provide
-    /// additional descriptive information for screenreader users.
-    /// </summary>
-    [Parameter]
-    public string? DescribedBy { get; set; }
 
     /// <summary>
     /// Classes to add to the label tag.
@@ -179,9 +171,21 @@
     {
         get
         {
-            var fullText = DescribedBy ?? "";
+            var fullText = "";
+            if (parentIncludesFieldset) fullText = Parent?.DescribedBy ?? "";
             if (HintTemplate != null) fullText += $" {id}-item-hint";
             return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
+        }
+    }
+
+    private bool parentIncludesFieldset
+    {
+        get
+        {
+            if (Parent?.LegendTemplate != null || Parent?.FieldsetClasses != null || Parent?.FieldsetRole != null || Parent?.FieldsetAttributes != null)
+                return true;
+
+            return Parent?.IncludeFieldset ?? false;
         }
     }
 
