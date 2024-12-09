@@ -1,0 +1,118 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void OutputsSummaryList()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSummaryList>
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Name
+            </KeyTemplate>
+            <ValueTemplate>
+                Sarah Philips
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="name">Change</GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Date of birth
+            </KeyTemplate>
+            <ValueTemplate>
+                5 January 1978
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="date of birth">Change</GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Address
+            </KeyTemplate>
+            <ValueTemplate>
+                72 Guild Street<br>London<br>SE23 6FH
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="address">Change</GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow HasMultipleActions=@true>
+            <KeyTemplate>
+                Contact details
+            </KeyTemplate>
+            <ValueTemplate>
+                <p class="govuk-body">07700 900457</p><p class="govuk-body">sarah.phillips@example.com</p>
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="contact details">Add</GdsSummaryListRowAction>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="contact details">Change</GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+    </GdsSummaryList>
+    );
+
+        component.MarkupMatches(
+    @<dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Name
+        </dt>
+        <dd class="govuk-summary-list__value">
+            Sarah Philips
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
+        </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Date of birth
+        </dt>
+        <dd class="govuk-summary-list__value">
+            5 January 1978
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
+        </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Address
+        </dt>
+        <dd class="govuk-summary-list__value">
+            72 Guild Street<br>London<br>SE23 6FH
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> address</span></a>
+        </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Contact details
+        </dt>
+        <dd class="govuk-summary-list__value">
+            <p class="govuk-body">07700 900457</p>
+            <p class="govuk-body">sarah.phillips@example.com</p>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <ul class="govuk-summary-list__actions-list">
+                <li class="govuk-summary-list__actions-list-item">
+                    <a class="govuk-link" href="#">Add<span class="govuk-visually-hidden"> contact details</span></a>
+                </li>
+                <li class="govuk-summary-list__actions-list-item">
+                    <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> contact details</span></a>
+                </li>
+            </ul>
+        </dd>
+    </div>
+</dl>
+        );
+    }
+}

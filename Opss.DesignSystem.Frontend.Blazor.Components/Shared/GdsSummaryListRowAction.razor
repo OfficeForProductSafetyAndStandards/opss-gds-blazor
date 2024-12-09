@@ -1,0 +1,64 @@
+﻿@inherits GdsWithHref
+
+@if (Parent?.HasMultipleActions == true)
+{
+    <li class="govuk-summary-list__actions-list-item">
+        <a class="govuk-link @Classes" href=@Href @attributes=@Attributes>
+            @ChildContent
+
+            @if (!string.IsNullOrEmpty(visuallyHiddenText))
+            {
+                <span class="govuk-visually-hidden">@visuallyHiddenText</span>
+            }
+        </a>
+    </li>
+}
+else
+{
+    <a class="govuk-link @Classes" href=@Href @attributes=@Attributes>
+        @ChildContent
+
+        @if (!string.IsNullOrEmpty(visuallyHiddenText))
+        {
+            <span class="govuk-visually-hidden">@visuallyHiddenText</span>
+        }
+    </a>
+}
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Actions rely on context from the surrounding content so may
+    /// require additional accessible text. Text supplied to this
+    /// option is appended to the end. Use html for more complicated
+    /// scenarios.
+    /// </summary>
+    [Parameter]
+    public string? VisuallyHiddenText { get; set; }
+    #endregion
+
+    #region Private Properties
+    private string? visuallyHiddenText
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(VisuallyHiddenText))
+                return null;
+            return $" {VisuallyHiddenText}";
+        }
+    }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsSummaryListRowAction must exist within a GdsSummaryListRow");
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsSummaryListRow? Parent { get; set; }
+    #endregion
+}
