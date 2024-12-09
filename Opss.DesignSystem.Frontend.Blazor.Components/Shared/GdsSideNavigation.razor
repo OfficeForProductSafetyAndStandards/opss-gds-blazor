@@ -1,0 +1,43 @@
+﻿@inherits GdsViewModel
+
+<nav class="moj-side-navigation @Classes" 
+     aria-label=@(string.IsNullOrEmpty(Label) ? "Side navigation" : Label)
+     @attributes=@Attributes
+>
+    @if (SectionTemplate == null)
+    {
+        <ul class="moj-side-navigation__list">
+            <CascadingValue Value=this>
+                @ItemsTemplate
+            </CascadingValue>
+        </ul>
+    }
+    else
+    {
+        <CascadingValue Value=this>
+            @SectionTemplate
+        </CascadingValue>
+    }
+</nav>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// An array of navigation item objects.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ItemsTemplate { get; set; }
+
+    /// <summary>
+    /// An array of navigation section objects.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? SectionTemplate { get; set; }
+
+    /// <summary>
+    /// The aria-label to add to the navigation container.
+    /// </summary>
+    [Parameter]
+    public string? Label { get; set; }
+    #endregion
+}

@@ -1,0 +1,127 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void OutputsSideNavigation()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSideNavigation Label="Side navigation">
+        <ItemsTemplate>
+            <GdsSideNavigationItem Href="#1" Active=@true>
+                Nav item 1
+            </GdsSideNavigationItem>
+            <GdsSideNavigationItem Href="#2">
+                Nav item 2
+            </GdsSideNavigationItem>
+            <GdsSideNavigationItem Href="#3">
+                Nav item 3
+            </GdsSideNavigationItem>
+        </ItemsTemplate>
+    </GdsSideNavigation>
+        );
+
+        component.MarkupMatches(
+    @<nav class="moj-side-navigation" aria-label="Side navigation">
+        <ul class="moj-side-navigation__list">
+            <li class="moj-side-navigation__item moj-side-navigation__item--active">
+                <a href="#1" aria-current="location">Nav item 1</a>
+            </li>
+
+            <li class="moj-side-navigation__item">
+                <a href="#2">Nav item 2</a>
+            </li>
+
+            <li class="moj-side-navigation__item">
+                <a href="#3">Nav item 3</a>
+            </li>
+        </ul>
+    </nav>
+
+        );
+    }
+
+    [Fact]
+    public void OutputsSideNavigationWithSections()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSideNavigation Label="Side navigation">
+        <SectionTemplate>
+            <GdsSideNavigationSection>
+                <HeadingTemplate>
+                    <GdsSideNavigationSectionHeading>
+                        Section 1
+                    </GdsSideNavigationSectionHeading>
+                </HeadingTemplate>
+                <ChildContent>
+                    <GdsSideNavigationItem Href="#1.1" Active=@true>
+                        Nav item 1.1
+                    </GdsSideNavigationItem>
+                    <GdsSideNavigationItem Href="#1.2">
+                        Nav item 1.2
+                    </GdsSideNavigationItem>
+                    <GdsSideNavigationItem Href="#1.3">
+                        Nav item 1.3
+                    </GdsSideNavigationItem>
+                </ChildContent>
+            </GdsSideNavigationSection>
+            <GdsSideNavigationSection>
+                <HeadingTemplate>
+                    <GdsSideNavigationSectionHeading>
+                        Section 2
+                    </GdsSideNavigationSectionHeading>
+                </HeadingTemplate>
+                <ChildContent>
+                    <GdsSideNavigationItem Href="#2.1">
+                        Nav item 2.1
+                    </GdsSideNavigationItem>
+                    <GdsSideNavigationItem Href="#2.2">
+                        Nav item 2.2
+                    </GdsSideNavigationItem>
+                    <GdsSideNavigationItem Href="#2.3">
+                        Nav item 2.3
+                    </GdsSideNavigationItem>
+                </ChildContent>
+            </GdsSideNavigationSection>
+        </SectionTemplate>
+    </GdsSideNavigation>
+        );
+
+        component.MarkupMatches(
+    @<nav class="moj-side-navigation" aria-label="Side navigation">
+        <h4 class="moj-side-navigation__title">Section 1</h4>
+        <ul class="moj-side-navigation__list">
+            <li class="moj-side-navigation__item moj-side-navigation__item--active">
+                <a href="#1.1" aria-current="location">Nav item 1.1</a>
+            </li>
+
+            <li class="moj-side-navigation__item">
+                <a href="#1.2">Nav item 1.2</a>
+            </li>
+
+            <li class="moj-side-navigation__item">
+                <a href="#1.3">Nav item 1.3</a>
+            </li>
+        </ul>
+
+        <h4 class="moj-side-navigation__title">Section 2</h4>
+        <ul class="moj-side-navigation__list">
+            <li class="moj-side-navigation__item">
+                <a href="#2.1">Nav item 2.1</a>
+            </li>
+
+            <li class="moj-side-navigation__item">
+                <a href="#2.2">Nav item 2.2</a>
+            </li>
+
+            <li class="moj-side-navigation__item">
+                <a href="#2.3">Nav item 2.3</a>
+            </li>
+        </ul>
+    </nav>
+
+
+    );
+    }
+}

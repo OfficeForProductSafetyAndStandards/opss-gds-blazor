@@ -1,0 +1,35 @@
+﻿@inherits GdsWithHref
+
+<li class="moj-side-navigation__item @(Active == true ? "moj-side-navigation__item--active" : null)">
+    <a href=@Href aria-current=@(Active == true ? "location" : null)>
+        @ChildContent
+    </a>
+</li>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Flag to mark the navigation item as active or not. Defaults to false.
+    /// </summary>
+    [Parameter]
+    public bool? Active { get; set; }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (NavigationParent == null && SectionParent == null)
+        {
+            throw new ArgumentNullException($"{nameof(NavigationParent)} or {nameof(SectionParent)}", "GdsSideNavigationItem must exist within a GdsSideNavigation or a GdsSideNavigationSection");
+        }
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsSideNavigation? NavigationParent { get; set; }
+
+    [CascadingParameter]
+    private GdsSideNavigationSection? SectionParent { get; set; }
+    #endregion
+}

@@ -1,0 +1,38 @@
+﻿<CascadingValue Value=this>
+    @HeadingTemplate
+</CascadingValue>
+<ul class="moj-side-navigation__list">
+    <CascadingValue Value=this>
+        @ChildContent
+    </CascadingValue>
+</ul>
+
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// An array of navigation item objects.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// Section Heading
+    /// </summary>
+    [Parameter]
+    public RenderFragment? HeadingTemplate { get; set; }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsSideNavigationSection must exist within a GdsSideNavigation");
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsSideNavigation? Parent { get; set; }
+    #endregion
+}
