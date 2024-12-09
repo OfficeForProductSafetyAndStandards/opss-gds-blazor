@@ -1,0 +1,39 @@
+﻿@page "/Components/SubNavigation"
+@layout _ComponentsLayout
+
+<PageTitle>Sub navigation</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Sub navigation</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the MoJ GDS <a href="https://design-patterns.service.justice.gov.uk/components/sub-navigation/" class="govuk-link">Sub navigation</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsSubNavigation Label=""Sub navigation"">
+    <GdsSubNavigation Href=""#1"" Active=@true>
+        Nav item 1
+    </GdsSubNavigation>
+    <GdsSubNavigation Href=""#2"">
+        Nav item 2
+    </GdsSubNavigation>
+    <GdsSideNavigationItem Href=""#3"">
+        Nav item 3
+    </GdsSideNavigationItem>
+</GdsSubNavigation>")">
+    <GdsSubNavigation Label="Sub navigation">
+        <GdsSubNavigationItem Href="#1" Active=@true>
+            Nav item 1
+        </GdsSubNavigationItem>
+        <GdsSubNavigationItem Href="#2">
+            Nav item 2
+        </GdsSubNavigationItem>
+        <GdsSubNavigationItem Href="#3">
+            Nav item 3
+        </GdsSubNavigationItem>
+    </GdsSubNavigation>
+</Example>
+
+@code {
+
+}

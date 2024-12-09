@@ -1,0 +1,44 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void OutputsSubNavigation()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSubNavigation Label="Sub navigation">
+        <GdsSubNavigationItem Href="#1" Active=@true>
+            Nav item 1
+        </GdsSubNavigationItem>
+        <GdsSubNavigationItem Href="#2">
+            Nav item 2
+        </GdsSubNavigationItem>
+        <GdsSubNavigationItem Href="#3">
+            Nav item 3
+        </GdsSubNavigationItem>
+    </GdsSubNavigation>
+    );
+
+        component.MarkupMatches(
+    @<nav class="moj-sub-navigation" aria-label="Sub navigation">
+
+        <ul class="moj-sub-navigation__list">
+            <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" aria-current="page" href="#1">Nav item 1</a>
+            </li>
+
+            <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="#2">Nav item 2</a>
+            </li>
+
+            <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="#3">Nav item 3</a>
+            </li>
+        </ul>
+
+    </nav>
+
+
+        );
+    }
+}
