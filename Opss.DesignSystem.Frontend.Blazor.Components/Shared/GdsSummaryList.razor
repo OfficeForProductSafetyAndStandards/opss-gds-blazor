@@ -2,8 +2,8 @@
 
 @if (isSummaryCard)
 {
-    <div class="govuk-summary-card">
-        @if (CardTitleTemplate != null && CardActionsTemplate != null)
+    <div class="govuk-summary-card @Classes">
+        @if (CardTitleTemplate != null)
         {
             <div class="govuk-summary-card__title-wrapper">
                 <CascadingValue Value=@this>
@@ -30,7 +30,7 @@
 }
 else
 {
-    <dl class="govuk-summary-list">
+    <dl class="govuk-summary-list @Classes">
         <CascadingValue Value=@this>
             @ChildContent
         </CascadingValue>
@@ -80,6 +80,35 @@ else
         {
             return (CardTitleTemplate != null || CardActionsTemplate != null || CardActionsClasses != null || CardClasses != null);
         }
+    }
+    #endregion
+
+    #region Cascading Value - Child Items
+    /// <summary>
+    /// Used by Summary List Row. If one row has but another has none,
+    /// then a "no-actions" class is added.
+    /// </summary>
+    public bool ChildHasAction { get; set; } = false;
+
+    public void RegisterListHasAction()
+    {
+        ChildHasAction = true;
+        this.StateHasChanged();
+
+    }
+
+    /// <summary>
+    /// Used by Cummary List Item Actions.
+    /// If a card title is specified, list item action's 
+    /// visually hidden text includes the card's title.
+    /// </summary>
+    public RenderFragment? CardTitle { get; set; }
+
+    public void RegisterCardTitle(RenderFragment? cardTitle)
+    {
+        CardTitle = cardTitle;
+        this.StateHasChanged();
+
     }
     #endregion
 }

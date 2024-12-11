@@ -1,5 +1,5 @@
 ﻿<GdsHeading Classes=@("govuk-summary-card__title " + Classes)
-            HeadingLevel=@HeadingLevel>
+HeadingLevel=@HeadingLevel>
     @ChildContent
 </GdsHeading>
 
@@ -29,6 +29,8 @@
     {
         if (Parent == null)
             throw new ArgumentNullException(nameof(Parent), "GdsSummaryListCardTitle must exist within a GdsSummaryList");
+
+        Parent.RegisterCardTitle(this.ChildContent);
 
         base.OnInitialized();
     }

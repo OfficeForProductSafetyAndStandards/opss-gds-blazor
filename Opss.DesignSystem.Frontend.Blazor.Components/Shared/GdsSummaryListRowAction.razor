@@ -6,7 +6,7 @@
         <a class="govuk-link @Classes" href=@Href @attributes=@Attributes>
             @ChildContent
 
-            @if (!string.IsNullOrEmpty(visuallyHiddenText))
+            @if (visuallyHiddenText != null)
             {
                 <span class="govuk-visually-hidden">@visuallyHiddenText</span>
             }
@@ -18,7 +18,7 @@ else
     <a class="govuk-link @Classes" href=@Href @attributes=@Attributes>
         @ChildContent
 
-        @if (!string.IsNullOrEmpty(visuallyHiddenText))
+        @if (visuallyHiddenText != null)
         {
             <span class="govuk-visually-hidden">@visuallyHiddenText</span>
         }
@@ -38,13 +38,20 @@ else
     #endregion
 
     #region Private Properties
-    private string? visuallyHiddenText
+    private RenderFragment? visuallyHiddenText
     {
         get
         {
             if (string.IsNullOrEmpty(VisuallyHiddenText))
                 return null;
-            return $" {VisuallyHiddenText}";
+
+            RenderFragment hiddenText = @<text> @VisuallyHiddenText</text>;
+
+            if(Parent?.Parent?.CardTitle != null){
+                hiddenText =@<text> @VisuallyHiddenText (@Parent.Parent.CardTitle)</text>;
+            }
+
+            return hiddenText;
         }
     }
     #endregion
@@ -54,6 +61,8 @@ else
     {
         if (Parent == null)
             throw new ArgumentNullException(nameof(Parent), "GdsSummaryListRowAction must exist within a GdsSummaryListRow");
+
+        Parent.Register(this);
 
         base.OnInitialized();
     }

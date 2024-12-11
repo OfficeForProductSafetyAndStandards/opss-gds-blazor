@@ -1,5 +1,5 @@
 ﻿
-<div class="govuk-summary-list__row @Classes">
+<div class="govuk-summary-list__row @noActionsClass @Classes">
     <dt class="govuk-summary-list__key @KeyClasses">
         <CascadingValue Value=this>
             @KeyTemplate
@@ -91,7 +91,33 @@
         base.OnInitialized();
     }
 
+    /// <summary>
+    /// This is public so a List Item Action can access the List
+    /// to retrieve it's title (assuming it's a card)
+    /// </summary>
     [CascadingParameter]
-    private GdsSummaryList? Parent { get; set; }
+    public GdsSummaryList? Parent { get; set; }
+    #endregion
+
+    #region Private Properties
+    private string? noActionsClass {
+        get{
+            if (Parent.ChildHasAction && !actions.Any())
+                return "govuk-summary-list__row--no-actions";
+
+                return null;
+        }
+    }
+    #endregion
+
+    #region Cascading Value - Child Items
+    private List<GdsSummaryListRowAction> actions = new List<GdsSummaryListRowAction>();
+
+    public void Register(GdsSummaryListRowAction action)
+    {
+        actions.Add(action);
+        Parent.RegisterListHasAction();
+        this.StateHasChanged();
+    }
     #endregion
 }
