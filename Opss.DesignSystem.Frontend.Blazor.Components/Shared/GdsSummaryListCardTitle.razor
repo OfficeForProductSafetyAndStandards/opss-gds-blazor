@@ -1,0 +1,41 @@
+﻿<GdsHeading Classes=@("govuk-summary-card__title " + Classes)
+            HeadingLevel=@HeadingLevel>
+    @ChildContent
+</GdsHeading>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Text to use within each title.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// Heading level, from 1 to 6. Default is 2.
+    /// </summary>
+    [Parameter]
+    public int HeadingLevel { get; set; } = 2;
+
+    /// <summary>
+    /// Classes to add to the title wrapper.
+    /// </summary>
+    [Parameter]
+    public string? Classes { get; set; }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsSummaryListCardTitle must exist within a GdsSummaryList");
+
+        Parent.RegisterCardTitle(ChildContent);
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsSummaryList? Parent { get; set; }
+    #endregion
+}

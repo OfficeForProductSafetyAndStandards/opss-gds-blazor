@@ -1,0 +1,56 @@
+﻿@inherits GdsWithHref
+
+<li class="govuk-summary-card__action">
+    <a class="govuk-link @Classes" href=@Href @attributes=@Attributes>
+        @ChildContent
+
+        @if (visuallyHiddenText != null)
+        {
+            <span class="govuk-visually-hidden">@visuallyHiddenText</span>
+        }
+    </a>
+</li>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Actions rely on context from the surrounding content so may
+    /// require additional accessible text. Text supplied to this
+    /// option is appended to the end. Use html for more complicated
+    /// scenarios.
+    /// </summary>
+    [Parameter]
+    public string? VisuallyHiddenText { get; set; }
+    #endregion
+
+    #region Private Properties
+    private RenderFragment? visuallyHiddenText
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(VisuallyHiddenText))
+                return null;
+
+            RenderFragment hiddenText = @<text> @VisuallyHiddenText</text>;
+
+            if (Parent?.CardTitle != null)
+                hiddenText =@<text> @VisuallyHiddenText (@Parent.CardTitle)</text>;
+
+            return hiddenText;
+        }
+    }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsSummaryListAction must exist within a GdsSummaryList");
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsSummaryList? Parent { get; set; }
+    #endregion
+}

@@ -1,0 +1,798 @@
+﻿@page "/Components/SummaryList"
+@layout _ComponentsLayout
+
+<PageTitle>Summary list</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Summary list</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/summary-list/" class="govuk-link">Summary list</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsSummaryList>
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Name
+        </KeyTemplate>
+        <ValueTemplate>
+            Sarah Philips
+        </ValueTemplate>
+        <ActionsTemplate>
+            <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""name"">
+                Change
+            </GdsSummaryListRowAction>
+        </ActionsTemplate>
+    </GdsSummaryListRow>
+
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Date of birth
+        </KeyTemplate>
+        <ValueTemplate>
+            5 January 1978
+        </ValueTemplate>
+        <ActionsTemplate>
+            <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""date of birth"">
+                Change
+            </GdsSummaryListRowAction>
+        </ActionsTemplate>
+    </GdsSummaryListRow>
+
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Address
+        </KeyTemplate>
+        <ValueTemplate>
+            72 Guild Street<br>London<br>SE23 6FH
+        </ValueTemplate>
+        <ActionsTemplate>
+            <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""address"">
+                Change
+            </GdsSummaryListRowAction>
+        </ActionsTemplate>
+    </GdsSummaryListRow>
+
+    <GdsSummaryListRow HasMultipleActions=@true>
+        <KeyTemplate>
+            Contact details
+        </KeyTemplate>
+        <ValueTemplate>
+            <p class=""govuk-body"">07700 900457</p><p class=""govuk-body"">sarah.phillips@example.com</p>
+        </ValueTemplate>
+        <ActionsTemplate>
+            <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""contact details"">
+                Add
+            </GdsSummaryListRowAction>
+            <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""contact details"">
+                Change
+            </GdsSummaryListRowAction>
+        </ActionsTemplate>
+    </GdsSummaryListRow>
+</GdsSummaryList>")">
+    <GdsSummaryList>
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Name
+            </KeyTemplate>
+            <ValueTemplate>
+                Sarah Philips
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="name">
+                    Change
+                </GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Date of birth
+            </KeyTemplate>
+            <ValueTemplate>
+                5 January 1978
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="date of birth">
+                    Change
+                </GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Address
+            </KeyTemplate>
+            <ValueTemplate>
+                72 Guild Street<br>London<br>SE23 6FH
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="address">
+                    Change
+                </GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow HasMultipleActions=@true>
+            <KeyTemplate>
+                Contact details
+            </KeyTemplate>
+            <ValueTemplate>
+                <p class="govuk-body">07700 900457</p><p class="govuk-body">sarah.phillips@example.com</p>
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="contact details">
+                    Add
+                </GdsSummaryListRowAction>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="contact details">
+                    Change
+                </GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+    </GdsSummaryList>
+</Example>
+
+<h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
+
+<Example CodeExampleContent="@(@"<GdsSummaryList>
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Name
+        </KeyTemplate>
+        <ValueTemplate>
+            Sarah Philips
+        </ValueTemplate>
+    </GdsSummaryListRow>
+
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Date of birth
+        </KeyTemplate>
+        <ValueTemplate>
+            5 January 1978
+        </ValueTemplate>
+    </GdsSummaryListRow>
+
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Address
+        </KeyTemplate>
+        <ValueTemplate>
+            72 Guild Street<br>London<br>SE23 6FH
+        </ValueTemplate>
+    </GdsSummaryListRow>
+
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Contact details
+        </KeyTemplate>
+        <ValueTemplate>
+            <p class=""govuk-body"">07700 900457</p>
+            <p class=""govuk-body"">sarah.phillips@example.com</p>
+        </ValueTemplate>
+    </GdsSummaryListRow>
+</GdsSummaryList>")">
+    <GdsSummaryList>
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Name
+            </KeyTemplate>
+            <ValueTemplate>
+                Sarah Philips
+            </ValueTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Date of birth
+            </KeyTemplate>
+            <ValueTemplate>
+                5 January 1978
+            </ValueTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Address
+            </KeyTemplate>
+            <ValueTemplate>
+                72 Guild Street<br>London<br>SE23 6FH
+            </ValueTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Contact details
+            </KeyTemplate>
+            <ValueTemplate>
+                <p class="govuk-body">07700 900457</p>
+                <p class="govuk-body">sarah.phillips@example.com</p>
+            </ValueTemplate>
+        </GdsSummaryListRow>
+    </GdsSummaryList>
+</Example>
+
+<h3 class="govuk-heading-m" id="adding-actions-to-each-row">Adding actions to each row</h3>
+
+<Example CodeExampleContent="@(@"<GdsSummaryList>
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Name
+        </KeyTemplate>
+        <ValueTemplate>
+            Sarah Philips
+        </ValueTemplate>
+        <ActionsTemplate>
+            <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""name"">
+                Change
+            </GdsSummaryListRowAction>
+        </ActionsTemplate>
+    </GdsSummaryListRow>
+
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Date of birth
+        </KeyTemplate>
+        <ValueTemplate>
+            5 January 1978
+        </ValueTemplate>
+        <ActionsTemplate>
+            <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""date of birth"">
+                Change
+            </GdsSummaryListRowAction>
+        </ActionsTemplate>
+    </GdsSummaryListRow>
+
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Address
+        </KeyTemplate>
+        <ValueTemplate>
+            72 Guild Street<br>London<br>SE23 6FH
+        </ValueTemplate>
+        <ActionsTemplate>
+            <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""address"">
+                Change
+            </GdsSummaryListRowAction>
+        </ActionsTemplate>
+    </GdsSummaryListRow>
+
+    <GdsSummaryListRow HasMultipleActions=@true>
+        <KeyTemplate>
+            Contact details
+        </KeyTemplate>
+        <ValueTemplate>
+            <p class=""govuk-body"">07700 900457</p><p class=""govuk-body"">sarah.phillips@example.com</p>
+        </ValueTemplate>
+        <ActionsTemplate>
+            <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""contact details"">
+                Add
+            </GdsSummaryListRowAction>
+            <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""contact details"">
+                Change
+            </GdsSummaryListRowAction>
+        </ActionsTemplate>
+    </GdsSummaryListRow>
+</GdsSummaryList>")">
+    <GdsSummaryList>
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Name
+            </KeyTemplate>
+            <ValueTemplate>
+                Sarah Philips
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="name">
+                    Change
+                </GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Date of birth
+            </KeyTemplate>
+            <ValueTemplate>
+                5 January 1978
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="date of birth">
+                    Change
+                </GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Address
+            </KeyTemplate>
+            <ValueTemplate>
+                72 Guild Street<br>London<br>SE23 6FH
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="address">
+                    Change
+                </GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow HasMultipleActions=@true>
+            <KeyTemplate>
+                Contact details
+            </KeyTemplate>
+            <ValueTemplate>
+                <p class="govuk-body">07700 900457</p><p class="govuk-body">sarah.phillips@example.com</p>
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="contact details">
+                    Add
+                </GdsSummaryListRowAction>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="contact details">
+                    Change
+                </GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+    </GdsSummaryList>
+</Example>
+
+<h4 class="govuk-heading-s" id="showing-rows-with-and-without-actions">Showing rows with and without actions</h4>
+
+<Example CodeExampleContent="@(@"<GdsSummaryList>
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Name
+        </KeyTemplate>
+        <ValueTemplate>
+            Sarah Philips
+        </ValueTemplate>
+    </GdsSummaryListRow>
+
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Date of birth
+        </KeyTemplate>
+        <ValueTemplate>
+            5 January 1978
+        </ValueTemplate>
+        <ActionsTemplate>
+            <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""date of birth"">
+                Change
+            </GdsSummaryListRowAction>
+        </ActionsTemplate>
+    </GdsSummaryListRow>
+
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Address
+        </KeyTemplate>
+        <ValueTemplate>
+            72 Guild Street<br>London<br>SE23 6FH
+        </ValueTemplate>
+        <ActionsTemplate>
+            <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""address"">
+                Change
+            </GdsSummaryListRowAction>
+        </ActionsTemplate>
+    </GdsSummaryListRow>
+
+    <GdsSummaryListRow HasMultipleActions=@true>
+        <KeyTemplate>
+            Contact details
+        </KeyTemplate>
+        <ValueTemplate>
+            <p class=""govuk-body"">07700 900457</p><p class=""govuk-body"">sarah.phillips@example.com</p>
+        </ValueTemplate>
+        <ActionsTemplate>
+            <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""contact details"">
+                Add
+            </GdsSummaryListRowAction>
+            <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""contact details"">
+                Change
+            </GdsSummaryListRowAction>
+        </ActionsTemplate>
+    </GdsSummaryListRow>
+</GdsSummaryList>")">
+    <GdsSummaryList>
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Name
+            </KeyTemplate>
+            <ValueTemplate>
+                Sarah Philips
+            </ValueTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Date of birth
+            </KeyTemplate>
+            <ValueTemplate>
+                5 January 1978
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="date of birth">
+                    Change
+                </GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Address
+            </KeyTemplate>
+            <ValueTemplate>
+                72 Guild Street<br>London<br>SE23 6FH
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="address">
+                    Change
+                </GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow HasMultipleActions=@true>
+            <KeyTemplate>
+                Contact details
+            </KeyTemplate>
+            <ValueTemplate>
+                <p class="govuk-body">07700 900457</p><p class="govuk-body">sarah.phillips@example.com</p>
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="contact details">
+                    Add
+                </GdsSummaryListRowAction>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="contact details">
+                    Change
+                </GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+    </GdsSummaryList>
+</Example>
+
+<h3 class="govuk-heading-m" id="removing-the-borders">Removing the borders</h3>
+
+<Example CodeExampleContent="@(@"<GdsSummaryList Classes=@SummaryListClasses.NoBorder>
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Name
+        </KeyTemplate>
+        <ValueTemplate>
+            Sarah Philips
+        </ValueTemplate>
+    </GdsSummaryListRow>
+
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Date of birth
+        </KeyTemplate>
+        <ValueTemplate>
+            5 January 1978
+        </ValueTemplate>
+    </GdsSummaryListRow>
+
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Address
+        </KeyTemplate>
+        <ValueTemplate>
+            72 Guild Street<br>London<br>SE23 6FH
+        </ValueTemplate>
+    </GdsSummaryListRow>
+
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Contact details
+        </KeyTemplate>
+        <ValueTemplate>
+            <p class=""govuk-body"">07700 900457</p>
+            <p class=""govuk-body"">sarah.phillips@example.com</p>
+        </ValueTemplate>
+    </GdsSummaryListRow>
+</GdsSummaryList>")">
+    <GdsSummaryList Classes=@SummaryListClasses.NoBorder>
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Name
+            </KeyTemplate>
+            <ValueTemplate>
+                Sarah Philips
+            </ValueTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Date of birth
+            </KeyTemplate>
+            <ValueTemplate>
+                5 January 1978
+            </ValueTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Address
+            </KeyTemplate>
+            <ValueTemplate>
+                72 Guild Street<br>London<br>SE23 6FH
+            </ValueTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Contact details
+            </KeyTemplate>
+            <ValueTemplate>
+                <p class="govuk-body">07700 900457</p>
+                <p class="govuk-body">sarah.phillips@example.com</p>
+            </ValueTemplate>
+        </GdsSummaryListRow>
+    </GdsSummaryList>
+</Example>
+
+<h3 class="govuk-heading-m" id="showing-missing-information">Showing missing information</h3>
+
+<Example CodeExampleContent="@(@" <GdsSummaryList>
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Name
+        </KeyTemplate>
+        <ValueTemplate>
+            Sarah Philips
+        </ValueTemplate>
+        <ActionsTemplate>
+            <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""name"">Change</GdsSummaryListRowAction>
+        </ActionsTemplate>
+    </GdsSummaryListRow>
+
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Date of birth
+        </KeyTemplate>
+        <ValueTemplate>
+            5 January 1978
+        </ValueTemplate>
+        <ActionsTemplate>
+            <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""date of birth"">Change</GdsSummaryListRowAction>
+        </ActionsTemplate>
+    </GdsSummaryListRow>
+
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Contact information
+        </KeyTemplate>
+        <ValueTemplate>
+            <a href=""#"" class=""govuk-link"">Enter contact information</a>
+        </ValueTemplate>
+    </GdsSummaryListRow>
+
+    <GdsSummaryListRow>
+        <KeyTemplate>
+            Contact details
+        </KeyTemplate>
+        <ValueTemplate>
+            <a href=""#"" class=""govuk-link"">Enter contact details</a>
+        </ValueTemplate>
+    </GdsSummaryListRow>
+</GdsSummaryList>")">
+    <GdsSummaryList>
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Name
+            </KeyTemplate>
+            <ValueTemplate>
+                Sarah Philips
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="name">Change</GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Date of birth
+            </KeyTemplate>
+            <ValueTemplate>
+                5 January 1978
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href="#" VisuallyHiddenText="date of birth">Change</GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Contact information
+            </KeyTemplate>
+            <ValueTemplate>
+                <a href="#" class="govuk-link">Enter contact information</a>
+            </ValueTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Contact details
+            </KeyTemplate>
+            <ValueTemplate>
+                <a href="#" class="govuk-link">Enter contact details</a>
+            </ValueTemplate>
+        </GdsSummaryListRow>
+    </GdsSummaryList>
+</Example>
+
+<h2 class="govuk-heading-l" id="summary-cards">Summary cards</h2>
+
+<h3 class="govuk-heading-m" id="card-titles">Card titles</h3>
+
+<Example CodeExampleContent="@(@"<GdsSummaryList>
+    <CardTitleTemplate>
+        <GdsSummaryListCardTitle>Lead tenant</GdsSummaryListCardTitle>
+    </CardTitleTemplate>
+    <ChildContent>
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Age
+            </KeyTemplate>
+            <ValueTemplate>
+                38
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""age"">
+                    Change
+                </GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Nationality
+            </KeyTemplate>
+            <ValueTemplate>
+                UK national resident in UK
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""nationality"">
+                    Change
+                </GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Working situation
+            </KeyTemplate>
+            <ValueTemplate>
+                Part time – less than 30 hours a week
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""working situation"">
+                    Change
+                </GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+    </ChildContent>
+</GdsSummaryList>")">
+    <GdsSummaryList>
+        <CardTitleTemplate>
+            <GdsSummaryListCardTitle>Lead tenant</GdsSummaryListCardTitle>
+        </CardTitleTemplate>
+        <ChildContent>
+            <GdsSummaryListRow>
+                <KeyTemplate>
+                    Age
+                </KeyTemplate>
+                <ValueTemplate>
+                    38
+                </ValueTemplate>
+                <ActionsTemplate>
+                    <GdsSummaryListRowAction Href="#" VisuallyHiddenText="age">
+                        Change
+                    </GdsSummaryListRowAction>
+                </ActionsTemplate>
+            </GdsSummaryListRow>
+
+            <GdsSummaryListRow>
+                <KeyTemplate>
+                    Nationality
+                </KeyTemplate>
+                <ValueTemplate>
+                    UK national resident in UK
+                </ValueTemplate>
+                <ActionsTemplate>
+                    <GdsSummaryListRowAction Href="#" VisuallyHiddenText="nationality">
+                        Change
+                    </GdsSummaryListRowAction>
+                </ActionsTemplate>
+            </GdsSummaryListRow>
+
+            <GdsSummaryListRow>
+                <KeyTemplate>
+                    Working situation
+                </KeyTemplate>
+                <ValueTemplate>
+                    Part time – less than 30 hours a week
+                </ValueTemplate>
+                <ActionsTemplate>
+                    <GdsSummaryListRowAction Href="#" VisuallyHiddenText="working situation">
+                        Change
+                    </GdsSummaryListRowAction>
+                </ActionsTemplate>
+            </GdsSummaryListRow>
+        </ChildContent>
+    </GdsSummaryList>
+</Example>
+
+<h3 class="govuk-heading-m" id="adding-card-actions">Adding card actions</h3>
+
+<Example CodeExampleContent="@(@"<GdsSummaryList>
+    <CardTitleTemplate>
+        <GdsSummaryListCardTitle>University of Gloucestershire</GdsSummaryListCardTitle>
+    </CardTitleTemplate>
+    <CardActionsTemplate>
+        <GdsSummaryListCardAction Href=""#"" 
+                                  VisuallyHiddenText=""of University of Gloucestershire"">
+            Delete choice
+        </GdsSummaryListCardAction>
+        <GdsSummaryListCardAction Href=""#""
+                                  VisuallyHiddenText=""from University of Gloucestershire"">
+            Withdraw
+        </GdsSummaryListCardAction>
+    </CardActionsTemplate>
+    <ChildContent>
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Course
+            </KeyTemplate>
+            <ValueTemplate>
+                English (3DMD)<br>PGCE with QTS full time
+            </ValueTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Location
+            </KeyTemplate>
+            <ValueTemplate>
+                School name<br>Road, City, SW1 1AA
+            </ValueTemplate>
+        </GdsSummaryListRow>
+    </ChildContent>
+</GdsSummaryList>")">
+    <GdsSummaryList>
+        <CardTitleTemplate>
+            <GdsSummaryListCardTitle>University of Gloucestershire</GdsSummaryListCardTitle>
+        </CardTitleTemplate>
+        <CardActionsTemplate>
+            <GdsSummaryListCardAction Href="#"
+                                      VisuallyHiddenText="of University of Gloucestershire">
+                Delete choice
+            </GdsSummaryListCardAction>
+            <GdsSummaryListCardAction Href="#"
+                                      VisuallyHiddenText="from University of Gloucestershire">
+                Withdraw
+            </GdsSummaryListCardAction>
+        </CardActionsTemplate>
+        <ChildContent>
+            <GdsSummaryListRow>
+                <KeyTemplate>
+                    Course
+                </KeyTemplate>
+                <ValueTemplate>
+                    English (3DMD)<br>PGCE with QTS full time
+                </ValueTemplate>
+            </GdsSummaryListRow>
+
+            <GdsSummaryListRow>
+                <KeyTemplate>
+                    Location
+                </KeyTemplate>
+                <ValueTemplate>
+                    School name<br>Road, City, SW1 1AA
+                </ValueTemplate>
+            </GdsSummaryListRow>
+        </ChildContent>
+    </GdsSummaryList>
+</Example>
+@code {
+
+}
