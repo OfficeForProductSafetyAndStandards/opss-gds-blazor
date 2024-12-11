@@ -624,54 +624,57 @@
 
 <h3 class="govuk-heading-m" id="card-titles">Card titles</h3>
 
-<Example CodeExampleContent="@(@" <GdsSummaryList>
-    <GdsSummaryListRow>
-        <KeyTemplate>
-            Name
-        </KeyTemplate>
-        <ValueTemplate>
-            Sarah Philips
-        </ValueTemplate>
-        <ActionsTemplate>
-            <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""name"">Change</GdsSummaryListRowAction>
-        </ActionsTemplate>
-    </GdsSummaryListRow>
+<Example CodeExampleContent="@(@"<GdsSummaryList>
+    <CardTitleTemplate>
+        <GdsSummaryListCardTitle>Lead tenant</GdsSummaryListCardTitle>
+    </CardTitleTemplate>
+    <ChildContent>
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Age
+            </KeyTemplate>
+            <ValueTemplate>
+                38
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""age"">
+                    Change
+                </GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
 
-    <GdsSummaryListRow>
-        <KeyTemplate>
-            Date of birth
-        </KeyTemplate>
-        <ValueTemplate>
-            5 January 1978
-        </ValueTemplate>
-        <ActionsTemplate>
-            <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""date of birth"">Change</GdsSummaryListRowAction>
-        </ActionsTemplate>
-    </GdsSummaryListRow>
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Nationality
+            </KeyTemplate>
+            <ValueTemplate>
+                UK national resident in UK
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""nationality"">
+                    Change
+                </GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
 
-    <GdsSummaryListRow>
-        <KeyTemplate>
-            Contact information
-        </KeyTemplate>
-        <ValueTemplate>
-            <a href=""#"" class=""govuk-link"">Enter contact information</a>
-        </ValueTemplate>
-    </GdsSummaryListRow>
-
-    <GdsSummaryListRow>
-        <KeyTemplate>
-            Contact details
-        </KeyTemplate>
-        <ValueTemplate>
-            <a href=""#"" class=""govuk-link"">Enter contact details</a>
-        </ValueTemplate>
-    </GdsSummaryListRow>
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Working situation
+            </KeyTemplate>
+            <ValueTemplate>
+                Part time – less than 30 hours a week
+            </ValueTemplate>
+            <ActionsTemplate>
+                <GdsSummaryListRowAction Href=""#"" VisuallyHiddenText=""working situation"">
+                    Change
+                </GdsSummaryListRowAction>
+            </ActionsTemplate>
+        </GdsSummaryListRow>
+    </ChildContent>
 </GdsSummaryList>")">
     <GdsSummaryList>
         <CardTitleTemplate>
-            <GdsSummaryListCardTitle>
-                Lead tenant
-            </GdsSummaryListCardTitle>
+            <GdsSummaryListCardTitle>Lead tenant</GdsSummaryListCardTitle>
         </CardTitleTemplate>
         <ChildContent>
             <GdsSummaryListRow>
@@ -719,6 +722,77 @@
     </GdsSummaryList>
 </Example>
 
+<h3 class="govuk-heading-m" id="adding-card-actions">Adding card actions</h3>
+
+<Example CodeExampleContent="@(@"<GdsSummaryList>
+    <CardTitleTemplate>
+        <GdsSummaryListCardTitle>University of Gloucestershire</GdsSummaryListCardTitle>
+    </CardTitleTemplate>
+    <CardActionsTemplate>
+        <GdsSummaryListCardAction Href=""#"" 
+                                  VisuallyHiddenText=""of University of Gloucestershire"">
+            Delete choice
+        </GdsSummaryListCardAction>
+        <GdsSummaryListCardAction Href=""#""
+                                  VisuallyHiddenText=""from University of Gloucestershire"">
+            Withdraw
+        </GdsSummaryListCardAction>
+    </CardActionsTemplate>
+    <ChildContent>
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Course
+            </KeyTemplate>
+            <ValueTemplate>
+                English (3DMD)<br>PGCE with QTS full time
+            </ValueTemplate>
+        </GdsSummaryListRow>
+
+        <GdsSummaryListRow>
+            <KeyTemplate>
+                Location
+            </KeyTemplate>
+            <ValueTemplate>
+                School name<br>Road, City, SW1 1AA
+            </ValueTemplate>
+        </GdsSummaryListRow>
+    </ChildContent>
+</GdsSummaryList>")">
+    <GdsSummaryList>
+        <CardTitleTemplate>
+            <GdsSummaryListCardTitle>University of Gloucestershire</GdsSummaryListCardTitle>
+        </CardTitleTemplate>
+        <CardActionsTemplate>
+            <GdsSummaryListCardAction Href="#"
+                                      VisuallyHiddenText="of University of Gloucestershire">
+                Delete choice
+            </GdsSummaryListCardAction>
+            <GdsSummaryListCardAction Href="#"
+                                      VisuallyHiddenText="from University of Gloucestershire">
+                Withdraw
+            </GdsSummaryListCardAction>
+        </CardActionsTemplate>
+        <ChildContent>
+            <GdsSummaryListRow>
+                <KeyTemplate>
+                    Course
+                </KeyTemplate>
+                <ValueTemplate>
+                    English (3DMD)<br>PGCE with QTS full time
+                </ValueTemplate>
+            </GdsSummaryListRow>
+
+            <GdsSummaryListRow>
+                <KeyTemplate>
+                    Location
+                </KeyTemplate>
+                <ValueTemplate>
+                    School name<br>Road, City, SW1 1AA
+                </ValueTemplate>
+            </GdsSummaryListRow>
+        </ChildContent>
+    </GdsSummaryList>
+</Example>
 @code {
 
 }

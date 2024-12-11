@@ -4,7 +4,7 @@
     <a class="govuk-link @Classes" href=@Href @attributes=@Attributes>
         @ChildContent
 
-        @if (!string.IsNullOrEmpty(visuallyHiddenText))
+        @if (visuallyHiddenText != null)
         {
             <span class="govuk-visually-hidden">@visuallyHiddenText</span>
         }
@@ -24,13 +24,19 @@
     #endregion
 
     #region Private Properties
-    private string? visuallyHiddenText
+    private RenderFragment? visuallyHiddenText
     {
         get
         {
             if (string.IsNullOrEmpty(VisuallyHiddenText))
                 return null;
-            return $" {VisuallyHiddenText}";
+
+            RenderFragment hiddenText = @<text> @VisuallyHiddenText</text>;
+
+            if (Parent?.CardTitle != null)
+                hiddenText =@<text> @VisuallyHiddenText (@Parent.CardTitle)</text>;
+
+            return hiddenText;
         }
     }
     #endregion

@@ -47,9 +47,8 @@ else
 
             RenderFragment hiddenText = @<text> @VisuallyHiddenText</text>;
 
-            if(Parent?.Parent?.CardTitle != null){
+            if(Parent?.Parent?.CardTitle != null)
                 hiddenText =@<text> @VisuallyHiddenText (@Parent.Parent.CardTitle)</text>;
-            }
 
             return hiddenText;
         }
