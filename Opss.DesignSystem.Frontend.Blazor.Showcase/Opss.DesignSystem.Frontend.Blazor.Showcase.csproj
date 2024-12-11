@@ -7,13 +7,13 @@
     <UserSecretsId>15d2edf3-d876-4fa4-827c-76c5f1d35526</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
-	
+    
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-  	<Exec Command="npm install" WorkingDirectory="$(ProjectDir)" />
-  	<Exec Command="npm run build" WorkingDirectory="$(ProjectDir)" />
+      <Exec Command="npm install" WorkingDirectory="$(ProjectDir)" />
+      <Exec Command="npm run build" WorkingDirectory="$(ProjectDir)" />
   </Target>
   <ItemGroup>
-	  <None Include="src\**" />
+      <None Include="src\**" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Blazor.HighlightJS" Version="1.0.0" />

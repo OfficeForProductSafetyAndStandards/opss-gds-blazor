@@ -17,11 +17,11 @@
   </PropertyGroup>
 
 <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-	<Exec Command="npm install" WorkingDirectory="$(ProjectDir)" />
-	<Exec Command="npm run build" WorkingDirectory="$(ProjectDir)" />
+    <Exec Command="npm install" WorkingDirectory="$(ProjectDir)" />
+    <Exec Command="npm run build" WorkingDirectory="$(ProjectDir)" />
 </Target>
   <ItemGroup>
-	<None Include="src\**" />
+    <None Include="src\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,27 +43,27 @@
   <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
-	<ItemGroup>
-		<Content Update="wwwroot\**\*">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
+    <ItemGroup>
+        <Content Update="wwwroot\**\*">
+            <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
 
-	<ItemGroup>
+    <ItemGroup>
 
-		<None Include="build/*" Pack="true" PackagePath="build"></None>
-		<None Include="build/*" Pack="true" PackagePath="buildMultiTargeting"></None>
-	</ItemGroup>
+        <None Include="build/*" Pack="true" PackagePath="build"></None>
+        <None Include="build/*" Pack="true" PackagePath="buildMultiTargeting"></None>
+    </ItemGroup>
 
-	<ItemGroup>
-	  <Content Remove="package-lock.json" />
-	  <Content Remove="package.json" />
-	</ItemGroup>
+    <ItemGroup>
+      <Content Remove="package-lock.json" />
+      <Content Remove="package.json" />
+    </ItemGroup>
 
-	<ItemGroup>
-	  <None Include="package.json" />
-	</ItemGroup>
+    <ItemGroup>
+      <None Include="package.json" />
+    </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.7" />

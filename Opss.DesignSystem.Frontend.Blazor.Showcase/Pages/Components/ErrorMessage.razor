@@ -61,7 +61,7 @@
 
 <h3 class="govuk-heading-m" id="legend">Legend</h3>
 
-<Example CodeExampleContent="@(@"<GdsCheckboxes Id=""nationality"" Name=""nationality"">
+<Example CodeExampleContent="@(@"<GdsCheckboxes Name=""nationality"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             What is your nationality?
@@ -85,7 +85,7 @@
         <GdsCheckbox Value=""other"">Citizen of another country</GdsCheckbox>
     </ChildContent>
 </GdsCheckboxes>")">
-    <GdsCheckboxes Id="nationality" Name="nationality">
+    <GdsCheckboxes Name="nationality">
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
                 What is your nationality?
@@ -121,10 +121,10 @@
         </GdsLabel>
     </LabelTemplate>
     <HintTemplate>
-        <GdsHint id=""national-insurance-number-hint"">It’s on your National Insurance card, benefit letter, payslip or P60 – for example, ‘QQ 12 34 56 C’</GdsHint>
+        <GdsHint>It’s on your National Insurance card, benefit letter, payslip or P60 – for example, ‘QQ 12 34 56 C’</GdsHint>
     </HintTemplate>
     <ErrorMessageTemplate>
-        <GdsErrorMessage Id=""national-insurance-number-error"">
+        <GdsErrorMessage>
             Enter a National Insurance number in the correct format
         </GdsErrorMessage>
     </ErrorMessageTemplate>
@@ -137,10 +137,10 @@
             </GdsLabel>
         </LabelTemplate>
         <HintTemplate>
-            <GdsHint id="national-insurance-number-hint">It’s on your National Insurance card, benefit letter, payslip or P60 – for example, ‘QQ 12 34 56 C’</GdsHint>
+            <GdsHint>It’s on your National Insurance card, benefit letter, payslip or P60 – for example, ‘QQ 12 34 56 C’</GdsHint>
         </HintTemplate>
         <ErrorMessageTemplate>
-            <GdsErrorMessage Id="national-insurance-number-error">
+            <GdsErrorMessage>
                 Enter a National Insurance number in the correct format
             </GdsErrorMessage>
         </ErrorMessageTemplate>

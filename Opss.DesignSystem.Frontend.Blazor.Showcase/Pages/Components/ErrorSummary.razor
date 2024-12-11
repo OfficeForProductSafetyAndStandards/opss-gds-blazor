@@ -54,16 +54,16 @@
                 Name=""name""
                 Autocomplete=""name"">
     <LabelTemplate>
-        <GdsLabel For=""full-name-input"">
+        <GdsLabel>
             Full name
         </GdsLabel>
     </LabelTemplate>
     <ErrorMessageTemplate>
-        <GdsErrorMessage Id=""full-name-input-error"">
+        <GdsErrorMessage>
             Enter your full name
         </GdsErrorMessage>
     </ErrorMessageTemplate>
-</GdsTextInput>")">
+</GdsTextInput>>")">
     <GdsErrorSummary>
         <GdsErrorSummaryItem Href="#full-name-input">
             Enter your full name
@@ -74,12 +74,12 @@
                   Name="name"
                   Autocomplete="name">
         <LabelTemplate>
-            <GdsLabel For="full-name-input">
+            <GdsLabel>
                 Full name
             </GdsLabel>
         </LabelTemplate>
         <ErrorMessageTemplate>
-            <GdsErrorMessage Id="full-name-input-error">
+            <GdsErrorMessage>
                 Enter your full name
             </GdsErrorMessage>
         </ErrorMessageTemplate>
@@ -90,7 +90,8 @@
     <GdsErrorSummaryItem Href=""#passport-issued-year"">
         The date your passport was issued must include a year
     </GdsErrorSummaryItem>
-    </GdsErrorSummary><GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
+</GdsErrorSummary>
+<GdsDateInput Id=""passport-issued"" NamePrefix=""passport-issued"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             When was your passport issued?
@@ -141,7 +142,8 @@
     <GdsErrorSummaryItem Href=""#nationality"">
         Select if you are British, Irish or a citizen of a different country
     </GdsErrorSummaryItem>
-    </GdsErrorSummary><GdsCheckboxes Id=""nationality"" Name=""nationality"">
+</GdsErrorSummary>
+<GdsCheckboxes Name=""nationality"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             What is your nationality?
@@ -170,7 +172,7 @@
             Select if you are British, Irish or a citizen of a different country
         </GdsErrorSummaryItem>
     </GdsErrorSummary>
-    <GdsCheckboxes Id="nationality" Name="nationality">
+    <GdsCheckboxes Name="nationality">
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
                 What is your nationality?

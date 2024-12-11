@@ -15,6 +15,10 @@ COPY ["Opss.DesignSystem.Frontend.Blazor.Components/Opss.DesignSystem.Frontend.B
 RUN dotnet restore "./Opss.DesignSystem.Frontend.Blazor.Showcase/Opss.DesignSystem.Frontend.Blazor.Showcase.csproj"
 COPY . .
 WORKDIR "/src/Opss.DesignSystem.Frontend.Blazor.Showcase"
+RUN apt-get update -yq && apt-get upgrade -yq && apt-get install -yq curl git nano
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && apt-get install -yq nodejs build-essential
+RUN npm install -g npm
+RUN npm install
 RUN dotnet build "./Opss.DesignSystem.Frontend.Blazor.Showcase.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
