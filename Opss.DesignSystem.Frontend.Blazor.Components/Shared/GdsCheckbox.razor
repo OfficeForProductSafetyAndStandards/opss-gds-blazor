@@ -13,13 +13,13 @@
            disabled=@Disabled
            @oninput=CheckboxChanged
            @attributes=@Attributes />
+
     <label class="govuk-label govuk-checkboxes__label"
            for=@id>
         @if (Text != null)
             @Text
         else
             @ChildContent
-
     </label>
     @if (HintTemplate != null)
     {
@@ -190,6 +190,16 @@
     }
 
     private bool? isChecked;
+    #endregion
+
+    #region Parameter Validation
+    protected override void OnParametersSet()
+    {
+        if (string.IsNullOrEmpty(Value))
+            throw new ArgumentNullException(nameof(Value), "The Value parameter is required for each GdsCheckbox");
+
+        base.OnParametersSet();
+    }
     #endregion
 
     #region Cascading Value - Parent
