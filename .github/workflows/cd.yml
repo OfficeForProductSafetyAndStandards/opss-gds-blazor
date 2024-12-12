@@ -1,0 +1,76 @@
+name: CD for OPSS GDS Blazor Component Library
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  release:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Setup .NET
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      # Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore
+
+      # Increment the package version number
+      - name: Increment version number
+        working-directory: Opss.DesignSystem.Frontend.Blazor.Components
+        run: |
+          current_version=$(cat Opss.DesignSystem.Frontend.Blazor.Components.csproj | grep '<Version>' | sed -E 's/<\/?Version>//g' | xargs)
+          new_version=$(echo $current_version | awk -F. '{print $1"."$2+1".0"}')
+          sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" Opss.DesignSystem.Frontend.Blazor.Components.csproj
+          echo "Updated version to $new_version"
+
+      ## Push the updated version number back to GitHub
+
+      # Build the solution
+      - name: Build the solution
+        run: dotnet build --no-restore --configuration Release
+
+      # Pack the Components project
+      - name: Pack Components project
+        working-directory: Opss.DesignSystem.Frontend.Blazor.Components
+        run: dotnet pack Opss.DesignSystem.Frontend.Blazor.Components.csproj --configuration Release --output ./artifacts
+      
+      - name: LS
+        run: ls -l
+
+      # Push package to NuGet
+      - name: Push package to NuGet
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        working-directory: Opss.DesignSystem.Frontend.Blazor.Components/artifacts
+        run: |
+          dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key $NUGET_API_KEY
+
+      # Check if the file has changed before committing
+      - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: .
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add Opss.DesignSystem.Frontend.Blazor.Components/Opss.DesignSystem.Frontend.Blazor.Components.csproj
+          git commit -m "Update version number" || echo "No changes to commit"
+          git push origin HEAD:develop
