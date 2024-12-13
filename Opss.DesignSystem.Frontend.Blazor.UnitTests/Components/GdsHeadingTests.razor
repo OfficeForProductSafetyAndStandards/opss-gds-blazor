@@ -74,7 +74,7 @@
             Render(@<GdsHeading HeadingLevel="7" Classes="@HeadingSize.Large">Invalid Heading</GdsHeading>);
         });
 
-        Assert.Equal("HeadingLevel must be between 1 and 6.", exception.Message);
+        Assert.Equal("HeadingLevel must be between 1 and 6 (Parameter 'HeadingLevel')", exception.Message);
     }
 
     [Fact]
@@ -108,7 +108,7 @@
             Render(@<GdsHeading HeadingLevel="1" Classes="@HeadingSize.Large"></GdsHeading>);
         });
 
-        Assert.Equal("Value cannot be null. (Parameter 'Content')", exception.Message);
+        Assert.Equal("ChildContent cannot be null (Parameter 'ChildContent')", exception.Message);
     }
 
 
