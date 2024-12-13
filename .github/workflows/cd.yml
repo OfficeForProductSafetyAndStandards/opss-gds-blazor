@@ -41,8 +41,6 @@ jobs:
           sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" Opss.DesignSystem.Frontend.Blazor.Components.csproj
           echo "Updated version to $new_version"
 
-      ## Push the updated version number back to GitHub
-
       # Build the solution
       - name: Build the solution
         run: dotnet build --no-restore --configuration Release
