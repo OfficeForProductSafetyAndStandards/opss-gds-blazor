@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+
+<div class="moj-multi-file-upload">
+    <div class="moj-multi-file__uploaded-files ">
+        <h2 class="govuk-heading-m">Files added</h2>
+        <div class="govuk-summary-list moj-multi-file-upload__list">
+        </div>
+    </div>
+
+    <div class="moj-multi-file-upload__upload">
+
+        <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--m" for="documents">
+                Upload a file
+            </label>
+            <div class="moj-multi-file-upload__dropzone" @ref="dropZoneElement">
+                <InputFile OnChange="@LoadFilesAsync" class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" multiple @ref="inputFile" />
+                <p class="govuk-body">Drag and drop files here or</p><label for="documents" class="govuk-button govuk-button--secondary">Choose files</label>
+                <div aria-live="polite" role="status" class="govuk-visually-hidden">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@foreach (var file in files)
+{
+    <p>@file</p>
+}
+
+
+@code {
+    ElementReference dropZoneElement;
+    InputFile inputFile;
+
+    public List<string> files = new List<string>();
+
+    private async Task LoadFilesAsync(InputFileChangeEventArgs e)
+    {
+        foreach (var file in e.GetMultipleFiles(5))
+        {
+            files.Add(file.Name);
+        }
+    }
+}
