@@ -1,0 +1,18 @@
+﻿@inherits GdsViewModel
+
+<div class="govuk-tabs @Classes" @attributes="@Attributes">
+    <h2 class="govuk-tabs__title">@Title</h2>
+    <ul class="govuk-tabs__list" role="tablist">
+        @* tabs go here *@
+    </ul>
+    @* panels go here *@
+</div>
+
+@code {
+    /// <summary>
+    /// sets the title of the tabs component, hidden by default
+    /// </summary>
+    [Parameter]
+    public string? Title { get; set; }
+
+}

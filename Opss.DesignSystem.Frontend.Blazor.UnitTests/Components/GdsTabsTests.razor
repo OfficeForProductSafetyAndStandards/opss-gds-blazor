@@ -1,0 +1,31 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void OutputsContent()
+    {
+        // Arrange, Act
+        var title = "some title";
+        var classes = "class1 class2";
+        var attributes = new Dictionary<string, object>
+        {
+            { "attr1", "value1" },
+            { "attr2", "value2" },
+        };
+        
+        var component = Render(
+            @<GdsTabs Title="@title" Classes="@classes" Attributes="@attributes"></GdsTabs>
+        );
+
+        // Assert
+        component.MarkupMatches(
+            @<div class="govuk-tabs @classes" attr1="value1" attr2="value2">
+                <h2 class="govuk-tabs__title">@title</h2>
+                <ul class="govuk-tabs__list" role="tablist">
+                    @* tabs go here *@
+                </ul>
+                @* panels go here *@
+            </div>
+        );
+    }
+}
