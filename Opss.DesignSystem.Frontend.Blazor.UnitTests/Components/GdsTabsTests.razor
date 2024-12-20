@@ -37,7 +37,7 @@
         var tabTitle = "Tab title 1";
         
         // Act
-        var component = Render(@<GdsTabs><GdsTabPanel Title="@tabTitle"></GdsTabPanel></GdsTabs>);
+        var component = Render(@<GdsTabs><GdsTabsPanel Title="@tabTitle"></GdsTabsPanel></GdsTabs>);
 
         // Assert
         component.MarkupMatches(

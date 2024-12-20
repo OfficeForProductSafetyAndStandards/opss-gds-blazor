@@ -22,9 +22,9 @@
     [Parameter]
     public string? Title { get; set; }
 
-    private List<GdsTabPanel> Panels { get; } = [];
+    private List<GdsTabsPanel> Panels { get; } = [];
 
-    internal void AddPanel(GdsTabPanel panel)
+    internal void AddPanel(GdsTabsPanel panel)
     {
         Panels.Add(panel);
         StateHasChanged();
