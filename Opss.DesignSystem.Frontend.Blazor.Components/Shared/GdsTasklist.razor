@@ -1,0 +1,32 @@
+﻿@inherits GdsWithContent
+
+@* <summary>
+    Displays all the tasks a user needs to do, and allows users to easily identify which ones are done and which they still need to do.
+    Use it to give users more control over how they complete long, complex services.
+</summary>*@
+
+<ul class="govuk-task-list @Classes">
+    <CascadingValue Value="this">
+        @ChildContent
+    </CascadingValue>
+</ul>
+
+@code {
+    /// <summary>
+    /// Item-specific ID. If provided, it will be used
+    /// instead of the generated ID.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    #region Cascading Value - Child Items
+    private List<GdsTasklistItem> items = new List<GdsTasklistItem>();
+
+    internal void AddItem(GdsTasklistItem item)
+    {
+        item.Index = items.Count + 1;
+        items.Add(item);
+        StateHasChanged();
+    }
+    #endregion
+}
