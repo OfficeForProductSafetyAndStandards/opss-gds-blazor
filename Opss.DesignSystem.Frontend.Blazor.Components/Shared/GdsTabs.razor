@@ -1,11 +1,18 @@
-﻿@inherits GdsViewModel
+﻿@inherits GdsWithContent
 
 <div class="govuk-tabs @Classes" @attributes="@Attributes">
     <h2 class="govuk-tabs__title">@Title</h2>
     <ul class="govuk-tabs__list" role="tablist">
-        @* tabs go here *@
+        @foreach (var panel in Panels)
+        {
+            <li class="govuk-tabs__list-item" role="presentation">
+                <a class="govuk-tabs__tab"  role="tab">@panel.Title</a>
+            </li>
+        }
     </ul>
-    @* panels go here *@
+    <CascadingValue Value="this">
+        @ChildContent
+    </CascadingValue>
 </div>
 
 @code {
@@ -15,4 +22,11 @@
     [Parameter]
     public string? Title { get; set; }
 
+    private List<GdsTabPanel> Panels { get; } = [];
+
+    internal void AddPanel(GdsTabPanel panel)
+    {
+        Panels.Add(panel);
+        StateHasChanged();
+    }
 }

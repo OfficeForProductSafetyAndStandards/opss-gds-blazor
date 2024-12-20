@@ -5,5 +5,24 @@
 </div>
 
 @code {
-// aria-labelledby="id of tab"
+    /// <summary>
+    /// sets the title of the tabs component, hidden by default
+    /// </summary>
+    [Parameter]
+    public string? Title { get; set; }
+    
+    [CascadingParameter]
+    private GdsTabs Parent { get; set; }
+    
+    // todo: aria-labelledby="id of tab"
+    
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsTabsPanel must exist within a GdsTabs component");
+        
+        Parent.AddPanel(this);
+        
+        base.OnInitialized();
+    }
 }

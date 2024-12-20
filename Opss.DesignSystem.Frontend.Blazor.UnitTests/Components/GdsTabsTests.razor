@@ -2,9 +2,9 @@
 
 @code {
     [Fact]
-    public void OutputsContent()
+    public void RendersContent()
     {
-        // Arrange, Act
+        // Arrange
         var title = "some title";
         var classes = "class1 class2";
         var attributes = new Dictionary<string, object>
@@ -13,6 +13,7 @@
             { "attr2", "value2" },
         };
         
+        // Act
         var component = Render(
             @<GdsTabs Title="@title" Classes="@classes" Attributes="@attributes"></GdsTabs>
         );
@@ -28,4 +29,28 @@
             </div>
         );
     }
+    
+    [Fact]
+    public void RendersPanels()
+    {
+        // Arrange
+        var tabTitle = "Tab title 1";
+        
+        // Act
+        var component = Render(@<GdsTabs><GdsTabPanel Title="@tabTitle"></GdsTabPanel></GdsTabs>);
+
+        // Assert
+        component.MarkupMatches(
+            @<div class="govuk-tabs">
+                <h2 class="govuk-tabs__title"></h2>
+                <ul class="govuk-tabs__list" role="tablist">
+                    <li class="govuk-tabs__list-item" role="presentation">
+                        <a class="govuk-tabs__tab" role="tab">@tabTitle</a>
+                    </li>
+                </ul>
+                <div class="govuk-tabs__panel" diff:ignore></div>
+            </div>);
+    }
+    
+    // todo: test that only one panel is active at a time
 }

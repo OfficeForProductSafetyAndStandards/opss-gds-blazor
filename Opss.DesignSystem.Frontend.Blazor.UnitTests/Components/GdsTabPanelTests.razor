@@ -14,14 +14,20 @@
         };
         
         var component = Render(
-            @<GdsTabPanel Classes="@classes" Attributes="@attributes">@content</GdsTabPanel>
+            @<GdsTabs>
+                <GdsTabPanel Title="some title" Classes="@classes" Attributes="@attributes">@content</GdsTabPanel>
+            </GdsTabs>
         );
 
         // Assert
-        // todo: aria-labelledby="id of link" 
+        // todo: aria-labelledby="id of link" - based on title
         component.MarkupMatches(
-            @<div class="govuk-tabs__panel @classes" role="tabpanel" attr1="value1" attr2="value2">
-                @content
+            @<div class="govuk-tabs">
+                <h2 diff:ignore></h2>
+                <ul diff:ignore></ul>
+                <div class="govuk-tabs__panel @classes" role="tabpanel" attr1="value1" attr2="value2">
+                    @content
+                </div>
             </div>
         );
     }
