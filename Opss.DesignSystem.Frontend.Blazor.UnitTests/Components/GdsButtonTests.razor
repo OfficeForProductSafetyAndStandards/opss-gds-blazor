@@ -134,4 +134,148 @@
     </button>
         );
     }
+
+    [Fact]
+    public void OutputsButtonWithCustomId()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Id="custom-id">Custom ID</GdsButton>);
+
+        component.MarkupMatches(
+    @<button id="custom-id" type="button" class="govuk-button" data-module="govuk-button">
+        Custom ID
+    </button>
+        );
+    }
+
+
+
+    [Fact]
+    public void OutputsButtonWithHref()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Href="https://example.com">Go to Example</GdsButton>);
+
+        component.MarkupMatches(
+    @<a href="https://example.com" role="button" class="govuk-button" data-module="govuk-button">
+        Go to Example
+    </a>
+        );
+    }
+
+    [Fact]
+    public void OutputsButtonWithCustomClasses()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Classes="custom-class">Custom Class</GdsButton>);
+
+        component.MarkupMatches(
+    @<button type="button" class="govuk-button custom-class" data-module="govuk-button">
+        Custom Class
+    </button>
+        );
+    }
+
+    [Fact]
+    public void OutputsButtonWithAriaLabel()
+    {
+        // Arrange
+        var component = Render(@<GdsButton AriaLabel="Custom Label">Labelled Button</GdsButton>);
+
+        component.MarkupMatches(
+    @<button type="button" aria-label="Custom Label" class="govuk-button" data-module="govuk-button">
+        Labelled Button
+    </button>
+        );
+    }
+
+    [Fact]
+    public void ThrowsErrorWhenTextOrHtmlMissing()
+    {
+        // Act & Assert
+        var exception = Assert.Throws<InvalidOperationException>(() =>
+        {
+            Render(@<GdsButton />);
+        });
+
+        Assert.Equal("Either Text or Html must be provided for GdsButton.", exception.Message);
+    }
+
+    [Fact]
+    public void PreventsDoubleClickOnNonSubmitButton()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Type="button" PreventDoubleClick=@true>Non-Submit</GdsButton>);
+
+        component.MarkupMatches(
+    @<button type="button" class="govuk-button" data-module="govuk-button">
+        Non-Submit
+    </button>
+        );
+    }
+
+    [Fact]
+    public void OverridesTextWithHtml()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Html="<b>Bold Text</b>" Text="Plain Text"></GdsButton>);
+
+        component.MarkupMatches(
+    @<button type="button" class="govuk-button" data-module="govuk-button">
+        <b>Bold Text</b>
+    </button>
+        );
+    }
+
+    [Fact]
+    public void ThrowsErrorForInvalidType()
+    {
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentException>(() =>
+        {
+            Render(@<GdsButton Type="invalidType">Invalid Type</GdsButton>);
+        });
+
+        Assert.Equal("Invalid button type: 'invalidType'.", exception.Message);
+    }
+
+    [Fact]
+    public void HandlesDisabledAndHrefConflictGracefully()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Href="https://example.com" Disabled=@true>Disabled Link</GdsButton>);
+
+        component.MarkupMatches(
+    @<a href="https://example.com" role="button" class="govuk-button govuk-button--disabled" aria-disabled="true">
+        Disabled Link
+    </a>
+        );
+    }
+
+    [Fact]
+    public void OutputsEmptyButtonGroupGracefully()
+    {
+        // Arrange
+        var component = Render(@<GdsButtonGroup></GdsButtonGroup>);
+
+        component.MarkupMatches(
+    @<div class="govuk-button-group"></div>
+        );
+    }
+
+    [Fact]
+    public void OutputsStartIconForLink()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Href="#" IsStartButton=@true>Start Now</GdsButton>);
+
+        component.MarkupMatches(
+    @<a href="#" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+        Start Now
+        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
+        </svg>
+    </a>
+        );
+    }
 }
