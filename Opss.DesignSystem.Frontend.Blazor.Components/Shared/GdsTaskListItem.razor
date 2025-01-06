@@ -1,0 +1,146 @@
+﻿@inherits GdsAttributes
+
+@* <summary>
+    The task list item within the task list.
+</summary>*@
+
+<li 
+class="govuk-task-list__item@(isLinked ? " govuk-task-list__item--with-link" : "")" 
+@attributes=@Attributes>
+    <div class="govuk-task-list__name-and-hint">
+        @if(isLinked)
+        {
+            <GdsLink Classes="govuk-task-list__link" Href="@Href" Attributes="@taskLinkAttributes">
+                @TaskTitleTemplate
+            </GdsLink>
+        }
+        else
+        {
+            <div>
+                @TaskTitleTemplate 
+            </div>
+        }
+
+        @if (HintTemplate != null)
+        {
+            <div id="@hintId" class="govuk-task-list__hint">
+                @HintTemplate
+            </div>
+
+            @*
+                the GdsHint already adds it's own govuk hint style, therefore is not in line with the task list's own __hint class
+                For now leave this comment: we need to wrk out how to dynamically output the correct class in the GdsHint component then it can be reused here
+            *@
+            @* <GdsHint Classes="govuk-task-list__hint" OverrideId="@hintId"> *@
+            @* @HintTemplate *@
+            @* </GdsHint> *@
+        }
+    </div>
+
+    <div class="govuk-task-list__status@(CannotStartTask ? " govuk-task-list__status--cannot-start-yet" : "")" id="@statusId">
+        <CascadingValue Value=this>
+            @StatusTemplate
+        </CascadingValue>
+        @*statusTemplate to take in any html fragment including the gdsTag for a status tag or text *@
+    </div>
+</li>
+
+@code {
+
+    #region Public Properties
+    /// <summary>
+    /// Set by the parent to identify this element's index
+    /// </summary>
+    public int Index { get; set; }
+    #endregion
+
+    #region Private properties
+    private string statusId => $"{Parent?.Id}-{Index}-status";
+
+    private string hintId => $"{Parent?.Id}-{Index}-hint";
+
+    private bool isLinked => !string.IsNullOrEmpty(Href) && !CannotStartTask;
+
+    private Dictionary<string, object> taskLinkAttributes {
+        get {
+            var describedByAttributeValue = string.Empty;
+            if (HintTemplate != null)
+            {
+                describedByAttributeValue = hintId;
+            }
+            describedByAttributeValue += " " + statusId;
+
+            var attributes = new Dictionary<string, object>();
+            attributes.Add("aria-describedby", describedByAttributeValue.Trim());
+
+            return attributes;
+        }
+    }
+    #endregion
+
+    #region Public Parameters
+    /// <summary>
+    /// A link to the task itself. 
+    /// For cannot start.
+    /// </summary>
+    [Parameter]
+    public string? Href { get; set; }
+
+    /// <summary>
+    /// Required. The title or name of the task.
+    /// The name gives users a reasonable expectation of what that task is about.
+    /// Use sentence case and keep it short.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? TaskTitleTemplate { get; set; }
+
+    /// <summary>
+    /// A single short sentence providing more information about what the task will include.
+    /// Only use hint text if there is evidence this is required.
+    /// Do not include links. Do not include any full stops.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
+
+    /// <summary>
+    /// Required. Fragment to render the status as text or tag
+    /// For cannot start, it should be plain text
+    /// </summary>
+    [Parameter]
+    public RenderFragment? StatusTemplate { get; set; }
+
+    /// <summary>
+    /// Task cannot be started
+    /// </summary>
+    [Parameter]
+    public bool CannotStartTask { get; set; }
+    #endregion
+
+    #region Parameter Validation
+    protected override void OnParametersSet()
+    {
+        if (StatusTemplate == null)
+            throw new ArgumentNullException(nameof(StatusTemplate), "Status text or tag is required");
+
+        if (TaskTitleTemplate == null)
+            throw new ArgumentNullException(nameof(TaskTitleTemplate), "a task title is required");
+
+        base.OnParametersSet();
+    }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsTaskListItem must exist within a GdsTaskList (Task list) component");
+
+        base.OnInitialized();
+        Parent.AddItem(this);
+    }
+
+    [CascadingParameter]
+    private GdsTaskList? Parent { get; set; }
+    #endregion
+
+}
