@@ -2,7 +2,7 @@
 
 @code {
     [Fact]
-    public void RendersContent()
+    public void RendersCorrectGdsHtml()
     {
         // Arrange
         var title = "some title";
@@ -42,7 +42,7 @@
         // Act
         var component = Render(@<GdsTabs>
                                    <GdsTabsPanel Title="@tab1Title">@tab1Content</GdsTabsPanel>
-                                   <GdsTabsPanel Title="@tab2Title"></GdsTabsPanel>
+                                   <GdsTabsPanel Title="@tab2Title">@tab2Content</GdsTabsPanel>
                                </GdsTabs>);
 
         // Assert
@@ -58,7 +58,7 @@
                     </li>
                 </ul>
                 <div class="govuk-tabs__panel" role="tabpanel">@tab1Content</div>
-                <div class="govuk-tabs__panel" role="tabpanel"></div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" role="tabpanel">@tab2Content</div>
             </div>);
     }
     
@@ -90,7 +90,7 @@
                         <a class="govuk-tabs__tab" role="tab">@tab2Title</a>
                     </li>
                 </ul>
-                <div class="govuk-tabs__panel" role="tabpanel"></div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" role="tabpanel">@tab1Content</div>
                 <div class="govuk-tabs__panel" role="tabpanel">@tab2Content</div>
             </div>);
     }
