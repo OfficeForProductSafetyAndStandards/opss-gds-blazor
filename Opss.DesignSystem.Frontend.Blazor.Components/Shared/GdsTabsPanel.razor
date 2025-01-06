@@ -1,7 +1,10 @@
 ﻿@inherits GdsWithContent
 
 <div class="govuk-tabs__panel @Classes" role="tabpanel" @attributes="@Attributes">
-    @ChildContent
+    @if (Parent.ActivePanel == this)
+    {
+        @ChildContent
+    }
 </div>
 
 @code {

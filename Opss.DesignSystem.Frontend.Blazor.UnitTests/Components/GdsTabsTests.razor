@@ -37,6 +37,7 @@
         var tab1Title = "Tab title 1";
         var tab1Content = "Tab 1 content";
         var tab2Title = "Tab title 2";
+        var tab2Content = "Tab 2 content";
         
         // Act
         var component = Render(@<GdsTabs>
@@ -56,41 +57,41 @@
                         <a class="govuk-tabs__tab" role="tab">@tab2Title</a>
                     </li>
                 </ul>
-                <div class="govuk-tabs__panel" diff:ignore></div>
-                <div class="govuk-tabs__panel" diff:ignore></div>
+                <div class="govuk-tabs__panel" role="tabpanel">@tab1Content</div>
+                <div class="govuk-tabs__panel" role="tabpanel"></div>
             </div>);
     }
     
     [Fact]
-    public void SetsCorrectActivePanel()
+    public void ClickingTab_SetsCorrectActivePanel()
     {
         // Arrange
         var tab1Title = "Tab title 1";
         var tab1Content = "Tab 1 content";
         var tab2Title = "Tab title 2";
+        var tab2Content = "Tab 2 content";
         
         // Act
         var component = Render(@<GdsTabs>
                                    <GdsTabsPanel Title="@tab1Title">@tab1Content</GdsTabsPanel>
-                                   <GdsTabsPanel Title="@tab2Title"></GdsTabsPanel>
+                                   <GdsTabsPanel Title="@tab2Title">@tab2Content</GdsTabsPanel>
                                </GdsTabs>);
+        component.Find($"a:contains('{tab2Title}')").Click();
 
-        // Assert
+        // Assert - second tab should be active
         component.MarkupMatches(
             @<div class="govuk-tabs">
                 <h2 class="govuk-tabs__title"></h2>
                 <ul class="govuk-tabs__list" role="tablist">
-                    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected" role="presentation">
+                    <li class="govuk-tabs__list-item" role="presentation">
                         <a class="govuk-tabs__tab" role="tab">@tab1Title</a>
                     </li>
-                    <li class="govuk-tabs__list-item" role="presentation">
+                    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected" role="presentation">
                         <a class="govuk-tabs__tab" role="tab">@tab2Title</a>
                     </li>
                 </ul>
-                <div class="govuk-tabs__panel" diff:ignore></div>
-                <div class="govuk-tabs__panel" diff:ignore></div>
+                <div class="govuk-tabs__panel" role="tabpanel"></div>
+                <div class="govuk-tabs__panel" role="tabpanel">@tab2Content</div>
             </div>);
     }
-    
-    // todo: test that only one panel is active at a time
 }
