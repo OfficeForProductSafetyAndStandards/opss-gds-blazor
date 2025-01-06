@@ -11,5 +11,20 @@
 </p>
 
 <Example CodeExampleContent="@(@"")">
-    <GdsMultiFileUpload />
+    <GdsMultiFileUpload Id="documents" Name="documents" FileSelectedAsync=@LoadFilesAsync>
+        <LabelTemplate>
+            <GdsLabel Classes=@LabelSize.Medium>Upload a file</GdsLabel>
+        </LabelTemplate>
+    </GdsMultiFileUpload>
 </Example>
+
+@code {
+    private async Task LoadFilesAsync(FileUploadProgress e)
+    {
+        for(var i = 0; i <= 100; i = i + 10){
+            e.UpdateProgress(i);
+            Thread.Sleep(1000);
+        }
+        //throw new Exception("File failed to upload");
+    }
+}

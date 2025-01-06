@@ -1,22 +1,45 @@
 ﻿@using Microsoft.AspNetCore.Components.Forms
+@inherits GdsViewModel
+
+@* <summary>
+    Use the multi file upload component to help users upload multiple files at
+    the same time, on a regular basis. For example, in a caseworking system.
+</summary> *@
 
 <div class="moj-multi-file-upload">
-    <div class="moj-multi-file__uploaded-files ">
+    <div class="moj-multi-file__uploaded-files">
         <h2 class="govuk-heading-m">Files added</h2>
         <div class="govuk-summary-list moj-multi-file-upload__list">
+            @foreach (var file in uploadedFiles)
+            {
+                <div class="govuk-summary-list__row moj-multi-file-upload__row">
+                    <div class="govuk-summary-list__value moj-multi-file-upload__message">
+                        <span class="moj-multi-file-upload__filename">@file.FileName</span>
+                        <span class="moj-multi-file-upload__progress"> @file.ProgressPercent%</span>
+                    </div>
+                    <div class="govuk-summary-list__actions moj-multi-file-upload__actions"></div>
+                </div>
+            }
         </div>
     </div>
 
     <div class="moj-multi-file-upload__upload">
 
         <div class="govuk-form-group">
-            <label class="govuk-label govuk-label--m" for="documents">
-                Upload a file
-            </label>
-            <div class="moj-multi-file-upload__dropzone" @ref="dropZoneElement">
-                <InputFile OnChange="@LoadFilesAsync" class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" multiple @ref="inputFile" />
-                <p class="govuk-body">Drag and drop files here or</p><label for="documents" class="govuk-button govuk-button--secondary">Choose files</label>
+            @if (LabelTemplate != null)
+            {
+                <CascadingValue Value=@Id>
+                    @LabelTemplate
+                </CascadingValue>
+            }
+            <div class="moj-multi-file-upload__dropzone">
+                <InputFile OnChange="@LoadFilesAsync" class="govuk-file-upload moj-multi-file-upload__input" id=@Id name=@Name multiple @attributes=@Attributes />
+                <p class="govuk-body">Drag and drop files here or</p><label for=@Id class="govuk-button govuk-button--secondary">Choose files</label>
                 <div aria-live="polite" role="status" class="govuk-visually-hidden">
+                    @if (fileUploading)
+                    {
+                        @fileUploadingMessage
+                    }
                 </div>
             </div>
         </div>
@@ -24,23 +47,77 @@
     </div>
 </div>
 
-@foreach (var file in files)
-{
-    <p>@file</p>
-}
-
-
 @code {
-    ElementReference dropZoneElement;
-    InputFile inputFile;
+    #region Public Parameters
+    /// <summary>
+    /// Required. The Id of the input.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
 
-    public List<string> files = new List<string>();
+    /// <summary>
+    /// The name of the input, which is submitted with the form data.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
 
+    /// <summary>
+    /// The label used by the text input component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? LabelTemplate { get; set; }
+    #endregion
+
+    #region Private Properties
+    private bool fileUploading = false;
+    private string fileUploadingMessage = "Uploading files, please wait";
+    private List<FileUploadProgress> uploadedFiles = new List<FileUploadProgress>();
+    #endregion
+
+    #region Event Handlers
+    /// <summary>
+    /// Event triggered by a file being selected or dragged into the file upload box.
+    /// </summary>
+    [Parameter]
+    public EventCallback<FileUploadProgress> FileSelectedAsync { get; set; }
+
+    /// <summary>
+    /// Handle the files being uploaded.
+    /// </summary>
+    /// <param name="e"></param>
+    /// <returns></returns>
     private async Task LoadFilesAsync(InputFileChangeEventArgs e)
     {
-        foreach (var file in e.GetMultipleFiles(5))
+        List<Task> uploadTasks = new List<Task>();
+        if (e.FileCount == 1)
         {
-            files.Add(file.Name);
+            var progress = new FileUploadProgress(e.File, UpdateState);
+            uploadedFiles.Add(progress);
+
+            uploadTasks.Add(FileSelectedAsync.InvokeAsync(progress));
         }
+        else
+        {
+            var files = e.GetMultipleFiles();
+            foreach (var file in files)
+            {
+                var progress = new FileUploadProgress(file, UpdateState);
+                uploadedFiles.Add(progress);
+                uploadTasks.Add(FileSelectedAsync.InvokeAsync(progress));
+                StateHasChanged();
+            }
+        }
+        fileUploading = true;
+        StateHasChanged();
+
+        await Task.WhenAll(uploadTasks);
+
+        fileUploading = false;
+        StateHasChanged();
     }
+
+    private void UpdateState(){
+        StateHasChanged();
+    }
+    #endregion
 }

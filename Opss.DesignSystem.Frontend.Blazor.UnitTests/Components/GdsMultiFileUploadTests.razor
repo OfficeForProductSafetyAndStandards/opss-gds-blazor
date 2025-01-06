@@ -1,0 +1,37 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void OutputsMultiFileUpload()
+    {
+        // Arrange
+        var component = Render(@<GdsMultiFileUpload Id="documents" Name="documents">
+        <LabelTemplate>
+            <GdsLabel Classes=@LabelSize.Medium>Upload a file</GdsLabel>
+        </LabelTemplate>
+    </GdsMultiFileUpload>);
+
+        component.MarkupMatches(
+    @<div class="moj-multi-file-upload">
+        <div class="moj-multi-file__uploaded-files ">
+            <h2 class="govuk-heading-m">Files added</h2>
+            <div class="govuk-summary-list moj-multi-file-upload__list">
+            </div>
+        </div>
+
+        <div class="moj-multi-file-upload__upload">
+
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-label--m" for="documents">
+                    Upload a file
+                </label>
+
+                <input class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" type="file" multiple="">
+
+            </div>
+
+        </div>
+    </div>
+        );
+    }
+}
