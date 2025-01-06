@@ -31,23 +31,63 @@
     }
     
     [Fact]
-    public void RendersPanels()
+    public void RendersPanels_WithCorrectDefaultActive()
     {
         // Arrange
-        var tabTitle = "Tab title 1";
+        var tab1Title = "Tab title 1";
+        var tab1Content = "Tab 1 content";
+        var tab2Title = "Tab title 2";
         
         // Act
-        var component = Render(@<GdsTabs><GdsTabsPanel Title="@tabTitle"></GdsTabsPanel></GdsTabs>);
+        var component = Render(@<GdsTabs>
+                                   <GdsTabsPanel Title="@tab1Title">@tab1Content</GdsTabsPanel>
+                                   <GdsTabsPanel Title="@tab2Title"></GdsTabsPanel>
+                               </GdsTabs>);
 
         // Assert
         component.MarkupMatches(
             @<div class="govuk-tabs">
                 <h2 class="govuk-tabs__title"></h2>
                 <ul class="govuk-tabs__list" role="tablist">
+                    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected" role="presentation">
+                        <a class="govuk-tabs__tab" role="tab">@tab1Title</a>
+                    </li>
                     <li class="govuk-tabs__list-item" role="presentation">
-                        <a class="govuk-tabs__tab" role="tab">@tabTitle</a>
+                        <a class="govuk-tabs__tab" role="tab">@tab2Title</a>
                     </li>
                 </ul>
+                <div class="govuk-tabs__panel" diff:ignore></div>
+                <div class="govuk-tabs__panel" diff:ignore></div>
+            </div>);
+    }
+    
+    [Fact]
+    public void SetsCorrectActivePanel()
+    {
+        // Arrange
+        var tab1Title = "Tab title 1";
+        var tab1Content = "Tab 1 content";
+        var tab2Title = "Tab title 2";
+        
+        // Act
+        var component = Render(@<GdsTabs>
+                                   <GdsTabsPanel Title="@tab1Title">@tab1Content</GdsTabsPanel>
+                                   <GdsTabsPanel Title="@tab2Title"></GdsTabsPanel>
+                               </GdsTabs>);
+
+        // Assert
+        component.MarkupMatches(
+            @<div class="govuk-tabs">
+                <h2 class="govuk-tabs__title"></h2>
+                <ul class="govuk-tabs__list" role="tablist">
+                    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected" role="presentation">
+                        <a class="govuk-tabs__tab" role="tab">@tab1Title</a>
+                    </li>
+                    <li class="govuk-tabs__list-item" role="presentation">
+                        <a class="govuk-tabs__tab" role="tab">@tab2Title</a>
+                    </li>
+                </ul>
+                <div class="govuk-tabs__panel" diff:ignore></div>
                 <div class="govuk-tabs__panel" diff:ignore></div>
             </div>);
     }

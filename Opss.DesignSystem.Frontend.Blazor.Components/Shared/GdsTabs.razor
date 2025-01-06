@@ -5,7 +5,7 @@
     <ul class="govuk-tabs__list" role="tablist">
         @foreach (var panel in Panels)
         {
-            <li class="govuk-tabs__list-item" role="presentation">
+            <li class="govuk-tabs__list-item @GetActivePanelCss(panel)" role="presentation">
                 <a class="govuk-tabs__tab"  role="tab">@panel.Title</a>
             </li>
         }
@@ -21,12 +21,28 @@
     /// </summary>
     [Parameter]
     public string? Title { get; set; }
+    
+    public GdsTabsPanel ActivePanel { get; private set; }
 
     private List<GdsTabsPanel> Panels { get; } = [];
 
     internal void AddPanel(GdsTabsPanel panel)
     {
         Panels.Add(panel);
+        if (Panels.Count > 0 && Panels[0] == panel)
+        {
+            ActivePanel = panel;
+        }
         StateHasChanged();
+    }
+
+    internal void ActivatePanel(GdsTabsPanel panel)
+    {
+        ActivePanel = panel;
+    }
+    
+    internal string GetActivePanelCss(GdsTabsPanel panel)
+    {
+        return panel == ActivePanel ? "govuk-tabs__list-item--selected" : "";
     }
 }
