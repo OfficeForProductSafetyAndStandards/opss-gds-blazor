@@ -1,12 +1,12 @@
 ﻿@inherits GdsWithContent
 
-<div class="govuk-tabs @Classes" @attributes="@Attributes">
+<div id="@Id" class="govuk-tabs @Classes" @attributes="@Attributes">
     <h2 class="govuk-tabs__title">@Title</h2>
     <ul class="govuk-tabs__list" role="tablist">
         @foreach (var panel in Panels)
         {
             <li class="govuk-tabs__list-item @GetActivePanelCss(panel)" role="presentation">
-                <a class="govuk-tabs__tab" role="tab" @onclick="() => ActivatePanel(panel)">@panel.Title</a>
+                <a id="tab_@panel.Id" class="govuk-tabs__tab" role="tab" @onclick="() => ActivatePanel(panel)" href="#@panel.Id">@panel.Label</a>
             </li>
         }
     </ul>
@@ -17,22 +17,37 @@
 
 @code {
     /// <summary>
-    /// sets the title of the tabs component, hidden by default
+    /// Sets the ID of the tabs component
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+    
+    /// <summary>
+    /// Optional prefix. This is used to prefix the ID of each tab panel, separated by '-'.
+    /// </summary>
+    [Parameter]
+    public string? IdPrefix { get; set; }
+    
+    /// <summary>
+    /// Sets the title of the tabs component table of contents
     /// </summary>
     [Parameter]
     public string? Title { get; set; }
     
     internal GdsTabsPanel ActivePanel { get; private set; }
 
-    private List<GdsTabsPanel> Panels { get; } = [];
+    internal List<GdsTabsPanel> Panels { get; } = [];
 
     internal void AddPanel(GdsTabsPanel panel)
     {
+        //todo: throw exception if no id or idprefix
         Panels.Add(panel);
-        if (Panels.Count > 0 && Panels[0] == panel)
+        if (Panels[0] == panel)
         {
             ActivePanel = panel;
         }
+        panel.Id ??= $"{IdPrefix}-{Panels.Count}";
+        
         StateHasChanged();
     }
 
