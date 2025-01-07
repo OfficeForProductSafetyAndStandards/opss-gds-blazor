@@ -15,17 +15,16 @@
         
         var component = Render(
             @<GdsTabs>
-                <GdsTabsPanel Title="some title" Classes="@classes" Attributes="@attributes">@content</GdsTabsPanel>
+                <GdsTabsPanel Id="hello" Label="some title" Classes="@classes" Attributes="@attributes">@content</GdsTabsPanel>
             </GdsTabs>
         );
 
         // Assert
-        // todo: aria-labelledby="id of link" - based on urlencoded title
         component.MarkupMatches(
             @<div class="govuk-tabs">
                 <h2 diff:ignore></h2>
                 <ul diff:ignore></ul>
-                <div class="govuk-tabs__panel @classes" role="tabpanel" attr1="value1" attr2="value2">
+                <div id="hello" class="govuk-tabs__panel @classes" role="tabpanel" aria-labelledby="tab_hello" attr1="value1" attr2="value2">
                     @content
                 </div>
             </div>
