@@ -270,6 +270,44 @@
             <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
         </svg>
     </a>
-        );
+    );
+    }
+
+    [Fact]
+    public void ButtonOnClickTriggered()
+    {
+        // Arrange 
+        MouseEventArgs onClickEventArgs = null!;
+        var component = Render(@<GdsButton Type="button" OnClick="(args)=>{ onClickEventArgs = args; }">Test Event</GdsButton>);
+
+        // Act 
+        component
+            .Find("button")
+            .Click(123, type: "BUTTONCLICKED", altKey: true);
+
+        // Assert 
+        Assert.NotNull(onClickEventArgs);
+        Assert.True(onClickEventArgs.AltKey);
+        Assert.Equal(123, onClickEventArgs.Detail);
+        Assert.Equal("BUTTONCLICKED", onClickEventArgs.Type);
+    }
+
+    [Fact]
+    public void InputOnClickTriggered()
+    {
+        // Arrange
+        MouseEventArgs onClickEventArgs = null!;
+        var component = Render(@<GdsButton Element=ButtonType.Input Value="Event Test" OnClick="(args)=>{ onClickEventArgs = args; }">Test Event</GdsButton>);
+
+        // Act
+        component
+            .Find("input")
+            .Click(123, type: "INPUTCLICKED", altKey: true);
+
+        // Assert
+        Assert.NotNull(onClickEventArgs);
+        Assert.True(onClickEventArgs.AltKey);
+        Assert.Equal(123, onClickEventArgs.Detail);
+        Assert.Equal("INPUTCLICKED", onClickEventArgs.Type);
     }
 }
