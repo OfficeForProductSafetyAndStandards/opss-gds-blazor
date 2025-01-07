@@ -50,6 +50,22 @@
     <GdsButton Type="submit" Disabled=@true>Disabled button</GdsButton>
 </Example>
 
+<h3 class="govuk-heading-m" id="input-element-buttons">Input element buttons</h3>
+
+<Example CodeExampleContent="@(@"<GdsButtonGroup>
+        <GdsButton Element=ButtonType.Input Type=""submit"" Value=""Input submit""></GdsButton>
+        <GdsButton Element=ButtonType.Input Type=""reset"" Value=""Input reset""></GdsButton>
+        <GdsButton Element=ButtonType.Input Type=""button"" Value=""Input button""></GdsButton>
+        <GdsButton Element=ButtonType.Input Type=""button"" Value=""Input button disabled"" Disabled></GdsButton>
+    </GdsButtonGroup>")">
+    <GdsButtonGroup>
+        <GdsButton Element=ButtonType.Input Type="submit" Value="Input submit"></GdsButton>
+        <GdsButton Element=ButtonType.Input Type="reset" Value="Input reset" />
+        <GdsButton Element=ButtonType.Input Type="button" Value="Input button" />
+        <GdsButton Element=ButtonType.Input Type="button" Value="Input button disabled" Disabled />
+    </GdsButtonGroup>
+</Example>
+
 <h3 class="govuk-heading-m" id="grouping-buttons">Grouping buttons</h3>
 
 <Example CodeExampleContent="@(@"<GdsButtonGroup>
