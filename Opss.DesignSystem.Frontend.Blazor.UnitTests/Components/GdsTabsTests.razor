@@ -41,11 +41,13 @@
         var tabPanel3Id = "tab-panel-3";
         
         // Act
-        var component = Render(@<GdsTabs Id="tabs-id" IdPrefix="@idPrefix">
-                                   <GdsTabsPanel Id="@tabPanel1Id" Label="tab 1">content 1</GdsTabsPanel>
-                                   <GdsTabsPanel Label="tab 2">content 2</GdsTabsPanel>
-                                   <GdsTabsPanel Id="@tabPanel3Id" Label="tab 3">content 3</GdsTabsPanel>
-                               </GdsTabs>);
+        var component = Render(
+            @<GdsTabs Id="tabs-id" IdPrefix="@idPrefix">
+                <GdsTabsPanel Id="@tabPanel1Id" Label="tab 1">content 1</GdsTabsPanel>
+                <GdsTabsPanel Label="tab 2">content 2</GdsTabsPanel>
+                <GdsTabsPanel Id="@tabPanel3Id" Label="tab 3">content 3</GdsTabsPanel>
+            </GdsTabs>
+            );
 
         // Assert
         component.MarkupMatches(
@@ -78,10 +80,12 @@
         var tab2Content = "Tab 2 content";
         
         // Act
-        var component = Render(@<GdsTabs>
-                                   <GdsTabsPanel Label="@tab1Title">@tab1Content</GdsTabsPanel>
-                                   <GdsTabsPanel Label="@tab2Title">@tab2Content</GdsTabsPanel>
-                               </GdsTabs>);
+        var component = Render(
+            @<GdsTabs>
+                <GdsTabsPanel Label="@tab1Title">@tab1Content</GdsTabsPanel>
+                <GdsTabsPanel Label="@tab2Title">@tab2Content</GdsTabsPanel>
+            </GdsTabs>
+            );
 
         // Assert
         component.MarkupMatches(
@@ -111,12 +115,15 @@
         var tab3Title = "Tab title 3";
         var tab3Content = "Tab 3 content";
         
+        var component = Render(
+            @<GdsTabs IdPrefix="prefix">
+                <GdsTabsPanel Label="@tab1Title">@tab1Content</GdsTabsPanel>
+                <GdsTabsPanel Label="@tab2Title">@tab2Content</GdsTabsPanel>
+                <GdsTabsPanel Label="@tab3Title">@tab3Content</GdsTabsPanel>
+            </GdsTabs>
+            );
+        
         // Act
-        var component = Render(@<GdsTabs IdPrefix="prefix">
-                                   <GdsTabsPanel Label="@tab1Title">@tab1Content</GdsTabsPanel>
-                                   <GdsTabsPanel Label="@tab2Title">@tab2Content</GdsTabsPanel>
-                                   <GdsTabsPanel Label="@tab3Title">@tab3Content</GdsTabsPanel>
-                               </GdsTabs>);
         component.Find($"a:contains('{tab2Title}')")
             .Click();
 
@@ -142,7 +149,7 @@
     }
     
     [Fact]
-    public void RightArrow_SetsSecondPanelActive()
+    public void RightArrow_SetsNextPanelActive()
     {
         // Arrange
         var tab1Title = "Tab title 1";
@@ -152,12 +159,15 @@
         var tab3Title = "Tab title 3";
         var tab3Content = "Tab 3 content";
         
+        var component = Render(
+            @<GdsTabs IdPrefix="prefix">
+                <GdsTabsPanel Label="@tab1Title">@tab1Content</GdsTabsPanel>
+                <GdsTabsPanel Label="@tab2Title">@tab2Content</GdsTabsPanel>
+                <GdsTabsPanel Label="@tab3Title">@tab3Content</GdsTabsPanel>
+            </GdsTabs>
+            );
+        
         // Act
-        var component = Render(@<GdsTabs>
-                                   <GdsTabsPanel Label="@tab1Title">@tab1Content</GdsTabsPanel>
-                                   <GdsTabsPanel Label="@tab2Title">@tab2Content</GdsTabsPanel>
-                                   <GdsTabsPanel Label="@tab3Title">@tab3Content</GdsTabsPanel>
-                               </GdsTabs>);
         component.Find($"a:contains('{tab1Title}')")
             .KeyDown(new KeyboardEventArgs { Key = "ArrowRight" });
 
@@ -182,5 +192,48 @@
             </div>);
     }
     
-    //todo: test left arrow key
+    [Fact]
+    public void LeftArrow_SetsPreviousPanelActive()
+    {
+        // Arrange
+        var tab1Title = "Tab title 1";
+        var tab1Content = "Tab 1 content";
+        var tab2Title = "Tab title 2";
+        var tab2Content = "Tab 2 content";        
+        var tab3Title = "Tab title 3";
+        var tab3Content = "Tab 3 content";
+        
+        var component = Render(
+            @<GdsTabs IdPrefix="prefix">
+                <GdsTabsPanel Label="@tab1Title">@tab1Content</GdsTabsPanel>
+                <GdsTabsPanel Label="@tab2Title">@tab2Content</GdsTabsPanel>
+                <GdsTabsPanel Label="@tab3Title">@tab3Content</GdsTabsPanel>
+            </GdsTabs>
+            );
+        
+        // Act - click tab 3, then press left arrow
+        var tab3Anchor = component.Find($"a:contains('{tab3Title}')");
+        tab3Anchor.Click();
+        tab3Anchor.KeyDown(new KeyboardEventArgs { Key = "ArrowLeft" });
+
+        // Assert - second tab should be active, second panel should be visible
+        component.MarkupMatches(
+            @<div class="govuk-tabs">
+                <h2 diff:ignore></h2>
+                <ul class="govuk-tabs__list" role:ignore>
+                    <li class="govuk-tabs__list-item" role:ignore>
+                        <a class="govuk-tabs__tab" aria-selected="false" tabindex="-1" id:ignore role:ignore href:ignore aria-controls:ignore>@tab1Title</a>
+                    </li>
+                    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected" role:ignore>
+                        <a class="govuk-tabs__tab" aria-selected="true" tabindex="0" id:ignore role:ignore href:ignore aria-controls:ignore>@tab2Title</a>
+                    </li>
+                    <li class="govuk-tabs__list-item" role:ignore>
+                        <a class="govuk-tabs__tab" aria-selected="false" tabindex="-1" id:ignore role:ignore href:ignore aria-controls:ignore>@tab3Title</a>
+                    </li>
+                </ul>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id:ignore role:ignore aria-labelledby:ignore>@tab1Content</div>
+                <div class="govuk-tabs__panel" id:ignore role:ignore aria-labelledby:ignore>@tab2Content</div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id:ignore role:ignore aria-labelledby:ignore>@tab3Content</div>
+            </div>);
+    }
 }

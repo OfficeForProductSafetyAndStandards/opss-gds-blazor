@@ -73,14 +73,23 @@
 
     private void HandleKeyDown(GdsTabsPanel panel, KeyboardEventArgs args)
     {
+        var index = Panels.IndexOf(panel);
         switch (args.Key)
         {
             case "ArrowRight" or "Right":
-                var index = Panels.IndexOf(panel);
                 if (index < Panels.Count - 1)
                 {
                     ActivePanel = Panels[index + 1];
                 }
+
+                break;
+                
+            case "ArrowLeft" or "Left":
+                if (index > 0)
+                {
+                    ActivePanel = Panels[index - 1];
+                }
+
                 break;
         }
     }
