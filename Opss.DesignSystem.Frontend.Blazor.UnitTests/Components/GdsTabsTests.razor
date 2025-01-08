@@ -53,13 +53,13 @@
                 <h2 diff:ignore></h2>
                 <ul class="govuk-tabs__list" role:ignore>
                     <li class="govuk-tabs__list-item govuk-tabs__list-item--selected" role:ignore>
-                        <a id="tab_@tabPanel1Id" class="govuk-tabs__tab" role="tab" href="#tab-panel-1" aria-controls="@tabPanel1Id" aria-selected:ignore>tab 1</a>
+                        <a id="tab_@tabPanel1Id" class="govuk-tabs__tab" role="tab" href="#tab-panel-1" aria-controls="@tabPanel1Id" aria-selected:ignore tabindex:ignore>tab 1</a>
                     </li>
                     <li class="govuk-tabs__list-item" role:ignore>
-                        <a id="tab_@idPrefix-2" class="govuk-tabs__tab" role="tab" href="#@idPrefix-2" aria-controls="@idPrefix-2" aria-selected:ignore>tab 2</a>
+                        <a id="tab_@idPrefix-2" class="govuk-tabs__tab" role="tab" href="#@idPrefix-2" aria-controls="@idPrefix-2" aria-selected:ignore tabindex:ignore>tab 2</a>
                     </li>
                     <li class="govuk-tabs__list-item" role:ignore>
-                        <a id="tab_@tabPanel3Id" class="govuk-tabs__tab" role="tab" href="#tab-panel-3" aria-controls="@tabPanel3Id" aria-selected:ignore>tab 3</a>
+                        <a id="tab_@tabPanel3Id" class="govuk-tabs__tab" role="tab" href="#tab-panel-3" aria-controls="@tabPanel3Id" aria-selected:ignore tabindex:ignore>tab 3</a>
                     </li>
                 </ul>
                 <div id="@tabPanel1Id" class="govuk-tabs__panel" role="tabpanel" aria-labelledby="tab_@tabPanel1Id">content 1</div>
@@ -67,8 +67,6 @@
                 <div id="@tabPanel3Id" class="govuk-tabs__panel govuk-tabs__panel--hidden" role="tabpanel" aria-labelledby="tab_@tabPanel3Id">content 3</div>
             </div>);
     }
-    
-    //todo: test aria-controls, aria-selected, tabindex
     
     [Fact]
     public void RendersPanels_WithCorrectDefaultActive()
@@ -91,10 +89,10 @@
                 <h2 diff:ignore></h2>
                 <ul class="govuk-tabs__list" role:ignore>
                     <li class="govuk-tabs__list-item govuk-tabs__list-item--selected" role:ignore>
-                        <a class="govuk-tabs__tab" aria-selected="true" id:ignore role:ignore href:ignore aria-controls:ignore>@tab1Title</a>
+                        <a class="govuk-tabs__tab" aria-selected="true" tabindex="0" id:ignore role:ignore href:ignore aria-controls:ignore>@tab1Title</a>
                     </li>
                     <li class="govuk-tabs__list-item" role:ignore>
-                        <a class="govuk-tabs__tab" aria-selected="false" id:ignore role:ignore href:ignore aria-controls:ignore>@tab2Title</a>
+                        <a class="govuk-tabs__tab" aria-selected="false" tabindex="-1" id:ignore role:ignore href:ignore aria-controls:ignore>@tab2Title</a>
                     </li>
                 </ul>
                 <div class="govuk-tabs__panel" id:ignore role:ignore aria-labelledby:ignore>@tab1Content</div>
@@ -128,13 +126,13 @@
                 <h2 diff:ignore></h2>
                 <ul class="govuk-tabs__list" role:ignore>
                     <li class="govuk-tabs__list-item" role:ignore>
-                        <a class="govuk-tabs__tab" aria-selected="false" id:ignore role:ignore href:ignore aria-controls:ignore>@tab1Title</a>
+                        <a class="govuk-tabs__tab" aria-selected="false" tabindex="-1" id:ignore role:ignore href:ignore aria-controls:ignore>@tab1Title</a>
                     </li>
                     <li class="govuk-tabs__list-item govuk-tabs__list-item--selected" role:ignore>
-                        <a class="govuk-tabs__tab" aria-selected="true" id:ignore role:ignore href:ignore aria-controls:ignore>@tab2Title</a>
+                        <a class="govuk-tabs__tab" aria-selected="true" tabindex="0" id:ignore role:ignore href:ignore aria-controls:ignore>@tab2Title</a>
                     </li>
                     <li class="govuk-tabs__list-item" role:ignore>
-                        <a class="govuk-tabs__tab" aria-selected="false" id:ignore role:ignore href:ignore aria-controls:ignore>@tab3Title</a>
+                        <a class="govuk-tabs__tab" aria-selected="false" tabindex="-1" id:ignore role:ignore href:ignore aria-controls:ignore>@tab3Title</a>
                     </li>
                 </ul>
                 <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id:ignore role:ignore aria-labelledby:ignore>@tab1Content</div>

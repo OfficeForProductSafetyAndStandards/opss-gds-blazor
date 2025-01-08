@@ -1,6 +1,10 @@
 ﻿@inherits GdsWithContent
 
-<div id="@Id" class="govuk-tabs__panel @GetActivePanelCss() @Classes" aria-labelledby="tab_@Id" @attributes="@Attributes" role="tabpanel">
+<div id="@Id" 
+     class="govuk-tabs__panel @GetActivePanelCss() @Classes" 
+     aria-labelledby="tab_@Id" 
+     @attributes="@Attributes" 
+     role="tabpanel">
         @ChildContent
 </div>
 
