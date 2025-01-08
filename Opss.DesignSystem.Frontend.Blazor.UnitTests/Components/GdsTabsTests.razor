@@ -141,7 +141,7 @@
             </div>);
     }
     
-    [Fact(Skip = "for now")]
+    [Fact]
     public void RightArrow_SetsSecondPanelActive()
     {
         // Arrange
@@ -167,18 +167,18 @@
                 <h2 diff:ignore></h2>
                 <ul class="govuk-tabs__list" role:ignore>
                     <li class="govuk-tabs__list-item" role:ignore>
-                        <a class="govuk-tabs__tab" id:ignore role:ignore href:ignore>@tab1Title</a>
+                        <a class="govuk-tabs__tab" aria-selected="false" tabindex="-1" id:ignore role:ignore href:ignore aria-controls:ignore>@tab1Title</a>
                     </li>
                     <li class="govuk-tabs__list-item govuk-tabs__list-item--selected" role:ignore>
-                        <a class="govuk-tabs__tab" id:ignore role:ignore href:ignore>@tab2Title</a>
+                        <a class="govuk-tabs__tab" aria-selected="true" tabindex="0" id:ignore role:ignore href:ignore aria-controls:ignore>@tab2Title</a>
                     </li>
-                    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected" role:ignore>
-                        <a class="govuk-tabs__tab" id:ignore role:ignore href:ignore>@tab3Title</a>
+                    <li class="govuk-tabs__list-item" role:ignore>
+                        <a class="govuk-tabs__tab" aria-selected="false" tabindex="-1" id:ignore role:ignore href:ignore aria-controls:ignore>@tab3Title</a>
                     </li>
                 </ul>
                 <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id:ignore role:ignore aria-labelledby:ignore>@tab1Content</div>
                 <div class="govuk-tabs__panel" id:ignore role:ignore aria-labelledby:ignore>@tab2Content</div>
-                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id:ignore role:ignore aria-labelledby:ignore>@tab1Content</div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id:ignore role:ignore aria-labelledby:ignore>@tab3Content</div>
             </div>);
     }
     

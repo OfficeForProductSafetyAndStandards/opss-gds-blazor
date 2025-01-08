@@ -12,7 +12,8 @@
                    aria-controls="@panel.Id"
                    aria-selected="@(panel == ActivePanel ? "true" : "false")"
                    tabindex="@(panel == ActivePanel ? "0" : "-1")"
-                   @onclick="() => ActivatePanel(panel)"
+                   @onclick="() => HandleClick(panel)"
+                   @onkeydown="args => HandleKeyDown(panel, args)"
                    href="#@panel.Id">
                     @panel.Label
                 </a>
@@ -60,13 +61,27 @@
         StateHasChanged();
     }
 
-    private void ActivatePanel(GdsTabsPanel panel)
-    {
-        ActivePanel = panel;
-    }
-    
     private string GetActivePanelCss(GdsTabsPanel panel)
     {
         return panel == ActivePanel ? "govuk-tabs__list-item--selected" : "";
+    }
+    
+    private void HandleClick(GdsTabsPanel panel)
+    {
+        ActivePanel = panel;
+    }
+
+    private void HandleKeyDown(GdsTabsPanel panel, KeyboardEventArgs args)
+    {
+        switch (args.Key)
+        {
+            case "ArrowRight" or "Right":
+                var index = Panels.IndexOf(panel);
+                if (index < Panels.Count - 1)
+                {
+                    ActivePanel = Panels[index + 1];
+                }
+                break;
+        }
     }
 }
