@@ -149,7 +149,7 @@
     }
     
     [Fact]
-    public void RightArrow_SetsNextPanelActive()
+    public void PressingRightArrow_SetsNextPanelActive()
     {
         // Arrange
         var tab1Title = "Tab title 1";
@@ -193,7 +193,52 @@
     }
     
     [Fact]
-    public void LeftArrow_SetsPreviousPanelActive()
+    public void PressingRightArrow_AndRightmostTabAlreadySelected_DoesNothing()
+    {
+        // Arrange
+        var tab1Title = "Tab title 1";
+        var tab1Content = "Tab 1 content";
+        var tab2Title = "Tab title 2";
+        var tab2Content = "Tab 2 content";        
+        var tab3Title = "Tab title 3";
+        var tab3Content = "Tab 3 content";
+        
+        var component = Render(
+            @<GdsTabs IdPrefix="prefix">
+                <GdsTabsPanel Label="@tab1Title">@tab1Content</GdsTabsPanel>
+                <GdsTabsPanel Label="@tab2Title">@tab2Content</GdsTabsPanel>
+                <GdsTabsPanel Label="@tab3Title">@tab3Content</GdsTabsPanel>
+            </GdsTabs>
+            );
+        
+        // Act - click tab 3, then press right arrow
+        var tab3Anchor = component.Find($"a:contains('{tab3Title}')");
+        tab3Anchor.Click();
+        tab3Anchor.KeyDown(new KeyboardEventArgs { Key = "ArrowRight" });
+
+        // Assert - third tab should be active, third panel should be visible
+        component.MarkupMatches(
+            @<div class="govuk-tabs">
+                <h2 diff:ignore></h2>
+                <ul class="govuk-tabs__list" role:ignore>
+                    <li class="govuk-tabs__list-item" role:ignore>
+                        <a class="govuk-tabs__tab" aria-selected="false" tabindex="-1" id:ignore role:ignore href:ignore aria-controls:ignore>@tab1Title</a>
+                    </li>
+                    <li class="govuk-tabs__list-item" role:ignore>
+                        <a class="govuk-tabs__tab" aria-selected="false" tabindex="-1" id:ignore role:ignore href:ignore aria-controls:ignore>@tab2Title</a>
+                    </li>
+                    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected" role:ignore>
+                        <a class="govuk-tabs__tab" aria-selected="true" tabindex="0" id:ignore role:ignore href:ignore aria-controls:ignore>@tab3Title</a>
+                    </li>
+                </ul>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id:ignore role:ignore aria-labelledby:ignore>@tab1Content</div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id:ignore role:ignore aria-labelledby:ignore>@tab2Content</div>
+                <div class="govuk-tabs__panel" id:ignore role:ignore aria-labelledby:ignore>@tab3Content</div>
+            </div>);
+    }
+    
+    [Fact]
+    public void PressingLeftArrow_SetsPreviousPanelActive()
     {
         // Arrange
         var tab1Title = "Tab title 1";
@@ -233,6 +278,50 @@
                 </ul>
                 <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id:ignore role:ignore aria-labelledby:ignore>@tab1Content</div>
                 <div class="govuk-tabs__panel" id:ignore role:ignore aria-labelledby:ignore>@tab2Content</div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id:ignore role:ignore aria-labelledby:ignore>@tab3Content</div>
+            </div>);
+    }
+    
+    [Fact]
+    public void PressingLeftArrow_AndLeftmostTabAlreadySelected_DoesNothing()
+    {
+        // Arrange
+        var tab1Title = "Tab title 1";
+        var tab1Content = "Tab 1 content";
+        var tab2Title = "Tab title 2";
+        var tab2Content = "Tab 2 content";        
+        var tab3Title = "Tab title 3";
+        var tab3Content = "Tab 3 content";
+        
+        var component = Render(
+            @<GdsTabs IdPrefix="prefix">
+                <GdsTabsPanel Label="@tab1Title">@tab1Content</GdsTabsPanel>
+                <GdsTabsPanel Label="@tab2Title">@tab2Content</GdsTabsPanel>
+                <GdsTabsPanel Label="@tab3Title">@tab3Content</GdsTabsPanel>
+            </GdsTabs>
+            );
+        
+        // Act - press left arrow, already on leftmost tab
+        var tab1Anchor = component.Find($"a:contains('{tab1Title}')");
+        tab1Anchor.KeyDown(new KeyboardEventArgs { Key = "ArrowLeft" });
+
+        // Assert - first tab should be active, first panel should be visible
+        component.MarkupMatches(
+            @<div class="govuk-tabs">
+                <h2 diff:ignore></h2>
+                <ul class="govuk-tabs__list" role:ignore>
+                    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected" role:ignore>
+                        <a class="govuk-tabs__tab" aria-selected="true" tabindex="0" id:ignore role:ignore href:ignore aria-controls:ignore>@tab1Title</a>
+                    </li>
+                    <li class="govuk-tabs__list-item" role:ignore>
+                        <a class="govuk-tabs__tab" aria-selected="false" tabindex="-1" id:ignore role:ignore href:ignore aria-controls:ignore>@tab2Title</a>
+                    </li>
+                    <li class="govuk-tabs__list-item" role:ignore>
+                        <a class="govuk-tabs__tab" aria-selected="false" tabindex="-1" id:ignore role:ignore href:ignore aria-controls:ignore>@tab3Title</a>
+                    </li>
+                </ul>
+                <div class="govuk-tabs__panel" id:ignore role:ignore aria-labelledby:ignore>@tab1Content</div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id:ignore role:ignore aria-labelledby:ignore>@tab2Content</div>
                 <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id:ignore role:ignore aria-labelledby:ignore>@tab3Content</div>
             </div>);
     }
