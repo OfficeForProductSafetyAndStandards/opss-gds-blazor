@@ -6,7 +6,7 @@
         @foreach (var panel in Panels)
         {
             <li class="govuk-tabs__list-item @GetActivePanelCss(panel)" role="presentation">
-                <a id="tab_@panel.Id" class="govuk-tabs__tab" role="tab" @onclick="() => ActivatePanel(panel)" href="#@panel.Id">@panel.Label</a>
+                <a id="tab_@panel.Id" class="govuk-tabs__tab" role="tab" aria-controls="@panel.Id" aria-selected="@(panel == ActivePanel ? "true" : "false")" @onclick="() => ActivatePanel(panel)" href="#@panel.Id">@panel.Label</a>
             </li>
         }
     </ul>
