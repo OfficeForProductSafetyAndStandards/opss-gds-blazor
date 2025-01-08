@@ -13,7 +13,7 @@
                    aria-selected="@(panel == ActivePanel ? "true" : "false")"
                    tabindex="@(panel == ActivePanel ? "0" : "-1")"
                    @onclick="() => HandleClick(panel)"
-                   @onkeydown="args => HandleKeyDown(panel, args)"
+                   @onkeyup="args => HandleKeyDown(panel, args)"
                    href="#@panel.Id">
                     @panel.Label
                 </a>
@@ -24,6 +24,8 @@
         @ChildContent
     </CascadingValue>
 </div>
+
+
 
 @code {
     /// <summary>
