@@ -9,13 +9,14 @@
 {
     case ButtonType.Anchor:
         <a id=@Id
-        class=@classes
-        href=@(Href ?? "#")
-        role="button"
-        data-module="govuk-button"
-        draggable="false"
-        @attributes=@Attributes>
-            @ChildContent
+           class=@classes
+           href=@(Href ?? "#")
+           role="button"
+           data-module="govuk-button"
+           draggable="false"
+           @attributes=@Attributes
+        >
+           @ChildContent
             @if (IsStartButton)
             {
                 <svg class="govuk-button__start-icon"
@@ -32,15 +33,16 @@
         break;
     case ButtonType.Button:
         <button id=@Id
-        class=@classes
-        type=@Type
-        name=@Name
-        disabled=@(Disabled ? "disabled" : null)
-        aria-disabled=@(Disabled ? "true" : null)
-        data-prevent-double-click=@(PreventDoubleClick ? "true" : null)
-        data-module="govuk-button"
-        @onclick=@OnClick
-        @attributes=@Attributes>
+                class=@classes
+                type=@Type
+                name=@Name
+                disabled=@(Disabled ? "disabled" : null)
+                aria-disabled=@(Disabled ? "true" : null)
+                data-prevent-double-click=@(PreventDoubleClick ? "true" : null)
+                data-module="govuk-button"
+                @onclick=@OnClick
+                @attributes=@Attributes
+        >
             @ChildContent
             @if (IsStartButton)
             {
@@ -58,16 +60,17 @@
         break;
     case ButtonType.Input:
         <input id=@Id
-        class=@classes
-        value=@Value
-        type=@Type
-        name=@Name
-        @onclick=@OnClick
-        disabled=@(Disabled ? "disabled" : null)
-        aria-disabled=@(Disabled ? "true" : null)
-        data-prevent-double-click=@(PreventDoubleClick ? "true" : null)
-        data-module="govuk-button"
-        @attributes=@Attributes />
+               class=@classes
+               value=@Value
+               type=@Type
+               name=@Name
+               @onclick=@OnClick
+               disabled=@(Disabled ? "disabled" : null)
+               aria-disabled=@(Disabled ? "true" : null)
+               data-prevent-double-click=@(PreventDoubleClick ? "true" : null)
+               data-module="govuk-button"
+               @attributes=@Attributes
+        />
         break;
 }
 
@@ -82,14 +85,6 @@
     /// </summary>
     [Parameter]
     public ButtonType? Element { get; set; }
-
-    /* 
-    Setting the href attribute (and property) will output an "a" element.
-    Any properties relating specifically to "button" or "input" element will become inactive and redundant.
-    This field needs to be in this component and not derived to ensure this information is passed across.
-    [Parameter]
-    public string? Href { get; set; }
-    */
 
     /// <summary>
     /// Name for the input or button.
