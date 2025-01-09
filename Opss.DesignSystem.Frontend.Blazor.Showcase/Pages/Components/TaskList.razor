@@ -11,29 +11,29 @@
 </p>
 
 <Example CodeExampleContent="@(@"<GdsTaskList Id=""tasklist-example"">
-        <GdsTaskListItem Href=""/Components/TaskList#link-to-task"">
-            <TaskTitleTemplate>Confirm eligibility</TaskTitleTemplate>
-            <StatusTemplate>Completed</StatusTemplate>
-        </GdsTaskListItem>
-        <GdsTaskListItem Href=""/Components/TaskList#link-to-task"">
-            <TaskTitleTemplate>Confirm agreement acceptance</TaskTitleTemplate>
-            <StatusTemplate>
-                <GdsTag Classes=""@TagClasses.LightBlue"">In progress</GdsTag>
-            </StatusTemplate>
-        </GdsTaskListItem>
-        <GdsTaskListItem Href=""/Components/TaskList#link-to-task"">
-            <TaskTitleTemplate>Confirm agreement acceptance</TaskTitleTemplate>
-            <StatusTemplate>
-                <GdsTag Classes=""@TagClasses.Blue"">Incomplete</GdsTag>
-            </StatusTemplate>
-        </GdsTaskListItem>
-        <GdsTaskListItem Href=""/Components/TaskList#link-to-task"">
-            <TaskTitleTemplate>Personal details</TaskTitleTemplate>
-            <StatusTemplate>
-                <GdsTag Classes=""@TagClasses.Blue"">Not yet started</GdsTag>
-            </StatusTemplate>
-        </GdsTaskListItem>
-    </GdsTaskList>")">
+    <GdsTaskListItem Href=""/Components/TaskList#link-to-task"">
+        <TaskTitleTemplate>Confirm eligibility</TaskTitleTemplate>
+        <StatusTemplate>Completed</StatusTemplate>
+    </GdsTaskListItem>
+    <GdsTaskListItem Href=""/Components/TaskList#link-to-task"">
+        <TaskTitleTemplate>Confirm agreement acceptance</TaskTitleTemplate>
+        <StatusTemplate>
+            <GdsTag Classes=""@TagClasses.LightBlue"">In progress</GdsTag>
+        </StatusTemplate>
+    </GdsTaskListItem>
+    <GdsTaskListItem Href=""/Components/TaskList#link-to-task"">
+        <TaskTitleTemplate>Confirm agreement acceptance</TaskTitleTemplate>
+        <StatusTemplate>
+            <GdsTag Classes=""@TagClasses.Blue"">Incomplete</GdsTag>
+        </StatusTemplate>
+    </GdsTaskListItem>
+    <GdsTaskListItem Href=""/Components/TaskList#link-to-task"">
+        <TaskTitleTemplate>Personal details</TaskTitleTemplate>
+        <StatusTemplate>
+            <GdsTag Classes=""@TagClasses.Blue"">Not yet started</GdsTag>
+        </StatusTemplate>
+    </GdsTaskListItem>
+</GdsTaskList>")">
     <GdsTaskList Id="tasklist-example">
         <GdsTaskListItem Href="/Components/TaskList#link-to-task">
             <TaskTitleTemplate>Confirm eligibility</TaskTitleTemplate>
@@ -176,22 +176,22 @@
     Use the "Cannot start yet" status, and set the "CannotStartYet" attribute on the task item. Also include hint text to explain the reason why the task cannot be started. Note the item is not linked.
 </p>
 <Example CodeExampleContent="@(@"<GdsTaskList Id=""tasklist-cannot-start"">
-        <GdsTaskListItem Href=""/Components/TaskList#tasks-cannot-start"">
-            <TaskTitleTemplate>Confirm eligibility</TaskTitleTemplate>
-            <StatusTemplate>Completed</StatusTemplate>
-        </GdsTaskListItem>
-        <GdsTaskListItem Href=""/Components/TaskList#tasks-cannot-start"">
-            <TaskTitleTemplate>Personal details</TaskTitleTemplate>
-            <StatusTemplate>
-                <GdsTag Classes=""@TagClasses.Blue"">In progress</GdsTag>
-            </StatusTemplate>
-        </GdsTaskListItem>
-        <GdsTaskListItem Href=""/Components/TaskList#tasks-cannot-start"" CannotStartTask>
-            <TaskTitleTemplate>Contact details</TaskTitleTemplate>
-            <StatusTemplate>Cannot start yet</StatusTemplate>
-            <HintTemplate>Personal details need to be confirmed from human resources</HintTemplate>
-        </GdsTaskListItem>
-    </GdsTaskList>")">
+    <GdsTaskListItem Href=""/Components/TaskList#tasks-cannot-start"">
+        <TaskTitleTemplate>Confirm eligibility</TaskTitleTemplate>
+        <StatusTemplate>Completed</StatusTemplate>
+    </GdsTaskListItem>
+    <GdsTaskListItem Href=""/Components/TaskList#tasks-cannot-start"">
+        <TaskTitleTemplate>Personal details</TaskTitleTemplate>
+        <StatusTemplate>
+            <GdsTag Classes=""@TagClasses.Blue"">In progress</GdsTag>
+        </StatusTemplate>
+    </GdsTaskListItem>
+    <GdsTaskListItem Href=""/Components/TaskList#tasks-cannot-start"" CannotStartTask>
+        <TaskTitleTemplate>Contact details</TaskTitleTemplate>
+        <StatusTemplate>Cannot start yet</StatusTemplate>
+        <HintTemplate>Personal details need to be confirmed from human resources</HintTemplate>
+    </GdsTaskListItem>
+</GdsTaskList>")">
     <GdsTaskList Id="tasklist-cannot-start">
         <GdsTaskListItem Href="/Components/TaskList#tasks-cannot-start">
             <TaskTitleTemplate>Confirm eligibility</TaskTitleTemplate>

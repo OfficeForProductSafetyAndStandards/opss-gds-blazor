@@ -4,9 +4,9 @@
     The task list item within the task list.
 </summary>*@
 
-<li 
-class="govuk-task-list__item@(isLinked ? " govuk-task-list__item--with-link" : "")" 
-@attributes=@Attributes>
+<li class="govuk-task-list__item@(isLinked ? " govuk-task-list__item--with-link" : "")" 
+    @attributes=@Attributes
+>
     <div class="govuk-task-list__name-and-hint">
         @if(isLinked)
         {
