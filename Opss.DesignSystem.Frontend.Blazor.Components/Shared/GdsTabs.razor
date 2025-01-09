@@ -1,4 +1,5 @@
 ﻿@inherits GdsWithContent
+@inject NavigationManager Nav
 
 <div id="@Id" class="govuk-tabs @Classes" @attributes="@Attributes">
     <h2 class="govuk-tabs__title">@Title</h2>
@@ -7,14 +8,15 @@
         {
             <li class="govuk-tabs__list-item @GetActivePanelCss(panel)" role="presentation">
                 <a id="tab_@panel.Id"
+                   @ref="@Ref"
                    class="govuk-tabs__tab"
                    role="tab"
                    aria-controls="@panel.Id"
                    aria-selected="@(panel == ActivePanel ? "true" : "false")"
                    tabindex="@(panel == ActivePanel ? "0" : "-1")"
                    @onclick="() => HandleClick(panel)"
-                   @onkeyup="args => HandleKeyDown(panel, args)"
-                   href="#@panel.Id">
+                   @onkeydown="args => HandleKeyDown(panel, args)"
+                   href="@(Nav.ToBaseRelativePath($"{Nav.Uri}#{panel.Id}"))">
                     @panel.Label
                 </a>
             </li>
@@ -49,6 +51,9 @@
     internal GdsTabsPanel ActivePanel { get; private set; }
 
     internal List<GdsTabsPanel> Panels { get; } = [];
+    
+    private List<ElementReference> _refs = [];
+    internal ElementReference Ref { set => _refs.Add(value); }
 
     internal void AddPanel(GdsTabsPanel panel)
     {
@@ -73,7 +78,7 @@
         ActivePanel = panel;
     }
 
-    private void HandleKeyDown(GdsTabsPanel panel, KeyboardEventArgs args)
+    private async Task HandleKeyDown(GdsTabsPanel panel, KeyboardEventArgs args)
     {
         var index = Panels.IndexOf(panel);
         switch (args.Key)
@@ -82,17 +87,27 @@
                 if (index < Panels.Count - 1)
                 {
                     ActivePanel = Panels[index + 1];
+                    await SetFocus();
+                    Nav.NavigateTo($"{Nav.Uri}#{ActivePanel.Id}");
                 }
-
+                
                 break;
                 
             case "ArrowLeft" or "Left":
                 if (index > 0)
                 {
                     ActivePanel = Panels[index - 1];
+                    await SetFocus();
+                    Nav.NavigateTo($"{Nav.Uri}#{ActivePanel.Id}");
                 }
 
                 break;
         }
+    }
+
+    private async Task SetFocus()
+    {
+        var index = Panels.IndexOf(ActivePanel);
+        await _refs[index].FocusAsync();
     }
 }
