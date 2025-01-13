@@ -5,6 +5,7 @@
 @inject NavigationManager Nav
 
 
+
 <div id="@Id" class="govuk-tabs @Classes" @attributes="@Attributes">
     <h2 class="govuk-tabs__title">@Title</h2>
     <ul class="govuk-tabs__list" role="tablist">
@@ -60,10 +61,34 @@
     
     private List<ElementReference> _refs = [];
     internal ElementReference Ref { set => _refs.Add(value); }
+    private string _pageUrl;
+    private string? _tempActivePanelId;
+    
+    protected override void OnInitialized()
+    {
+        Nav.LocationChanged += HandleLocationChanged;
+        _pageUrl = Nav.Uri;
+        base.OnInitialized();   
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if(_tempActivePanelId != null)
+        {
+            ActivePanel.Id = _tempActivePanelId;
+            _tempActivePanelId = null;
+        }
+        if (!firstRender) SetFocusToActivePanel();
+        
+        base.OnAfterRender(firstRender);
+    }
 
     internal void AddPanel(GdsTabsPanel panel)
     {
         //todo: throw exception if no id or idprefix
+        if (panel.Id == null && IdPrefix == null)
+            throw new ArgumentNullException(nameof(IdPrefix), "IdPrefix must be set if GdsTabsPanel is not given an ID");
+        
         Panels.Add(panel);
         if (Panels[0] == panel)
         {
@@ -132,29 +157,6 @@
         
         ActivePanel.Id = panelId;
         StateHasChanged();
-    }
-    
-    // navigation
-    private string _pageUrl;
-    private string? _tempActivePanelId;
-    
-    protected override void OnInitialized()
-    {
-        Nav.LocationChanged += HandleLocationChanged;
-        _pageUrl = Nav.Uri;
-        base.OnInitialized();   
-    }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        if(_tempActivePanelId != null)
-        {
-            ActivePanel.Id = _tempActivePanelId;
-            _tempActivePanelId = null;
-        }
-        if (!firstRender) SetFocusToActivePanel();
-        
-        base.OnAfterRender(firstRender);
     }
 
     private void HandleLocationChanged(object? sender, LocationChangedEventArgs e)
