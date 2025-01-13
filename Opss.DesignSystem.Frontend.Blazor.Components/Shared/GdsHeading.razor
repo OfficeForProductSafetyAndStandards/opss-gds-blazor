@@ -70,4 +70,17 @@
     [Parameter]
     public int? HeadingLevel { get; set; }
     #endregion
+
+    #region Parameter Validation
+    protected override void OnParametersSet()
+    {
+        if (ChildContent == null)
+            throw new ArgumentNullException(nameof(ChildContent), "ChildContent cannot be null");
+
+        if (HeadingLevel < 1 || HeadingLevel > 6)
+            throw new ArgumentException("HeadingLevel must be between 1 and 6", nameof(HeadingLevel));
+
+        base.OnParametersSet();
+    }
+    #endregion
 }
