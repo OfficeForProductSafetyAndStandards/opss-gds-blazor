@@ -86,7 +86,7 @@
             return;
         }
         ActivePanel = panel;
-        CreateHistoryEntry();
+        CreateBrowserHistoryEntry();
     }
 
     private void HandleKeyDown(GdsTabsPanel panel, KeyboardEventArgs args)
@@ -99,7 +99,7 @@
                 {
                     ActivePanel = Panels[index + 1];
                     SetFocusToActivePanel();
-                    CreateHistoryEntry();
+                    CreateBrowserHistoryEntry();
                 }
                 
                 break;
@@ -109,21 +109,20 @@
                 {
                     ActivePanel = Panels[index - 1];
                     SetFocusToActivePanel();
-                    //await InvokeAsync(CreateHistoryEntry);
-                    CreateHistoryEntry();
+                    CreateBrowserHistoryEntry();
                 }
 
                 break;
         }
     }
 
-    private void SetFocusToActivePanel()//todo: move to pre-render?
+    private void SetFocusToActivePanel()
     {
         var index = Panels.IndexOf(ActivePanel);
         InvokeAsync(()=> _refs[index].FocusAsync()).Wait();
     }
     
-    private void CreateHistoryEntry()
+    private void CreateBrowserHistoryEntry()
     {
         var panelId = ActivePanel.Id;
         ActivePanel.Id = "";
@@ -161,28 +160,25 @@
     private void HandleLocationChanged(object? sender, LocationChangedEventArgs e)
     {
         // do nothing if navigating to a different page
-        var pageUrlParts = _pageUrl.Split('#');
-        var pageUrlWithoutHash = pageUrlParts[0];
-        if (!e.Location.Contains(pageUrlWithoutHash)) return;
+        if (!e.Location.Contains(_pageUrl.Split('#')[0])) return;
 
         var newUrlParts = e.Location.Split('#');
         if (newUrlParts.Length > 1) // if there is a #panel-id in the new url
         {
             var panelId = newUrlParts[1];
             var panel = Panels.FirstOrDefault(p => p.Id == panelId);
-            if (panel != null)
-            {
-                _tempActivePanelId = panelId;
-                ActivePanel = panel;
-                ActivePanel.Id = "";
-                StateHasChanged();
-            }
+            if (panel == null) return;
+            
+            _tempActivePanelId = panelId;
+            ActivePanel = panel;
+            ActivePanel.Id = "";
         }
         else
         {
             ActivePanel = Panels[0];
-            StateHasChanged();
         }
+
+        StateHasChanged();
     }
     
     void IDisposable.Dispose()
