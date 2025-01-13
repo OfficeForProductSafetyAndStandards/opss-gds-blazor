@@ -1,4 +1,6 @@
-﻿@inherits GdsWithContent
+﻿@using Microsoft.AspNetCore.Components.Routing
+@inherits GdsWithContent
+@implements IDisposable
 @inject NavigationManager Nav
 
 <div id="@Id" class="govuk-tabs @Classes" @attributes="@Attributes">
@@ -15,7 +17,9 @@
                    aria-selected="@(panel == ActivePanel ? "true" : "false")"
                    tabindex="@(panel == ActivePanel ? "0" : "-1")"
                    @onclick="() => HandleClick(panel)"
+                   @onclick:preventDefault="true"
                    @onkeydown="args => HandleKeyDown(panel, args)"
+                   @onkeydown:preventDefault="true"
                    href="@(Nav.ToBaseRelativePath($"{Nav.Uri}#{panel.Id}"))">
                     @panel.Label
                 </a>
@@ -75,7 +79,12 @@
     
     private void HandleClick(GdsTabsPanel panel)
     {
+        if (ActivePanel == panel)
+        {
+            return;
+        }
         ActivePanel = panel;
+        CreateHistoryEntry();
     }
 
     private async Task HandleKeyDown(GdsTabsPanel panel, KeyboardEventArgs args)
@@ -87,8 +96,8 @@
                 if (index < Panels.Count - 1)
                 {
                     ActivePanel = Panels[index + 1];
-                    await SetFocus();
-                    Nav.NavigateTo($"{Nav.Uri}#{ActivePanel.Id}");
+                    await SetFocusToActivePanel();
+                    CreateHistoryEntry();
                 }
                 
                 break;
@@ -97,17 +106,69 @@
                 if (index > 0)
                 {
                     ActivePanel = Panels[index - 1];
-                    await SetFocus();
-                    Nav.NavigateTo($"{Nav.Uri}#{ActivePanel.Id}");
+                    await SetFocusToActivePanel();
+                    //await InvokeAsync(CreateHistoryEntry);
+                    CreateHistoryEntry();
                 }
 
                 break;
         }
     }
 
-    private async Task SetFocus()
+    private async Task SetFocusToActivePanel()
     {
         var index = Panels.IndexOf(ActivePanel);
         await _refs[index].FocusAsync();
+    }
+    
+    private void CreateHistoryEntry()
+    {
+        var panelId = ActivePanel.Id;
+        ActivePanel.Id = "";
+        StateHasChanged();
+        Nav.NavigateTo($"{Nav.Uri}#{panelId}");
+        
+        ActivePanel.Id = panelId;
+        StateHasChanged();
+    }
+    
+    // navigation
+    private string _pageUrl;
+    protected override void OnInitialized()
+    {
+        Nav.LocationChanged += HandleLocationChanged;
+        _pageUrl = Nav.Uri;
+        base.OnInitialized();   
+    }
+
+    private void HandleLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        // do nothing if navigating to a different page
+        var pageUrlParts = _pageUrl.Split('#');
+        var pageUrlWithoutHash = pageUrlParts[0];
+        if (!e.Location.Contains(pageUrlWithoutHash)) return;
+        
+        var newUrlParts = e.Location.Split('#');
+        if (newUrlParts.Length > 1) // if there is a #panel-id in the new url
+        {
+            var panelId = newUrlParts[1];
+            var panel = Panels.FirstOrDefault(p => p.Id == panelId);
+            if (panel != null)
+            {
+                ActivePanel = panel;
+                SetFocusToActivePanel().GetAwaiter().GetResult();
+                StateHasChanged();
+            }
+        }
+        else
+        {
+            ActivePanel = Panels[0];
+            StateHasChanged();
+        }
+    }
+
+    void IDisposable.Dispose()
+    {
+        Nav.LocationChanged -= HandleLocationChanged;
     }
 }
