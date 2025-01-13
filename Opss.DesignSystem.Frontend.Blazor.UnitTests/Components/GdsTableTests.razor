@@ -2,7 +2,7 @@
 
 @code {
     [Fact]
-    public void OutputsTable()
+    public void OutputsEmptyTable()
     {
         // Arrange, Act 
         var component = Render(@<GdsTable>            
@@ -10,7 +10,10 @@
     );
 
         // Assert 
-        component.MarkupMatches(@<table>
-            </table>);
+            component.MarkupMatches(
+    @<table class="govuk-table">
+        <tbody class="govuk-table__body"></tbody>
+    </table>
+            );
     }
 }
