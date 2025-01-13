@@ -1,0 +1,16 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void OutputsTable()
+    {
+        // Arrange, Act 
+        var component = Render(@<GdsTable>            
+            </GdsTable>
+    );
+
+        // Assert 
+        component.MarkupMatches(@<table>
+            </table>);
+    }
+}

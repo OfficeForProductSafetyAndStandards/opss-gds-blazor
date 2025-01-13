@@ -1,0 +1,528 @@
+﻿@page "/Components/Table"
+@layout _ComponentsLayout
+
+<PageTitle>Table</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Table</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/table/" class="govuk-link">Table</a>.
+</p>
+
+<h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
+<h3 class="govuk-heading-m" id="header-default">Header</h3>
+<Example CodeExampleContent="@(@"<GdsTable>
+    <HeadTemplate>
+        <GdsTableCell>Task</GdsTableCell>
+        <GdsTableCell>Days left</GdsTableCell>
+        <GdsTableCell>Cost</GdsTableCell>
+    </HeadTemplate>
+    <RowsTemplate>
+        <GdsTableRow>
+            <GdsTableCell>Eligibility check</GdsTableCell>
+            <GdsTableCell>6</GdsTableCell>
+            <GdsTableCell>£45.50</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Travel requirements</GdsTableCell>
+            <GdsTableCell>1</GdsTableCell>
+            <GdsTableCell>£234.33</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Visa application</GdsTableCell>
+            <GdsTableCell>33</GdsTableCell>
+            <GdsTableCell>£1,444.50</GdsTableCell>
+        </GdsTableRow>
+    </RowsTemplate>
+</GdsTable>")">
+    <GdsTable>
+        <HeadTemplate>
+            <GdsTableCell>Task</GdsTableCell>
+            <GdsTableCell>Days left</GdsTableCell>
+            <GdsTableCell>Cost</GdsTableCell>
+        </HeadTemplate>
+        <RowsTemplate>
+            <GdsTableRow>
+                <GdsTableCell>Eligibility check</GdsTableCell>
+                <GdsTableCell>6</GdsTableCell>
+                <GdsTableCell>£45.50</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Travel requirements</GdsTableCell>
+                <GdsTableCell>1</GdsTableCell>
+                <GdsTableCell>£234.33</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Visa application</GdsTableCell>
+                <GdsTableCell>33</GdsTableCell>
+                <GdsTableCell>£1,444.50</GdsTableCell>
+            </GdsTableRow>
+        </RowsTemplate>
+    </GdsTable>
+</Example>
+
+<h3 class="govuk-heading-m" id="first-cell-as-header">Header, first cell in row as header</h3>
+<Example CodeExampleContent="@(@"<GdsTable FirstCellIsHeader=@true>
+    <HeadTemplate>
+        <GdsTableCell>Task</GdsTableCell>
+        <GdsTableCell>Days left</GdsTableCell>
+        <GdsTableCell>Cost</GdsTableCell>
+    </HeadTemplate>
+    <RowsTemplate>
+        <GdsTableRow>
+            <GdsTableCell>Eligibility check</GdsTableCell>
+            <GdsTableCell>6</GdsTableCell>
+            <GdsTableCell>£45.50</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Travel requirements</GdsTableCell>
+            <GdsTableCell>1</GdsTableCell>
+            <GdsTableCell>£234.33</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Visa application</GdsTableCell>
+            <GdsTableCell>33</GdsTableCell>
+            <GdsTableCell>£1,444.50</GdsTableCell>
+        </GdsTableRow>
+    </RowsTemplate>
+</GdsTable>")">
+    <GdsTable FirstCellIsHeader=@true>
+        <HeadTemplate>
+            <GdsTableCell>Task</GdsTableCell>
+            <GdsTableCell>Days left</GdsTableCell>
+            <GdsTableCell>Cost</GdsTableCell>
+        </HeadTemplate>
+        <RowsTemplate>
+            <GdsTableRow>
+                <GdsTableCell>Eligibility check</GdsTableCell>
+                <GdsTableCell>6</GdsTableCell>
+                <GdsTableCell>£45.50</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Travel requirements</GdsTableCell>
+                <GdsTableCell>1</GdsTableCell>
+                <GdsTableCell>£234.33</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Visa application</GdsTableCell>
+                <GdsTableCell>33</GdsTableCell>
+                <GdsTableCell>£1,444.50</GdsTableCell>
+            </GdsTableRow>
+        </RowsTemplate>
+    </GdsTable>
+</Example>
+
+<h3 class="govuk-heading-m" id="caption">Table caption</h3>
+<Example CodeExampleContent="@(@"<GdsTable CaptionText=""Outstanding tasks to be done"">
+    <HeadTemplate>
+        <GdsTableCell>Task</GdsTableCell>
+        <GdsTableCell>Days left</GdsTableCell>
+        <GdsTableCell>Cost</GdsTableCell>
+    </HeadTemplate>
+    <RowsTemplate>
+        <GdsTableRow>
+            <GdsTableCell>Eligibility check</GdsTableCell>
+            <GdsTableCell>6</GdsTableCell>
+            <GdsTableCell>£45.50</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Travel requirements</GdsTableCell>
+            <GdsTableCell>1</GdsTableCell>
+            <GdsTableCell>£234.33</GdsTableCell>
+        </GdsTableRow>
+    </RowsTemplate>
+</GdsTable>")">
+    <GdsTable CaptionText="Outstanding tasks to be done">
+        <HeadTemplate>
+            <GdsTableCell>Task</GdsTableCell>
+            <GdsTableCell>Days left</GdsTableCell>
+            <GdsTableCell>Cost</GdsTableCell>
+        </HeadTemplate>
+        <RowsTemplate>
+            <GdsTableRow>
+                <GdsTableCell>Eligibility check</GdsTableCell>
+                <GdsTableCell>6</GdsTableCell>
+                <GdsTableCell>£45.50</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Travel requirements</GdsTableCell>
+                <GdsTableCell>1</GdsTableCell>
+                <GdsTableCell>£234.33</GdsTableCell>
+            </GdsTableRow>
+        </RowsTemplate>
+    </GdsTable>
+</Example>
+
+
+<h3 class="govuk-heading-m" id="caption">Table with extra large caption size</h3>
+<Example CodeExampleContent="@(@"<GdsTable CaptionText=""Outstanding tasks to be done"" CaptionTextClasses=@TableClasses.CaptionTextExtraLarge>
+    <HeadTemplate>
+        <GdsTableCell>Task</GdsTableCell>
+        <GdsTableCell>Days left</GdsTableCell>
+        <GdsTableCell>Cost</GdsTableCell>
+    </HeadTemplate>
+    <RowsTemplate>
+        <GdsTableRow>
+            <GdsTableCell>Eligibility check</GdsTableCell>
+            <GdsTableCell>6</GdsTableCell>
+            <GdsTableCell>£45.50</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Travel requirements</GdsTableCell>
+            <GdsTableCell>1</GdsTableCell>
+            <GdsTableCell>£234.33</GdsTableCell>
+        </GdsTableRow>
+    </RowsTemplate>
+</GdsTable>")">
+    <GdsTable CaptionText="Outstanding tasks to be done" CaptionTextClasses=@TableClasses.CaptionTextExtraLarge>
+        <HeadTemplate>
+            <GdsTableCell>Task</GdsTableCell>
+            <GdsTableCell>Days left</GdsTableCell>
+            <GdsTableCell>Cost</GdsTableCell>
+        </HeadTemplate> 
+        <RowsTemplate>
+            <GdsTableRow>
+                <GdsTableCell>Eligibility check</GdsTableCell>
+                <GdsTableCell>6</GdsTableCell>
+                <GdsTableCell>£45.50</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Travel requirements</GdsTableCell>
+                <GdsTableCell>1</GdsTableCell>
+                <GdsTableCell>£234.33</GdsTableCell>
+            </GdsTableRow>
+        </RowsTemplate>
+    </GdsTable>
+</Example>
+
+
+
+<h3 class="govuk-heading-m" id="no-header-first-cell-as-header">No header, first cell in row as header</h3>
+<Example CodeExampleContent="@(@"<GdsTable FirstCellIsHeader=@true>
+    <RowsTemplate>
+        <GdsTableRow>
+            <GdsTableCell>Eligibility check</GdsTableCell>
+            <GdsTableCell>6</GdsTableCell>
+            <GdsTableCell>£45.50</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Travel requirements</GdsTableCell>
+            <GdsTableCell>1</GdsTableCell>
+            <GdsTableCell>£234.33</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Visa application</GdsTableCell>
+            <GdsTableCell>33</GdsTableCell>
+            <GdsTableCell>£1,444.50</GdsTableCell>
+        </GdsTableRow>
+    </RowsTemplate>
+</GdsTable>")">
+    <GdsTable FirstCellIsHeader=@true>
+        <RowsTemplate>
+            <GdsTableRow>
+                <GdsTableCell>Eligibility check</GdsTableCell>
+                <GdsTableCell>6</GdsTableCell>
+                <GdsTableCell>£45.50</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Travel requirements</GdsTableCell>
+                <GdsTableCell>1</GdsTableCell>
+                <GdsTableCell>£234.33</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Visa application</GdsTableCell>
+                <GdsTableCell>33</GdsTableCell>
+                <GdsTableCell>£1,444.50</GdsTableCell>
+            </GdsTableRow>
+        </RowsTemplate>
+    </GdsTable>
+</Example>
+
+
+<h3 class="govuk-heading-m" id="no-header-">No headers at all</h3>
+<Example CodeExampleContent="@(@"<GdsTable>
+    <RowsTemplate>
+        <GdsTableRow>
+            <GdsTableCell>Eligibility check</GdsTableCell>
+            <GdsTableCell>6</GdsTableCell>
+            <GdsTableCell>£45.50</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Travel requirements</GdsTableCell>
+            <GdsTableCell>1</GdsTableCell>
+            <GdsTableCell>£234.33</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Visa application</GdsTableCell>
+            <GdsTableCell>33</GdsTableCell>
+            <GdsTableCell>£1,444.50</GdsTableCell>
+        </GdsTableRow>
+    </RowsTemplate>
+</GdsTable>")">
+    <GdsTable>
+        <RowsTemplate>
+            <GdsTableRow>
+                <GdsTableCell>Eligibility check</GdsTableCell>
+                <GdsTableCell>6</GdsTableCell>
+                <GdsTableCell>£45.50</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Travel requirements</GdsTableCell>
+                <GdsTableCell>1</GdsTableCell>
+                <GdsTableCell>£234.33</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Visa application</GdsTableCell>
+                <GdsTableCell>33</GdsTableCell>
+                <GdsTableCell>£1,444.50</GdsTableCell>
+            </GdsTableRow>
+        </RowsTemplate>
+    </GdsTable>
+</Example>
+
+<h3 class="govuk-heading-m" id="headers-html">HTML content</h3>
+<Example CodeExampleContent="@(@"<GdsTable FirstCellIsHeader=@true>
+    <HeadTemplate>
+        <GdsTableCell>Task</GdsTableCell>
+        <GdsTableCell>Days left</GdsTableCell>
+        <GdsTableCell>Cost</GdsTableCell>
+        <GdsTableCell><em>View</em></GdsTableCell>
+    </HeadTemplate>
+    <RowsTemplate>
+        <GdsTableRow>
+            <GdsTableCell>Eligibility check</GdsTableCell>
+            <GdsTableCell>6</GdsTableCell>
+            <GdsTableCell>£45.50</GdsTableCell>
+            <GdsTableCell><a href=""#Table1""><em>View</em></a></GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Travel requirements</GdsTableCell>
+            <GdsTableCell>1</GdsTableCell>
+            <GdsTableCell>£234.33</GdsTableCell>
+            <GdsTableCell><a href=""#Table2""><em>View</em></a></GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Visa application</GdsTableCell>
+            <GdsTableCell>33</GdsTableCell>
+            <GdsTableCell>£1,444.50</GdsTableCell>
+            <GdsTableCell><a href=""#Table3""><em>View</em></a></GdsTableCell>
+        </GdsTableRow>
+    </RowsTemplate>
+</GdsTable>")">
+    <GdsTable FirstCellIsHeader>
+        <HeadTemplate>
+            <GdsTableCell>Task</GdsTableCell>
+            <GdsTableCell>Days left</GdsTableCell>
+            <GdsTableCell>Cost</GdsTableCell>
+            <GdsTableCell><em>View</em></GdsTableCell>
+        </HeadTemplate>
+        <RowsTemplate>
+            <GdsTableRow>
+                <GdsTableCell>Eligibility check</GdsTableCell>
+                <GdsTableCell>6</GdsTableCell>
+                <GdsTableCell>£45.50</GdsTableCell>
+                <GdsTableCell><a href="#Table1"><em>View</em></a></GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Travel requirements</GdsTableCell>
+                <GdsTableCell>1</GdsTableCell>
+                <GdsTableCell>£234.33</GdsTableCell>
+                <GdsTableCell><a href="#Table2"><em>View</em></a></GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Visa application</GdsTableCell>
+                <GdsTableCell>33</GdsTableCell>
+                <GdsTableCell>£1,444.50</GdsTableCell>
+                <GdsTableCell><a href="#Table3"><em>View</em></a></GdsTableCell>
+            </GdsTableRow>
+        </RowsTemplate>
+    </GdsTable>
+</Example>
+
+
+<h3 class="govuk-heading-m" id="rowspan">Row spanned cells</h3>
+<Example CodeExampleContent="@(@"<GdsTable>
+    <HeadTemplate>
+        <GdsTableCell>Task</GdsTableCell>
+        <GdsTableCell>Days left</GdsTableCell>
+        <GdsTableCell>Cost</GdsTableCell>
+        <GdsTableCell>Due</GdsTableCell>
+    </HeadTemplate>
+    <RowsTemplate>
+        <GdsTableRow>
+            <GdsTableCell>Eligibility check</GdsTableCell>
+            <GdsTableCell>6</GdsTableCell>
+            <GdsTableCell>£45.50</GdsTableCell>
+            <GdsTableCell>20 October 2024</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell RowSpan=""2"">Travel requirements: <br/>Visa application, <br/>Passport checks</GdsTableCell>
+            <GdsTableCell>1</GdsTableCell>
+            <GdsTableCell>£234.33</GdsTableCell>
+            <GdsTableCell>06 December 2024</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>33</GdsTableCell>
+            <GdsTableCell>£1,444.50</GdsTableCell>
+            <GdsTableCell>9 January 2025</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Family checks</GdsTableCell>
+            <GdsTableCell>77</GdsTableCell>
+            <GdsTableCell>£142.50</GdsTableCell>
+            <GdsTableCell>19 March 2025</GdsTableCell>
+        </GdsTableRow>
+    </RowsTemplate>
+</GdsTable>")">
+    <GdsTable>
+        <HeadTemplate>
+            <GdsTableCell>Task</GdsTableCell>
+            <GdsTableCell>Days left</GdsTableCell>
+            <GdsTableCell>Cost</GdsTableCell>
+            <GdsTableCell>Due</GdsTableCell>
+        </HeadTemplate>
+        <RowsTemplate>
+            <GdsTableRow>
+                <GdsTableCell>Eligibility check</GdsTableCell>
+                <GdsTableCell>6</GdsTableCell>
+                <GdsTableCell>£45.50</GdsTableCell>
+                <GdsTableCell>20 October 2024</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell RowSpan="2">Travel requirements: <br />Visa application, <br />Passport checks</GdsTableCell>
+                <GdsTableCell>1</GdsTableCell>
+                <GdsTableCell>£234.33</GdsTableCell>
+                <GdsTableCell>06 December 2024</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>33</GdsTableCell>
+                <GdsTableCell>£1,444.50</GdsTableCell>
+                <GdsTableCell>9 January 2025</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Family checks</GdsTableCell>
+                <GdsTableCell>77</GdsTableCell>
+                <GdsTableCell>£142.50</GdsTableCell>
+                <GdsTableCell>19 March 2025</GdsTableCell>
+            </GdsTableRow>
+        </RowsTemplate>
+    </GdsTable>
+</Example>
+
+
+<h3 class="govuk-heading-m" id="colspan">Column spanned cells</h3>
+<Example CodeExampleContent="@(@"<GdsTable>
+    <HeadTemplate>
+        <GdsTableCell>Task</GdsTableCell>
+        <GdsTableCell Classes=""govuk-body-xs"">details</GdsTableCell>
+        <GdsTableCell>Cost</GdsTableCell>
+        <GdsTableCell>Due</GdsTableCell>
+    </HeadTemplate>
+    <RowsTemplate>
+        <GdsTableRow>
+            <GdsTableCell>Eligibility check</GdsTableCell>
+            <GdsTableCell>ensure eligibility</GdsTableCell>
+            <GdsTableCell>£45.50</GdsTableCell>
+            <GdsTableCell>20 October 2024</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell ColSpan=""2"">Travel requirements: Visa application, Passport verification</GdsTableCell>
+            <GdsTableCell>£2,234.33</GdsTableCell>
+            <GdsTableCell>06 December 2024</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Family checks</GdsTableCell>
+            <GdsTableCell>relationships</GdsTableCell>
+            <GdsTableCell>£142.50</GdsTableCell>
+            <GdsTableCell>19 March 2025</GdsTableCell>
+        </GdsTableRow>
+    </RowsTemplate>
+</GdsTable>")">
+    <GdsTable>
+        <HeadTemplate>
+            <GdsTableCell>Task</GdsTableCell>
+            <GdsTableCell Classes="govuk-body-xs">details</GdsTableCell>
+            <GdsTableCell>Cost</GdsTableCell>
+            <GdsTableCell>Due</GdsTableCell>
+        </HeadTemplate>
+        <RowsTemplate>
+            <GdsTableRow>
+                <GdsTableCell>Eligibility check</GdsTableCell>
+                <GdsTableCell>ensure eligibility</GdsTableCell>
+                <GdsTableCell>£45.50</GdsTableCell>
+                <GdsTableCell>20 October 2024</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell ColSpan="2">Travel requirements: Visa application, Passport verification</GdsTableCell>
+                <GdsTableCell>£2,234.33</GdsTableCell>
+                <GdsTableCell>06 December 2024</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Family checks</GdsTableCell>
+                <GdsTableCell>relationships</GdsTableCell>
+                <GdsTableCell>£142.50</GdsTableCell>
+                <GdsTableCell>19 March 2025</GdsTableCell>
+            </GdsTableRow>
+        </RowsTemplate>
+    </GdsTable>
+</Example>
+
+
+
+
+<h3 class="govuk-heading-m" id="custom-formatting">Custom formatting</h3>
+
+<style type="text/css">
+    td.linkcell {
+        text-align: right;
+    }
+
+    td.linkcell a {
+        padding-right: 15px;
+    }
+
+    tr.headerstyle {
+        background-color: #f3f2f1;
+    }
+
+    table.col1 tbody th {
+        padding-left: 10px;
+        width: 195px;
+    }
+</style>
+
+<Example CodeExampleContent="@(@"")">
+    <GdsTable Classes="col1 app-example-full-wrapper" CaptionText="Company details" FirstCellIsHeader>
+        <RowsTemplate>
+            <GdsTableRow Classes="headerstyle">
+                <GdsTableCell>Zyx Incorporated</GdsTableCell>
+                <GdsTableCell Classes="linkcell"><GdsLink Href="#">Add to application</GdsLink></GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Name</GdsTableCell>
+                <GdsTableCell>Zyx</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Registration number</GdsTableCell>
+                <GdsTableCell>987654321</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Classification</GdsTableCell>
+                <GdsTableCell>0000 0 enterprise business entity</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Type</GdsTableCell>
+                <GdsTableCell>Limited Company</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Office Address</GdsTableCell>
+                <GdsTableCell>1 The Way, <br/>London <br/>E1 1ZZ</GdsTableCell>
+            </GdsTableRow>
+        </RowsTemplate>
+    </GdsTable>
+</Example>
+
+@code {
+
+}
