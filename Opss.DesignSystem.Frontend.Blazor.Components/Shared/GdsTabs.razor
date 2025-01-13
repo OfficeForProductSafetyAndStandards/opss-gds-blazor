@@ -1,7 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components
 @inherits GdsWithContent
 @implements IDisposable
 @inject NavigationManager Nav
+
 
 <div id="@Id" class="govuk-tabs @Classes" @attributes="@Attributes">
     <h2 class="govuk-tabs__title">@Title</h2>
@@ -87,7 +89,7 @@
         CreateHistoryEntry();
     }
 
-    private async Task HandleKeyDown(GdsTabsPanel panel, KeyboardEventArgs args)
+    private void HandleKeyDown(GdsTabsPanel panel, KeyboardEventArgs args)
     {
         var index = Panels.IndexOf(panel);
         switch (args.Key)
@@ -96,7 +98,7 @@
                 if (index < Panels.Count - 1)
                 {
                     ActivePanel = Panels[index + 1];
-                    await SetFocusToActivePanel();
+                    SetFocusToActivePanel();
                     CreateHistoryEntry();
                 }
                 
@@ -106,7 +108,7 @@
                 if (index > 0)
                 {
                     ActivePanel = Panels[index - 1];
-                    await SetFocusToActivePanel();
+                    SetFocusToActivePanel();
                     //await InvokeAsync(CreateHistoryEntry);
                     CreateHistoryEntry();
                 }
@@ -115,10 +117,10 @@
         }
     }
 
-    private async Task SetFocusToActivePanel()
+    private void SetFocusToActivePanel()//todo: move to pre-render?
     {
         var index = Panels.IndexOf(ActivePanel);
-        await _refs[index].FocusAsync();
+        InvokeAsync(()=> _refs[index].FocusAsync()).Wait();
     }
     
     private void CreateHistoryEntry()
@@ -126,7 +128,8 @@
         var panelId = ActivePanel.Id;
         ActivePanel.Id = "";
         StateHasChanged();
-        Nav.NavigateTo($"{Nav.Uri}#{panelId}");
+        
+        Nav.NavigateTo($"{Nav.Uri.Split('#')[0]}#{panelId}");
         
         ActivePanel.Id = panelId;
         StateHasChanged();
@@ -134,11 +137,25 @@
     
     // navigation
     private string _pageUrl;
+    private string? _tempActivePanelId;
+    
     protected override void OnInitialized()
     {
         Nav.LocationChanged += HandleLocationChanged;
         _pageUrl = Nav.Uri;
         base.OnInitialized();   
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if(_tempActivePanelId != null)
+        {
+            ActivePanel.Id = _tempActivePanelId;
+            _tempActivePanelId = null;
+        }
+        if (!firstRender) SetFocusToActivePanel();
+        
+        base.OnAfterRender(firstRender);
     }
 
     private void HandleLocationChanged(object? sender, LocationChangedEventArgs e)
@@ -147,7 +164,7 @@
         var pageUrlParts = _pageUrl.Split('#');
         var pageUrlWithoutHash = pageUrlParts[0];
         if (!e.Location.Contains(pageUrlWithoutHash)) return;
-        
+
         var newUrlParts = e.Location.Split('#');
         if (newUrlParts.Length > 1) // if there is a #panel-id in the new url
         {
@@ -155,8 +172,9 @@
             var panel = Panels.FirstOrDefault(p => p.Id == panelId);
             if (panel != null)
             {
+                _tempActivePanelId = panelId;
                 ActivePanel = panel;
-                SetFocusToActivePanel().GetAwaiter().GetResult();
+                ActivePanel.Id = "";
                 StateHasChanged();
             }
         }
@@ -166,7 +184,7 @@
             StateHasChanged();
         }
     }
-
+    
     void IDisposable.Dispose()
     {
         Nav.LocationChanged -= HandleLocationChanged;
