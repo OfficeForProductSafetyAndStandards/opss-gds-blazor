@@ -2,7 +2,7 @@
 
 @* <summary>
     Use the button component to help users carry out an action like starting an application or saving their information.
-</summary> *@
+</summary>*@
 
 @* Bit of a mess, nunjucks combines some of this but it's still crazy due to the three different elements that can be rendered *@
 @switch (element)
@@ -12,19 +12,20 @@
            class=@classes
            href=@(Href ?? "#")
            role="button"
-           draggable="false"
            data-module="govuk-button"
-           @attributes=@Attributes>
-            @ChildContent
+           draggable="false"
+           @attributes=@Attributes
+        >
+           @ChildContent
             @if (IsStartButton)
             {
                 <svg class="govuk-button__start-icon"
-                     xmlns="http://www.w3.org/2000/svg"
-                     width="17.5"
-                     height="19"
-                     viewBox="0 0 33 40"
-                     aria-hidden="true"
-                     focusable="false">
+                xmlns="http://www.w3.org/2000/svg"
+                width="17.5"
+                height="19"
+                viewBox="0 0 33 40"
+                aria-hidden="true"
+                focusable="false">
                     <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
                 </svg>
             }
@@ -33,7 +34,6 @@
     case ButtonType.Button:
         <button id=@Id
                 class=@classes
-                value=@Value
                 type=@Type
                 name=@Name
                 disabled=@(Disabled ? "disabled" : null)
@@ -41,17 +41,18 @@
                 data-prevent-double-click=@(PreventDoubleClick ? "true" : null)
                 data-module="govuk-button"
                 @onclick=@OnClick
-                @attributes=@Attributes>
+                @attributes=@Attributes
+        >
             @ChildContent
             @if (IsStartButton)
             {
                 <svg class="govuk-button__start-icon"
-                     xmlns="http://www.w3.org/2000/svg"
-                     width="17.5"
-                     height="19"
-                     viewBox="0 0 33 40"
-                     aria-hidden="true"
-                     focusable="false">
+                xmlns="http://www.w3.org/2000/svg"
+                width="17.5"
+                height="19"
+                viewBox="0 0 33 40"
+                aria-hidden="true"
+                focusable="false">
                     <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
                 </svg>
             }
@@ -61,21 +62,26 @@
         <input id=@Id
                class=@classes
                value=@Value
-               type=@(Type ?? "submit")
+               type=@Type
                name=@Name
+               @onclick=@OnClick
                disabled=@(Disabled ? "disabled" : null)
                aria-disabled=@(Disabled ? "true" : null)
                data-prevent-double-click=@(PreventDoubleClick ? "true" : null)
                data-module="govuk-button"
-               @attributes=@Attributes />
+               @attributes=@Attributes
+        />
         break;
 }
 
 @code {
     #region Public Parameters
+
     /// <summary>
-    /// Whether to use an input, button or a element to create the button.
+    /// Whether to use an <see cref="ButtonType.Input"/>, <see cref="ButtonType.Button"/> or <see cref="ButtonType.Anchor"/> to create the GDS button (should be GdsButtonType)
     /// In most cases you will not need to set this as it will be configured automatically.
+    /// Set to <see cref="ButtonType.Input"/> to explicitly output an input element. 
+    /// The <see cref="Value"/> field is required if set to <see cref="ButtonType.Input"/>.
     /// </summary>
     [Parameter]
     public ButtonType? Element { get; set; }
@@ -88,15 +94,16 @@
     public string? Name { get; set; }
 
     /// <summary>
-    /// Type of input or button – button, submit or reset.
-    /// Defaults to submit. This has no effect on a elements.
+    /// Type of HTML input or button. 
+    /// Valid values are "button", "submit" or "reset".
+    /// Defaults to "submit". This has no effect on "a" elements.
     /// </summary>
     [Parameter]
-    public string? Type { get; set; }
+    public string? Type { get; set; } = "submit";
 
     /// <summary>
-    /// Value for the button tag.
-    /// This has no effect on a or input elements.
+    /// Value for the input tag.
+    /// This has no effect on a or button elements.
     /// </summary>
     [Parameter]
     public string? Value { get; set; }
@@ -104,6 +111,7 @@
     /// <summary>
     /// Whether the button should be disabled.
     /// For button and input elements, disabled and aria-disabled attributes will be set automatically.
+    /// This has no effect on, and does not apply to "a" elements.
     /// </summary>
     [Parameter]
     public bool Disabled { get; set; }
@@ -164,4 +172,18 @@
         }
     }
     #endregion
+
+    protected override void OnParametersSet()
+    {
+        if ((element == ButtonType.Anchor || element == ButtonType.Button) && ChildContent == null)
+            throw new ArgumentNullException(nameof(ChildContent), "GdsButton link or button must have child content provided.");
+
+        if (element == ButtonType.Input && string.IsNullOrWhiteSpace(Value))
+            throw new ArgumentNullException(nameof(Value), "GdsButton input must have a value.");
+
+        if (!(new[] { "button", "submit", "reset" }).Contains(Type))
+            throw new ArgumentException($"'{Type}' is not valid for the Type field in GdsButton.", nameof(Type));
+
+        base.OnParametersSet();
+    }
 }
