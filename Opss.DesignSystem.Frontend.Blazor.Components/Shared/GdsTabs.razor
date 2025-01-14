@@ -4,7 +4,7 @@
 @inherits GdsWithContent
 @implements IDisposable
 @inject NavigationManager Nav
-@inject IJSRuntime JS
+@inject IJSRuntime Js
 
 <div id="@Id" class="govuk-tabs @Classes" @attributes="@Attributes">
     <a id="focus-parking_@Id" @ref="@_dummyFocusElementRef" tabindex="-1" aria-hidden="true"></a>
@@ -57,9 +57,9 @@
     public string? Title { get; set; }
     #endregion
 
-    #region Private Properties
+    #region Internal and Private Properties
     internal GdsTabsPanel? ActivePanel { get; private set; }
-    internal List<GdsTabsPanel> Panels { get; } = [];
+    private List<GdsTabsPanel> Panels { get; } = [];
     private List<ElementReference> _refs = [];
     internal ElementReference Ref { set => _refs.Add(value); }
     #endregion
@@ -83,7 +83,7 @@
     {
         if(_tempActivePanelId != null)
         {
-            ActivePanel.Id = _tempActivePanelId;
+            ActivePanel!.Id = _tempActivePanelId;
             _tempActivePanelId = null;
         }
 
@@ -188,26 +188,24 @@
 
     private void SetFocusToActivePanel()
     {
-        if (ActivePanel != null)
-        {
-            var index = Panels.IndexOf(ActivePanel);
-            InvokeAsync(() => _refs[index].FocusAsync()).Wait();
-        }
+        if (ActivePanel == null) return;
+        
+        var index = Panels.IndexOf(ActivePanel);
+        InvokeAsync(() => _refs[index].FocusAsync()).Wait();
     }
 
     private void CreateBrowserHistoryEntry()
     {
-        if (ActivePanel != null)
-        {
-            var panelId = ActivePanel.Id;
-            ActivePanel.Id = "";
-            StateHasChanged();
+        if (ActivePanel == null) return;
+        
+        var panelId = ActivePanel.Id;
+        ActivePanel.Id = "";
+        StateHasChanged();
 
-            Nav.NavigateTo($"{Nav.Uri.Split('#')[0]}#{panelId}");
+        Nav.NavigateTo($"{Nav.Uri.Split('#')[0]}#{panelId}");
 
-            ActivePanel.Id = panelId;
-            StateHasChanged();
-        }
+        ActivePanel.Id = panelId;
+        StateHasChanged();
     }
     
     void IDisposable.Dispose()

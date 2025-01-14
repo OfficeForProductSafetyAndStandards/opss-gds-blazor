@@ -1,7 +1,7 @@
 ﻿@inherits GdsWithContent
 
 <div id="@Id" 
-class="govuk-tabs__panel @activePanelCss @Classes" 
+class="govuk-tabs__panel @ActivePanelCss @Classes" 
 aria-labelledby="tab_@Id" 
 @attributes="@Attributes" 
 role="tabpanel">
@@ -24,7 +24,7 @@ role="tabpanel">
     #endregion
 
     #region Private Properties
-    private string activePanelCss
+    private string ActivePanelCss
     {
         get
         {
