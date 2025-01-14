@@ -67,7 +67,6 @@
     #region Private Fields
     private ElementReference _dummyFocusElementRef;
     private string? _pageUrl;
-    private string? _tempActivePanelId;
     private string? _previousActivePanelId;
     #endregion
 
@@ -81,10 +80,9 @@
 
     protected override void OnAfterRender(bool firstRender)
     {
-        if(_tempActivePanelId != null)
+        if (ActivePanel != null)
         {
-            ActivePanel!.Id = _tempActivePanelId;
-            _tempActivePanelId = null;
+            ActivePanel.HideId = false;
         }
 
         if (Nav.Uri.Split('#').Length > 1)
@@ -149,9 +147,8 @@
             var panel = Panels.FirstOrDefault(p => p.Id == panelId);
             if (panel == null) return;
 
-            _tempActivePanelId = panelId;
             ActivePanel = panel;
-            ActivePanel.Id = "";
+            ActivePanel.HideId = true;
         }
         else
         {

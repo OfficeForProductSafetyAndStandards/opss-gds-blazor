@@ -1,7 +1,7 @@
 ﻿@inherits GdsWithContent
 
-<div id="@Id" 
-class="govuk-tabs__panel @ActivePanelCss @Classes" 
+<div id=@(HideId ? "" : Id)
+     class="govuk-tabs__panel @ActivePanelCss @Classes" 
 aria-labelledby="tab_@Id" 
 @attributes="@Attributes" 
 role="tabpanel">
@@ -21,6 +21,10 @@ role="tabpanel">
     /// </summary>
     [Parameter]
     public string? Label { get; set; }
+    #endregion
+
+    #region Public Properties
+    public bool HideId { get; set; } = false;
     #endregion
 
     #region Private Properties
