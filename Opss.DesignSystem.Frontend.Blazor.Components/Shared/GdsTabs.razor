@@ -87,11 +87,26 @@
 
         if (Nav.Uri.Split('#').Length > 1)
         {
+            if (firstRender)
+            {
+                var newUrlParts = Nav.Uri.Split('#');
+                if (newUrlParts.Length > 1) // if there is a #panel-id in the new url
+                {
+                    var panelId = newUrlParts[1];
+                    var panel = Panels.FirstOrDefault(p => p.Id == panelId);
+                    if (panel != null)
+                    {
+                        ActivePanel = panel;
+                        ActivePanel.HideId = true;
+                        StateHasChanged();
+                    }
+                }
+            }
             SetFocusToActivePanel();
         }
         else if (_previousActivePanelId != null)
         {
-            InvokeAsync(()=> _dummyFocusElementRef.FocusAsync()).Wait();
+            InvokeAsync(() => _dummyFocusElementRef.FocusAsync()).Wait();
             _previousActivePanelId = null;
         }
 
@@ -186,7 +201,7 @@
     private void SetFocusToActivePanel()
     {
         if (ActivePanel == null) return;
-        
+
         var index = Panels.IndexOf(ActivePanel);
         InvokeAsync(() => _refs[index].FocusAsync()).Wait();
     }
@@ -194,7 +209,7 @@
     private void CreateBrowserHistoryEntry()
     {
         if (ActivePanel == null) return;
-        
+
         var panelId = ActivePanel.Id;
         ActivePanel.Id = "";
         StateHasChanged();
@@ -204,7 +219,7 @@
         ActivePanel.Id = panelId;
         StateHasChanged();
     }
-    
+
     void IDisposable.Dispose()
     {
         Nav.LocationChanged -= HandleLocationChanged;
