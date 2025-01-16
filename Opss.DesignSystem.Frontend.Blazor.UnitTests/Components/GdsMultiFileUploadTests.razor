@@ -1,15 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Components.Forms
-@using Xunit.Abstractions
 @inherits BunitContext
 
 @code {
-    private readonly ITestOutputHelper _testOutputHelper;
-
-    public GdsMultiFileUploadTests(ITestOutputHelper testOutputHelper)
-    {
-        _testOutputHelper = testOutputHelper;
-    }
-
     [Fact]
     public void OutputsMultiFileUpload()
     {
@@ -56,6 +48,7 @@
         var fileToUpload2 = InputFileContent.CreateFromText("some content", expectedFileName2);
         var fileToUpload3 = InputFileContent.CreateFromText("some content", expectedFileName3);
         var expectedProgress = 55;
+        
         var component = Render(
             @<GdsMultiFileUpload Id="documents" Name="documents" FileSelectedAsync="(e) => e.UpdateProgress(expectedProgress)">
                 <LabelTemplate>
@@ -63,7 +56,6 @@
                 </LabelTemplate>
             </GdsMultiFileUpload>);
         var inputFileComponent = component.FindComponent<InputFile>();
-        _testOutputHelper.WriteLine(inputFileComponent.GetType().ToString());
         
         // Act
         inputFileComponent.UploadFiles(fileToUpload1, fileToUpload2, fileToUpload3);
