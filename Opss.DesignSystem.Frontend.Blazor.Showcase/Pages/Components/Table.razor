@@ -492,7 +492,53 @@
     }
 </style>
 
-<Example CodeExampleContent="@(@"")">
+<Example CodeExampleContent="@(@"<style type=""text/css"">
+    td.linkcell {
+        text-align: right;
+    }
+
+    td.linkcell a {
+        padding-right: 15px;
+    }
+
+    tr.headerstyle {
+        background-color: #f3f2f1;
+    }
+
+    table.col1 tbody th {
+        padding-left: 10px;
+        width: 195px;
+    }
+</style>
+
+<GdsTable Classes=""col1 app-example-full-wrapper"" CaptionText=""Company details"" FirstCellIsHeader>
+    <RowsTemplate>
+        <GdsTableRow Classes=""headerstyle"">
+            <GdsTableCell>Zyx Incorporated</GdsTableCell>
+            <GdsTableCell Classes=""linkcell""><GdsLink Href=""#"">Add to application</GdsLink></GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Name</GdsTableCell>
+            <GdsTableCell>Zyx</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Registration number</GdsTableCell>
+            <GdsTableCell>987654321</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Classification</GdsTableCell>
+            <GdsTableCell>0000 enterprise business entity</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Type</GdsTableCell>
+            <GdsTableCell>Limited Company</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Office Address</GdsTableCell>
+            <GdsTableCell>1 The Way, <br/>London <br/>E1 1ZZ</GdsTableCell>
+        </GdsTableRow>
+    </RowsTemplate>
+</GdsTable>")">
     <GdsTable Classes="col1 app-example-full-wrapper" CaptionText="Company details" FirstCellIsHeader>
         <RowsTemplate>
             <GdsTableRow Classes="headerstyle">
@@ -509,7 +555,7 @@
             </GdsTableRow>
             <GdsTableRow>
                 <GdsTableCell>Classification</GdsTableCell>
-                <GdsTableCell>0000 0 enterprise business entity</GdsTableCell>
+                <GdsTableCell>0000 enterprise business entity</GdsTableCell>
             </GdsTableRow>
             <GdsTableRow>
                 <GdsTableCell>Type</GdsTableCell>

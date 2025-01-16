@@ -3,10 +3,10 @@
 @if(isHeaderCell || isHeaderRow)
 {
     <th scope=@scope
-        colspan=@ColSpan
-        rowspan=@RowSpan
-        class="@TableClasses.HeaderCell @Classes"
-        @attributes=@Attributes
+    colspan=@ColSpan
+    rowspan=@RowSpan
+    class="@TableClasses.HeaderCell @Classes"
+    @attributes=@Attributes
     >
         @ChildContent
     </th>
@@ -14,9 +14,9 @@
 else
 {
     <td colspan=@ColSpan
-        rowspan=@RowSpan
-        class="@TableClasses.Cell @Classes"
-        @attributes=@Attributes
+    rowspan=@RowSpan
+    class="@TableClasses.Cell @Classes"
+    @attributes=@Attributes
     >
         @ChildContent
     </td>
@@ -39,7 +39,7 @@ else
 
     #region Private Properties
     /// <summary>
-    /// This cell is the first cell and a header cell in the row.
+    /// Indicates the cell is the first, and a header cell in the row.
     /// </summary>
     private bool isHeaderCell;
 
@@ -66,6 +66,9 @@ else
 
         isHeaderCell = ParentRow?.FirstCellIsHeader ?? false;
         isHeaderRow = ParentTable != null;
+
+        if (RowSpan <= 1) RowSpan = null;
+        if (ColSpan <= 1) ColSpan = null;
 
         base.OnInitialized();
         ParentRow?.ClearFirstCellIsHeaderFlag(this);

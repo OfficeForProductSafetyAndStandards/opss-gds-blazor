@@ -5,14 +5,12 @@
 </summary>*@
 
 <table 
-    class="@TableClasses.Table @Classes" 
+    class="@(TableClasses.Table + (!string.IsNullOrWhiteSpace(Classes) ? " " + Classes : string.Empty))" 
     @attributes=@Attributes
 >
     @if(!string.IsNullOrWhiteSpace(CaptionText)) 
     {
-        <caption 
-            class="@TableClasses.Caption @(!string.IsNullOrWhiteSpace(CaptionTextClasses) ? CaptionTextClasses : "")"
-        >
+        <caption class="@(TableClasses.Caption + (!string.IsNullOrWhiteSpace(CaptionTextClasses) ? " " + CaptionTextClasses : string.Empty))">
             @CaptionText
         </caption>
     }
