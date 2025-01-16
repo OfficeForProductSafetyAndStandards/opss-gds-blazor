@@ -1,0 +1,36 @@
+﻿@page "/Components/Tabs"
+@layout _ComponentsLayout
+
+<PageTitle>Tabs</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Tabs</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/tabs/" class="govuk-link">Tabs</a>.
+</p>
+
+<Example CodeExampleContent="@(
+@"<GdsTabs Id=""tabs-example-1"" IdPrefix=""tabs-example-1"">
+    <GdsTabsPanel Label=""Tab 1"">
+        <p>Tab 1 content</p>
+    </GdsTabsPanel>
+    <GdsTabsPanel Label=""Tab 2"">
+        <p>Tab 2 content</p>
+    </GdsTabsPanel>
+    <GdsTabsPanel Label=""Tab 3"">
+        <p>Tab 3 content</p>
+    </GdsTabsPanel>
+</GdsTabs>")">
+    <GdsTabs Id="tabs-example-1" IdPrefix="tabs-example-1">
+        <GdsTabsPanel Label="Tab 1">
+            <p>Tab 1 content</p>
+        </GdsTabsPanel>
+        <GdsTabsPanel Label="Tab 2">
+            <p>Tab 2 content</p>
+        </GdsTabsPanel>
+        <GdsTabsPanel Label="Tab 3">
+            <p>Tab 3 content</p>
+        </GdsTabsPanel>
+    </GdsTabs>
+</Example>
