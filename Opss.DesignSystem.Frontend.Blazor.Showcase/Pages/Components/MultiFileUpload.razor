@@ -21,9 +21,9 @@
 @code {
     private async Task LoadFilesAsync(FileUploadProgress e)
     {
-        for(var i = 0; i <= 100; i = i + 10){
+        for(var i = 0; i <= 100; i += 10){
             e.UpdateProgress(i);
-            Thread.Sleep(1000);
+            await Task.Delay(1000);
         }
         //throw new Exception("File failed to upload");
     }

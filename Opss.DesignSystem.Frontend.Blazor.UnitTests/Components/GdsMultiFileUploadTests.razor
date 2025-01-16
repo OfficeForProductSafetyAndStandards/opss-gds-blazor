@@ -1,6 +1,15 @@
-﻿@inherits BunitContext
+﻿@using Microsoft.AspNetCore.Components.Forms
+@using Xunit.Abstractions
+@inherits BunitContext
 
 @code {
+    private readonly ITestOutputHelper _testOutputHelper;
+
+    public GdsMultiFileUploadTests(ITestOutputHelper testOutputHelper)
+    {
+        _testOutputHelper = testOutputHelper;
+    }
+
     [Fact]
     public void OutputsMultiFileUpload()
     {
@@ -20,18 +29,77 @@
         </div>
 
         <div class="moj-multi-file-upload__upload">
-
             <div class="govuk-form-group">
                 <label class="govuk-label govuk-label--m" for="documents">
                     Upload a file
                 </label>
-
-                <input class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" type="file" multiple="">
-
+                <div class="moj-multi-file-upload__dropzone">
+                    <input class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" type="file" multiple=""/>
+                    <p class="govuk-body">Drag and drop files here or</p>
+                    <label for="documents" class="govuk-button govuk-button--secondary">Choose files</label>
+                    <div aria-live="polite" role="status" class="govuk-visually-hidden"></div>
+                </div>
             </div>
-
         </div>
     </div>
+        );
+    }
+    
+    [Fact]
+    public void AndUploadingAFile_ThenDisplaysFileUploadProgress()
+    {
+        // Arrange
+        var expectedFileName1 = "test-file-1.txt";
+        var expectedFileName2 = "test-file-2.txt";
+        var expectedFileName3 = "test-file-3.txt";
+        var fileToUpload1 = InputFileContent.CreateFromText("some content", expectedFileName1);
+        var fileToUpload2 = InputFileContent.CreateFromText("some content", expectedFileName2);
+        var fileToUpload3 = InputFileContent.CreateFromText("some content", expectedFileName3);
+        var expectedProgress = 55;
+        var component = Render(
+            @<GdsMultiFileUpload Id="documents" Name="documents" FileSelectedAsync="(e) => e.UpdateProgress(expectedProgress)">
+                <LabelTemplate>
+                    <GdsLabel Classes=@LabelSize.Medium>Upload a file</GdsLabel>
+                </LabelTemplate>
+            </GdsMultiFileUpload>);
+        var inputFileComponent = component.FindComponent<InputFile>();
+        _testOutputHelper.WriteLine(inputFileComponent.GetType().ToString());
+        
+        // Act
+        inputFileComponent.UploadFiles(fileToUpload1, fileToUpload2, fileToUpload3);
+
+        // Assert
+        component.MarkupMatches(
+            @<div class="moj-multi-file-upload">
+                <div class="moj-multi-file__uploaded-files ">
+                    <h2 class="govuk-heading-m">Files added</h2>
+                    <div class="govuk-summary-list moj-multi-file-upload__list">
+                        <div class="govuk-summary-list__row moj-multi-file-upload__row">
+                            <div class="govuk-summary-list__value moj-multi-file-upload__message">
+                                <span class="moj-multi-file-upload__filename">@expectedFileName1</span>
+                                <span class="moj-multi-file-upload__progress">@expectedProgress%</span>
+                            </div>
+                            <div class="govuk-summary-list__actions moj-multi-file-upload__actions"></div>
+                        </div>
+                        <div class="govuk-summary-list__row moj-multi-file-upload__row">
+                            <div class="govuk-summary-list__value moj-multi-file-upload__message">
+                                <span class="moj-multi-file-upload__filename">@expectedFileName2</span>
+                                <span class="moj-multi-file-upload__progress">@expectedProgress%</span>
+                            </div>
+                            <div class="govuk-summary-list__actions moj-multi-file-upload__actions"></div>
+                        </div>
+                        <div class="govuk-summary-list__row moj-multi-file-upload__row">
+                            <div class="govuk-summary-list__value moj-multi-file-upload__message">
+                                <span class="moj-multi-file-upload__filename">@expectedFileName3</span>
+                                <span class="moj-multi-file-upload__progress">@expectedProgress%</span>
+                            </div>
+                            <div class="govuk-summary-list__actions moj-multi-file-upload__actions"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div diff:ignore></div>
+            </div>
         );
     }
 }

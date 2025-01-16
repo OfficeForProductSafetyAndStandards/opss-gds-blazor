@@ -10,7 +10,7 @@
     <div class="moj-multi-file__uploaded-files">
         <h2 class="govuk-heading-m">Files added</h2>
         <div class="govuk-summary-list moj-multi-file-upload__list">
-            @foreach (var file in uploadedFiles)
+            @foreach (var file in _allFiles)
             {
                 <div class="govuk-summary-list__row moj-multi-file-upload__row">
                     <div class="govuk-summary-list__value moj-multi-file-upload__message">
@@ -36,9 +36,9 @@
                 <InputFile OnChange="@LoadFilesAsync" class="govuk-file-upload moj-multi-file-upload__input" id=@Id name=@Name multiple @attributes=@Attributes />
                 <p class="govuk-body">Drag and drop files here or</p><label for=@Id class="govuk-button govuk-button--secondary">Choose files</label>
                 <div aria-live="polite" role="status" class="govuk-visually-hidden">
-                    @if (fileUploading)
+                    @if (_fileUploading)
                     {
-                        @fileUploadingMessage
+                        @_fileUploadingMessage
                     }
                 </div>
             </div>
@@ -69,9 +69,9 @@
     #endregion
 
     #region Private Properties
-    private bool fileUploading = false;
-    private string fileUploadingMessage = "Uploading files, please wait";
-    private List<FileUploadProgress> uploadedFiles = new List<FileUploadProgress>();
+    private bool _fileUploading = false;
+    private string _fileUploadingMessage = "Uploading files, please wait";
+    private List<FileUploadProgress> _allFiles = [];
     #endregion
 
     #region Event Handlers
@@ -88,13 +88,12 @@
     /// <returns></returns>
     private async Task LoadFilesAsync(InputFileChangeEventArgs e)
     {
-        List<Task> uploadTasks = new List<Task>();
+        List<FileUploadProgress> uploadingFiles = [];
         if (e.FileCount == 1)
         {
             var progress = new FileUploadProgress(e.File, UpdateState);
-            uploadedFiles.Add(progress);
-
-            uploadTasks.Add(FileSelectedAsync.InvokeAsync(progress));
+            _allFiles.Add(progress);
+            uploadingFiles.Add(progress);
         }
         else
         {
@@ -102,17 +101,18 @@
             foreach (var file in files)
             {
                 var progress = new FileUploadProgress(file, UpdateState);
-                uploadedFiles.Add(progress);
-                uploadTasks.Add(FileSelectedAsync.InvokeAsync(progress));
-                StateHasChanged();
+                _allFiles.Add(progress);
+                uploadingFiles.Add(progress);
             }
         }
-        fileUploading = true;
+        _fileUploading = true;
         StateHasChanged();
 
-        await Task.WhenAll(uploadTasks);
+        await Task.WhenAll(
+            uploadingFiles.Select(progress => FileSelectedAsync.InvokeAsync(progress))
+        );
 
-        fileUploading = false;
+        _fileUploading = false;
         StateHasChanged();
     }
 
