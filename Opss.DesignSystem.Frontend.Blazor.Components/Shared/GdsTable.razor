@@ -5,12 +5,12 @@
 </summary>*@
 
 <table 
-    class="@(TableClasses.Table + (!string.IsNullOrWhiteSpace(Classes) ? " " + Classes : string.Empty))" 
+    class="@tableClasses" 
     @attributes=@Attributes
 >
     @if(!string.IsNullOrWhiteSpace(CaptionText)) 
     {
-        <caption class="@(TableClasses.Caption + (!string.IsNullOrWhiteSpace(CaptionTextClasses) ? " " + CaptionTextClasses : string.Empty))">
+        <caption class="@captionClasses">
             @CaptionText
         </caption>
     }
@@ -59,5 +59,23 @@
     /// </summary>
     [Parameter]
     public RenderFragment? RowsTemplate { get; set; }
+    #endregion
+
+    #region Private Parameters 
+    public string captionClasses
+    {
+        get
+        {
+            return TableClasses.Caption + (!string.IsNullOrWhiteSpace(CaptionTextClasses) ? " " + CaptionTextClasses : string.Empty);
+        }
+    }
+
+    public string tableClasses
+    {
+        get
+        {
+            return TableClasses.Table + (!string.IsNullOrWhiteSpace(Classes) ? " " + Classes : string.Empty);
+        }
+    }
     #endregion
 }
