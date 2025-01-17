@@ -150,7 +150,7 @@
 
     protected Task OnValueChanged(ChangeEventArgs e)
     {
-        Value = e.Value.ToString();
+        Value = e.Value?.ToString();
 
         return ValueChanged.InvokeAsync(Value);
     }

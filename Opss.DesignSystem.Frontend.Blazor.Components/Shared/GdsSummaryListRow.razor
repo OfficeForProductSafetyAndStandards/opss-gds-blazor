@@ -102,7 +102,7 @@
     #region Private Properties
     private string? noActionsClass {
         get{
-            if (Parent.ChildHasAction && !actions.Any())
+            if (Parent!.ChildHasAction && !actions.Any())
                 return "govuk-summary-list__row--no-actions";
 
                 return null;
@@ -116,7 +116,7 @@
     public void Register(GdsSummaryListRowAction action)
     {
         actions.Add(action);
-        Parent.RegisterListHasAction();
+        Parent!.RegisterListHasAction();
         this.StateHasChanged();
     }
     #endregion
