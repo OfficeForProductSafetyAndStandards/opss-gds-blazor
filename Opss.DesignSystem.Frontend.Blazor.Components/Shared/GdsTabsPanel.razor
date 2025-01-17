@@ -24,19 +24,15 @@ role="tabpanel">
     #endregion
 
     #region Public Properties
-    public bool HideId { get; set; } = false;
+    public bool HideId { get; set; }
     #endregion
 
     #region Private Properties
-    private string ActivePanelCss
-    {
-        get
-        {
-            if (Parent == null) return "";
+    private string ActivePanelCss => Parent!.ActivePanel == this ? "" : "govuk-tabs__panel--hidden";
+    #endregion
 
-            return Parent.ActivePanel == this ? "" : "govuk-tabs__panel--hidden";
-        }
-    }
+    #region Internal Methods
+    internal void SetId(string? id) => Id = id;
     #endregion
 
     #region Cascading Value - Parent

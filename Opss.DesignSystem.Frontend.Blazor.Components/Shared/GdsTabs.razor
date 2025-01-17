@@ -188,7 +188,8 @@
         {
             ActivePanel = panel;
         }
-        panel.Id ??= $"{IdPrefix}-{Panels.Count}";
+        
+        if (panel.Id == null) panel.SetId($"{IdPrefix}-{Panels.Count}");
 
         StateHasChanged();
     }
@@ -211,12 +212,12 @@
         if (ActivePanel == null) return;
 
         var panelId = ActivePanel.Id;
-        ActivePanel.Id = "";
+        ActivePanel.SetId("");
         StateHasChanged();
 
         Nav.NavigateTo($"{Nav.Uri.Split('#')[0]}#{panelId}");
 
-        ActivePanel.Id = panelId;
+        ActivePanel.SetId(panelId);
         StateHasChanged();
     }
 
