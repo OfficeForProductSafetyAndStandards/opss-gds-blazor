@@ -5,8 +5,8 @@
 </summary>*@
 
 <table 
-    class="@tableClasses" 
-    @attributes=@Attributes
+class="@tableClasses" 
+@attributes=@Attributes
 >
     @if(!string.IsNullOrWhiteSpace(CaptionText)) 
     {
@@ -66,7 +66,12 @@
     {
         get
         {
-            return TableClasses.Caption + (!string.IsNullOrWhiteSpace(CaptionTextClasses) ? " " + CaptionTextClasses : string.Empty);
+            var classBuilder = TableClasses.Caption;
+
+            if (!string.IsNullOrWhiteSpace(CaptionTextClasses))
+                classBuilder += $" {CaptionTextClasses}";
+
+            return classBuilder;
         }
     }
 
@@ -74,7 +79,12 @@
     {
         get
         {
-            return TableClasses.Table + (!string.IsNullOrWhiteSpace(Classes) ? " " + Classes : string.Empty);
+            var classBuilder = TableClasses.Table;
+
+            if (!string.IsNullOrWhiteSpace(Classes))
+                classBuilder += $" {Classes}";
+
+            return classBuilder;
         }
     }
     #endregion
