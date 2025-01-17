@@ -94,27 +94,9 @@
     #endregion
 
     #region Private Properties
-    private string id
-    {
-        get
-        {
-            if (Id != null)
-                return Id;
+    private string id => Id ?? $"{Parent!.Id}-{datePartText.ToLower()}";
 
-            return $"{Parent.Id}-{datePartText.ToLower()}";
-        }
-    }
-
-    private string name
-    {
-        get
-        {
-            if (Name != null)
-                return Name;
-
-            return $"{Parent.NamePrefix}-{datePartText?.ToLower()}";
-        }
-    }
+    private string name => Name ?? $"{Parent!.NamePrefix}-{datePartText?.ToLower()}";
 
     private string labelText
     {
@@ -122,10 +104,7 @@
         {
             if (Label != null)
                 return Label;
-            if (Name != null)
-                return Name;
-
-            return datePartText;
+            return Name ?? datePartText;
         }
     }
 
@@ -134,8 +113,7 @@
         get
         {
             var classBuilder = "govuk-input govuk-date-input__input";
-            if (datePartClass != null)
-                classBuilder += $" {datePartClass}";
+            classBuilder += $" {datePartClass}";
             if (Classes != null)
                 classBuilder += $" {Classes}";
             if (HasError.HasValue && HasError.Value)
@@ -190,6 +168,6 @@
     }
 
     [CascadingParameter]
-    private GdsDateInput Parent { get; set; }
+    private GdsDateInput? Parent { get; set; }
     #endregion
 }

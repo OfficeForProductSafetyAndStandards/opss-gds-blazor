@@ -126,9 +126,9 @@
     private Task CheckboxChanged(ChangeEventArgs e)
     {
         // get the checkbox state
-        var value = bool.Parse(e.Value.ToString());
+        var value = bool.Parse(e.Value?.ToString() ?? string.Empty);
 
-        return Parent.CheckboxChanged(value, Value);
+        return Parent?.CheckboxChanged(value, Value ?? string.Empty) ?? Task.CompletedTask;
     }
     #endregion
 
