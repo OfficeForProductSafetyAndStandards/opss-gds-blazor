@@ -215,7 +215,7 @@
     /// If FieldsetDescribedBy is provided, it will override
     /// any calculated value.
     /// </summary>
-    private string fieldsetDescribedBy
+    private string? fieldsetDescribedBy
     {
         get
         {
@@ -230,7 +230,7 @@
             if (describedBy.Any())
                 return string.Join(" ", describedBy);
             
-            return string.Empty;
+            return null;
         }
     }
     #endregion
