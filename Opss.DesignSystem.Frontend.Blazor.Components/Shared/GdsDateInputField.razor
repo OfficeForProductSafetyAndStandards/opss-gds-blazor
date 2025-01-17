@@ -101,7 +101,7 @@
             if (Id != null)
                 return Id;
 
-            return $"{Parent.Id}-{datePartText.ToLower()}";
+            return $"{Parent!.Id}-{datePartText.ToLower()}";
         }
     }
 
@@ -112,7 +112,7 @@
             if (Name != null)
                 return Name;
 
-            return $"{Parent.NamePrefix}-{datePartText?.ToLower()}";
+            return $"{Parent!.NamePrefix}-{datePartText?.ToLower()}";
         }
     }
 
@@ -134,8 +134,7 @@
         get
         {
             var classBuilder = "govuk-input govuk-date-input__input";
-            if (datePartClass != null)
-                classBuilder += $" {datePartClass}";
+            classBuilder += $" {datePartClass}";
             if (Classes != null)
                 classBuilder += $" {Classes}";
             if (HasError.HasValue && HasError.Value)
@@ -190,6 +189,6 @@
     }
 
     [CascadingParameter]
-    private GdsDateInput Parent { get; set; }
+    private GdsDateInput? Parent { get; set; }
     #endregion
 }
