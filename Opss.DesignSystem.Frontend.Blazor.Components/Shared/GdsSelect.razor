@@ -128,7 +128,7 @@
 
     private Task OnChange(ChangeEventArgs e)
     {
-        var value = e.Value.ToString();
+        var value = e.Value?.ToString();
         return ValueChanged.InvokeAsync(value);
     }
     #endregion
