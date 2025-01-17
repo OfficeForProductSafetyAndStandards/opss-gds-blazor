@@ -227,11 +227,10 @@
                 describedBy.Add(Name + "-hint");
             if (ErrorMessageTemplate != null)
                 describedBy.Add(Name + "-error");
-
             if (describedBy.Any())
                 return string.Join(" ", describedBy);
-            else
-                return null;
+            
+            return string.Empty;
         }
     }
     #endregion
