@@ -1,0 +1,91 @@
+﻿@inherits GdsViewModel
+
+@*<summary>
+    The table component makes information easier to compare and scan.
+</summary>*@
+
+<table 
+class="@tableClasses" 
+@attributes=@Attributes
+>
+    @if(!string.IsNullOrWhiteSpace(CaptionText)) 
+    {
+        <caption class="@captionClasses">
+            @CaptionText
+        </caption>
+    }
+
+    @if (HeadTemplate != null)
+    {
+        <thead class=@TableClasses.Head>
+            <tr class=@TableClasses.Row>
+                <CascadingValue Value=this Name="ParentTable" ChildContent=@HeadTemplate />
+            </tr>
+        </thead>
+    }
+    <tbody class=@TableClasses.Body>
+        <CascadingValue Value=this ChildContent=@RowsTemplate />
+    </tbody>
+</table>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Table caption text (text only)
+    /// </summary>
+    [Parameter]
+    public string? CaptionText { get; set; }
+
+    /// <summary>
+    /// Table caption text classes, as specified in TableClasses.
+    /// </summary>
+    [Parameter]
+    public string? CaptionTextClasses { get; set; }
+
+    /// <summary>
+    /// Whether the first cell in each row of the table body will be a header.
+    /// </summary>
+    [Parameter]
+    public bool FirstCellIsHeader { get; set; }
+
+    /// <summary>
+    /// Table cells for the head row
+    /// </summary>
+    [Parameter]
+    public RenderFragment? HeadTemplate { get; set; }
+
+    /// <summary>
+    /// Table Rows for the table body
+    /// </summary>
+    [Parameter]
+    public RenderFragment? RowsTemplate { get; set; }
+    #endregion
+
+    #region Private Parameters 
+    public string captionClasses
+    {
+        get
+        {
+            var classBuilder = TableClasses.Caption;
+
+            if (!string.IsNullOrWhiteSpace(CaptionTextClasses))
+                classBuilder += $" {CaptionTextClasses}";
+
+            return classBuilder;
+        }
+    }
+
+    public string tableClasses
+    {
+        get
+        {
+            var classBuilder = TableClasses.Table;
+
+            if (!string.IsNullOrWhiteSpace(Classes))
+                classBuilder += $" {Classes}";
+
+            return classBuilder;
+        }
+    }
+    #endregion
+}

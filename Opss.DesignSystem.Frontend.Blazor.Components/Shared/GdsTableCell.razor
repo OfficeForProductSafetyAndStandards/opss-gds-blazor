@@ -1,0 +1,83 @@
+﻿@inherits GdsWithContent
+
+@if(isHeaderCell || isHeaderRow)
+{
+    <th scope=@scope
+    colspan=@ColSpan
+    rowspan=@RowSpan
+    class="@TableClasses.HeaderCell @Classes"
+    @attributes=@Attributes
+    >
+        @ChildContent
+    </th>
+}
+else
+{
+    <td colspan=@ColSpan
+    rowspan=@RowSpan
+    class="@TableClasses.Cell @Classes"
+    @attributes=@Attributes
+    >
+        @ChildContent
+    </td>
+}
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Specifies how many rows a cell extends.
+    /// </summary>
+    [Parameter]
+    public int? RowSpan { get; set; }
+
+    /// <summary>
+    /// Specifies how many columns a cell extends.
+    /// </summary>
+    [Parameter]
+    public int? ColSpan { get; set; }
+    #endregion
+
+    #region Private Properties
+    /// <summary>
+    /// Indicates the cell is the first, and a header cell in the row.
+    /// </summary>
+    private bool isHeaderCell;
+
+    /// <summary>
+    /// Indicates if the parent is a table component, and is therefore a cell in a table head row.
+    /// This parameter is set automatically when the table cell is nested inside a GdsTable.HeadTemplate.
+    /// </summary>
+    private bool isHeaderRow;
+
+    private string? scope {
+        get {
+            if (isHeaderRow) return TableScopes.Col;
+            if (isHeaderCell) return TableScopes.Row;
+            return null;
+        }
+    }
+    #endregion
+
+    #region Cascading Value - Parent(s)
+    protected override void OnInitialized()
+    {
+        if (ParentRow == null && ParentTable == null)
+            throw new ArgumentNullException($"{nameof(ParentRow)} or {nameof(ParentTable)}", "GdsTableCell must exist within a GdsTable or a GdsTableRow");
+
+        isHeaderCell = ParentRow?.FirstCellIsHeader ?? false;
+        isHeaderRow = ParentTable != null;
+
+        if (RowSpan <= 1) RowSpan = null;
+        if (ColSpan <= 1) ColSpan = null;
+
+        base.OnInitialized();
+        ParentRow?.ClearFirstCellIsHeaderFlag(this);
+    }
+
+    [CascadingParameter(Name = "ParentRow")]
+    private GdsTableRow? ParentRow { get; set; }
+
+    [CascadingParameter(Name = "ParentTable")]
+    private GdsTable? ParentTable { get; set; }
+    #endregion
+}

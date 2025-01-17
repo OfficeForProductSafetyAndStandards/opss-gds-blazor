@@ -79,6 +79,12 @@
     border-top: 0;
 }
 
+.app-example-full-wrapper {
+    @include govuk-responsive-margin(6, "top");
+    @include govuk-responsive-margin(6, "bottom");
+    border: 1px solid $govuk-border-colour;
+}
+
 .app-example {
     @include govuk-font-size($size: 16);
     position: relative;
