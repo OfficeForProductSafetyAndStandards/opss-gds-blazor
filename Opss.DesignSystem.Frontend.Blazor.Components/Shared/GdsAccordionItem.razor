@@ -8,9 +8,9 @@
 <div class="govuk-accordion__section@(Expanded ? " govuk-accordion__section--expanded" : "")">
     <div class="govuk-accordion__section-header">
         <GdsHeading HeadingLevel=@HeadingLevel 
-                    Classes="govuk-accordion__section-heading">
+        Classes="govuk-accordion__section-heading">
             <span id="@(Parent?.Id)-heading-@Index" 
-                  class="govuk-accordion__section-button"
+            class="govuk-accordion__section-button"
             >
                 @Heading
             </span>
@@ -18,14 +18,14 @@
         @if (!string.IsNullOrEmpty(Summary))
         {
             <div id="@(Parent?.Id)-summary-@Index" 
-                 class="govuk-accordion__section-summary govuk-body"
+            class="govuk-accordion__section-summary govuk-body"
             >
                 @Summary
             </div>
         }
     </div>
     <div id="@(Parent?.Id)-content-@Index" 
-         class="govuk-accordion__section-content"
+    class="govuk-accordion__section-content"
     >
         @ChildContent
     </div>
@@ -72,11 +72,29 @@
         if (Parent == null)
             throw new ArgumentNullException(nameof(Parent), "GdsAccordionItem must exist within a GdsAccordion");
 
+        if (string.IsNullOrWhiteSpace(Heading))
+            throw new ArgumentNullException(nameof(Heading), "GdsAccordionItem must have a heading");
+
+        if (HeadingLevel < 1 || HeadingLevel > 6)
+            throw new ArgumentException(nameof(HeadingLevel), "Heading level must have a value between 1 and 6");
+
+        if (ChildContent==null)
+            throw new ArgumentNullException(nameof(ChildContent), "GdsAccordionItem must have child content");
+
         base.OnInitialized();
         Parent.AddItem(this);
     }
 
     [CascadingParameter]
     private GdsAccordion? Parent { get; set; }
+    #endregion
+
+
+
+    #region Parameter Validation
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+    }
     #endregion
 }
