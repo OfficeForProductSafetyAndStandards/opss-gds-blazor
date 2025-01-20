@@ -389,5 +389,26 @@
     );
     }
 
+    [Fact]
+    public void ThrowsErrorWhenItemContentIsEmpty()
+    {
+        // Arrange Act Assert
+        Assert.Throws<ArgumentNullException>(
+        "ChildContent",
+        () =>
+        {
+            var component = Render(
+        @<GdsAccordion Id="accordion-empty-content">
+            <GdsAccordionItem Heading="No content" Summary="No content">
+            </GdsAccordionItem>
+            <GdsAccordionItem Heading="Content" Summary="Content 2">
+                <p class="govuk-body">content</p>
+            </GdsAccordionItem>
+        </GdsAccordion>
+        );
+        }
+    );
+    }
+
 
 }

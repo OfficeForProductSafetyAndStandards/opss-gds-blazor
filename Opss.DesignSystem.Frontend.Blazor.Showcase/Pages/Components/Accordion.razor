@@ -238,6 +238,87 @@
     </GdsAccordion>
 </Example>
 
+<h3 class="govuk-heading-m" id="showing-an-expanded-section">Showing an expanded section</h3>
+
+<Example CodeExampleContent="@(@"<GdsAccordion Id=""accordion-with-expanded-section"">
+    <GdsAccordionItem Heading=""Understanding agile project management"" Summary=""Introductions, methods, core features."">
+        <ul class=""govuk-list"">
+            <li>
+                <a class=""govuk-link"" href=""#"">Agile and government services: an introduction</a>
+            </li>
+            <li>
+                <a class=""govuk-link"" href=""#"">Agile methods: an introduction</a>
+            </li>
+            <li>
+                <a class=""govuk-link"" href=""#"">Core principles of agile</a>
+            </li>
+        </ul>
+    </GdsAccordionItem>
+    <GdsAccordionItem Heading=""Working with agile methods"" Summary=""Workspaces, tools and techniques, user stories, planning."" Expanded>
+        <ul class=""govuk-list"">
+            <li>
+                <a class=""govuk-link"" href=""#"">Creating an agile working environment</a>
+            </li>
+            <li>
+                <a class=""govuk-link"" href=""#"">Agile tools and techniques</a>
+            </li>
+            <li>
+                <a class=""govuk-link"" href=""#"">Set up a team wall</a>
+            </li>
+        </ul>
+    </GdsAccordionItem>
+    <GdsAccordionItem Heading=""Governing agile services"" Summary=""Principles, measuring progress, spending money."">
+        <ul class=""govuk-list"">
+            <li>
+                <a class=""govuk-link"" href=""#"">Governance principles for agile service delivery</a>
+            </li>
+            <li>
+                <a class=""govuk-link"" href=""#"">Measuring and reporting progress</a>
+            </li>
+        </ul>
+    </GdsAccordionItem>
+</GdsAccordion>")">
+    <GdsAccordion Id="accordion-with-expanded-section">
+        <GdsAccordionItem Heading="Understanding agile project management" Summary="Introductions, methods, core features.">
+            <ul class="govuk-list">
+                <li>
+                    <a class="govuk-link" href="#">Agile and government services: an introduction</a>
+                </li>
+                <li>
+                    <a class="govuk-link" href="#">Agile methods: an introduction</a>
+                </li>
+                <li>
+                    <a class="govuk-link" href="#">Core principles of agile</a>
+                </li>
+            </ul>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Working with agile methods" Summary="Workspaces, tools and techniques, user stories, planning." Expanded>
+            <ul class="govuk-list">
+                <li>
+                    <a class="govuk-link" href="#">Creating an agile working environment</a>
+                </li>
+                <li>
+                    <a class="govuk-link" href="#">Agile tools and techniques</a>
+                </li>
+                <li>
+                    <a class="govuk-link" href="#">Set up a team wall</a>
+                </li>
+            </ul>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Governing agile services" Summary="Principles, measuring progress, spending money.">
+            <ul class="govuk-list">
+                <li>
+                    <a class="govuk-link" href="#">Governance principles for agile service delivery</a>
+                </li>
+                <li>
+                    <a class="govuk-link" href="#">Measuring and reporting progress</a>
+                </li>
+            </ul>
+        </GdsAccordionItem>
+
+    </GdsAccordion>
+</Example>
+
 
 @code {
 
