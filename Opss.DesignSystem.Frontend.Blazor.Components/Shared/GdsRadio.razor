@@ -118,7 +118,7 @@
     #region Event Handlers
     private Task RadioChanged(ChangeEventArgs e)
     {
-        return Parent.RadioChanged(Value);
+        return Parent!.RadioChanged(Value);
     }
     #endregion
 

@@ -269,9 +269,9 @@
     {
         if (checkbox.Checked == true)
         {
-            CheckboxChanged(true, checkbox.Value);
+            CheckboxChanged(true, checkbox.Value!);
         }
-        if (Values != null && Values.Contains(checkbox.Value))
+        if (Values != null && Values.Contains(checkbox.Value!))
         {
             checkbox.Check();
         }

@@ -215,7 +215,7 @@
     /// If FieldsetDescribedBy is provided, it will override
     /// any calculated value.
     /// </summary>
-    private string fieldsetDescribedBy
+    private string? fieldsetDescribedBy
     {
         get
         {
@@ -227,11 +227,10 @@
                 describedBy.Add(Name + "-hint");
             if (ErrorMessageTemplate != null)
                 describedBy.Add(Name + "-error");
-
             if (describedBy.Any())
                 return string.Join(" ", describedBy);
-            else
-                return null;
+            
+            return null;
         }
     }
     #endregion
