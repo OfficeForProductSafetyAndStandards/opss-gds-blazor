@@ -1,5 +1,6 @@
 ﻿@inherits LayoutComponentBase
 @layout MainLayout
+@inject NavigationManager NavigationManager
 
 <div class="govuk-width-container">
     <div class="govuk-grid-row">
@@ -25,9 +26,6 @@
 
 
 @code {
-    [Inject]
-    NavigationManager NavigationManager { get; set; }
-
     protected override void OnInitialized() => NavigationManager.LocationChanged += (s, e) => StateHasChanged();
 
     bool IsActive(string href, NavLinkMatch navLinkMatch = NavLinkMatch.Prefix)

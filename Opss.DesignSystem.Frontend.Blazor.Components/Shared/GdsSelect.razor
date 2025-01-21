@@ -149,12 +149,6 @@
     #region Cascading Value - Child Items
     private List<GdsSelectOption> items = new List<GdsSelectOption>();
 
-    /// <summary>
-    /// Track the number of dividers to allow checkbox id values to be
-    /// correctly calculated.
-    /// </summary>
-    private int dividerCount = 0;
-
     public void Register(GdsSelectOption selectItem)
     {
         if (selectItem.Selected == true)
