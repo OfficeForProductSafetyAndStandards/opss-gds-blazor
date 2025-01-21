@@ -109,15 +109,6 @@
                 <li>
                     <a class="govuk-link" href="#">Writing user stories</a>
                 </li>
-                <li>
-                    <a class="govuk-link" href="#">Planning in agile</a>
-                </li>
-                <li>
-                    <a class="govuk-link" href="#">Deciding on priorities</a>
-                </li>
-                <li>
-                    <a class="govuk-link" href="#">Developing a roadmap</a>
-                </li>
             </ul>
         </GdsAccordionItem>
         <GdsAccordionItem Heading="Governing agile services" Summary="Principles, measuring progress, spending money.">
@@ -131,15 +122,6 @@
                 <li>
                     <a class="govuk-link" href="#">Spend controls: check if you need approval to spend money on a service</a>
                 </li>
-                <li>
-                    <a class="govuk-link" href="#">Spend controls: apply for approval to spend money on a service</a>
-                </li>
-                <li>
-                    <a class="govuk-link" href="#">Spend controls: the new pipeline process</a>
-                </li>
-                <li>
-                    <a class="govuk-link" href="#">Working across organisational boundaries</a>
-                </li>
             </ul>
         </GdsAccordionItem>
         <GdsAccordionItem Heading="Phases of an agile project" Summary="Discovery, alpha, beta, live and retirement.">
@@ -152,12 +134,6 @@
                 </li>
                 <li>
                     <a class="govuk-link" href="#">How the beta phase works</a>
-                </li>
-                <li>
-                    <a class="govuk-link" href="#">How the live phase works</a>
-                </li>
-                <li>
-                    <a class="govuk-link" href="#">Retiring your service</a>
                 </li>
             </ul>
         </GdsAccordionItem>
@@ -216,15 +192,6 @@
                     <li>
                         <a class="govuk-link" href="#">Writing user stories</a>
                     </li>
-                    <li>
-                        <a class="govuk-link" href="#">Planning in agile</a>
-                    </li>
-                    <li>
-                        <a class="govuk-link" href="#">Deciding on priorities</a>
-                    </li>
-                    <li>
-                        <a class="govuk-link" href="#">Developing a roadmap</a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -249,15 +216,6 @@
                     </li>
                     <li>
                         <a class="govuk-link" href="#">Spend controls: check if you need approval to spend money on a service</a>
-                    </li>
-                    <li>
-                        <a class="govuk-link" href="#">Spend controls: apply for approval to spend money on a service</a>
-                    </li>
-                    <li>
-                        <a class="govuk-link" href="#">Spend controls: the new pipeline process</a>
-                    </li>
-                    <li>
-                        <a class="govuk-link" href="#">Working across organisational boundaries</a>
                     </li>
                 </ul>
             </div>
@@ -284,16 +242,209 @@
                     <li>
                         <a class="govuk-link" href="#">How the beta phase works</a>
                     </li>
-                    <li>
-                        <a class="govuk-link" href="#">How the live phase works</a>
-                    </li>
-                    <li>
-                        <a class="govuk-link" href="#">Retiring your service</a>
-                    </li>
                 </ul>
+            </div>
+        </div>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void OutputsEmptyAccordion()
+    {
+        // Arrange 
+        var component = Render(@<GdsAccordion></GdsAccordion>);
+
+        // Act Assert 
+        component.MarkupMatches(@<div class="govuk-accordion" data-module="govuk-accordion"></div>);
+    }
+
+    [Fact]
+    public void OutputsAccordionWithExpandedItem()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsAccordion Id="accordion-with-expanded-item">
+        <GdsAccordionItem Heading="Collapsed Item 1">
+            <ul class="govuk-list">
+                <li>Not expanded</li>
+                <li>Not expanded</li>
+                <li>Not expanded</li>
+            </ul>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Expanded Item" Expanded>
+            <ul class="govuk-list">
+                <li>Expanded</li>
+                <li>Expanded</li>
+                <li>Expanded</li>
+                <li>Expanded</li>
+            </ul>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Collapsed Item 3">
+            <ul class="govuk-list">
+                <li>Not expanded</li>
+                <li>Not expanded</li>
+            </ul>
+        </GdsAccordionItem>
+    </GdsAccordion>
+     );
+
+        // Act Assert
+        component.MarkupMatches(
+    @<div class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-expanded-item">
+        <div class="govuk-accordion__section">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                    <span class="govuk-accordion__section-button" id="accordion-with-expanded-item-heading-1">
+                        Collapsed Item 1
+                    </span>
+                </h2>
+            </div>
+            <div id="accordion-with-expanded-item-content-1" class="govuk-accordion__section-content">
+                <ul class="govuk-list">
+                    <li>Not expanded</li>
+                    <li>Not expanded</li>
+                    <li>Not expanded</li>
+                </ul>
+            </div>
+        </div>
+        <div class="govuk-accordion__section govuk-accordion__section--expanded">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                    <span class="govuk-accordion__section-button" id="accordion-with-expanded-item-heading-2">
+                        Expanded Item
+                    </span>
+                </h2>
+            </div>
+            <div id="accordion-with-expanded-item-content-2" class="govuk-accordion__section-content">
+                <ul class="govuk-list">
+                    <li>Expanded</li>
+                    <li>Expanded</li>
+                    <li>Expanded</li>
+                    <li>Expanded</li>
+                </ul>
+            </div>
+        </div>
+        <div class="govuk-accordion__section">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                    <span class="govuk-accordion__section-button" id="accordion-with-expanded-item-heading-3">
+                        Collapsed Item 3
+                    </span>
+                </h2>
+            </div>
+            <div id="accordion-with-expanded-item-content-3" class="govuk-accordion__section-content">
+                <ul class="govuk-list">
+                    <li>Not expanded</li>
+                    <li>Not expanded</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void OutputsAccordionWithHideShowTextAttributes()
+    {
+        // Arrange
+        var hideAllSectionsText = "test hide all sections";
+        var hideSectionText = "test hide section text";
+        var hideSectionAriaLabelText = "test hide section text - aria label";
+        var showAllSectionsText = "test show all sections";
+        var showSectionText = "test show section";
+        var showSectionAriaLabelText = "test show section text - aria label";
+
+        var component = Render(
+    @<GdsAccordion Id="accordion-attributes" HideAllSectionsText=@hideAllSectionsText HideSectionText=@hideSectionText HideSectionAriaLabelText=@hideSectionAriaLabelText ShowAllSectionsText=@showAllSectionsText ShowSectionText=@showSectionText ShowSectionAriaLabelText=@showSectionAriaLabelText>
+        <GdsAccordionItem Heading="Just attributes">
+            <div>Content with attributes</div>
+        </GdsAccordionItem>
+     </GdsAccordion>
+    );
+
+        // Act Assert 
+        component.MarkupMatches(
+    @<div class="govuk-accordion" data-module="govuk-accordion" id="accordion-attributes" data-i18n.hide-all-sections=@hideAllSectionsText data-i18n.hide-section=@hideSectionText data-i18n.hide-section-aria-label=@hideSectionAriaLabelText data-i18n.show-all-sections=@showAllSectionsText data-i18n.show-section=@showSectionText data-i18n.show-section-aria-label=@showSectionAriaLabelText>
+        <div class="govuk-accordion__section">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                    <span class="govuk-accordion__section-button" id="accordion-attributes-heading-1">
+                       Just attributes
+                    </span>
+                </h2>
+            </div>
+            <div id="accordion-attributes-content-1" class="govuk-accordion__section-content">
+                <div>Content with attributes</div>
             </div>
         </div>
     </div>
         );
     }
+
+    [Fact]
+    public void ThrowsErrorWhenItemHeadingNotSet()
+    {
+        // Arrange Act Assert
+        Assert.Throws<ArgumentNullException>(
+            "Heading",
+            () => {
+                var component = Render(
+    @<GdsAccordion Id="accordion-no-headings">
+        <GdsAccordionItem Summary="No heading 1">
+            <p class="govuk-body">no heading</p>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Has a heading" Summary="Heading 2">
+            <p class="govuk-body">has heading</p>
+        </GdsAccordionItem>
+    </GdsAccordion>
+    );
+        }
+    );        
+    }
+
+    [Fact]
+    public void ThrowsErrorWhenInvalidHeadingLevelSet()
+    {
+        // Arrange Act Assert
+        Assert.Throws<ArgumentOutOfRangeException>(
+    "HeadingLevel",
+        () =>
+        {
+            var component = Render(
+    @<GdsAccordion Id="accordion-invalid-heading-level">
+        <GdsAccordionItem Heading="Invalid Heading Level" Summary="Invalid Heading Level" HeadingLevel="8">
+            <p class="govuk-body">invalid heading level heading</p>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Has a heading" Summary="Heading 2">
+            <p class="govuk-body">has heading</p>
+        </GdsAccordionItem>
+    </GdsAccordion>
+    );
+        }
+    );
+    }
+
+    [Fact]
+    public void ThrowsErrorWhenItemContentIsEmpty()
+    {
+        // Arrange Act Assert
+        Assert.Throws<ArgumentNullException>(
+        "ChildContent",
+        () =>
+        {
+            var component = Render(
+        @<GdsAccordion Id="accordion-empty-content">
+            <GdsAccordionItem Heading="No content" Summary="No content">
+            </GdsAccordionItem>
+            <GdsAccordionItem Heading="Content" Summary="Content 2">
+                <p class="govuk-body">content</p>
+            </GdsAccordionItem>
+        </GdsAccordion>
+        );
+        }
+    );
+    }
+
+
 }

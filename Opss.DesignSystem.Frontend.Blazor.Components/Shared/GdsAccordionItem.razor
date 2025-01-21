@@ -7,8 +7,7 @@
 
 <div class="govuk-accordion__section@(Expanded ? " govuk-accordion__section--expanded" : "")">
     <div class="govuk-accordion__section-header">
-        <GdsHeading HeadingLevel=@HeadingLevel 
-                    Classes="govuk-accordion__section-heading">
+        <GdsHeading HeadingLevel=@HeadingLevel Classes="govuk-accordion__section-heading">
             <span id="@(Parent?.Id)-heading-@Index" 
                   class="govuk-accordion__section-button"
             >
@@ -64,6 +63,22 @@
     /// Set by the parent to identify this element's index
     /// </summary>
     public int Index { get; set; }
+    #endregion
+
+    #region Parameter Validation
+    protected override void OnParametersSet()
+    {
+        if (string.IsNullOrWhiteSpace(Heading))
+            throw new ArgumentNullException(nameof(Heading), "GdsAccordionItem must have a heading");
+
+        if (HeadingLevel < 1 || HeadingLevel > 6)
+            throw new ArgumentOutOfRangeException(nameof(HeadingLevel), "Heading level must have a value between 1 and 6");
+
+        if (ChildContent==null)
+            throw new ArgumentNullException(nameof(ChildContent), "GdsAccordionItem must have child content");
+
+        base.OnParametersSet();
+    }
     #endregion
 
     #region Cascading Value - Parent
