@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Bson;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace Opss.DesignSystem.Frontend.Blazor.Components.Models
     {
         public FileUploadProgress(IBrowserFile file, Action callback)
         {
+            ArgumentNullException.ThrowIfNull(file);
+            
             File = file;
             Callback = callback;
             FileName = file.Name;
@@ -20,7 +23,7 @@ namespace Opss.DesignSystem.Frontend.Blazor.Components.Models
         public IBrowserFile File { get; set; }
         private Action Callback { get; }
         public string FileName { get; set; }
-        public int ProgressPercent { get; set; } = 0;
+        public int ProgressPercent { get; set; }
 
         public void UpdateProgress(int progress)
         {
