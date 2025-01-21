@@ -319,7 +319,31 @@
     </GdsAccordion>
 </Example>
 
+<h3 class="govuk-heading-m" id="custom-text-in-show-hide-buttons">Custom text in show and hide buttons</h3>
 
+<Example CodeExampleContent="@(@"<GdsAccordion Id=""accordion-default"" HideAllSectionsText=""(custom text) hide all sections"" HideSectionText=""(custom text) hide section"" HideSectionAriaLabelText=""(custom text) hide section - aria label"" ShowAllSectionsText=""(custom text) show all sections"" ShowSectionText=""(custom text) show section"" ShowSectionAriaLabelText=""(custom text) show section - aria label"">
+    <GdsAccordionItem Heading=""Writing well for the web"">
+        <p class=""govuk-body"">This is the content for Writing well for the web.</p>
+    </GdsAccordionItem>
+    <GdsAccordionItem Heading=""Writing well for specialists"">
+        <p class=""govuk-body"">This is the content for Writing well for specialists.</p>
+    </GdsAccordionItem>
+    <GdsAccordionItem Heading=""Know your audience"">
+        <p class=""govuk-body"">This is the content for Know your audience.</p>
+    </GdsAccordionItem>
+</GdsAccordion>")">
+    <GdsAccordion Id="accordion-default" HideAllSectionsText="(custom text) hide all sections" HideSectionText="(custom text) hide section" HideSectionAriaLabelText="(custom text) hide section - aria label" ShowAllSectionsText="(custom text) show all sections" ShowSectionText="(custom text) show section" ShowSectionAriaLabelText="(custom text) show section - aria label">
+        <GdsAccordionItem Heading="Writing well for the web">
+            <p class="govuk-body">This is the content for Writing well for the web.</p>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Writing well for specialists">
+            <p class="govuk-body">This is the content for Writing well for specialists.</p>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Know your audience">
+            <p class="govuk-body">This is the content for Know your audience.</p>
+        </GdsAccordionItem>
+    </GdsAccordion>
+</Example>
 @code {
 
 }
