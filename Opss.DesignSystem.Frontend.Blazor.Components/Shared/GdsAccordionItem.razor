@@ -72,7 +72,7 @@
             throw new ArgumentNullException(nameof(Heading), "GdsAccordionItem must have a heading");
 
         if (HeadingLevel < 1 || HeadingLevel > 6)
-            throw new ArgumentException(nameof(HeadingLevel), "Heading level must have a value between 1 and 6");
+            throw new ArgumentOutOfRangeException(nameof(HeadingLevel), "Heading level must have a value between 1 and 6");
 
         if (ChildContent==null)
             throw new ArgumentNullException(nameof(ChildContent), "GdsAccordionItem must have child content");
