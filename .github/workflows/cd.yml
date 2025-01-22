@@ -41,12 +41,14 @@ jobs:
 
       # Increment the package version number
       - name: Increment version number
+        id: increment_version
         working-directory: Opss.DesignSystem.Frontend.Blazor.Components
         run: |
           current_version=$(cat Opss.DesignSystem.Frontend.Blazor.Components.csproj | grep '<Version>' | sed -E 's/<\/?Version>//g' | xargs)
           new_version=$(echo $current_version | awk -F. '{print $1"."$2"."$3+1}')
           sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" Opss.DesignSystem.Frontend.Blazor.Components.csproj
           echo "Updated version to $new_version"
+          echo "new_version=$new_version" >> "$GITHUB_OUTPUT"
 
       # Build the solution
       - name: Build the solution
@@ -77,3 +79,11 @@ jobs:
           git add Opss.DesignSystem.Frontend.Blazor.Components/Opss.DesignSystem.Frontend.Blazor.Components.csproj
           git commit -m "Update version number" || echo "No changes to commit"
           git push origin HEAD:develop
+
+
+      # Create a new release
+      - name: Create a release
+        run: gh release create $VERSION --generate-notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.increment_version.outputs.new_version }}
