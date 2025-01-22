@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          ssh-key: ${{ secrets.DEPLOY_KEY_PRIVATE_KEY }}
           fetch-depth: 0
 
       # Pull latest changes
@@ -70,8 +70,6 @@ jobs:
 
       # Check if the file has changed before committing
       - name: Commit and push changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         working-directory: .
         run: |
           git config user.name "github-actions"
