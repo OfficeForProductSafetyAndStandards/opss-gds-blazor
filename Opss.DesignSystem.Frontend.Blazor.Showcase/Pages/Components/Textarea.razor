@@ -1,0 +1,185 @@
+﻿@page "/Components/Textarea"
+@layout _ComponentsLayout
+
+<PageTitle>Text area</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Textarea</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/text-area/" class="govuk-link">Textarea</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsTextarea Id=""more-detail""
+                Name=""moreDetail"">
+    <LabelTemplate>
+        <GdsLabel Classes=""@LabelSize.Large"" 
+                    IsPageHeading=""true"">
+            Can you provide more detail?
+        </GdsLabel>
+    </LabelTemplate>
+    <HintTemplate>
+        <GdsHint>
+            Do not include personal or financial information,
+            like your National Insurance number or credit card 
+            details
+        </GdsHint>
+    </HintTemplate>
+</GdsTextarea>")">
+    <GdsTextarea Id="more-detail"
+                 Name="moreDetail">
+        <LabelTemplate>
+            <GdsLabel Classes="@LabelSize.Large" 
+                      IsPageHeading="true">
+                Can you provide more detail?
+            </GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint>
+                Do not include personal or financial information,
+                like your National Insurance number or credit card 
+                details
+            </GdsHint>
+        </HintTemplate>
+    </GdsTextarea>
+</Example>
+
+<h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
+
+<Example CodeExampleContent="@(@"<GdsTextarea Id=""more-detail""
+                Name=""moreDetail"">
+    <LabelTemplate>
+        <GdsLabel Classes=""@LabelSize.Large""
+                    IsPageHeading=""true"">
+            Can you provide more detail?
+        </GdsLabel>
+    </LabelTemplate>
+    <HintTemplate>
+        <GdsHint>
+            Do not include personal or financial information,
+            like your National Insurance number or credit card
+            details
+        </GdsHint>
+    </HintTemplate>
+</GdsTextarea>")">
+    <GdsTextarea Id="more-detail"
+                 Name="moreDetail">
+        <LabelTemplate>
+            <GdsLabel Classes="@LabelSize.Large"
+                      IsPageHeading="true">
+                Can you provide more detail?
+            </GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint>
+                Do not include personal or financial information,
+                like your National Insurance number or credit card
+                details
+            </GdsHint>
+        </HintTemplate>
+    </GdsTextarea>
+</Example>
+
+<h3 class="govuk-heading-m" id="use-appropriately-sized">Use appropriately-sized textareas</h3>
+
+<Example CodeExampleContent="@(@"<GdsTextarea Id=""more-detail""
+                Name=""moreDetail""
+                Rows=""8"">
+    <LabelTemplate>
+        <GdsLabel Classes=""@LabelSize.Large""
+                    IsPageHeading=""true"">
+            Can you provide more detail?
+        </GdsLabel>
+    </LabelTemplate>
+    <HintTemplate>
+        <GdsHint>
+            Do not include personal or financial information,
+            like your National Insurance number or credit card
+            details
+        </GdsHint>
+    </HintTemplate>
+</GdsTextarea>")">
+    <GdsTextarea Id="more-detail"
+                 Name="moreDetail"
+                 Rows="8">
+        <LabelTemplate>
+            <GdsLabel Classes="@LabelSize.Large"
+                      IsPageHeading="true">
+                Can you provide more detail?
+            </GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint>
+                Do not include personal or financial information,
+                like your National Insurance number or credit card
+                details
+            </GdsHint>
+        </HintTemplate>
+    </GdsTextarea>
+</Example>
+
+<h3 class="govuk-heading-m" id="asking-more-than-one-question">
+    If you’re asking more than one question on the page
+</h3>
+
+<Example CodeExampleContent="@(@"<GdsTextarea Id=""more-detail""
+                Name=""moreDetail"">
+    <LabelTemplate>
+        <GdsLabel>
+            Can you provide more detail?
+        </GdsLabel>
+    </LabelTemplate>
+</GdsTextarea>")">
+    <GdsTextarea Id="more-detail"
+                 Name="moreDetail">
+        <LabelTemplate>
+            <GdsLabel>
+                Can you provide more detail?
+            </GdsLabel>
+        </LabelTemplate>
+    </GdsTextarea>
+</Example>
+
+<h3 class="govuk-heading-m" id="error-message">
+    Error messages
+</h3>
+
+<Example CodeExampleContent="@(@"<GdsTextarea Id=""more-detail""
+                Name=""moreDetail"">
+    <LabelTemplate>
+        <GdsLabel Classes=""@LabelSize.Large""
+                    IsPageHeading=""true"">
+            Can you provide more detail?
+        </GdsLabel>
+    </LabelTemplate>
+    <HintTemplate>
+        <GdsHint>
+            Do not include personal or financial information,
+            like your National Insurance number or credit card
+            details
+        </GdsHint>
+    </HintTemplate>
+    <ErrorMessageTemplate>
+        <GdsErrorMessage>Enter more detail</GdsErrorMessage>
+    </ErrorMessageTemplate>
+</GdsTextarea>")">
+    <GdsTextarea Id="more-detail"
+                 Name="moreDetail">
+        <LabelTemplate>
+            <GdsLabel Classes="@LabelSize.Large"
+                      IsPageHeading="true">
+                Can you provide more detail?
+            </GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint>
+                Do not include personal or financial information,
+                like your National Insurance number or credit card
+                details
+            </GdsHint>
+        </HintTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>Enter more detail</GdsErrorMessage>
+        </ErrorMessageTemplate>
+    </GdsTextarea>
+</Example>

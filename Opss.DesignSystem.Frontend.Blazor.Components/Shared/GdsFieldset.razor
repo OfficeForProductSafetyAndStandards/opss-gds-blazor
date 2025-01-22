@@ -1,0 +1,35 @@
+﻿@inherits GdsWithContent
+
+<fieldset class="govuk-fieldset @Classes"
+          role=@Role
+          aria-describedby=@DescribedBy
+          @attributes=@Attributes>
+    @if (LegendTemplate != null)
+    {
+        @LegendTemplate
+    }
+    @ChildContent
+</fieldset>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// One or more element IDs to add to the aria-describedby attribute,
+    ///  used to provide additional descriptive information for screenreader users.
+    /// </summary>
+    [Parameter]
+    public string? DescribedBy { get; set; }
+
+    /// <summary>
+    /// The legend for the fieldset component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? LegendTemplate { get; set; }
+
+    /// <summary>
+    /// Optional ARIA role attribute.
+    /// </summary>
+    [Parameter]
+    public string? Role { get; set; }
+    #endregion
+}

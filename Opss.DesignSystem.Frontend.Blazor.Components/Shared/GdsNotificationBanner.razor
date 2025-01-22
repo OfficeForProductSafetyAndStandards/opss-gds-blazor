@@ -1,0 +1,145 @@
+﻿@inherits GdsWithContent
+
+@* <summary>
+    Use a notification banner to tell the user about something they need to
+    know about, but that’s not directly related to the page content.
+</summary> *@
+
+<div class="govuk-notification-banner @notificationBannerClass @Classes"
+     role=@role
+     aria-labelledby=@TitleId
+     data-module="govuk-notification-banner"
+     data-disable-auto-focus="@DisableAutoFocus?.ToString().ToLowerInvariant()"
+     @attributes=@Attributes>
+    <div class="govuk-notification-banner__header">
+        <GdsHeading Id=@TitleId
+                    HeadingLevel=@TitleHeadingLevel
+                    Classes="govuk-notification-banner__title">
+            @if (TitleTemplate == null)
+            {
+                @titleText
+            }
+        </GdsHeading>
+        @if (TitleTemplate != null)
+        {
+            @TitleTemplate
+        }
+    </div>
+    <div class="govuk-notification-banner__content">
+        @if (ChildContent == null)
+        {
+            <p class="govuk-notification-banner__heading">
+                @Text
+            </p>
+        }
+        else
+        {
+            @ChildContent
+        }
+    </div>
+</div>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// The title text that displays in the notification banner. You can use any
+    ///  HTML with this option.
+    ///  The available default values are ‘Important’, ‘Success’, and null:
+    ///  - if you do not set type, titleText defaults to "Important"
+    ///  - if you set type to success, titleText defaults to "Success"
+    ///  - if you set titleTemplate, this option is ignored
+    /// </summary>
+    [Parameter]
+    public string? TitleText { get; set; }
+
+    /// <summary>
+    /// Sets heading level for the title only. You can only use values
+    /// between 1 and 6 with this option. The default is 2.
+    /// </summary>
+    [Parameter]
+    public int? TitleHeadingLevel { get; set; } = 2;
+
+    /// <summary>
+    /// The title HTML to use within the notification banner.
+    /// You can use any string with this option. Use this option
+    /// to set text that contains HTML. If you set titleTemplate, the
+    /// titleText option is ignored.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? TitleTemplate { get; set; }
+
+    /// <summary>
+    /// The type of notification to render. You can use only "success"
+    /// or "important" values with this option. If you set type to "success",
+    /// the notification banner sets role to "alert". JavaScript then
+    /// moves the keyboard focus to the notification banner when the
+    /// page loads. If you do not set type, the notification banner
+    /// sets role to "region".
+    /// </summary>
+    [Parameter]
+    public NotificationBannerType Type { get; set; } = NotificationBannerType.Important;
+
+    /// <summary>
+    /// Overrides the value of the role attribute for the notification
+    /// banner. Defaults to "region". If you set type to "success", role
+    /// defaults to "alert".
+    /// </summary>
+    [Parameter]
+    public string? Role { get; set; }
+
+    /// <summary>
+    /// The id for the banner title, and the aria-labelledby attribute in the
+    /// banner. Defaults to "govuk-notification-banner-title".
+    /// </summary>
+    [Parameter]
+    public string? TitleId { get; set; } = "govuk-notification-banner-title";
+
+    /// <summary>
+    /// The text that displays in the notification banner.
+    /// You can use any string with this option.
+    /// If you set ChildContent, this option is ignored.
+    /// </summary>
+    [Parameter]
+    public string? Text { get; set; }
+
+    /// <summary>
+    /// If you set type to "success", or role to "alert", JavaScript moves 
+    /// the keyboard focus to the notification banner when the page loads. 
+    /// To disable this behaviour, set disableAutoFocus to true.
+    /// </summary>
+    [Parameter]
+    public bool? DisableAutoFocus { get; set; }
+    #endregion
+
+    #region Private Properties
+    private string notificationBannerClass
+    {
+        get
+        {
+            return (Type == NotificationBannerType.Success) ? "govuk-notification-banner--success" : "";
+        }
+    }
+
+    private string role
+    {
+        get
+        {
+            if (!string.IsNullOrEmpty(Role))
+                return role;
+
+            return (Type == NotificationBannerType.Success) ? "alert" : "region";
+        }
+    }
+
+    private string titleText
+    {
+        get
+        {
+            if (!string.IsNullOrEmpty(TitleText))
+                return TitleText;
+
+            return (Type == NotificationBannerType.Success) ? "Success" : "Important";
+        }
+    }
+    #endregion
+}

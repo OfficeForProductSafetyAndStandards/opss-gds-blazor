@@ -1,0 +1,31 @@
+﻿@inherits GdsWithContent
+
+<GdsHeading Classes="moj-side-navigation__title"
+            HeadingLevel=@HeadingLevel
+            Attributes=@Attributes
+>
+    @ChildContent
+</GdsHeading>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// A number for the heading level. Defaults to 4 (<h4>)
+    /// </summary>
+    [Parameter]
+    public int? HeadingLevel { get; set; } = 4;
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsSideNavigationSectionHeading must exist within a GdsSideNavigationSection");
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsSideNavigationSection? Parent { get; set; }
+    #endregion
+}

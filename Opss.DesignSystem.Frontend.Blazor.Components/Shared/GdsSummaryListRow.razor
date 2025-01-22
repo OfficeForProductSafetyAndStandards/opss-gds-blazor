@@ -1,0 +1,123 @@
+﻿
+<div class="govuk-summary-list__row @noActionsClass @Classes">
+    <dt class="govuk-summary-list__key @KeyClasses">
+        <CascadingValue Value=this>
+            @KeyTemplate
+        </CascadingValue>
+    </dt>
+    <dd class="govuk-summary-list__value @ValueClasses">
+        <CascadingValue Value=this>
+            @ValueTemplate
+        </CascadingValue>
+    </dd>
+    @if (ActionsTemplate != null)
+    {
+        <dd class="govuk-summary-list__actions @ActionsClasses">
+            @if (HasMultipleActions == true)
+            {
+                <ul class="govuk-summary-list__actions-list">
+                    <CascadingValue Value=this>
+                        @ActionsTemplate
+                    </CascadingValue>
+                </ul>
+            }
+            else
+            {
+                <CascadingValue Value=this>
+                    @ActionsTemplate
+                </CascadingValue>
+            }
+        </dd>
+    }
+</div>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Classes to add to the row div.
+    /// </summary>
+    [Parameter]
+    public string? Classes { get; set; }
+
+    /// <summary>
+    /// Required. The reference content (key) for each row item in the summary list component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? KeyTemplate { get; set; }
+
+    /// <summary>
+    /// Classes to add to the key wrapper.
+    /// </summary>
+    [Parameter]
+    public string? KeyClasses { get; set; }
+
+    /// <summary>
+    /// Required. The value for each row item in the summary list component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ValueTemplate { get; set; }
+
+    /// <summary>
+    /// Classes to add to the value wrapper.
+    /// </summary>
+    [Parameter]
+    public string? ValueClasses { get; set; }
+
+    /// <summary>
+    /// Used to wrap the actions in a ul
+    /// </summary>
+    [Parameter]
+    public bool? HasMultipleActions { get; set; }
+
+    /// <summary>
+    /// The action link content for each row item in the summary list component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ActionsTemplate { get; set; }
+
+    /// <summary>
+    /// Classes to add to the actions wrapper.
+    /// </summary>
+    [Parameter]
+    public string? ActionsClasses { get; set; }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsSummaryListRow must exist within a GdsSummaryList");
+
+        base.OnInitialized();
+    }
+
+    /// <summary>
+    /// This is public so a List Item Action can access the List
+    /// to retrieve it's title (assuming it's a card)
+    /// </summary>
+    [CascadingParameter]
+    public GdsSummaryList? Parent { get; set; }
+    #endregion
+
+    #region Private Properties
+    private string? noActionsClass {
+        get{
+            if (Parent!.ChildHasAction && !actions.Any())
+                return "govuk-summary-list__row--no-actions";
+
+                return null;
+        }
+    }
+    #endregion
+
+    #region Cascading Value - Child Items
+    private List<GdsSummaryListRowAction> actions = new List<GdsSummaryListRowAction>();
+
+    public void Register(GdsSummaryListRowAction action)
+    {
+        actions.Add(action);
+        Parent!.RegisterListHasAction();
+        this.StateHasChanged();
+    }
+    #endregion
+}

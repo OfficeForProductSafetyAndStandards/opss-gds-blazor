@@ -1,0 +1,26 @@
+﻿@inherits GdsWithContent
+
+<nav class="moj-sub-navigation @Classes"
+     aria-label=@(string.IsNullOrEmpty(Label) ? "Secondary navigation region" : Label)
+     @attributes=@Attributes
+>
+    @if (ChildContent != null)
+    {
+        <ul class="moj-sub-navigation__list">
+            <CascadingValue Value=this>
+                @ChildContent
+            </CascadingValue>
+        </ul>
+    }
+</nav>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// The aria-label to add to the nav container.
+    /// Defaults to 'Secondary navigation region'.
+    /// </summary>
+    [Parameter]
+    public string? Label { get; set; }
+    #endregion
+}

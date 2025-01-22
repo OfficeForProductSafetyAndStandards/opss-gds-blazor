@@ -1,0 +1,65 @@
+﻿@* <summary>
+    The navigation section of the footer before a section break and the copyright and license information.
+</summary> *@
+
+<div class="govuk-footer__section govuk-grid-column-@Width">
+
+    <h2 class="govuk-footer__heading govuk-heading-m">@Title</h2>
+
+    @if (ChildContent != null)
+    {
+        <ul class="govuk-footer__list @(@Columns != null ? "govuk-footer__list--columns-" + Columns : null)">
+
+            <CascadingValue Value=this>
+                @ChildContent
+            </CascadingValue>
+
+        </ul>
+    }
+
+</div>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Required. Title for a section.
+    /// </summary>
+    [Parameter]
+    public string? Title { get; set; }
+
+    /// <summary>
+    /// Width of each navigation section in the footer.
+    /// You can pass any Design System grid width here
+    /// – for example, "one-third", "two-thirds" or "one-half".
+    /// Defaults to "full".
+    /// </summary>
+    [Parameter]
+    public string? Width { get; set; } = FooterNavigationWidth.Full;
+
+    /// <summary>
+    /// Amount of columns to display items in
+    /// navigation section of the footer.
+    /// </summary>
+    [Parameter]
+    public int? Columns { get; set; }
+
+    /// <summary>
+    /// The items within the navigation section of the footer component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsFooterNavigation must exist within a GdsFooter");
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsFooter? Parent { get; set; }
+    #endregion
+}

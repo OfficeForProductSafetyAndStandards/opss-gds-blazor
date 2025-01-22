@@ -1,0 +1,297 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void OutputsCookieBanner()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsCookieBanner AriaLabel="Cookies on [name of service]">
+        <GdsCookieBannerMessage HeadingText="Cookies on [name of service]">
+            <ChildContent>
+                <p class="govuk-body">
+                    We use some essential cookies to make this service work.
+                </p>
+                <p class="govuk-body">
+                    We’d also like to use analytics cookies so we can understand
+                    how you use the service and make improvements.
+                </p>
+            </ChildContent>
+            <ActionsTemplate>
+                <GdsCookieBannerAction Type=@CookieBannerActionTypes.Button>
+                    Accept analytics cookies
+                </GdsCookieBannerAction>
+                <GdsCookieBannerAction Type=@CookieBannerActionTypes.Button>
+                    Reject analytics cookies
+                </GdsCookieBannerAction>
+                <GdsCookieBannerAction Href="#">
+                    View cookies
+                </GdsCookieBannerAction>
+            </ActionsTemplate>
+        </GdsCookieBannerMessage>
+    </GdsCookieBanner>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-cookie-banner" data-nosnippet role="region" aria-label="Cookies on [name of service]">
+        <div class="govuk-cookie-banner__message govuk-width-container">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <h2 class="govuk-cookie-banner__heading govuk-heading-m">
+                        Cookies on [name of service]
+                    </h2>
+                    <div class="govuk-cookie-banner__content">
+                        <p class="govuk-body">We use some essential cookies to make this service work.</p>
+                        <p class="govuk-body">We’d also like to use analytics cookies so we can understand how you use the service and make improvements.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="govuk-button-group">
+                <button type="button" class="govuk-button" data-module="govuk-button">
+                    Accept analytics cookies
+                </button>
+                <button type="button" class="govuk-button" data-module="govuk-button">
+                    Reject analytics cookies
+                </button>
+                <a class="govuk-link" href="#">View cookies</a>
+            </div>
+        </div>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void OutputsCookieBannerWithNameAndValue()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsCookieBanner AriaLabel="Cookies on [name of service]">
+        <GdsCookieBannerMessage HeadingText="Cookies on [name of service]">
+            <ChildContent>
+                <p class="govuk-body">
+                    We use some essential cookies to make this service work.
+                </p>
+                <p class="govuk-body">
+                    We’d like to set additional cookies so we can remember your
+                    settings, understand how people use the service and make
+                    improvements.
+                </p>
+            </ChildContent>
+            <ActionsTemplate>
+                <GdsCookieBannerAction Type=@CookieBannerActionTypes.Submit
+                                       Name="cookies[additional]"
+                                       Value="yes">
+                    Accept additional cookies
+                </GdsCookieBannerAction>
+                <GdsCookieBannerAction Type=@CookieBannerActionTypes.Submit
+                                       Name="cookies[additional]"
+                                       Value="no">
+                    Reject additional cookies
+                </GdsCookieBannerAction>
+                <GdsCookieBannerAction Href="#">
+                    View cookies
+                </GdsCookieBannerAction>
+            </ActionsTemplate>
+        </GdsCookieBannerMessage>
+    </GdsCookieBanner>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-cookie-banner" data-nosnippet role="region" aria-label="Cookies on [name of service]">
+        <div class="govuk-cookie-banner__message govuk-width-container">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <h2 class="govuk-cookie-banner__heading govuk-heading-m">
+                        Cookies on [name of service]
+                    </h2>
+                    <div class="govuk-cookie-banner__content">
+                        <p class="govuk-body">We use some essential cookies to make this service work.</p>
+                        <p class="govuk-body">We’d like to set additional cookies so we can remember your settings, understand how people use the service and make improvements.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="govuk-button-group">
+                <button value="yes" type="submit" name="cookies[additional]" class="govuk-button" data-module="govuk-button">
+                    Accept additional cookies
+                </button>
+                <button value="no" type="submit" name="cookies[additional]" class="govuk-button" data-module="govuk-button">
+                    Reject additional cookies
+                </button>
+                <a class="govuk-link" href="#">View cookies</a>
+            </div>
+        </div>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void OutputsCookieBannerWithHideMessage()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsCookieBanner AriaLabel="Cookies on [name of service]">
+        <GdsCookieBannerMessage>
+            <ChildContent>
+                <p class="govuk-body">
+                    You’ve accepted additional cookies.
+                    You can <a class="govuk-link" href="#">
+                        change your cookie
+                        settings
+                    </a> at any time.
+                </p>
+            </ChildContent>
+            <ActionsTemplate>
+                <GdsCookieBannerAction Type=@CookieBannerActionTypes.Submit
+                                       Name="cookies[hide]"
+                                       Value="yes">
+                    Hide cookie message
+                </GdsCookieBannerAction>
+            </ActionsTemplate>
+        </GdsCookieBannerMessage>
+    </GdsCookieBanner>
+    );
+
+        component.MarkupMatches(
+    @<div class="govuk-cookie-banner" data-nosnippet role="region" aria-label="Cookies on [name of service]">
+        <div class="govuk-cookie-banner__message govuk-width-container">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <div class="govuk-cookie-banner__content">
+                        <p class="govuk-body">You’ve accepted additional cookies. You can <a class="govuk-link" href="#">change your cookie settings</a> at any time.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="govuk-button-group">
+                <button value="yes" type="submit" name="cookies[hide]" class="govuk-button" data-module="govuk-button">
+                    Hide cookie message
+                </button>
+            </div>
+        </div>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void OutputsCookieBannerWithProgressiveMessages()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsCookieBanner AriaLabel="Cookies on [name of service]">
+        <GdsCookieBannerMessage HeadingText="Cookies on [name of service]">
+            <ChildContent>
+                <p class="govuk-body">
+                    We use some essential cookies to make this service work.
+                </p>
+                <p class="govuk-body">
+                    We’d like to set additional cookies so we can remember your
+                    settings, understand how people use the service and make
+                    improvements.
+                </p>
+            </ChildContent>
+            <ActionsTemplate>
+                <GdsCookieBannerAction Type=@CookieBannerActionTypes.Submit
+                                       Name="cookies[additional]"
+                                       Value="yes">
+                    Accept additional cookies
+                </GdsCookieBannerAction>
+                <GdsCookieBannerAction Type=@CookieBannerActionTypes.Submit
+                                       Name="cookies[additional]"
+                                       Value="no">
+                    Reject additional cookies
+                </GdsCookieBannerAction>
+                <GdsCookieBannerAction Href="#">
+                    View cookies
+                </GdsCookieBannerAction>
+            </ActionsTemplate>
+        </GdsCookieBannerMessage>
+        <GdsCookieBannerMessage Hidden=@true>
+            <ChildContent>
+                <p class="govuk-body">
+                    You’ve accepted additional cookies. You can
+                    <a class="govuk-link" href="#">change your cookie settings</a>
+                    at any time.
+                </p>
+            </ChildContent>
+            <ActionsTemplate>
+                <GdsCookieBannerAction Type=@CookieBannerActionTypes.Submit
+                                       Name="cookies[hide]"
+                                       Value="yes">
+                    Hide cookie message
+                </GdsCookieBannerAction>
+            </ActionsTemplate>
+        </GdsCookieBannerMessage>
+        <GdsCookieBannerMessage Hidden=@true>
+            <ChildContent>
+                <p class="govuk-body">
+                    You’ve rejected additional cookies. You can
+                    <a class="govuk-link" href="#">change your cookie settings</a>
+                    at any time.
+                </p>
+            </ChildContent>
+            <ActionsTemplate>
+                <GdsCookieBannerAction Type=@CookieBannerActionTypes.Submit
+                                       Name="cookies[hide]"
+                                       Value="yes">
+                    Hide cookie message
+                </GdsCookieBannerAction>
+            </ActionsTemplate>
+        </GdsCookieBannerMessage>
+    </GdsCookieBanner>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-cookie-banner" data-nosnippet role="region" aria-label="Cookies on [name of service]">
+        <div class="govuk-cookie-banner__message govuk-width-container">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <h2 class="govuk-cookie-banner__heading govuk-heading-m">
+                        Cookies on [name of service]
+                    </h2>
+                    <div class="govuk-cookie-banner__content">
+                        <p class="govuk-body">We use some essential cookies to make this service work.</p>
+                        <p class="govuk-body">We’d like to set additional cookies so we can remember your settings, understand how people use the service and make improvements.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="govuk-button-group">
+                <button value="yes" type="submit" name="cookies[additional]" class="govuk-button" data-module="govuk-button">
+                    Accept additional cookies
+                </button>
+                <button value="no" type="submit" name="cookies[additional]" class="govuk-button" data-module="govuk-button">
+                    Reject additional cookies
+                </button>
+                <a class="govuk-link" href="#">View cookies</a>
+            </div>
+        </div>
+        <div class="govuk-cookie-banner__message govuk-width-container" hidden>
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <div class="govuk-cookie-banner__content">
+                        <p class="govuk-body">You’ve accepted additional cookies. You can <a class="govuk-link" href="#">change your cookie settings</a> at any time.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="govuk-button-group">
+                <button value="yes" type="submit" name="cookies[hide]" class="govuk-button" data-module="govuk-button">
+                    Hide cookie message
+                </button>
+            </div>
+        </div>
+        <div class="govuk-cookie-banner__message govuk-width-container" hidden>
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <div class="govuk-cookie-banner__content">
+                        <p class="govuk-body">You’ve rejected additional cookies. You can <a class="govuk-link" href="#">change your cookie settings</a> at any time.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="govuk-button-group">
+                <button value="yes" type="submit" name="cookies[hide]" class="govuk-button" data-module="govuk-button">
+                    Hide cookie message
+                </button>
+            </div>
+        </div>
+    </div>
+    );
+    }
+}

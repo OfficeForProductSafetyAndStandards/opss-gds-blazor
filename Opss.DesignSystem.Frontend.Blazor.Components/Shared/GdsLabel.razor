@@ -1,19 +1,54 @@
-﻿@inherits Models.GdsLabelModel
+﻿@inherits GdsWithContent
 
 @if (ChildContent != null)
 {
     if (IsPageHeading)
     {
         <h1 class="govuk-label-wrapper">
-            <label id="@Id" class="govuk-label @Classes" for="@For" @attributes="@Attributes">
+            <label id=@Id
+                   class="govuk-label @Classes"
+                   for=@(ParentId ?? For)
+                   @attributes=@Attributes
+            >
                 @ChildContent
             </label>
         </h1>
     }
     else
     {
-        <label id="@Id" class="govuk-label @Classes" for="@For" @attributes="@Attributes">
+        <label id=@Id
+               class="govuk-label @Classes"
+               for=@(ParentId ?? For)
+               @attributes=@Attributes
+        >
             @ChildContent
         </label>
     }
+}
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// The Id attached to the label control.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
+    /// Whether the label also acts as the heading for the page.
+    /// </summary>
+    [Parameter]
+    public bool IsPageHeading { get; set; }
+
+    /// <summary>
+    /// The value of the `for` attribute, the ID of the input the label is associated with.
+    /// </summary>
+    [Parameter]
+    public string? For { get; set; }
+    #endregion
+
+    #region Cascading Value - ParentId
+    [CascadingParameter]
+    public string? ParentId { get; set; }
+    #endregion
 }

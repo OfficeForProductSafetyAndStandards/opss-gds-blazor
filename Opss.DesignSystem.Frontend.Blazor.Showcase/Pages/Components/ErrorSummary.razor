@@ -1,0 +1,203 @@
+﻿@page "/Components/ErrorSummary"
+@layout _ComponentsLayout
+
+<PageTitle>Error summary</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Error summary</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/error-summary/" class="govuk-link">Error summary</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsErrorSummary>
+    <GdsErrorSummaryItem Href=""#"">
+        Enter your full name
+    </GdsErrorSummaryItem>
+    <GdsErrorSummaryItem Href=""#"">
+        The date your passport was issued must be in the past
+    </GdsErrorSummaryItem>
+</GdsErrorSummary>")">
+    <GdsErrorSummary>
+        <GdsErrorSummaryItem Href="#">Enter your full name</GdsErrorSummaryItem>
+        <GdsErrorSummaryItem Href="#">The date your passport was issued must be in the past</GdsErrorSummaryItem>
+    </GdsErrorSummary>
+</Example>
+
+<h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
+
+<Example CodeExampleContent="@(@"<GdsErrorSummary>
+    <GdsErrorSummaryItem Href=""#"">
+        Enter your full name
+    </GdsErrorSummaryItem>
+    <GdsErrorSummaryItem Href=""#"">
+        The date your passport was issued must be in the past
+    </GdsErrorSummaryItem>
+</GdsErrorSummary>")">
+    <GdsErrorSummary>
+        <GdsErrorSummaryItem Href="#">Enter your full name</GdsErrorSummaryItem>
+        <GdsErrorSummaryItem Href="#">The date your passport was issued must be in the past</GdsErrorSummaryItem>
+    </GdsErrorSummary>
+</Example>
+
+<h3 class="govuk-heading-m" id="linking-to-each-answer">
+    Linking from the error summary to each answer
+</h3>
+
+<Example CodeExampleContent="@(@"<GdsErrorSummary>
+    <GdsErrorSummaryItem Href=""#full-name-input"">
+        Enter your full name
+    </GdsErrorSummaryItem>
+</GdsErrorSummary>
+<h1 class=""govuk-heading-l"">Your details</h1>
+<GdsTextInput Id=""full-name-input""
+                Name=""name""
+                Autocomplete=""name"">
+    <LabelTemplate>
+        <GdsLabel>
+            Full name
+        </GdsLabel>
+    </LabelTemplate>
+    <ErrorMessageTemplate>
+        <GdsErrorMessage>
+            Enter your full name
+        </GdsErrorMessage>
+    </ErrorMessageTemplate>
+</GdsTextInput>>")">
+    <GdsErrorSummary>
+        <GdsErrorSummaryItem Href="#full-name-input">
+            Enter your full name
+        </GdsErrorSummaryItem>
+    </GdsErrorSummary>
+    <h1 class="govuk-heading-l">Your details</h1>
+    <GdsTextInput Id="full-name-input"
+                  Name="name"
+                  Autocomplete="name">
+        <LabelTemplate>
+            <GdsLabel>
+                Full name
+            </GdsLabel>
+        </LabelTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>
+                Enter your full name
+            </GdsErrorMessage>
+        </ErrorMessageTemplate>
+    </GdsTextInput>
+</Example>
+
+<Example CodeExampleContent="@(@"<GdsErrorSummary>
+    <GdsErrorSummaryItem Href=""#passport-issued-year"">
+        The date your passport was issued must include a year
+    </GdsErrorSummaryItem>
+</GdsErrorSummary>
+<GdsDateInput Id=""passport-issued"" NamePrefix=""passport-issued"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            When was your passport issued?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>For example, 27 3 2007</GdsHint>
+    </HintTemplate>
+    <ErrorMessageTemplate>
+        <GdsErrorMessage>
+            The date your passport was issued must include a year
+        </GdsErrorMessage>
+    </ErrorMessageTemplate>
+    <ChildContent>
+        <GdsDateInputField DatePart=""@DateInputFieldType.Day"" Value=""6"" />
+        <GdsDateInputField DatePart=""@DateInputFieldType.Month"" Value=""3"" />
+        <GdsDateInputField HasError=@true DatePart=""@DateInputFieldType.Year"" />
+    </ChildContent>
+</GdsDateInput>")">
+    <GdsErrorSummary>
+        <GdsErrorSummaryItem Href="#passport-issued-year">
+            The date your passport was issued must include a year
+        </GdsErrorSummaryItem>
+    </GdsErrorSummary>
+    <GdsDateInput Id="passport-issued" NamePrefix="passport-issued">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                When was your passport issued?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>For example, 27 3 2007</GdsHint>
+        </HintTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>
+                The date your passport was issued must include a year
+            </GdsErrorMessage>
+        </ErrorMessageTemplate>
+        <ChildContent>
+            <GdsDateInputField DatePart="@DateInputFieldType.Day" Value="6" />
+            <GdsDateInputField DatePart="@DateInputFieldType.Month" Value="3" />
+            <GdsDateInputField HasError=@true DatePart="@DateInputFieldType.Year" />
+        </ChildContent>
+    </GdsDateInput>
+</Example>
+
+<Example CodeExampleContent="@(@"<GdsErrorSummary>
+    <GdsErrorSummaryItem Href=""#nationality"">
+        Select if you are British, Irish or a citizen of a different country
+    </GdsErrorSummaryItem>
+</GdsErrorSummary>
+<GdsCheckboxes Name=""nationality"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            What is your nationality?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>
+            If you have dual nationality, select all options that are relevant to you
+        </GdsHint>
+    </HintTemplate>
+    <ErrorMessageTemplate>
+        <GdsErrorMessage>Select if you are British, Irish or a citizen of a different country</GdsErrorMessage>
+    </ErrorMessageTemplate>
+    <ChildContent>
+        <GdsCheckbox Value=""british"" Text=""British"">
+            <HintTemplate>
+                <GdsHint Classes=""govuk-checkboxes__hint"">including English, Scottish, Welsh and Northern Irish</GdsHint>
+            </HintTemplate>
+        </GdsCheckbox>
+        <GdsCheckbox Value=""irish"">Irish</GdsCheckbox>
+        <GdsCheckbox Value=""other"">Citizen of another country</GdsCheckbox>
+    </ChildContent>
+</GdsCheckboxes>")">
+    <GdsErrorSummary>
+        <GdsErrorSummaryItem Href="#nationality">
+            Select if you are British, Irish or a citizen of a different country
+        </GdsErrorSummaryItem>
+    </GdsErrorSummary>
+    <GdsCheckboxes Name="nationality">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                What is your nationality?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>
+                If you have dual nationality, select all options that are relevant to you
+            </GdsHint>
+        </HintTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>Select if you are British, Irish or a citizen of a different country</GdsErrorMessage>
+        </ErrorMessageTemplate>
+        <ChildContent>
+            <GdsCheckbox Value="british" Text="British">
+                <HintTemplate>
+                    <GdsHint Classes="govuk-checkboxes__hint">including English, Scottish, Welsh and Northern Irish</GdsHint>
+                </HintTemplate>
+            </GdsCheckbox>
+            <GdsCheckbox Value="irish">Irish</GdsCheckbox>
+            <GdsCheckbox Value="other">Citizen of another country</GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+</Example>
+
+@code {
+
+}

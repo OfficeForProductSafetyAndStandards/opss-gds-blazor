@@ -1,0 +1,224 @@
+﻿@inherits GdsWithContent
+
+@* <summary>
+    Use the date input component to help users enter a memorable date or one
+    they can easily look up.
+</summary> *@
+
+<div class=@classes
+     @attributes=@FormGroupAttributes>
+
+    @if (includeFieldset)
+    {
+        <GdsFieldset Role="group"
+                     DescribedBy=@fieldsetDescribedBy
+                     Classes=@FieldsetClasses
+                     @attributes=@FieldsetAttributes>
+            <LegendTemplate>
+                @LegendTemplate
+            </LegendTemplate>
+            <ChildContent>
+                @if (HintTemplate != null)
+                {
+                    <CascadingValue Value=@Id>
+                        @HintTemplate
+                    </CascadingValue>
+                }
+                @if (ErrorMessageTemplate != null)
+                {
+                    <CascadingValue Value=@Id>
+                        @ErrorMessageTemplate
+                    </CascadingValue>
+                }
+
+                <div id=@Id
+                     class="govuk-date-input">
+                    @if (BeforeInputTemplate != null)
+                    {
+                        @BeforeInputTemplate
+                    }
+                    <CascadingValue Value=this>
+                        @ChildContent
+                    </CascadingValue>
+                    @if (AfterInputTemplate != null)
+                    {
+                        @AfterInputTemplate
+                    }
+                </div>
+            </ChildContent>
+        </GdsFieldset>
+    }
+    else
+    {
+        @if (HintTemplate != null)
+        {
+            <CascadingValue Value=@Id>
+                @HintTemplate
+            </CascadingValue>
+        }
+        @if (ErrorMessageTemplate != null)
+        {
+            <CascadingValue Value=@Id>
+                @ErrorMessageTemplate
+            </CascadingValue>
+        }
+
+        <div id=@Id
+             class="govuk-date-input">
+            @if (BeforeInputTemplate != null)
+            {
+                @BeforeInputTemplate
+            }
+            <CascadingValue Value=this>
+                @ChildContent
+            </CascadingValue>
+            @if (AfterInputTemplate != null)
+            {
+                @AfterInputTemplate
+            }
+        </div>
+    }
+</div>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Required. This is used for the main component and to compose
+    /// the ID attribute for each item.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
+    /// Optional prefix. This is used to prefix each item name, separated by -.
+    /// </summary>
+    [Parameter]
+    public string? NamePrefix { get; set; }
+
+    /// <summary>
+    /// Can be used to add a hint to the date input component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
+
+    /// <summary>
+    /// Can be used to add an error message to the date input component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ErrorMessageTemplate { get; set; }
+
+    /// <summary>
+    /// Classes to add to the form group (for example to show error state for the whole group).
+    /// </summary>
+    [Parameter]
+    public string? FormGroupClasses { get; set; }
+
+    /// <summary>
+    /// HTML attributes (for example data attributes) to add to the form group.
+    /// </summary>
+    [Parameter]
+    [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Component parameters should have a public setter")]
+    public Dictionary<string, object>? FormGroupAttributes { get; set; } = new Dictionary<string, object>();
+
+    /// <summary>
+    /// Content to add before the date field inputs used by the date input component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? BeforeInputTemplate { get; set; }
+
+    /// <summary>
+    /// Content to add after the date field inputs used by the date input component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? AfterInputTemplate { get; set; }
+
+    /// <summary>
+    /// Should the radios be used by the date input component?
+    /// Defaults to false, unless Legend, FieldsetClasses,
+    /// FieldsetRole or FieldsetAttributes are set.
+    /// </summary>
+    [Parameter]
+    public bool? IncludeFieldset { get; set; }
+
+    /// <summary>
+    /// Classes to add to the fieldset container.
+    /// </summary>
+    [Parameter]
+    public string? FieldsetClasses { get; set; }
+
+    /// <summary>
+    /// One or more element IDs to add to the aria-describedby attribute, used
+    /// to provide additional descriptive information for screenreader users.
+    /// Will override the calculated described by value.
+    /// </summary>
+    [Parameter]
+    public string? FieldsetDescribedBy { get; set; }
+
+    /// <summary>
+    /// Optional ARIA role attribute.
+    /// </summary>
+    [Parameter]
+    public string? FieldsetRole { get; set; }
+
+    /// <summary>
+    /// HTML attributes (for example data attributes) to add to the fieldset container.
+    /// </summary>
+    [Parameter]
+    [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Component parameters should have a public setter")]
+    public Dictionary<string, object>? FieldsetAttributes { get; set; } = new Dictionary<string, object>();
+
+    /// <summary>
+    /// The legend for the fieldset component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? LegendTemplate { get; set; }
+    #endregion
+
+    #region Private Properties
+    /// <summary>
+    /// If any of the Fieldset properties are specified, we should return true.
+    /// Otherwise, return the IncludeFieldset value or false.
+    /// </summary>
+    private bool includeFieldset
+    {
+        get
+        {
+            if (LegendTemplate != null || FieldsetClasses != null || FieldsetRole != null || FieldsetAttributes != null)
+                return true;
+
+            return IncludeFieldset ?? false;
+        }
+    }
+
+    private string? fieldsetDescribedBy
+    {
+        get
+        {
+            var describedBy = new List<string>();
+
+            if (HintTemplate != null)
+                describedBy.Add(Id + "-hint");
+            if (ErrorMessageTemplate != null)
+                describedBy.Add(Id + "-error");
+
+            if (describedBy.Any())
+                return string.Join(" ", describedBy);
+            else
+                return null;
+        }
+    }
+
+    private string classes
+    {
+        get
+        {
+            var classBuilder = "govuk-form-group";
+            if (Classes != null)
+                classBuilder += $" {Classes}";
+            if (ErrorMessageTemplate != null)
+                classBuilder += " govuk-form-group--error";
+            return classBuilder;
+        }
+    }
+    #endregion
+}

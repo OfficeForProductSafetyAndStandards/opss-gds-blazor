@@ -7,17 +7,25 @@
     <UserSecretsId>15d2edf3-d876-4fa4-827c-76c5f1d35526</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
-	
+    
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-  	<Exec Command="npm install" WorkingDirectory="$(ProjectDir)" />
-  	<Exec Command="npm run build" WorkingDirectory="$(ProjectDir)" />
+      <Exec Command="npm install" WorkingDirectory="$(ProjectDir)" />
+      <Exec Command="npm run build" WorkingDirectory="$(ProjectDir)" />
   </Target>
   <ItemGroup>
-	  <None Include="src\**" />
+      <None Include="src\**" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Blazor.HighlightJS" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Formats.Asn1" Version="9.0.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="8.0.0" />
+    <PackageReference Include="System.Text.Json" Version="9.0.0" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +34,12 @@
 
   <ItemGroup>
     <Content Update="Pages\Components\BackLink.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Pages\Components\ButtonMenu.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Pages\Components\Textarea.razor">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>
   </ItemGroup>

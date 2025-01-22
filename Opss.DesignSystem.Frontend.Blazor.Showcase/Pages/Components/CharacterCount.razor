@@ -1,0 +1,192 @@
+﻿@page "/Components/CharacterCount"
+@layout _ComponentsLayout
+
+<PageTitle>Character count</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Character count</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/character-count/" class="govuk-link">Character count</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""with-hint""
+                   Name=""withHint""
+                   MaxLength=""200"">
+    <LabelTemplate>
+        <GdsLabel Classes=@LabelSize.Large
+            IsPageHeading=@true>
+            Can you provide more detail?
+        </GdsLabel>
+    </LabelTemplate>
+    <HintTemplate>
+        <GdsHint>
+            Do not include personal or financial information like your National Insurance number or credit card details
+        </GdsHint>
+    </HintTemplate>
+</GdsCharacterCount>")">
+    <GdsCharacterCount Id="with-hint"
+                       Name="withHint"
+                       MaxLength="200">
+        <LabelTemplate>
+            <GdsLabel Classes=@LabelSize.Large
+                      IsPageHeading=@true>
+                Can you provide more detail?
+            </GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint>
+                Do not include personal or financial information like your National Insurance number or credit card details
+            </GdsHint>
+        </HintTemplate>
+    </GdsCharacterCount>
+</Example>
+
+<h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
+
+<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""with-hint""
+                    Name=""withHint""
+                    MaxLength=""200"">
+    <LabelTemplate>
+        <GdsLabel Classes=@LabelSize.Large
+                    IsPageHeading=@true>
+            Can you provide more detail?
+        </GdsLabel>
+    </LabelTemplate>
+    <HintTemplate>
+        <GdsHint>
+            Do not include personal or financial information like your National Insurance number or credit card details
+        </GdsHint>
+    </HintTemplate>
+</GdsCharacterCount>")">
+    <GdsCharacterCount Id="with-hint"
+                       Name="withHint"
+                       MaxLength="200">
+        <LabelTemplate>
+            <GdsLabel Classes=@LabelSize.Large
+                      IsPageHeading=@true>
+                Can you provide more detail?
+            </GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint>
+                Do not include personal or financial information like your National Insurance number or credit card details
+            </GdsHint>
+        </HintTemplate>
+    </GdsCharacterCount>
+</Example>
+
+<h3 class="govuk-heading-m" id="if-youre-asking-one-question-on-the-page">If you’re asking one question on the page</h3>
+
+<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""label-as-page-heading""
+                Name=""labelAsPageHeading""
+                MaxLength=""200"">
+<LabelTemplate>
+    <GdsLabel>
+        Describe the nature of your event
+    </GdsLabel>
+</LabelTemplate>
+</GdsCharacterCount>")">
+    <GdsCharacterCount Id="label-as-page-heading"
+                       Name="labelAsPageHeading"
+                       MaxLength="200">
+        <LabelTemplate>
+            <GdsLabel>
+                Describe the nature of your event
+            </GdsLabel>
+        </LabelTemplate>
+    </GdsCharacterCount>
+</Example>
+
+<h3 class="govuk-heading-m" id="consider-if-a-word-count-is-more-helpful">Consider if a word count is more helpful</h3>
+
+<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""word-count""
+                    Name=""wordCount""
+                    MaxWords=""150"">
+    <LabelTemplate>
+        <GdsLabel Classes=@LabelSize.Large
+                    IsPageHeading=@true>
+            Enter a job description
+        </GdsLabel>
+    </LabelTemplate>
+</GdsCharacterCount>")">
+    <GdsCharacterCount Id="word-count"
+                       Name="wordCount"
+                       MaxWords="150">
+        <LabelTemplate>
+            <GdsLabel Classes=@LabelSize.Large
+                      IsPageHeading=@true>
+                Enter a job description
+            </GdsLabel>
+        </LabelTemplate>
+    </GdsCharacterCount>
+</Example>
+
+<h3 class="govuk-heading-m" id="avoid-narrow-limits">Avoid narrow limits</h3>
+
+<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""threshold""
+                    Name=""threshold""
+                    MaxLength=""15""
+                    Threshold=""8""
+                    Value=""This example of a textarea has a character limit of 15 characters."">
+    <LabelTemplate>
+        <GdsLabel Classes=@LabelSize.Large
+                    IsPageHeading=@true>
+            Can you provide more detail?
+        </GdsLabel>
+    </LabelTemplate>
+</GdsCharacterCount>")">
+    <GdsCharacterCount Id="threshold"
+                       Name="threshold"
+                       MaxLength="15"
+                       Threshold="8"
+                       Value="This example of a textarea has a character limit of 15 characters.">
+        <LabelTemplate>
+            <GdsLabel Classes=@LabelSize.Large
+                      IsPageHeading=@true>
+                Can you provide more detail?
+            </GdsLabel>
+        </LabelTemplate>
+    </GdsCharacterCount>
+</Example>
+
+<h3 class="govuk-heading-m" id="error-messages">Error messages</h3>
+
+<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""exceeding-characters""
+                    Name=""exceeding""
+                    MaxLength=""15""
+                    Value=""A content designer works on the end-to-end journey of a service to help users complete their goal."">
+    <LabelTemplate>
+        <GdsLabel Classes=@LabelSize.Large
+                    IsPageHeading=@true>
+            Enter a job description
+        </GdsLabel>
+    </LabelTemplate>
+    <ErrorMessageTemplate>
+        <GdsErrorMessage>
+            Job description must be 15 characters or less
+        </GdsErrorMessage>
+    </ErrorMessageTemplate>
+</GdsCharacterCount>")">
+    <GdsCharacterCount Id="exceeding-characters"
+                       Name="exceeding"
+                       MaxLength="15"
+                       Value="A content designer works on the end-to-end journey of a service to help users complete their goal.">
+        <LabelTemplate>
+            <GdsLabel Classes=@LabelSize.Large
+                      IsPageHeading=@true>
+                Enter a job description
+            </GdsLabel>
+        </LabelTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>
+                Job description must be 15 characters or less
+            </GdsErrorMessage>
+        </ErrorMessageTemplate>
+    </GdsCharacterCount>
+</Example>
+
+
+@code {
+
+}

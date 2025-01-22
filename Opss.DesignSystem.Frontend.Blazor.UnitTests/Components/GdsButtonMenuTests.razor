@@ -1,0 +1,115 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void OutputsButtonMenu()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsButtonMenu MenuTitle="Menu title">
+        <GdsButton Type="submit" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Menu item 1</GdsButton>
+        <GdsButton Type="submit" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Menu item 2</GdsButton>
+        <GdsButton Type="submit" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Menu item 3</GdsButton>
+    </GdsButtonMenu>);
+
+        component.MarkupMatches(
+    @<div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Menu title">
+        <button type="submit" class="govuk-button moj-button-menu__item govuk-button--secondary" data-module="govuk-button">
+            Menu item 1
+        </button>
+        <button type="submit" class="govuk-button moj-button-menu__item govuk-button--secondary" data-module="govuk-button">
+            Menu item 2
+        </button>
+        <button type="submit" class="govuk-button moj-button-menu__item govuk-button--secondary" data-module="govuk-button">
+            Menu item 3
+        </button>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void OutputsButtonMenuLeftAligned()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsButtonMenu MenuTitle="Review" Classes=@ButtonStyle.Secondary>
+        <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Approve</GdsButton>
+        <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Request more information</GdsButton>
+        <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Reject with reason</GdsButton>
+    </GdsButtonMenu>);
+
+        component.MarkupMatches(
+    @<div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Review" data-button-classes="govuk-button--secondary">
+        <a href="#" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary" data-module="govuk-button">
+            Approve
+        </a>
+        <a href="#" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary" data-module="govuk-button">
+            Request more information
+        </a>
+        <a href="#" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary" data-module="govuk-button">
+            Reject with reason
+        </a>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void OutputsButtonMenuRightAligned()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsButtonMenu MenuTitle="Review" Classes=@ButtonStyle.Secondary RightAlignMenu=@true>
+        <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Approve</GdsButton>
+        <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Request more information</GdsButton>
+        <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Reject with reason</GdsButton>
+    </GdsButtonMenu>);
+
+        component.MarkupMatches(
+    @<div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Review" data-button-classes="govuk-button--secondary" data-align-menu="right">
+        <a href="#" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary" data-module="govuk-button">
+            Approve
+        </a>
+        <a href="#" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary" data-module="govuk-button">
+            Request more information
+        </a>
+        <a href="#" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary" data-module="govuk-button">
+            Reject with reason
+        </a>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void OutputsButtonMenuGrouped()
+    {
+        // Arrange
+        var component = Render(
+    @<div class="moj-button-group moj-button-group--inline">
+        <GdsButton Type="submit">Accept booking</GdsButton>
+        <GdsButtonMenu MenuTitle="Review booking" Classes=@ButtonStyle.Secondary>
+            <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Cancel</GdsButton>
+            <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Put on hold</GdsButton>
+            <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Request more information</GdsButton>
+        </GdsButtonMenu>
+    </div>);
+
+        component.MarkupMatches(
+    @<div class="moj-button-group moj-button-group--inline">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+            Accept booking
+        </button>
+        <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Review booking" data-button-classes="govuk-button--secondary">
+            <a href="#" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary" data-module="govuk-button">
+                Cancel
+            </a>
+            <a href="#" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary" data-module="govuk-button">
+                Put on hold
+            </a>
+            <a href="#" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary" data-module="govuk-button">
+                Request more information
+            </a>
+        </div>
+    </div>
+        );
+    }
+}

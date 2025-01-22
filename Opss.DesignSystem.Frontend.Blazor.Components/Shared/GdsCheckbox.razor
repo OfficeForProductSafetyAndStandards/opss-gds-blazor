@@ -1,0 +1,221 @@
+﻿@inherits GdsWithContent
+
+<div class="govuk-checkboxes__item">
+    <input id=@id
+           class="govuk-checkboxes__input @Classes"
+           name=@(Name ?? Parent?.Name)
+           type="checkbox"
+           value=@Value
+           aria-describedby=@describedBy
+           data-behaviour=@(IsExclusive ? "exclusive" : null)
+           checked=@isChecked
+           data-aria-controls=@conditionalId
+           disabled=@Disabled
+           @oninput=CheckboxChanged
+           @attributes=@Attributes />
+
+    <label class="govuk-label govuk-checkboxes__label"
+           for=@id>
+        @if (Text != null)
+            @Text
+        else
+            @ChildContent
+    </label>
+    @if (HintTemplate != null)
+    {
+        <CascadingValue Value=@hintId>
+            @HintTemplate
+        </CascadingValue>
+    }
+</div>
+@if (ConditionalTemplate != null)
+{
+    <div id=@conditionalId
+         class="govuk-checkboxes__conditional @(isChecked == true ? "" : "govuk-checkboxes__conditional--hidden")">
+        @ConditionalTemplate
+    </div>
+}
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Specific Id attribute for the checkbox item. If omitted,
+    /// then component global idPrefix option will be applied.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
+    /// Required. Value for the checkbox input.
+    /// </summary>
+    [Parameter]
+    public string? Value { get; set; }
+
+    /// <summary>
+    /// Text to use within each checkbox item label.
+    /// </summary>
+    [Parameter]
+    public string? Text { get; set; }
+
+    /// <summary>
+    /// Can be used to add a hint to the checkboxes component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
+
+    /// <summary>
+    /// Whether the checkbox should be checked when the page loads.
+    /// Takes precedence over the top-level value option.
+    /// </summary>
+    [Parameter]
+    public bool? Checked { get; set; }
+
+    /// <summary>
+    /// Provide additional content to reveal when the checkbox is checked.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ConditionalTemplate { get; set; }
+
+    /// <summary>
+    /// If true, checkbox will be disabled.
+    /// </summary>
+    [Parameter]
+    public bool? Disabled { get; set; }
+
+    /// <summary>
+    /// If set, implements a ‘None of these’ type behaviour via
+    /// JavaScript when checkboxes are clicked.
+    /// </summary>
+    [Parameter]
+    public bool IsExclusive { get; set; } = false;
+
+    /// <summary>
+    /// Specific name for the checkbox item. If omitted, then component global
+    /// name string will be applied.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// Classes to add to the label tag.
+    /// </summary>
+    [Parameter]
+    public string? LabelClasses { get; set; }
+
+    /// <summary>
+    /// HTML attributes (for example data attributes) to add to the label tag.
+    /// </summary>
+    [Parameter]
+    [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Component parameters should have a public setter")]
+    public Dictionary<string, object>? LabelAttributes { get; set; } = new Dictionary<string, object>();
+    #endregion
+
+    #region Public Properties
+    /// <summary>
+    /// Set by the parent to identify this element's index
+    /// </summary>
+    public int Index { get; set; }
+
+    /// <summary>
+    /// Mark the checkbox as checked.
+    /// </summary>
+    public void Check() => isChecked = true;
+    #endregion
+
+    #region Event Handlers
+    private Task CheckboxChanged(ChangeEventArgs e)
+    {
+        // get the checkbox state
+        var value = bool.Parse(e.Value?.ToString() ?? string.Empty);
+
+        return Parent!.CheckboxChanged(value, Value ?? string.Empty);
+    }
+    #endregion
+
+    #region Private Properties
+    private string? id
+    {
+        get
+        {
+            var id = Id ?? Parent?.IdPrefix ?? Parent?.Name;
+            if (Index == 1)
+            {
+                return id;
+            }
+            else
+            {
+                return id + "-" + Index;
+            }
+        }
+    }
+
+    private string hintId
+    {
+        get
+        {
+            return id + "-item";
+        }
+    }
+
+    private string? conditionalId
+    {
+        get
+        {
+            if (ConditionalTemplate == null) return null;
+
+            return $"conditional-{id}";
+        }
+    }
+
+    private string? describedBy
+    {
+        get
+        {
+            var fullText = "";
+            if (parentIncludesFieldset) fullText = Parent?.DescribedBy ?? "";
+            if (HintTemplate != null) fullText += $" {id}-item-hint";
+            return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
+        }
+    }
+
+    private bool parentIncludesFieldset
+    {
+        get
+        {
+            if (Parent?.LegendTemplate != null || Parent?.FieldsetClasses != null || Parent?.FieldsetRole != null || Parent?.FieldsetAttributes != null)
+                return true;
+
+            return Parent?.IncludeFieldset ?? false;
+        }
+    }
+
+    private bool? isChecked;
+    #endregion
+
+    #region Parameter Validation
+    protected override void OnParametersSet()
+    {
+        if (string.IsNullOrEmpty(Value))
+            throw new ArgumentNullException(nameof(Value), "The Value parameter is required for each GdsCheckbox");
+
+        base.OnParametersSet();
+    }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        isChecked = Checked;
+
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsCheckbox must exist within a GdsCheckboxes");
+
+        Parent.Register(this);
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsCheckboxes? Parent { get; set; }
+    #endregion
+}

@@ -1,0 +1,48 @@
+﻿@inherits GdsWithContent
+
+@* <summary>
+    The panel component is a visible container used on confirmation or results
+    pages to highlight important content.
+</summary> *@
+
+<div class="govuk-panel govuk-panel--confirmation @Classes" @attributes=@Attributes>
+    <GdsHeading HeadingLevel=@HeadingLevel Classes="govuk-panel__title">
+        @if (TitleTemplate == null)
+        {
+            @TitleText
+        }
+    </GdsHeading>
+    @if (TitleTemplate != null)
+    {
+        @TitleTemplate
+    }
+    <div class="govuk-panel__body">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// If titleHtml is set, this is not required.
+    /// Text to use within the panel. If titleHtml
+    /// is provided, the titleText option will be ignored.
+    /// </summary>
+    [Parameter]
+    public string? TitleText { get; set; }
+
+    /// <summary>
+    /// If titleText is set, this is not required.
+    /// HTML to use within the panel. If titleHtml
+    /// is provided, the titleText option will be ignored.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? TitleTemplate { get; set; }
+
+    /// <summary>
+    /// Heading level, from 1 to 6. Default is 1.
+    /// </summary>
+    [Parameter]
+    public int HeadingLevel { get; set; } = 1;
+    #endregion
+}

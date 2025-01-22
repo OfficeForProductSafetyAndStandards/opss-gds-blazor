@@ -1,0 +1,67 @@
+﻿@page "/Components/NotificationBanner"
+@layout _ComponentsLayout
+
+<PageTitle>Notification banner</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Notification banner</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/notification-banner/" class="govuk-link">Notification banner</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsNotificationBanner>
+    <p class=@NotificationBannerClasses.Heading>
+        You have 7 days left to send your application.
+        <a class=@NotificationBannerClasses.Link href=""#"">View application</a>.
+    </p>
+</GdsNotificationBanner>")">
+    <GdsNotificationBanner>
+        <p class=@NotificationBannerClasses.Heading>
+            You have 7 days left to send your application.
+            <a class=@NotificationBannerClasses.Link href="#">View application</a>.
+        </p>
+    </GdsNotificationBanner>
+</Example>
+
+<h2 class="govuk-heading-l" id="telling-the-user-about-a-problem-that-affects-the-whole-service">Telling the user about a problem that affects the whole service</h2>
+
+<Example CodeExampleContent="@(@"<GdsNotificationBanner Text=""There may be a delay in processing your application because of the coronavirus outbreak."" />")">
+    <GdsNotificationBanner Text="There may be a delay in processing your application because of the coronavirus outbreak." />
+</Example>
+
+<h2 class="govuk-heading-l" id="telling-the-user-about-something-thats-happening-elsewhere">Telling the user about something that’s happening elsewhere</h2>
+
+<Example CodeExampleContent="@(@"<GdsNotificationBanner>
+    <p class=@NotificationBannerClasses.Heading>
+        You have 7 days left to send your application.
+        <a class=@NotificationBannerClasses.Link href=""#"">View application</a>.
+    </p>
+</GdsNotificationBanner>")">
+    <GdsNotificationBanner>
+        <p class=@NotificationBannerClasses.Heading>
+            You have 7 days left to send your application.
+            <a class=@NotificationBannerClasses.Link href="#">View application</a>.
+        </p>
+    </GdsNotificationBanner>
+</Example>
+
+<h2 class="govuk-heading-l" id="reacting-to-something-the-user-has-done">Reacting to something the user has done</h2>
+
+<Example CodeExampleContent="@(@"<GdsNotificationBanner Type=""NotificationBannerType.Success"">
+        <GdsHeading HeadingLevel=""3"" Classes=@NotificationBannerClasses.Heading>
+            Training outcome recorded and trainee withdrawn
+        </GdsHeading>
+        <p class=""govuk-body"">Contact <a class=@NotificationBannerClasses.Link href=""#"">example@department.gov.uk</a> if you think there’s a problem.</p>
+    </GdsNotificationBanner>")">
+    <GdsNotificationBanner Type="NotificationBannerType.Success">
+        <GdsHeading HeadingLevel="3" Classes=@NotificationBannerClasses.Heading>
+            Training outcome recorded and trainee withdrawn
+        </GdsHeading>
+        <p class="govuk-body">Contact <a class=@NotificationBannerClasses.Link href="#">example@department.gov.uk</a> if you think there’s a problem.</p>
+    </GdsNotificationBanner>
+</Example>
+
+@code {
+
+}

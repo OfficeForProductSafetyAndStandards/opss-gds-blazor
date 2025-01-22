@@ -1,0 +1,195 @@
+﻿@inherits GdsWithContent
+
+@* <summary>
+    Help users navigate forwards and backwards through a series of pages.
+    For example, search results or guidance that’s divided into multiple website pages
+</summary> *@
+
+<nav class="govuk-pagination @Classes @(UseBlockStyle == true ? " govuk-pagination--block" : "")"
+     aria-label="Pagination"
+     @attributes=@Attributes>
+    @if (PreviousTemplate != null && (currentIndex > 0 || UseBlockStyle == true))
+    {
+        <CascadingValue Value=this>
+            @PreviousTemplate
+        </CascadingValue>
+    }
+    @if (ChildContent != null)
+    {
+        <ul class="govuk-pagination__list">
+            <CascadingValue Value=this>
+                @ChildContent
+            </CascadingValue>
+        </ul>
+    }
+    @if (NextTemplate != null && (currentIndex < maxPageIndex || UseBlockStyle == true))
+    {
+        <CascadingValue Value=this>
+            @NextTemplate
+        </CascadingValue>
+    }
+</nav>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// A link to the previous page, if there is a previous page.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? PreviousTemplate { get; set; }
+
+    /// <summary>
+    /// A link to the next page, if there is a next page.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? NextTemplate { get; set; }
+
+    /// <summary>
+    /// Use the ‘block’ style of pagination to let users navigate
+    /// through related content that has been split across multiple
+    /// pages. Stack the links vertically, so they’re more obvious
+    /// to screen magnifier users when they’re zoomed in.
+    /// </summary>
+    [Parameter]
+    public bool? UseBlockStyle { get; set; }
+
+    /// <summary>
+    /// Show an appropriate number of pages to fit the horizontal space available.
+    /// For smaller screens, set to 0. To show page numbers for:
+    ///
+    /// the current page
+    /// previous and next pages
+    /// first and last pages
+    ///
+    /// For larger screens (default), set to 1. To show page numbers for:
+    ///
+    /// the current page
+    /// at least one page immediately before and after the current page
+    /// first and last pages
+    /// </summary>
+    [Parameter]
+    public int NumberOfPagesToShowBesideActive { get; set; } = 1;
+
+    /// <summary>
+    /// The active page number
+    /// </summary>
+    [Parameter]
+    public string? ActivePageNumber { get; set; }
+
+    /// <summary>
+    /// Called on a page change, will return the page number
+    /// </summary>
+    [Parameter]
+    public EventCallback<string> OnPageChanged { get; set; }
+    #endregion
+
+    #region Event Handlers
+    [Parameter]
+    public EventCallback<string?> ActivePageNumberChanged { get; set; }
+    #endregion
+
+    #region Private Properties
+    private int currentIndex = 0;
+    private int maxPageIndex = -1;
+    #endregion
+
+    #region Child Event Handlers
+    public void Previous()
+    {
+        currentIndex--;
+        SetCurrentLink(links[currentIndex].Number);
+    }
+
+    public void Next()
+    {
+        currentIndex++;
+        SetCurrentLink(links[currentIndex].Number);
+    }
+
+    public void NavigatePage(string? number)
+    {
+        currentIndex = links.IndexOf(links.First(i => i.Number == number));
+        SetCurrentLink(number);
+    }
+
+    /// <summary>
+    /// Logic to determine which elements should show and which should be ellipsis
+    /// </summary>
+    /// <param name="number"></param>
+    private void SetCurrentLink(string? number)
+    {
+        links.ForEach(link => link.Current = link.Number == number);
+
+        // Collect the indecies of elements that should be visible
+        var visibleIndexes = new List<int> { 0, currentIndex, maxPageIndex };
+        for (int i = 1; i <= NumberOfPagesToShowBesideActive; i++)
+        {
+            visibleIndexes.Add(currentIndex - i);
+            visibleIndexes.Add(currentIndex + i);
+        }
+        // hide elements not in the visible list and reset ellipsis
+        links.ForEach(link =>
+        {
+            link.Hide = !visibleIndexes.Contains(links.IndexOf(link));
+            link.Ellipsis = false;
+        });
+
+        // Set the ellipsis elements
+        if (currentIndex - NumberOfPagesToShowBesideActive - 1 > 0)
+            links[currentIndex - NumberOfPagesToShowBesideActive - 1].Ellipsis = true;
+        if (currentIndex + NumberOfPagesToShowBesideActive + 1 < maxPageIndex)
+            links[currentIndex + NumberOfPagesToShowBesideActive + 1].Ellipsis = true;
+
+        OnPageChanged.InvokeAsync(links[currentIndex].Number);
+        ActivePageNumberChanged.InvokeAsync(links[currentIndex].Number);
+
+        this.StateHasChanged();
+    }
+    #endregion
+
+    #region Cascading Value - Child Items
+    private List<GdsPaginationLink> links = new List<GdsPaginationLink>();
+
+    /// <summary>
+    /// Register the pagination link so we can initialise it
+    /// for showing / hiding links
+    /// </summary>
+    /// <param name="link"></param>
+    public void Register(GdsPaginationLink link)
+    {
+        if (maxPageIndex == 2)
+            this.links.ElementAt(maxPageIndex).Ellipsis = true;
+
+        if (maxPageIndex > 2)
+            this.links.ElementAt(maxPageIndex).Hide = true;
+
+        if (!this.links.Any())
+            link.Current = true;
+
+        this.links.Add(link);
+
+        maxPageIndex++;
+        if (link.Number == ActivePageNumber)
+        {
+            currentIndex = maxPageIndex;
+            SetCurrentLink(link.Number);
+        }
+        this.StateHasChanged();
+    }
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && !string.IsNullOrEmpty(ActivePageNumber)
+            && links.Any(link => link.Number == ActivePageNumber))
+        {
+            var currentLink = links.First(link => link.Number == ActivePageNumber);
+            currentIndex = links.IndexOf(currentLink);
+            SetCurrentLink(currentLink.Number);
+
+            this.StateHasChanged();
+        }
+
+        return base.OnAfterRenderAsync(firstRender);
+    }
+    #endregion
+}

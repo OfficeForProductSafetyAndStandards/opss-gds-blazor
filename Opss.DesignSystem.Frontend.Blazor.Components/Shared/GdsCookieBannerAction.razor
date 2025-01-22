@@ -1,0 +1,81 @@
+﻿@inherits GdsWithHref
+
+@if (Type != null && Href == null)
+{
+    <button type=@Type
+            class="govuk-button @Classes"
+            data-module="govuk-button"
+            name=@Name
+            value=@Value
+            @onclick=@OnClick
+            @attributes=@Attributes
+        >
+        @ChildContent
+    </button>
+}
+else if (Type == "button" && Href != null)
+{
+    <a href=@Href
+       role="button"
+       draggable="false"
+       class="govuk-button @Classes"
+       data-module="govuk-button"
+       @attributes=@Attributes
+    >
+        @ChildContent
+    </a>
+}
+else if (Href != null)
+{
+    <a class="govuk-link @Classes"
+       href=@Href
+       @attributes=@Attributes
+    >
+        @ChildContent
+    </a>
+}
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// The type of button – "button" or "submit". If
+    /// href is provided, set type to "button" render
+    /// a link styled as a button.
+    /// </summary>
+    [Parameter]
+    public string? Type { get; set; }
+
+    /// <summary>
+    /// The name attribute for the button. Does not apply
+    /// if you set href, which makes a link.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// The value attribute for the button. Does not apply
+    /// if you set href, which makes a link.
+    /// </summary>
+    [Parameter]
+    public string? Value { get; set; }
+
+    /// <summary>
+    /// Event to call on click event of button type elements
+    /// </summary>
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsCookieBannerAction must exist within a GdsCookieBannerMessage");
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsCookieBannerMessage? Parent { get; set; }
+    #endregion
+}

@@ -1,97 +1,87 @@
 @inherits BunitContext
 
 @code {
-	[Fact]
-	public void OutputsBackLink()
-	{
-		// Arrange
-		var id = "hello-world";
-		var component = Render(@<GdsBackLink Id=@id></GdsBackLink>);
+    [Fact]
+    public void OutputsBackLink()
+    {
+        // Arrange
+        var component = Render(@<GdsBackLink Href="#"></GdsBackLink>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.Find("a").MarkupMatches(
-			@<a id=@id href="#" class="govuk-back-link">
-				Back
-			</a>
-		);
-	}
+        component.MarkupMatches(
+    @<a href="#" class="govuk-back-link">
+        Back
+    </a>
+        );
+    }
 
-	[Fact]
-	public void OutputsBackLinkWithHref()
-	{
-		// Arrange
-		var id = "hello-world";
-		var href = "/page/";
-		var component = Render(@<GdsBackLink Id=@id Href=@href></GdsBackLink>);
+    [Fact]
+    public void OutputsBackLinkWithHref()
+    {
+        // Arrange
+        var href = "/page/";
+        var component = Render(@<GdsBackLink Href=@href></GdsBackLink>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.Find("a").MarkupMatches(
-			@<a id=@id href=@href class="govuk-back-link">
-				Back
-			</a>
-		);
-	}
-	[Fact]
-	public void OutputsBackLinkWithContent()
-	{
-		// Arrange
-		var id = "hello-world";
-		var component = Render(@<GdsBackLink Id=@id>Go Back</GdsBackLink>);
+        component.MarkupMatches(
+    @<a href=@href class="govuk-back-link">
+        Back
+    </a>
+        );
+    }
 
-		// Assert that content of the paragraph shows counter at zero
-		component.Find("a").MarkupMatches(
-			@<a id=@id href="#" class="govuk-back-link">
-				Go Back
-			</a>
-		);
-	}
+    [Fact]
+    public void OutputsBackLinkWithContent()
+    {
+        // Arrange
+        var component = Render(@<GdsBackLink Href="#">Go Back</GdsBackLink>);
 
-	[Fact]
-	public void OutputsBackLinkWithAdditionalClass()
-	{
-		// Arrange
-		var id = "hello-world";
-		var customClass = "custom-back";
-		var component = Render(@<GdsBackLink Id=@id Classes=@customClass></GdsBackLink>);
+        component.MarkupMatches(
+    @<a href="#" class="govuk-back-link">
+        Go Back
+    </a>
+        );
+    }
 
-		// Assert that content of the paragraph shows counter at zero
-		component.Find("a").MarkupMatches(
-			@<a id=@id href="#" class="govuk-back-link @customClass">
-				Back
-			</a>
-	);
-	}
+    [Fact]
+    public void OutputsBackLinkWithAdditionalClass()
+    {
+        // Arrange
+        var customClass = "custom-back";
+        var component = Render(@<GdsBackLink Href="#" Classes=@customClass></GdsBackLink>);
 
-	[Fact]
-	public void OutputsBackLinkWithAdditionalAttributes()
-	{
-		// Arrange
-		var id = "hello-world";
-		var customAttributes = new Dictionary<string, object>
-		{
-			{"aria-label", "Hello"}
-		};
-		var component = Render(@<GdsBackLink Id=@id Attributes=@customAttributes></GdsBackLink>);
+        component.MarkupMatches(
+    @<a href="#" class="govuk-back-link @customClass">
+        Back
+    </a>
+    );
+    }
 
-		// Assert that content of the paragraph shows counter at zero
-		component.Find("a").MarkupMatches(
-			@<a id=@id href="#" class="govuk-back-link" aria-label="Hello">
-				Back
-			</a>
-		);
-	}
-	[Fact]
-	public void OutputsBackLinkWithDarkBackground()
-	{
-		// Arrange
-		var id = "hello-world";
-		var component = Render(@<GdsBackLink Id=@id IsOnDarkBackground=@true></GdsBackLink>);
+    [Fact]
+    public void OutputsBackLinkWithAdditionalAttributes()
+    {
+        // Arrange
+        var customAttributes = new Dictionary<string, object>
+        {
+            {"aria-label", "Hello"}
+        };
+        var component = Render(@<GdsBackLink Href="#" Attributes=@customAttributes></GdsBackLink>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.Find("a").MarkupMatches(
-	@<a id=@id href="#" class="govuk-back-link govuk-back-link--inverse">
-		Back
-	</a>
-		);
-	}
+        component.MarkupMatches(
+    @<a href="#" class="govuk-back-link" aria-label="Hello">
+        Back
+    </a>
+        );
+    }
+
+    [Fact]
+    public void OutputsBackLinkWithDarkBackground()
+    {
+        // Arrange
+        var component = Render(@<GdsBackLink Href="#" IsOnDarkBackground=@true></GdsBackLink>);
+
+        component.MarkupMatches(
+    @<a href="#" class="govuk-back-link govuk-back-link--inverse">
+        Back
+    </a>
+        );
+    }
 }

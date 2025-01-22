@@ -1,0 +1,36 @@
+﻿@inherits GdsWithHref
+
+<li class="moj-sub-navigation__item @Classes"
+    @attributes=@Attributes
+>
+    <a class="moj-sub-navigation__link" 
+       aria-current=@(Active == true ? "page" : null) 
+       href=@Href
+    >
+       @ChildContent
+    </a>
+</li>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Flag to mark the navigation item as active or not.
+    /// Defaults to false.
+    /// </summary>
+    [Parameter]
+    public bool? Active { get; set; }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsSubNavigationItem must exist within a GdsSubNavigation");
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsSubNavigation? Parent { get; set; }
+    #endregion
+}

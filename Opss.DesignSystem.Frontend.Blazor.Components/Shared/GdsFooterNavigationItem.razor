@@ -1,0 +1,39 @@
+﻿@inherits GdsAttributes
+
+@* <summary>
+    The items within the navigation section of the footer component.
+</summary> *@
+
+<li class="govuk-footer__list-item">
+    <a class="govuk-footer__link" 
+       href=@Href 
+       @attributes=@Attributes
+    >
+        @ChildContent
+    </a>
+</li>
+
+@code {
+    #region Public Parameters
+    [Parameter]
+    public string? Href { get; set; }
+    /// <summary>
+    /// The items within the navigation section of the footer component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsFooterNavigationItem must exist within a GdsFooterNavigation");
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsFooterNavigation? Parent { get; set; }
+    #endregion
+}

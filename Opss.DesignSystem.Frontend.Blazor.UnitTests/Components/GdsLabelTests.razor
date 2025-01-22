@@ -1,124 +1,135 @@
 @inherits BunitContext
 
 @code {
-	[Fact]
-	public void OutputsLabel()
-	{
-		// Arrange
-		var id = "hello-world";
-		var message = "Hello World";
-		var forValue = "Hello";
+    [Fact]
+    public void OutputsLabel()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var forValue = "Hello";
 
-		var component = Render(@<GdsLabel Id=@id For=@forValue>@message</GdsLabel>);
+        var component = Render(@<GdsLabel Id=@id For=@forValue>@message</GdsLabel>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.Find("label").MarkupMatches(
-	@<label id=@id class="govuk-label" for=@forValue>
-		@message
-	</label>
-		);
-	}
+        component.MarkupMatches(
+    @<label id=@id class="govuk-label" for=@forValue>
+        @message
+    </label>
+        );
+    }
 
-	[Fact]
-	public void OutputsLabelWithAdditionalClass()
-	{
-		// Arrange
-		var id = "hello-world";
-		var message = "Hello World";
-		var customClass = "custom-label";
-		var forValue = "Hello";
+    [Fact]
+    public void OutputsLabelWithCascade()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var forValue = "Hello";
 
-		var component = Render(@<GdsLabel Id=@id Classes=@customClass For=@forValue>@message</GdsLabel>);
+        var component = Render(@<CascadingValue Value=@forValue><GdsLabel Id=@id>@message</GdsLabel></CascadingValue>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.Find("label").MarkupMatches(
-	@<label id=@id class="govuk-label @customClass" for=@forValue>
-		@message
-	</label>
-	);
-	}
+        component.MarkupMatches(
+    @<label id=@id class="govuk-label" for=@forValue>
+        @message
+    </label>
+    );
+    }
 
-	[Fact]
-	public void OutputsLabelWithAdditionalAttributes()
-	{
-		// Arrange
-		var id = "hello-world";
-		var message = "Hello World";
-		var forValue = "Hello";
-		var customAttributes = new Dictionary<string, object>
-		{
-			{"aria-label", "Hello"}
-		};
-		var component = Render(@<GdsLabel Id=@id Attributes=@customAttributes For=@forValue>@message</GdsLabel>);
+    [Fact]
+    public void OutputsLabelWithAdditionalClass()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var customClass = "custom-label";
+        var forValue = "Hello";
 
-		// Assert that content of the paragraph shows counter at zero
-		component.Find("label").MarkupMatches(
-			@<label id=@id class="govuk-label" aria-label="Hello" for=@forValue>
-				@message
-			</label>
-		);
-	}
-	[Fact]
-	public void OutputsLabelHeading()
-	{
-		// Arrange
-		var id = "hello-world";
-		var message = "Hello World";
-		var forValue = "Hello";
+        var component = Render(@<GdsLabel Id=@id Classes=@customClass For=@forValue>@message</GdsLabel>);
 
-		var component = Render(@<GdsLabel Id=@id For=@forValue IsPageHeading=@true>@message</GdsLabel>);
+        component.MarkupMatches(
+    @<label id=@id class="govuk-label @customClass" for=@forValue>
+        @message
+    </label>
+    );
+    }
 
-		// Assert that content of the paragraph shows counter at zero
-		component.Find("h1").MarkupMatches(
-			@<h1 class="govuk-label-wrapper">
-				<label id=@id class="govuk-label" for=@forValue>
-					@message
-				</label>
-			</h1>
-		);
-	}
+    [Fact]
+    public void OutputsLabelWithAdditionalAttributes()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var forValue = "Hello";
+        var customAttributes = new Dictionary<string, object>
+        {
+            {"aria-label", "Hello"}
+        };
+        var component = Render(@<GdsLabel Id=@id Attributes=@customAttributes For=@forValue>@message</GdsLabel>);
 
-	[Fact]
-	public void OutputsLabelHeadingWithAdditionalClass()
-	{
-		// Arrange
-		var id = "hello-world";
-		var message = "Hello World";
-		var customClass = "custom-label";
-		var forValue = "Hello";
+        component.MarkupMatches(
+    @<label id=@id class="govuk-label" aria-label="Hello" for=@forValue>
+        @message
+    </label>
+        );
+    }
+    [Fact]
+    public void OutputsLabelHeading()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var forValue = "Hello";
 
-		var component = Render(@<GdsLabel Id=@id Classes=@customClass IsPageHeading=@true For=@forValue>@message</GdsLabel>);
+        var component = Render(@<GdsLabel Id=@id For=@forValue IsPageHeading=@true>@message</GdsLabel>);
 
-		// Assert that content of the paragraph shows counter at zero
-		component.Find("h1").MarkupMatches(
-			@<h1 class="govuk-label-wrapper">
-				<label id=@id class="govuk-label @customClass" for=@forValue>
-					@message
-				</label>
-			</h1>
-	);
-	}
+        component.MarkupMatches(
+    @<h1 class="govuk-label-wrapper">
+        <label id=@id class="govuk-label" for=@forValue>
+            @message
+        </label>
+    </h1>
+        );
+    }
 
-	[Fact]
-	public void OutputsLabelHeadingWithAdditionalAttributes()
-	{
-		// Arrange
-		var id = "hello-world";
-		var message = "Hello World";
-		var forValue = "Hello";
-		var customAttributes = new Dictionary<string, object>
-		{
-			{"aria-label", "Hello"}
-		};
-		var component = Render(@<GdsLabel Id=@id Attributes=@customAttributes IsPageHeading=@true For=@forValue>@message</GdsLabel>);
+    [Fact]
+    public void OutputsLabelHeadingWithAdditionalClass()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var customClass = "custom-label";
+        var forValue = "Hello";
 
-		// Assert that content of the paragraph shows counter at zero
-		component.Find("h1").MarkupMatches(
-			@<h1 class="govuk-label-wrapper">
-				<label id=@id class="govuk-label" aria-label="Hello" for=@forValue>
-					@message
-				</label>
-			</h1>
-		);
-	}
+        var component = Render(@<GdsLabel Id=@id Classes=@customClass IsPageHeading=@true For=@forValue>@message</GdsLabel>);
+
+        component.MarkupMatches(
+    @<h1 class="govuk-label-wrapper">
+        <label id=@id class="govuk-label @customClass" for=@forValue>
+            @message
+        </label>
+    </h1>
+    );
+    }
+
+    [Fact]
+    public void OutputsLabelHeadingWithAdditionalAttributes()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var forValue = "Hello";
+        var customAttributes = new Dictionary<string, object>
+        {
+            {"aria-label", "Hello"}
+        };
+        var component = Render(@<GdsLabel Id=@id Attributes=@customAttributes IsPageHeading=@true For=@forValue>@message</GdsLabel>);
+
+        component.MarkupMatches(
+    @<h1 class="govuk-label-wrapper">
+        <label id=@id class="govuk-label" aria-label="Hello" for=@forValue>
+            @message
+        </label>
+    </h1>
+        );
+    }
 }

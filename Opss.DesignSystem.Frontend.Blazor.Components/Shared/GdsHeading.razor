@@ -1,0 +1,86 @@
+﻿@inherits GdsWithContent
+
+@* <summary>
+    Use heading tags, such as <h1>, <h2> and so on, to tag the headings on a page.
+</summary> *@
+
+@switch (HeadingLevel)
+{
+    case 1:
+        <h1 id=@Id
+            class=@Classes
+            @attributes=@Attributes
+        >
+            @ChildContent
+        </h1>
+        break;
+    case 2:
+        <h2 id=@Id
+            class=@Classes
+            @attributes=@Attributes
+        >
+            @ChildContent
+        </h2>
+        break;
+    case 3:
+        <h3 id=@Id
+            class=@Classes
+            @attributes=@Attributes
+        >
+            @ChildContent
+        </h3>
+        break;
+    case 4:
+        <h4 id=@Id
+            class=@Classes
+            @attributes=@Attributes
+        >
+            @ChildContent
+        </h4>
+        break;
+    case 5:
+        <h5 id=@Id
+            class=@Classes
+            @attributes=@Attributes
+        >
+            @ChildContent
+        </h5>
+        break;
+    case 6:
+        <h6 id=@Id
+            class=@Classes
+            @attributes=@Attributes
+        >
+            @ChildContent
+        </h6>
+        break;
+}
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Id of the heading element.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
+    /// Heading level, from 1 to 6.
+    /// </summary>
+    [Parameter]
+    public int? HeadingLevel { get; set; }
+    #endregion
+
+    #region Parameter Validation
+    protected override void OnParametersSet()
+    {
+        if (ChildContent == null)
+            throw new ArgumentNullException(nameof(ChildContent), "ChildContent cannot be null");
+
+        if (HeadingLevel < 1 || HeadingLevel > 6)
+            throw new ArgumentException("HeadingLevel must be between 1 and 6", nameof(HeadingLevel));
+
+        base.OnParametersSet();
+    }
+    #endregion
+}

@@ -1,0 +1,97 @@
+﻿@page "/Components/Breadcrumbs"
+@layout _ComponentsLayout
+
+<PageTitle>Breadcrumbs</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Breadcrumbs</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/breadcrumbs/" class="govuk-link">Breadcrumbs</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsBreadcrumbs>
+    <GdsBreadcrumbLink Href=""/Components/Breadcrumbs"">
+        Home
+    </GdsBreadcrumbLink>
+    <GdsBreadcrumbLink Href=""/Components/Breadcrumbs"">
+        Passports, travel and living abroad
+    </GdsBreadcrumbLink>
+    <GdsBreadcrumbLink Href=""/Components/Breadcrumbs"">
+        Travel abroad
+    </GdsBreadcrumbLink>
+</GdsBreadcrumbs>")">
+    <GdsBreadcrumbs>
+        <GdsBreadcrumbLink Href="/Components/Breadcrumbs">Home</GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="/Components/Breadcrumbs">Passports, travel and living abroad</GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="/Components/Breadcrumbs">Travel abroad</GdsBreadcrumbLink>
+    </GdsBreadcrumbs>
+</Example>
+
+<h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
+
+<Example CodeExampleContent="@(@"<GdsBreadcrumbs>
+    <GdsBreadcrumbLink Href=""/Components/Breadcrumbs"">
+        Home
+    </GdsBreadcrumbLink>
+    <GdsBreadcrumbLink Href=""/Components/Breadcrumbs"">
+        Passports, travel and living abroad
+    </GdsBreadcrumbLink>
+    <GdsBreadcrumbLink Href=""/Components/Breadcrumbs"">
+        Travel abroad
+    </GdsBreadcrumbLink>
+</GdsBreadcrumbs>")">
+    <GdsBreadcrumbs>
+        <GdsBreadcrumbLink Href="/Components/Breadcrumbs">Home</GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="/Components/Breadcrumbs">Passports, travel and living abroad</GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="/Components/Breadcrumbs">Travel abroad</GdsBreadcrumbLink>
+    </GdsBreadcrumbs>
+</Example>
+
+<h3 class="govuk-heading-m" id="collapsing-breadcrumbs-on-mobile-devices">Collapsing breadcrumbs on mobile devices</h3>
+
+<Example CodeExampleContent="@(@"<GdsBreadcrumbs CollapseOnMobile=@true>
+    <GdsBreadcrumbLink Href=""/Components/Breadcrumbs"">
+        Home
+    </GdsBreadcrumbLink>
+    <GdsBreadcrumbLink Href=""/Components/Breadcrumbs"">
+        Environment
+    </GdsBreadcrumbLink>
+    <GdsBreadcrumbLink Href=""/Components/Breadcrumbs"">
+        Rural and countryside
+    </GdsBreadcrumbLink>
+    <GdsBreadcrumbLink Href=""/Components/Breadcrumbs"">
+        Rural development and land management
+    </GdsBreadcrumbLink>
+    <GdsBreadcrumbLink Href=""/Components/Breadcrumbs"">
+        Rural development and land management
+    </GdsBreadcrumbLink>
+</GdsBreadcrumbs>")">
+    <GdsBreadcrumbs CollapseOnMobile=@true>
+        <GdsBreadcrumbLink Href="/Components/Breadcrumbs">Home</GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="/Components/Breadcrumbs">Environment</GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="/Components/Breadcrumbs">Rural and countryside</GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="/Components/Breadcrumbs">Rural development and land management</GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="/Components/Breadcrumbs">Rural development and land management</GdsBreadcrumbLink>
+    </GdsBreadcrumbs>
+</Example>
+
+<h3 class="govuk-heading-m" id="breadcrumbs-on-dark-backgrounds">Breadcrumbs on dark backgrounds</h3>
+
+<Example CodeExampleContent="@(@"<GdsBreadcrumbs IsOnDarkBackground=@true>
+    <GdsBreadcrumbLink Href=""/Components/Breadcrumbs"">
+        Home
+    </GdsBreadcrumbLink>
+    <GdsBreadcrumbLink Href=""/Components/Breadcrumbs"">
+        Passports, travel and living abroad
+    </GdsBreadcrumbLink>
+    <GdsBreadcrumbLink Href=""/Components/Breadcrumbs"">
+        Travel abroad
+    </GdsBreadcrumbLink>
+</GdsBreadcrumbs>")" Classes="dark-background">
+    <GdsBreadcrumbs IsOnDarkBackground=@true>
+        <GdsBreadcrumbLink Href="/Components/Breadcrumbs">Home</GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="/Components/Breadcrumbs">Passports, travel and living abroad</GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="/Components/Breadcrumbs">Travel abroad</GdsBreadcrumbLink>
+    </GdsBreadcrumbs>
+</Example>

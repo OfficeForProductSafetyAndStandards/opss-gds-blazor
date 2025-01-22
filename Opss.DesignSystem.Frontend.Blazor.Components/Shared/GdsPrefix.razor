@@ -1,5 +1,8 @@
-﻿@inherits Models.GdsAffixModel
+﻿@inherits GdsWithContent
 
-<div id="@Id" class="govuk-input__prefix @Classes" aria-hidden="true" @attributes="@Attributes">
+<div class="govuk-input__prefix @Classes"
+     aria-hidden="true"
+     @attributes=@Attributes
+>
     @ChildContent
 </div>

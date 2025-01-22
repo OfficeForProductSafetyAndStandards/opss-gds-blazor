@@ -1,0 +1,98 @@
+﻿@inherits GdsAttributes
+
+@if (Hide == true && Ellipsis != true)
+{
+}
+else if (Ellipsis == true)
+{
+    <li class="govuk-pagination__item govuk-pagination__item--ellipses">
+
+        ⋯
+
+    </li>
+}
+else
+{
+    <li class="govuk-pagination__item @(Current == true ? " govuk-pagination__item--current" : "")" @attributes=@Attributes>
+        <a class="govuk-link govuk-pagination__link"
+           href="#"
+           @onclick="@OnClick"
+           @onclick:preventDefault
+           aria-label=@(VisuallyHiddenText ?? $"Page {Number}")
+           aria-current=@(Current == true ? "page" : null)>
+            @Number
+        </a>
+    </li>
+}
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// The pagination item text – usually a page number.
+    /// </summary>
+    [Parameter]
+    public string? Number { get; set; }
+
+    /// <summary>
+    /// The visually hidden label (for the pagination item) which
+    /// will be applied to an aria-label and announced by screen
+    /// readers on the pagination item link. Should include page
+    /// number.
+    /// If not specified, the template "Page {Number}" is used.
+    /// </summary>
+    [Parameter]
+    public string? VisuallyHiddenText { get; set; }
+
+    /// <summary>
+    /// Event to call on click event of button type elements
+    /// </summary>
+    [Parameter]
+    public EventCallback<string> OnPageClick { get; set; }
+    #endregion
+
+    #region Public Properties
+    /// <summary>
+    /// Set to true to indicate the current page the user is on.
+    /// </summary>
+    public bool? Current { get; set; }
+
+    /// <summary>
+    /// Use this option if you want to specify an ellipsis at a given
+    /// point between numbers. If you set this option as true, any
+    /// other options for the item are ignored.
+    /// </summary>
+    public bool? Ellipsis { get; set; }
+
+    /// <summary>
+    /// Use this option to hide the link for when the pager is too large
+    /// and overflows.
+    /// </summary>
+    public bool? Hide { get; set; }
+    #endregion
+
+    #region Private Event Handlers
+    private void OnClick(MouseEventArgs eventCallback)
+    {
+        if (Parent != null)
+            Parent.NavigatePage(Number);
+
+        OnPageClick.InvokeAsync(Number);
+
+    }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsPaginationNextLink must exist within a GdsPagination");
+
+        Parent.Register(this);
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsPagination? Parent { get; set; }
+    #endregion
+}

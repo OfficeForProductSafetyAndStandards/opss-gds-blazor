@@ -1,0 +1,165 @@
+﻿@inherits GdsWithContent
+
+@* <summary>
+    The select component should only be used as a last resort in public-facing
+    services because research shows that some users find selects very difficult
+    to use.
+</summary> *@
+
+<div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses" 
+@attributes=@FormGroupAttributes
+>
+    @if (LabelTemplate != null)
+    {
+        <CascadingValue Value=@Id>
+            @LabelTemplate
+        </CascadingValue>
+    }
+    @if (HintTemplate != null)
+    {
+        <CascadingValue Value=@Id>
+            @HintTemplate
+        </CascadingValue>
+    }
+    @if (ErrorMessageTemplate != null)
+    {
+        <CascadingValue Value=@Id>
+            @ErrorMessageTemplate
+        </CascadingValue>
+    }
+    <select class="govuk-select @(ErrorMessageTemplate != null ? "govuk-select--error" : "")  @Classes"
+    id=@Id
+    name=@Name
+    disabled=@Disabled
+    aria-describedby=@describedBy?.Trim()
+    @onchange=@OnChange
+    @attributes=@Attributes>
+        <CascadingValue Value=this>
+            @ChildContent
+        </CascadingValue>
+    </select>
+</div>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Required. ID for each select box.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
+    /// Required. Name property for the select.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// Value for the option which should be selected. Use
+    /// this as an alternative to setting the selected option
+    /// on each individual item.
+    /// </summary>
+    [Parameter]
+    public string? Value { get; set; }
+
+    /// <summary>
+    /// If true, select box will be disabled. Use the disabled
+    /// option on each individual item to only disable certain
+    /// options.
+    /// </summary>
+    [Parameter]
+    public bool? Disabled { get; set; }
+
+    /// <summary>
+    /// One or more element IDs to add to the aria-describedby
+    /// attribute, used to provide additional descriptive information
+    /// for screenreader users.
+    /// </summary>
+    [Parameter]
+    public string? DescribedBy { get; set; }
+
+    /// <summary>
+    /// Required. The label used by the select component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? LabelTemplate { get; set; }
+
+    /// <summary>
+    /// Can be used to add a hint to the select component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
+
+    /// <summary>
+    /// Can be used to add an error message to the select component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ErrorMessageTemplate { get; set; }
+
+    /// <summary>
+    /// Classes to add to the form group (for example to show error state for the whole group).
+    /// </summary>
+    [Parameter]
+    public string? FormGroupClasses { get; set; }
+
+    /// <summary>
+    /// HTML attributes (for example data attributes) to add to the form group.
+    /// </summary>
+    [Parameter]
+    [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Component parameters should have a public setter")]
+    public Dictionary<string, object>? FormGroupAttributes { get; set; } = new Dictionary<string, object>();
+
+    /// <summary>
+    /// Content to add before the select used by the select component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? BeforeInputTemplate { get; set; }
+
+    /// <summary>
+    /// Content to add after the select used by the select component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? AfterInputTemplate { get; set; }
+    #endregion
+
+    #region Event Handlers
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+
+    private Task OnChange(ChangeEventArgs e)
+    {
+        var value = e.Value?.ToString();
+        return ValueChanged.InvokeAsync(value);
+    }
+    #endregion
+
+    #region Private Properties
+    private string? describedBy
+    {
+        get
+        {
+            var fullText = DescribedBy;
+            if (HintTemplate != null) fullText += $" {Id}-hint";
+            if (ErrorMessageTemplate != null) fullText += $" {Id}-error";
+            return string.IsNullOrWhiteSpace(fullText) ? null : fullText;
+        }
+    }
+    #endregion
+
+    #region Cascading Value - Child Items
+    private List<GdsSelectOption> items = new List<GdsSelectOption>();
+
+    public void Register(GdsSelectOption selectItem)
+    {
+        if (selectItem.Selected == true)
+        {
+            ValueChanged.InvokeAsync(selectItem.Value);
+        }
+        if (selectItem.Value == Value)
+        {
+            selectItem.Select();
+        }
+        items.Add(selectItem);
+    }
+    #endregion
+}

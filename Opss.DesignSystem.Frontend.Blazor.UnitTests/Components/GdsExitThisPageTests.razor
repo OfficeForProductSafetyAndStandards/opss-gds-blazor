@@ -1,0 +1,29 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void OutputsExitThisPage()
+    {
+        // Arrange
+        var component = Render(@<GdsExitThisPage Href="https://www.bbc.co.uk/weather"></GdsExitThisPage>);
+
+        component.MarkupMatches(
+    @<div class="govuk-exit-this-page" data-module="govuk-exit-this-page">
+        <a href="https://www.bbc.co.uk/weather" role="button" draggable="false" class="govuk-button govuk-button--warning govuk-exit-this-page__button govuk-js-exit-this-page-button" data-module="govuk-button" rel="nofollow noreferrer">
+            <span class="govuk-visually-hidden">Emergency</span> Exit this page
+        </a>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void OutputsExitThisPageSecondary()
+    {
+        // Arrange
+        var component = Render(@<GdsExitThisPage Href="https://bbc.co.uk/weather/" ButtonType="ExitPageType.SkipLink"></GdsExitThisPage>);
+
+        component.MarkupMatches(
+    @<a href="https://bbc.co.uk/weather/" class="govuk-skip-link govuk-js-exit-this-page-skiplink" rel="nofollow noreferrer" data-module="govuk-skip-link">Exit this page</a>
+        );
+    }
+}

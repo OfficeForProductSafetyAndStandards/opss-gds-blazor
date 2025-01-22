@@ -1,0 +1,101 @@
+﻿@inherits GdsWithContent
+
+@* <summary>
+    The accordion component lets users show and hide sections of related content on a page.
+</summary> *@
+
+<div id=@Id
+     class="govuk-accordion @Classes" 
+     data-module="govuk-accordion" 
+     data-remember-expanded=@RememberExpanded
+     data-i18n.hide-all-sections=@HideAllSectionsText
+     data-i18n.hide-section=@HideSectionText
+     data-i18n.hide-section-aria-label=@HideSectionAriaLabelText
+     data-i18n.show-all-sections=@ShowAllSectionsText
+     data-i18n.show-section=@ShowSectionText
+     data-i18n.show-section-aria-label=@ShowSectionAriaLabelText
+     @attributes=@Attributes
+>
+    <CascadingValue Value=this>
+        @ChildContent
+    </CascadingValue>
+</div>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Required. Must be unique across the domain of your service if
+    /// rememberExpanded is true (as the expanded state of individual
+    /// instances of the component persists across page loads using
+    /// session storage). Used as an id in the HTML for the accordion
+    /// as a whole, and also as a prefix for the ids of the section
+    /// contents and the buttons that open them, so that those ids can
+    /// be the target of aria-control attributes.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
+    /// Whether the expanded/collapsed state of the accordion 
+    /// should be saved when a user leaves the page and restored
+    /// when they return. Default is true.
+    /// </summary>
+    [Parameter]
+    public bool? RememberExpanded { get; set; }
+
+    /// <summary>
+    /// The text content of the ‘Hide all sections’ button at the 
+    /// top of the accordion when all sections are expanded.
+    /// </summary>
+    [Parameter]
+    public string? HideAllSectionsText { get; set; }
+
+    /// <summary>
+    /// The text content of the ‘Hide’ button within each section
+    /// of the accordion, which is visible when the section is expanded.
+    /// </summary>
+    [Parameter]
+    public string? HideSectionText { get; set; }
+
+    /// <summary>
+    /// Text made available to assistive technologies, like screen-readers, 
+    /// as the final part of the toggle’s accessible name when the section
+    /// is expanded. Defaults to "Hide this section".
+    /// </summary>
+    [Parameter]
+    public string? HideSectionAriaLabelText { get; set; }
+
+    /// <summary>
+    /// The text content of the ‘Show all sections’ button at the top
+    /// of the accordion when at least one section is collapsed.
+    /// </summary>
+    [Parameter]
+    public string? ShowAllSectionsText { get; set; }
+
+    /// <summary>
+    /// The text content of the ‘Show’ button within each section of 
+    /// the accordion, which is visible when the section is collapsed.
+    /// </summary>
+    [Parameter]
+    public string? ShowSectionText { get; set; }
+
+    /// <summary>
+    /// Text made available to assistive technologies, like screen-readers,
+    /// as the final part of the toggle’s accessible name when the section
+    /// is collapsed. Defaults to "Show this section".
+    /// </summary>
+    [Parameter]
+    public string? ShowSectionAriaLabelText{ get; set; }
+    #endregion
+
+    #region Cascading Value - Child Items
+    private List<GdsAccordionItem> items = new List<GdsAccordionItem>();
+
+    internal void AddItem(GdsAccordionItem item)
+    {
+        item.Index = items.Count + 1;
+        items.Add(item);
+        StateHasChanged();
+    }
+    #endregion
+}

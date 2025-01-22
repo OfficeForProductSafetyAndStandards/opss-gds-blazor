@@ -1,0 +1,313 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void OutputsButton()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Type="submit">Save and continue</GdsButton>);
+
+        component.MarkupMatches(
+    @<button type="submit" class="govuk-button" data-module="govuk-button">
+        Save and continue
+    </button>
+        );
+    }
+
+    [Fact]
+    public void OutputsSecondaryButton()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Type="submit" Classes=@ButtonStyle.Secondary>Find address</GdsButton>);
+
+        component.MarkupMatches(
+    @<button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Find address
+    </button>
+        );
+    }
+
+    [Fact]
+    public void OutputsWarningButton()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Type="submit" Classes=@ButtonStyle.Warning>Delete account</GdsButton>);
+
+        component.MarkupMatches(
+    @<button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button">
+        Delete account
+    </button>
+        );
+    }
+
+    [Fact]
+    public void OutputsButtonOnDarkBackground()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Type="submit" IsOnDarkBackground=@true>Create an account</GdsButton>);
+
+        component.MarkupMatches(
+    @<button type="submit" class="govuk-button govuk-button--inverse" data-module="govuk-button">
+        Create an account
+    </button>
+        );
+    }
+
+    [Fact]
+    public void OutputsDisabledButton()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Type="submit" Disabled=@true>Disabled button</GdsButton>);
+
+        component.MarkupMatches(
+    @<button type="submit" disabled aria-disabled="true" class="govuk-button" data-module="govuk-button">
+        Disabled button
+    </button>
+        );
+    }
+
+    [Fact]
+    public void OutputsButtonPreventingDoulbeClick()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Type="submit" PreventDoubleClick=@true>Confirm and send</GdsButton>);
+
+        component.MarkupMatches(
+    @<button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button">
+        Confirm and send
+    </button>
+        );
+    }
+
+    [Fact]
+    public void OutputsButtonWithCustomId()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Id="custom-id">Custom ID</GdsButton>);
+
+        component.MarkupMatches(
+    @<button id="custom-id" type="submit" class="govuk-button" data-module="govuk-button">
+        Custom ID
+    </button>
+        );
+    }
+
+    [Fact]
+    public void OutputsButtonWithHref()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Href="https://example.com">Go to Example</GdsButton>);
+
+        component.MarkupMatches(
+    @<a href="https://example.com" role="button" class="govuk-button" data-module="govuk-button" draggable="false">
+        Go to Example
+    </a>
+        );
+    }
+
+    [Fact]
+    public void OutputsButtonWithCustomClasses()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Classes="custom-class">Custom Class</GdsButton>);
+
+        component.MarkupMatches(
+    @<button type="submit" class="govuk-button custom-class" data-module="govuk-button">
+        Custom Class
+    </button>
+    );
+    }
+
+    [Fact]
+    public void OutputsButtonWithCustomAttributes()
+    {
+        // Arrange
+        var customAttributes = new Dictionary<string, object>() {
+            { "aria-label", "Custom Label" },  
+            { "data-my-field", "my data" }
+        };
+
+        var component = Render(@<GdsButton Type="button" Attributes=@customAttributes>Button With Custom Attributes</GdsButton>);
+
+        component.MarkupMatches(
+    @<button type="button" aria-label="Custom Label" class="govuk-button" data-module="govuk-button" data-my-field="my data">
+        Button With Custom Attributes
+    </button>
+        );
+    }
+
+    [Fact]
+    public void ThrowsErrorWhenTextOrHtmlMissing()
+    {
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() =>
+        {
+            Render(@<GdsButton />);
+        });
+
+        Assert.Equal("GdsButton link or button must have child content provided. (Parameter 'ChildContent')", exception.Message);
+    }
+
+    [Theory]
+    [InlineData(ButtonType.Anchor)]
+    [InlineData(ButtonType.Button)]
+    public void ThrowsErrorWhenContentMissing(ButtonType buttonType)
+    {
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() =>
+        {
+            Render(@<GdsButton Element=buttonType />);
+        });
+
+        Assert.Equal("GdsButton link or button must have child content provided. (Parameter 'ChildContent')", exception.Message);
+    }
+
+    [Fact]
+    public void ThrowsErrorWhenContentMissingForHref()
+    {
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() =>
+        {
+            Render(@<GdsButton Href="#" />);
+        });
+
+        Assert.Equal("GdsButton link or button must have child content provided. (Parameter 'ChildContent')", exception.Message);
+    }
+
+    [Fact]
+    public void ThrowsErrorWhenValueMissingForInput()
+    {
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() =>
+        {
+            Render(@<GdsButton Element=ButtonType.Input />);
+        });
+
+        Assert.Equal("GdsButton input must have a value. (Parameter 'Value')", exception.Message);
+    }
+
+    [Fact]
+    public void PreventsDoubleClickOnNonSubmitButton()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Type="button" PreventDoubleClick=@true>Non-Submit</GdsButton>);
+
+        component.MarkupMatches(
+    @<button type="button" class="govuk-button" data-prevent-double-click="true" data-module="govuk-button">
+        Non-Submit
+    </button>
+        );
+    }
+
+    [Fact]
+    public void OverridesTextWithHtml()
+    {
+        // Arrange
+        var component = Render(@<GdsButton><b>Bold Text</b></GdsButton>);
+
+        component.MarkupMatches(
+    @<button type="submit" class="govuk-button" data-module="govuk-button">
+        <b>Bold Text</b>
+    </button>
+    );
+    }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData("   ")]
+    [InlineData("invalidType")]
+    [InlineData("datetime")]
+    public void ThrowsErrorForInvalidType(string invalidType)
+    {
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentException>(() =>
+        {
+            Render(@<GdsButton Type=@invalidType>Invalid Type</GdsButton>);
+        });
+
+        Assert.Equal($"'{invalidType}' is not valid for the Type field in GdsButton. (Parameter 'Type')", exception.Message);
+    }
+
+    [Fact]
+    public void HandlesDisabledAndHrefConflictGracefully()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Href="https://example.com" Disabled=@true>(not applicable to links)</GdsButton>);
+
+        component.MarkupMatches(
+    @<a href="https://example.com" role="button" class="govuk-button" data-module="govuk-button" draggable="false">
+        (not applicable to links)
+    </a>
+        );
+    }
+
+    [Fact]
+    public void OutputsButtonWithStartIcon()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Type="submit" IsStartButton=@true>Start now</GdsButton>);
+
+        component.MarkupMatches(
+    @<button type="submit" class="govuk-button govuk-button--start" data-module="govuk-button">
+        Start now
+        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
+        </svg>
+    </button>
+        );
+    }
+
+    [Fact]
+    public void OutputsLinkWithStartIcon()
+    {
+        // Arrange
+        var component = Render(@<GdsButton Href="#" IsStartButton=@true>Start Now</GdsButton>);
+
+        component.MarkupMatches(
+    @<a href="#" role="button" class="govuk-button govuk-button--start" data-module="govuk-button" draggable="false">
+        Start Now
+        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
+        </svg>
+    </a>
+    );
+    }
+
+    [Fact]
+    public void ButtonOnClickTriggered()
+    {
+        // Arrange 
+        MouseEventArgs onClickEventArgs = null!;
+        var component = Render(@<GdsButton Type="button" OnClick="(args)=>{ onClickEventArgs = args; }">Test Event</GdsButton>);
+
+        // Act 
+        component
+            .Find("button")
+            .Click(123, type: "BUTTONCLICKED", altKey: true);
+
+        // Assert 
+        Assert.NotNull(onClickEventArgs);
+        Assert.True(onClickEventArgs.AltKey);
+        Assert.Equal(123, onClickEventArgs.Detail);
+        Assert.Equal("BUTTONCLICKED", onClickEventArgs.Type);
+    }
+
+    [Fact]
+    public void InputOnClickTriggered()
+    {
+        // Arrange
+        MouseEventArgs onClickEventArgs = null!;
+        var component = Render(@<GdsButton Element=ButtonType.Input Value="Event Test" OnClick="(args)=>{ onClickEventArgs = args; }">Test Event</GdsButton>);
+
+        // Act
+        component
+            .Find("input")
+            .Click(123, type: "INPUTCLICKED", altKey: true);
+
+        // Assert
+        Assert.NotNull(onClickEventArgs);
+        Assert.True(onClickEventArgs.AltKey);
+        Assert.Equal(123, onClickEventArgs.Detail);
+        Assert.Equal("INPUTCLICKED", onClickEventArgs.Type);
+    }
+}

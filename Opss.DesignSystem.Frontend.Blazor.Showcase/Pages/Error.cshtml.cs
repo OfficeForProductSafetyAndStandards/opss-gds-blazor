@@ -1,23 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+
 
 namespace Opss.DesignSystem.Frontend.Showcase.Pages
 {
+    [SuppressMessage("Performance", "CA1812: Avoid uninstantiated internal classes", Justification = "This is the viewmodel for Error.cshml, so it is instantiated, but by asp.net.")]
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     [IgnoreAntiforgeryToken]
-    public class ErrorModel : PageModel
+    internal sealed class ErrorModel : PageModel
     {
         public string? RequestId { get; set; }
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-
-        private readonly ILogger<ErrorModel> _logger;
-
-        public ErrorModel(ILogger<ErrorModel> logger)
-        {
-            _logger = logger;
-        }
 
         public void OnGet()
         {
@@ -25,3 +21,4 @@ namespace Opss.DesignSystem.Frontend.Showcase.Pages
         }
     }
 }
+#pragma warning restore CA1812

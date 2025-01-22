@@ -1,0 +1,209 @@
+﻿@inherits BunitContext
+
+@code {
+
+    [Fact]
+    public void OutputsDetailsWithSummaryText()
+    {
+        // Arrange
+        var component = Render(
+            @<GdsDetails SummaryText="Help with nationality">
+                We need to know your nationality so we can work out which elections
+                you’re entitled to vote in. If you cannot provide your nationality,
+                you’ll have to send copies of identity documents through the post.
+            </GdsDetails>);
+
+        // Assert
+        component.MarkupMatches(
+            @<details class="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                        Help with nationality
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+                    We need to know your nationality so we can work out which elections
+                    you’re entitled to vote in. If you cannot provide your nationality,
+                    you’ll have to send copies of identity documents through the post.
+                </div>
+            </details>
+        );
+    }
+
+    [Fact]
+    public void OutputsDetailsWithId()
+    {
+        // Arrange
+        var component = Render(
+            @<GdsDetails Id="nationality" SummaryText="Help with nationality">
+                We need to know your nationality so we can work out which elections
+                you’re entitled to vote in. If you cannot provide your nationality,
+                you’ll have to send copies of identity documents through the post.
+            </GdsDetails>);
+
+        // Assert
+        component.MarkupMatches(
+            @<details id="nationality" class="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                        Help with nationality
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+                    We need to know your nationality so we can work out which elections
+                    you’re entitled to vote in. If you cannot provide your nationality,
+                    you’ll have to send copies of identity documents through the post.
+                </div>
+            </details>
+        );
+    }
+
+    [Fact]
+    public void OutputsDetailsWithOpen()
+    {
+        // Arrange
+        var component = Render(
+            @<GdsDetails Open="true" SummaryText="Help with nationality">
+                We need to know your nationality so we can work out which elections
+                you’re entitled to vote in. If you cannot provide your nationality,
+                you’ll have to send copies of identity documents through the post.
+            </GdsDetails>);
+
+        // Assert
+        component.MarkupMatches(
+            @<details class="govuk-details" open="">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                        Help with nationality
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+                    We need to know your nationality so we can work out which elections
+                    you’re entitled to vote in. If you cannot provide your nationality,
+                    you’ll have to send copies of identity documents through the post.
+                </div>
+            </details>
+        );
+    }
+
+    [Fact]
+    public void OutputsDetailsWithClasses()
+    {
+        // Arrange
+        var component = Render(
+            @<GdsDetails Classes="custom-class" SummaryText="Help with nationality">
+                We need to know your nationality so we can work out which elections
+                you’re entitled to vote in. If you cannot provide your nationality,
+                you’ll have to send copies of identity documents through the post.
+            </GdsDetails>);
+
+        // Assert
+        component.MarkupMatches(
+            @<details class="govuk-details custom-class">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                        Help with nationality
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+                    We need to know your nationality so we can work out which elections
+                    you’re entitled to vote in. If you cannot provide your nationality,
+                    you’ll have to send copies of identity documents through the post.
+                </div>
+            </details>
+        );
+    }
+
+    [Fact]
+    public void OutputsDetailsWithAttributes()
+    {
+        // Arrange
+        var attributes = new Dictionary<string, object>
+        {
+            { "data-test", "test-value" },
+            { "aria-label", "Additional Info" }
+        };
+
+        var component = Render(
+            @<GdsDetails Attributes="attributes" SummaryText="Help with nationality">
+                We need to know your nationality so we can work out which elections
+                you’re entitled to vote in. If you cannot provide your nationality,
+                you’ll have to send copies of identity documents through the post.
+            </GdsDetails>);
+
+        // Assert
+        component.MarkupMatches(
+            @<details class="govuk-details" data-test="test-value" aria-label="Additional Info">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                        Help with nationality
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+                    We need to know your nationality so we can work out which elections
+                    you’re entitled to vote in. If you cannot provide your nationality,
+                    you’ll have to send copies of identity documents through the post.
+                </div>
+            </details>
+        );
+    }
+
+    [Fact]
+    public void OutputsDetailsWithoutOpen()
+    {
+        // Arrange
+        var component = Render(
+            @<GdsDetails SummaryText="Help with nationality">
+                We need to know your nationality so we can work out which elections
+                you’re entitled to vote in.
+            </GdsDetails>);
+
+        // Assert
+        component.MarkupMatches(
+            @<details class="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                        Help with nationality
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+                    We need to know your nationality so we can work out which elections
+                    you’re entitled to vote in.
+                </div>
+            </details>
+        );
+    }
+
+    [Fact]
+    public void ThrowsExceptionWhenSummaryTextAndHtmlAreMissing()
+    {
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() =>
+            Render(
+                @<GdsDetails>
+                    We need to know your nationality so we can work out which elections
+                    you’re entitled to vote in.
+                </GdsDetails>
+            )
+        );
+
+        // Assert
+        Assert.Equal("GdsDetails must have either summary text or a summary template provided. (Parameter 'SummaryText and SummaryTemplate')", exception.Message);
+    }
+
+    [Fact]
+    public void ThrowsExceptionWhenTextAndHtmlAreMissing()
+    {
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() =>
+        {
+            Render(
+                @<GdsDetails SummaryText="Help with nationality" />
+            );
+        });
+
+        // Assert
+        Assert.Equal("GdsDetails must have child content provided. (Parameter 'ChildContent')", exception.Message);
+    }
+
+}

@@ -1,0 +1,56 @@
+﻿@inherits GdsWithContent;
+
+@* <summary>
+    The breadcrumbs component helps users to understand where they are within a website's structure and move between levels.
+</summary> *@
+
+<nav class=@classes
+     aria-label=@LabelText
+     @attributes=@Attributes>
+    <ol class="govuk-breadcrumbs__list">
+        
+        <CascadingValue Value="this">
+            @ChildContent
+        </CascadingValue>
+    </ol>
+</nav>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// When true, the breadcrumbs will collapse to the first and last item only on tablet breakpoint and below.
+    /// </summary>
+    [Parameter]
+    public bool CollapseOnMobile { get; set; }
+
+    /// <summary>
+    /// Indicates that the component is on a dark background and should utilise the inverse class
+    /// </summary>
+    [Parameter]
+    public bool IsOnDarkBackground { get; set; }
+
+    /// <summary>
+    /// Plain text label identifying the landmark to screen readers. Defaults to “Breadcrumb”.
+    /// </summary>
+    [Parameter]
+    public string LabelText { get; set; } = "Breadcrumb";
+    #endregion
+
+    #region Private Properties
+    private string classes
+    {
+        get
+        {
+            var classBuilder = "govuk-breadcrumbs";
+            if (CollapseOnMobile)
+                classBuilder += " govuk-breadcrumbs--collapse-on-mobile";
+            if (IsOnDarkBackground)
+                classBuilder += " govuk-breadcrumbs--inverse";
+            if (!string.IsNullOrEmpty(Classes))
+                classBuilder += $" {Classes}";
+
+            return classBuilder;
+        }
+    }
+    #endregion
+}

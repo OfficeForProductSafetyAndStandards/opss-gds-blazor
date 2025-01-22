@@ -1,0 +1,76 @@
+﻿@inherits GdsAttributes
+
+<div class="govuk-pagination__next" @attributes=@Attributes>
+    <a class="govuk-link govuk-pagination__link" href="#" @onclick="@OnClick" @onclick:preventDefault rel="next">
+        @if (Parent?.UseBlockStyle == true)
+        {
+            <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+            </svg>
+        }
+        <span class="govuk-pagination__link-title">
+            @ChildContent
+        </span>
+        @if (Parent?.UseBlockStyle != true)
+        {
+            <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+            </svg>
+        }
+        @if (LabelText != null && Parent?.UseBlockStyle == true)
+        {
+            <span class="govuk-visually-hidden">:</span>
+            <span class="govuk-pagination__link-label">@LabelText</span>
+        }
+    </a>
+</div>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// The text content of the link to the next page.
+    /// Defaults to "Next page", with ‘page’ being visually hidden.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; } = @<text>Next<span class="govuk-visually-hidden"> page</span></text>;
+
+    /// <summary>
+    /// The optional label that goes underneath the link to the
+    /// next page, providing further context for the user about
+    /// where the link goes
+    /// NOTE: This currently doesn't render anything in Nunjucks
+    /// </summary>
+    [Parameter]
+    public string? LabelText { get; set; }
+
+    /// <summary>
+    /// Event to call on click event of button type elements
+    /// </summary>
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnNextClick { get; set; }
+    #endregion
+
+    #region Private Event Handlers
+    private void OnClick(MouseEventArgs eventCallback)
+    {
+        if (Parent != null)
+            Parent.Next();
+
+        OnNextClick.InvokeAsync(eventCallback);
+
+    }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsPaginationNextLink must exist within a GdsPagination");
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsPagination? Parent { get; set; }
+    #endregion
+}

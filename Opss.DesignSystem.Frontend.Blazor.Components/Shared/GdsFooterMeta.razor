@@ -1,0 +1,60 @@
+﻿@* <summary>
+    The meta section of the footer after any navigation, before the copyright and license information.
+</summary> *@
+
+<h2 class="govuk-visually-hidden">@VisuallyHiddenTitle</h2>
+
+@if (ItemsTemplate != null)
+{
+    <ul class="govuk-footer__inline-list">
+        <CascadingValue Value=this>
+            @ItemsTemplate
+        </CascadingValue>
+    </ul>
+}
+
+@if (ChildContent != null)
+{
+    <div class="govuk-footer__meta-custom">
+        @ChildContent
+    </div>
+}
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Title for a meta item section. Defaults to "Support links".
+    /// </summary>
+    [Parameter]
+    public string? VisuallyHiddenTitle { get; set; } = "Support links";
+
+    /// <summary>
+    /// The meta items add content within a unordered list to the meta
+    /// section of the footer component. These appear above any text or
+    /// custom html in the meta section.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ItemsTemplate { get; set; }
+
+    /// <summary>
+    /// HTML to add to the meta section of the footer, which will appear
+    /// below any links specified using meta items.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; } // =@<text>Built by the <a href="#" class="govuk-footer__link">Government Digital Service</a></text>;
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsFooterMeta must exist within a GdsFooter");
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsFooter? Parent { get; set; }
+    #endregion
+
+}

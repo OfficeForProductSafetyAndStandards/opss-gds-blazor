@@ -1,0 +1,45 @@
+﻿@inherits GdsAttributes
+
+@* <summary>
+    The meta items add content within a unordered list to the meta section
+    of the footer component. These appear above any text or custom html in
+    the meta section.
+</summary> *@
+
+<li class="govuk-footer__inline-list-item">
+    <a class="govuk-footer__link" 
+       href=@Href
+       @attributes=@Attributes
+    >
+        @ChildContent
+    </a>
+</li>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Required. List item text in the meta section of the footer.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// Required. List item link href attribute in the meta section of the footer.
+    /// </summary>
+    [Parameter]
+    public string? Href{ get; set; }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsFooterMetaItem must exist within a GdsFooterMeta");
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsFooterMeta? Parent { get; set; }
+    #endregion
+}

@@ -1,0 +1,75 @@
+﻿@inherits GdsWithContent
+
+@* <summary>
+    Make a page easier to scan by letting users reveal more detailed information only if they need it.
+</summary> *@
+
+<details id=@Id
+         class="govuk-details @Classes"
+         open=@Open
+         @attributes=@Attributes
+>
+    <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+            @if (SummaryTemplate == null)
+            {
+                @SummaryText
+            }
+            else
+            {
+                @SummaryTemplate
+            }
+        </span>
+    </summary>
+    <div class="govuk-details__text">
+        @ChildContent
+    </div>
+</details>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// If summaryTemplate is set, this is not required.
+    /// Text to use within the summary element (the
+    /// visible part of the details element). If
+    /// summaryTemplate is provided, the summaryText
+    /// option will be ignored.
+    /// </summary>
+    [Parameter]
+    public string? SummaryText { get; set; }
+
+    /// <summary>
+    /// If summmaryText is set, this is not required. HTML
+    /// to use within the summary element (the visible
+    /// part of the details element). If summaryTemplate is
+    /// provided, the summaryText option will be ignored.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? SummaryTemplate { get; set; }
+
+    /// <summary>
+    /// Id to add to the details element.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
+    /// If true, details element will be expanded.
+    /// </summary>
+    [Parameter]
+    public bool Open { get; set; }
+    #endregion
+
+    #region Parameter Validation
+    protected override void OnParametersSet()
+    {
+        if (ChildContent == null)
+            throw new ArgumentNullException(nameof(ChildContent), "GdsDetails must have child content provided.");
+
+        if (SummaryText == null && SummaryTemplate == null)
+            throw new ArgumentNullException($"{nameof(SummaryText)} and {nameof(SummaryTemplate)}", "GdsDetails must have either summary text or a summary template provided.");
+
+        base.OnParametersSet();
+    }
+    #endregion
+}

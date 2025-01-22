@@ -1,6 +1,53 @@
-﻿@inherits Models.GdsErrorMessageModel
+﻿@inherits GdsWithContent
 
-<p id="@Id" class="govuk-error-message @Classes" @attributes="@Attributes">
-    <span class="govuk-visually-hidden">@(string.IsNullOrEmpty(VisuallyHiddenText) ? "Error" : VisuallyHiddenText):</span>
+@* <summary>
+    Follow the validation pattern and show an error message when there is a validation error.
+    In the error message explain what went wrong and how to fix it.
+</summary> *@
+
+<p id=@Id
+   class="govuk-error-message @Classes"
+   @attributes=@Attributes
+>
+    <span class="govuk-visually-hidden">
+        @(string.IsNullOrEmpty(VisuallyHiddenText) ? "Error" : VisuallyHiddenText):
+    </span>
     @ChildContent
 </p>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// A visually hidden prefix used before the error message.
+    /// </summary>
+    [Parameter]
+    public string? VisuallyHiddenText { get; set; }
+    #endregion
+
+    #region Public Override Properties
+    /// <summary>
+    /// The calculated id of the element
+    /// This is based on the cascaded Parent Id value
+    /// </summary>
+    public string? Id
+    {
+        get
+        {
+            return ParentId + "-error";
+        }
+    }
+    #endregion
+
+    #region Cascading Value - ParentId
+    protected override void OnInitialized()
+    {
+        if (ParentId == null)
+            throw new ArgumentNullException(nameof(ParentId), "GdsErrorMessage must exist within a valid control");
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    public string? ParentId { get; set; }
+    #endregion
+}

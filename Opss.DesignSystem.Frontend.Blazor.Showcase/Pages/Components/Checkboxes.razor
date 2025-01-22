@@ -1,0 +1,435 @@
+﻿@page "/Components/Checkboxes"
+@layout _ComponentsLayout
+
+<PageTitle>Checkboxes</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Checkboxes</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/checkboxes/" class="govuk-link">Checkboxes</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsCheckboxes Name=""waste"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            Which types of waste do you transport?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>
+            Select all that apply
+        </GdsHint>
+    </HintTemplate>
+    <ChildContent>
+        <GdsCheckbox Value=""carcasses"">Waste from animal carcasses</GdsCheckbox>
+        <GdsCheckbox Value=""mines"">Waste from mines or quarries</GdsCheckbox>
+        <GdsCheckbox Value=""farm"">Farm or agricultural waste</GdsCheckbox>
+    </ChildContent>
+</GdsCheckboxes>")">
+    <GdsCheckboxes Name="waste">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                Which types of waste do you transport?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>
+                Select all that apply
+            </GdsHint>
+        </HintTemplate>
+        <ChildContent>
+            <GdsCheckbox Value="carcasses">Waste from animal carcasses</GdsCheckbox>
+            <GdsCheckbox Value="mines">Waste from mines or quarries</GdsCheckbox>
+            <GdsCheckbox Value="farm">Farm or agricultural waste</GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+</Example>
+
+<h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
+
+<h3 class="govuk-heading-m" id="if-youre-asking-one-question-on-the-page">If you’re asking one question on the page</h3>
+
+<Example CodeExampleContent="@(@"<GdsCheckboxes Name=""waste"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            Which types of waste do you transport?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>
+            Select all that apply
+        </GdsHint>
+    </HintTemplate>
+    <ChildContent>
+        <GdsCheckbox Value=""carcasses"">Waste from animal carcasses</GdsCheckbox>
+        <GdsCheckbox Value=""mines"">Waste from mines or quarries</GdsCheckbox>
+        <GdsCheckbox Value=""farm"">Farm or agricultural waste</GdsCheckbox>
+    </ChildContent>
+</GdsCheckboxes>")">
+    <GdsCheckboxes Name="waste">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                Which types of waste do you transport?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>
+                Select all that apply
+            </GdsHint>
+        </HintTemplate>
+        <ChildContent>
+            <GdsCheckbox Value="carcasses">Waste from animal carcasses</GdsCheckbox>
+            <GdsCheckbox Value="mines">Waste from mines or quarries</GdsCheckbox>
+            <GdsCheckbox Value="farm">Farm or agricultural waste</GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+</Example>
+
+<h3 class="govuk-heading-m" id="if-youre-asking-more-than-one-question-on-the-page">If you’re asking more than one question on the page</h3>
+
+<Example CodeExampleContent="@(@"<GdsCheckboxes Name=""waste"">
+    <LegendTemplate>
+        <GdsLegend>
+            Which types of waste do you transport?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>
+            Select all that apply
+        </GdsHint>
+    </HintTemplate>
+    <ChildContent>
+        <GdsCheckbox Value=""carcasses"">Waste from animal carcasses</GdsCheckbox>
+        <GdsCheckbox Value=""mines"">Waste from mines or quarries</GdsCheckbox>
+        <GdsCheckbox Value=""farm"">Farm or agricultural waste</GdsCheckbox>
+    </ChildContent>
+</GdsCheckboxes>")">
+    <GdsCheckboxes Name="waste">
+        <LegendTemplate>
+            <GdsLegend>
+                Which types of waste do you transport?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>
+                Select all that apply
+            </GdsHint>
+        </HintTemplate>
+        <ChildContent>
+            <GdsCheckbox Value="carcasses">Waste from animal carcasses</GdsCheckbox>
+            <GdsCheckbox Value="mines">Waste from mines or quarries</GdsCheckbox>
+            <GdsCheckbox Value="farm">Farm or agricultural waste</GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+</Example>
+
+<h3 class="govuk-heading-m" id="checkbox-items-with-hints">Checkbox items with hints</h3>
+
+<Example CodeExampleContent="@(@"<GdsCheckboxes Name=""nationality"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            What is your nationality?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>
+            If you have dual nationality, select all options that are relevant to you.
+        </GdsHint>
+    </HintTemplate>
+    <ChildContent>
+        <GdsCheckbox Value=""british"">
+            <HintTemplate>
+                <GdsHint Classes=""govuk-checkboxes__hint"">including English, Scottish, Welsh and Northern Irish</GdsHint>
+            </HintTemplate>
+            <ChildContent>British</ChildContent>
+        </GdsCheckbox>
+        <GdsCheckbox Value=""irish"">Irish</GdsCheckbox>
+        <GdsCheckbox Value=""other"">Citizen of another country</GdsCheckbox>
+    </ChildContent>
+</GdsCheckboxes>")">
+    <GdsCheckboxes Name="nationality">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                What is your nationality?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>
+                If you have dual nationality, select all options that are relevant to you.
+            </GdsHint>
+        </HintTemplate>
+        <ChildContent>
+            <GdsCheckbox Value="british">
+                <HintTemplate>
+                    <GdsHint Classes="govuk-checkboxes__hint">including English, Scottish, Welsh and Northern Irish</GdsHint>
+                </HintTemplate>
+                <ChildContent>British</ChildContent>
+            </GdsCheckbox>
+            <GdsCheckbox Value="irish">Irish</GdsCheckbox>
+            <GdsCheckbox Value="other">Citizen of another country</GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+</Example>
+
+<h3 class="govuk-heading-m" id="add-an-option-for-none">Add an option for ‘none’</h3>
+
+<Example CodeExampleContent="@(@"<GdsCheckboxes Name=""countries"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            Will you be travelling to any of these countries?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>
+            Select all countries that apply
+        </GdsHint>
+    </HintTemplate>
+    <ChildContent>
+        <GdsCheckbox Value=""france"">France</GdsCheckbox>
+        <GdsCheckbox Value=""portugal"">Portugal</GdsCheckbox>
+        <GdsCheckbox Value=""spain"">Spain</GdsCheckbox>
+        <GdsCheckboxDivider>or</GdsCheckboxDivider>
+        <GdsCheckbox Value=""none"" IsExclusive=@true>No, I will not be travelling to any of these countries</GdsCheckbox>
+    </ChildContent>
+</GdsCheckboxes>")">
+    <GdsCheckboxes Name="countries">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                Will you be travelling to any of these countries?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>
+                Select all countries that apply
+            </GdsHint>
+        </HintTemplate>
+        <ChildContent>
+            <GdsCheckbox Value="france">France</GdsCheckbox>
+            <GdsCheckbox Value="portugal">Portugal</GdsCheckbox>
+            <GdsCheckbox Value="spain">Spain</GdsCheckbox>
+            <GdsCheckboxDivider>or</GdsCheckboxDivider>
+            <GdsCheckbox Value="none" IsExclusive=@true>No, I will not be travelling to any of these countries</GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+</Example>
+
+<Example CodeExampleContent="@(@"<GdsCheckboxes Id=""countries"" Name=""countries"" Values=""@countryValues"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            Will you be travelling to any of these countries?
+        </GdsLegend>
+    </LegendTemplate>
+    <ErrorMessageTemplate>
+        <GdsErrorMessage>
+            Select countries you will be travelling to, or select ‘No, I will not be travelling to any of these countries’
+        </GdsErrorMessage>
+    </ErrorMessageTemplate>
+    <ChildContent>
+        <GdsCheckbox Value=""france"">France</GdsCheckbox>
+        <GdsCheckbox Value=""portugal"">Portugal</GdsCheckbox>
+        <GdsCheckbox Value=""spain"">Spain</GdsCheckbox>
+        <GdsCheckboxDivider>or</GdsCheckboxDivider>
+        <GdsCheckbox Value=""none"" IsExclusive=@true>No, I will not be travelling to any of these countries</GdsCheckbox>
+    </ChildContent>
+</GdsCheckboxes>
+
+@code {
+    List<string> countryErrorValues = new List<string> { ""france"", ""none"" };
+}")">
+    <GdsCheckboxes Name="countries" Values="@countryValues">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                Will you be travelling to any of these countries?
+            </GdsLegend>
+        </LegendTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>
+                Select countries you will be travelling to, or select ‘No, I will not be travelling to any of these countries’
+            </GdsErrorMessage>
+        </ErrorMessageTemplate>
+        <ChildContent>
+            <GdsCheckbox Value="france">France</GdsCheckbox>
+            <GdsCheckbox Value="portugal">Portugal</GdsCheckbox>
+            <GdsCheckbox Value="spain">Spain</GdsCheckbox>
+            <GdsCheckboxDivider>or</GdsCheckboxDivider>
+            <GdsCheckbox Value="none" IsExclusive=@true>No, I will not be travelling to any of these countries</GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+</Example>
+
+@code {
+    List<string> countryValues = new List<string> { "france", "none" };
+}
+
+<h3 class="govuk-heading-m" id="conditionally-revealing-a-related-question">Conditionally revealing a related question</h3>
+
+<Example CodeExampleContent="@(@"<GdsCheckboxes Name=""contact"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            How would you like to be contacted?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>
+            Select all options that are relevant to you
+        </GdsHint>
+    </HintTemplate>
+    <ChildContent>
+        <GdsCheckbox Value=""email"" Text=""Email"">
+            <ConditionalTemplate>
+                <GdsTextInput Id=""contact-by-email"" Name=""contactByEmail"" Type=""email"" Autocomplete=""email"" Spellcheck=""false"" Classes=@LayoutWidth.OneThird>
+                    <LabelTemplate>
+                        <GdsLabel>Email address</GdsLabel>
+                    </LabelTemplate>
+                </GdsTextInput>
+            </ConditionalTemplate>
+        </GdsCheckbox>
+        <GdsCheckbox Value=""phone"" Text=""Phone"">
+            <ConditionalTemplate>
+                <GdsTextInput Id=""contact-by-phone"" Name=""contactByPhone"" Type=""tel"" Autocomplete=""tel"" Classes=@LayoutWidth.OneThird>
+                    <LabelTemplate>
+                        <GdsLabel>Phone number</GdsLabel>
+                    </LabelTemplate>
+                </GdsTextInput>
+            </ConditionalTemplate>
+        </GdsCheckbox>
+        <GdsCheckbox Value=""text message"" Text=""Text message"">
+            <ConditionalTemplate>
+                <GdsTextInput Id=""contact-by-text"" Name=""contactByText"" Type=""tel"" Autocomplete=""tel"" Classes=@LayoutWidth.OneThird>
+                    <LabelTemplate>
+                        <GdsLabel>Mobile phone number</GdsLabel>
+                    </LabelTemplate>
+                </GdsTextInput>
+            </ConditionalTemplate>
+        </GdsCheckbox>
+    </ChildContent>
+</GdsCheckboxes>")">
+    <GdsCheckboxes Name="contact">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                How would you like to be contacted?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>
+                Select all options that are relevant to you
+            </GdsHint>
+        </HintTemplate>
+        <ChildContent>
+            <GdsCheckbox Value="email" Text="Email">
+                <ConditionalTemplate>
+                    <GdsTextInput Id="contact-by-email" Name="contactByEmail" Type="email" Autocomplete="email" Spellcheck="false" Classes=@LayoutWidth.OneThird>
+                        <LabelTemplate>
+                            <GdsLabel>Email address</GdsLabel>
+                        </LabelTemplate>
+                    </GdsTextInput>
+                </ConditionalTemplate>
+            </GdsCheckbox>
+            <GdsCheckbox Value="phone" Text="Phone">
+                <ConditionalTemplate>
+                    <GdsTextInput Id="contact-by-phone" Name="contactByPhone" Type="tel" Autocomplete="tel" Classes=@LayoutWidth.OneThird>
+                        <LabelTemplate>
+                            <GdsLabel>Phone number</GdsLabel>
+                        </LabelTemplate>
+                    </GdsTextInput>
+                </ConditionalTemplate>
+            </GdsCheckbox>
+            <GdsCheckbox Value="text message" Text="Text message">
+                <ConditionalTemplate>
+                    <GdsTextInput Id="contact-by-text" Name="contactByText" Type="tel" Autocomplete="tel" Classes=@LayoutWidth.OneThird>
+                        <LabelTemplate>
+                            <GdsLabel>Mobile phone number</GdsLabel>
+                        </LabelTemplate>
+                    </GdsTextInput>
+                </ConditionalTemplate>
+            </GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+</Example>
+
+<h3 class="govuk-heading-m" id="smaller-checkboxes">Smaller checkboxes</h3>
+
+<Example CodeExampleContent="@(@"<GdsCheckboxes Name=""organisation"" Classes=@CheckboxSize.Small>
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Medium>
+            Organisation
+        </GdsLegend>
+    </LegendTemplate>
+    <ChildContent>
+        <GdsCheckbox Value=""hmrc"">
+            HM Revenue and Customs (HMRC)
+        </GdsCheckbox>
+        <GdsCheckbox Value=""employment-tribunal"">Employment Tribunal</GdsCheckbox>
+        <GdsCheckbox Value=""MOD"">Ministry of Defence</GdsCheckbox>
+        <GdsCheckbox Value=""DfT"">Department for Transport</GdsCheckbox>
+    </ChildContent>
+</GdsCheckboxes>")">
+    <GdsCheckboxes Name="organisation" Classes=@CheckboxSize.Small>
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Medium>
+                Organisation
+            </GdsLegend>
+        </LegendTemplate>
+        <ChildContent>
+            <GdsCheckbox Value="hmrc">
+                HM Revenue and Customs (HMRC)
+            </GdsCheckbox>
+            <GdsCheckbox Value="employment-tribunal">Employment Tribunal</GdsCheckbox>
+            <GdsCheckbox Value="MOD">Ministry of Defence</GdsCheckbox>
+            <GdsCheckbox Value="DfT">Department for Transport</GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+</Example>
+
+<h3 class="govuk-heading-m" id="error-messages">Error messages</h3>
+
+<Example CodeExampleContent="@(@"<GdsCheckboxes Name=""nationality"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            What is your nationality?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>
+            If you have dual nationality, select all options that are relevant to you
+        </GdsHint>
+    </HintTemplate>
+    <ErrorMessageTemplate>
+        <GdsErrorMessage>Select if you are British, Irish or a citizen of a different country</GdsErrorMessage>
+    </ErrorMessageTemplate>
+    <ChildContent>
+        <GdsCheckbox Value=""british"" Text=""British"">
+            <HintTemplate>
+                <GdsHint Classes=""govuk-checkboxes__hint"">including English, Scottish, Welsh and Northern Irish</GdsHint>
+            </HintTemplate>
+        </GdsCheckbox>
+        <GdsCheckbox Value=""irish"">Irish</GdsCheckbox>
+        <GdsCheckbox Value=""other"">Citizen of another country</GdsCheckbox>
+    </ChildContent>
+</GdsCheckboxes>")">
+    <GdsCheckboxes Name="nationality">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                What is your nationality?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>
+                If you have dual nationality, select all options that are relevant to you
+            </GdsHint>
+        </HintTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>Select if you are British, Irish or a citizen of a different country</GdsErrorMessage>
+        </ErrorMessageTemplate>
+        <ChildContent>
+            <GdsCheckbox Value="british" Text="British">
+                <HintTemplate>
+                    <GdsHint Classes="govuk-checkboxes__hint">including English, Scottish, Welsh and Northern Irish</GdsHint>
+                </HintTemplate>
+            </GdsCheckbox>
+            <GdsCheckbox Value="irish">Irish</GdsCheckbox>
+            <GdsCheckbox Value="other">Citizen of another country</GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+</Example>

@@ -1,0 +1,109 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void OutputsFieldset()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsFieldset>
+        <LegendTemplate>
+            <GdsLegend Classes=@FieldsetLegendSize.Large
+                       IsPageHeading=@true>
+                What is your address?
+            </GdsLegend>
+        </LegendTemplate>
+        <ChildContent>
+            <GdsTextInput Id="address-line-1"
+                          Name="addressLine1"
+                          Autocomplete="address-line1">
+                <LabelTemplate>
+                    <GdsLabel>Address line 1</GdsLabel>
+                </LabelTemplate>
+            </GdsTextInput>
+            <GdsTextInput Id="address-line-2"
+                          Name="addressLine2"
+                          Autocomplete="address-line2">
+                <LabelTemplate>
+                    <GdsLabel>Address line 2 (optional)</GdsLabel>
+                </LabelTemplate>
+            </GdsTextInput>
+            <GdsTextInput Id="address-town"
+                          Name="addressTown"
+                          Autocomplete="address-level2"
+                          Classes=@LayoutWidth.TwoThirds>
+                <LabelTemplate>
+                    <GdsLabel>Town or city</GdsLabel>
+                </LabelTemplate>
+            </GdsTextInput>
+            <GdsTextInput Id="address-postcode"
+                          Name="addressPostcode"
+                          Autocomplete="postal-code"
+                          Classes=@TextInputWidth.Width10>
+                <LabelTemplate>
+                    <GdsLabel>Postcode</GdsLabel>
+                </LabelTemplate>
+            </GdsTextInput>
+        </ChildContent>
+    </GdsFieldset>);
+
+        component.MarkupMatches(
+    @<fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        <h1 class="govuk-fieldset__heading">
+            What is your address?
+        </h1>
+    </legend>
+    <div class="govuk-form-group">
+        <label class="govuk-label" for="address-line-1">
+            Address line 1
+        </label>
+        <input class="govuk-input" id="address-line-1" name="addressLine1" type="text" autocomplete="address-line1">
+    </div>
+    <div class="govuk-form-group">
+        <label class="govuk-label" for="address-line-2">
+            Address line 2 (optional)
+        </label>
+        <input class="govuk-input" id="address-line-2" name="addressLine2" type="text" autocomplete="address-line2">
+    </div>
+    <div class="govuk-form-group">
+        <label class="govuk-label" for="address-town">
+            Town or city
+        </label>
+        <input class="govuk-input govuk-!-width-two-thirds" id="address-town" name="addressTown" type="text" autocomplete="address-level2">
+    </div>
+    <div class="govuk-form-group">
+        <label class="govuk-label" for="address-postcode">
+            Postcode
+        </label>
+        <input class="govuk-input govuk-input--width-10" id="address-postcode" name="addressPostcode" type="text" autocomplete="postal-code">
+    </div>
+</fieldset>
+    );
+    }
+
+    [Fact]
+    public void OutputsFieldsetLegendAsPageHeading()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsFieldset>
+        <LegendTemplate>
+            <GdsLegend Classes=@FieldsetLegendSize.Large
+                       IsPageHeading=@true>
+                Legend as page heading
+            </GdsLegend>
+        </LegendTemplate>
+    </GdsFieldset>);
+
+        component.MarkupMatches(
+    @<fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        <h1 class="govuk-fieldset__heading">
+            Legend as page heading
+        </h1>
+    </legend>
+</fieldset>
+        );
+    }
+}

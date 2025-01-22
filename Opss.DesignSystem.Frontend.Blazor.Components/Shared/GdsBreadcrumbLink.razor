@@ -1,0 +1,35 @@
+﻿@inherits GdsWithHref
+
+@* <summary>
+    The breadcrumb link component must be used as a child of breadcrumbs.
+    The items within breadcrumbs.
+</summary> *@
+
+<li class="govuk-breadcrumbs__list-item">
+    @if (string.IsNullOrEmpty(Href))
+    {
+        @ChildContent
+    } else {
+        <a class="govuk-breadcrumbs__link @Classes"
+           href=@Href
+           @attributes=@Attributes
+        >
+            @ChildContent
+        </a>
+    }
+</li>
+
+@code {
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsBreadcrumbLink must exist within a GdsBreadcrumb");
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsBreadcrumbs? Parent { get; set; }
+    #endregion
+}

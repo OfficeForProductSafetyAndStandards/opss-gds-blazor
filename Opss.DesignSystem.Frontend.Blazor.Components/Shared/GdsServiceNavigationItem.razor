@@ -1,0 +1,68 @@
+﻿@inherits GdsWithHref
+
+<li class="govuk-service-navigation__item @((Active == true || Current == true) ? "govuk-service-navigation__item--active" : "")">
+    <a class="govuk-service-navigation__link"
+       href=@Href
+       aria-current=@ariaCurrent
+       @attributes=@Attributes>
+        @if (Active == true || Current == true)
+        {
+            <strong class="govuk-service-navigation__active-fallback">
+                @ChildContent
+            </strong>
+        }
+        else
+        {
+            @ChildContent
+        }
+    </a>
+</li>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// If true, indicates that the user is currently on this page.
+    /// This takes precedence over active.
+    /// </summary>
+    [Parameter]
+    public bool? Current { get; set; }
+
+    /// <summary>
+    /// If true, indicates that the user is within this group of
+    /// pages in the navigation hierarchy.
+    /// </summary>
+    [Parameter]
+    public bool? Active { get; set; }
+    #endregion
+
+    #region Private Properties
+    private string? ariaCurrent
+    {
+        get
+        {
+            if (Current == true)
+            {
+                return "page";
+            }
+            if (Active == true)
+            {
+                return "true";
+            }
+            return null;
+        }
+    }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsServiceNavigationITem must exist within a GdsServiceNavigation");
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsServiceNavigation? Parent { get; set; }
+    #endregion
+}

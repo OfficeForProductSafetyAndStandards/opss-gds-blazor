@@ -1,0 +1,321 @@
+﻿@inherits GdsViewModel
+
+@* <summary>
+    Only use the character count component when there is a good reason for
+    limiting the number of characters users can enter.
+</summary> *@
+
+<div class=@classes
+     data-module="govuk-character-count"
+     data-maxlength=@MaxLength
+     data-threshold=@Threshold
+     data-maxwords=@MaxWords
+     data-i18n.characters-under-limit=@replaceCountTemplate(CharactersUnderLimitText)
+     data-i18n.characters-at-limit=@CharactersAtLimitText
+     data-i18n.characters-over-limit=@replaceCountTemplate(CharactersOverLimitText)
+     data-i18n.words-under-limit=@replaceCountTemplate(WordsUnderLimitText)
+     data-i18n.words-at-limit=@WordsAtLimitText
+     data-i18n.words-over-limit=@replaceCountTemplate(WordsOverLimitText)
+     @attributes=@FormGroupAttributes>
+    @if (LabelTemplate != null)
+    {
+        <CascadingValue Value=@Id>
+            @LabelTemplate
+        </CascadingValue>
+    }
+    @if (HintTemplate != null)
+    {
+        <CascadingValue Value=@Id>
+            @HintTemplate
+        </CascadingValue>
+    }
+    @if (ErrorMessageTemplate != null)
+    {
+        <CascadingValue Value=@Id>
+            @ErrorMessageTemplate
+        </CascadingValue>
+    }
+
+    @if(BeforeInputTemplate != null)
+    {
+        @BeforeInputTemplate
+    }
+    <textarea id=@Id
+              class=@textAreaClasses
+              name=@Name
+              rows=@(Rows ?? 5)
+              spellcheck=@Spellcheck?.ToString().ToLower()
+              aria-describedby=@describedBy
+              autocomplete=@Autocomplete
+              @oninput="OnValueChanged"
+              @attributes=@Attributes
+    >
+        @Value
+    </textarea>
+    @if (TextareaDescriptionText != null)
+    {
+        <div id="@Id-info" class="govuk-hint govuk-character-count__message govuk-visually-hidden">
+            @replaceCountTemplate(TextareaDescriptionText)
+        </div>
+    }
+    <GdsHint OverrideId=@(Id + "-info")
+             Classes=@("govuk-character-count__message " + CountMessageClasses ?? "")>
+        @remainingCharacterHintText
+    </GdsHint>
+    @if (AfterInputTemplate != null)
+    {
+        @AfterInputTemplate
+    }
+</div>
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Required. The Id of the textarea.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
+    /// Required. The name of the input, which is submitted with the form data.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// Optional number of textarea rows.
+    /// </summary>
+    [Parameter]
+    public int? Rows { get; set; }
+
+    /// <summary>
+    /// Optional initial value of the input.
+    /// </summary>
+    [Parameter]
+    public string? Value { get; set; }
+
+    /// <summary>
+    /// Required. The maximum number of characters.
+    /// If MaxWords is provided, the MaxLength option will be ignored.
+    /// </summary>
+    [Parameter]
+    public int? MaxLength { get; set; }
+
+    /// <summary>
+    /// Required. The maximum number of words.
+    /// If MaxWords is provided, the MaxLength option will be ignored.
+    /// </summary>
+    [Parameter]
+    public int? MaxWords { get; set; }
+
+    /// <summary>
+    /// The percentage value of the limit at which point the count message is displayed.
+    /// If this attribute is set, the count message will be hidden by default.
+    /// </summary>
+    [Parameter]
+    public int? Threshold { get; set; }
+
+    /// <summary>
+    /// Required. The label used by the character count component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? LabelTemplate { get; set; }
+
+    /// <summary>
+    /// Can be used to add a hint to the character count component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
+
+    /// <summary>
+    /// Can be used to add an error message to the character count component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ErrorMessageTemplate { get; set; }
+
+    /// <summary>
+    /// Classes to add to the form group (for example to show error state for the whole group).
+    /// </summary>
+    [Parameter]
+    public string? FormGroupClasses { get; set; }
+
+    /// <summary>
+    /// HTML attributes (for example data attributes) to add to the form group.
+    /// </summary>
+    [Parameter]
+    [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Component parameters should have a public setter")]
+    public Dictionary<string, object>? FormGroupAttributes { get; set; } = new Dictionary<string, object>();
+
+    /// <summary>
+    /// Content to add before the textarea used by the character count component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? BeforeInputTemplate { get; set; }
+
+    /// <summary>
+    /// Content to add after the textarea used by the character count component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? AfterInputTemplate { get; set; }
+
+    /// <summary>
+    /// Content to add before all checkbox items within the checkboxes component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? BeforeInputsTemplate { get; set; }
+
+    /// <summary>
+    /// Content to add after all checkbox items within the checkboxes component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? AfterInputsTemplate { get; set; }
+
+    /// <summary>
+    /// Optional field to enable or disable the spellcheck attribute on the input.
+    /// </summary>
+    [Parameter]
+    public bool? Spellcheck { get; set; }
+
+    /// <summary>
+    /// Classes to add to the count message.
+    /// </summary>
+    [Parameter]
+    public string? CountMessageClasses { get; set; }
+
+    /// <summary>
+    /// Message made available to assistive technologies to describe that the component
+    /// accepts only a limited amount of content. It is visible on the page when JavaScript
+    /// is unavailable. The component will replace the %{count} placeholder with the value
+    /// of the maxlength or maxwords parameter.
+    /// </summary>
+    [Parameter]
+    public string? TextareaDescriptionText { get; set; }
+
+    /// <summary>
+    /// Message displayed when the number of characters is under the configured maximum,
+    /// maxlength. This message is displayed visually and through assistive technologies.
+    /// The component will replace the %{count} placeholder with the number of remaining
+    /// characters.
+    /// </summary>
+    [Parameter]
+    public string? CharactersUnderLimitText { get; set; }
+
+    /// <summary>
+    /// Message displayed when the number of characters reaches the configured maximum,
+    /// maxlength. This message is displayed visually and through assistive technologies.
+    /// </summary>
+    [Parameter]
+    public string? CharactersAtLimitText { get; set; }
+
+    /// <summary>
+    /// Message displayed when the number of characters is over the configured maximum,
+    /// maxlength. This message is displayed visually and through assistive technologies.
+    /// The component will replace the %{count} placeholder with the number of characters
+    /// above the maximum.
+    /// </summary>
+    [Parameter]
+    public string? CharactersOverLimitText { get; set; }
+
+    /// <summary>
+    /// Message displayed when the number of words is under the configured maximum, maxwords.
+    /// This message is displayed visually and through assistive technologies. The component
+    /// will replace the %{count} placeholder with the number of remaining words.
+    /// </summary>
+    [Parameter]
+    public string? WordsUnderLimitText { get; set; }
+
+    /// <summary>
+    /// Message displayed when the number of words reaches the configured maximum, maxwords.
+    /// This message is displayed visually and through assistive technologies.
+    /// </summary>
+    [Parameter]
+    public string? WordsAtLimitText { get; set; }
+
+    /// <summary>
+    /// Message displayed when the number of words is over the configured maximum, maxwords.
+    /// This message is displayed visually and through assistive technologies. The component
+    /// will replace the %{count} placeholder with the number of characters above the maximum.
+    /// </summary>
+    [Parameter]
+    public string? WordsOverLimitText { get; set; }
+
+    /// <summary>
+    /// One or more element IDs to add to the aria-describedby attribute, used to provide
+    /// additional descriptive information for screenreader users.
+    /// </summary>
+    [Parameter]
+    public string? DescribedBy { get; set; }
+
+    /// <summary>
+    /// Attribute to identify input purpose, for instance "postal-code" or "username".
+    /// </summary>
+    [Parameter]
+    public string? Autocomplete { get; set; }
+    #endregion
+
+    #region Event Handlers
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+
+    protected Task OnValueChanged(ChangeEventArgs e)
+    {
+        Value = e.Value?.ToString();
+
+        return ValueChanged.InvokeAsync(Value);
+    }
+    #endregion
+
+    #region Private Properties
+    private string remainingCharacterHintText
+    {
+        get
+        {
+            return $"You can enter up to {MaxWords ?? MaxLength ?? 0} " + (MaxWords.HasValue ? "words" : "characters");
+        }
+    }
+
+    private string? describedBy
+    {
+        get
+        {
+            var fullText = DescribedBy ?? "";
+            fullText += $" {Id}-info";
+            if (HintTemplate != null) fullText += $" {Id}-hint";
+            if (ErrorMessageTemplate != null) fullText += $" {Id}-error";
+            return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
+        }
+    }
+
+    private string classes
+    {
+        get
+        {
+            var classBuilder = "govuk-form-group govuk-character-count";
+            if (ErrorMessageTemplate != null)
+                classBuilder += " govuk-form-group--error";
+            if (FormGroupClasses != null)
+                classBuilder += $" {FormGroupClasses}";
+            return classBuilder;
+        }
+    }
+
+    private string textAreaClasses
+    {
+        get
+        {
+            var classBuilder = "govuk-textarea govuk-js-character-count";
+            if (Classes != null)
+                classBuilder += $" {Classes}";
+            if (ErrorMessageTemplate != null)
+                classBuilder += " govuk-textarea--error";
+            return classBuilder;
+        }
+    }
+    #endregion
+
+    #region Private Functions
+    private string? replaceCountTemplate(string? template)
+    {
+        return template?.Replace("%{count}", (MaxWords ?? MaxLength ?? 0).ToString());
+    }
+    #endregion
+}

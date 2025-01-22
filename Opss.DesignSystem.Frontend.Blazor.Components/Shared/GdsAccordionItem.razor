@@ -1,0 +1,97 @@
+﻿@inherits GdsWithContent
+
+@* <summary>
+    The accordion item component must be used as a child of the accordion component.
+    The sections within the accordion.
+</summary> *@
+
+<div class="govuk-accordion__section@(Expanded ? " govuk-accordion__section--expanded" : "")">
+    <div class="govuk-accordion__section-header">
+        <GdsHeading HeadingLevel=@HeadingLevel Classes="govuk-accordion__section-heading">
+            <span id="@(Parent?.Id)-heading-@Index" 
+                  class="govuk-accordion__section-button"
+            >
+                @Heading
+            </span>
+        </GdsHeading>
+        @if (!string.IsNullOrEmpty(Summary))
+        {
+            <div id="@(Parent?.Id)-summary-@Index" 
+                 class="govuk-accordion__section-summary govuk-body"
+            >
+                @Summary
+            </div>
+        }
+    </div>
+    <div id="@(Parent?.Id)-content-@Index" 
+         class="govuk-accordion__section-content"
+    >
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Heading level, from 1 to 6.
+    /// </summary>
+    [Parameter]
+    public int HeadingLevel { get; set; } = 2;
+
+    /// <summary>
+    /// Required. The title of each section.
+    /// </summary>
+    [Parameter]
+    public string? Heading { get; set; }
+
+    /// <summary>
+    /// The content for the summary line.
+    /// The summary line is inside the HTML &lt;button&gt; element, so you can only add phrasing content to it.
+    /// </summary>
+    [Parameter]
+    public string? Summary { get; set; }
+
+    /// <summary>
+    /// Sets whether the section should be expanded when the page loads for the first time.
+    /// </summary>
+    [Parameter]
+    public bool Expanded { get; set; }
+    #endregion
+
+    #region Public Properties
+    /// <summary>
+    /// Set by the parent to identify this element's index
+    /// </summary>
+    public int Index { get; set; }
+    #endregion
+
+    #region Parameter Validation
+    protected override void OnParametersSet()
+    {
+        if (string.IsNullOrWhiteSpace(Heading))
+            throw new ArgumentNullException(nameof(Heading), "GdsAccordionItem must have a heading");
+
+        if (HeadingLevel < 1 || HeadingLevel > 6)
+            throw new ArgumentOutOfRangeException(nameof(HeadingLevel), "Heading level must have a value between 1 and 6");
+
+        if (ChildContent==null)
+            throw new ArgumentNullException(nameof(ChildContent), "GdsAccordionItem must have child content");
+
+        base.OnParametersSet();
+    }
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsAccordionItem must exist within a GdsAccordion");
+
+        base.OnInitialized();
+        Parent.AddItem(this);
+    }
+
+    [CascadingParameter]
+    private GdsAccordion? Parent { get; set; }
+    #endregion
+}

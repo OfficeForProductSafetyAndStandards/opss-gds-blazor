@@ -1,0 +1,171 @@
+﻿@inherits GdsViewModel
+
+@* <summary>
+    Use the textarea component when you need to let users enter an amount of text 
+    that’s longer than a single line.
+</summary> *@
+
+<div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses"
+     @attributes=@FormGroupAttributes>
+    @if (LabelTemplate != null)
+    {
+        <CascadingValue Value=@Id>
+            @LabelTemplate
+        </CascadingValue>
+    }
+    @if (HintTemplate != null)
+    {
+        <CascadingValue Value=@Id>
+            @HintTemplate
+        </CascadingValue>
+    }
+    @if (ErrorMessageTemplate != null)
+    {
+        <CascadingValue Value=@Id>
+            @ErrorMessageTemplate
+        </CascadingValue>
+    }
+
+    @if (BeforeInputsTemplate != null)
+    {
+        @BeforeInputsTemplate
+    }
+    <textarea id=@Id 
+              class="govuk-textarea @Classes @(ErrorMessageTemplate != null ? "govuk-textarea--error" : "")"
+              name=@Name 
+              rows=@(Rows ?? 5)
+              spellcheck=@Spellcheck?.ToString().ToLower()
+              aria-describedby=@describedBy
+              autocomplete=@Autocomplete
+              disabled=@Disabled
+              @oninput=OnValueChanged
+              @attributes=@Attributes
+    >
+        @Value
+    </textarea>
+    @if (AfterInputsTemplate != null)
+    {
+        @AfterInputsTemplate
+    }
+</div>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Required. The ID of the textarea.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
+    /// Required. The name of the input, which is submitted with the form data.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// Optional field to enable or disable the spellcheck attribute on the input.
+    /// </summary>
+    [Parameter]
+    public bool? Spellcheck { get; set; }
+
+    /// <summary>
+    /// Optional number of textarea rows.
+    /// </summary>
+    [Parameter]
+    public int? Rows { get; set; }
+
+    /// <summary>
+    /// Value of the textarea.
+    /// </summary>
+    [Parameter]
+    public string? Value { get; set; }
+
+    /// <summary>
+    /// If true, textarea will be disabled.
+    /// </summary>
+    [Parameter]
+    public bool? Disabled { get; set; }
+
+    /// <summary>
+    /// One or more element IDs to add to the aria-describedby attribute, used to provide
+    /// additional descriptive information for screenreader users.
+    /// </summary>
+    [Parameter]
+    public string? DescribedBy { get; set; }
+
+    /// <summary>
+    /// The label used by the textarea component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? LabelTemplate { get; set; }
+
+    /// <summary>
+    /// Can be used to add a hint to the textarea component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? HintTemplate { get; set; }
+
+    /// <summary>
+    /// Can be used to add an error message to the textarea component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ErrorMessageTemplate { get; set; }
+
+    /// <summary>
+    /// Classes to add to the form group (for example to show error state for the whole group).
+    /// </summary>
+    [Parameter]
+    public string? FormGroupClasses { get; set; }
+
+    /// <summary>
+    /// HTML attributes (for example data attributes) to add to the form group.
+    /// </summary>
+    [Parameter]
+    [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Component parameters should have a public setter")]
+    public Dictionary<string, object>? FormGroupAttributes { get; set; } = new Dictionary<string, object>();
+
+    /// <summary>
+    /// Content to add before all checkbox items within the textarea component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? BeforeInputsTemplate { get; set; }
+
+    /// <summary>
+    /// Content to add after all checkbox items within the textarea component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? AfterInputsTemplate { get; set; }
+
+    /// <summary>
+    /// Attribute to identify input purpose, for instance "postal-code" or "username".
+    /// </summary>
+    [Parameter]
+    public string? Autocomplete { get; set; }
+    #endregion
+
+    #region Event Handlers
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+
+    protected Task OnValueChanged(ChangeEventArgs e)
+    {
+        Value = e.Value?.ToString();
+
+        return ValueChanged.InvokeAsync(Value);
+    }
+    #endregion
+
+    #region Private Properties
+    private string? describedBy
+    {
+        get
+        {
+            var fullText = DescribedBy ?? "";
+            if (HintTemplate != null) fullText += $" {Id}-hint";
+            if (ErrorMessageTemplate != null) fullText += $" {Id}-error";
+            return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
+        }
+    }
+    #endregion
+}

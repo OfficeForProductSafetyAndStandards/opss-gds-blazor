@@ -10,7 +10,8 @@
   "author": "Richard priddy",
   "license": "ISC",
   "dependencies": {
-    "govuk-frontend": "^5.4.1"
+    "@ministryofjustice/frontend": "^3.0.3",
+    "govuk-frontend": "^5.7.1"
   },
   "devDependencies": {
     "async": "^3.2.5",

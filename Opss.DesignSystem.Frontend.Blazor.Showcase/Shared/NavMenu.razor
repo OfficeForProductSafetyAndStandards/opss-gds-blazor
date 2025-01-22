@@ -1,4 +1,6 @@
-﻿<nav aria-label="Menu" class="govuk-header__navigation">
+﻿@inject NavigationManager NavigationManager
+
+<nav aria-label="Menu" class="govuk-header__navigation">
     <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>
         Menu
     </button>
@@ -8,8 +10,13 @@
                 Home
             </NavLink>
         </li>
+        <li class="govuk-header__navigation-item @GetActive("Styles/", NavLinkMatch.Prefix)">
+            <NavLink class="govuk-header__link" href="Styles/">
+                Styles
+            </NavLink>
+        </li>
         <li class="govuk-header__navigation-item @GetActive("Components/", NavLinkMatch.Prefix)">
-            <NavLink class="govuk-header__link" href="Components/TextInput">
+            <NavLink class="govuk-header__link" href="Components/">
                 Components
             </NavLink>
         </li>
@@ -17,9 +24,6 @@
 </nav>
 
 @code {
-    [Inject]
-    NavigationManager NavigationManager { get; set; }
-
     protected override void OnInitialized() => NavigationManager.LocationChanged += (s, e) => StateHasChanged();
 
     bool IsActive(string href, NavLinkMatch navLinkMatch = NavLinkMatch.Prefix)

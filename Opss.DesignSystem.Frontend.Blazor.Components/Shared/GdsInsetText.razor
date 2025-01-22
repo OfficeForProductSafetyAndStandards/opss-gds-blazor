@@ -1,0 +1,23 @@
+﻿@inherits GdsWithContent
+
+@* <summary>
+    Use the inset text component to differentiate a block of text from
+    the content that surrounds it.
+</summary> *@
+
+<div id=@Id 
+     class="govuk-inset-text @Classes"
+     @attributes=@Attributes
+>
+    @ChildContent
+</div>
+
+@code{
+    #region Public Parameters
+    /// <summary>
+    /// Id attribute to add to the inset text container.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+    #endregion
+}

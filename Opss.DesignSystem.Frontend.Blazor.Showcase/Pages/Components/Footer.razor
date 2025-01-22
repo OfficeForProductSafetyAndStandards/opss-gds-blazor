@@ -1,0 +1,341 @@
+﻿@page "/Components/Footer"
+@layout _ComponentsLayout
+
+<PageTitle>Footer</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Footer</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/footer/" class="govuk-link">Footer</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsFooter />")">
+    <GdsFooter />
+</Example>
+
+<h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
+
+<h3 class="govuk-heading-m" id="footer-without-links">Footer without links</h3>
+
+<Example CodeExampleContent="@(@"<GdsFooter />")">
+    <GdsFooter />
+</Example>
+
+<h3 class="govuk-heading-m" id="footer-with-links">Footer with links</h3>
+
+<Example CodeExampleContent="@(@"<GdsFooter>
+    <MetaTemplate>
+        <GdsFooterMeta>
+            <GdsFooterMetaItem Href=""#"">Item 1</GdsFooterMetaItem>
+            <GdsFooterMetaItem Href=""#"">Item 2</GdsFooterMetaItem>
+            <GdsFooterMetaItem Href=""#"">Item 3</GdsFooterMetaItem>
+        </GdsFooterMeta>
+    </MetaTemplate>
+</GdsFooter>")">
+    <GdsFooter>
+        <MetaTemplate>
+            <GdsFooterMeta>
+                <ItemsTemplate>
+                    <GdsFooterMetaItem Href="#">Item 1</GdsFooterMetaItem>
+                    <GdsFooterMetaItem Href="#">Item 2</GdsFooterMetaItem>
+                    <GdsFooterMetaItem Href="#">Item 3</GdsFooterMetaItem>
+                </ItemsTemplate>
+            </GdsFooterMeta>
+        </MetaTemplate>
+    </GdsFooter>
+</Example>
+
+<h2 class="govuk-heading-l" id="adding-secondary-navigation">Adding secondary navigation</h2>
+
+<h3 class="govuk-heading-m" id="footer-with-secondary-navigation">Footer with secondary navigation</h3>
+
+<Example CodeExampleContent="@(@"<GdsFooter>
+    <NavigationTemplate>
+        <GdsFooterNavigation Title=""Two column list""
+                             Width=@FooterNavigationWidth.TwoThirds
+                             Columns=""2"">
+            <GdsFooterNavigationItem Href=""#"">
+                Navigation item 1
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Navigation item 2
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Navigation item 3
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Navigation item 4
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Navigation item 5
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Navigation item 6
+            </GdsFooterNavigationItem>
+        </GdsFooterNavigation>
+        <GdsFooterNavigation Title=""Single column list""
+                             Width=@FooterNavigationWidth.OneThird>
+            <GdsFooterNavigationItem Href=""#"">
+                Navigation item 1
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Navigation item 2
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Navigation item 3
+            </GdsFooterNavigationItem>
+        </GdsFooterNavigation>
+    </NavigationTemplate>
+</GdsFooter>")">
+    <GdsFooter>
+        <NavigationTemplate>
+            <GdsFooterNavigation Title="Two column list"
+                                 Width=@FooterNavigationWidth.TwoThirds
+                                 Columns="2">
+                <GdsFooterNavigationItem Href="#">
+                    Navigation item 1
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Navigation item 2
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Navigation item 3
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Navigation item 4
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Navigation item 5
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Navigation item 6
+                </GdsFooterNavigationItem>
+            </GdsFooterNavigation>
+            <GdsFooterNavigation Title="Single column list"
+                                 Width=@FooterNavigationWidth.OneThird>
+                <GdsFooterNavigationItem Href="#">
+                    Navigation item 1
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Navigation item 2
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Navigation item 3
+                </GdsFooterNavigationItem>
+            </GdsFooterNavigation>
+        </NavigationTemplate>
+    </GdsFooter>
+</Example>
+
+<h3 class="govuk-heading-m" id="footer-with-links-and-secondary-navigation">Footer with links and secondary navigation</h3>
+
+<Example CodeExampleContent="@(@"<GdsFooter>
+    <NavigationTemplate>
+        <GdsFooterNavigation Title=""Services and information""
+                                Width=@FooterNavigationWidth.TwoThirds
+                                Columns=""2"">
+            <GdsFooterNavigationItem Href=""#"">
+                Benefits
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Births, deaths, marriages and care
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Childcare and parenting
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Citizenship and living in the UK
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Crime, justice and the law
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Disabled people
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Driving and transport
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Education and learning
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Employing people
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Environment and countryside
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Housing and local services
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Money and tax
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Passports, travel and living abroad
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Visas and immigration
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Working, jobs and pensions
+            </GdsFooterNavigationItem>
+        </GdsFooterNavigation>
+        <GdsFooterNavigation Title=""Departments and policy""
+                                Width=@FooterNavigationWidth.OneThird>
+            <GdsFooterNavigationItem Href=""#"">
+                How government works
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Departments
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Worldwide
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Policies
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Publications
+            </GdsFooterNavigationItem>
+            <GdsFooterNavigationItem Href=""#"">
+                Announcements
+            </GdsFooterNavigationItem>
+        </GdsFooterNavigation>
+    </NavigationTemplate>
+    <MetaTemplate>
+        <GdsFooterMeta>
+            <ItemsTemplate>
+                <GdsFooterMetaItem Href=""#"">
+                    Help
+                </GdsFooterMetaItem>
+                <GdsFooterMetaItem Href=""#"">
+                    Cookies
+                </GdsFooterMetaItem>
+                <GdsFooterMetaItem Href=""#"">
+                    Contact
+                </GdsFooterMetaItem>
+                <GdsFooterMetaItem Href=""#"">
+                    Terms and conditions
+                </GdsFooterMetaItem>
+                <GdsFooterMetaItem Href=""#"" Attributes=@(new Dictionary<string, object>
+                                    {
+                                    { ""lang"", ""cy"" },
+                                    { ""hreflang"", ""cy"" }
+                                    })>
+                    Rhestr o Wasanaethau Cymraeg
+                </GdsFooterMetaItem>
+            </ItemsTemplate>
+            <ChildContent>
+                Built by the <a href=""#"" class=""govuk-footer__link"">Government Digital Service</a>
+            </ChildContent>
+        </GdsFooterMeta>
+    </MetaTemplate>
+</GdsFooter>")">
+    <GdsFooter>
+        <NavigationTemplate>
+            <GdsFooterNavigation Title="Services and information"
+                                 Width=@FooterNavigationWidth.TwoThirds
+                                 Columns="2">
+                <GdsFooterNavigationItem Href="#">
+                    Benefits
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Births, deaths, marriages and care
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Childcare and parenting
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Citizenship and living in the UK
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Crime, justice and the law
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Disabled people
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Driving and transport
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Education and learning
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Employing people
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Environment and countryside
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Housing and local services
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Money and tax
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Passports, travel and living abroad
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Visas and immigration
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Working, jobs and pensions
+                </GdsFooterNavigationItem>
+            </GdsFooterNavigation>
+            <GdsFooterNavigation Title="Departments and policy"
+                                 Width=@FooterNavigationWidth.OneThird>
+                <GdsFooterNavigationItem Href="#">
+                    How government works
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Departments
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Worldwide
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Policies
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Publications
+                </GdsFooterNavigationItem>
+                <GdsFooterNavigationItem Href="#">
+                    Announcements
+                </GdsFooterNavigationItem>
+            </GdsFooterNavigation>
+        </NavigationTemplate>
+        <MetaTemplate>
+            <GdsFooterMeta>
+                <ItemsTemplate>
+                    <GdsFooterMetaItem Href="#">
+                        Help
+                    </GdsFooterMetaItem>
+                    <GdsFooterMetaItem Href="#">
+                        Cookies
+                    </GdsFooterMetaItem>
+                    <GdsFooterMetaItem Href="#">
+                        Contact
+                    </GdsFooterMetaItem>
+                    <GdsFooterMetaItem Href="#">
+                        Terms and conditions
+                    </GdsFooterMetaItem>
+                    <GdsFooterMetaItem Href="#" Attributes=@(new Dictionary<string, object>
+                                       {
+                                       { "lang", "cy" },
+                                       { "hreflang", "cy" }
+                                       })>
+                        Rhestr o Wasanaethau Cymraeg
+                    </GdsFooterMetaItem>
+                </ItemsTemplate>
+                <ChildContent>
+                    Built by the <a href="#" class="govuk-footer__link">Government Digital Service</a>
+                </ChildContent>
+            </GdsFooterMeta>
+        </MetaTemplate>
+    </GdsFooter>
+</Example>
+
+@code {
+
+}

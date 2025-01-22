@@ -1,0 +1,234 @@
+﻿@page "/Components/DateInput"
+@layout _ComponentsLayout
+
+<PageTitle>Date input</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Date input</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/date-input/" class="govuk-link">Date input</a>.
+</p>
+
+<Example CodeExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            When was your passport issued?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>For example, 27 3 2007</GdsHint>
+    </HintTemplate>
+    <ChildContent>
+        <GdsDateInputField DatePart=""@DateInputFieldType.Day"" />
+        <GdsDateInputField DatePart=""@DateInputFieldType.Month"" />
+        <GdsDateInputField DatePart=""@DateInputFieldType.Year"" />
+    </ChildContent>
+</GdsDateInput>")">
+    <GdsDateInput Id="passport-issued" NamePrefix="passport-issued">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                When was your passport issued?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>For example, 27 3 2007</GdsHint>
+        </HintTemplate>
+        <ChildContent>
+            <GdsDateInputField DatePart="@DateInputFieldType.Day" />
+            <GdsDateInputField DatePart="@DateInputFieldType.Month" />
+            <GdsDateInputField DatePart="@DateInputFieldType.Year" />
+        </ChildContent>
+    </GdsDateInput>
+</Example>
+
+<h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
+
+<Example CodeExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            When was your passport issued?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>For example, 27 3 2007</GdsHint>
+    </HintTemplate>
+    <ChildContent>
+        <GdsDateInputField DatePart=""@DateInputFieldType.Day"" />
+        <GdsDateInputField DatePart=""@DateInputFieldType.Month"" />
+        <GdsDateInputField DatePart=""@DateInputFieldType.Year"" />
+    </ChildContent>
+</GdsDateInput>")">
+    <GdsDateInput Id="passport-issued" NamePrefix="passport-issued">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                When was your passport issued?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>For example, 27 3 2007</GdsHint>
+        </HintTemplate>
+        <ChildContent>
+            <GdsDateInputField DatePart="@DateInputFieldType.Day" />
+            <GdsDateInputField DatePart="@DateInputFieldType.Month" />
+            <GdsDateInputField DatePart="@DateInputFieldType.Year" />
+        </ChildContent>
+    </GdsDateInput>
+</Example>
+
+<h3 class="govuk-heading-m" id="if-youre-asking-one-question-on-the-page">If you’re asking one question on the page</h3>
+
+<Example CodeExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
+    <LegendTemplate>
+        <GdsLegend>
+            When was your passport issued?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>For example, 27 3 2007</GdsHint>
+    </HintTemplate>
+    <ChildContent>
+        <GdsDateInputField DatePart=""@DateInputFieldType.Day"" />
+        <GdsDateInputField DatePart=""@DateInputFieldType.Month"" />
+        <GdsDateInputField DatePart=""@DateInputFieldType.Year"" />
+    </ChildContent>
+</GdsDateInput>")">
+    <GdsDateInput Id="passport-issued" NamePrefix="passport-issued">
+        <LegendTemplate>
+            <GdsLegend>
+                When was your passport issued?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>For example, 27 3 2007</GdsHint>
+        </HintTemplate>
+        <ChildContent>
+            <GdsDateInputField DatePart="@DateInputFieldType.Day" />
+            <GdsDateInputField DatePart="@DateInputFieldType.Month" />
+            <GdsDateInputField DatePart="@DateInputFieldType.Year" />
+        </ChildContent>
+    </GdsDateInput>
+</Example>
+
+<h3 class="govuk-heading-m" id="use-the-autocomplete-for-a-date-of-birth">Use the autocomplete attribute for a date of birth</h3>
+
+<Example CodeExampleContent="@(@"<GdsDateInput Id=""dob"" Name=""dob"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            What is your date of birth?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>For example, 31 3 1980</GdsHint>
+    </HintTemplate>
+    <ChildContent>
+        <GdsDateInputField DatePart=""@DateInputFieldType.Day"" Autocomplete=""bday-day"" />
+        <GdsDateInputField DatePart=""@DateInputFieldType.Month"" Autocomplete=""bday-month"" />
+        <GdsDateInputField DatePart=""@DateInputFieldType.Year"" Autocomplete=""bday-year"" />
+    </ChildContent>
+</GdsDateInput>")">
+    <GdsDateInput Id="dob" NamePrefix="dob">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                What is your date of birth?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>For example, 31 3 1980</GdsHint>
+        </HintTemplate>
+        <ChildContent>
+            <GdsDateInputField DatePart="@DateInputFieldType.Day" Autocomplete="bday-day" />
+            <GdsDateInputField DatePart="@DateInputFieldType.Month" Autocomplete="bday-month" />
+            <GdsDateInputField DatePart="@DateInputFieldType.Year" Autocomplete="bday-year" />
+        </ChildContent>
+    </GdsDateInput>
+</Example>
+
+<h3 class="govuk-heading-m" id="error-messages">Error messages</h3>
+
+<Example CodeExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            When was your passport issued?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>For example, 27 3 2007</GdsHint>
+    </HintTemplate>
+    <ErrorMessageTemplate>
+        <GdsErrorMessage>
+            The date your passport was issued must be in the past
+        </GdsErrorMessage>
+    </ErrorMessageTemplate>
+    <ChildContent>
+        <GdsDateInputField HasError=@true DatePart=""@DateInputFieldType.Day"" Value=""6"" />
+        <GdsDateInputField HasError=@true DatePart=""@DateInputFieldType.Month"" Value=""3"" />
+        <GdsDateInputField HasError=@true DatePart=""@DateInputFieldType.Year"" Value=""2076"" />
+    </ChildContent>
+</GdsDateInput>")">
+    <GdsDateInput Id="passport-issued" NamePrefix="passport-issued">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                When was your passport issued?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>For example, 27 3 2007</GdsHint>
+        </HintTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>
+                The date your passport was issued must be in the past
+            </GdsErrorMessage>
+        </ErrorMessageTemplate>
+        <ChildContent>
+            <GdsDateInputField HasError=@true DatePart="@DateInputFieldType.Day" Value="6" />
+            <GdsDateInputField HasError=@true DatePart="@DateInputFieldType.Month" Value="3" />
+            <GdsDateInputField HasError=@true DatePart="@DateInputFieldType.Year" Value="2076" />
+        </ChildContent>
+    </GdsDateInput>
+</Example>
+
+<Example CodeExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
+    <LegendTemplate>
+        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            When was your passport issued?
+        </GdsLegend>
+    </LegendTemplate>
+    <HintTemplate>
+        <GdsHint>For example, 27 3 2007</GdsHint>
+    </HintTemplate>
+    <ErrorMessageTemplate>
+        <GdsErrorMessage>
+            The date your passport was issued must include a year
+        </GdsErrorMessage>
+    </ErrorMessageTemplate>
+    <ChildContent>
+        <GdsDateInputField DatePart=""@DateInputFieldType.Day"" Value=""6"" />
+        <GdsDateInputField DatePart=""@DateInputFieldType.Month"" Value=""3"" />
+        <GdsDateInputField HasError=@true DateInputFieldType=""@DateParts.Year"" />
+    </ChildContent>
+</GdsDateInput>")">
+    <GdsDateInput Id="passport-issued" NamePrefix="passport-issued">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                When was your passport issued?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>For example, 27 3 2007</GdsHint>
+        </HintTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>
+                The date your passport was issued must include a year
+            </GdsErrorMessage>
+        </ErrorMessageTemplate>
+        <ChildContent>
+            <GdsDateInputField DatePart="@DateInputFieldType.Day" Value="6" />
+            <GdsDateInputField DatePart="@DateInputFieldType.Month" Value="3" />
+            <GdsDateInputField HasError=@true DatePart="@DateInputFieldType.Year" />
+        </ChildContent>
+    </GdsDateInput>
+</Example>
+
+@code {
+}

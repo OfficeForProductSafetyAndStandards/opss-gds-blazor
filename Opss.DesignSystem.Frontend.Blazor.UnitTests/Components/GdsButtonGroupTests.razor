@@ -1,0 +1,71 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void OutputsButtonGroup()
+    {
+        // Arrange
+        var component = Render(@<GdsButtonGroup>
+        <GdsButton Type="submit">Save and continue</GdsButton>
+        <GdsButton Type="submit" Classes=@ButtonStyle.Secondary>Save as draft</GdsButton>
+    </GdsButtonGroup>);
+
+        component.MarkupMatches(
+    @<div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+            Save and continue
+        </button>
+        <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Save as draft
+        </button>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void OutputsButtonGroupWithLink()
+    {
+        // Arrange
+        var component = Render(@<GdsButtonGroup>
+        <GdsButton Type="submit">Continue</GdsButton>
+        <GdsLink Href="#">Cancel</GdsLink>
+    </GdsButtonGroup>);
+
+        component.MarkupMatches(
+    @<div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+            Continue
+        </button>
+        <a class="govuk-link" href="#">Cancel</a>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void OutputsEmptyButtonGroup()
+    {
+        // Arrange
+        var component = Render(@<GdsButtonGroup></GdsButtonGroup>);
+
+        component.MarkupMatches(
+    @<div class="govuk-button-group"></div>
+        );
+    }
+
+    [Fact]
+    public void OutputsCustomAttributes()
+    {
+        // Arrange
+        var customAttributes = new Dictionary<string, object>() {
+            { "aria-label", "Custom Label" },
+            { "data-my-field", "my data" }
+        };
+
+        var component = Render(@<GdsButtonGroup Attributes=@customAttributes></GdsButtonGroup>);
+
+        component.MarkupMatches(
+    @<div aria-label="Custom Label" class="govuk-button-group" data-my-field="my data"></div>
+        );
+    }
+
+}

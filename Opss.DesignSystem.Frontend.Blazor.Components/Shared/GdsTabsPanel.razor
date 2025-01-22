@@ -1,0 +1,53 @@
+﻿@inherits GdsWithContent
+
+<div id=@(HideId ? "" : Id)
+     class="govuk-tabs__panel @ActivePanelCss @Classes" 
+aria-labelledby="tab_@Id" 
+@attributes="@Attributes" 
+role="tabpanel">
+    @ChildContent
+</div>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Required. Specific ID attribute for the tab item. If omitted, then <see cref="GdsTabs.IdPrefix"/> string is required instead.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
+    /// Required. The text label of a tab item.
+    /// </summary>
+    [Parameter]
+    public string? Label { get; set; }
+    #endregion
+
+    #region Public Properties
+    public bool HideId { get; set; }
+    #endregion
+
+    #region Private Properties
+    private string ActivePanelCss => Parent!.ActivePanel == this ? "" : "govuk-tabs__panel--hidden";
+    #endregion
+
+    #region Internal Methods
+    internal void SetId(string? id) => Id = id;
+    #endregion
+
+    #region Cascading Value - Parent
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "GdsTabsPanel must exist within a GdsTabs component");
+
+        Parent.AddPanel(this);
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    private GdsTabs? Parent { get; set; }
+    #endregion
+
+}

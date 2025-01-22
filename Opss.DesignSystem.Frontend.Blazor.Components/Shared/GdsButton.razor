@@ -1,0 +1,189 @@
+﻿@inherits GdsWithHref
+
+@* <summary>
+    Use the button component to help users carry out an action like starting an application or saving their information.
+</summary>*@
+
+@* Bit of a mess, nunjucks combines some of this but it's still crazy due to the three different elements that can be rendered *@
+@switch (element)
+{
+    case ButtonType.Anchor:
+        <a id=@Id
+           class=@classes
+           href=@(Href ?? "#")
+           role="button"
+           data-module="govuk-button"
+           draggable="false"
+           @attributes=@Attributes
+        >
+           @ChildContent
+            @if (IsStartButton)
+            {
+                <svg class="govuk-button__start-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="17.5"
+                height="19"
+                viewBox="0 0 33 40"
+                aria-hidden="true"
+                focusable="false">
+                    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+                </svg>
+            }
+        </a>
+        break;
+    case ButtonType.Button:
+        <button id=@Id
+                class=@classes
+                type=@Type
+                name=@Name
+                disabled=@(Disabled ? "disabled" : null)
+                aria-disabled=@(Disabled ? "true" : null)
+                data-prevent-double-click=@(PreventDoubleClick ? "true" : null)
+                data-module="govuk-button"
+                @onclick=@OnClick
+                @attributes=@Attributes
+        >
+            @ChildContent
+            @if (IsStartButton)
+            {
+                <svg class="govuk-button__start-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="17.5"
+                height="19"
+                viewBox="0 0 33 40"
+                aria-hidden="true"
+                focusable="false">
+                    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+                </svg>
+            }
+        </button>
+        break;
+    case ButtonType.Input:
+        <input id=@Id
+               class=@classes
+               value=@Value
+               type=@Type
+               name=@Name
+               @onclick=@OnClick
+               disabled=@(Disabled ? "disabled" : null)
+               aria-disabled=@(Disabled ? "true" : null)
+               data-prevent-double-click=@(PreventDoubleClick ? "true" : null)
+               data-module="govuk-button"
+               @attributes=@Attributes
+        />
+        break;
+}
+
+@code {
+    #region Public Parameters
+
+    /// <summary>
+    /// Whether to use an <see cref="ButtonType.Input"/>, <see cref="ButtonType.Button"/> or <see cref="ButtonType.Anchor"/> to create the GDS button (should be GdsButtonType)
+    /// In most cases you will not need to set this as it will be configured automatically.
+    /// Set to <see cref="ButtonType.Input"/> to explicitly output an input element. 
+    /// The <see cref="Value"/> field is required if set to <see cref="ButtonType.Input"/>.
+    /// </summary>
+    [Parameter]
+    public ButtonType? Element { get; set; }
+
+    /// <summary>
+    /// Name for the input or button.
+    /// This has no effect on a elements.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// Type of HTML input or button. 
+    /// Valid values are "button", "submit" or "reset".
+    /// Defaults to "submit". This has no effect on "a" elements.
+    /// </summary>
+    [Parameter]
+    public string? Type { get; set; } = "submit";
+
+    /// <summary>
+    /// Value for the input tag.
+    /// This has no effect on a or button elements.
+    /// </summary>
+    [Parameter]
+    public string? Value { get; set; }
+
+    /// <summary>
+    /// Whether the button should be disabled.
+    /// For button and input elements, disabled and aria-disabled attributes will be set automatically.
+    /// This has no effect on, and does not apply to "a" elements.
+    /// </summary>
+    [Parameter]
+    public bool Disabled { get; set; }
+
+    /// <summary>
+    /// Prevent accidental double clicks on submit buttons from submitting forms multiple times.
+    /// </summary>
+    [Parameter]
+    public bool PreventDoubleClick { get; set; }
+
+    /// <summary>
+    /// Use for the main call to action on your service's start page.
+    /// </summary>
+    [Parameter]
+    public bool IsStartButton { get; set; }
+
+    /// <summary>
+    /// The Id of the button.
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
+    /// Indicates that the component is on a dark background and should utilise the inverse class
+    /// </summary>
+    [Parameter]
+    public bool IsOnDarkBackground { get; set; }
+
+    /// <summary>
+    /// Event to call on click event of button type elements
+    /// </summary>
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+    #endregion
+
+    #region Private Properties
+    private ButtonType? element
+    {
+        get
+        {
+            return Element ?? (string.IsNullOrEmpty(Href) ? ButtonType.Button : ButtonType.Anchor);
+        }
+    }
+
+    private string classes
+    {
+        get
+        {
+            var classBuilder = "govuk-button";
+            if (IsStartButton)
+                classBuilder += " govuk-button--start";
+            if (IsOnDarkBackground)
+                classBuilder += " govuk-button--inverse";
+            if (!string.IsNullOrEmpty(Classes))
+                classBuilder += $" {Classes}";
+
+            return classBuilder;
+        }
+    }
+    #endregion
+
+    protected override void OnParametersSet()
+    {
+        if ((element == ButtonType.Anchor || element == ButtonType.Button) && ChildContent == null)
+            throw new ArgumentNullException(nameof(ChildContent), "GdsButton link or button must have child content provided.");
+
+        if (element == ButtonType.Input && string.IsNullOrWhiteSpace(Value))
+            throw new ArgumentNullException(nameof(Value), "GdsButton input must have a value.");
+
+        if (!(new[] { "button", "submit", "reset" }).Contains(Type))
+            throw new ArgumentException($"'{Type}' is not valid for the Type field in GdsButton.", nameof(Type));
+
+        base.OnParametersSet();
+    }
+}

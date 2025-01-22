@@ -1,5 +1,58 @@
-﻿@inherits Models.GdsHintModel
+﻿@inherits GdsWithContent
 
-<div id="@Id" class="govuk-hint @Classes" @attributes="@Attributes">
+<div id=@Id
+     class="govuk-hint @Classes?.Trim()"
+     @attributes=@Attributes
+>
     @ChildContent
 </div>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Whether the label also acts as the heading for the page.
+    /// </summary>
+    [Parameter]
+    public bool IsPageHeading { get; set; }
+
+    /// <summary>
+    /// If specified, the hint will use this Id, rather than
+    /// the generated "ParentId-hint" value.
+    /// </summary>
+    [Parameter]
+    public string? OverrideId{ get; set; }
+    #endregion
+
+    #region Public Override Properties
+    /// <summary>
+    /// The calculated id of the element
+    /// This is based on the cascaded Parent Id value
+    /// </summary>
+    public string? Id
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(OverrideId))
+                return ParentId + "-hint";
+            return OverrideId;
+        }
+        set
+        {
+            OverrideId = value;
+        }
+    }
+    #endregion
+
+    #region Cascading Value - ParentId
+    protected override void OnInitialized()
+    {
+        if (ParentId == null && OverrideId == null)
+            throw new ArgumentNullException(nameof(OverrideId), "GdsHint must exist within a valid control, or an Id must be supplied");
+
+        base.OnInitialized();
+    }
+
+    [CascadingParameter]
+    public string? ParentId { get; set; }
+    #endregion
+}

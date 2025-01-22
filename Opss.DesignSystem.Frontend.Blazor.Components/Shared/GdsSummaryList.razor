@@ -1,0 +1,114 @@
+﻿@inherits GdsWithContent
+
+@if (isSummaryCard)
+{
+    <div class="govuk-summary-card @Classes">
+        @if (CardTitleTemplate != null)
+        {
+            <div class="govuk-summary-card__title-wrapper">
+                <CascadingValue Value=@this>
+                    @CardTitleTemplate
+                </CascadingValue>
+                @if (CardActionsTemplate != null)
+                {
+                    <ul class="govuk-summary-card__actions @CardActionsClasses">
+                        <CascadingValue Value=@this>
+                            @CardActionsTemplate
+                        </CascadingValue>
+                    </ul>
+                }
+            </div>
+        }
+        <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list">
+                <CascadingValue Value=@this>
+                    @ChildContent
+                </CascadingValue>
+            </dl>
+        </div>
+    </div>
+}
+else
+{
+    <dl class="govuk-summary-list @Classes">
+        <CascadingValue Value=@this>
+            @ChildContent
+        </CascadingValue>
+    </dl>
+}
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Data for the summary card header.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? CardTitleTemplate { get; set; }
+
+    /// <summary>
+    /// The action link content shown in the header of each summary card wrapped around the summary list component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? CardActionsTemplate { get; set; }
+
+    /// <summary>
+    /// Classes to add to the actions wrapper.
+    /// </summary>
+    [Parameter]
+    public string? CardActionsClasses { get; set; }
+
+    /// <summary>
+    /// Classes to add to the container.
+    /// </summary>
+    [Parameter]
+    public string? CardClasses { get; set; }
+
+    /// <summary>
+    /// HTML attributes (for example data attributes) to add to the container.
+    /// </summary>
+    [Parameter]
+    [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Component parameters should have a public setter")]
+    public Dictionary<string, object>? CardAttributes { get; set; } = new Dictionary<string, object>();
+    #endregion
+
+    #region Private Properties
+    /// <summary>
+    /// If any of these parameters are null, this needs to render as a card
+    /// </summary>
+    private bool isSummaryCard
+    {
+        get
+        {
+            return (CardTitleTemplate != null || CardActionsTemplate != null || CardActionsClasses != null || CardClasses != null);
+        }
+    }
+    #endregion
+
+    #region Cascading Value - Child Items
+    /// <summary>
+    /// Used by Summary List Row. If one row has but another has none,
+    /// then a "no-actions" class is added.
+    /// </summary>
+    public bool ChildHasAction { get; set; } = false;
+
+    public void RegisterListHasAction()
+    {
+        ChildHasAction = true;
+        this.StateHasChanged();
+
+    }
+
+    /// <summary>
+    /// Used by Cummary List Item Actions.
+    /// If a card title is specified, list item action's
+    /// visually hidden text includes the card's title.
+    /// </summary>
+    public RenderFragment? CardTitle { get; set; }
+
+    public void RegisterCardTitle(RenderFragment? cardTitle)
+    {
+        CardTitle = cardTitle;
+        this.StateHasChanged();
+
+    }
+    #endregion
+}

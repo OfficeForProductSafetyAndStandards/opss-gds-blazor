@@ -1,7 +1,22 @@
 ﻿$govuk-assets-path: "/_content/Opss.DesignSystem.Frontend.Blazor.Components/assets/";
 @import "../node_modules/govuk-frontend/dist/govuk/all";
+@import "../node_modules/@ministryofjustice/frontend/moj/all";
 
 .app-header__container {
     margin-left: max(30px, calc(15px + env(safe-area-inset-left)));
     margin-right: max(30px, calc(15px + env(safe-area-inset-left)));
+}
+
+/* MOJ Multi-File Upload Customisations */
+.moj-multi-file-upload__dropzone {
+    position: relative;
+    overflow: hidden;
+}
+
+.moj-multi-file-upload__dropzone [type=file] {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    top: -35px;
 }

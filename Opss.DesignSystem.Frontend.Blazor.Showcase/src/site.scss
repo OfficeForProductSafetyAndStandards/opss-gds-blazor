@@ -1,5 +1,4 @@
 ﻿$govuk-assets-path: "/assets/";
-@import "../node_modules/govuk-frontend/dist/govuk/all";
 
 #blazor-error-ui {
     background: lightyellow;
@@ -32,4 +31,18 @@
 
 .dark-background {
     background-color: #1d70b8;
+}
+
+/* MOJ Multi-File Upload Customisations */
+.moj-multi-file-upload__dropzone {
+    position: relative;
+    overflow: hidden;
+}
+
+.moj-multi-file-upload__dropzone [type=file] {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    top: -35px;
 }

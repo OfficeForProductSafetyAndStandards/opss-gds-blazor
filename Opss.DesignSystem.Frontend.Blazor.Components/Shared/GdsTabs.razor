@@ -1,0 +1,229 @@
+﻿@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components
+@using Microsoft.JSInterop
+@inherits GdsWithContent
+@implements IDisposable
+@inject NavigationManager Nav
+@inject IJSRuntime Js
+
+<div id="@Id" class="govuk-tabs @Classes" @attributes="@Attributes">
+    <a id="focus-parking_@Id" @ref="@_dummyFocusElementRef" tabindex="-1" aria-hidden="true"></a>
+    <h2 class="govuk-tabs__title">@Title</h2>
+    <ul class="govuk-tabs__list" role="tablist">
+        @foreach (var panel in Panels)
+        {
+            <li class="govuk-tabs__list-item @GetActivePanelCss(panel)" role="presentation">
+                <a id="tab_@panel.Id"
+                   @ref="@Ref"
+                   class="govuk-tabs__tab"
+                   role="tab"
+                   aria-controls="@panel.Id"
+                   aria-selected="@(panel == ActivePanel ? "true" : "false")"
+                   tabindex="@(panel == ActivePanel ? "0" : "-1")"
+                   @onclick="() => HandleClick(panel)"
+                   @onclick:preventDefault="true"
+                   @onkeydown="args => HandleKeyDown(panel, args)"
+                   @onkeydown:preventDefault="true"
+                   href="@(Nav.ToBaseRelativePath($"{Nav.Uri}#{panel.Id}"))"
+                >
+                    @panel.Label
+                </a>
+            </li>
+        }
+    </ul>
+    <CascadingValue Value="this">
+        @ChildContent
+    </CascadingValue>
+</div>
+
+@code {
+    #region Public Parameters
+    /// <summary>
+    /// Sets the ID of the tabs component
+    /// </summary>
+    [Parameter]
+    public string? Id { get; set; }
+
+    /// <summary>
+    /// Optional prefix. This is used to prefix the ID of each tab panel, separated by '-'.
+    /// </summary>
+    [Parameter]
+    public string? IdPrefix { get; set; }
+
+    /// <summary>
+    /// Sets the title of the tabs component table of contents
+    /// </summary>
+    [Parameter]
+    public string? Title { get; set; }
+    #endregion
+
+    #region Internal and Private Properties
+    internal GdsTabsPanel? ActivePanel { get; private set; }
+    private List<GdsTabsPanel> Panels { get; } = [];
+    private List<ElementReference> _refs = [];
+    internal ElementReference Ref { set => _refs.Add(value); }
+    #endregion
+
+    #region Private Fields
+    private ElementReference _dummyFocusElementRef;
+    private string? _pageUrl;
+    private string? _previousActivePanelId;
+    #endregion
+
+    #region Event Handlers
+    protected override void OnInitialized()
+    {
+        Nav.LocationChanged += HandleLocationChanged;
+        _pageUrl = Nav.Uri;
+        base.OnInitialized();   
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (ActivePanel != null)
+        {
+            ActivePanel.HideId = false;
+        }
+
+        if (Nav.Uri.Split('#').Length > 1)
+        {
+            if (firstRender)
+            {
+                var newUrlParts = Nav.Uri.Split('#');
+                if (newUrlParts.Length > 1) // if there is a #panel-id in the new url
+                {
+                    var panelId = newUrlParts[1];
+                    var panel = Panels.FirstOrDefault(p => p.Id == panelId);
+                    if (panel != null)
+                    {
+                        ActivePanel = panel;
+                        ActivePanel.HideId = true;
+                        StateHasChanged();
+                    }
+                }
+            }
+            SetFocusToActivePanel();
+        }
+        else if (_previousActivePanelId != null)
+        {
+            InvokeAsync(() => _dummyFocusElementRef.FocusAsync()).Wait();
+            _previousActivePanelId = null;
+        }
+
+        base.OnAfterRender(firstRender);
+    }
+
+    private void HandleClick(GdsTabsPanel panel)
+    {
+        if (ActivePanel == panel)
+        {
+            return;
+        }
+        ActivePanel = panel;
+        CreateBrowserHistoryEntry();
+    }
+
+    private void HandleKeyDown(GdsTabsPanel panel, KeyboardEventArgs args)
+    {
+        var index = Panels.IndexOf(panel);
+        switch (args.Key)
+        {
+            case "ArrowRight" or "Right":
+                if (index < Panels.Count - 1)
+                {
+                    ActivePanel = Panels[index + 1];
+                    SetFocusToActivePanel();
+                    CreateBrowserHistoryEntry();
+                }
+
+                break;
+
+            case "ArrowLeft" or "Left":
+                if (index > 0)
+                {
+                    ActivePanel = Panels[index - 1];
+                    SetFocusToActivePanel();
+                    CreateBrowserHistoryEntry();
+                }
+
+                break;
+        }
+    }
+
+    private void HandleLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        // do nothing if navigating to a different page
+        if (_pageUrl == null || !e.Location.Contains(_pageUrl.Split('#')[0])) return;
+
+        var newUrlParts = e.Location.Split('#');
+        if (newUrlParts.Length > 1) // if there is a #panel-id in the new url
+        {
+            var panelId = newUrlParts[1];
+            var panel = Panels.FirstOrDefault(p => p.Id == panelId);
+            if (panel == null) return;
+
+            ActivePanel = panel;
+            ActivePanel.HideId = true;
+        }
+        else
+        {
+            if (ActivePanel == null) return;
+
+            _previousActivePanelId = ActivePanel.Id;
+            ActivePanel = Panels[0];
+        }
+
+        StateHasChanged();
+    }
+    #endregion
+
+    #region Private Methods
+    internal void AddPanel(GdsTabsPanel panel)
+    {
+        if (panel.Id == null && IdPrefix == null)
+            throw new ArgumentNullException(nameof(IdPrefix), "IdPrefix must be set if GdsTabsPanel is not given an ID");
+
+        Panels.Add(panel);
+        if (Panels[0] == panel)
+        {
+            ActivePanel = panel;
+        }
+        
+        if (panel.Id == null) panel.SetId($"{IdPrefix}-{Panels.Count}");
+
+        StateHasChanged();
+    }
+
+    private string GetActivePanelCss(GdsTabsPanel panel)
+    {
+        return panel == ActivePanel ? "govuk-tabs__list-item--selected" : "";
+    }
+
+    private void SetFocusToActivePanel()
+    {
+        if (ActivePanel == null) return;
+
+        var index = Panels.IndexOf(ActivePanel);
+        InvokeAsync(() => _refs[index].FocusAsync()).Wait();
+    }
+
+    private void CreateBrowserHistoryEntry()
+    {
+        if (ActivePanel == null) return;
+
+        var panelId = ActivePanel.Id;
+        ActivePanel.SetId("");
+        StateHasChanged();
+
+        Nav.NavigateTo($"{Nav.Uri.Split('#')[0]}#{panelId}");
+
+        ActivePanel.SetId(panelId);
+        StateHasChanged();
+    }
+
+    void IDisposable.Dispose()
+    {
+        Nav.LocationChanged -= HandleLocationChanged;
+    }
+    #endregion
+}

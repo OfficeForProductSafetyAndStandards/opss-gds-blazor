@@ -1,0 +1,134 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void OutputsServiceNavigation()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsServiceNavigation>
+        <GdsServiceNavigationItem Href="#">
+            Navigation item 1
+        </GdsServiceNavigationItem>
+        <GdsServiceNavigationItem Href="#" Active=@true>
+            Navigation item 2
+        </GdsServiceNavigationItem>
+        <GdsServiceNavigationItem Href="#">
+            Navigation item 3
+        </GdsServiceNavigationItem>
+    </GdsServiceNavigation>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-service-navigation"
+              data-module="govuk-service-navigation">
+        <div class="govuk-width-container">
+            <div class="govuk-service-navigation__container">
+                <nav aria-label="Menu" class="govuk-service-navigation__wrapper">
+                    <button type="button" class="govuk-service-navigation__toggle govuk-js-service-navigation-toggle" aria-controls="navigation" hidden>
+                        Menu
+                    </button>
+                    <ul class="govuk-service-navigation__list" id="navigation">
+                        <li class="govuk-service-navigation__item">
+                            <a class="govuk-service-navigation__link" href="#">
+                                Navigation item 1
+                            </a>
+                        </li>
+                        <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
+                            <a class="govuk-service-navigation__link" href="#" aria-current="true">
+                                <strong class="govuk-service-navigation__active-fallback">Navigation item 2</strong>
+                            </a>
+                        </li>
+                        <li class="govuk-service-navigation__item">
+                            <a class="govuk-service-navigation__link" href="#">
+                                Navigation item 3
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void OutputsServiceNavigationWithServiceNameOnly()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsServiceNavigation ServiceName="Service name" ServiceUrl="#" />
+        );
+
+        component.MarkupMatches(
+    @<section aria-label="Service information" class="govuk-service-navigation"
+                  data-module="govuk-service-navigation">
+        <div class="govuk-width-container">
+            <div class="govuk-service-navigation__container">
+                <span class="govuk-service-navigation__service-name">
+                    <a href="#" class="govuk-service-navigation__link">
+                        Service name
+                    </a>
+                </span>
+            </div>
+        </div>
+    </section>
+    );
+    }
+
+    [Fact]
+    public void OutputsServiceNavigationWithServiceNameAndNavigtaion()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsServiceNavigation ServiceName="Service name" ServiceUrl="#">
+        <GdsServiceNavigationItem Href="#">
+            Navigation item 1
+        </GdsServiceNavigationItem>
+        <GdsServiceNavigationItem Href="#" Active=@true>
+            Navigation item 2
+        </GdsServiceNavigationItem>
+        <GdsServiceNavigationItem Href="#">
+            Navigation item 3
+        </GdsServiceNavigationItem>
+    </GdsServiceNavigation>
+        );
+
+        component.MarkupMatches(
+    @<section aria-label="Service information" class="govuk-service-navigation"
+                  data-module="govuk-service-navigation">
+        <div class="govuk-width-container">
+            <div class="govuk-service-navigation__container">
+                <span class="govuk-service-navigation__service-name">
+                    <a href="#" class="govuk-service-navigation__link">
+                        Service name
+                    </a>
+                </span>
+                <nav aria-label="Menu" class="govuk-service-navigation__wrapper">
+                    <button type="button" class="govuk-service-navigation__toggle govuk-js-service-navigation-toggle" aria-controls="navigation" hidden>
+                        Menu
+                    </button>
+                    <ul class="govuk-service-navigation__list" id="navigation">
+                        <li class="govuk-service-navigation__item">
+                            <a class="govuk-service-navigation__link" href="#">
+                                Navigation item 1
+                            </a>
+                        </li>
+                        <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
+                            <a class="govuk-service-navigation__link" href="#" aria-current="true">
+                                <strong class="govuk-service-navigation__active-fallback">Navigation item 2</strong>
+                            </a>
+                        </li>
+                        <li class="govuk-service-navigation__item">
+                            <a class="govuk-service-navigation__link" href="#">
+                                Navigation item 3
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+    );
+    }
+}
