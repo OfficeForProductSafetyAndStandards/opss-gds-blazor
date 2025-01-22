@@ -15,6 +15,12 @@ jobs:
       # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      # Pull latest changes
+      - name: Pull latest changes
+        run: git pull origin develop
 
       # Setup .NET
       - name: Setup .NET Core SDK
