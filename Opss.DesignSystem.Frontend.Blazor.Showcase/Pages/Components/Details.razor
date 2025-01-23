@@ -36,6 +36,31 @@
     </GdsDetails>
 </Example>
 
+<h3 class="govuk-heading-m" id="using-the-templates">Using the templates</h3>
+
+<Example CodeExampleContent="@(@"<GdsDetails>
+        <SummaryTemplate>
+            <span class=""govuk-body-l"">Help with nationality</span>
+        </SummaryTemplate>
+        <ChildContent>
+            <strong>We need to know <em>your nationality</em> so we can work out which elections
+            you’re entitled to vote in. If you cannot provide your nationality,
+            you’ll have to send copies of identity documents through the post.</strong>
+        </ChildContent> 
+</GdsDetails>")">
+    <GdsDetails>
+        <SummaryTemplate>
+            <span class="govuk-body-l">Help with nationality</span>
+        </SummaryTemplate>
+        <ChildContent>
+            <strong>We need to know <em>your nationality</em> so we can work out which elections
+            you’re entitled to vote in. If you cannot provide your nationality,
+                you’ll have to send copies of identity documents through the post.
+            </strong>
+        </ChildContent>        
+    </GdsDetails>
+</Example>
+
 <h3 class="govuk-heading-m" id="initialise-open">Initialise open</h3>
 
 <Example CodeExampleContent="@(@"<GdsDetails Summary=""Help with nationality"" Open=@true>
@@ -51,5 +76,4 @@
 </Example>
 
 @code {
-
 }
