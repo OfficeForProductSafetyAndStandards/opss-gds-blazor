@@ -10,10 +10,10 @@
     <Description>A set of GDS components written for Blazor</Description>
     <Copyright>Office for Product Safety and Standards</Copyright>
     <PackageIcon>govuk-icon-128.png</PackageIcon>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReadmeFile>README.nuget.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <Version>0.1.3</Version>
+    <Version>0.1.4</Version>
   </PropertyGroup>
 
 <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
@@ -33,7 +33,7 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="..\README.md">
+    <None Include="README.nuget.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
