@@ -10,7 +10,7 @@
     <Description>A set of GDS components written for Blazor</Description>
     <Copyright>Office for Product Safety and Standards</Copyright>
     <PackageIcon>govuk-icon-128.png</PackageIcon>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReadmeFile>README.nuget.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <Version>0.1.2</Version>
