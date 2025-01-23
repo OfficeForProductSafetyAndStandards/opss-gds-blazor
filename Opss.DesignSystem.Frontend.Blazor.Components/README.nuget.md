@@ -33,6 +33,3 @@ For a full list of components please refer to the [components project](https://g
 
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request.
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
