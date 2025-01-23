@@ -45,7 +45,7 @@ jobs:
         working-directory: Opss.DesignSystem.Frontend.Blazor.Components
         run: |
           current_version=$(cat Opss.DesignSystem.Frontend.Blazor.Components.csproj | grep '<Version>' | sed -E 's/<\/?Version>//g' | xargs)
-          new_version=$(echo $current_version | awk -F. '{print $1"."$2"."$3+1}')
+          new_version=$(echo $current_version | awk -F. '{print $1"."$2+1".0"}')
           sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" Opss.DesignSystem.Frontend.Blazor.Components.csproj
           echo "Updated version to $new_version"
           echo "new_version=$new_version" >> "$GITHUB_OUTPUT"
