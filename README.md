@@ -35,7 +35,7 @@ Currently, the components are compatible with
 Please refer to the [showcase project](/Opss.DesignSystem.Frontend.Blazor.Showcase) for examples of how to use the components.
 
 ## Components
-For a full list of components please refer to the [components project](https://github.com/OfficeForProductSafetyAndStandards/opss-gds-blazor/tree/develop/Opss.DesignSystem.Frontend.Blazor.Components) on Github.
+For a full list of components please refer to the [components project](/Opss.DesignSystem.Frontend.Blazor.Components) on Github.
 
 ## Tests
 The components are tested using the [BUnit](https://bunit.dev/) testing framework. The tests can be found in the [test project](/Opss.DesignSystem.Frontend.Blazor.UnitTests).
