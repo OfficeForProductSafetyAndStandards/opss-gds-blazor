@@ -17,12 +17,11 @@
      data-i18n.words-at-limit=@WordsAtLimitText
      data-i18n.words-over-limit=@replaceCountTemplate(WordsOverLimitText)
      @attributes=@FormGroupAttributes>
-    @if (LabelTemplate != null)
-    {
-        <CascadingValue Value=@Id>
-            @LabelTemplate
-        </CascadingValue>
-    }
+
+    <CascadingValue Value=@Id>
+        @LabelTemplate
+    </CascadingValue>
+
     @if (HintTemplate != null)
     {
         <CascadingValue Value=@Id>
@@ -156,18 +155,6 @@
     /// </summary>
     [Parameter]
     public RenderFragment? AfterInputTemplate { get; set; }
-
-    /// <summary>
-    /// Content to add before all checkbox items within the checkboxes component.
-    /// </summary>
-    [Parameter]
-    public RenderFragment? BeforeInputsTemplate { get; set; }
-
-    /// <summary>
-    /// Content to add after all checkbox items within the checkboxes component.
-    /// </summary>
-    [Parameter]
-    public RenderFragment? AfterInputsTemplate { get; set; }
 
     /// <summary>
     /// Optional field to enable or disable the spellcheck attribute on the input.
@@ -316,6 +303,19 @@
     private string? replaceCountTemplate(string? template)
     {
         return template?.Replace("%{count}", (MaxWords ?? MaxLength ?? 0).ToString());
+    }
+    #endregion
+
+    #region Parameter Validation
+    protected override void OnParametersSet()
+    {
+        if (MaxLength == null && MaxWords == null)
+            throw new ArgumentNullException($"{nameof(MaxLength)} and {nameof(MaxWords)}", "GdsCharacterCount must have either maximum number of characters or maximum number of words provided.");
+
+        if (LabelTemplate == null)
+            throw new ArgumentNullException(nameof(LabelTemplate), "GdsCharacterCount must have label template provided.");
+
+        base.OnParametersSet();
     }
     #endregion
 }

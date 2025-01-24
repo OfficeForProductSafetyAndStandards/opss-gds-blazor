@@ -10,46 +10,11 @@
     A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/character-count/" class="govuk-link">Character count</a>.
 </p>
 
-<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""with-hint""
-                   Name=""withHint""
-                   MaxLength=""200"">
-    <LabelTemplate>
-        <GdsLabel Classes=@LabelSize.Large
-            IsPageHeading=@true>
-            Can you provide more detail?
-        </GdsLabel>
-    </LabelTemplate>
-    <HintTemplate>
-        <GdsHint>
-            Do not include personal or financial information like your National Insurance number or credit card details
-        </GdsHint>
-    </HintTemplate>
-</GdsCharacterCount>")">
-    <GdsCharacterCount Id="with-hint"
-                       Name="withHint"
-                       MaxLength="200">
-        <LabelTemplate>
-            <GdsLabel Classes=@LabelSize.Large
-                      IsPageHeading=@true>
-                Can you provide more detail?
-            </GdsLabel>
-        </LabelTemplate>
-        <HintTemplate>
-            <GdsHint>
-                Do not include personal or financial information like your National Insurance number or credit card details
-            </GdsHint>
-        </HintTemplate>
-    </GdsCharacterCount>
-</Example>
-
 <h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
-
-<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""with-hint""
-                    Name=""withHint""
-                    MaxLength=""200"">
+<h3 class="govuk-heading-m" id="max-length">Maximum number of characters</h3>
+<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""max-length"" Name=""maxNumCharacters"" MaxLength=""200"">
     <LabelTemplate>
-        <GdsLabel Classes=@LabelSize.Large
-                    IsPageHeading=@true>
+        <GdsLabel>
             Can you provide more detail?
         </GdsLabel>
     </LabelTemplate>
@@ -59,70 +24,48 @@
         </GdsHint>
     </HintTemplate>
 </GdsCharacterCount>")">
-    <GdsCharacterCount Id="with-hint"
-                       Name="withHint"
-                       MaxLength="200">
-        <LabelTemplate>
-            <GdsLabel Classes=@LabelSize.Large
-                      IsPageHeading=@true>
-                Can you provide more detail?
-            </GdsLabel>
-        </LabelTemplate>
-        <HintTemplate>
-            <GdsHint>
-                Do not include personal or financial information like your National Insurance number or credit card details
-            </GdsHint>
-        </HintTemplate>
-    </GdsCharacterCount>
-</Example>
-
-<h3 class="govuk-heading-m" id="if-youre-asking-one-question-on-the-page">If you’re asking one question on the page</h3>
-
-<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""label-as-page-heading""
-                Name=""labelAsPageHeading""
-                MaxLength=""200"">
-<LabelTemplate>
-    <GdsLabel>
-        Describe the nature of your event
-    </GdsLabel>
-</LabelTemplate>
-</GdsCharacterCount>")">
-    <GdsCharacterCount Id="label-as-page-heading"
-                       Name="labelAsPageHeading"
-                       MaxLength="200">
+    <GdsCharacterCount Id="max-length" Name="maxNumCharacters" MaxLength="200">
         <LabelTemplate>
             <GdsLabel>
-                Describe the nature of your event
+                Can you provide more detail?
             </GdsLabel>
         </LabelTemplate>
+        <HintTemplate>
+            <GdsHint>
+                Do not include personal or financial information like your National Insurance number or credit card details
+            </GdsHint>
+        </HintTemplate>
     </GdsCharacterCount>
 </Example>
 
-<h3 class="govuk-heading-m" id="consider-if-a-word-count-is-more-helpful">Consider if a word count is more helpful</h3>
-
-<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""word-count""
-                    Name=""wordCount""
-                    MaxWords=""150"">
+c<h3 class="govuk-heading-m" id="label-as-page-heading">Label as page heading</h3>
+<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""label-as-page-heading"" Name=""labelAsPageHeading"" MaxLength=""200"">
     <LabelTemplate>
-        <GdsLabel Classes=@LabelSize.Large
-                    IsPageHeading=@true>
-            Enter a job description
+        <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+            Can you provide more detail?
         </GdsLabel>
     </LabelTemplate>
+    <HintTemplate>
+        <GdsHint>
+            Do not include personal or financial information like your National Insurance number or credit card details
+        </GdsHint>
+    </HintTemplate>
 </GdsCharacterCount>")">
-    <GdsCharacterCount Id="word-count"
-                       Name="wordCount"
-                       MaxWords="150">
+    <GdsCharacterCount Id="label-as-page-heading" Name="labelAsPageHeading" MaxLength="200">
         <LabelTemplate>
-            <GdsLabel Classes=@LabelSize.Large
-                      IsPageHeading=@true>
-                Enter a job description
+            <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+                Can you provide more detail?
             </GdsLabel>
         </LabelTemplate>
+        <HintTemplate>
+            <GdsHint>
+                Do not include personal or financial information like your National Insurance number or credit card details
+            </GdsHint>
+        </HintTemplate>
     </GdsCharacterCount>
 </Example>
 
-<h3 class="govuk-heading-m" id="avoid-narrow-limits">Avoid narrow limits</h3>
+<h3 class="govuk-heading-m" id="avoid-narrow-limits">Avoid narrow limits using threshold</h3>
 
 <Example CodeExampleContent="@(@"<GdsCharacterCount Id=""threshold""
                     Name=""threshold""
@@ -147,6 +90,130 @@
                 Can you provide more detail?
             </GdsLabel>
         </LabelTemplate>
+    </GdsCharacterCount>
+</Example>
+
+<h3 class="govuk-heading-m" id="with-hint">Using the hint template</h3>
+
+<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""with-hint"" Name=""withHint"" MaxLength=""200"">
+<LabelTemplate>
+    <GdsLabel>
+        Describe the nature of your event
+    </GdsLabel>
+        <HintTemplate>
+            <div class=""govuk-hint"">
+                Provide the date and time, the duration, the location and a brief description.
+            </div>
+        </HintTemplate>
+</LabelTemplate>
+</GdsCharacterCount>")">
+    <GdsCharacterCount Id="with-hint" Name="withHint" MaxLength="200">
+        <LabelTemplate>
+            <GdsLabel>
+                Describe the nature of your event
+            </GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <div class="govuk-hint">
+                Provide the date and time, the duration, the location and a brief description.
+            </div>
+        </HintTemplate>
+    </GdsCharacterCount>
+</Example>
+
+<h3 class="govuk-heading-m" id="content-before-and-after-input">Content before and after the text area input</h3>
+<h4 class="govuk-heading-s" id="before-input">Before the input</h4>
+
+<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""before-input"" Name=""beforeInput"" MaxLength=""200"">
+    <LabelTemplate>
+        <GdsLabel>
+            Describe the nature of your event
+        </GdsLabel>
+    </LabelTemplate>
+    <BeforeInputTemplate>
+        <p class=""govuk-body-s"">
+            These are specific instructions in the before input template.
+        </p>
+    </BeforeInputTemplate>
+</GdsCharacterCount>")">
+    <GdsCharacterCount Id="before-input" Name="beforeInput" MaxLength="200">
+        <LabelTemplate>
+            <GdsLabel>
+                Describe the nature of your event
+            </GdsLabel>
+        </LabelTemplate>
+        <BeforeInputTemplate>
+            <p class="govuk-body-s">
+                These are specific instructions in the before input template.
+            </p>
+        </BeforeInputTemplate>
+    </GdsCharacterCount>
+</Example>
+
+<h4 class="govuk-heading-s" id="after-input">After the input</h4>
+
+<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""after-input"" Name=""afterInput"" MaxLength=""200"">
+    <LabelTemplate>
+        <GdsLabel>
+            Describe the nature of your event
+        </GdsLabel>
+    </LabelTemplate>
+    <AfterInputTemplate>
+        <p class=""govuk-body-s"">
+            These are specific instructions in the after input template.
+        </p>
+    </AfterInputTemplate>
+</GdsCharacterCount>")">
+    <GdsCharacterCount Id="after-input" Name="afterInput" MaxLength="200">
+        <LabelTemplate>
+            <GdsLabel>
+                Describe the nature of your event
+            </GdsLabel>
+        </LabelTemplate>
+        <AfterInputTemplate>
+            <p class="govuk-body-s">
+                These are specific instructions in the after input template.
+            </p>
+        </AfterInputTemplate>
+    </GdsCharacterCount>
+</Example>
+
+
+<h4 class="govuk-heading-s" id="before-after-input">Before and after the input</h4>
+
+<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""before-after-input"" Name=""beforeAfterInput"" MaxLength=""200"">
+    <LabelTemplate>
+        <GdsLabel>
+            Describe the nature of your event
+        </GdsLabel>
+    </LabelTemplate>
+    <BeforeInputTemplate>
+        <p class=""govuk-body-s"">
+            These are specific instructions in the before input template.
+        </p>
+    </BeforeInputTemplate>
+    <AfterInputTemplate>
+        <p class=""govuk-body-s"">
+            These are specific instructions in the after input template.
+        </p>
+    </AfterInputTemplate>
+</GdsCharacterCount>")">
+    <GdsCharacterCount Id="before-after-input" Name="beforeAfterInput" MaxLength="200">
+        <LabelTemplate>
+            <GdsLabel>
+                Describe the nature of your event
+            </GdsLabel>
+        </LabelTemplate>
+        <BeforeInputTemplate>
+            <p class="govuk-body-s">
+                These are specific instructions in the before input template.
+            </p>
+        </BeforeInputTemplate>
+        <AfterInputTemplate>
+            <p class="govuk-body-s">
+                These are specific instructions in the after input template.
+            </p>
+        </AfterInputTemplate>
     </GdsCharacterCount>
 </Example>
 
@@ -183,6 +250,130 @@
                 Job description must be 15 characters or less
             </GdsErrorMessage>
         </ErrorMessageTemplate>
+    </GdsCharacterCount>
+</Example>
+
+<h3 class="govuk-heading-m" id="addtional-custom-classes">Additional custom classes</h3>
+<p class="govuk-warning-text govuk-body-s">The styles shown are for the demonstration of the functionality of this component. Ensure the styles used follow the GDS guidelines for the task you are trying to achieve.</p>
+<Example CodeExampleContent="@(@"<style type=""text/css"">
+    .count-message {
+        color: #d53880;
+        font-weight: bold;
+    }
+
+    .outer-border {
+        border: 3px dotted #b58840;
+    }
+
+    .custom-text-area
+    {
+        font-style: italic;
+    }
+</style>
+
+<GdsCharacterCount Id=""additional-custom-classes"" 
+                   Name=""customClasses"" 
+                   MaxWords=""150"" 
+                   Classes=""custom-text-area"" 
+                   FormGroupClasses=""outer-border""
+                   CountMessageClasses=""count-message""
+                   Value=""The styles shown are for the demonstration of the functionality of this component. 
+                    Ensure the styles used follow the GDS guidelines for the task you are trying to achieve."">
+    <LabelTemplate>
+        <GdsLabel>
+            Enter a job description
+        </GdsLabel>
+    </LabelTemplate>
+</GdsCharacterCount>")">
+
+    <style type="text/css">
+        .count-message {
+            color: #d53880;
+            font-weight: bold;
+        }
+
+        .outer-border {
+            border: 3px dotted #b58840;
+        }
+
+        .custom-text-area
+        {
+            font-style: italic;
+        }
+    </style>
+    <GdsCharacterCount Id="additional-custom-classes"
+                       Name="customClasses"
+                       MaxWords="150" 
+                       Classes="custom-text-area" 
+                       FormGroupClasses="outer-border"
+                       CountMessageClasses="count-message"
+                       Value="The styles shown are for the demonstration of the functionality of this component. Ensure the styles used follow the GDS guidelines for the task you are trying to achieve.">
+        <LabelTemplate>
+            <GdsLabel Classes=@LabelSize.Large
+                      IsPageHeading=@true>
+                Enter a job description
+            </GdsLabel>
+        </LabelTemplate>
+    </GdsCharacterCount>
+</Example>
+
+<h3 class="govuk-heading-m" id="character-count-limit-text">Text for character count limits</h3>
+
+<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""character-count-limit-text""
+                   Name=""characterCountLimitText""
+                   MaxLength=""60""
+                   CharactersUnderLimitText=""You are under the %{count} character maximum.""
+                   CharactersAtLimitText=""You have reached the maximum characters limit.""
+                   CharactersOverLimitText=""You are over the %{count} character maximum.""
+                   Value=""Content Designer, Graphics Designer, User Experience."">
+    <LabelTemplate>
+        <GdsLabel>
+            Enter a job description
+        </GdsLabel>
+    </LabelTemplate>
+</GdsCharacterCount>")">
+    <GdsCharacterCount Id="character-count-limit-text"
+                       Name="characterCountLimitText"
+                       MaxLength="60"
+                       CharactersUnderLimitText="You are under the %{count} character maximum."
+                       CharactersAtLimitText="You have reached the maximum character limit."
+                       CharactersOverLimitText="You are over the %{count} character maximum."
+                       Value="Content Designer, Graphics Designer, User Experience.">
+        <LabelTemplate>
+            <GdsLabel>
+                Enter a job description
+            </GdsLabel>
+        </LabelTemplate>
+    </GdsCharacterCount>
+</Example>
+
+<h3 class="govuk-heading-m" id="word-count-limit-text">Text for word count limits</h3>
+
+<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""word-count-limit-text""
+                   Name=""wordCountLimitText""
+                   MaxWords=""10""
+                   WordsUnderLimitText=""You are under the %{count} words limit.""
+                   WordsAtLimitText=""You have reached the maximum number of words allowed.""
+                   WordsOverLimitText=""You are over the %{count} words maximum.""
+                   Value=""Content Designer, Graphics Designer, User Experience."">
+    <LabelTemplate>
+        <GdsLabel>
+            Enter a job description
+        </GdsLabel>
+    </LabelTemplate>
+</GdsCharacterCount>")">
+    <GdsCharacterCount Id="word-count-limit-text"
+                       Name="wordCountLimitText"
+                       MaxWords="10"
+                       WordsUnderLimitText="You are under the %{count} words limit."
+                       WordsAtLimitText="You have reached the maximum number of words allowed."
+                       WordsOverLimitText="You are over the %{count} words maximum."
+                       Value="Content Designer, Graphics Designer, User Experience.">
+        <LabelTemplate>
+            <GdsLabel>
+                Enter a job description
+            </GdsLabel>
+        </LabelTemplate>
     </GdsCharacterCount>
 </Example>
 
