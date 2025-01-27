@@ -220,12 +220,11 @@ c<h3 class="govuk-heading-m" id="label-as-page-heading">Label as page heading</h
 <h3 class="govuk-heading-m" id="error-messages">Error messages</h3>
 
 <Example CodeExampleContent="@(@"<GdsCharacterCount Id=""exceeding-characters""
-                    Name=""exceeding""
-                    MaxLength=""15""
-                    Value=""A content designer works on the end-to-end journey of a service to help users complete their goal."">
+                   Name=""exceeding""
+                   MaxLength=""15""
+                   Value=""A content designer works on the end-to-end journey of a service to help users complete their goal."">
     <LabelTemplate>
-        <GdsLabel Classes=@LabelSize.Large
-                    IsPageHeading=@true>
+        <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
             Enter a job description
         </GdsLabel>
     </LabelTemplate>
@@ -240,8 +239,7 @@ c<h3 class="govuk-heading-m" id="label-as-page-heading">Label as page heading</h
                        MaxLength="15"
                        Value="A content designer works on the end-to-end journey of a service to help users complete their goal.">
         <LabelTemplate>
-            <GdsLabel Classes=@LabelSize.Large
-                      IsPageHeading=@true>
+            <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
                 Enter a job description
             </GdsLabel>
         </LabelTemplate>
@@ -254,7 +252,7 @@ c<h3 class="govuk-heading-m" id="label-as-page-heading">Label as page heading</h
 </Example>
 
 <h3 class="govuk-heading-m" id="addtional-custom-classes">Additional custom classes</h3>
-<p class="govuk-warning-text govuk-body-s">The styles shown are for the demonstration of the functionality of this component. Ensure the styles used follow the GDS guidelines for the task you are trying to achieve.</p>
+<p class="govuk-body-s">The styles shown are for the demonstration of the functionality of this component. <em>Ensure the styles used follow the GDS guidelines for the task you are trying to achieve.</em></p>
 <Example CodeExampleContent="@(@"<style type=""text/css"">
     .count-message {
         color: #d53880;
@@ -277,8 +275,7 @@ c<h3 class="govuk-heading-m" id="label-as-page-heading">Label as page heading</h
                    Classes=""custom-text-area"" 
                    FormGroupClasses=""outer-border""
                    CountMessageClasses=""count-message""
-                   Value=""The styles shown are for the demonstration of the functionality of this component. 
-                    Ensure the styles used follow the GDS guidelines for the task you are trying to achieve."">
+                   Value=""The styles shown are for the demonstration of the functionality of this component. Ensure the styles used follow the GDS guidelines for the task you are trying to achieve."">
     <LabelTemplate>
         <GdsLabel>
             Enter a job description
@@ -325,7 +322,7 @@ c<h3 class="govuk-heading-m" id="label-as-page-heading">Label as page heading</h
                    CharactersUnderLimitText=""You are under the %{count} character maximum.""
                    CharactersAtLimitText=""You have reached the maximum characters limit.""
                    CharactersOverLimitText=""You are over the %{count} character maximum.""
-                   Value=""Content Designer, Graphics Designer, User Experience."">
+                   Value=""Type some more characters to see the limit text change"">
     <LabelTemplate>
         <GdsLabel>
             Enter a job description
@@ -338,7 +335,7 @@ c<h3 class="govuk-heading-m" id="label-as-page-heading">Label as page heading</h
                        CharactersUnderLimitText="You are under the %{count} character maximum."
                        CharactersAtLimitText="You have reached the maximum character limit."
                        CharactersOverLimitText="You are over the %{count} character maximum."
-                       Value="Content Designer, Graphics Designer, User Experience.">
+                       Value="Type some more characters to see the limit text change">
         <LabelTemplate>
             <GdsLabel>
                 Enter a job description
@@ -355,7 +352,7 @@ c<h3 class="govuk-heading-m" id="label-as-page-heading">Label as page heading</h
                    WordsUnderLimitText=""You are under the %{count} words limit.""
                    WordsAtLimitText=""You have reached the maximum number of words allowed.""
                    WordsOverLimitText=""You are over the %{count} words maximum.""
-                   Value=""Content Designer, Graphics Designer, User Experience."">
+                   Value=""Type some more words to see the text change"">
     <LabelTemplate>
         <GdsLabel>
             Enter a job description
@@ -368,7 +365,7 @@ c<h3 class="govuk-heading-m" id="label-as-page-heading">Label as page heading</h
                        WordsUnderLimitText="You are under the %{count} words limit."
                        WordsAtLimitText="You have reached the maximum number of words allowed."
                        WordsOverLimitText="You are over the %{count} words maximum."
-                       Value="Content Designer, Graphics Designer, User Experience.">
+                       Value="Type some more words to see the text change">
         <LabelTemplate>
             <GdsLabel>
                 Enter a job description
