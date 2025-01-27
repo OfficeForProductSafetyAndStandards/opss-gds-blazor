@@ -1,4 +1,4 @@
-# GovUK Design System Frontend Razor Components
+# GOV.UK Design System Frontend Razor Components
 
 ## About
 GOV.UK Blazor Frontend contains the components you need to start building a user interface for government platforms and services in Blazor.
@@ -20,7 +20,25 @@ Currently, the components are compatible with
   - @ministryofjustice/frontend: 3.0.3
 
 ## Usage
+1. Add the following namespace to your `_Imports.razor` file:
+
+    ```razor
+    @using Opss.DesignSystem.Frontend.Blazor.Components
+    ```
+
+2. You can now use the components in your Blazor pages. For example:
+
+    ```razor
+    <GdsButton Text="Click me" />
+    ```
+
 Please refer to the [showcase project](/Opss.DesignSystem.Frontend.Blazor.Showcase) for examples of how to use the components.
+
+## Components
+For a full list of components please refer to the [components project](/Opss.DesignSystem.Frontend.Blazor.Components) on Github.
 
 ## Tests
 The components are tested using the [BUnit](https://bunit.dev/) testing framework. The tests can be found in the [test project](/Opss.DesignSystem.Frontend.Blazor.UnitTests).
+
+## Contributing
+Contributions are welcome! Please open an issue or submit a pull request.
