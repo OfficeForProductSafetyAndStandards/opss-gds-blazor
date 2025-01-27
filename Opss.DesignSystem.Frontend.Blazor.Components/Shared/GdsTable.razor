@@ -6,6 +6,7 @@
 
 <table 
 class="@tableClasses" 
+aria-label=@Label
 @attributes=@Attributes
 >
     @if(!string.IsNullOrWhiteSpace(CaptionText)) 
@@ -37,6 +38,12 @@ class="@tableClasses"
     public string? CaptionText { get; set; }
 
     /// <summary>
+    /// The aria-label attribute to add to the table. 
+    /// </summary>
+    [Parameter]
+    public string? Label { get; set; }
+
+    /// <summary>
     /// Table caption text classes, as specified in TableClasses.
     /// </summary>
     [Parameter]
@@ -62,7 +69,7 @@ class="@tableClasses"
     #endregion
 
     #region Private Parameters 
-    public string captionClasses
+    private string captionClasses
     {
         get
         {
@@ -75,7 +82,7 @@ class="@tableClasses"
         }
     }
 
-    public string tableClasses
+    private string tableClasses
     {
         get
         {

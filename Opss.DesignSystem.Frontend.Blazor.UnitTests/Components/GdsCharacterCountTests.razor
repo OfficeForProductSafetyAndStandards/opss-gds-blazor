@@ -6,40 +6,38 @@
     {
         // Arrange
         var component = Render(
-    @<GdsCharacterCount Id="with-hint"
-                            Name="withHint"
-                            MaxLength="200">
-        <LabelTemplate>
-            <GdsLabel Classes="@LabelSize.Large"
-                      IsPageHeading="true">
-                Can you provide more detail?
-            </GdsLabel>
-        </LabelTemplate>
-        <HintTemplate>
-            <GdsHint>
-                Do not include personal or financial information like your National Insurance number or credit card details
-            </GdsHint>
-        </HintTemplate>
-    </GdsCharacterCount>
+            @<GdsCharacterCount Id="with-hint"
+                                Name="withHint"
+                                MaxLength="200">
+                <LabelTemplate>
+                    <GdsLabel Classes="@LabelSize.Large"
+                              IsPageHeading="true">
+                        Can you provide more detail?
+                    </GdsLabel>
+                </LabelTemplate>
+                <HintTemplate>
+                    <GdsHint>
+                        Do not include personal or financial information like your National Insurance number or credit card details
+                    </GdsHint>
+                </HintTemplate>
+            </GdsCharacterCount>
         );
 
         component.MarkupMatches(
-    @<div class="govuk-form-group govuk-character-count"
-              data-module="govuk-character-count"
-              data-maxlength="200">
-        <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="with-hint">
-                Can you provide more detail?
-            </label>
-        </h1>
-        <div id="with-hint-hint" class="govuk-hint">
-            Do not include personal or financial information like your National Insurance number or credit card details
-        </div>
-        <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="withHint" rows="5" aria-describedby="with-hint-info with-hint-hint"></textarea>
-        <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
-            You can enter up to 200 characters
-        </div>
-    </div>
+            @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="200">
+                <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--l" for="with-hint">
+                        Can you provide more detail?
+                    </label>
+                </h1>
+                <div id="with-hint-hint" class="govuk-hint">
+                    Do not include personal or financial information like your National Insurance number or credit card details
+                </div>
+                <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="withHint" rows="5" aria-describedby="with-hint-info with-hint-hint"></textarea>
+                <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to 200 characters
+                </div>
+            </div>
         );
     }
 
@@ -48,28 +46,28 @@
     {
         // Arrange
         var component = Render(
-    @<GdsCharacterCount Id="label-as-page-heading"
-                            Name="labelAsPageHeading"
-                            MaxLength="200">
-        <LabelTemplate>
-            <GdsLabel>
-                Describe the nature of your event
-            </GdsLabel>
-        </LabelTemplate>
-    </GdsCharacterCount>
+            @<GdsCharacterCount Id="label-as-page-heading"
+                                Name="labelAsPageHeading"
+                                MaxLength="200">
+                <LabelTemplate>
+                    <GdsLabel>
+                        Describe the nature of your event
+                    </GdsLabel>
+                </LabelTemplate>
+            </GdsCharacterCount>
         );
 
         component.MarkupMatches(
-    @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="200">
-        <label class="govuk-label" for="label-as-page-heading">
-            Describe the nature of your event
-        </label>
-        <textarea class="govuk-textarea govuk-js-character-count" id="label-as-page-heading" name="labelAsPageHeading" rows="5" aria-describedby="label-as-page-heading-info"></textarea>
-        <div id="label-as-page-heading-info" class="govuk-hint govuk-character-count__message">
-            You can enter up to 200 characters
-        </div>
-    </div>
-    );
+            @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="200">
+                <label class="govuk-label" for="label-as-page-heading">
+                    Describe the nature of your event
+                </label>
+                <textarea class="govuk-textarea govuk-js-character-count" id="label-as-page-heading" name="labelAsPageHeading" rows="5" aria-describedby="label-as-page-heading-info"></textarea>
+                <div id="label-as-page-heading-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to 200 characters
+                </div>
+            </div>
+        );
     }
 
     [Fact]
@@ -77,31 +75,30 @@
     {
         // Arrange
         var component = Render(
-    @<GdsCharacterCount Id="word-count"
-                            Name="wordCount"
-                            MaxWords="150">
-        <LabelTemplate>
-            <GdsLabel Classes=@LabelSize.Large
-                      IsPageHeading=@true>
-                Enter a job description
-            </GdsLabel>
-        </LabelTemplate>
-    </GdsCharacterCount>
-    );
+            @<GdsCharacterCount Id="word-count"
+                                Name="wordCount"
+                                MaxWords="150">
+                <LabelTemplate>
+                    <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+                        Enter a job description
+                    </GdsLabel>
+                </LabelTemplate>
+            </GdsCharacterCount>
+        );
 
         component.MarkupMatches(
-    @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxwords="150">
-        <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="word-count">
-                Enter a job description
-            </label>
-        </h1>
-        <textarea class="govuk-textarea govuk-js-character-count" id="word-count" name="wordCount" rows="5" aria-describedby="word-count-info"></textarea>
-        <div id="word-count-info" class="govuk-hint govuk-character-count__message">
-            You can enter up to 150 words
-        </div>
-    </div>
-    );
+            @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxwords="150">
+                <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--l" for="word-count">
+                        Enter a job description
+                    </label>
+                </h1>
+                <textarea class="govuk-textarea govuk-js-character-count" id="word-count" name="wordCount" rows="5" aria-describedby="word-count-info"></textarea>
+                <div id="word-count-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to 150 words
+                </div>
+            </div>
+        );
     }
 
     [Fact]
@@ -109,34 +106,420 @@
     {
         // Arrange
         var component = Render(
-    @<GdsCharacterCount Id="threshold"
-                            Name="threshold"
-                            MaxLength="15"
-                            Threshold="8"
-                            Value="This example of a textarea has a character limit of 15 characters.">
-        <LabelTemplate>
-            <GdsLabel Classes=@LabelSize.Large
-                      IsPageHeading=@true>
-                Can you provide more detail?
-            </GdsLabel>
-        </LabelTemplate>
-    </GdsCharacterCount>
+            @<GdsCharacterCount Id="threshold"
+                                Name="threshold"
+                                MaxLength="15"
+                                Threshold="8">
+                <LabelTemplate>
+                    <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+                        Can you provide more detail?
+                    </GdsLabel>
+                </LabelTemplate>
+            </GdsCharacterCount>
         );
 
         component.MarkupMatches(
-    @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="15" data-threshold="8">
-        <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="threshold">
-                Can you provide more detail?
-            </label>
-        </h1>
-        <textarea class="govuk-textarea govuk-js-character-count" id="threshold" name="threshold" rows="5" aria-describedby="threshold-info">
-                    This example of a textarea has a character limit of 15 characters.
-                </textarea>
-        <div id="threshold-info" class="govuk-hint govuk-character-count__message">
-            You can enter up to 15 characters
-        </div>
-    </div>
+            @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="15" data-threshold="8">
+                <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--l" for="threshold">
+                        Can you provide more detail?
+                    </label>
+                </h1>
+                <textarea class="govuk-textarea govuk-js-character-count" id="threshold" name="threshold" rows="5" aria-describedby="threshold-info"></textarea>
+                <div id="threshold-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to 15 characters
+                </div>
+            </div>
+        );
+    }
+
+    [Fact]
+    public void OutputsCharacterCountTextAreaRows()
+    {
+        // Arrange
+        var component = Render(
+            @<GdsCharacterCount Id="textarea-rows"
+                                Name="textarea-rows"
+                                MaxLength="15"
+                                Rows="9">
+                <LabelTemplate>
+                    <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+                        Can you provide more detail?
+                    </GdsLabel>
+                </LabelTemplate>
+            </GdsCharacterCount>
+        );
+
+        component.MarkupMatches(
+            @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="15">
+                <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--l" for="textarea-rows">
+                        Can you provide more detail?
+                    </label>
+                </h1>
+                <textarea class="govuk-textarea govuk-js-character-count" id="textarea-rows" name="textarea-rows" rows="9" aria-describedby="textarea-rows-info"></textarea>
+                <div id="textarea-rows-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to 15 characters
+                </div>
+            </div>
+        );
+    }
+
+    [Fact]
+    public void OutputsCharacterCountFormGroupClasses()
+    {
+        // Arrange
+        var component = Render(
+            @<GdsCharacterCount Id="form-group-classes"
+                                Name="form-group-classes"
+                                MaxLength="15" 
+                                FormGroupClasses="testclass1 testclass2">
+                <LabelTemplate>
+                    <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+                        Can you provide more detail?
+                    </GdsLabel>
+                </LabelTemplate>
+            </GdsCharacterCount>
+        );
+
+        component.MarkupMatches(
+            @<div class="govuk-form-group govuk-character-count testclass1 testclass2" data-module="govuk-character-count" data-maxlength="15">
+                <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--l" for="form-group-classes">
+                        Can you provide more detail?
+                    </label>
+                </h1>
+                <textarea class="govuk-textarea govuk-js-character-count" id="form-group-classes" name="form-group-classes" rows="5" aria-describedby="form-group-classes-info"></textarea>
+                <div id="form-group-classes-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to 15 characters
+                </div>
+            </div>
+        );
+    }
+
+    [Fact]
+    public void OutputsCharacterCountTextAreaClasses()
+    {
+        // Arrange
+        var component = Render(
+            @<GdsCharacterCount Id="textarea-classes"
+                                Name="textarea-classes"
+                                MaxLength="15"
+                                Classes="testclass1 testclass2">
+                <LabelTemplate>
+                    <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+                        Can you provide more detail?
+                    </GdsLabel>
+                </LabelTemplate>
+            </GdsCharacterCount>
+        );
+
+        component.MarkupMatches(
+            @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="15">
+                <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--l" for="textarea-classes">
+                        Can you provide more detail?
+                    </label>
+                </h1>
+                <textarea class="govuk-textarea govuk-js-character-count testclass1 testclass2" id="textarea-classes" name="textarea-classes" rows="5" aria-describedby="textarea-classes-info"></textarea>
+                <div id="textarea-classes-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to 15 characters
+                </div>
+            </div>
+        );
+    }
+
+    [Fact]
+    public void OutputsCharacterCountCountMessageClasses()
+    {
+        // Arrange
+        var component = Render(
+            @<GdsCharacterCount Id="textarea-classes"
+                                Name="textarea-classes"
+                                MaxLength="15"
+                                CountMessageClasses="testclass1 testclass2">
+                <LabelTemplate>
+                    <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+                        Can you provide more detail?
+                    </GdsLabel>
+                </LabelTemplate>
+            </GdsCharacterCount>
+        );
+
+        component.MarkupMatches(
+            @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="15">
+                <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--l" for="textarea-classes">
+                        Can you provide more detail?
+                    </label>
+                </h1>
+                <textarea class="govuk-textarea govuk-js-character-count" id="textarea-classes" name="textarea-classes" rows="5" aria-describedby="textarea-classes-info"></textarea>
+                <div id="textarea-classes-info" class="govuk-hint govuk-character-count__message testclass1 testclass2">
+                    You can enter up to 15 characters
+                </div>
+            </div>
+        );
+    }
+
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void OutputsCharacterCountTextAreaSpellcheck(bool spellcheck)
+    {
+        // Arrange
+        var component = Render(
+            @<GdsCharacterCount Id="spellcheck-check"
+                                Name="spellcheck-check"
+                                MaxLength="15"
+                                Spellcheck=@spellcheck>
+                <LabelTemplate>
+                    <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+                        Can you provide more detail?
+                    </GdsLabel>
+                </LabelTemplate>
+            </GdsCharacterCount>
+        );
+
+        component.MarkupMatches(
+            @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="15">
+                <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--l" for="spellcheck-check">
+                        Can you provide more detail?
+                    </label>
+                </h1>
+                <textarea class="govuk-textarea govuk-js-character-count" id="spellcheck-check" name="spellcheck-check" rows="5" aria-describedby="spellcheck-check-info" spellcheck="@(spellcheck.ToString().ToLower())"></textarea>
+                <div id="spellcheck-check-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to 15 characters
+                </div>
+            </div>
+        );
+    }
+
+    [Theory]
+    [InlineData("username post-code")]
+    [InlineData("off")]
+    [InlineData("on")]
+    public void OutputsCharacterCountTextAreaAutocomplete(string values)
+    {
+        // Arrange
+        var component = Render(
+            @<GdsCharacterCount Id="autocomplete-config"
+                                Name="autocomplete-config"
+                                MaxLength="15"
+                                Autocomplete=@values>
+                <LabelTemplate>
+                    <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+                        Can you provide more detail?
+                    </GdsLabel>
+                </LabelTemplate>
+            </GdsCharacterCount>
+        );
+
+        component.MarkupMatches(
+            @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="15">
+                <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--l" for="autocomplete-config">
+                        Can you provide more detail?
+                    </label>
+                </h1>
+                <textarea class="govuk-textarea govuk-js-character-count" id="autocomplete-config" name="autocomplete-config" rows="5" aria-describedby="autocomplete-config-info" autocomplete=@values></textarea>
+                <div id="autocomplete-config-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to 15 characters
+                </div>
+            </div>
+        );
+    }
+
+    [Fact]
+    public void OutputsCharacterCountLimitTextAttributes()
+    {
+        // Arrange
+        var maxLength = 60;
+        var limitTextTemplate = "Test text %{count} characters template. (%{count} value).";
+        var limitText = $"Test text {maxLength} characters template. ({maxLength} value).";
+        var atLimitText = "Test at limit text";
+
+        var component = Render(
+            @<GdsCharacterCount Id="character-limit-text"
+                                Name="character-limit-text"
+                                MaxLength=@maxLength
+                                CharactersUnderLimitText=@limitTextTemplate
+                                CharactersAtLimitText=@atLimitText
+                                CharactersOverLimitText=@limitTextTemplate>
+                <LabelTemplate>
+                    <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+                        Can you provide more detail?
+                    </GdsLabel>
+                </LabelTemplate>
+            </GdsCharacterCount>
+        );
+
+        component.MarkupMatches(
+            @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength=@maxLength data-i18n.characters-under-limit=@limitText data-i18n.characters-at-limit=@atLimitText data-i18n.characters-over-limit=@limitText>
+                <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--l" for="character-limit-text">
+                        Can you provide more detail?
+                    </label>
+                </h1>
+                <textarea class="govuk-textarea govuk-js-character-count" id="character-limit-text" name="character-limit-text" rows="5" aria-describedby="character-limit-text-info"></textarea>
+                <div id="character-limit-text-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to @maxLength characters
+                </div>
+            </div>
+        );
+    }
+
+    [Fact]
+    public void OutputsWordCountLimitTextAttributes()
+    {
+        // Arrange
+        var maxWords = 20;
+        var limitTextTemplate = "Test text %{count} words template. (%{count} value).";
+        var limitText = $"Test text {maxWords} words template. ({maxWords} value).";
+        var atLimitText = "Test at limit text";
+
+        var component = Render(
+            @<GdsCharacterCount Id="word-limit-text"
+                                Name="word-limit-text"
+                                MaxWords=@maxWords
+                                WordsUnderLimitText=@limitTextTemplate
+                                WordsAtLimitText=@atLimitText
+                                WordsOverLimitText=@limitTextTemplate>
+                <LabelTemplate>
+                    <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+                        Can you provide more detail?
+                    </GdsLabel>
+                </LabelTemplate>
+            </GdsCharacterCount>
+        );
+
+        component.MarkupMatches(
+            @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxwords=@maxWords data-i18n.words-under-limit=@limitText data-i18n.words-at-limit=@atLimitText data-i18n.words-over-limit=@limitText>
+                <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--l" for="word-limit-text">
+                        Can you provide more detail?
+                    </label>
+                </h1>
+                <textarea class="govuk-textarea govuk-js-character-count" id="word-limit-text" name="word-limit-text" rows="5" aria-describedby="word-limit-text-info"></textarea>
+                <div id="word-limit-text-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to @maxWords words
+                </div>
+            </div>
+        );
+    }
+
+    [Fact]
+    public void OutputsCharacterCountCustomAttributes()
+    {
+        // Arrange
+        var textAreaAttributes = new Dictionary<string, object>() 
+        { 
+            {"mytaattr1", "value1"},
+            {"mytaattr2", 1234}
+        };
+
+        var formGroupCharacterCountAttributes = new Dictionary<string, object>()
+            {
+            {"myfgccattr1", "value1"},
+            {"myfgccattr2", 1234}
+            };
+
+        var component = Render(
+            @<GdsCharacterCount Id="custom-attr"
+                                Name="custom-attr"
+                                MaxLength="15"
+                                Attributes=@textAreaAttributes
+                                FormGroupAttributes=@formGroupCharacterCountAttributes>
+                <LabelTemplate>
+                    <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+                        Can you provide more detail?
+                    </GdsLabel>
+                </LabelTemplate>
+            </GdsCharacterCount>
+        );
+
+        component.MarkupMatches(
+            @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="15" myfgccattr1="value1" myfgccattr2="1234">
+                <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--l" for="custom-attr">
+                        Can you provide more detail?
+                    </label>
+                </h1>
+                <textarea class="govuk-textarea govuk-js-character-count" id="custom-attr" name="custom-attr" rows="5" aria-describedby="custom-attr-info" mytaattr1="value1" mytaattr2="1234"></textarea>
+                <div id="custom-attr-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to 15 characters
+                </div>
+            </div>
+        );
+    }
+
+    [Fact]
+    public void OutputsCharacterCountWithBeforeInputTemplate()
+    {
+        // Arrange
+        var component = Render(
+            @<GdsCharacterCount Id="before-input-template"
+                                Name="before-input-template"
+                                MaxLength="15">
+                <LabelTemplate>
+                    <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+                        Can you provide more detail?
+                    </GdsLabel>
+                </LabelTemplate>
+                <BeforeInputTemplate>
+                    <div class="govuk-body">Content before text area (input).</div>
+                </BeforeInputTemplate>
+            </GdsCharacterCount>
+        );
+
+        component.MarkupMatches(
+            @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="15">
+                <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--l" for="before-input-template">
+                        Can you provide more detail?
+                    </label>
+                </h1>
+                <div class="govuk-body">Content before text area (input).</div>
+                <textarea class="govuk-textarea govuk-js-character-count" id="before-input-template" name="before-input-template" rows="5" aria-describedby="before-input-template-info"></textarea>
+                <div id="before-input-template-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to 15 characters
+                </div>
+            </div>
+        );
+    }
+
+    [Fact]
+    public void OutputsCharacterCountWithAfterInputTemplate()
+    {
+        // Arrange
+        var component = Render(
+            @<GdsCharacterCount Id="after-input-template"
+                                Name="after-input-template"
+                                MaxLength="15">
+                <LabelTemplate>
+                    <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+                        Can you provide more detail?
+                    </GdsLabel>
+                </LabelTemplate>
+                <AfterInputTemplate>
+                    <div class="govuk-body">Content <strong>after text area (input)</strong>.</div>
+                </AfterInputTemplate>
+            </GdsCharacterCount>
+        );
+
+        component.MarkupMatches(
+            @<div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="15">
+                <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--l" for="after-input-template">
+                        Can you provide more detail?
+                    </label>
+                </h1>
+                <textarea class="govuk-textarea govuk-js-character-count" id="after-input-template" name="after-input-template" rows="5" aria-describedby="after-input-template-info"></textarea>
+                <div id="after-input-template-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to 15 characters
+                </div>
+                <div class="govuk-body">Content <strong>after text area (input)</strong>.</div>
+            </div>
         );
     }
 
@@ -145,39 +528,71 @@
     {
         // Arrange
         var component = Render(
-    @<GdsCharacterCount Id="exceeding-characters"
-                            Name="exceeding"
-                            MaxLength="15"
-                            Value="A content designer works on the end-to-end journey of a service to help users complete their goal.">
-        <LabelTemplate>
-            <GdsLabel Classes=@LabelSize.Large
-                      IsPageHeading=@true>
-                Enter a job description
-            </GdsLabel>
-        </LabelTemplate>
-        <ErrorMessageTemplate>
-            <GdsErrorMessage>
-                Job description must be 15 characters or less
-            </GdsErrorMessage>
-        </ErrorMessageTemplate>
-    </GdsCharacterCount>
+            @<GdsCharacterCount Id="exceeding-characters"
+                                Name="exceeding"
+                                MaxLength="15"
+                                Value="A content designer works on the end-to-end journey of a service to help users complete their goal.">
+                <LabelTemplate>
+                    <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+                        Enter a job description
+                    </GdsLabel>
+                </LabelTemplate>
+                <ErrorMessageTemplate>
+                    <GdsErrorMessage>
+                        Job description must be 15 characters or less
+                    </GdsErrorMessage>
+                </ErrorMessageTemplate>
+            </GdsCharacterCount>
         );
 
         component.MarkupMatches(
-    @<div class="govuk-form-group govuk-form-group--error govuk-character-count" data-module="govuk-character-count" data-maxlength="15">
-        <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="exceeding-characters">
-                Enter a job description
-            </label>
-        </h1>
-        <p id="exceeding-characters-error" class="govuk-error-message">
-            <span class="govuk-visually-hidden">Error:</span> Job description must be 15 characters or less
-        </p>
-        <textarea class="govuk-textarea govuk-textarea--error govuk-js-character-count" id="exceeding-characters" name="exceeding" rows="5" aria-describedby="exceeding-characters-info exceeding-characters-error">A content designer works on the end-to-end journey of a service to help users complete their goal.</textarea>
-        <div id="exceeding-characters-info" class="govuk-hint govuk-character-count__message">
-            You can enter up to 15 characters
-        </div>
-    </div>
+            @<div class="govuk-form-group govuk-form-group--error govuk-character-count" data-module="govuk-character-count" data-maxlength="15">
+                <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--l" for="exceeding-characters">
+                        Enter a job description
+                    </label>
+                </h1>
+                <p id="exceeding-characters-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> Job description must be 15 characters or less
+                </p>
+                <textarea class="govuk-textarea govuk-textarea--error govuk-js-character-count" id="exceeding-characters" name="exceeding" rows="5" aria-describedby="exceeding-characters-info exceeding-characters-error">
+                    A content designer works on the end-to-end journey of a service to help users complete their goal.
+                </textarea>
+                <div id="exceeding-characters-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to 15 characters
+                </div>
+            </div>
         );
+    }
+
+    [Fact]
+    public void ThrowsExceptionWhenMaxNumsNotProvided()
+    {
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() =>
+            Render(
+                @<GdsCharacterCount Id="null-max-nums" Name="nullMaxNums">
+                    <LabelTemplate>a label</LabelTemplate>
+                </GdsCharacterCount>
+            )
+        );
+
+        // Assert
+        Assert.Equal("GdsCharacterCount must have either maximum number of characters or maximum number of words provided. (Parameter 'MaxLength and MaxWords')", exception.Message);
+    }
+
+    [Fact]
+    public void ThrowsExceptionWhenLabelTemplateIsMissing()
+    {
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() =>
+            Render(
+                @<GdsCharacterCount Id="null-template" Name="nullTemplate" MaxLength="0">
+                </GdsCharacterCount>
+            )
+        );
+
+        // Assert
+        Assert.Equal("GdsCharacterCount must have label template provided. (Parameter 'LabelTemplate')", exception.Message);
     }
 }
