@@ -580,6 +580,55 @@
     }
 
     [Fact]
+    public void OutputsTableWithNumericCellClasses()
+    {
+        var headerClass = "headerClass";
+        var cellClass = "cellClass";
+
+        // Arrange, Act
+        var component = Render(
+    @<GdsTable>
+        <HeadTemplate>
+            <GdsTableCell Classes=@headerClass>Heading</GdsTableCell>
+            <GdsTableCell Format=@TableCellFormat.Numeric>Heading</GdsTableCell>
+        </HeadTemplate>
+        <RowsTemplate>
+            <GdsTableRow>
+                <GdsTableCell>Row</GdsTableCell>
+                <GdsTableCell Format=@TableCellFormat.Numeric>12</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Row</GdsTableCell>
+                <GdsTableCell Classes=@cellClass Format=@TableCellFormat.Numeric>345</GdsTableCell>
+            </GdsTableRow>
+        </RowsTemplate>
+    </GdsTable>
+        );
+
+        // Assert
+        component.MarkupMatches(
+@<table class=@TableClasses.Table>
+    <thead class=@TableClasses.Head>
+        <tr class=@TableClasses.Row>
+            <th scope="col" class="@TableClasses.HeaderCell @headerClass">Heading</th>
+            <th scope="col" class="@TableClasses.HeaderCell @TableClasses.NumericHeaderCell">Heading</th>
+        </tr>
+    </thead>
+    <tbody class=@TableClasses.Body>
+        <tr class="@TableClasses.Row">
+            <td class=@TableClasses.Cell>Row</td>
+            <td class="@TableClasses.Cell @TableClasses.NumericCell">12</td>
+        </tr>
+        <tr class=@TableClasses.Row>
+            <td class=@TableClasses.Cell>Row</td>
+            <td class="@TableClasses.Cell @TableClasses.NumericCell @cellClass">345</td>
+        </tr>
+    </tbody>
+</table>
+        );
+    }
+
+    [Fact]
     public void OutputsEmptyTable()
     {
         // Arrange, Act

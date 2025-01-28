@@ -3,10 +3,10 @@
 @if(isHeaderCell || isHeaderRow)
 {
     <th scope=@scope
-    colspan=@ColSpan
-    rowspan=@RowSpan
-    class="@TableClasses.HeaderCell @Classes"
-    @attributes=@Attributes
+        colspan=@ColSpan
+        rowspan=@RowSpan
+        class=@classes(TableClasses.HeaderCell)
+        @attributes=@Attributes        
     >
         @ChildContent
     </th>
@@ -14,9 +14,9 @@
 else
 {
     <td colspan=@ColSpan
-    rowspan=@RowSpan
-    class="@TableClasses.Cell @Classes"
-    @attributes=@Attributes
+        rowspan=@RowSpan
+        class=@classes(TableClasses.Cell)
+        @attributes=@Attributes
     >
         @ChildContent
     </td>
@@ -35,26 +35,54 @@ else
     /// </summary>
     [Parameter]
     public int? ColSpan { get; set; }
+
+    /// <summary>
+    /// Specify format of a cell. Currently only “numeric” is in use.
+    /// </summary>
+    [Parameter]
+    public string? Format { get; set; }
     #endregion
 
     #region Private Properties
     /// <summary>
-    /// Indicates the cell is the first, and a header cell in the row.
+    /// Indicates the cell is the first, and a header, in the containing parent <see cref="GdsTableRow"/>.
     /// </summary>
     private bool isHeaderCell;
 
     /// <summary>
-    /// Indicates if the parent is a table component, and is therefore a cell in a table head row.
-    /// This parameter is set automatically when the table cell is nested inside a GdsTable.HeadTemplate.
+    /// Indicates the parent is a <see cref="GdsTable"/> component, and is therefore a cell in a table head row.
+    /// This parameter is set automatically when this component is nested inside a <seealso cref="GdsTable.HeadTemplate"/>.
     /// </summary>
     private bool isHeaderRow;
 
-    private string? scope {
-        get {
+    private string? scope
+    {
+        get
+        {
             if (isHeaderRow) return TableScopes.Col;
             if (isHeaderCell) return TableScopes.Row;
             return null;
         }
+    }
+
+    private bool isNumeric => Format == TableCellFormat.Numeric;
+
+    private string classes(string initialClass)
+    {
+        var classBuilder = initialClass;
+
+        if (isNumeric)
+        {
+            classBuilder += 
+                (isHeaderCell || isHeaderRow)
+                    ? $" {TableClasses.NumericHeaderCell}"
+                    : $" {TableClasses.NumericCell}";
+        }
+
+        if (!string.IsNullOrWhiteSpace(base.Classes))
+            classBuilder += $" {base.Classes}";
+
+        return classBuilder;
     }
     #endregion
 
