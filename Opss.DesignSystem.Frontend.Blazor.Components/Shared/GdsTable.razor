@@ -5,8 +5,8 @@
 </summary>*@
 
 <table class="@tableClasses" 
-    aria-label=@Label
-    @attributes=@Attributes
+aria-label=@Label
+@attributes=@Attributes
 >
     @if(!string.IsNullOrWhiteSpace(CaptionText)) 
     {
@@ -101,7 +101,7 @@
 
     #region Private Properties
     /// <summary>
-    /// Current sorting orders for all columns in the table.
+    /// Current sorting orders for all sort columns in the table.
     /// </summary>
     private Dictionary<string, string> sortOrders = new();
 
@@ -132,13 +132,19 @@
     }
     #endregion
 
-    #region Cascading Value - Parent(s)
-    protected override void OnInitialized()
+    #region Parameter Validation
+     protected override void OnAfterRender(bool firstRender)
     {
-        /*if (HeadTemplate!=null && IsSortable && !sortOrders.Any())
-            throw new ArgumentNullException(nameof(IsSortable) + " and " + nameof(GdsTableCell.SortColumnName), "The name of the sort column is required on at least one of the header cells if the table is sortable.");*/
+        /*if(firstRender)
+        {
+            if (HeadTemplate!=null && IsSortable && !sortOrders.Any())
+                throw new ArgumentNullException(
+                    nameof(IsSortable) + " and " + nameof(GdsTableCell.SortColumnName), 
+                    "The name of the sort column is required on at least one of the header cells if the table is sortable.");
 
-        base.OnParametersSet();
+        }*/
+
+        base.OnAfterRender(firstRender);
     }
     #endregion
 }

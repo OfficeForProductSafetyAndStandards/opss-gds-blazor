@@ -26,7 +26,7 @@ else
     <td class=@classes(GdsTableClasses.Cell)
         colspan=@ColSpan
         rowspan=@RowSpan
-    @attributes=@Attributes
+        @attributes=@Attributes
     >
         @ChildContent
     </td>
@@ -72,10 +72,13 @@ else
             _ => TableSortOrder.Ascending
         };
 
-        ParentTable!.ClearAllSortOrders();
-        ParentTable!.SetSortOrder(new(SortColumnName!, ariaSort));
+        if (ParentTable != null)
+        {
+            ParentTable.ClearAllSortOrders();
+            ParentTable.SetSortOrder(new(SortColumnName!, ariaSort));
 
-        await ParentTable!.OnTableSort.InvokeAsync(new TableSortArgs(SortColumnName!, ariaSort));
+            await ParentTable.OnTableSort.InvokeAsync(new TableSortArgs(SortColumnName!, ariaSort));
+        }
     }
     #endregion
 

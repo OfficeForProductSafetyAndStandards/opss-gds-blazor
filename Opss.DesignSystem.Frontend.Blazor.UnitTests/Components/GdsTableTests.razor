@@ -25,32 +25,32 @@
             </GdsTableRow>
         </RowsTemplate>
     </GdsTable>
-    );
+        );
 
         // Assert
         component.MarkupMatches(
-@<table class=@GdsTableClasses.Table>
-    <thead class=@GdsTableClasses.Head>
-        <tr class=@GdsTableClasses.Row>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 1</th>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 2</th>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 3</th>
-        </tr>
-    </thead>
-    <tbody class=@GdsTableClasses.Body>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Row</td>
-            <td class=@GdsTableClasses.Cell>Row</td>
-            <td class=@GdsTableClasses.Cell>41</td>
-        </tr>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Row</td>
-            <td class=@GdsTableClasses.Cell>Row</td>
-            <td class=@GdsTableClasses.Cell>52</td>
-        </tr>
-    </tbody>
-</table>
-    );
+    @<table class=@GdsTableClasses.Table>
+        <thead class=@GdsTableClasses.Head>
+            <tr class=@GdsTableClasses.Row>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 1</th>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 2</th>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 3</th>
+            </tr>
+        </thead>
+        <tbody class=@GdsTableClasses.Body>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Row</td>
+                <td class=@GdsTableClasses.Cell>Row</td>
+                <td class=@GdsTableClasses.Cell>41</td>
+            </tr>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Row</td>
+                <td class=@GdsTableClasses.Cell>Row</td>
+                <td class=@GdsTableClasses.Cell>52</td>
+            </tr>
+        </tbody>
+    </table>
+        );
     }
 
     [Fact]
@@ -77,32 +77,32 @@
             </GdsTableRow>
         </RowsTemplate>
     </GdsTable>
-    );
+        );
 
         // Assert
         component.MarkupMatches(
-@<table class=@GdsTableClasses.Table>
-    <thead class=@GdsTableClasses.Head>
-        <tr class=@GdsTableClasses.Row>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 1</th>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 2</th>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 3</th>
-        </tr>
-    </thead>
-    <tbody class=@GdsTableClasses.Body>
-        <tr class=@GdsTableClasses.Row>
-            <th scope="row" class=@GdsTableClasses.HeaderCell>Row Header</th>
-            <td class=@GdsTableClasses.Cell>Row</td>
-            <td class=@GdsTableClasses.Cell>41</td>
-        </tr>
-        <tr class=@GdsTableClasses.Row>
-            <th scope="row" class=@GdsTableClasses.HeaderCell>Row Header</th>
-            <td class=@GdsTableClasses.Cell>Row</td>
-            <td class=@GdsTableClasses.Cell>52</td>
-        </tr>
-    </tbody>
-</table>
-    );
+    @<table class=@GdsTableClasses.Table>
+        <thead class=@GdsTableClasses.Head>
+            <tr class=@GdsTableClasses.Row>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 1</th>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 2</th>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 3</th>
+            </tr>
+        </thead>
+        <tbody class=@GdsTableClasses.Body>
+            <tr class=@GdsTableClasses.Row>
+                <th scope="row" class=@GdsTableClasses.HeaderCell>Row Header</th>
+                <td class=@GdsTableClasses.Cell>Row</td>
+                <td class=@GdsTableClasses.Cell>41</td>
+            </tr>
+            <tr class=@GdsTableClasses.Row>
+                <th scope="row" class=@GdsTableClasses.HeaderCell>Row Header</th>
+                <td class=@GdsTableClasses.Cell>Row</td>
+                <td class=@GdsTableClasses.Cell>52</td>
+            </tr>
+        </tbody>
+    </table>
+        );
     }
 
     [Fact]
@@ -126,29 +126,29 @@
             </GdsTableRow>
         </RowsTemplate>
     </GdsTable>
-    );
+        );
 
         // Assert
         component.MarkupMatches(
-@<table class=@GdsTableClasses.Table>
-    <caption class="govuk-table__caption">Test Caption Text</caption>
-    <thead class=@GdsTableClasses.Head>
-        <tr class=@GdsTableClasses.Row>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 1</th>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 2</th>
-        </tr>
-    </thead>
-    <tbody class=@GdsTableClasses.Body>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Row</td>
-            <td class=@GdsTableClasses.Cell>41</td>
-        </tr>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Row</td>
-            <td class=@GdsTableClasses.Cell>52</td>
-        </tr>
-    </tbody>
-</table>
+    @<table class=@GdsTableClasses.Table>
+        <caption class="govuk-table__caption">Test Caption Text</caption>
+        <thead class=@GdsTableClasses.Head>
+            <tr class=@GdsTableClasses.Row>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 1</th>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 2</th>
+            </tr>
+        </thead>
+        <tbody class=@GdsTableClasses.Body>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Row</td>
+                <td class=@GdsTableClasses.Cell>41</td>
+            </tr>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Row</td>
+                <td class=@GdsTableClasses.Cell>52</td>
+            </tr>
+        </tbody>
+    </table>
         );
     }
 
@@ -177,25 +177,25 @@
 
         // Assert
         component.MarkupMatches(
-@<table class=@GdsTableClasses.Table>
-    <caption class="govuk-table__caption captionclass1 captionclass2">Test Caption Text</caption>
-    <thead class=@GdsTableClasses.Head>
-        <tr class=@GdsTableClasses.Row>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 1</th>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 2</th>
-        </tr>
-    </thead>
-    <tbody class=@GdsTableClasses.Body>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Row</td>
-            <td class=@GdsTableClasses.Cell>41</td>
-        </tr>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Row</td>
-            <td class=@GdsTableClasses.Cell>52</td>
-        </tr>
-    </tbody>
-</table>
+    @<table class=@GdsTableClasses.Table>
+        <caption class="govuk-table__caption captionclass1 captionclass2">Test Caption Text</caption>
+        <thead class=@GdsTableClasses.Head>
+            <tr class=@GdsTableClasses.Row>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 1</th>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 2</th>
+            </tr>
+        </thead>
+        <tbody class=@GdsTableClasses.Body>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Row</td>
+                <td class=@GdsTableClasses.Cell>41</td>
+            </tr>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Row</td>
+                <td class=@GdsTableClasses.Cell>52</td>
+            </tr>
+        </tbody>
+    </table>
         );
     }
 
@@ -220,18 +220,18 @@
 
         // Assert
         component.MarkupMatches(
-@<table class=@GdsTableClasses.Table>
-    <tbody class=@GdsTableClasses.Body>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Headless Row</td>
-            <td class=@GdsTableClasses.Cell>331</td>
-        </tr>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Headless Row</td>
-            <td class=@GdsTableClasses.Cell>332</td>
-        </tr>
-    </tbody>
-</table>
+    @<table class=@GdsTableClasses.Table>
+        <tbody class=@GdsTableClasses.Body>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Headless Row</td>
+                <td class=@GdsTableClasses.Cell>331</td>
+            </tr>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Headless Row</td>
+                <td class=@GdsTableClasses.Cell>332</td>
+            </tr>
+        </tbody>
+    </table>
         );
     }
 
@@ -276,40 +276,40 @@
 
         // Assert
         component.MarkupMatches(
-@<table class=@GdsTableClasses.Table>
-    <thead class=@GdsTableClasses.Head>
-        <tr class=@GdsTableClasses.Row>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 1</th>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 2</th>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 3</th>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 4</th>
-        </tr>
-    </thead>
-    <tbody class=@GdsTableClasses.Body>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell rowspan="3">Content spanning 3 rows</td>
-            <td class=@GdsTableClasses.Cell>Content 1</td>
-            <td class=@GdsTableClasses.Cell>£300</td>
-            <td class=@GdsTableClasses.Cell>41.1</td>
-        </tr>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Content 2</td>
-            <td class=@GdsTableClasses.Cell>£600</td>
-            <td class=@GdsTableClasses.Cell>41.2</td>
-        </tr>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Content 3</td>
-            <td class=@GdsTableClasses.Cell>£900</td>
-            <td class=@GdsTableClasses.Cell>41.3</td>
-        </tr>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Row 4</td>
-            <td class=@GdsTableClasses.Cell>Content 4</td>
-            <td class=@GdsTableClasses.Cell>£1,200</td>
-            <td class=@GdsTableClasses.Cell>41.4</td>
-        </tr>
-    </tbody>
-</table>
+    @<table class=@GdsTableClasses.Table>
+        <thead class=@GdsTableClasses.Head>
+            <tr class=@GdsTableClasses.Row>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 1</th>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 2</th>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 3</th>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 4</th>
+            </tr>
+        </thead>
+        <tbody class=@GdsTableClasses.Body>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell rowspan="3">Content spanning 3 rows</td>
+                <td class=@GdsTableClasses.Cell>Content 1</td>
+                <td class=@GdsTableClasses.Cell>£300</td>
+                <td class=@GdsTableClasses.Cell>41.1</td>
+            </tr>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Content 2</td>
+                <td class=@GdsTableClasses.Cell>£600</td>
+                <td class=@GdsTableClasses.Cell>41.2</td>
+            </tr>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Content 3</td>
+                <td class=@GdsTableClasses.Cell>£900</td>
+                <td class=@GdsTableClasses.Cell>41.3</td>
+            </tr>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Row 4</td>
+                <td class=@GdsTableClasses.Cell>Content 4</td>
+                <td class=@GdsTableClasses.Cell>£1,200</td>
+                <td class=@GdsTableClasses.Cell>41.4</td>
+            </tr>
+        </tbody>
+    </table>
         );
     }
 
@@ -355,40 +355,40 @@
 
         // Assert
         component.MarkupMatches(
-@<table class=@GdsTableClasses.Table>
-    <thead class=@GdsTableClasses.Head>
-        <tr class=@GdsTableClasses.Row>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 1</th>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 2</th>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 3</th>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 4</th>
-        </tr>
-    </thead>
-    <tbody class=@GdsTableClasses.Body>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Row 1</td>
-            <td colspan="3" class=@GdsTableClasses.Cell>Content spanning 3 columns</td>
-            <td class=@GdsTableClasses.Cell>£300</td>
-            <td class=@GdsTableClasses.Cell>41.1</td>
-        </tr>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Row 2</td>
-            <td class=@GdsTableClasses.Cell>£600</td>
-            <td class=@GdsTableClasses.Cell>41.2</td>
-        </tr>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Row 3</td>
-            <td class=@GdsTableClasses.Cell>£900</td>
-            <td class=@GdsTableClasses.Cell>41.3</td>
-        </tr>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Row 4</td>
-            <td class=@GdsTableClasses.Cell>Content 4</td>
-            <td class=@GdsTableClasses.Cell>£1,200</td>
-            <td class=@GdsTableClasses.Cell>41.4</td>
-        </tr>
-    </tbody>
-</table>
+    @<table class=@GdsTableClasses.Table>
+        <thead class=@GdsTableClasses.Head>
+            <tr class=@GdsTableClasses.Row>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 1</th>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 2</th>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 3</th>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 4</th>
+            </tr>
+        </thead>
+        <tbody class=@GdsTableClasses.Body>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Row 1</td>
+                <td colspan="3" class=@GdsTableClasses.Cell>Content spanning 3 columns</td>
+                <td class=@GdsTableClasses.Cell>£300</td>
+                <td class=@GdsTableClasses.Cell>41.1</td>
+            </tr>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Row 2</td>
+                <td class=@GdsTableClasses.Cell>£600</td>
+                <td class=@GdsTableClasses.Cell>41.2</td>
+            </tr>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Row 3</td>
+                <td class=@GdsTableClasses.Cell>£900</td>
+                <td class=@GdsTableClasses.Cell>41.3</td>
+            </tr>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Row 4</td>
+                <td class=@GdsTableClasses.Cell>Content 4</td>
+                <td class=@GdsTableClasses.Cell>£1,200</td>
+                <td class=@GdsTableClasses.Cell>41.4</td>
+            </tr>
+        </tbody>
+    </table>
         );
     }
 
@@ -414,21 +414,21 @@
 
         // Assert
         component.MarkupMatches(
-@<table class=@GdsTableClasses.Table>
-    <thead class=@GdsTableClasses.Head>
-        <tr class=@GdsTableClasses.Row>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 1</th>
-        </tr>
-    </thead>
-    <tbody class=@GdsTableClasses.Body>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Row 1</td>
-        </tr>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Row 2</td>
-        </tr>
-    </tbody>
-</table>
+    @<table class=@GdsTableClasses.Table>
+        <thead class=@GdsTableClasses.Head>
+            <tr class=@GdsTableClasses.Row>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 1</th>
+            </tr>
+        </thead>
+        <tbody class=@GdsTableClasses.Body>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Row 1</td>
+            </tr>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Row 2</td>
+            </tr>
+        </tbody>
+    </table>
         );
     }
 
@@ -454,24 +454,23 @@
 
         // Assert
         component.MarkupMatches(
-@<table class=@GdsTableClasses.Table>
-    <thead class=@GdsTableClasses.Head>
-        <tr class=@GdsTableClasses.Row>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 1</th>
-        </tr>
-    </thead>
-    <tbody class=@GdsTableClasses.Body>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Row 1</td>
-        </tr>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Row 2</td>
-        </tr>
-    </tbody>
-</table>
+    @<table class=@GdsTableClasses.Table>
+        <thead class=@GdsTableClasses.Head>
+            <tr class=@GdsTableClasses.Row>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading 1</th>
+            </tr>
+        </thead>
+        <tbody class=@GdsTableClasses.Body>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Row 1</td>
+            </tr>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Row 2</td>
+            </tr>
+        </tbody>
+    </table>
         );
     }
-
 
     [Fact]
     public void OutputsTableWithHtmlContent()
@@ -502,31 +501,30 @@
 
         // Assert
         component.MarkupMatches(
-@<table class=@GdsTableClasses.Table>
-    <thead class=@GdsTableClasses.Head>
-        <tr class=@GdsTableClasses.Row>
-            <th scope="col" class=@GdsTableClasses.HeaderCell><h3 class=@HeadingSize.Small>Heading 1 at 3</h3></th>
-            <th scope="col" class=@GdsTableClasses.HeaderCell><u>Heading 2</u></th>
-        </tr>
-    </thead>
-    <tbody class=@GdsTableClasses.Body>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell><a class="govuk-link" href="#">Row 1 link</a></td>
-            <td class=@GdsTableClasses.Cell>41.2</td>
-        </tr>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell><strong class="govuk-tag @TagClasses.Blue">Row 2</strong></td>
-            <td class=@GdsTableClasses.Cell>£900</td>
-        </tr>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Row 3</td>
-            <td class=@GdsTableClasses.Cell><p>Content 4</p></td>
-        </tr>
-    </tbody>
-</table>
-    );
+    @<table class=@GdsTableClasses.Table>
+        <thead class=@GdsTableClasses.Head>
+            <tr class=@GdsTableClasses.Row>
+                <th scope="col" class=@GdsTableClasses.HeaderCell><h3 class=@HeadingSize.Small>Heading 1 at 3</h3></th>
+                <th scope="col" class=@GdsTableClasses.HeaderCell><u>Heading 2</u></th>
+            </tr>
+        </thead>
+        <tbody class=@GdsTableClasses.Body>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell><a class="govuk-link" href="#">Row 1 link</a></td>
+                <td class=@GdsTableClasses.Cell>41.2</td>
+            </tr>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell><strong class="govuk-tag @TagClasses.Blue">Row 2</strong></td>
+                <td class=@GdsTableClasses.Cell>£900</td>
+            </tr>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Row 3</td>
+                <td class=@GdsTableClasses.Cell><p>Content 4</p></td>
+            </tr>
+        </tbody>
+    </table>
+        );
     }
-
 
     [Fact]
     public void OutputsTableWithClasses()
@@ -558,24 +556,24 @@
 
         // Assert
         component.MarkupMatches(
-@<table class="@GdsTableClasses.Table @tableClass">
-    <thead class=@GdsTableClasses.Head>
-        <tr class=@GdsTableClasses.Row>
-            <th scope="col" class="@GdsTableClasses.HeaderCell @headerClass">Heading</th>
-            <th scope="col" class=@GdsTableClasses.HeaderCell>Heading</th>
-        </tr>
-    </thead>
-    <tbody class=@GdsTableClasses.Body>
-        <tr class="@GdsTableClasses.Row @rowClass">
-            <td class="@GdsTableClasses.Cell @cellClass">Row</td>
-            <td class=@GdsTableClasses.Cell>Row</td>
-        </tr>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>Row</td>
-            <td class=@GdsTableClasses.Cell>Row</td>
-        </tr>
-    </tbody>
-</table>
+    @<table class="@GdsTableClasses.Table @tableClass">
+        <thead class=@GdsTableClasses.Head>
+            <tr class=@GdsTableClasses.Row>
+                <th scope="col" class="@GdsTableClasses.HeaderCell @headerClass">Heading</th>
+                <th scope="col" class=@GdsTableClasses.HeaderCell>Heading</th>
+            </tr>
+        </thead>
+        <tbody class=@GdsTableClasses.Body>
+            <tr class="@GdsTableClasses.Row @rowClass">
+                <td class="@GdsTableClasses.Cell @cellClass">Row</td>
+                <td class=@GdsTableClasses.Cell>Row</td>
+            </tr>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>Row</td>
+                <td class=@GdsTableClasses.Cell>Row</td>
+            </tr>
+        </tbody>
+    </table>
         );
     }
 
@@ -627,37 +625,34 @@
             </GdsTableRow>
         </RowsTemplate>
     </GdsTable>
-    );
+        );
 
         // Assert
         component.MarkupMatches(
-@<table class=@GdsTableClasses.Table>
-    <thead class=@GdsTableClasses.Head>
-        <tr class=@GdsTableClasses.Row>
-            <th scope="col" class=@GdsTableClasses.HeaderCell aria-sort="none">
-                <button class="govuk-button" type="button" data-module="govuk-button">Head column</button>
-            </th>
-            <th scope="col" class=@GdsTableClasses.HeaderCell aria-sort="none">
-                <button class="govuk-button" type="button" data-module="govuk-button">Number column</button>
-            </th>
-        </tr>
-    </thead>
-    <tbody class=@GdsTableClasses.Body>
-        <tr class="@GdsTableClasses.Row">
-            <td class=@GdsTableClasses.Cell>First data row</td>
-            <td class=@GdsTableClasses.Cell>12</td>
-        </tr>
-        <tr class=@GdsTableClasses.Row>
-            <td class=@GdsTableClasses.Cell>another row</td>
-            <td class=@GdsTableClasses.Cell>345</td>
-        </tr>
-    </tbody>
-</table>
+    @<table class=@GdsTableClasses.Table>
+        <thead class=@GdsTableClasses.Head>
+            <tr class=@GdsTableClasses.Row>
+                <th scope="col" class=@GdsTableClasses.HeaderCell aria-sort="none">
+                    <button class="govuk-button" type="button" data-module="govuk-button">Head column</button>
+                </th>
+                <th scope="col" class=@GdsTableClasses.HeaderCell aria-sort="none">
+                    <button class="govuk-button" type="button" data-module="govuk-button">Number column</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody class=@GdsTableClasses.Body>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>First data row</td>
+                <td class=@GdsTableClasses.Cell>12</td>
+            </tr>
+            <tr class=@GdsTableClasses.Row>
+                <td class=@GdsTableClasses.Cell>another row</td>
+                <td class=@GdsTableClasses.Cell>345</td>
+            </tr>
+        </tbody>
+    </table>
         );
     }
-
-
-
 
     [Fact]
     public void OutputsEmptyTable()
@@ -665,13 +660,13 @@
         // Arrange, Act
         var component = Render(@<GdsTable>
     </GdsTable>
-    );
+        );
 
         // Assert
         component.MarkupMatches(
-@<table class=@GdsTableClasses.Table>
-    <tbody class=@GdsTableClasses.Body></tbody>
-</table>
+    @<table class=@GdsTableClasses.Table>
+        <tbody class=@GdsTableClasses.Body></tbody>
+    </table>
         );
     }
 
@@ -682,16 +677,16 @@
         var component = Render(@<GdsTable>
             <HeadTemplate></HeadTemplate>
     </GdsTable>
-    );
+        );
 
         // Assert
         component.MarkupMatches(
-@<table class=@GdsTableClasses.Table>
-    <thead class=@GdsTableClasses.Head>
-        <tr class=@GdsTableClasses.Row></tr>
-    </thead>
-    <tbody class=@GdsTableClasses.Body></tbody>
-</table>
+    @<table class=@GdsTableClasses.Table>
+        <thead class=@GdsTableClasses.Head>
+            <tr class=@GdsTableClasses.Row></tr>
+        </thead>
+        <tbody class=@GdsTableClasses.Body></tbody>
+    </table>
         );
     }
 
