@@ -2,7 +2,7 @@
 
 @if(isHeaderCell || isHeaderRow)
 {
-    <th class=@classes(GdsTableClasses.HeaderCell)
+    <th class=@classes(TableClasses.HeaderCell)
         colspan=@ColSpan
         rowspan=@RowSpan
         scope=@scope
@@ -23,7 +23,7 @@
 }
 else
 {
-    <td class=@classes(GdsTableClasses.Cell)
+    <td class=@classes(TableClasses.Cell)
         colspan=@ColSpan
         rowspan=@RowSpan
         @attributes=@Attributes
@@ -120,8 +120,8 @@ else
         {
             classBuilder += 
                 (isHeaderCell || isHeaderRow)
-                    ? $" {GdsTableClasses.NumericHeaderCell}"
-                    : $" {GdsTableClasses.NumericCell}";
+                    ? $" {TableClasses.NumericHeaderCell}"
+                    : $" {TableClasses.NumericCell}";
         }
 
         if (!string.IsNullOrWhiteSpace(base.Classes))

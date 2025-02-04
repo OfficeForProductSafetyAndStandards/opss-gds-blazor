@@ -17,13 +17,13 @@ aria-label=@Label
 
     @if (HeadTemplate != null)
     {
-        <thead class=@GdsTableClasses.Head>
-            <tr class=@GdsTableClasses.Row>
+        <thead class=@TableClasses.Head>
+            <tr class=@TableClasses.Row>
                 <CascadingValue Value=this Name="ParentTable" ChildContent=@HeadTemplate />
             </tr>
         </thead>
     }
-    <tbody class=@GdsTableClasses.Body>
+    <tbody class=@TableClasses.Body>
         <CascadingValue Value=this ChildContent=@RowsTemplate />
     </tbody>
 </table>
@@ -109,7 +109,7 @@ aria-label=@Label
     {
         get
         {
-            var classBuilder = GdsTableClasses.Caption;
+            var classBuilder = TableClasses.Caption;
 
             if (!string.IsNullOrWhiteSpace(CaptionTextClasses))
                 classBuilder += $" {CaptionTextClasses}";
@@ -122,29 +122,13 @@ aria-label=@Label
     {
         get
         {
-            var classBuilder = GdsTableClasses.Table;
+            var classBuilder = TableClasses.Table;
 
             if (!string.IsNullOrWhiteSpace(Classes))
                 classBuilder += $" {Classes}";
 
             return classBuilder;
         }
-    }
-    #endregion
-
-    #region Parameter Validation
-     protected override void OnAfterRender(bool firstRender)
-    {
-        /*if(firstRender)
-        {
-            if (HeadTemplate!=null && IsSortable && !sortOrders.Any())
-                throw new ArgumentNullException(
-                    nameof(IsSortable) + " and " + nameof(GdsTableCell.SortColumnName), 
-                    "The name of the sort column is required on at least one of the header cells if the table is sortable.");
-
-        }*/
-
-        base.OnAfterRender(firstRender);
     }
     #endregion
 }

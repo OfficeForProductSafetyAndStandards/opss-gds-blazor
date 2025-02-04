@@ -1,6 +1,6 @@
 ﻿namespace Opss.DesignSystem.Frontend.Blazor.Components.Classes;
 
-public static class GdsTableClasses
+public static class TableClasses
 {
     public const string Table = "govuk-table";
     public const string Caption = "govuk-table__caption";
