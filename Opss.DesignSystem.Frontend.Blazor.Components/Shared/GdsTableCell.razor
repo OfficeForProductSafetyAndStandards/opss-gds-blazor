@@ -2,21 +2,31 @@
 
 @if(isHeaderCell || isHeaderRow)
 {
-    <th scope=@scope
+    <th class=@classes(GdsTableClasses.HeaderCell)
         colspan=@ColSpan
         rowspan=@RowSpan
-        class=@classes(TableClasses.HeaderCell)
+        scope=@scope
+        aria-sort=@ariaSort
         @attributes=@Attributes        
     >
-        @ChildContent
+        @if (showSortButton)
+        {
+            <GdsButton Type="button" OnClick="sortTable">
+                @ChildContent
+            </GdsButton>
+        }
+        else
+        {
+            @ChildContent
+        }
     </th>
 }
 else
 {
-    <td colspan=@ColSpan
+    <td class=@classes(GdsTableClasses.Cell)
+        colspan=@ColSpan
         rowspan=@RowSpan
-        class=@classes(TableClasses.Cell)
-        @attributes=@Attributes
+    @attributes=@Attributes
     >
         @ChildContent
     </td>
@@ -41,16 +51,42 @@ else
     /// </summary>
     [Parameter]
     public string? Format { get; set; }
+
+    /// <summary>
+    /// The name of the column in the data source to sort by. 
+    /// This must map to a column (or sort function) in the data source. 
+    /// If no name is specified, no sort button will be rendered. 
+    /// Sort buttons will only render in a table header. 
+    /// The content within the sort column cells must be text only.
+    /// </summary>
+    [Parameter]
+    public string? SortColumnName { get; set; }
+    #endregion
+
+    #region Event handlers (private)
+    private async Task sortTable()
+    {
+        ariaSort = ariaSort switch
+        {
+            TableSortOrder.Ascending => TableSortOrder.Descending,
+            _ => TableSortOrder.Ascending
+        };
+
+        ParentTable!.ClearAllSortOrders();
+        ParentTable!.SetSortOrder(new(SortColumnName!, ariaSort));
+
+        await ParentTable!.OnTableSort.InvokeAsync(new TableSortArgs(SortColumnName!, ariaSort));
+    }
     #endregion
 
     #region Private Properties
     /// <summary>
-    /// Indicates the cell is the first, and a header, in the containing parent <see cref="GdsTableRow"/>.
+    /// Indicates the cell is the first, and a header, in the containing parent <see cref="GdsTableRow" />.
     /// </summary>
     private bool isHeaderCell;
 
     /// <summary>
-    /// Indicates the parent is a <see cref="GdsTable"/> component, and is therefore a cell in a table head row.
+    /// Indicates the parent of this cell is a <see cref="GdsTable" /> component, and this cell is in a table head row.
     /// This parameter is set automatically when this component is nested inside a <seealso cref="GdsTable.HeadTemplate"/>.
     /// </summary>
     private bool isHeaderRow;
@@ -67,6 +103,12 @@ else
 
     private bool isNumeric => Format == TableCellFormat.Numeric;
 
+    private string? ariaSort;
+
+    private bool showSortButton;
+    #endregion
+
+    #region Private Methods 
     private string classes(string initialClass)
     {
         var classBuilder = initialClass;
@@ -75,14 +117,26 @@ else
         {
             classBuilder += 
                 (isHeaderCell || isHeaderRow)
-                    ? $" {TableClasses.NumericHeaderCell}"
-                    : $" {TableClasses.NumericCell}";
+                    ? $" {GdsTableClasses.NumericHeaderCell}"
+                    : $" {GdsTableClasses.NumericCell}";
         }
 
         if (!string.IsNullOrWhiteSpace(base.Classes))
             classBuilder += $" {base.Classes}";
 
         return classBuilder;
+    }
+    #endregion
+
+    #region Parameter Validation
+    protected override void OnParametersSet()
+    {
+        if (showSortButton)
+        { 
+            ariaSort = ParentTable!.GetSortOrder(SortColumnName!);
+        }
+
+        base.OnParametersSet();
     }
     #endregion
 
@@ -94,12 +148,15 @@ else
 
         isHeaderCell = ParentRow?.FirstCellIsHeader ?? false;
         isHeaderRow = ParentTable != null;
+        showSortButton = (ParentTable?.IsSortable ?? false) && !string.IsNullOrEmpty(SortColumnName);
 
         if (RowSpan <= 1) RowSpan = null;
         if (ColSpan <= 1) ColSpan = null;
 
         base.OnInitialized();
+        
         ParentRow?.ClearFirstCellIsHeaderFlag(this);
+        if (showSortButton) ParentTable?.SetSortOrder(new(SortColumnName!));
     }
 
     [CascadingParameter(Name = "ParentRow")]

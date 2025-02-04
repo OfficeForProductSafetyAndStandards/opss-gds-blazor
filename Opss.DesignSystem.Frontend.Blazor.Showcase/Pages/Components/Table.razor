@@ -7,7 +7,8 @@
 <h1 class="govuk-heading-xl">Table</h1>
 
 <p class="govuk-body">
-    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/table/" class="govuk-link">Table</a>.
+    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/table/" class="govuk-link">Table</a>. 
+    Also, see <a href="/Components/Table/Sortable">the MOJ sortable table</a>.
 </p>
 
 <h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
@@ -175,7 +176,7 @@
         </GdsTableRow>
     </RowsTemplate>
 </GdsTable>")">
-    <GdsTable CaptionText="Outstanding tasks to be done" CaptionTextClasses=@TableClasses.CaptionTextExtraLarge>
+    <GdsTable CaptionText="Outstanding tasks to be done" CaptionTextClasses=@GdsTableClasses.CaptionTextExtraLarge>
         <HeadTemplate>
             <GdsTableCell>Task</GdsTableCell>
             <GdsTableCell>Days left</GdsTableCell>

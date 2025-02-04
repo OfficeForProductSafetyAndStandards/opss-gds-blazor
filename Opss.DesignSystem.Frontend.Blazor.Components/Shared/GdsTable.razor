@@ -4,8 +4,7 @@
     The table component makes information easier to compare and scan.
 </summary>*@
 
-<table 
-    class="@tableClasses" 
+<table class="@tableClasses" 
     aria-label=@Label
     @attributes=@Attributes
 >
@@ -18,13 +17,13 @@
 
     @if (HeadTemplate != null)
     {
-        <thead class=@TableClasses.Head>
-            <tr class=@TableClasses.Row>
+        <thead class=@GdsTableClasses.Head>
+            <tr class=@GdsTableClasses.Row>
                 <CascadingValue Value=this Name="ParentTable" ChildContent=@HeadTemplate />
             </tr>
         </thead>
     }
-    <tbody class=@TableClasses.Body>
+    <tbody class=@GdsTableClasses.Body>
         <CascadingValue Value=this ChildContent=@RowsTemplate />
     </tbody>
 </table>
@@ -50,10 +49,17 @@
     public string? CaptionTextClasses { get; set; }
 
     /// <summary>
-    /// Whether the first cell in each row of the table body will be a header.
+    /// If true, the first cell in each row of the table body will be a header.
     /// </summary>
     [Parameter]
     public bool FirstCellIsHeader { get; set; }
+
+    /// <summary>
+    /// If true, the sort functionality is enabled. 
+    /// The <see cref="GdsTable.OnTableSort" /> event handler, and the <see cref="GdsTableCell.SortColumnName" /> on the table cells in the table header must be set.
+    /// </summary>
+    [Parameter]
+    public bool IsSortable { get; set; }
 
     /// <summary>
     /// Table cells for the head row
@@ -62,18 +68,48 @@
     public RenderFragment? HeadTemplate { get; set; }
 
     /// <summary>
-    /// Table Rows for the table body
+    /// Table rows for the table body
     /// </summary>
     [Parameter]
     public RenderFragment? RowsTemplate { get; set; }
     #endregion
 
-    #region Private Parameters 
+    #region Event Handlers
+    [Parameter]
+    public EventCallback<TableSortArgs> OnTableSort { get; set; }
+
+    internal void SetSortOrder(TableSortArgs args)
+    {
+        if (string.IsNullOrEmpty(args.Name)) return;
+        sortOrders[args.Name] = args.Order;    
+    }
+
+    internal string? GetSortOrder(string columnName)
+    { 
+        if (string.IsNullOrEmpty(columnName)) return null;
+        return sortOrders[columnName];
+    }
+
+    internal void ClearAllSortOrders()
+    {
+        foreach (string key in sortOrders.Keys)
+        { 
+            sortOrders[key] = TableSortOrder.None;        
+        }
+    }
+    #endregion
+
+    #region Private Properties
+    /// <summary>
+    /// Current sorting orders for all columns in the table.
+    /// </summary>
+    private Dictionary<string, string> sortOrders = new();
+
     private string captionClasses
     {
         get
         {
-            var classBuilder = TableClasses.Caption;
+            var classBuilder = GdsTableClasses.Caption;
 
             if (!string.IsNullOrWhiteSpace(CaptionTextClasses))
                 classBuilder += $" {CaptionTextClasses}";
@@ -86,13 +122,23 @@
     {
         get
         {
-            var classBuilder = TableClasses.Table;
+            var classBuilder = GdsTableClasses.Table;
 
             if (!string.IsNullOrWhiteSpace(Classes))
                 classBuilder += $" {Classes}";
 
             return classBuilder;
         }
+    }
+    #endregion
+
+    #region Cascading Value - Parent(s)
+    protected override void OnInitialized()
+    {
+        /*if (HeadTemplate!=null && IsSortable && !sortOrders.Any())
+            throw new ArgumentNullException(nameof(IsSortable) + " and " + nameof(GdsTableCell.SortColumnName), "The name of the sort column is required on at least one of the header cells if the table is sortable.");*/
+
+        base.OnParametersSet();
     }
     #endregion
 }
