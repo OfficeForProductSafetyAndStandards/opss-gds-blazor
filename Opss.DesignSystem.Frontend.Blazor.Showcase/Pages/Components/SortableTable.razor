@@ -1,0 +1,186 @@
+﻿@page "/Components/Table/Sortable"
+@layout _ComponentsLayout
+
+<PageTitle>Table</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">Sortable Table</h1>
+
+<p class="govuk-body">
+    A blazor implementation of the MOJ <a href="https://design-patterns.service.justice.gov.uk/components/sortable-table/" class="govuk-link">Sortable table</a> pattern.
+</p>
+
+<h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
+<Example CodeExampleContent="@(@"<GdsTable 
+    CaptionText=""A sortable table with data from a data source"" 
+    IsSortable=""@true"" 
+    OnTableSort=@SortTableAsync
+>
+        <HeadTemplate>
+            <GdsTableCell SortColumnName=""Task"">
+                Task
+            </GdsTableCell>
+            <GdsTableCell SortColumnName=""DaysLeft"">
+                Days left
+            </GdsTableCell>
+            <GdsTableCell SortColumnName=""Cost"">
+                Cost
+            </GdsTableCell>
+            <GdsTableCell SortColumnName=""DueDate"">
+                Due date
+            </GdsTableCell>
+        </HeadTemplate>
+        <RowsTemplate>
+            @foreach (var rowData in data!)
+            {
+                <GdsTableRow>
+                    <GdsTableCell>@rowData.Task</GdsTableCell>
+                    <GdsTableCell>@rowData.DaysLeft</GdsTableCell>
+                    <GdsTableCell>@rowData.Cost.ToString(""C"")</GdsTableCell>
+                    <GdsTableCell>@rowData.DueDate.ToShortDateString()</GdsTableCell>
+                </GdsTableRow>
+            }
+        </RowsTemplate>
+    </GdsTable>
+")">
+    <GdsTable CaptionText="A sortable table with data from a data source" IsSortable OnTableSort=@SortTableAsync>
+        <HeadTemplate>
+            <GdsTableCell SortColumnName="Task">
+                Task
+            </GdsTableCell>
+            <GdsTableCell SortColumnName="DaysLeft">
+                Days left
+            </GdsTableCell>
+            <GdsTableCell SortColumnName="Cost">
+                Cost
+            </GdsTableCell>
+            <GdsTableCell SortColumnName="DueDate">
+                Due date
+            </GdsTableCell>
+        </HeadTemplate>
+        <RowsTemplate>
+            @foreach (var rowData in data!)
+            {
+                <GdsTableRow>
+                    <GdsTableCell>@rowData.Task</GdsTableCell>
+                    <GdsTableCell>@rowData.DaysLeft</GdsTableCell>
+                    <GdsTableCell>@rowData.Cost.ToString("C")</GdsTableCell>
+                    <GdsTableCell>@rowData.DueDate.ToShortDateString()</GdsTableCell>
+                </GdsTableRow>
+            }
+        </RowsTemplate>
+    </GdsTable>
+</Example>
+
+<h3 class="govuk-heading-s" id="with-non-sorted-column">With a non-sorted column</h3>
+<Example CodeExampleContent="@(@"<GdsTable CaptionText=""With a non-sorted column"" 
+    IsSortable 
+    OnTableSort=@SortTableAsync
+>
+        <HeadTemplate>
+            <GdsTableCell SortColumnName=""Task"">
+                Task
+            </GdsTableCell>
+            <GdsTableCell SortColumnName=""DaysLeft"">
+                Days left
+            </GdsTableCell>
+            <GdsTableCell SortColumnName=""Cost"">
+                Cost
+            </GdsTableCell>
+            <GdsTableCell SortColumnName=""DueDate"">
+                Due date
+            </GdsTableCell>
+            <GdsTableCell />
+        </HeadTemplate>
+        <RowsTemplate>
+            @foreach (var rowData in data!)
+            {
+                <GdsTableRow>
+                    <GdsTableCell>@rowData.Task</GdsTableCell>
+                    <GdsTableCell>@rowData.DaysLeft</GdsTableCell>
+                    <GdsTableCell>@rowData.Cost.ToString(""C"")</GdsTableCell>
+                    <GdsTableCell>@rowData.DueDate.ToShortDateString()</GdsTableCell>
+                    <GdsTableCell>
+                        <GdsButton Type=""button"" Value=@rowData.id.ToString()>Edit</GdsButton>
+                    </GdsTableCell>
+                </GdsTableRow>
+            }
+        </RowsTemplate>
+    </GdsTable>
+")">
+    <GdsTable CaptionText="With a non-sorted column" IsSortable OnTableSort=@SortTableAsync>
+        <HeadTemplate>
+            <GdsTableCell SortColumnName="Task">
+                Task
+            </GdsTableCell>
+            <GdsTableCell SortColumnName="DaysLeft">
+                Days left
+            </GdsTableCell>
+            <GdsTableCell SortColumnName="Cost">
+                Cost
+            </GdsTableCell>
+            <GdsTableCell SortColumnName="DueDate">
+                Due date
+            </GdsTableCell>
+            <GdsTableCell />
+        </HeadTemplate>
+        <RowsTemplate>
+            @foreach (var rowData in data!)
+            {
+                <GdsTableRow>
+                    <GdsTableCell>@rowData.Task</GdsTableCell>
+                    <GdsTableCell>@rowData.DaysLeft</GdsTableCell>
+                    <GdsTableCell>@rowData.Cost.ToString("C")</GdsTableCell>
+                    <GdsTableCell>@rowData.DueDate.ToShortDateString()</GdsTableCell>
+                    <GdsTableCell>
+                        <GdsButton Type="button" Value=@rowData.id.ToString()>Edit</GdsButton>
+                    </GdsTableCell>
+                </GdsTableRow>
+            }
+        </RowsTemplate>
+    </GdsTable>
+</Example>
+
+@code {
+    private DummyData[]? data;
+
+    private async Task SortTableAsync(TableSortArgs args)
+    {
+        data = getData(args).ToArray();
+
+        await Task.CompletedTask;
+    }
+
+    private List<DummyData> getData(TableSortArgs args) => args switch
+    { 
+        TableSortArgs { Order: TableSortOrder.Ascending, Name: "Task" } => dummyDataSource.OrderBy(d => d.Task).ToList(),
+        TableSortArgs { Order: TableSortOrder.Descending, Name: "Task" } => dummyDataSource.OrderByDescending(d => d.Task).ToList(),
+        TableSortArgs { Order: TableSortOrder.Ascending, Name: "DaysLeft" } => dummyDataSource.OrderBy(d => d.DaysLeft).ToList(),
+        TableSortArgs { Order: TableSortOrder.Descending, Name: "DaysLeft" } => dummyDataSource.OrderByDescending(d => d.DaysLeft).ToList(),
+        TableSortArgs { Order: TableSortOrder.Ascending, Name: "Cost" } => dummyDataSource.OrderBy(d => d.Cost).ToList(),
+        TableSortArgs { Order: TableSortOrder.Descending, Name: "Cost" } => dummyDataSource.OrderByDescending(d => d.Cost).ToList(),
+        TableSortArgs { Order: TableSortOrder.Ascending, Name: "DueDate" } => dummyDataSource.OrderBy(d => d.DueDate).ToList(),
+        TableSortArgs { Order: TableSortOrder.Descending, Name: "DueDate" } => dummyDataSource.OrderByDescending(d => d.DueDate).ToList(),
+        _ => dummyDataSource
+    };
+
+    private List<DummyData> dummyDataSource = new()
+    {
+        new(100, "Eligibility check", 4, 123.45M, DateTime.Parse("2025-02-10")),
+        new(101, "Travel requirements", 15, 275.544M, DateTime.Parse("2025-08-22")),
+        new(102, "Visa application", -22, 2784.22M, DateTime.Parse("2024-12-09")),
+        new(103, "Family history", 33, 80.4M, DateTime.Parse("2025-03-31")),
+        new(104, "Hotel arrangements", 77, 345.993M, DateTime.Parse("2025-04-22")),
+        new(105, "Tourism", 22, 275.993M, DateTime.Parse("2025-02-22")),
+        new(106, "Tourism", 22, 275.993M, DateTime.Parse("2025-02-22")),
+    };
+
+    private record DummyData(int id, string Task, int DaysLeft, decimal Cost, DateTime DueDate);
+
+    protected override void OnInitialized()
+    {
+        data = dummyDataSource.ToArray();
+
+        base.OnInitialized();
+    }
+}
