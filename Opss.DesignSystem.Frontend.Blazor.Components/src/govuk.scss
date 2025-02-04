@@ -20,3 +20,8 @@
     height: 120%;
     top: -35px;
 }
+
+/* important fix for MOJ sortable table */
+[aria-sort] button:before {
+    text-align: right;
+}

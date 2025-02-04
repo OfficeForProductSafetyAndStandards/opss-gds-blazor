@@ -7,7 +7,8 @@
 <h1 class="govuk-heading-xl">Table</h1>
 
 <p class="govuk-body">
-    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/table/" class="govuk-link">Table</a>.
+    A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/table/" class="govuk-link">Table</a>. 
+    Also, see <a href="/Components/Table/Sortable">the MOJ sortable table</a>.
 </p>
 
 <h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
@@ -463,6 +464,57 @@
                 <GdsTableCell>relationships</GdsTableCell>
                 <GdsTableCell>£142.50</GdsTableCell>
                 <GdsTableCell>19 March 2025</GdsTableCell>
+            </GdsTableRow>
+        </RowsTemplate>
+    </GdsTable>
+</Example>
+
+<h3 class="govuk-heading-m" id="numeric-cells">Numbers in a table</h3>
+<Example CodeExampleContent="@(@"<GdsTable>
+    <HeadTemplate>
+        <GdsTableCell>Task</GdsTableCell>
+        <GdsTableCell Format=@TableCellFormat.Numeric>Days due</GdsTableCell>
+        <GdsTableCell Format=@TableCellFormat.Numeric>Cost</GdsTableCell>
+    </HeadTemplate>
+    <RowsTemplate>
+        <GdsTableRow>
+            <GdsTableCell>Eligibility check</GdsTableCell>
+            <GdsTableCell Format=@TableCellFormat.Numeric>23</GdsTableCell>
+            <GdsTableCell Format=@TableCellFormat.Numeric>£45.50</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Travel requirements</GdsTableCell>
+            <GdsTableCell Format=@TableCellFormat.Numeric>624</GdsTableCell>
+            <GdsTableCell Format=@TableCellFormat.Numeric>£2,234.33</GdsTableCell>
+        </GdsTableRow>
+        <GdsTableRow>
+            <GdsTableCell>Family checks</GdsTableCell>
+            <GdsTableCell Format=@TableCellFormat.Numeric>13</GdsTableCell>
+            <GdsTableCell Format=@TableCellFormat.Numeric>£142.50</GdsTableCell>
+        </GdsTableRow>
+    </RowsTemplate>
+</GdsTable>")">
+    <GdsTable>
+        <HeadTemplate>
+            <GdsTableCell>Task</GdsTableCell>
+            <GdsTableCell Format=@TableCellFormat.Numeric>Days due</GdsTableCell>
+            <GdsTableCell Format=@TableCellFormat.Numeric>Cost</GdsTableCell>
+        </HeadTemplate>
+        <RowsTemplate>
+            <GdsTableRow>
+                <GdsTableCell>Eligibility check</GdsTableCell>
+                <GdsTableCell Format=@TableCellFormat.Numeric>23</GdsTableCell>
+                <GdsTableCell Format=@TableCellFormat.Numeric>£45.50</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Travel requirements</GdsTableCell>
+                <GdsTableCell Format=@TableCellFormat.Numeric>624</GdsTableCell>
+                <GdsTableCell Format=@TableCellFormat.Numeric>£2,234.33</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Family checks</GdsTableCell>
+                <GdsTableCell Format=@TableCellFormat.Numeric>13</GdsTableCell>
+                <GdsTableCell Format=@TableCellFormat.Numeric>£142.50</GdsTableCell>
             </GdsTableRow>
         </RowsTemplate>
     </GdsTable>

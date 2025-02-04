@@ -16,6 +16,9 @@ public static class TableClasses
     public const string HeaderCell = "govuk-table__header";
     public const string Cell = "govuk-table__cell";
 
+    public const string NumericHeaderCell = "govuk-table__header--numeric";
+    public const string NumericCell = "govuk-table__cell--numeric";
+
     public const string SmallTextUntilTablet = "govuk-table--small-text-until-tablet";
 }
 
@@ -26,4 +29,9 @@ public static class TableScopes
     public const string RowGroup = "rowgroup";
     public const string ColGroup = "colgroup";
     public const string Auto = "auto";
+}
+
+public static class TableCellFormat
+{
+    public const string Numeric = "numeric";
 }
