@@ -94,4 +94,44 @@
             </div>
         );
     }
+
+    [Fact]
+    public void AndHasErrors_ThenDisplaysErrors()
+    {
+        // Arrange
+        var errors = new List<string> { "Error 1", "Error 2" };
+        var component = Render(@<GdsMultiFileUpload Id="documents" Name="documents" Errors="@errors">
+        <LabelTemplate>
+            <GdsLabel Classes=@LabelSize.Medium>Upload a file</GdsLabel>
+        </LabelTemplate>
+    </GdsMultiFileUpload>);
+
+        component.MarkupMatches(
+    @<div class="moj-multi-file-upload">
+        <div class="moj-multi-file__uploaded-files ">
+            <h2 class="govuk-heading-m">Files added</h2>
+            <div class="govuk-summary-list moj-multi-file-upload__list">
+            </div>
+        </div>
+
+        <div class="moj-multi-file-upload__upload">
+            <div class="govuk-form-group govuk-form-group--error">
+                <label class="govuk-label govuk-label--m" for="documents">
+                    Upload a file
+                </label>
+                @foreach (var error in errors)
+                {
+                    <p class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span>@error</p>
+                }
+                <div class="moj-multi-file-upload__dropzone">
+                    <input class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" type="file" multiple=""/>
+                    <p class="govuk-body">Drag and drop files here or</p>
+                    <label for="documents" class="govuk-button govuk-button--secondary">Choose files</label>
+                    <div aria-live="polite" role="status" class="govuk-visually-hidden"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+        );
+    }
 }
