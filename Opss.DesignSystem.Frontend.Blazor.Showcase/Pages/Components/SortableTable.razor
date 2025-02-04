@@ -12,7 +12,7 @@
 
 <h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
 <Example CodeExampleContent="@(@"<GdsTable 
-    CaptionText=""A sortable table with a data source"" 
+    CaptionText=""A sortable table with data from a data source"" 
     IsSortable=""@true"" 
     OnTableSort=""SortTableAsync""
 >
@@ -43,7 +43,7 @@
         </RowsTemplate>
     </GdsTable>
 ")">
-    <GdsTable CaptionText="A sortable table with a data source" IsSortable OnTableSort="SortTableAsync">
+    <GdsTable CaptionText="A sortable table with data from a data source" IsSortable OnTableSort="SortTableAsync">
         <HeadTemplate>
             <GdsTableCell SortColumnName="Task">
                 Task
@@ -72,8 +72,8 @@
     </GdsTable>
 </Example>
 
-<h2 class="govuk-heading-m" id="with-non-sorted-column">With a non sorted column</h2>
-<Example CodeExampleContent="@(@"<GdsTable CaptionText=""A sortable table with non-sorted column"" 
+<h3 class="govuk-heading-s" id="with-non-sorted-column">With a non-sorted column</h3>
+<Example CodeExampleContent="@(@"<GdsTable CaptionText=""With a non-sorted column"" 
     IsSortable 
     OnTableSort=""SortTableAsync""
 >
@@ -108,7 +108,7 @@
         </RowsTemplate>
     </GdsTable>
 ")">
-    <GdsTable CaptionText="A sortable table with non-sorted column" IsSortable OnTableSort="SortTableAsync">
+    <GdsTable CaptionText=""With a non-sorted column" IsSortable OnTableSort="SortTableAsync">
         <HeadTemplate>
             <GdsTableCell SortColumnName="Task">
                 Task
@@ -140,9 +140,6 @@
         </RowsTemplate>
     </GdsTable>
 </Example>
-
-
-
 
 @code {
     private DummyData[]? data;
