@@ -12,7 +12,7 @@
 
 <h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
 <h3 class="govuk-heading-m" id="header-default">Header</h3>
-<Example CodeExampleContent="@(@"<GdsTable>
+<Example BlazorExampleContent="@(@"<GdsTable>
     <HeadTemplate>
         <GdsTableCell>Task</GdsTableCell>
         <GdsTableCell>Days left</GdsTableCell>
@@ -63,7 +63,7 @@
 </Example>
 
 <h3 class="govuk-heading-m" id="first-cell-as-header">Header, first cell in row as header</h3>
-<Example CodeExampleContent="@(@"<GdsTable FirstCellIsHeader=@true>
+<Example BlazorExampleContent="@(@"<GdsTable FirstCellIsHeader=@true>
     <HeadTemplate>
         <GdsTableCell>Task</GdsTableCell>
         <GdsTableCell>Days left</GdsTableCell>
@@ -114,7 +114,7 @@
 </Example>
 
 <h3 class="govuk-heading-m" id="caption">Table caption</h3>
-<Example CodeExampleContent="@(@"<GdsTable CaptionText=""Outstanding tasks to be done"">
+<Example BlazorExampleContent="@(@"<GdsTable CaptionText=""Outstanding tasks to be done"">
     <HeadTemplate>
         <GdsTableCell>Task</GdsTableCell>
         <GdsTableCell>Days left</GdsTableCell>
@@ -156,7 +156,7 @@
 
 
 <h3 class="govuk-heading-m" id="caption">Table with extra large caption size</h3>
-<Example CodeExampleContent="@(@"<GdsTable CaptionText=""Outstanding tasks to be done"" CaptionTextClasses=@TableClasses.CaptionTextExtraLarge>
+<Example BlazorExampleContent="@(@"<GdsTable CaptionText=""Outstanding tasks to be done"" CaptionTextClasses=@TableClasses.CaptionTextExtraLarge>
     <HeadTemplate>
         <GdsTableCell>Task</GdsTableCell>
         <GdsTableCell>Days left</GdsTableCell>
@@ -199,7 +199,7 @@
 
 
 <h3 class="govuk-heading-m" id="no-header-first-cell-as-header">No header, first cell in row as header</h3>
-<Example CodeExampleContent="@(@"<GdsTable FirstCellIsHeader=@true>
+<Example BlazorExampleContent="@(@"<GdsTable FirstCellIsHeader=@true>
     <RowsTemplate>
         <GdsTableRow>
             <GdsTableCell>Eligibility check</GdsTableCell>
@@ -241,7 +241,7 @@
 
 
 <h3 class="govuk-heading-m" id="no-header-">No headers at all</h3>
-<Example CodeExampleContent="@(@"<GdsTable>
+<Example BlazorExampleContent="@(@"<GdsTable>
     <RowsTemplate>
         <GdsTableRow>
             <GdsTableCell>Eligibility check</GdsTableCell>
@@ -282,7 +282,7 @@
 </Example>
 
 <h3 class="govuk-heading-m" id="headers-html">HTML content</h3>
-<Example CodeExampleContent="@(@"<GdsTable FirstCellIsHeader=@true>
+<Example BlazorExampleContent="@(@"<GdsTable FirstCellIsHeader=@true>
     <HeadTemplate>
         <GdsTableCell>Task</GdsTableCell>
         <GdsTableCell>Days left</GdsTableCell>
@@ -342,7 +342,7 @@
 
 
 <h3 class="govuk-heading-m" id="rowspan">Row spanned cells</h3>
-<Example CodeExampleContent="@(@"<GdsTable>
+<Example BlazorExampleContent="@(@"<GdsTable>
     <HeadTemplate>
         <GdsTableCell>Task</GdsTableCell>
         <GdsTableCell>Days left</GdsTableCell>
@@ -412,7 +412,7 @@
 
 
 <h3 class="govuk-heading-m" id="colspan">Column spanned cells</h3>
-<Example CodeExampleContent="@(@"<GdsTable>
+<Example BlazorExampleContent="@(@"<GdsTable>
     <HeadTemplate>
         <GdsTableCell>Task</GdsTableCell>
         <GdsTableCell Classes=""govuk-body-xs"">details</GdsTableCell>
@@ -492,7 +492,7 @@
     }
 </style>
 
-<Example CodeExampleContent="@(@"<style type=""text/css"">
+<Example BlazorExampleContent="@(@"<style type=""text/css"">
     td.linkcell {
         text-align: right;
     }

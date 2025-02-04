@@ -10,7 +10,7 @@
     A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/task-list/" class="govuk-link">Task list</a>.
 </p>
 
-<Example CodeExampleContent="@(@"<GdsTaskList Id=""tasklist-example"">
+<Example BlazorExampleContent="@(@"<GdsTaskList Id=""tasklist-example"">
     <GdsTaskListItem Href=""/Components/TaskList#link-to-task"">
         <TaskTitleTemplate>Confirm eligibility</TaskTitleTemplate>
         <StatusTemplate>Completed</StatusTemplate>
@@ -72,7 +72,7 @@
 <h3 class="govuk-heading-m" id="task-link">A link to the task page</h3>
 <p class="govuk-body">All tasks have a link to a page where users can start the task.</p>
 
-<Example CodeExampleContent="@(@"<GdsTaskList Id=""tasklist-common"">
+<Example BlazorExampleContent="@(@"<GdsTaskList Id=""tasklist-common"">
     <GdsTaskListItem Href=""/Components/TaskList#link-to-task"">
         <TaskTitleTemplate>Confirm eligibility</TaskTitleTemplate>
         <StatusTemplate>Completed</StatusTemplate>
@@ -132,7 +132,7 @@
 
 <h3 class="govuk-heading-m" id="use-hint-text-if-needed">Hint text</h3>
 <p class="govuk-body">Use hint text with tasks only if more information is needed about what the task will include.</p>
-<Example CodeExampleContent="@(@"<GdsTaskList Id=""tasklist-common"">
+<Example BlazorExampleContent="@(@"<GdsTaskList Id=""tasklist-common"">
     <GdsTaskListItem Href=""/Components/TaskList#use-hint-text-if-needed"">
         <TaskTitleTemplate>Confirm eligibility</TaskTitleTemplate>
         <StatusTemplate>Completed</StatusTemplate>
@@ -175,7 +175,7 @@
 <p class="govuk-body">
     Use the "Cannot start yet" status, and set the "CannotStartYet" attribute on the task item. Also include hint text to explain the reason why the task cannot be started. Note the item is not linked.
 </p>
-<Example CodeExampleContent="@(@"<GdsTaskList Id=""tasklist-cannot-start"">
+<Example BlazorExampleContent="@(@"<GdsTaskList Id=""tasklist-cannot-start"">
     <GdsTaskListItem Href=""/Components/TaskList#tasks-cannot-start"">
         <TaskTitleTemplate>Confirm eligibility</TaskTitleTemplate>
         <StatusTemplate>Completed</StatusTemplate>
@@ -215,7 +215,7 @@
 <p class="govuk-body">
     Ideally, you should avoid tasks with an error status by using the appropriate error display component where possible.
 </p>
-<Example CodeExampleContent="@(@"<GdsTaskList Id=""tasklist-errors"">
+<Example BlazorExampleContent="@(@"<GdsTaskList Id=""tasklist-errors"">
     <GdsTaskListItem Href=""/Components/TaskList#tasks-containing-error"">
         <TaskTitleTemplate>Confirm eligibility</TaskTitleTemplate>
         <StatusTemplate>Completed</StatusTemplate>
@@ -258,7 +258,7 @@
 <p class="govuk-body">
     If additional status tags are required, you can use other coloured tags. The list below shows the colours that have not been used so far. Also note the use of arbitrary text for the title and statuses - still within the guidelines mentioned so far.
 </p>
-<Example CodeExampleContent="@(@"<GdsTaskList Id=""tasklist-additional-statuses"">
+<Example BlazorExampleContent="@(@"<GdsTaskList Id=""tasklist-additional-statuses"">
     <GdsTaskListItem Href=""/Components/TaskList#tasks-additional-statuses"">
         <TaskTitleTemplate>Task grey</TaskTitleTemplate>
         <StatusTemplate>

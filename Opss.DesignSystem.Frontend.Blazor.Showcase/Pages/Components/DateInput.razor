@@ -10,7 +10,7 @@
     A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/date-input/" class="govuk-link">Date input</a>.
 </p>
 
-<Example CodeExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
+<Example BlazorExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             When was your passport issued?
@@ -44,7 +44,7 @@
 
 <h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
 
-<Example CodeExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
+<Example BlazorExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             When was your passport issued?
@@ -54,11 +54,16 @@
         <GdsHint>For example, 27 3 2007</GdsHint>
     </HintTemplate>
     <ChildContent>
-        <GdsDateInputField DatePart=""@DateInputFieldType.Day"" />
-        <GdsDateInputField DatePart=""@DateInputFieldType.Month"" />
-        <GdsDateInputField DatePart=""@DateInputFieldType.Year"" />
+        <GdsDateInputField DatePart=""@DateInputFieldType.Day"" @bind-Value=@Day />
+        <GdsDateInputField DatePart=""@DateInputFieldType.Month"" @bind-Value=@Month />
+        <GdsDateInputField DatePart=""@DateInputFieldType.Year"" @bind-Value=@Year />
     </ChildContent>
-</GdsDateInput>")">
+</GdsDateInput>")"
+         CodeExampleContent="@(@"@code{
+    string? Day { get; set; }
+    string? Month { get; set; }
+    string? Year { get; set; }
+}")">
     <GdsDateInput Id="passport-issued" NamePrefix="passport-issued">
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
@@ -69,16 +74,21 @@
             <GdsHint>For example, 27 3 2007</GdsHint>
         </HintTemplate>
         <ChildContent>
-            <GdsDateInputField DatePart="@DateInputFieldType.Day" />
-            <GdsDateInputField DatePart="@DateInputFieldType.Month" />
-            <GdsDateInputField DatePart="@DateInputFieldType.Year" />
+            <GdsDateInputField DatePart="@DateInputFieldType.Day" @bind-Value=@Day />
+            <GdsDateInputField DatePart="@DateInputFieldType.Month" @bind-Value=@Month />
+            <GdsDateInputField DatePart="@DateInputFieldType.Year" @bind-Value=@Year />
         </ChildContent>
     </GdsDateInput>
 </Example>
+@code{
+    string? Day { get; set; }
+    string? Month { get; set; }
+    string? Year { get; set; }
+}
 
 <h3 class="govuk-heading-m" id="if-youre-asking-one-question-on-the-page">If you’re asking one question on the page</h3>
 
-<Example CodeExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
+<Example BlazorExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
     <LegendTemplate>
         <GdsLegend>
             When was your passport issued?
@@ -112,7 +122,7 @@
 
 <h3 class="govuk-heading-m" id="use-the-autocomplete-for-a-date-of-birth">Use the autocomplete attribute for a date of birth</h3>
 
-<Example CodeExampleContent="@(@"<GdsDateInput Id=""dob"" Name=""dob"">
+<Example BlazorExampleContent="@(@"<GdsDateInput Id=""dob"" Name=""dob"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             What is your date of birth?
@@ -146,7 +156,7 @@
 
 <h3 class="govuk-heading-m" id="error-messages">Error messages</h3>
 
-<Example CodeExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
+<Example BlazorExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             When was your passport issued?
@@ -188,7 +198,7 @@
     </GdsDateInput>
 </Example>
 
-<Example CodeExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
+<Example BlazorExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             When was your passport issued?
