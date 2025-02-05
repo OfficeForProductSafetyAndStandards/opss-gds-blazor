@@ -12,7 +12,7 @@
 
 <h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
 <h3 class="govuk-heading-m" id="max-length">Maximum number of characters</h3>
-<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""max-length"" Name=""maxNumCharacters"" MaxLength=""200"">
+<Example BlazorExampleContent="@(@"<GdsCharacterCount Id=""max-length"" Name=""maxNumCharacters"" MaxLength=""200"" @bind-Value=@InputValue>
     <LabelTemplate>
         <GdsLabel>
             Can you provide more detail?
@@ -23,8 +23,11 @@
             Do not include personal or financial information like your National Insurance number or credit card details
         </GdsHint>
     </HintTemplate>
-</GdsCharacterCount>")">
-    <GdsCharacterCount Id="max-length" Name="maxNumCharacters" MaxLength="200">
+</GdsCharacterCount>")"
+         CodeExampleContent="@(@"@code{
+    private string? InputValue { get; set; }
+}")">
+    <GdsCharacterCount Id="max-length" Name="maxNumCharacters" MaxLength="200" @bind-Value=@InputValue>
         <LabelTemplate>
             <GdsLabel>
                 Can you provide more detail?
@@ -37,9 +40,12 @@
         </HintTemplate>
     </GdsCharacterCount>
 </Example>
+@code{
+    private string? InputValue { get; set; }    
+}
 
 <h3 class="govuk-heading-m" id="label-as-page-heading">Label as page heading</h3>
-<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""label-as-page-heading"" Name=""labelAsPageHeading"" MaxLength=""200"">
+<Example BlazorExampleContent="@(@"<GdsCharacterCount Id=""label-as-page-heading"" Name=""labelAsPageHeading"" MaxLength=""200"">
     <LabelTemplate>
         <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
             Can you provide more detail?
@@ -67,7 +73,7 @@
 
 <h3 class="govuk-heading-m" id="avoid-narrow-limits">Avoid narrow limits using threshold</h3>
 
-<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""threshold""
+<Example BlazorExampleContent="@(@"<GdsCharacterCount Id=""threshold""
                     Name=""threshold""
                     MaxLength=""15""
                     Threshold=""8""
@@ -95,7 +101,7 @@
 
 <h3 class="govuk-heading-m" id="with-hint">Using the hint template</h3>
 
-<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""with-hint"" Name=""withHint"" MaxLength=""200"">
+<Example BlazorExampleContent="@(@"<GdsCharacterCount Id=""with-hint"" Name=""withHint"" MaxLength=""200"">
 <LabelTemplate>
     <GdsLabel>
         Describe the nature of your event
@@ -124,7 +130,7 @@
 <h3 class="govuk-heading-m" id="content-before-and-after-input">Content before and after the text area input</h3>
 <h4 class="govuk-heading-s" id="before-input">Before the input</h4>
 
-<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""before-input"" Name=""beforeInput"" MaxLength=""200"">
+<Example BlazorExampleContent="@(@"<GdsCharacterCount Id=""before-input"" Name=""beforeInput"" MaxLength=""200"">
     <LabelTemplate>
         <GdsLabel>
             Describe the nature of your event
@@ -152,7 +158,7 @@
 
 <h4 class="govuk-heading-s" id="after-input">After the input</h4>
 
-<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""after-input"" Name=""afterInput"" MaxLength=""200"">
+<Example BlazorExampleContent="@(@"<GdsCharacterCount Id=""after-input"" Name=""afterInput"" MaxLength=""200"">
     <LabelTemplate>
         <GdsLabel>
             Describe the nature of your event
@@ -181,7 +187,7 @@
 
 <h4 class="govuk-heading-s" id="before-after-input">Before and after the input</h4>
 
-<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""before-after-input"" Name=""beforeAfterInput"" MaxLength=""200"">
+<Example BlazorExampleContent="@(@"<GdsCharacterCount Id=""before-after-input"" Name=""beforeAfterInput"" MaxLength=""200"">
     <LabelTemplate>
         <GdsLabel>
             Describe the nature of your event
@@ -219,7 +225,7 @@
 
 <h3 class="govuk-heading-m" id="error-messages">Error messages</h3>
 
-<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""exceeding-characters""
+<Example BlazorExampleContent="@(@"<GdsCharacterCount Id=""exceeding-characters""
                    Name=""exceeding""
                    MaxLength=""15""
                    Value=""A content designer works on the end-to-end journey of a service to help users complete their goal."">
@@ -257,7 +263,7 @@
     <em>Ensure the styles used follow the GDS guidelines for the task you are trying to achieve.</em>
 </p>
 
-<Example CodeExampleContent="@(@"<style type=""text/css"">
+<Example BlazorExampleContent="@(@"<style type=""text/css"">
     .count-message {
         color: #d53880;
         font-weight: bold;
@@ -320,7 +326,7 @@
 
 <h3 class="govuk-heading-m" id="character-count-limit-text">Text for character count limits</h3>
 
-<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""character-count-limit-text""
+<Example BlazorExampleContent="@(@"<GdsCharacterCount Id=""character-count-limit-text""
                    Name=""characterCountLimitText""
                    MaxLength=""60""
                    CharactersUnderLimitText=""You are under the %{count} character maximum.""
@@ -350,7 +356,7 @@
 
 <h3 class="govuk-heading-m" id="word-count-limit-text">Text for word count limits</h3>
 
-<Example CodeExampleContent="@(@"<GdsCharacterCount Id=""word-count-limit-text""
+<Example BlazorExampleContent="@(@"<GdsCharacterCount Id=""word-count-limit-text""
                    Name=""wordCountLimitText""
                    MaxWords=""10""
                    WordsUnderLimitText=""You are under the %{count} words limit.""

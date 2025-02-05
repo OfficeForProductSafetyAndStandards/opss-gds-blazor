@@ -16,14 +16,22 @@
 
     <div class="app-example__code" data-module="app-copy" data-app-copy-init="">
         <Blazor.HighlightJS.Code Language="razor">
-            @CodeExampleContent
+            @BlazorExampleContent
         </Blazor.HighlightJS.Code>
+        @if(CodeExampleContent != null) {
+            <Blazor.HighlightJS.Code Language="c#">
+                @CodeExampleContent
+            </Blazor.HighlightJS.Code>
+        }
     </div>
 </div>
 
 @code {    
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? BlazorExampleContent { get; set; }
 
     [Parameter]
     public string? CodeExampleContent { get; set; }

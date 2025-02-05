@@ -10,8 +10,9 @@
     A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/text-input/" class="govuk-link">Text input</a>.
 </p>
 
-<Example CodeExampleContent="@(@"<GdsTextInput Id=""event-name""
-                Name=""event-name"">
+<Example BlazorExampleContent="@(@"<GdsTextInput Id=""event-name""
+                Name=""event-name""
+                @bind-Value=@Value>
     <LabelTemplate>
         <GdsLabel Classes=""@LabelSize.Large"" 
                     IsPageHeading=""true"">
@@ -21,12 +22,16 @@
     <HintTemplate>
         <GdsHint>The event's name</GdsHint>
     </HintTemplate>
-</GdsTextInput>")">
+</GdsTextInput>")"
+         CodeExampleContent="@(@"@code{
+    string? Value { get; set; }
+}")">
     <GdsTextInput Id="event-name"
-                  Name="event-name">
+    Name="event-name"
+    @bind-Value=@Value>
         <LabelTemplate>
             <GdsLabel Classes="@LabelSize.Large" 
-                      IsPageHeading="true">
+            IsPageHeading="true">
                 What is the name of the event?
             </GdsLabel>
         </LabelTemplate>
@@ -35,12 +40,15 @@
         </HintTemplate>
     </GdsTextInput>
 </Example>
+@code{
+    string? Value { get; set; }
+}
 
 <h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
 
 <h3 class="govuk-heading-m" id="if-youre-asking-one-question-on-the-page">If you’re asking one question on the page</h3>
 
-<Example CodeExampleContent="@(@"<GdsTextInput Id=""event-name""
+<Example BlazorExampleContent="@(@"<GdsTextInput Id=""event-name""
                 Name=""event-name"">
     <LabelTemplate>
         <GdsLabel Classes=""@LabelSize.Large"" 
@@ -62,7 +70,7 @@
 
 <h3 class="govuk-heading-m" id="if-youre-asking-more-than-one-question-on-the-page">If you’re asking more than one question on the page</h3>
 
-<Example CodeExampleContent="@(@"<GdsTextInput Id=""event-name""
+<Example BlazorExampleContent="@(@"<GdsTextInput Id=""event-name""
                 Name=""event-name"">
     <LabelTemplate>
         <GdsLabel>
@@ -83,7 +91,7 @@
 <h3 class="govuk-heading-m" id="use-appropriately-sized-text-inputs">Use appropriately-sized text inputs</h3>
 
 <h4 class="govuk-heading-s" id="fixed-width-inputs">Fixed width inputs</h4>
-<Example CodeExampleContent="@(@"<GdsTextInput Id=""20-character-width""
+<Example BlazorExampleContent="@(@"<GdsTextInput Id=""20-character-width""
                 Name=""event-name""
                 Classes=""@TextInputWidth.Width20"">
     <LabelTemplate>
@@ -170,7 +178,7 @@
 </Example>
 
 <h4 class="govuk-heading-s" id="fluid-width-inputs">Fluid width inputs</h4>
-<Example CodeExampleContent="@(@"<GdsTextInput Id=""full""
+<Example BlazorExampleContent="@(@"<GdsTextInput Id=""full""
                 Name=""event-name""
                 Classes=""@LayoutWidth.Full"">
     <LabelTemplate>
@@ -262,7 +270,7 @@
 
 <h3 class="govuk-heading-m" id="hint-text">Hint text</h3>
 
-<Example CodeExampleContent="@(@"<GdsTextInput Id=""event-name""
+<Example BlazorExampleContent="@(@"<GdsTextInput Id=""event-name""
                 Name=""event-name"">
     <LabelTemplate>
         <GdsLabel Classes=""@LabelSize.Large""
@@ -292,7 +300,7 @@
 
 <h4 class="govuk-heading-s" id="asking-for-whole-numbers">Asking for whole numbers</h4>
 
-<Example CodeExampleContent="@(@"<GdsTextInput Id=""account-number""
+<Example BlazorExampleContent="@(@"<GdsTextInput Id=""account-number""
                 Name=""account-number""
                 Classes=""@TextInputWidth.Width10""
                 Inputmode=""numeric"">
@@ -324,7 +332,7 @@
 
 <h4 class="govuk-heading-s" id="asking-for-decimal-numbers">Asking for decimal numbers</h4>
 
-<Example CodeExampleContent="@(@"<GdsTextInput Id=""weight""
+<Example BlazorExampleContent="@(@"<GdsTextInput Id=""weight""
                 Name=""weight""
                 Classes=""@TextInputWidth.Width5""
                 spellcheck=""@false"">
@@ -354,7 +362,7 @@
 
 <h3 class="govuk-heading-m" id="codes-and-sequences">Codes and sequences</h3>
 
-<Example CodeExampleContent="@(@"<GdsTextInput Id=""authentication-code""
+<Example BlazorExampleContent="@(@"<GdsTextInput Id=""authentication-code""
                 Name=""authentication-code""
                 Classes=@(@TextInputWidth.Width5 + "" "" + @TextInputLettering.ExtraLetterWidth)
                 Value=""NC1701""
@@ -390,7 +398,7 @@
 
 <h3 class="govuk-heading-m" id="prefixes-and-suffixes">Prefixes and suffixes</h3>
 
-<Example CodeExampleContent="@(@"<GdsTextInput Id=""cost""
+<Example BlazorExampleContent="@(@"<GdsTextInput Id=""cost""
                 Name=""cost""
                 Classes=""@TextInputWidth.Width5""
                 spellcheck=""@false"">
@@ -428,7 +436,7 @@
 
 <h4 class="govuk-heading-s" id="text-inputs-with-a-prefix">Text inputs with a prefix</h4>
 
-<Example CodeExampleContent="@(@"<GdsTextInput Id=""cost""
+<Example BlazorExampleContent="@(@"<GdsTextInput Id=""cost""
                 Name=""cost""
                 Classes=""@TextInputWidth.Width5"">
     <LabelTemplate>
@@ -458,7 +466,7 @@
 
 <h4 class="govuk-heading-s" id="text-inputs-with-a-suffix">Text inputs with a suffix</h4>
 
-<Example CodeExampleContent="@(@"<GdsTextInput Id=""weight""
+<Example BlazorExampleContent="@(@"<GdsTextInput Id=""weight""
                 Name=""weight""
                 Classes=""@TextInputWidth.Width5"">
     <LabelTemplate>
@@ -488,7 +496,7 @@
 
 <h3 class="govuk-heading-m" id="use-the-autocomplete-attribute">Use the autocomplete attribute</h3>
 
-<Example CodeExampleContent="@(@"<GdsTextInput Id=""postcode""
+<Example BlazorExampleContent="@(@"<GdsTextInput Id=""postcode""
                 Name=""postcode""
                 Classes=""@TextInputWidth.Width5""
                 Autocomplete=""postal-code"">
@@ -514,7 +522,7 @@
 
 <h3 class="govuk-heading-m" id="how-and-when-to-spellcheck-a-users-input">How and when to spellcheck a user’s input</h3>
 
-<Example CodeExampleContent="@(@"<GdsTextInput Id=""reference-number""
+<Example BlazorExampleContent="@(@"<GdsTextInput Id=""reference-number""
                 Name=""reference-number""
                 Classes=""@TextInputWidth.Width10""
                 Spellcheck=""false"">
@@ -540,7 +548,7 @@
 
 <h3 class="govuk-heading-m" id="error-messages">Error messages</h3>
 
-<Example CodeExampleContent="@(@"<GdsTextInput Id=""event-name-error""
+<Example BlazorExampleContent="@(@"<GdsTextInput Id=""event-name-error""
                 Name=""event-name""
                 Classes=""@TextInputWidth.Width20"">
     <LabelTemplate>
@@ -580,7 +588,7 @@
 
 <h4 class="govuk-heading-s" id="if-the-input-has-a-prefix-or-a-suffix">If the input has a prefix or a suffix</h4>
 
-<Example CodeExampleContent="@(@"<GdsTextInput Id=""cost""
+<Example BlazorExampleContent="@(@"<GdsTextInput Id=""cost""
                 Name=""cost""
                 Classes=""@TextInputWidth.Width5"">
     <LabelTemplate>
