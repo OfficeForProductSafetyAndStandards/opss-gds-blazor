@@ -655,6 +655,67 @@
     }
 
     [Fact]
+    public void OnTableSortAscendingDescendingTriggered()
+    {
+        // Arrange
+        TableSortArgs sortArgs = null!;
+
+        var component = Render(
+    @<GdsTable IsSortable OnTableSort=@((args) => sortArgs = args)>
+        <HeadTemplate>
+            <GdsTableCell SortColumnName="First">Head column</GdsTableCell>
+            <GdsTableCell SortColumnName="Number">Number column</GdsTableCell>
+        </HeadTemplate>
+    </GdsTable>
+        );
+
+        var sortButtons = component.FindAll("button");
+        var firstButton = sortButtons.First();
+        var secondButton = sortButtons.ElementAt(1);
+
+        // Act: click first column: asc
+        firstButton.Click();
+
+        // Assert
+        Assert.NotNull(sortArgs);
+        Assert.Equal("First", sortArgs.Name);
+        Assert.Equal("ascending", sortArgs.Order);
+
+        // Act: click first column again: desc
+        firstButton.Click();
+
+        // Assert
+        Assert.NotNull(sortArgs);
+        Assert.Equal("First", sortArgs.Name);
+        Assert.Equal("descending", sortArgs.Order);
+
+        component.MarkupMatches(
+    @<table class=@TableClasses.Table>
+        <thead class=@TableClasses.Head>
+            <tr class=@TableClasses.Row>
+                <th scope="col" class=@TableClasses.HeaderCell aria-sort="descending">
+                    <button class="govuk-button" type="button" data-module="govuk-button">Head column</button>
+                </th>
+                <th scope="col" class=@TableClasses.HeaderCell aria-sort="none">
+                    <button class="govuk-button" type="button" data-module="govuk-button">Number column</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody class=@TableClasses.Body></tbody>
+    </table>
+        );
+
+        // Act: click second column: asc
+        secondButton.Click();
+
+        // Assert
+        Assert.NotNull(sortArgs);
+        Assert.Equal("Number", sortArgs.Name);
+        Assert.Equal("ascending", sortArgs.Order);
+    }
+
+
+    [Fact]
     public void OutputsEmptyTable()
     {
         // Arrange, Act
@@ -689,6 +750,4 @@
     </table>
         );
     }
-
-
 }
