@@ -10,7 +10,7 @@
     A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/pagination/" class="govuk-link">Pagination</a>.
 </p>
 
-<Example CodeExampleContent="@(@"<GdsPagination @bind-ActivePageNumber=@activePageNumber>
+<Example BlazorExampleContent="@(@"<GdsPagination @bind-ActivePageNumber=@activePageNumber>
     <PreviousTemplate>
         <GdsPaginationPreviousLink />
     </PreviousTemplate>
@@ -22,12 +22,14 @@
     <NextTemplate>
         <GdsPaginationNextLink />
     </NextTemplate>
-</GdsPagination>
-
-@code{
+</GdsPagination>")"
+        CodeExampleContent="@(@"@code{
     string activePageNumber = ""2"";
+    public void PageChanged(string pageNumber){
+        /* Code here */
+    }
 }")">
-    <GdsPagination @bind-ActivePageNumber=@active>
+    <GdsPagination @bind-ActivePageNumber=@activePageNumber OnPageChanged=@PageChanged>
         <PreviousTemplate>
             <GdsPaginationPreviousLink />
         </PreviousTemplate>
@@ -40,16 +42,18 @@
             <GdsPaginationNextLink />
         </NextTemplate>
     </GdsPagination>
-    @active
 </Example>
 
 @code{
-    string active = "2";
+    string activePageNumber = "2";
+    public void PageChanged(string pageNumber){
+        /* Code here */
+    }
 }
 
 <h2 class="govuk-heading-l" id="for-navigating-between-content-pages">For navigating between content pages</h2>
 
-<Example CodeExampleContent="@(@"<GdsPagination UseBlockStyle=@true>
+<Example BlazorExampleContent="@(@"<GdsPagination UseBlockStyle=@true>
     <PreviousTemplate>
         <GdsPaginationPreviousLink LabelText=""Applying for a provisional lorry or bus licence"" />
     </PreviousTemplate>
@@ -69,7 +73,7 @@
 
 <h2 class="govuk-heading-l" id="for-navigating-between-pages-of-items">For navigating between pages of items</h2>
 
-<Example CodeExampleContent="@(@"<GdsPagination ActivePageNumber=""7"">
+<Example BlazorExampleContent="@(@"<GdsPagination ActivePageNumber=""7"">
     <PreviousTemplate>
         <GdsPaginationPreviousLink />
     </PreviousTemplate>
@@ -141,7 +145,7 @@
 
 <h3 class="govuk-heading-m" id="first-and-last-pages">First and last pages</h3>
 
-<Example CodeExampleContent="@(@"<GdsPagination>
+<Example BlazorExampleContent="@(@"<GdsPagination>
     <PreviousTemplate>
         <GdsPaginationPreviousLink />
     </PreviousTemplate>
@@ -169,7 +173,7 @@
     </GdsPagination>
 </Example>
 
-<Example CodeExampleContent="@(@"<GdsPagination ActivePageNumber=""3"">
+<Example BlazorExampleContent="@(@"<GdsPagination ActivePageNumber=""3"">
     <PreviousTemplate>
         <GdsPaginationPreviousLink />
     </PreviousTemplate>

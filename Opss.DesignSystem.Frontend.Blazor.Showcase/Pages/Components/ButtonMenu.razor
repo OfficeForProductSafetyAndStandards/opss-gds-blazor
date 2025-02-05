@@ -10,7 +10,7 @@
     A blazor implementation of the MoJ GDS <a href="https://design-patterns.service.justice.gov.uk/components/button-menu/" class="govuk-link">Button menu</a>.
 </p>
 
-<Example CodeExampleContent="@(@"<GdsButtonMenu MenuTitle=""Menu title"">
+<Example BlazorExampleContent="@(@"<GdsButtonMenu MenuTitle=""Menu title"">
     <GdsButton Type=""submit"" 
                Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
         Menu item 1
@@ -35,7 +35,7 @@
 
 <h3 class="govuk-heading-m" id="left-aligned-menu-items">Left-aligned menu items</h3>
 
-<Example CodeExampleContent="@(@"<GdsButtonMenu MenuTitle=""Review"" Classes=@ButtonStyle.Secondary>
+<Example BlazorExampleContent="@(@"<GdsButtonMenu MenuTitle=""Review"" Classes=@ButtonStyle.Secondary>
     <GdsButton Href=""#""
                Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
         Menu item 1
@@ -57,7 +57,7 @@
 </Example>
 
 <h3 class="govuk-heading-m" id="right-aligned-menu-items">Right-aligned menu items</h3>
-<Example CodeExampleContent="@(@"<GdsButtonMenu MenuTitle=""Review"" Classes=@ButtonStyle.Secondary RightAlignMenu=@true>
+<Example BlazorExampleContent="@(@"<GdsButtonMenu MenuTitle=""Review"" Classes=@ButtonStyle.Secondary RightAlignMenu=@true>
     <GdsButton Href=""#""
                Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
         Menu item 1
@@ -82,7 +82,7 @@
 
 <h3 class="govuk-heading-m" id="grouping buttons">Grouping buttons</h3>
 
-<Example CodeExampleContent="@(@"<div class=""moj-button-group moj-button-group--inline"">
+<Example BlazorExampleContent="@(@"<div class=""moj-button-group moj-button-group--inline"">
     <GdsButton Type=""submit"">Accept booking</GdsButton>
     <GdsButtonMenu MenuTitle=""Review booking"" Classes=@ButtonStyle.Secondary>
         <GdsButton Href=""#"" 
