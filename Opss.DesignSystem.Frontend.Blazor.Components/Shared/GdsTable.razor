@@ -4,8 +4,7 @@
     The table component makes information easier to compare and scan.
 </summary>*@
 
-<table 
-class="@tableClasses" 
+<table class="@tableClasses" 
 aria-label=@Label
 @attributes=@Attributes
 >
@@ -50,10 +49,17 @@ aria-label=@Label
     public string? CaptionTextClasses { get; set; }
 
     /// <summary>
-    /// Whether the first cell in each row of the table body will be a header.
+    /// If true, the first cell in each row of the table body will be a header.
     /// </summary>
     [Parameter]
     public bool FirstCellIsHeader { get; set; }
+
+    /// <summary>
+    /// If true, the sort functionality is enabled. 
+    /// The <see cref="GdsTable.OnTableSort" /> event handler, and the <see cref="GdsTableCell.SortColumnName" /> on the table cells in the table header must be set.
+    /// </summary>
+    [Parameter]
+    public bool IsSortable { get; set; }
 
     /// <summary>
     /// Table cells for the head row
@@ -62,13 +68,43 @@ aria-label=@Label
     public RenderFragment? HeadTemplate { get; set; }
 
     /// <summary>
-    /// Table Rows for the table body
+    /// Table rows for the table body
     /// </summary>
     [Parameter]
     public RenderFragment? RowsTemplate { get; set; }
     #endregion
 
-    #region Private Parameters 
+    #region Event Handlers
+    [Parameter]
+    public EventCallback<TableSortArgs> OnTableSort { get; set; }
+
+    internal void SetSortOrder(TableSortArgs args)
+    {
+        if (string.IsNullOrEmpty(args.Name)) return;
+        sortOrders[args.Name] = args.Order;    
+    }
+
+    internal string? GetSortOrder(string columnName)
+    { 
+        if (string.IsNullOrEmpty(columnName)) return null;
+        return sortOrders[columnName];
+    }
+
+    internal void ClearAllSortOrders()
+    {
+        foreach (string key in sortOrders.Keys)
+        { 
+            sortOrders[key] = TableSortOrder.None;        
+        }
+    }
+    #endregion
+
+    #region Private Properties
+    /// <summary>
+    /// Current sorting orders for all sort columns in the table.
+    /// </summary>
+    private Dictionary<string, string> sortOrders = new();
+
     private string captionClasses
     {
         get
