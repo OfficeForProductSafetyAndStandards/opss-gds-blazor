@@ -11,7 +11,12 @@
     A blazor implementation of the MoJ GDS <a href="https://design-patterns.service.justice.gov.uk/components/multi-file-upload/" class="govuk-link">Multi file upload</a>.
 </p>
 
-<Example BlazorExampleContent="@(@"")">
+<Example BlazorExampleContent="@(
+    @"<GdsMultiFileUpload Id=""documents"" Name=""documents"" FileSelectedAsync=@LoadFilesAsync>
+        <LabelTemplate>
+            <GdsLabel Classes=@LabelSize.Medium>Upload a file</GdsLabel>
+        </LabelTemplate>
+    </GdsMultiFileUpload>")">
     <GdsMultiFileUpload Id="documents" Name="documents" FileSelectedAsync=@LoadFilesAsync>
         <LabelTemplate>
             <GdsLabel Classes=@LabelSize.Medium>Upload a file</GdsLabel>
@@ -21,8 +26,18 @@
 
 <p class="govuk-body">An example with errors to be displayed</p>
 
-<Example CodeExampleContent="@(@"")">
-    <GdsMultiFileUpload Id="documents" Name="documents" FileSelectedAsync=@LoadFilesAsync Errors="errors">
+<Example CodeExampleContent="@(
+    @"<GdsMultiFileUpload Id=""documents"" Name=""documents"" FileSelectedAsync=@LoadFilesAsync>
+        <LabelTemplate>
+            <GdsLabel Classes=@LabelSize.Medium>Upload a file</GdsLabel>
+        </LabelTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>
+                @((MarkupString)string.Join(""<br>"", errors.Select(e => HttpUtility.HtmlEncode(e))))
+            </GdsErrorMessage>
+        </ErrorMessageTemplate>
+    </GdsMultiFileUpload>")">
+    <GdsMultiFileUpload Id="documents" Name="documents" FileSelectedAsync=@LoadFilesAsync>
         <LabelTemplate>
             <GdsLabel Classes=@LabelSize.Medium>Upload a file</GdsLabel>
         </LabelTemplate>
