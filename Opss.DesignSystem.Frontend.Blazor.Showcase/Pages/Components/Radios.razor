@@ -10,7 +10,7 @@
     A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/radios/" class="govuk-link">Radios</a>.
 </p>
 
-<Example CodeExampleContent="@(@"<GdsRadios Name=""whereDoYouLive"">
+<Example BlazorExampleContent="@(@"<GdsRadios Name=""whereDoYouLive"" @bind-Value=@Value>
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             Where do you live?
@@ -22,8 +22,11 @@
         <GdsRadio Value=""wales"">Wales</GdsRadio>
         <GdsRadio Value=""northern-ireland"">Northern Ireland</GdsRadio>
     </ChildContent>
-</GdsRadios>")">
-    <GdsRadios Name="whereDoYouLive">
+</GdsRadios>")"
+        CodeExampleContent="@(@"@code{
+    string Value { get; set; } = ""england"";
+}")">
+    <GdsRadios Name="whereDoYouLive" @bind-Value=@Value>
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
                 Where do you live?
@@ -37,12 +40,15 @@
         </ChildContent>
     </GdsRadios>
 </Example>
+@code{
+    string Value { get; set; } = "england";
+}
 
 <h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
 
 <h3 class="govuk-heading-m" id="if-youre-asking-one-question-on-the-page">If you’re asking one question on the page</h3>
 
-<Example CodeExampleContent="@(@"<GdsRadios Name=""whereDoYouLive"">
+<Example BlazorExampleContent="@(@"<GdsRadios Name=""whereDoYouLive"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             Where do you live?
@@ -72,7 +78,7 @@
 
 <h3 class="govuk-heading-m" id="if-youre-asking-more-than-one-question-on-the-page">If you’re asking more than one question on the page</h3>
 
-<Example CodeExampleContent="@(@"<GdsRadios Name=""whereDoYouLive"">
+<Example BlazorExampleContent="@(@"<GdsRadios Name=""whereDoYouLive"">
     <LegendTemplate>
         <GdsLegend>
             Where do you live?
@@ -102,7 +108,7 @@
 
 <h3 class="govuk-heading-m" id="inline-radios">Inline radios</h3>
 
-<Example CodeExampleContent="@(@"<GdsRadios Name=""changedName"" Classes=@RadioClasses.Inline>
+<Example BlazorExampleContent="@(@"<GdsRadios Name=""changedName"" Classes=@RadioClasses.Inline>
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             Have you changed your name?
@@ -138,7 +144,7 @@
 
 <h3 class="govuk-heading-m" id="radio-items-with-hints">Radio items with hints</h3>
 
-<Example CodeExampleContent="@(@"<GdsRadios Name=""signIn"">
+<Example BlazorExampleContent="@(@"<GdsRadios Name=""signIn"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             How do you want to sign in?
@@ -210,7 +216,7 @@
 
 <h3 class="govuk-heading-m" id="radio-items-with-a-text-divider">Radio items with a text divider</h3>
 
-<Example CodeExampleContent="@(@"<GdsRadios Name=""whereDoYouLive"">
+<Example BlazorExampleContent="@(@"<GdsRadios Name=""whereDoYouLive"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             Where do you live?
@@ -244,7 +250,7 @@
 
 <h3 class="govuk-heading-m" id="conditionally-revealing-a-related-question">Conditionally revealing a related question</h3>
 
-<Example CodeExampleContent="@(@"<GdsRadios Name=""contact"">
+<Example BlazorExampleContent="@(@"<GdsRadios Name=""contact"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             How would you prefer to be contacted?
@@ -326,7 +332,7 @@
 
 <h3 class="govuk-heading-m" id="smaller-radios">Smaller radios</h3>
 
-<Example CodeExampleContent="@(@"<GdsRadios Name=""changedName"" Classes=@RadioClasses.Small>
+<Example BlazorExampleContent="@(@"<GdsRadios Name=""changedName"" Classes=@RadioClasses.Small>
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Medium>
                 Filter
@@ -352,7 +358,7 @@
 
 <h3 class="govuk-heading-m" id="error-messages">Error messages</h3>
 
-<Example CodeExampleContent="@(@"<GdsRadios Name=""whereDoYouLive"">
+<Example BlazorExampleContent="@(@"<GdsRadios Name=""whereDoYouLive"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             Where do you live?
@@ -387,7 +393,7 @@
 
 <h4 class="govuk-heading-s" id="if-its-a-conditionally-revealed-question">If it’s a conditionally revealed question</h4>
 
-<Example CodeExampleContent="@(@"<GdsRadios Name=""contact"">
+<Example BlazorExampleContent="@(@"<GdsRadios Name=""contact"">
     <LegendTemplate>
         <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
             How would you prefer to be contacted?
