@@ -1,4 +1,5 @@
 ﻿@page "/Components/MultiFileUpload"
+@using System.Web
 @layout _ComponentsLayout
 
 <PageTitle>Multi file upload</PageTitle>
@@ -18,7 +19,27 @@
     </GdsMultiFileUpload>
 </Example>
 
+<p class="govuk-body">An example with errors to be displayed</p>
+
+<Example CodeExampleContent="@(@"")">
+    <GdsMultiFileUpload Id="documents" Name="documents" FileSelectedAsync=@LoadFilesAsync Errors="errors">
+        <LabelTemplate>
+            <GdsLabel Classes=@LabelSize.Medium>Upload a file</GdsLabel>
+        </LabelTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>
+                @((MarkupString)string.Join("<br>", errors.Select(e => HttpUtility.HtmlEncode(e))))
+            </GdsErrorMessage>
+        </ErrorMessageTemplate>
+    </GdsMultiFileUpload>
+</Example>
+
+
+
+
 @code {
+	private List<string> errors = new List<string> { "Error message 1", "Error message 2" };
+
     private async Task LoadFilesAsync(FileUploadProgress e)
     {
         for(var i = 0; i <= 100; i += 10){

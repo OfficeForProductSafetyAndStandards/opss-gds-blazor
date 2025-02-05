@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Components.Forms
+@using System.Web
 @inherits BunitContext
 
 @code {
@@ -99,11 +100,16 @@
     public void AndHasErrors_ThenDisplaysErrors()
     {
         // Arrange
-        var errors = new List<string> { "Error 1", "Error 2" };
+        var errors = new List<string> { "Error 1 must be > 5", "Error 2" };
         var component = Render(@<GdsMultiFileUpload Id="documents" Name="documents" Errors="@errors">
         <LabelTemplate>
             <GdsLabel Classes=@LabelSize.Medium>Upload a file</GdsLabel>
         </LabelTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>
+                @((MarkupString)string.Join("<br>", errors.Select(e => HttpUtility.HtmlEncode(e))))
+            </GdsErrorMessage>
+        </ErrorMessageTemplate>
     </GdsMultiFileUpload>);
 
         component.MarkupMatches(
@@ -119,10 +125,11 @@
                 <label class="govuk-label govuk-label--m" for="documents">
                     Upload a file
                 </label>
-                @foreach (var error in errors)
-                {
-                    <p class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span>@error</p>
-                }
+                <p id="documents-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    @((MarkupString)string.Join("<br>", errors.Select(e => HttpUtility.HtmlEncode(e))))
+                </p>
+                
                 <div class="moj-multi-file-upload__dropzone">
                     <input class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" type="file" multiple=""/>
                     <p class="govuk-body">Drag and drop files here or</p>
