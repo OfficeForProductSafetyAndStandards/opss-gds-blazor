@@ -26,7 +26,7 @@
 
 <p class="govuk-body">An example with errors to be displayed</p>
 
-<Example CodeExampleContent="@(
+<Example BlazorExampleContent="@(
     @"<GdsMultiFileUpload Id=""documents"" Name=""documents"" FileSelectedAsync=@LoadFilesAsync>
         <LabelTemplate>
             <GdsLabel Classes=@LabelSize.Medium>Upload a file</GdsLabel>
@@ -48,9 +48,6 @@
         </ErrorMessageTemplate>
     </GdsMultiFileUpload>
 </Example>
-
-
-
 
 @code {
 	private List<string> errors = new List<string> { "Error message 1", "Error message 2" };
