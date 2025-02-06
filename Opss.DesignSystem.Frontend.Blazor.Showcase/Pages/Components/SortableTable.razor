@@ -11,9 +11,9 @@
 </p>
 
 <h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
-<Example CodeExampleContent="@(@"<GdsTable 
+<Example BlazorExampleContent="@(@"<GdsTable 
     CaptionText=""A sortable table with data from a data source"" 
-    IsSortable=""@true"" 
+    IsSortable=@true 
     OnTableSort=@SortTableAsync
 >
         <HeadTemplate>
@@ -73,7 +73,7 @@
 </Example>
 
 <h3 class="govuk-heading-s" id="with-non-sorted-column">With a non-sorted column</h3>
-<Example CodeExampleContent="@(@"<GdsTable CaptionText=""With a non-sorted column"" 
+<Example BlazorExampleContent="@(@"<GdsTable CaptionText=""With a non-sorted column""
     IsSortable 
     OnTableSort=@SortTableAsync
 >
@@ -107,7 +107,25 @@
             }
         </RowsTemplate>
     </GdsTable>
-")">
+")" 
+CodeExampleContent="@(@"@code{
+    private YourDataDomainClass[]? data;
+
+    protected override Task OnInitializedAsync()
+    {
+        //retrieve data from your data source using initial default sort options
+        data = await YourDataSource.GetDataAsync();
+        base.OnInitializedAsync();
+    }
+
+    private async Task SortTableAsync(TableSortArgs args)
+    {
+        //retrieve data from your data source using the sort column name and order
+        data = await YourDataSource.GetDataAsync(args.Name, args.Order);
+    }
+
+    //Note: synchronous functions and overloads can be used as well
+}")">
     <GdsTable CaptionText="With a non-sorted column" IsSortable OnTableSort=@SortTableAsync>
         <HeadTemplate>
             <GdsTableCell SortColumnName="Task">

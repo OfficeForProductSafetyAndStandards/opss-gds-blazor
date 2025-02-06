@@ -17,7 +17,7 @@
 <h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
 
 <Example BlazorExampleContent="@(@"<GdsButton Type=""submit"" OnClick=@OnClick>Save and continue</GdsButton>")"
-         CodeExampleContent="@(@"@code{
+CodeExampleContent="@(@"@code{
     protected async void OnClick()
     {
         /* Code here */
@@ -29,6 +29,8 @@
     protected async void OnClick()
     {
         /* Code here */
+
+        await Task.CompletedTask;
     }
 }
 
