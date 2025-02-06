@@ -25,11 +25,17 @@
 
     <div class="moj-multi-file-upload__upload">
 
-        <div class="govuk-form-group">
+        <div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "")">
             @if (LabelTemplate != null)
             {
                 <CascadingValue Value=@Id>
                     @LabelTemplate
+                </CascadingValue>
+            }
+            @if (ErrorMessageTemplate != null)
+            {
+                <CascadingValue Value=@Id>
+                    @ErrorMessageTemplate
                 </CascadingValue>
             }
             <div class="moj-multi-file-upload__dropzone">
@@ -66,6 +72,12 @@
     /// </summary>
     [Parameter]
     public RenderFragment? LabelTemplate { get; set; }
+
+    /// <summary>
+    /// Can be used to add an error message to the radios component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ErrorMessageTemplate { get; set; }
     #endregion
 
     #region Private Properties
