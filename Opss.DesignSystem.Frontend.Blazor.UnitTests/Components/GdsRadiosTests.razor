@@ -2,7 +2,7 @@
 
 @code {
     [Fact]
-    public void OutputsCheckboxes()
+    public void OutputsRadiosWithPageHeading()
     {
         // Arrange
         var component = Render(
@@ -61,7 +61,7 @@
     }
 
     [Fact]
-    public void OutputsCheckboxesWithLabel()
+    public void OutputsRadios()
     {
         // Arrange
         var component = Render(
@@ -118,7 +118,7 @@
     }
 
     [Fact]
-    public void OutputsCheckboxesWithInlineClass()
+    public void OutputsRadiosWithInlineClass()
     {
         // Arrange
         var component = Render(
@@ -171,7 +171,7 @@
     }
 
     [Fact]
-    public void OutputsCheckboxesWithHints()
+    public void OutputsRadiosAndEachRadioWithHints()
     {
         // Arrange
         var component = Render(
@@ -249,7 +249,7 @@
     }
 
     [Fact]
-    public void OutputsCheckboxesWithDivider()
+    public void OutputsRadiosWithDivider()
     {
         // Arrange
         var component = Render(
@@ -317,7 +317,7 @@
     }
 
     [Fact]
-    public void OutputsCheckboxesWithConditional()
+    public void OutputsRadiosWithConditional()
     {
         // Arrange
         var component = Render(
@@ -423,7 +423,7 @@
     }
 
     [Fact]
-    public void OutputsCheckboxesWithSmallInputs()
+    public void OutputsRadiosWithSmallInputs()
     {
         // Arrange
         var component = Render(
@@ -468,7 +468,7 @@
     }
 
     [Fact]
-    public void OutputsCheckboxesWithErrorMessage()
+    public void OutputsRadiosWithErrorMessage()
     {
         // Arrange
         var component = Render(
@@ -535,7 +535,7 @@
     }
 
     [Fact]
-    public void OutputsCheckboxesWithConditionalErrorMessage()
+    public void OutputsRadiosWithConditionalErrorMessage()
     {
         // Arrange
         var component = Render(
@@ -643,6 +643,79 @@
             </div>
         </fieldset>
     </div>
+    );
+    }
+
+    [Fact]
+    public void OutputsRadioCheckedWithRadiosValueSet()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsRadios Name="checkedRadioValue" Value="year">
+        <LegendTemplate>
+            <GdsLegend>
+                Filter
+            </GdsLegend>
+        </LegendTemplate>
+        <ChildContent>
+            <GdsRadio Value="month">Monthly</GdsRadio>
+            <GdsRadio Value="year">Yearly</GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend">
+                Filter
+            </legend>
+            <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="checkedRadioValue" name="checkedRadioValue" type="radio" value="month">
+                    <label class="govuk-label govuk-radios__label" for="checkedRadioValue">
+                        Monthly
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="checkedRadioValue-2" name="checkedRadioValue" type="radio" value="year" checked>
+                    <label class="govuk-label govuk-radios__label" for="checkedRadioValue-2">
+                        Yearly
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
         );
     }
+
+    [Fact]
+    public void RadiosValueChangedTriggeredWithRadioInput()
+    {
+        // Arrange
+        var newValue = string.Empty;
+
+        var component = Render(
+        @<GdsRadios Name="triggerValueChange" ValueChanged=@((value) => newValue = value)>
+            <LegendTemplate>
+                <GdsLegend>
+                    Filter
+                </GdsLegend>
+            </LegendTemplate>
+            <ChildContent>
+                <GdsRadio Value="month">Monthly</GdsRadio>
+                <GdsRadio Value="year">Yearly</GdsRadio>
+            </ChildContent>
+        </GdsRadios>
+    );
+
+        // Act
+        component
+            .Find("[id=triggerValueChange-2]")
+            .Input(new ChangeEventArgs {});
+
+        Assert.NotEmpty(newValue);
+        Assert.Equal("year", newValue);
+    }
+
 }
