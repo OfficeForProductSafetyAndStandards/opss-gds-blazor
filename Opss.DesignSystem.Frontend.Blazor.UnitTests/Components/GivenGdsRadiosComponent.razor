@@ -61,7 +61,7 @@
     }
 
     [Fact]
-    public void WhenInitialState_ThenOutputsRadioButtons()
+    public void ThenOutputsRadioButtons()
     {
         // Arrange
         var component = Render(
@@ -690,7 +690,7 @@
     }
 
     [Fact]
-    public void WhenValueChangedIsSet_ThenSpecifiedInputEventIsTriggeredOnRadioInput()
+    public void WhenValueChangedIsSet_ThenSpecifiedEventIsTriggeredOnRadioInput()
     {
         // Arrange
         var newValue = string.Empty;
@@ -714,8 +714,18 @@
             .Find("[id=triggerValueChange-2]")
             .Input(new ChangeEventArgs {});
 
+        // Assert
         Assert.NotEmpty(newValue);
         Assert.Equal("year", newValue);
+
+        // Act
+        component
+            .Find("[id=triggerValueChange]")
+            .Input(new ChangeEventArgs { });
+
+        // Assert
+        Assert.NotEmpty(newValue);
+        Assert.Equal("month", newValue);
     }
 
 }
