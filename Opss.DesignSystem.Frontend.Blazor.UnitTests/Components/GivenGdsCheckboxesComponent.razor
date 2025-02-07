@@ -3,7 +3,7 @@
 @code {
 
     [Fact]
-    public void OutputsCheckboxes()
+    public void WhenIsPageHeadingIsSetToTrue_ThenOutputsHeading1InLegend()
     {
         // Arrange
         var component = Render(
@@ -66,7 +66,7 @@
     }
 
     [Fact]
-    public void OutputsCheckboxesWithLabel()
+    public void ThenOutputsCheckboxesWithLabel()
     {
         // Arrange
         var component = Render(
@@ -127,7 +127,7 @@
     }
 
     [Fact]
-    public void OutputsCheckboxesWithItemHints()
+    public void WhenHintTemplateIsSetForAGdsCheckbox_ThenOutputsHintForCheckbox()
     {
         // Arrange
         var component = Render(
@@ -201,7 +201,7 @@
     }
 
     [Fact]
-    public void OutputsCheckboxesWithNone()
+    public void WhenChildContentContainsGdsCheckboxWithIsExclusiveSet_ThenOutputsCheckboxMarkedWithExclusiveDataBehaviourAttribute()
     {
         // Arrange
         var component = Render(
@@ -276,7 +276,7 @@
     }
 
     [Fact]
-    public void OutputsCheckboxesWithNoneAndErrorIfDoubleChecked()
+    public void WhenMultipleValuesAreSet_ThenOutputsCheckboxesWithCheckboxesChecked()
     {
         // Arrange
         var component = Render(
@@ -286,12 +286,6 @@
                 Will you be travelling to any of these countries?
             </GdsLegend>
         </LegendTemplate>
-        <ErrorMessageTemplate>
-            <GdsErrorMessage>
-                Select countries you will be travelling to, or select ‘No, I will not be travelling to any of
-                these countries’
-            </GdsErrorMessage>
-        </ErrorMessageTemplate>
         <ChildContent>
             <GdsCheckbox Value="france">France</GdsCheckbox>
             <GdsCheckbox Value="portugal">Portugal</GdsCheckbox>
@@ -305,17 +299,13 @@
     );
 
         component.MarkupMatches(
-    @<div class="govuk-form-group govuk-form-group--error">
-        <fieldset class="govuk-fieldset" aria-describedby="countries-error">
+    @<div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
                     Will you be travelling to any of these countries?
                 </h1>
             </legend>
-            <p id="countries-error" class="govuk-error-message">
-                <span class="govuk-visually-hidden">Error:</span> Select countries you will be travelling to, or
-                select ‘No, I will not be travelling to any of these countries’
-            </p>
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
                 <div class="govuk-checkboxes__item">
                     <input class="govuk-checkboxes__input" id="countries" name="countries" type="checkbox"
@@ -353,7 +343,7 @@
     }
 
     [Fact]
-    public void OutputsCheckboxesWithConditionalQuestions()
+    public void WhenConditionalTemplateIsSetForEachGdsCheckbox_ThenOutputsConditionalContentForEachCheckbox()
     {
         // Arrange
         var component = Render(
@@ -474,7 +464,7 @@
 
 
     [Fact]
-    public void OutputsCheckboxesWithSmallcheckboxes()
+    public void WhenGdsCheckboxSizeSmallClassAddedToClasses_ThenOutputsCheckboxesWithSmallCheckboxesClass()
     {
         // Arrange
         var component = Render(
@@ -539,7 +529,7 @@
     }
 
     [Fact]
-    public void OutputsCheckboxesWithErrorMessage()
+    public void WhenErrorMessageTemplateIsSet_ThenOutputsErrorMessage()
     {
         // Arrange
         var component = Render(
@@ -621,7 +611,7 @@
     }
 
     [Fact]
-    public void OutputsCheckboxesWithEmptyLegend()
+    public void WhenLegendTemplateIsNotSet_ThenOutputsCheckboxesWithNoLegend()
     {
         // Arrange
         var component = Render(
@@ -649,7 +639,7 @@
     }
 
     [Fact]
-    public void OutputsCheckboxesWithDescribedBy()
+    public void WhenDescribedByIsSet_ThenOutputsCheckboxesWithDescribedBy()
     {
         // Arrange
         var component = Render(
@@ -712,49 +702,46 @@
     );
     }
 
-
     [Fact]
-    public void ThrowsErrorWhenCheckboxHasEmptyValue()
-    {
-        // Act & Assert
-        var exception = Assert.Throws<ArgumentNullException>(() =>
-    {
-        Render(
-    @<GdsCheckboxes Name="missing-value">
-        <ChildContent>
-            <GdsCheckbox Value="">Missing Value</GdsCheckbox>
-        </ChildContent>
-    </GdsCheckboxes>
-        );
-    });
-
-        // Assert
-        Assert.Equal("The Value parameter is required for each GdsCheckbox (Parameter 'Value')", exception.Message);
-    }
-
-
-    [Fact]
-    public void ThrowsErrorWhenCheckboxHasNoValue()
+    public void WithInvalidInitialValue_WhenACheckboxHasEmptyValue_ThenThrowsException()
     {
         // Act & Assert
         var exception = Assert.Throws<ArgumentNullException>(() =>
         {
-    Render(
-    @<GdsCheckboxes Name="missing-value">
-        <ChildContent>
-            <GdsCheckbox>Missing Value</GdsCheckbox>
-        </ChildContent>
-    </GdsCheckboxes>
-    );
+            Render(
+                @<GdsCheckboxes Name="missing-value">
+                    <ChildContent>
+                        <GdsCheckbox Value="">Missing Value</GdsCheckbox>
+                    </ChildContent>
+                </GdsCheckboxes>
+            );
         });
 
         // Assert
         Assert.Equal("The Value parameter is required for each GdsCheckbox (Parameter 'Value')", exception.Message);
     }
 
+    [Fact]
+    public void WithInvalidInitialValue_WhenACheckboxHasNoValue_ThenThrowsException()
+    {
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() =>
+        {
+            Render(
+                @<GdsCheckboxes Name="missing-value">
+                    <ChildContent>
+                        <GdsCheckbox>Missing Value</GdsCheckbox>
+                    </ChildContent>
+                </GdsCheckboxes>
+            );
+        });
+
+        // Assert
+        Assert.Equal("The Value parameter is required for each GdsCheckbox (Parameter 'Value')", exception.Message);
+    }
 
     [Fact]
-    public void OutputsCheckboxesWithMultipleErrorMessages()
+    public void WhenErrorMessageTemplateContainsMultipleErrorContent_ThenOutputsMultipleErrorMessages()
     {
         // Arrange
         var component = Render(
@@ -825,5 +812,75 @@
         );
     }
 
+    [Fact]
+    public void WhenValuesChangedIsSet_ThenSpecifiedEventIsTriggeredOnCheckboxInput()
+    {
+        // Arrange
+        var currentValues = new List<string>();
+
+        var component = Render(
+            @<GdsCheckboxes Name="triggerValuesChanged" 
+                            Values=@(new()) 
+                            ValuesChanged=@((values) => currentValues = values)
+             >
+                <ChildContent>
+                    <GdsCheckbox Value="france">France</GdsCheckbox>
+                    <GdsCheckbox Value="portugal">Portugal</GdsCheckbox>
+                    <GdsCheckbox Value="spain">Spain</GdsCheckbox>
+                    <GdsCheckboxDivider>or</GdsCheckboxDivider>
+                    <GdsCheckbox Value="none" IsExclusive=@true>
+                        No, I will not be travelling to any of these countries
+                    </GdsCheckbox>
+                </ChildContent>
+            </GdsCheckboxes>
+        );
+
+        // Act
+        component
+            .Find("[id=triggerValuesChanged]")
+            .Input(new() { Value = true });
+
+        component
+            .Find("[id=triggerValuesChanged-2]")
+            .Input(new() { Value = false });
+
+        component
+            .Find("[id=triggerValuesChanged-3]")
+            .Input(new() { Value = true });
+
+        // Assert
+        Assert.NotNull(currentValues);
+        Assert.NotEmpty(currentValues);
+        Assert.Equal(2, currentValues.Count);
+        Assert.Contains("france", currentValues);
+        Assert.DoesNotContain("portugal", currentValues);
+        Assert.Contains("spain", currentValues);
+
+        // Act
+        component
+            .Find("[id=triggerValuesChanged]")
+            .Input(new() { Value = false });
+
+        component
+            .Find("[id=triggerValuesChanged-2]")
+            .Input(new() { Value = false });
+
+        component
+            .Find("[id=triggerValuesChanged-3]")
+            .Input(new() { Value = false });
+
+        component
+            .Find("[id=triggerValuesChanged-5]")
+            .Input(new() { Value = true });
+
+        // Assert
+        Assert.NotNull(currentValues);
+        Assert.NotEmpty(currentValues);
+        Assert.Single(currentValues);
+        Assert.DoesNotContain("france", currentValues);
+        Assert.DoesNotContain("portugal", currentValues);
+        Assert.DoesNotContain("spain", currentValues);
+        Assert.Contains("none", currentValues);
+    }
 
 }
