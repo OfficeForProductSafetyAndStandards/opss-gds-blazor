@@ -2,7 +2,7 @@
 
 @code {
     [Fact]
-    public void OutputsSelect()
+    public void ThenOutputsSelect()
     {
         // Arrange
         var component = Render(
@@ -35,7 +35,7 @@
     }
 
     [Fact]
-    public void OutputsSelectWithHint()
+    public void WhenHintTemplateAndLabelTemplateIsSet_ThenOutputsSelectWithHintAndLabel()
     {
         // Arrange
         var component = Render(
@@ -86,7 +86,7 @@
     }
 
     [Fact]
-    public void OutputsSelectWithErrorMessage()
+    public void WhenErrorMessageTemplateIsSet_ThenOutputsSelectWithErrorMessage()
     {
         // Arrange
         var component = Render(
@@ -141,4 +141,183 @@
     </div>
         );
     }
+
+    [Fact]
+    public void WhenBeforeInputTemplateIsSet_ThenOutputsContentBeforeTheSelect()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSelect Id="sort" Name="sort">
+        <LabelTemplate>
+            <GdsLabel>Sort by</GdsLabel>
+        </LabelTemplate>
+        <BeforeInputTemplate>
+            <p class="govuk-body">Content before the select inputs</p>
+        </BeforeInputTemplate>
+        <ChildContent>
+            <GdsSelectOption Value="published">Recently published</GdsSelectOption>
+            <GdsSelectOption Value="updated" Selected=@true>Recently updated</GdsSelectOption>
+            <GdsSelectOption Value="views">Most views</GdsSelectOption>
+            <GdsSelectOption Value="comments">Most comments</GdsSelectOption>
+        </ChildContent>
+    </GdsSelect>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <label class="govuk-label" for="sort">
+            Sort by
+        </label>
+        <p class="govuk-body">Content before the select inputs</p>
+        <select class="govuk-select" id="sort" name="sort">
+            <option value="published">Recently published</option>
+            <option value="updated" selected>Recently updated</option>
+            <option value="views">Most views</option>
+            <option value="comments">Most comments</option>
+        </select>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenAfterInputTemplateIsSet_ThenOutputsContentAfterTheSelect()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSelect Id="sort" Name="sort">
+        <LabelTemplate>
+            <GdsLabel>Sort by</GdsLabel>
+        </LabelTemplate>
+        <AfterInputTemplate>
+            <p class="govuk-body">Content after the select inputs</p>
+        </AfterInputTemplate>
+        <ChildContent>
+            <GdsSelectOption Value="published">Recently published</GdsSelectOption>
+            <GdsSelectOption Value="updated" Selected=@true>Recently updated</GdsSelectOption>
+            <GdsSelectOption Value="views">Most views</GdsSelectOption>
+            <GdsSelectOption Value="comments">Most comments</GdsSelectOption>
+        </ChildContent>
+    </GdsSelect>
+    );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <label class="govuk-label" for="sort">
+            Sort by
+        </label>
+        <select class="govuk-select" id="sort" name="sort">
+            <option value="published">Recently published</option>
+            <option value="updated" selected>Recently updated</option>
+            <option value="views">Most views</option>
+            <option value="comments">Most comments</option>
+        </select>
+        <p class="govuk-body">Content after the select inputs</p>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenDescribedByIsSet_ThenOutputsSelectWithDescribedBy()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSelect Id="sort" Name="sort" DescribedBy="default-sort-order">
+        <LabelTemplate>
+            <GdsLabel>Sort by</GdsLabel>
+        </LabelTemplate>
+        <ChildContent>
+            <GdsSelectOption Value="published">Recently published</GdsSelectOption>
+            <GdsSelectOption Value="updated" Selected=@true>Recently updated</GdsSelectOption>
+            <GdsSelectOption Value="views">Most views</GdsSelectOption>
+            <GdsSelectOption Value="comments">Most comments</GdsSelectOption>
+        </ChildContent>
+    </GdsSelect>
+    );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <label class="govuk-label" for="sort">
+            Sort by
+        </label>
+        <select class="govuk-select" id="sort" name="sort" aria-describedby="default-sort-order">
+            <option value="published">Recently published</option>
+            <option value="updated" selected>Recently updated</option>
+            <option value="views">Most views</option>
+            <option value="comments">Most comments</option>
+        </select>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenValueIsSet_ThenOutputsSelectWithMatchingOptionSelected()
+    {
+        // Arrange
+        var component = Render(
+        @<GdsSelect Id="sort" Name="sort" Value="views">
+            <LabelTemplate>
+                <GdsLabel>Sort by</GdsLabel>
+            </LabelTemplate>
+            <ChildContent>
+                <GdsSelectOption Value="published">Recently published</GdsSelectOption>
+                <GdsSelectOption Value="updated">Recently updated</GdsSelectOption>
+                <GdsSelectOption Value="views">Most views</GdsSelectOption>
+                <GdsSelectOption Value="comments">Most comments</GdsSelectOption>
+            </ChildContent>
+        </GdsSelect>
+        );
+
+        component.MarkupMatches(
+        @<div class="govuk-form-group">
+            <label class="govuk-label" for="sort">
+                Sort by
+            </label>
+            <select class="govuk-select" id="sort" name="sort">
+                <option value="published">Recently published</option>
+                <option value="updated">Recently updated</option>
+                <option value="views" selected>Most views</option>
+                <option value="comments">Most comments</option>
+            </select>
+        </div>
+    );
+    }
+
+    [Fact]
+    public void WhenValueChangedIsSet_ThenSpecifiedEventIsTriggeredOnSelect()
+    {
+        // Arrange
+        var currentValue = string.Empty;
+
+        var component = Render(
+            @<GdsSelect Id="sort" Name="sort" Value="updated" ValueChanged=@((value) => currentValue = value)>
+                <LabelTemplate>
+                    <GdsLabel>Sort by</GdsLabel>
+                </LabelTemplate>
+                <ChildContent>
+                    <GdsSelectOption Value="published">Recently published</GdsSelectOption>
+                    <GdsSelectOption Value="updated">Recently updated</GdsSelectOption>
+                    <GdsSelectOption Value="views">Most views</GdsSelectOption>
+                    <GdsSelectOption Value="comments">Most comments</GdsSelectOption>
+                </ChildContent>
+            </GdsSelect>
+        );
+
+        // Act
+        component
+            .Find("select")
+            .Change("comments");
+
+        // Assert 
+        Assert.Equal("comments", currentValue);
+
+        // Act
+        component
+            .Find("select")
+            .Change("views");
+
+        // Assert
+        Assert.Equal("views", currentValue);
+    }
+
+
 }

@@ -7,7 +7,7 @@
 </summary> *@
 
 <div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses" 
-@attributes=@FormGroupAttributes
+     @attributes=@FormGroupAttributes
 >
     @if (LabelTemplate != null)
     {
@@ -27,17 +27,26 @@
             @ErrorMessageTemplate
         </CascadingValue>
     }
+    @if (BeforeInputTemplate != null)
+    {
+        @BeforeInputTemplate
+    }
     <select class="govuk-select @(ErrorMessageTemplate != null ? "govuk-select--error" : "")  @Classes"
-    id=@Id
-    name=@Name
-    disabled=@Disabled
-    aria-describedby=@describedBy?.Trim()
-    @onchange=@OnChange
-    @attributes=@Attributes>
+            id=@Id
+            name=@Name
+            disabled=@Disabled
+            aria-describedby=@describedBy?.Trim()
+            @onchange=@OnChange
+            @attributes=@Attributes
+    >
         <CascadingValue Value=this>
             @ChildContent
         </CascadingValue>
     </select>
+    @if (AfterInputTemplate != null)
+    {
+        @AfterInputTemplate
+    }
 </div>
 
 @code {
