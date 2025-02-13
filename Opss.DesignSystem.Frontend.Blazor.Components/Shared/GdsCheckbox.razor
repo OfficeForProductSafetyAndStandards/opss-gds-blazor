@@ -177,7 +177,7 @@
         get
         {
             var fullText = "";
-            if (parentIncludesFieldset) fullText = Parent?.DescribedBy ?? "";
+            if (!parentIncludesFieldset) fullText = Parent?.FieldsetDescribedBy ?? "";
             if (HintTemplate != null) fullText += $" {id}-item-hint";
             return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
         }
@@ -187,7 +187,7 @@
     {
         get
         {
-            if (Parent?.LegendTemplate != null || Parent?.FieldsetClasses != null || Parent?.FieldsetRole != null || Parent?.FieldsetAttributes != null)
+            if (Parent?.LegendTemplate != null || Parent?.FieldsetClasses != null || Parent?.FieldsetRole != null || Parent?.FieldsetAttributes?.Count > 0)
                 return true;
 
             return Parent?.IncludeFieldset ?? false;

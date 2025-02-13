@@ -5,14 +5,14 @@
 </summary> *@
 
 <div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses"
-@attributes=@FormGroupAttributes
+    @attributes=@FormGroupAttributes
 >
     @if (includeFieldset)
     {
-        <GdsFieldset DescribedBy=@fieldsetDescribedBy
-        Classes=@FieldsetClasses
-        Role=@FieldsetRole
-        @attributes=@FieldsetAttributes>
+        <GdsFieldset DescribedBy=@FieldsetDescribedBy
+            Classes=@FieldsetClasses
+            Role=@FieldsetRole
+            @attributes=@FieldsetAttributes>
             <LegendTemplate>
                 @LegendTemplate
             </LegendTemplate>
@@ -30,8 +30,8 @@
                     </CascadingValue>
                 }
                 <div class="govuk-checkboxes @Classes"
-                data-module="govuk-checkboxes"
-                @attributes=@Attributes>
+                    data-module="govuk-checkboxes"
+                    @attributes=@Attributes>
 
                     @if (BeforeInputsTemplate != null)
                     {
@@ -84,9 +84,10 @@
 @code {
     #region Public Parameters
     /// <summary>
-    /// One or more element IDs to add to the aria-describedby attribute. Used to provide
-    /// additional descriptive information for screenreader users.
-    /// !!! GDS TOOLKIT IMPLEMENTATION: Add to fieldset if fieldset is present Otherwise, add to individual checkbox input elements; does NOT override other calculated values
+    /// One or more element IDs to add 1) to the aria-describedby attribute inputs if there is no fieldset, 
+    /// or 2) to the fieldset, where present.
+    /// Used to provide additional descriptive information for screenreader users.
+    /// Includes other calculated values if a hint or error is present.
     /// </summary>
     [Parameter]
     public string? DescribedBy { get; set; }
@@ -112,19 +113,32 @@
     public string? FieldsetClasses { get; set; }
 
     /// <summary>
-    /// One or more element IDs to add to the aria-describedby attribute, used
-    /// to provide additional descriptive information for screenreader users.
-    /// Will override the calculated described by value.
-    /// !!! GDS Toolkit Implementation: not found!
-    /// </summary>
-    [Parameter]
-    public string? FieldsetDescribedBy { get; set; }
-
-    /// <summary>
     /// Optional ARIA role attribute.
     /// </summary>
     [Parameter]
     public string? FieldsetRole { get; set; }
+
+    /// <summary>
+    /// Calculate the Fieldset's Described By attribute. Only applies when a Fieldset is rendered.
+    /// </summary>
+    public string? FieldsetDescribedBy
+    {
+        get
+        {
+            var describedBy = new List<string>();
+            if (DescribedBy != null)
+                describedBy.Add(DescribedBy);
+            if (HintTemplate != null)
+                describedBy.Add(Name + "-hint");
+            if (ErrorMessageTemplate != null)
+                describedBy.Add(Name + "-error");
+
+            if (describedBy.Any())
+                return string.Join(" ", describedBy);
+            else
+                return null;
+        }
+    }
 
     /// <summary>
     /// HTML attributes (for example data attributes) to add to the fieldset container.
@@ -230,31 +244,6 @@
                 return true;
 
             return IncludeFieldset ?? false;
-        }
-    }
-
-    /// <summary>
-    /// Calculate the Fieldset's Described By attribute
-    /// If FieldsetDescribedBy is provided, it will override
-    /// any calculated value.
-    /// </summary>
-    private string? fieldsetDescribedBy
-    {
-        get
-        {
-            var describedBy = new List<string>();
-            if (FieldsetDescribedBy != null)
-                return FieldsetDescribedBy;
-
-            if (HintTemplate != null)
-                describedBy.Add(Name + "-hint");
-            if (ErrorMessageTemplate != null)
-                describedBy.Add(Name + "-error");
-
-            if (describedBy.Any())
-                return string.Join(" ", describedBy);
-            else
-                return null;
         }
     }
     #endregion
