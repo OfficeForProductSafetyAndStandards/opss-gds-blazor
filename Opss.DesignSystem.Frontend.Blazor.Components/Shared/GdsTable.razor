@@ -5,8 +5,8 @@
 </summary>*@
 
 <table class="@tableClasses" 
-aria-label=@Label
-@attributes=@Attributes
+    aria-label=@Label
+    @attributes=@Attributes
 >
     @if(!string.IsNullOrWhiteSpace(CaptionText)) 
     {
@@ -60,6 +60,15 @@ aria-label=@Label
     /// </summary>
     [Parameter]
     public bool IsSortable { get; set; }
+
+    /// <summary>
+    /// The initial/default sort order to apply to the table. 
+    /// </summary>
+    /// <remarks>
+    /// The same sort order must be applied to the data source in the initial/default state as well.
+    /// </remarks>
+    [Parameter]
+    public TableSortArgs? InitialSortOrder { get; set; }
 
     /// <summary>
     /// Table cells for the head row
