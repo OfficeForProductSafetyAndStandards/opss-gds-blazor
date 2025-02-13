@@ -188,7 +188,7 @@
     [Parameter]
     public EventCallback<string> ValueChanged { get; set; }
 
-    public Task RadioChanged(string? value)
+    public Task OnRadioChanged(string? value)
     {
         return ValueChanged.InvokeAsync(value);
     }
@@ -203,7 +203,7 @@
     {
         get
         {
-            if (LegendTemplate != null || FieldsetClasses != null || FieldsetRole != null || FieldsetAttributes != null)
+            if (LegendTemplate != null || FieldsetClasses != null || FieldsetRole != null || FieldsetAttributes?.Count > 0)
                 return true;
 
             return IncludeFieldset ?? false;
@@ -248,9 +248,10 @@
     {
         if (radio.Checked == true)
         {
-            RadioChanged(radio.Value);
+            Value = radio.Value;
+            radios.ForEach((r) => r.UnCheck());
         }
-        if(radio.Value == Value)
+        else if(radio.Value == Value)
         {
             radio.Check();
         }

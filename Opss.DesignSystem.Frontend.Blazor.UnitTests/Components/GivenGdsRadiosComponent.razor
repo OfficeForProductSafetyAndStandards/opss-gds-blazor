@@ -535,6 +535,182 @@
     }
 
     [Fact]
+    public void WhenLegendTemplateIsNotSet_ThenOutputsRadiosWithNoLegendOrFieldset()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsRadios Name="radiosValue">
+        <ChildContent>
+            <GdsRadio Value="month">Monthly</GdsRadio>
+            <GdsRadio Value="year">Yearly</GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="radiosValue" name="radiosValue" type="radio" value="month">
+                <label class="govuk-label govuk-radios__label" for="radiosValue">
+                    Monthly
+                </label>
+            </div>
+            <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="radiosValue-2" name="radiosValue" type="radio" value="year">
+                <label class="govuk-label govuk-radios__label" for="radiosValue-2">
+                    Yearly
+                </label>
+            </div>
+        </div>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenFieldsetRoleIsSete_ThenOutputsRadiosWithFielset()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsRadios Name="radiosValue" FieldsetRole="form">
+        <ChildContent>
+            <GdsRadio Value="month">Monthly</GdsRadio>
+            <GdsRadio Value="year">Yearly</GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="form">
+            <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="radiosValue" name="radiosValue" type="radio" value="month">
+                    <label class="govuk-label govuk-radios__label" for="radiosValue">
+                        Monthly
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="radiosValue-2" name="radiosValue" type="radio" value="year">
+                    <label class="govuk-label govuk-radios__label" for="radiosValue-2">
+                        Yearly
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenFieldsetClassesIsSete_ThenOutputsRadiosFieldsetWithClasses()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsRadios Name="radiosValue" FieldsetClasses="class1 class2">
+        <ChildContent>
+            <GdsRadio Value="month">Monthly</GdsRadio>
+            <GdsRadio Value="year">Yearly</GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <fieldset class="govuk-fieldset class1 class2">
+            <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="radiosValue" name="radiosValue" type="radio" value="month">
+                    <label class="govuk-label govuk-radios__label" for="radiosValue">
+                        Monthly
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="radiosValue-2" name="radiosValue" type="radio" value="year">
+                    <label class="govuk-label govuk-radios__label" for="radiosValue-2">
+                        Yearly
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenFieldsetDescribedByIsSet_ThenOutputsRadioFieldsetWithDescribedByOverridingCalculatedValues()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsRadios Name="whereDoYouLive" FieldsetDescribedBy="default-location-overriding">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+                Where do you live?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>This can be different to where you went before</GdsHint>
+        </HintTemplate>        
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>
+                Select the country where you live
+            </GdsErrorMessage>
+        </ErrorMessageTemplate>
+        <ChildContent>
+            <GdsRadio Value="england">England</GdsRadio>
+            <GdsRadio Value="scotland">Scotland</GdsRadio>
+            <GdsRadio Value="wales">Wales</GdsRadio>
+            <GdsRadio Value="northern-ireland">Northern Ireland</GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group govuk-form-group--error">
+		<fieldset class="govuk-fieldset" aria-describedby="default-location-overriding">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                    Where do you live?
+                </h1>
+            </legend>
+            <div id="whereDoYouLive-hint" class="govuk-hint">
+                This can be different to where you went before
+            </div>
+            <p id="whereDoYouLive-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Select the country where you live
+            </p>
+            <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="whereDoYouLive" name="whereDoYouLive" type="radio" value="england">
+                    <label class="govuk-label govuk-radios__label" for="whereDoYouLive">
+                        England
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="whereDoYouLive-2" name="whereDoYouLive" type="radio" value="scotland">
+                    <label class="govuk-label govuk-radios__label" for="whereDoYouLive-2">
+                        Scotland
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="whereDoYouLive-3" name="whereDoYouLive" type="radio" value="wales">
+                    <label class="govuk-label govuk-radios__label" for="whereDoYouLive-3">
+                        Wales
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="whereDoYouLive-4" name="whereDoYouLive" type="radio" value="northern-ireland">
+                    <label class="govuk-label govuk-radios__label" for="whereDoYouLive-4">
+                        Northern Ireland
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+        );
+    }
+
+    [Fact]
     public void WhenConditionalErrorMessageTemplateIsSetForEachGdsRadio_ThenOutputsConditionalErrorMessageContentForEachRadioButton()
     {
         // Arrange
@@ -728,4 +904,172 @@
         Assert.Equal("month", newValue);
     }
 
+    [Fact]
+    public void WhenRadioIsChecked_ThenOutputsCheckedOnMatchingRadioButton()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsRadios Name="radioChecked">
+        <LegendTemplate>
+            <GdsLegend>
+                Filter
+            </GdsLegend>
+        </LegendTemplate>
+        <ChildContent>
+            <GdsRadio Value="month">Monthly</GdsRadio>
+			<GdsRadio Value="year" Checked=@true>Yearly</GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend">
+                Filter
+            </legend>
+            <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="radioChecked" name="radioChecked" type="radio" value="month">
+                    <label class="govuk-label govuk-radios__label" for="radioChecked">
+                        Monthly
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="radioChecked-2" name="radioChecked" type="radio" value="year" checked>
+                    <label class="govuk-label govuk-radios__label" for="radioChecked-2">
+                        Yearly
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenRadioIsCheckedAndValueIsSet_ThenOutputsCheckedOnMatchingRadioButtonAndDoesNotTriggerValueChanged()
+    {
+        // Arrange
+        var currentValue = string.Empty;
+
+        // Act
+        var component = Render(
+    @<GdsRadios Name="radioChecked" Value="month" ValueChanged=@((value) => currentValue = value)>
+        <LegendTemplate>
+            <GdsLegend>
+                Filter
+            </GdsLegend>
+        </LegendTemplate>
+        <ChildContent>
+            <GdsRadio Value="month">Monthly</GdsRadio>
+            <GdsRadio Value="year" Checked=@true>Yearly</GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend">
+                Filter
+            </legend>
+            <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="radioChecked" name="radioChecked" type="radio" value="month">
+                    <label class="govuk-label govuk-radios__label" for="radioChecked">
+                        Monthly
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="radioChecked-2" name="radioChecked" type="radio" value="year" checked>
+                    <label class="govuk-label govuk-radios__label" for="radioChecked-2">
+                        Yearly
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+        );
+
+        Assert.Equal(string.Empty, currentValue);
+    }
+
+    [Fact]
+    public void WhenRadioIsChecked_ThenSpecifiedValueChangedEventIsTriggered()
+    {
+        // Arrange
+        var newValue = string.Empty;
+
+        var component = Render(
+    @<GdsRadios Name="whereDoYouLive" ValueChanged=@((value) => newValue = value)>
+        <LegendTemplate>
+            Where do you live?
+        </LegendTemplate>        
+        <ChildContent>
+            <GdsRadio Value="england">England</GdsRadio>
+            <GdsRadio Value="scotland">Scotland</GdsRadio>
+            <GdsRadio Value="wales">Wales</GdsRadio>
+            <GdsRadio Value="northern-ireland">Northern Ireland</GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+    );
+
+        // Act
+        component
+            .Find("[id=whereDoYouLive-2]")
+            .Input(new ChangeEventArgs { });
+
+        // Assert
+        Assert.NotEmpty(newValue);
+        Assert.Equal("scotland", newValue);
+
+        // Act
+        component
+            .Find("[id=whereDoYouLive-4]")
+            .Input(new ChangeEventArgs { });
+
+        // Assert
+        Assert.NotEmpty(newValue);
+        Assert.Equal("northern-ireland", newValue);
+    }
+
+    [Fact]
+    public void WhenBindValueIsSet_ThenSpecifiedRadioIsSelected()
+    {
+        // Arrange
+        var newValue = string.Empty;
+
+        var component = Render(
+    @<GdsRadios Name="whereDoYouLive" @bind-Value=@newValue>
+        <LegendTemplate>
+            Where do you live?
+        </LegendTemplate>
+        <ChildContent>
+            <GdsRadio Value="england">England</GdsRadio>
+            <GdsRadio Value="scotland">Scotland</GdsRadio>
+            <GdsRadio Value="wales">Wales</GdsRadio>
+            <GdsRadio Value="northern-ireland">Northern Ireland</GdsRadio>
+        </ChildContent>
+    </GdsRadios>
+        );
+
+        // Act
+        component
+            .Find("[id=whereDoYouLive-2]")
+            .Input(new ChangeEventArgs { });
+
+        // Assert
+        Assert.NotEmpty(newValue);
+        Assert.Equal("scotland", newValue);
+
+        // Act
+        component
+            .Find("[id=whereDoYouLive-4]")
+            .Input(new ChangeEventArgs { });
+
+        // Assert
+        Assert.NotEmpty(newValue);
+        Assert.Equal("northern-ireland", newValue);
+    }
 }

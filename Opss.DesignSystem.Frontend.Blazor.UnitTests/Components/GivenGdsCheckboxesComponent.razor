@@ -620,22 +620,76 @@
             <GdsCheckbox Value="option1">Option 1</GdsCheckbox>
         </ChildContent>
     </GdsCheckboxes>
-    );
+        );
 
         // Assert
         component.MarkupMatches(
     @<div class="govuk-form-group">
-        <fieldset class="govuk-fieldset">
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="empty-legend" name="empty-legend" type="checkbox"
+                        value="option1">
+                <label class="govuk-label govuk-checkboxes__label" for="empty-legend">Option 1</label>
+            </div>
+        </div>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenFieldsetRoleIsSete_ThenOutputsCheckboxesFielset()
+    {
+        // Arrange        
+        var component = Render(
+    @<GdsCheckboxes Name="outputFieldset" FieldsetRole="checkbox">
+        <ChildContent>
+            <GdsCheckbox Value="option1">Option 1</GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+        );
+
+        // Assert
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="checkbox">
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
                 <div class="govuk-checkboxes__item">
-                    <input class="govuk-checkboxes__input" id="empty-legend" name="empty-legend" type="checkbox"
+                    <input class="govuk-checkboxes__input" id="outputFieldset" name="outputFieldset" type="checkbox"
                            value="option1">
-                    <label class="govuk-label govuk-checkboxes__label" for="empty-legend">Option 1</label>
+                    <label class="govuk-label govuk-checkboxes__label" for="outputFieldset">Option 1</label>
                 </div>
             </div>
         </fieldset>
     </div>
-    );
+        );
+    }
+
+    [Fact]
+    public void WhenFieldsetClassesIsSete_ThenOutputsCheckboxesFieldsetWithClasses()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsCheckboxes Name="outputFieldset" FieldsetClasses="class1 class2">
+        <ChildContent>
+            <GdsCheckbox Value="option1">Option 1</GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+        );
+
+        // Assert
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <fieldset class="govuk-fieldset class1 class2">
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="outputFieldset" name="outputFieldset" type="checkbox"
+                           value="option1">
+                    <label class="govuk-label govuk-checkboxes__label" for="outputFieldset">Option 1</label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+        );
     }
 
     [Fact]
@@ -660,7 +714,7 @@
             <GdsCheckbox Value="farm">Farm or agricultural waste</GdsCheckbox>
         </ChildContent>
     </GdsCheckboxes>
-    );
+        );
 
         // Assert
         component.MarkupMatches(
@@ -699,7 +753,7 @@
             </div>
         </fieldset>
     </div>
-    );
+        );
     }
 
     [Fact]
@@ -813,6 +867,74 @@
     }
 
     [Fact]
+    public void WhenFieldsetDescribedByIsSet_ThenOutputsCheckboxFieldsetWithDescribedByOverridingCalculatedValues()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsCheckboxes Name="nationality" FieldsetDescribedBy="default-location-overriding">
+        <LegendTemplate>
+            <GdsLegend IsPageHeading=@true Classes="govuk-fieldset__legend--l">
+                What is your nationality?
+            </GdsLegend>
+        </LegendTemplate>
+        <HintTemplate>
+            <GdsHint>
+                If you have dual nationality, select all options that are relevant to you
+            </GdsHint>
+        </HintTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>Select a nationality - This field is mandatory</GdsErrorMessage>
+        </ErrorMessageTemplate>
+        <ChildContent>
+            <GdsCheckbox Value="british">British</GdsCheckbox>
+            <GdsCheckbox Value="irish">Irish</GdsCheckbox>
+            <GdsCheckbox Value="other">Citizen of another country</GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+        );
+
+        // Assert
+        component.MarkupMatches(
+    @<div class="govuk-form-group govuk-form-group--error">
+        <fieldset class="govuk-fieldset" aria-describedby="default-location-overriding">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                    What is your nationality?
+                </h1>
+            </legend>
+            <div id="nationality-hint" class="govuk-hint">
+                If you have dual nationality, select all options that are relevant to you
+            </div>
+            <p id="nationality-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span>
+                Select a nationality - This field is mandatory
+            </p>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="nationality" name="nationality" type="checkbox"
+                           value="british">
+                    <label class="govuk-label govuk-checkboxes__label" for="nationality">British</label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="nationality-2" name="nationality" type="checkbox"
+                           value="irish">
+                    <label class="govuk-label govuk-checkboxes__label" for="nationality-2">Irish</label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="nationality-3" name="nationality" type="checkbox"
+                           value="other">
+                    <label class="govuk-label govuk-checkboxes__label" for="nationality-3">
+                        Citizen of another
+                        country
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+        );
+    }
+
+    [Fact]
     public void WhenValuesChangedIsSet_ThenSpecifiedEventIsTriggeredOnCheckboxInput()
     {
         // Arrange
@@ -833,7 +955,7 @@
                     </GdsCheckbox>
                 </ChildContent>
             </GdsCheckboxes>
-        );
+    );
 
         // Act
         component
@@ -883,4 +1005,151 @@
         Assert.Contains("none", currentValues);
     }
 
-}
+    [Fact]
+    public void WhenValuesIsSetAndCheckboxesSelected_ThenCorrectCheckboxesAreSelectedAndValuesChangeNotTriggered()
+    {
+        // Arrange
+        var presetValues = new List<string>() { "spain", "portugal", "italy" };
+        var currentValues = new List<string>();
+
+        // Act
+        var component = Render(
+    @<GdsCheckboxes Name="bindingValues" Values=@presetValues ValuesChanged=@(values => currentValues = values)>
+        <ChildContent>
+            <GdsCheckbox Value="france" Checked=@true>France</GdsCheckbox>
+            <GdsCheckbox Value="portugal">Portugal</GdsCheckbox>
+            <GdsCheckbox Value="spain" Checked=@true>Spain</GdsCheckbox>
+            <GdsCheckbox Value="italy">Italy</GdsCheckbox>
+            <GdsCheckboxDivider>or</GdsCheckboxDivider>
+            <GdsCheckbox Value="none" IsExclusive=@true>
+                No, I will not be travelling to any of these countries
+            </GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+        );
+
+        // Assert
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="bindingValues" name="bindingValues" type="checkbox"
+                        value="france" checked>
+                <label class="govuk-label govuk-checkboxes__label" for="bindingValues">
+                    France
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="bindingValues-2" name="bindingValues" type="checkbox"
+                        value="portugal">
+                <label class="govuk-label govuk-checkboxes__label" for="bindingValues-2">
+                    Portugal
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="bindingValues-3" name="bindingValues" type="checkbox"
+                        value="spain" checked>
+                <label class="govuk-label govuk-checkboxes__label" for="bindingValues-3">
+                    Spain
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="bindingValues-4" name="bindingValues" type="checkbox"
+                       value="italy">
+                <label class="govuk-label govuk-checkboxes__label" for="bindingValues-4">
+                    Italy
+                </label>
+            </div>
+            <div class="govuk-checkboxes__divider">or</div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="bindingValues-6" name="bindingValues" type="checkbox"
+                        value="none" data-behaviour="exclusive">
+                <label class="govuk-label govuk-checkboxes__label" for="bindingValues-6">
+                    No, I will not be travelling to any of these countries
+                </label>
+            </div>
+        </div>
+    </div>
+        );
+
+        Assert.Empty(currentValues);
+    }
+    
+    [Fact]
+    public void WhenBindValuesIsSet_ThenCorrectCheckboxesAreSelected()
+    {
+        // Arrange
+        var currentValues = new List<string>() { "spain" };
+
+        var component = Render(
+    @<GdsCheckboxes Name="bindingValues" @bind-Values=@currentValues>
+        <ChildContent>
+            <GdsCheckbox Value="france">France</GdsCheckbox>
+            <GdsCheckbox Value="portugal">Portugal</GdsCheckbox>
+            <GdsCheckbox Value="spain">Spain</GdsCheckbox>
+            <GdsCheckboxDivider>or</GdsCheckboxDivider>
+            <GdsCheckbox Value="none" IsExclusive=@true>
+                No, I will not be travelling to any of these countries
+            </GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+    );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="bindingValues" name="bindingValues" type="checkbox"
+                       value="france">
+                <label class="govuk-label govuk-checkboxes__label" for="bindingValues">
+                    France
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="bindingValues-2" name="bindingValues" type="checkbox"
+                       value="portugal">
+                <label class="govuk-label govuk-checkboxes__label" for="bindingValues-2">
+                    Portugal
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="bindingValues-3" name="bindingValues" type="checkbox"
+                       value="spain" checked>
+                <label class="govuk-label govuk-checkboxes__label" for="bindingValues-3">
+                    Spain
+                </label>
+            </div>
+            <div class="govuk-checkboxes__divider">or</div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="bindingValues-5" name="bindingValues" type="checkbox"
+                       value="none" data-behaviour="exclusive">
+                <label class="govuk-label govuk-checkboxes__label" for="bindingValues-5">
+                    No, I will not be travelling to any of these countries
+                </label>
+            </div>
+        </div>
+    </div>
+        );
+
+        // Act
+        component
+            .Find("[id=bindingValues]")
+            .Input(new() { Value = true });
+
+        component
+            .Find("[id=bindingValues-2]")
+            .Input(new() { Value = true });
+
+        component
+            .Find("[id=bindingValues-3]")
+            .Input(new() { Value = false });
+
+        // Assert
+        Assert.NotNull(currentValues);
+        Assert.NotEmpty(currentValues);
+        Assert.Equal(2, currentValues.Count);
+        Assert.Contains("france", currentValues);
+        Assert.Contains("portugal", currentValues);
+        Assert.DoesNotContain("spain", currentValues);
+    }
+}}

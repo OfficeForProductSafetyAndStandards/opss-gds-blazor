@@ -5,14 +5,14 @@
 </summary> *@
 
 <div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses"
-     @attributes=@FormGroupAttributes
+@attributes=@FormGroupAttributes
 >
     @if (includeFieldset)
     {
         <GdsFieldset DescribedBy=@fieldsetDescribedBy
-                     Classes=@FieldsetClasses
-                     Role=@FieldsetRole
-                     @attributes=@FieldsetAttributes>
+        Classes=@FieldsetClasses
+        Role=@FieldsetRole
+        @attributes=@FieldsetAttributes>
             <LegendTemplate>
                 @LegendTemplate
             </LegendTemplate>
@@ -30,8 +30,8 @@
                     </CascadingValue>
                 }
                 <div class="govuk-checkboxes @Classes"
-                     data-module="govuk-checkboxes"
-                     @attributes=@Attributes>
+                data-module="govuk-checkboxes"
+                @attributes=@Attributes>
 
                     @if (BeforeInputsTemplate != null)
                     {
@@ -64,7 +64,7 @@
             </CascadingValue>
         }
         <div class="govuk-checkboxes @Classes"
-             data-module="govuk-checkboxes">
+        data-module="govuk-checkboxes">
 
             @if (BeforeInputsTemplate != null)
             {
@@ -84,8 +84,9 @@
 @code {
     #region Public Parameters
     /// <summary>
-    /// One or more element IDs to add to the aria-describedby attribute, used to provide
+    /// One or more element IDs to add to the aria-describedby attribute. Used to provide
     /// additional descriptive information for screenreader users.
+    /// !!! GDS TOOLKIT IMPLEMENTATION: Add to fieldset if fieldset is present Otherwise, add to individual checkbox input elements; does NOT override other calculated values
     /// </summary>
     [Parameter]
     public string? DescribedBy { get; set; }
@@ -114,6 +115,7 @@
     /// One or more element IDs to add to the aria-describedby attribute, used
     /// to provide additional descriptive information for screenreader users.
     /// Will override the calculated described by value.
+    /// !!! GDS Toolkit Implementation: not found!
     /// </summary>
     [Parameter]
     public string? FieldsetDescribedBy { get; set; }
@@ -188,7 +190,8 @@
     public string? Role { get; set; }
 
     /// <summary>
-    /// The list of values of the checked checkboxes
+    /// Array of values for checkboxes which should be checked when the page loads. 
+    /// Use this as an alternative to setting the checked option on each individual item.
     /// </summary>
     [Parameter]
     public List<string>? Values { get; set; }
@@ -198,9 +201,9 @@
     [Parameter]
     public EventCallback<List<string>> ValuesChanged { get; set; }
 
-    public Task CheckboxChanged(bool isChecked, string value)
+    public Task OnCheckboxChanged(bool isChecked, string value)
     {
-        if (Values == null) return Task.CompletedTask;
+        if (Values == null) return Task.CompletedTask; // do we need this?
 
         if (!isChecked && Values.Contains(value))
         {
@@ -223,7 +226,7 @@
     {
         get
         {
-            if (LegendTemplate != null || FieldsetClasses != null || FieldsetRole != null || FieldsetAttributes != null)
+            if (LegendTemplate != null || FieldsetClasses != null || FieldsetRole != null || FieldsetAttributes?.Count > 0)
                 return true;
 
             return IncludeFieldset ?? false;
@@ -265,15 +268,30 @@
     /// </summary>
     private int dividerCount = 0;
 
+    /// <summary>
+    /// Flag to indicate the selections on the <see cref="Values"/> and child components have been cleared during the component initialisation process.
+    /// </summary>
+    private bool valuesSelectionsCleared = false;
+
     public void Register(GdsCheckbox checkbox)
     {
-        if (checkbox.Checked == true)
+        if (Values != null)
         {
-            CheckboxChanged(true, checkbox.Value!);
-        }
-        if (Values != null && Values.Contains(checkbox.Value!))
-        {
-            checkbox.Check();
+            if (checkbox.Checked == true)
+            {
+                if (!valuesSelectionsCleared)
+                {
+                    Values.Clear();
+                    checkboxes.ForEach(c => c.Uncheck());
+                    valuesSelectionsCleared = true;
+                }
+
+                Values.Add(checkbox.Value!);
+            }
+            else if (Values.Contains(checkbox.Value!))
+            {
+                checkbox.Check();
+            }
         }
         checkboxes.Add(checkbox);
         checkbox.Index = checkboxes.Count + dividerCount;

@@ -143,6 +143,82 @@
     }
 
     [Fact]
+    public void WhenDescribedByIsSet_ThenOutputsSelectWithDescribedBy()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSelect Id="sort" Name="sort" DescribedBy="default-sort-order">
+        <LabelTemplate>
+            <GdsLabel>Sort by</GdsLabel>
+        </LabelTemplate>
+        <ChildContent>
+            <GdsSelectOption Value="published">Recently published</GdsSelectOption>
+            <GdsSelectOption Value="updated" Selected=@true>Recently updated</GdsSelectOption>
+            <GdsSelectOption Value="views">Most views</GdsSelectOption>
+            <GdsSelectOption Value="comments">Most comments</GdsSelectOption>
+        </ChildContent>
+    </GdsSelect>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <label class="govuk-label" for="sort">
+            Sort by
+        </label>
+        <select class="govuk-select" id="sort" name="sort" aria-describedby="default-sort-order">
+            <option value="published">Recently published</option>
+            <option value="updated" selected>Recently updated</option>
+            <option value="views">Most views</option>
+            <option value="comments">Most comments</option>
+        </select>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenDescribedByHintErrorIsSet_ThenOutputsSelectWithDescribedByWithHintAndError()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSelect Id="sort" Name="sort" DescribedBy="default-sort-order">
+        <LabelTemplate>Sort by</LabelTemplate>
+        <HintTemplate>
+            <GdsHint>These are the only options available</GdsHint>
+        </HintTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>Select a sort option</GdsErrorMessage>
+        </ErrorMessageTemplate>
+        <ChildContent>
+            <GdsSelectOption Value="published">Recently published</GdsSelectOption>
+            <GdsSelectOption Value="updated" Selected=@true>Recently updated</GdsSelectOption>
+            <GdsSelectOption Value="views">Most views</GdsSelectOption>
+            <GdsSelectOption Value="comments">Most comments</GdsSelectOption>
+        </ChildContent>
+    </GdsSelect>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group govuk-form-group--error">
+        Sort by
+        <div id="sort-hint" class="govuk-hint">These are the only options available</div>
+        <p id="sort-error" class="govuk-error-message ">
+            <span class="govuk-visually-hidden">
+                Error:
+            </span>
+            Select a sort option
+        </p>
+        <select class="govuk-select govuk-select--error" id="sort" name="sort" 
+            aria-describedby="default-sort-order sort-hint sort-error">
+            <option value="published">Recently published</option>
+            <option value="updated" selected>Recently updated</option>
+            <option value="views">Most views</option>
+            <option value="comments">Most comments</option>
+        </select>
+    </div>
+        );
+    }
+
+    [Fact]
     public void WhenBeforeInputTemplateIsSet_ThenOutputsContentBeforeTheSelect()
     {
         // Arrange
@@ -217,39 +293,6 @@
     }
 
     [Fact]
-    public void WhenDescribedByIsSet_ThenOutputsSelectWithDescribedBy()
-    {
-        // Arrange
-        var component = Render(
-    @<GdsSelect Id="sort" Name="sort" DescribedBy="default-sort-order">
-        <LabelTemplate>
-            <GdsLabel>Sort by</GdsLabel>
-        </LabelTemplate>
-        <ChildContent>
-            <GdsSelectOption Value="published">Recently published</GdsSelectOption>
-            <GdsSelectOption Value="updated" Selected=@true>Recently updated</GdsSelectOption>
-            <GdsSelectOption Value="views">Most views</GdsSelectOption>
-            <GdsSelectOption Value="comments">Most comments</GdsSelectOption>
-        </ChildContent>
-    </GdsSelect>
-    );
-
-        component.MarkupMatches(
-    @<div class="govuk-form-group">
-        <label class="govuk-label" for="sort">
-            Sort by
-        </label>
-        <select class="govuk-select" id="sort" name="sort" aria-describedby="default-sort-order">
-            <option value="published">Recently published</option>
-            <option value="updated" selected>Recently updated</option>
-            <option value="views">Most views</option>
-            <option value="comments">Most comments</option>
-        </select>
-    </div>
-        );
-    }
-
-    [Fact]
     public void WhenValueIsSet_ThenOutputsSelectWithMatchingOptionSelected()
     {
         // Arrange
@@ -279,17 +322,95 @@
                 <option value="comments">Most comments</option>
             </select>
         </div>
-    );
+        );
     }
 
     [Fact]
-    public void WhenValueChangedIsSet_ThenSpecifiedEventIsTriggeredOnSelect()
+    public void WhenSelectOptionSelectedIsSet_ThenOutputsSelectWithMatchingOptionSelectedAndDoesNotTriggersValueChanged()
+    {
+        // Arrange
+        var currentValue = string.Empty;
+
+        // Act
+        var component = Render(
+        @<GdsSelect Id="sort" Name="sort" ValueChanged=@((value) => currentValue = value)>
+            <LabelTemplate>
+                <GdsLabel>Sort by</GdsLabel>
+            </LabelTemplate>
+            <ChildContent>
+                <GdsSelectOption Value="published">Recently published</GdsSelectOption>
+                <GdsSelectOption Value="updated">Recently updated</GdsSelectOption>
+			    <GdsSelectOption Value="views" Selected=@true>Most views</GdsSelectOption>
+                <GdsSelectOption Value="comments">Most comments</GdsSelectOption>
+            </ChildContent>
+        </GdsSelect>
+        );
+
+        // Assert
+        component.MarkupMatches(
+        @<div class="govuk-form-group">
+            <label class="govuk-label" for="sort">
+                Sort by
+            </label>
+            <select class="govuk-select" id="sort" name="sort">
+                <option value="published">Recently published</option>
+                <option value="updated">Recently updated</option>
+                <option value="views" selected>Most views</option>
+                <option value="comments">Most comments</option>
+            </select>
+        </div>
+        );
+
+        Assert.Equal(string.Empty, currentValue);
+    }
+
+    [Fact]
+    public void WhenSelectOptionSelectedAndValueIsSet_ThenOutputsWithCorrectOptionSelectedAndDoesNotTriggerValueChanged()
+    {
+        // Arrange
+        var currentValue = string.Empty; 
+
+        // Act
+        var component = Render(
+        @<GdsSelect Id="sort" Name="sort" Value="updated" ValueChanged=@((value) => currentValue = value)>
+            <LabelTemplate>
+                <GdsLabel>Sort by</GdsLabel>
+            </LabelTemplate>
+            <ChildContent>
+			    <GdsSelectOption Value="published" Selected=@true>Recently published</GdsSelectOption>
+			    <GdsSelectOption Value="updated">Recently updated</GdsSelectOption>
+                <GdsSelectOption Value="views">Most views</GdsSelectOption>
+			    <GdsSelectOption Value="comments">Most comments</GdsSelectOption>
+            </ChildContent>
+        </GdsSelect>
+        );
+
+        // Assert
+        component.MarkupMatches(
+        @<div class="govuk-form-group">
+            <label class="govuk-label" for="sort">
+                Sort by
+            </label>
+            <select class="govuk-select" id="sort" name="sort">
+			    <option value="published" selected>Recently published</option>
+			    <option value="updated">Recently updated</option>
+                <option value="views">Most views</option>
+			    <option value="comments">Most comments</option>
+            </select>
+        </div>
+        );
+
+        Assert.Equal(string.Empty, currentValue);
+    }
+
+    [Fact]
+    public void WhenSelectOptionIsSelected_ThenSpecifiedValueChangedIsTriggered()
     {
         // Arrange
         var currentValue = string.Empty;
 
         var component = Render(
-            @<GdsSelect Id="sort" Name="sort" Value="updated" ValueChanged=@((value) => currentValue = value)>
+            @<GdsSelect Id="sort" Name="sort" ValueChanged=@((value) => currentValue = value)>
                 <LabelTemplate>
                     <GdsLabel>Sort by</GdsLabel>
                 </LabelTemplate>
@@ -319,5 +440,40 @@
         Assert.Equal("views", currentValue);
     }
 
+    [Fact]
+    public void WhenBindValueIsSet_ThenSpecifiedSelectOptionIsSelected()
+    {
+        // Arrange
+        var currentValue = string.Empty;
 
+        var component = Render(
+        @<GdsSelect Id="sort" Name="sort" @bind-Value=@currentValue>
+            <LabelTemplate>
+                <GdsLabel>Sort by</GdsLabel>
+            </LabelTemplate>
+            <ChildContent>
+                <GdsSelectOption Value="published">Recently published</GdsSelectOption>
+                <GdsSelectOption Value="updated">Recently updated</GdsSelectOption>
+                <GdsSelectOption Value="views">Most views</GdsSelectOption>
+                <GdsSelectOption Value="comments">Most comments</GdsSelectOption>
+            </ChildContent>
+        </GdsSelect>
+        );
+
+        // Act
+        component
+            .Find("select")
+            .Change("comments");
+
+        // Assert
+        Assert.Equal("comments", currentValue);
+
+        // Act
+        component
+            .Find("select")
+            .Change("views");
+
+        // Assert
+        Assert.Equal("views", currentValue);
+    }
 }
