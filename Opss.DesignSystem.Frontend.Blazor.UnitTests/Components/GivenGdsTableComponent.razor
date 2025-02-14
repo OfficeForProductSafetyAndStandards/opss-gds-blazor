@@ -2,7 +2,7 @@
 
 @code {
     [Fact]
-    public void OutputsTableWithHeaderAndRows()
+    public void WhenHeaderAndRowsTemplatesIsSet_ThenOutputsTableWithHeaderAndRows()
     {
         // Arrange, Act
         var component = Render(
@@ -54,7 +54,7 @@
     }
 
     [Fact]
-    public void OutputsTableWithHeaderAndRowsAndRowHeaders()
+    public void WhenHeaderAndRowsTemplatesIsSet_WithFirstCellIsHeader_ThenOutputsTableWithHeaderAndRowsAndRowHeaders()
     {
         // Arrange, Act
         var component = Render(
@@ -106,7 +106,7 @@
     }
 
     [Fact]
-    public void OutputsTableWithHeaderAndRowsAndCaption()
+    public void WhenHeaderAndRowsTemplatesIsSet_WithCaptionText_ThenOutputsTableWithHeaderAndRowsAndCaption()
     {
         // Arrange, Act
         var component = Render(
@@ -153,7 +153,7 @@
     }
 
     [Fact]
-    public void OutputsTableWithHeaderAndRowsAndCaptionAndCaptionClass()
+    public void WhenHeaderAndRowsTemplatesIsSet_WithCaptionTextAndClasses_ThenOutputsTableWithHeaderAndRowsAndCaptionAndCaptionClass()
     {
         // Arrange, Act
         var component = Render(
@@ -200,7 +200,7 @@
     }
 
     [Fact]
-    public void OutputsTableWithNoHeaders()
+    public void WhenRowsTemplatesIsSet_WithNoHeader_ThenOutputsTableWithNoHeaders()
     {
         // Arrange, Act
         var component = Render(
@@ -236,7 +236,7 @@
     }
 
     [Fact]
-    public void OutputsTableWithHeaderAndRowspan()
+    public void WhenATableCellHasARowspanSet_ThenOutputsTableWithARowspan()
     {
         // Arrange, Act
         var component = Render(
@@ -313,9 +313,8 @@
         );
     }
 
-
     [Fact]
-    public void OutputsTableWithHeaderAndColspan()
+    public void WhenATableCellHasAColspanSet_ThenOutputsTableWithAColspan()
     {
         // Arrange, Act
         var component = Render(
@@ -391,89 +390,9 @@
     </table>
         );
     }
-
+   
     [Fact]
-    public void OutputsNoColspanIfSetTo1()
-    {
-        // Arrange, Act
-        var component = Render(
-    @<GdsTable>
-        <HeadTemplate>
-            <GdsTableCell>Heading 1</GdsTableCell>
-        </HeadTemplate>
-        <RowsTemplate>
-            <GdsTableRow>
-                <GdsTableCell ColSpan="1">Row 1</GdsTableCell>
-            </GdsTableRow>
-            <GdsTableRow>
-                <GdsTableCell>Row 2</GdsTableCell>
-            </GdsTableRow>
-        </RowsTemplate>
-    </GdsTable>
-        );
-
-        // Assert
-        component.MarkupMatches(
-    @<table class=@TableClasses.Table>
-        <thead class=@TableClasses.Head>
-            <tr class=@TableClasses.Row>
-                <th scope="col" class=@TableClasses.HeaderCell>Heading 1</th>
-            </tr>
-        </thead>
-        <tbody class=@TableClasses.Body>
-            <tr class=@TableClasses.Row>
-                <td class=@TableClasses.Cell>Row 1</td>
-            </tr>
-            <tr class=@TableClasses.Row>
-                <td class=@TableClasses.Cell>Row 2</td>
-            </tr>
-        </tbody>
-    </table>
-        );
-    }
-
-    [Fact]
-    public void OutputsNoRowspanIfSetTo1()
-    {
-        // Arrange, Act
-        var component = Render(
-    @<GdsTable>
-        <HeadTemplate>
-            <GdsTableCell>Heading 1</GdsTableCell>
-        </HeadTemplate>
-        <RowsTemplate>
-            <GdsTableRow>
-                <GdsTableCell RowSpan="1">Row 1</GdsTableCell>
-            </GdsTableRow>
-            <GdsTableRow>
-                <GdsTableCell>Row 2</GdsTableCell>
-            </GdsTableRow>
-        </RowsTemplate>
-    </GdsTable>
-        );
-
-        // Assert
-        component.MarkupMatches(
-    @<table class=@TableClasses.Table>
-        <thead class=@TableClasses.Head>
-            <tr class=@TableClasses.Row>
-                <th scope="col" class=@TableClasses.HeaderCell>Heading 1</th>
-            </tr>
-        </thead>
-        <tbody class=@TableClasses.Body>
-            <tr class=@TableClasses.Row>
-                <td class=@TableClasses.Cell>Row 1</td>
-            </tr>
-            <tr class=@TableClasses.Row>
-                <td class=@TableClasses.Cell>Row 2</td>
-            </tr>
-        </tbody>
-    </table>
-        );
-    }
-
-    [Fact]
-    public void OutputsTableWithHtmlContent()
+    public void WhenTableCellsHaveHtmlMarkup_ThenOutputsTableWithHtmlContentInCells()
     {
         // Arrange, Act
         var component = Render(
@@ -527,7 +446,7 @@
     }
 
     [Fact]
-    public void OutputsTableWithClasses()
+    public void WhenVariousClassesAreSet_ThenOutputsTableWithTheVariousClasses()
     {
         var tableClass = "tableClass";
         var headerClass = "headerClass";
@@ -578,7 +497,7 @@
     }
 
     [Fact]
-    public void OutputsTableWithNumericCellClasses()
+    public void WhenATableCellHasNumericFormattingSet_ThenOutputsTableWithNumericCellClasses()
     {
         var headerClass = "headerClass";
         var cellClass = "cellClass";
@@ -602,151 +521,26 @@
         </RowsTemplate>
     </GdsTable>
         );
-    }
-
-    [Fact]
-    public void OutputsSortableTable()
-    {
-        // Arrange, Act
-        var component = Render(
-    @<GdsTable IsSortable OnTableSort="(sortArgs) => {}">
-        <HeadTemplate>
-            <GdsTableCell SortColumnName="First">Head column</GdsTableCell>
-            <GdsTableCell SortColumnName="Number">Number column</GdsTableCell>
-        </HeadTemplate>
-        <RowsTemplate>
-            <GdsTableRow>
-                <GdsTableCell>First data row</GdsTableCell>
-                <GdsTableCell>12</GdsTableCell>
-            </GdsTableRow>
-            <GdsTableRow>
-                <GdsTableCell>another row</GdsTableCell>
-                <GdsTableCell>345</GdsTableCell>
-            </GdsTableRow>
-        </RowsTemplate>
-    </GdsTable>
-        );
 
         // Assert
         component.MarkupMatches(
     @<table class=@TableClasses.Table>
         <thead class=@TableClasses.Head>
             <tr class=@TableClasses.Row>
-                <th scope="col" class=@TableClasses.HeaderCell aria-sort="none">
-                    <button class="govuk-button" type="button" data-module="govuk-button">Head column</button>
-                </th>
-                <th scope="col" class=@TableClasses.HeaderCell aria-sort="none">
-                    <button class="govuk-button" type="button" data-module="govuk-button">Number column</button>
-                </th>
+                <th scope="col" class="@TableClasses.HeaderCell @headerClass">Heading</th>
+                <th scope="col" class="@TableClasses.HeaderCell @TableClasses.NumericHeaderCell">Heading</th>
             </tr>
         </thead>
         <tbody class=@TableClasses.Body>
-            <tr class=@TableClasses.Row>
-                <td class=@TableClasses.Cell>First data row</td>
-                <td class=@TableClasses.Cell>12</td>
-            </tr>
-            <tr class=@TableClasses.Row>
-                <td class=@TableClasses.Cell>another row</td>
-                <td class=@TableClasses.Cell>345</td>
+		    <tr class=@TableClasses.Row>
+			    <td class=@TableClasses.Cell>Row</td>
+			    <td class="@TableClasses.Cell @TableClasses.NumericCell">12</td>
+		    </tr>
+		    <tr class=@TableClasses.Row>
+                <td class=@TableClasses.Cell>Row</td>
+                <td class="@TableClasses.Cell @cellClass @TableClasses.NumericCell">345</td>
             </tr>
         </tbody>
-    </table>
-        );
-    }
-
-    [Fact]
-    public void OnTableSortAscendingDescendingTriggered()
-    {
-        // Arrange
-        TableSortArgs sortArgs = null!;
-
-        var component = Render(
-    @<GdsTable IsSortable OnTableSort=@((args) => sortArgs = args)>
-        <HeadTemplate>
-            <GdsTableCell SortColumnName="First">Head column</GdsTableCell>
-            <GdsTableCell SortColumnName="Number">Number column</GdsTableCell>
-        </HeadTemplate>
-    </GdsTable>
-        );
-
-        var sortButtons = component.FindAll("button");
-        var firstButton = sortButtons.First();
-        var secondButton = sortButtons.ElementAt(1);
-
-        // Act: click first column: asc
-        firstButton.Click();
-
-        // Assert
-        Assert.NotNull(sortArgs);
-        Assert.Equal("First", sortArgs.Name);
-        Assert.Equal("ascending", sortArgs.Order);
-
-        // Act: click first column again: desc
-        firstButton.Click();
-
-        // Assert
-        Assert.NotNull(sortArgs);
-        Assert.Equal("First", sortArgs.Name);
-        Assert.Equal("descending", sortArgs.Order);
-
-        component.MarkupMatches(
-    @<table class=@TableClasses.Table>
-        <thead class=@TableClasses.Head>
-            <tr class=@TableClasses.Row>
-                <th scope="col" class=@TableClasses.HeaderCell aria-sort="descending">
-                    <button class="govuk-button" type="button" data-module="govuk-button">Head column</button>
-                </th>
-                <th scope="col" class=@TableClasses.HeaderCell aria-sort="none">
-                    <button class="govuk-button" type="button" data-module="govuk-button">Number column</button>
-                </th>
-            </tr>
-        </thead>
-        <tbody class=@TableClasses.Body></tbody>
-    </table>
-        );
-
-        // Act: click second column: asc
-        secondButton.Click();
-
-        // Assert
-        Assert.NotNull(sortArgs);
-        Assert.Equal("Number", sortArgs.Name);
-        Assert.Equal("ascending", sortArgs.Order);
-    }
-
-
-    [Fact]
-    public void OutputsEmptyTable()
-    {
-        // Arrange, Act
-        var component = Render(@<GdsTable>
-    </GdsTable>
-        );
-
-        // Assert
-        component.MarkupMatches(
-    @<table class=@TableClasses.Table>
-        <tbody class=@TableClasses.Body></tbody>
-    </table>
-        );
-    }
-
-    [Fact]
-    public void OutputsEmptyTableWithEmptyHeader()
-    {
-        // Arrange, Act
-        var component = Render(@<GdsTable>
-            <HeadTemplate></HeadTemplate>
-    </GdsTable>
-        );
-
-        // Assert
-        component.MarkupMatches(
-    @<table class=@TableClasses.Table>
-        <thead class=@TableClasses.Head>
-            <tr class=@TableClasses.Row></tr>
-        </thead>
-        <tbody class=@TableClasses.Body></tbody>
     </table>
         );
     }

@@ -2,34 +2,34 @@
 
 @if(isHeaderCell || isHeaderRow)
 {
-    <th class=@classes(TableClasses.HeaderCell)
-        colspan=@ColSpan
-        rowspan=@RowSpan
-        scope=@scope
-        aria-sort=@ariaSort
-        @attributes=@Attributes        
-    >
-        @if (showSortButton)
-        {
-            <GdsButton Type="button" OnClick="sortTable">
-                @ChildContent
-            </GdsButton>
-        }
-        else
-        {
+<th class=@classes(TableClasses.HeaderCell)
+    colspan=@ColSpan
+    rowspan=@RowSpan
+    scope=@scope
+    aria-sort=@ariaSort
+    @attributes=@Attributes        
+>
+    @if (showSortButton)
+    {
+        <GdsButton Type="button" OnClick="sortTable">
             @ChildContent
-        }
-    </th>
+        </GdsButton>
+    }
+    else
+    {
+        @ChildContent
+    }
+</th>
 }
 else
 {
-    <td class=@classes(TableClasses.Cell)
-        colspan=@ColSpan
-        rowspan=@RowSpan
-        @attributes=@Attributes
-    >
-        @ChildContent
-    </td>
+<td class=@classes(TableClasses.Cell)
+    colspan=@ColSpan
+    rowspan=@RowSpan
+    @attributes=@Attributes
+>
+    @ChildContent
+</td>
 }
 
 @code {
@@ -53,12 +53,14 @@ else
     public string? Format { get; set; }
 
     /// <summary>
-    /// The name of the column in the data source to sort by. 
-    /// This must map to a column (or sort function) in the data source. 
-    /// If no name is specified, no sort button will be rendered. 
-    /// Sort buttons will only render in a table header. 
-    /// The content within the sort column cells must be text only.
+    /// The name of the column in the data source to sort by.
     /// </summary>
+    /// <remarks>
+    /// This must map to a column (or sort function) in the data source.
+    /// If no name is specified, no sort button will be rendered.
+    /// Sort buttons will only render in a table header.
+    /// The content within the sort column cells must be text only.
+    /// </remarks>
     [Parameter]
     public string? SortColumnName { get; set; }
     #endregion
@@ -90,8 +92,10 @@ else
 
     /// <summary>
     /// Indicates the parent of this cell is a <see cref="GdsTable" /> component, and this cell is in a table head row.
-    /// This parameter is set automatically when this component is nested inside a <seealso cref="GdsTable.HeadTemplate"/>.
     /// </summary>
+    /// <remarks>
+    /// This parameter is set automatically when this component is nested inside a <seealso cref="GdsTable.HeadTemplate"/>.
+    ///  </remarks>
     private bool isHeaderRow;
 
     private string? scope
@@ -129,6 +133,17 @@ else
 
         return classBuilder;
     }
+
+    private TableSortArgs initialSortOrder()
+    {
+        if (ParentTable?.InitialSortOrder != null && ParentTable?.InitialSortOrder.Name == SortColumnName)
+        {
+            return ParentTable?.InitialSortOrder!;
+        }
+        
+        return new(SortColumnName!);
+    }
+
     #endregion
 
     #region Parameter Validation
@@ -159,7 +174,7 @@ else
         base.OnInitialized();
         
         ParentRow?.ClearFirstCellIsHeaderFlag(this);
-        if (showSortButton) ParentTable?.SetSortOrder(new(SortColumnName!));
+        if (showSortButton) ParentTable?.SetSortOrder(initialSortOrder());
     }
 
     [CascadingParameter(Name = "ParentRow")]

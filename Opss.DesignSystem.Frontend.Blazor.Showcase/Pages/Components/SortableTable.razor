@@ -159,6 +159,93 @@ CodeExampleContent="@(@"@code{
     </GdsTable>
 </Example>
 
+<h3 class="govuk-heading-s" id="initial-sort-order">With a default or initial sort column and order</h3>
+<Example BlazorExampleContent="@(@"<GdsTable CaptionText=""Set initial sort column and order""
+    IsSortable
+    OnTableSort=@SortTableAsync
+    InitialSortOrder=@defaultSort
+>
+        <HeadTemplate>
+            <GdsTableCell SortColumnName=""Task"">
+                Task
+            </GdsTableCell>
+            <GdsTableCell SortColumnName=""DaysLeft"">
+                Days left
+            </GdsTableCell>
+            <GdsTableCell SortColumnName=""Cost"">
+                Cost
+            </GdsTableCell>
+            <GdsTableCell SortColumnName=""DueDate"">
+                Due date
+            </GdsTableCell>
+            <GdsTableCell />
+        </HeadTemplate>
+        <RowsTemplate>
+            @foreach (var rowData in data!)
+            {
+                <GdsTableRow>
+                    <GdsTableCell>@rowData.Task</GdsTableCell>
+                    <GdsTableCell>@rowData.DaysLeft</GdsTableCell>
+                    <GdsTableCell>@rowData.Cost.ToString(""C"")</GdsTableCell>
+                    <GdsTableCell>@rowData.DueDate.ToShortDateString()</GdsTableCell>
+                    <GdsTableCell>
+                        <GdsButton Type=""button"" Value=@rowData.id.ToString()>Edit</GdsButton>
+                    </GdsTableCell>
+                </GdsTableRow>
+            }
+        </RowsTemplate>
+    </GdsTable>
+")"
+         CodeExampleContent="@(@"@code{
+    private YourDataDomainClass[]? data;
+    private TableSortArgs defaultSort = new TableSortArgs(""DaysLeft"", TableSortOrder.Ascending);
+
+    protected override Task OnInitializedAsync()
+    {
+        //retrieve data from your data source using the same initial default sort options set on the table component
+        data = await YourDataSource.GetDataAsync(defaultSort.Name, defaultSort.Order);
+        base.OnInitializedAsync();
+    }
+
+    private async Task SortTableAsync(TableSortArgs args)
+    {
+        //retrieve data from your data source using the sort column name and order
+        data = await YourDataSource.GetDataAsync(args.Name, args.Order);
+    }
+}")">
+    <GdsTable CaptionText="Set initial sort column and order" IsSortable OnTableSort=@SortTable2 InitialSortOrder=@defaultSort>
+        <HeadTemplate>
+            <GdsTableCell SortColumnName="Task">
+                Task
+            </GdsTableCell>
+            <GdsTableCell SortColumnName="DaysLeft">
+                Days left
+            </GdsTableCell>
+            <GdsTableCell SortColumnName="Cost">
+                Cost
+            </GdsTableCell>
+            <GdsTableCell SortColumnName="DueDate">
+                Due date
+            </GdsTableCell>
+            <GdsTableCell />
+        </HeadTemplate>
+        <RowsTemplate>
+            @foreach (var rowData in defaultSortedData!)
+            {
+                <GdsTableRow>
+                    <GdsTableCell>@rowData.Task</GdsTableCell>
+                    <GdsTableCell>@rowData.DaysLeft</GdsTableCell>
+                    <GdsTableCell>@rowData.Cost.ToString("C")</GdsTableCell>
+                    <GdsTableCell>@rowData.DueDate.ToShortDateString()</GdsTableCell>
+                    <GdsTableCell>
+                        <GdsButton Type="button" Value=@rowData.id.ToString()>Edit</GdsButton>
+                    </GdsTableCell>
+                </GdsTableRow>
+            }
+        </RowsTemplate>
+    </GdsTable>
+</Example>
+
 @code {
     private DummyData[]? data;
 
@@ -169,6 +256,22 @@ CodeExampleContent="@(@"@code{
         await Task.CompletedTask;
     }
 
+    // set initial or default sort order and column
+    private DummyData[]? defaultSortedData;
+    private TableSortArgs defaultSort = new TableSortArgs("DaysLeft", TableSortOrder.Ascending);
+
+    private void SortTable2(TableSortArgs args)
+        => defaultSortedData = getData(args).ToArray();
+    
+    protected override void OnInitialized()
+    {
+        data = dummyDataSource.ToArray();
+        defaultSortedData = getData(defaultSort).ToArray();
+
+        base.OnInitialized();
+    }
+
+    #region "Dummy data source and structure"
     private List<DummyData> getData(TableSortArgs args) => args switch
     { 
         TableSortArgs { Order: TableSortOrder.Ascending, Name: "Task" } => dummyDataSource.OrderBy(d => d.Task).ToList(),
@@ -194,11 +297,5 @@ CodeExampleContent="@(@"@code{
     };
 
     private record DummyData(int id, string Task, int DaysLeft, decimal Cost, DateTime DueDate);
-
-    protected override void OnInitialized()
-    {
-        data = dummyDataSource.ToArray();
-
-        base.OnInitialized();
-    }
+    #endregion
 }

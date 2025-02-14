@@ -1,0 +1,120 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void WhenColspanIsSetTo1_ThenOutputsNoColspan()
+    {
+        // Arrange, Act
+        var component = Render(
+    @<GdsTable>
+        <HeadTemplate>
+            <GdsTableCell>Heading 1</GdsTableCell>
+        </HeadTemplate>
+        <RowsTemplate>
+            <GdsTableRow>
+                <GdsTableCell ColSpan="1">Row 1</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Row 2</GdsTableCell>
+            </GdsTableRow>
+        </RowsTemplate>
+    </GdsTable>
+        );
+
+        // Assert
+        component.MarkupMatches(
+    @<table class=@TableClasses.Table>
+        <thead class=@TableClasses.Head>
+            <tr class=@TableClasses.Row>
+                <th scope="col" class=@TableClasses.HeaderCell>Heading 1</th>
+            </tr>
+        </thead>
+        <tbody class=@TableClasses.Body>
+            <tr class=@TableClasses.Row>
+                <td class=@TableClasses.Cell>Row 1</td>
+            </tr>
+            <tr class=@TableClasses.Row>
+                <td class=@TableClasses.Cell>Row 2</td>
+            </tr>
+        </tbody>
+    </table>
+        );
+    }
+
+    [Fact]
+    public void WhenRowspanIsSetTo1_ThenOutputsNoRowspan()
+    {
+        // Arrange, Act
+        var component = Render(
+    @<GdsTable>
+        <HeadTemplate>
+            <GdsTableCell>Heading 1</GdsTableCell>
+        </HeadTemplate>
+        <RowsTemplate>
+            <GdsTableRow>
+                <GdsTableCell RowSpan="1">Row 1</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>Row 2</GdsTableCell>
+            </GdsTableRow>
+        </RowsTemplate>
+    </GdsTable>
+    );
+
+        // Assert
+        component.MarkupMatches(
+    @<table class=@TableClasses.Table>
+        <thead class=@TableClasses.Head>
+            <tr class=@TableClasses.Row>
+                <th scope="col" class=@TableClasses.HeaderCell>Heading 1</th>
+            </tr>
+        </thead>
+        <tbody class=@TableClasses.Body>
+            <tr class=@TableClasses.Row>
+                <td class=@TableClasses.Cell>Row 1</td>
+            </tr>
+            <tr class=@TableClasses.Row>
+                <td class=@TableClasses.Cell>Row 2</td>
+            </tr>
+        </tbody>
+    </table>
+        );
+    }
+
+
+    [Fact]
+    public void WhenInitialisedEmptyGdsTable_ThenOutputsEmptyTableMarkup()
+    {
+        // Arrange, Act
+        var component = Render(@<GdsTable>
+    </GdsTable>
+        );
+
+        // Assert
+        component.MarkupMatches(
+    @<table class=@TableClasses.Table>
+        <tbody class=@TableClasses.Body></tbody>
+    </table>
+        );
+    }
+
+    [Fact]
+    public void WhenInitialisedEmptyGdsTableWithEmptyHeadTemplate_OutputsEmptyTableWithEmptyHeaderRowMarkup()
+    {
+        // Arrange, Act
+        var component = Render(@<GdsTable>
+        <HeadTemplate></HeadTemplate>
+    </GdsTable>
+        );
+
+        // Assert
+        component.MarkupMatches(
+    @<table class=@TableClasses.Table>
+        <thead class=@TableClasses.Head>
+            <tr class=@TableClasses.Row></tr>
+        </thead>
+        <tbody class=@TableClasses.Body></tbody>
+    </table>
+        );
+    }
+}
