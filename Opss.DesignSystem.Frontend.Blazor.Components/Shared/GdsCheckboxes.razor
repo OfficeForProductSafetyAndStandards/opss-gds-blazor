@@ -121,7 +121,7 @@
     /// <summary>
     /// Calculate the Fieldset's Described By attribute. Only applies when a Fieldset is rendered.
     /// </summary>
-    public string? FieldsetDescribedBy
+    internal string? FieldsetDescribedBy
     {
         get
         {
@@ -217,7 +217,7 @@
 
     public Task OnCheckboxChanged(bool isChecked, string value)
     {
-        if (Values == null) return Task.CompletedTask; // do we need this?
+        if (Values == null) return Task.CompletedTask;
 
         if (!isChecked && Values.Contains(value))
         {
