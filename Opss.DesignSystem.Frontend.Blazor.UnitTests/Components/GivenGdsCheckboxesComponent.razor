@@ -620,30 +620,84 @@
             <GdsCheckbox Value="option1">Option 1</GdsCheckbox>
         </ChildContent>
     </GdsCheckboxes>
-    );
+        );
 
         // Assert
         component.MarkupMatches(
     @<div class="govuk-form-group">
-        <fieldset class="govuk-fieldset">
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="empty-legend" name="empty-legend" type="checkbox"
+                        value="option1">
+                <label class="govuk-label govuk-checkboxes__label" for="empty-legend">Option 1</label>
+            </div>
+        </div>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenFieldsetRoleIsSete_ThenOutputsCheckboxesFielset()
+    {
+        // Arrange        
+        var component = Render(
+    @<GdsCheckboxes Name="outputFieldset" FieldsetRole="checkbox">
+        <ChildContent>
+            <GdsCheckbox Value="option1">Option 1</GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+        );
+
+        // Assert
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="checkbox">
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
                 <div class="govuk-checkboxes__item">
-                    <input class="govuk-checkboxes__input" id="empty-legend" name="empty-legend" type="checkbox"
+                    <input class="govuk-checkboxes__input" id="outputFieldset" name="outputFieldset" type="checkbox"
                            value="option1">
-                    <label class="govuk-label govuk-checkboxes__label" for="empty-legend">Option 1</label>
+                    <label class="govuk-label govuk-checkboxes__label" for="outputFieldset">Option 1</label>
                 </div>
             </div>
         </fieldset>
     </div>
-    );
+        );
     }
 
     [Fact]
-    public void WhenDescribedByIsSet_ThenOutputsCheckboxesWithDescribedBy()
+    public void WhenFieldsetClassesIsSete_ThenOutputsCheckboxesFieldsetWithClasses()
     {
         // Arrange
         var component = Render(
-    @<GdsCheckboxes Name="waste" DescribedBy="waste-hint">
+    @<GdsCheckboxes Name="outputFieldset" FieldsetClasses="class1 class2">
+        <ChildContent>
+            <GdsCheckbox Value="option1">Option 1</GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+        );
+
+        // Assert
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <fieldset class="govuk-fieldset class1 class2">
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="outputFieldset" name="outputFieldset" type="checkbox"
+                           value="option1">
+                    <label class="govuk-label govuk-checkboxes__label" for="outputFieldset">Option 1</label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenDescribedByIsSetWithFieldset_ThenOutputsFieldsetWithDescribedBy()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsCheckboxes Name="waste" DescribedBy="waste-described-by">
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes="govuk-fieldset__legend--l">
                 Which types of waste do you transport?
@@ -657,15 +711,14 @@
         <ChildContent>
             <GdsCheckbox Value="carcasses">Waste from animal carcasses</GdsCheckbox>
             <GdsCheckbox Value="mines">Waste from mines or quarries</GdsCheckbox>
-            <GdsCheckbox Value="farm">Farm or agricultural waste</GdsCheckbox>
         </ChildContent>
     </GdsCheckboxes>
-    );
+        );
 
         // Assert
         component.MarkupMatches(
     @<div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+        <fieldset class="govuk-fieldset" aria-describedby="waste-described-by waste-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
                     Which types of waste do you transport?
@@ -676,30 +729,63 @@
             </div>
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
                 <div class="govuk-checkboxes__item">
-                    <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox"
-                           value="carcasses" aria-describedby="waste-hint">
+                    <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
                     <label class="govuk-label govuk-checkboxes__label" for="waste">
                         Waste from animal carcasses
                     </label>
                 </div>
                 <div class="govuk-checkboxes__item">
-                    <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox"
-                           value="mines" aria-describedby="waste-hint">
+                    <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
                     <label class="govuk-label govuk-checkboxes__label" for="waste-2">
                         Waste from mines or quarries
-                    </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox"
-                           value="farm" aria-describedby="waste-hint">
-                    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-                        Farm or agricultural waste
                     </label>
                 </div>
             </div>
         </fieldset>
     </div>
-    );
+        );
+    }
+
+    [Fact]
+    public void WhenDescribedByIsSetWithoutFieldset_ThenOutputsCheckboxesWithDescribedBy()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsCheckboxes Name="waste" DescribedBy="waste-described-by">
+        <HintTemplate>
+            <GdsHint>
+                Select all that apply
+            </GdsHint>
+        </HintTemplate>
+        <ChildContent>
+            <GdsCheckbox Value="carcasses">Waste from animal carcasses</GdsCheckbox>
+            <GdsCheckbox Value="mines">Waste from mines or quarries</GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+        );
+
+        // Assert
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <div id="waste-hint" class="govuk-hint">
+            Select all that apply
+        </div>
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses" aria-describedby="waste-described-by waste-hint">
+                <label class="govuk-label govuk-checkboxes__label" for="waste">
+                    Waste from animal carcasses
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines" aria-describedby="waste-described-by waste-hint">
+                <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+                    Waste from mines or quarries
+                </label>
+            </div>
+        </div>
+    </div>
+        );
     }
 
     [Fact]
@@ -833,7 +919,7 @@
                     </GdsCheckbox>
                 </ChildContent>
             </GdsCheckboxes>
-        );
+    );
 
         // Act
         component
@@ -883,4 +969,151 @@
         Assert.Contains("none", currentValues);
     }
 
-}
+    [Fact]
+    public void WhenValuesIsSetAndCheckboxesSelected_ThenCorrectCheckboxesAreSelectedAndValuesChangeNotTriggered()
+    {
+        // Arrange
+        var presetValues = new List<string>() { "spain", "portugal", "italy" };
+        var currentValues = new List<string>();
+
+        // Act
+        var component = Render(
+    @<GdsCheckboxes Name="bindingValues" Values=@presetValues ValuesChanged=@(values => currentValues = values)>
+        <ChildContent>
+            <GdsCheckbox Value="france" Checked=@true>France</GdsCheckbox>
+            <GdsCheckbox Value="portugal">Portugal</GdsCheckbox>
+            <GdsCheckbox Value="spain" Checked=@true>Spain</GdsCheckbox>
+            <GdsCheckbox Value="italy">Italy</GdsCheckbox>
+            <GdsCheckboxDivider>or</GdsCheckboxDivider>
+            <GdsCheckbox Value="none" IsExclusive=@true>
+                No, I will not be travelling to any of these countries
+            </GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+        );
+
+        // Assert
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="bindingValues" name="bindingValues" type="checkbox"
+                        value="france" checked>
+                <label class="govuk-label govuk-checkboxes__label" for="bindingValues">
+                    France
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="bindingValues-2" name="bindingValues" type="checkbox"
+                        value="portugal">
+                <label class="govuk-label govuk-checkboxes__label" for="bindingValues-2">
+                    Portugal
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="bindingValues-3" name="bindingValues" type="checkbox"
+                        value="spain" checked>
+                <label class="govuk-label govuk-checkboxes__label" for="bindingValues-3">
+                    Spain
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="bindingValues-4" name="bindingValues" type="checkbox"
+                       value="italy">
+                <label class="govuk-label govuk-checkboxes__label" for="bindingValues-4">
+                    Italy
+                </label>
+            </div>
+            <div class="govuk-checkboxes__divider">or</div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="bindingValues-6" name="bindingValues" type="checkbox"
+                        value="none" data-behaviour="exclusive">
+                <label class="govuk-label govuk-checkboxes__label" for="bindingValues-6">
+                    No, I will not be travelling to any of these countries
+                </label>
+            </div>
+        </div>
+    </div>
+        );
+
+        Assert.Empty(currentValues);
+    }
+    
+    [Fact]
+    public void WhenBindValuesIsSet_ThenCorrectCheckboxesAreSelected()
+    {
+        // Arrange
+        var currentValues = new List<string>() { "spain" };
+
+        var component = Render(
+    @<GdsCheckboxes Name="bindingValues" @bind-Values=@currentValues>
+        <ChildContent>
+            <GdsCheckbox Value="france">France</GdsCheckbox>
+            <GdsCheckbox Value="portugal">Portugal</GdsCheckbox>
+            <GdsCheckbox Value="spain">Spain</GdsCheckbox>
+            <GdsCheckboxDivider>or</GdsCheckboxDivider>
+            <GdsCheckbox Value="none" IsExclusive=@true>
+                No, I will not be travelling to any of these countries
+            </GdsCheckbox>
+        </ChildContent>
+    </GdsCheckboxes>
+    );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="bindingValues" name="bindingValues" type="checkbox"
+                       value="france">
+                <label class="govuk-label govuk-checkboxes__label" for="bindingValues">
+                    France
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="bindingValues-2" name="bindingValues" type="checkbox"
+                       value="portugal">
+                <label class="govuk-label govuk-checkboxes__label" for="bindingValues-2">
+                    Portugal
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="bindingValues-3" name="bindingValues" type="checkbox"
+                       value="spain" checked>
+                <label class="govuk-label govuk-checkboxes__label" for="bindingValues-3">
+                    Spain
+                </label>
+            </div>
+            <div class="govuk-checkboxes__divider">or</div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="bindingValues-5" name="bindingValues" type="checkbox"
+                       value="none" data-behaviour="exclusive">
+                <label class="govuk-label govuk-checkboxes__label" for="bindingValues-5">
+                    No, I will not be travelling to any of these countries
+                </label>
+            </div>
+        </div>
+    </div>
+        );
+
+        // Act
+        component
+            .Find("[id=bindingValues]")
+            .Input(new() { Value = true });
+
+        component
+            .Find("[id=bindingValues-2]")
+            .Input(new() { Value = true });
+
+        component
+            .Find("[id=bindingValues-3]")
+            .Input(new() { Value = false });
+
+        // Assert
+        Assert.NotNull(currentValues);
+        Assert.NotEmpty(currentValues);
+        Assert.Equal(2, currentValues.Count);
+        Assert.Contains("france", currentValues);
+        Assert.Contains("portugal", currentValues);
+        Assert.DoesNotContain("spain", currentValues);
+    }
+}}

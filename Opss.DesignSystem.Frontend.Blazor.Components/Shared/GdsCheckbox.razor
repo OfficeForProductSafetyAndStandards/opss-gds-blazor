@@ -65,7 +65,7 @@
 
     /// <summary>
     /// Whether the checkbox should be checked when the page loads.
-    /// Takes precedence over the top-level value option.
+    /// Takes precedence over the top-level values option.
     /// </summary>
     [Parameter]
     public bool? Checked { get; set; }
@@ -119,7 +119,12 @@
     /// <summary>
     /// Mark the checkbox as checked.
     /// </summary>
-    public void Check() => isChecked = true;
+    internal void Check() => isChecked = true;
+
+    /// <summary>
+    /// Mark the checkbox as unchecked.
+    /// </summary>
+    internal void Uncheck() => isChecked = false;
     #endregion
 
     #region Event Handlers
@@ -128,7 +133,7 @@
         // get the checkbox state
         var value = bool.Parse(e.Value?.ToString() ?? string.Empty);
 
-        return Parent!.CheckboxChanged(value, Value ?? string.Empty);
+        return Parent!.OnCheckboxChanged(value, Value ?? string.Empty);
     }
     #endregion
 
@@ -172,7 +177,7 @@
         get
         {
             var fullText = "";
-            if (parentIncludesFieldset) fullText = Parent?.DescribedBy ?? "";
+            if (!parentIncludesFieldset) fullText = Parent?.FieldsetDescribedBy ?? "";
             if (HintTemplate != null) fullText += $" {id}-item-hint";
             return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
         }
@@ -182,7 +187,7 @@
     {
         get
         {
-            if (Parent?.LegendTemplate != null || Parent?.FieldsetClasses != null || Parent?.FieldsetRole != null || Parent?.FieldsetAttributes != null)
+            if (Parent?.LegendTemplate != null || Parent?.FieldsetClasses != null || Parent?.FieldsetRole != null || Parent?.FieldsetAttributes?.Count > 0)
                 return true;
 
             return Parent?.IncludeFieldset ?? false;
