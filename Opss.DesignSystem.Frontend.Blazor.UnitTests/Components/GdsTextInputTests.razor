@@ -703,6 +703,82 @@
     }
 
     [Fact]
+    public void When_ErrorExcluded_OutputsQuestion_WithOut_ErrorMessage()
+    {
+        RenderFragment? errorMessage = null;
+
+        if(false){
+            errorMessage =@<GdsErrorMessage>Enter an event name</GdsErrorMessage>;
+        }
+        // Arrange
+        var component = Render(
+    @<GdsTextInput Id="event-name"
+                       Name="eventName" ErrorMessageTemplate=errorMessage>
+        <LabelTemplate>
+            <GdsLabel Classes="@LabelSize.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint>The name you値l use on promotional material</GdsHint>
+        </HintTemplate>
+    </GdsTextInput>
+    );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="event-name">
+                What is the name of the event?
+            </label>
+        </h1>
+        <div id="event-name-hint" class="govuk-hint">
+            The name you値l use on promotional material
+        </div>
+        <input class="govuk-input" id="event-name" name="eventName" type="text" aria-describedby="event-name-hint">
+    </div>
+        );
+    }
+
+    [Fact]
+    public void When_ErrorDeclaredInCode_OutputsQuestion_With_ErrorMessage()
+    {
+        RenderFragment? errorMessage = null;
+
+        if (true)
+        {
+            errorMessage =@<GdsErrorMessage>Enter an event name</GdsErrorMessage>;
+        }
+        // Arrange
+        var component = Render(
+    @<GdsTextInput Id="event-name"
+                       Name="eventName" ErrorMessageTemplate=errorMessage>
+        <LabelTemplate>
+            <GdsLabel Classes="@LabelSize.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint>The name you値l use on promotional material</GdsHint>
+        </HintTemplate>
+    </GdsTextInput>
+    );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group govuk-form-group--error">
+        <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="event-name">
+                What is the name of the event?
+            </label>
+        </h1>
+        <div id="event-name-hint" class="govuk-hint">
+            The name you値l use on promotional material
+        </div>
+        <p id="event-name-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter an event name
+        </p>
+        <input class="govuk-input govuk-input--error" id="event-name" name="eventName" type="text" aria-describedby="event-name-hint event-name-error">
+    </div>
+        );
+    }
+
+    [Fact]
     public void OutputsQuestion_With_PrefixAndSuffixErrorMessage()
     {
         // Arrange
