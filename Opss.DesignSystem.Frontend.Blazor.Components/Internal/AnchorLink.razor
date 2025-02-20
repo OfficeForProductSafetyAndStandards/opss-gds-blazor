@@ -1,0 +1,48 @@
+﻿@inherits GdsWithHref
+@inject Microsoft.JSInterop.IJSRuntime JS
+
+<a
+	id=@Id
+	class=@Classes
+	href=@Href
+	@attributes=@Attributes
+	@onclick=@AnchorOnClickAsync
+	@onclick:preventDefault=@preventDefault
+>
+	@ChildContent
+</a>
+
+@code {
+	#region Public Parameters 
+	[Parameter]
+	public string? Id { get; set; }
+
+	[Parameter]
+	public string? AriaCurrent { get; set; }
+	#endregion
+	#region Private Properties
+	private string? targetId = null;
+	private bool preventDefault = false;
+	#endregion
+
+	#region Event Handlers
+	private async Task AnchorOnClickAsync()
+	{
+		if (string.IsNullOrEmpty(targetId)) return;
+
+		await JS.InvokeAsync<string>("anchorLink.scrollIntoView", [targetId]);
+	}
+	#endregion
+
+	#region Parameter Validation / Event Overriding
+	protected override void OnParametersSet()
+	{
+		if (!string.IsNullOrEmpty(this.Href) && this.Href.StartsWith("#"))
+		{
+			targetId = Href.Substring(1);
+			preventDefault = true;
+		}
+		base.OnParametersSet();
+	}
+	#endregion
+}

@@ -10,16 +10,27 @@
     {
         @ChildContent
     } else {
-        <a class="govuk-breadcrumbs__link @Classes"
-           href=@Href
-           @attributes=@Attributes
-        >
+        <AnchorLink Classes=@classes
+        Href=@Href
+        @attributes=@Attributes>
             @ChildContent
-        </a>
+        </AnchorLink>
     }
 </li>
 
 @code {
+    #region Private Properties
+    private string classes
+    {
+        get
+        {
+            var classBuilder = "govuk-breadcrumbs__link";
+            if (!string.IsNullOrEmpty(Classes)) classBuilder += $" {Classes}";
+            return classBuilder;
+        }
+    }
+    #endregion
+
     #region Cascading Value - Parent
     protected override void OnInitialized()
     {

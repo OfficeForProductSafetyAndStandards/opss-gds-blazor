@@ -1,10 +1,11 @@
 ﻿@inherits GdsWithHref
 
 <li class="govuk-service-navigation__item @((Active == true || Current == true) ? "govuk-service-navigation__item--active" : "")">
-    <a class="govuk-service-navigation__link"
-       href=@Href
-       aria-current=@ariaCurrent
-       @attributes=@Attributes>
+    <AnchorLink Classes="govuk-service-navigation__link"
+        href=@Href
+        @attributes=@Attributes
+        aria-current=@ariaCurrent
+    >
         @if (Active == true || Current == true)
         {
             <strong class="govuk-service-navigation__active-fallback">
@@ -15,7 +16,7 @@
         {
             @ChildContent
         }
-    </a>
+    </AnchorLink>
 </li>
 
 @code {

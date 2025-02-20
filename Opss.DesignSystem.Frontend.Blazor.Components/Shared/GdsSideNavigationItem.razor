@@ -1,9 +1,9 @@
 ﻿@inherits GdsWithHref
 
 <li class="moj-side-navigation__item @(Active == true ? "moj-side-navigation__item--active" : null)">
-    <a href=@Href aria-current=@(Active == true ? "location" : null)>
+    <AnchorLink Href=@Href Attributes=@linkAttributes>
         @ChildContent
-    </a>
+    </AnchorLink>
 </li>
 
 @code {
@@ -13,6 +13,18 @@
     /// </summary>
     [Parameter]
     public bool? Active { get; set; }
+    #endregion
+
+    #region Private Properties
+    private Dictionary<string, object> linkAttributes
+    {
+        get
+        {
+            var attributes = new Dictionary<string, object>();
+            if(Active ?? false) attributes.Add("aria-current", "location");
+            return attributes;
+        }
+    }
     #endregion
 
     #region Cascading Value - Parent

@@ -5,10 +5,23 @@
     main content on a page.
 </summary> *@
 
-<a href=@Href 
-   class="govuk-skip-link @Classes" 
-   data-module="govuk-skip-link" 
-   @attributes=@Attributes
->
-   @ChildContent
-</a>
+<AnchorLink Classes=@classes
+            href=@Href
+            @attributes=@Attributes
+            data-module="govuk-skip-link">
+    @ChildContent
+</AnchorLink>
+
+@code {
+    #region Private Properties
+    private string classes
+    {
+        get
+        {          
+            var classBuilder = "govuk-skip-link";
+            if (!string.IsNullOrEmpty(Classes)) classBuilder += $" {Classes}";
+            return classBuilder;
+        }
+    }
+    #endregion
+}
