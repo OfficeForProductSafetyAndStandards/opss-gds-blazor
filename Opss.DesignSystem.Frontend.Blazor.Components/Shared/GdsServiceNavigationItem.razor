@@ -2,9 +2,9 @@
 
 <li class="govuk-service-navigation__item @((Active == true || Current == true) ? "govuk-service-navigation__item--active" : "")">
     <AnchorLink Classes="govuk-service-navigation__link"
-        href=@Href
+        Href=@Href
         @attributes=@Attributes
-        aria-current=@ariaCurrent
+        AriaCurrent=@ariaCurrent
     >
         @if (Active == true || Current == true)
         {

@@ -1,13 +1,14 @@
 ﻿@inherits GdsWithHref
 @inject Microsoft.JSInterop.IJSRuntime JS
 
-<a
-	id=@Id
-	class=@Classes
-	href=@Href
-	@attributes=@Attributes
-	@onclick=@AnchorOnClickAsync
-	@onclick:preventDefault=@preventDefault
+<a id=@Id
+	 class=@Classes
+	 href=@Href
+	 aria-current=@AriaCurrent
+	 data-module=@DataModule
+	 @attributes=@Attributes
+	 @onclick=@AnchorOnClickAsync
+	 @onclick:preventDefault=@preventDefault
 >
 	@ChildContent
 </a>
@@ -19,7 +20,11 @@
 
 	[Parameter]
 	public string? AriaCurrent { get; set; }
+
+	[Parameter]
+	public string? DataModule { get; set; }
 	#endregion
+
 	#region Private Properties
 	private string? targetId = null;
 	private bool preventDefault = false;
