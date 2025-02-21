@@ -4,8 +4,6 @@
 <a id=@Id
 	 class=@Classes
 	 href=@Href
-	 aria-current=@AriaCurrent
-	 data-module=@DataModule
 	 @attributes=@Attributes
 	 @onclick=@AnchorOnClickAsync
 	 @onclick:preventDefault=@preventDefault
@@ -17,12 +15,6 @@
 	#region Public Parameters 
 	[Parameter]
 	public string? Id { get; set; }
-
-	[Parameter]
-	public string? AriaCurrent { get; set; }
-
-	[Parameter]
-	public string? DataModule { get; set; }
 	#endregion
 
 	#region Private Properties

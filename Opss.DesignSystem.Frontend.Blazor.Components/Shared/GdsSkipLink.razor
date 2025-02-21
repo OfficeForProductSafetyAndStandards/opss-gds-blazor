@@ -5,10 +5,7 @@
     main content on a page.
 </summary> *@
 
-<AnchorLink Classes=@classes
-            Href=@Href
-            DataModule="govuk-skip-link"
-            @attributes=@Attributes>
+<AnchorLink Classes=@classes Href=@Href Attributes=@linkAttributes>
     @ChildContent
 </AnchorLink>
 
@@ -21,6 +18,16 @@
             var classBuilder = "govuk-skip-link";
             if (!string.IsNullOrEmpty(Classes)) classBuilder += $" {Classes}";
             return classBuilder;
+        }
+    }
+
+    private Dictionary<string, object> linkAttributes
+    {
+        get
+        {
+            Attributes!.Add("data-module", "govuk-skip-link");
+
+            return Attributes!;
         }
     }
     #endregion

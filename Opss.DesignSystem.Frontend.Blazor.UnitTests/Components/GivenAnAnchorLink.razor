@@ -45,30 +45,23 @@
 	}
 
 	[Fact]
-	public void WhenAriaCurrentIsSet_ThenOutputsAHyperlink_WithAriaCurrentAttribute()
+	public void WhenCustomAttributesSet_ThenOutputsAHyperlink_WithCustomAttributes()
 	{
 		// Arrange // Act
+		var linkCustomAttributes = new Dictionary<string, object>
+		{
+			{ "aria-current", "portal" },
+			{ "target", "_self" },
+			{ "data-module", "test_platform_01" }
+		};
+
 		var component = Render(
-			@<AnchorLink AriaCurrent="test" Href="https://test-link.com/" >An Anchor Link</AnchorLink>
+			@<AnchorLink Href="https://test-link.com/" Attributes=@linkCustomAttributes>An Anchor Link</AnchorLink>
 		);
 
 		// Assert
 		component.MarkupMatches(
-			@<a href="https://test-link.com/" aria-current="test">An Anchor Link</a>
-		);
-	}
-
-	[Fact]
-	public void WhenDataModuleIsSet_ThenOutputsAHyperlink_WithDataModuleAttribute()
-	{
-		// Arrange // Act
-		var component = Render(
-			@<AnchorLink Href="https://test-link.com/" DataModule="_test_data">An Anchor Link</AnchorLink>
-		);
-
-		// Assert
-		component.MarkupMatches(
-			@<a href="https://test-link.com/" data-module="_test_data">An Anchor Link</a>
+			@<a href="https://test-link.com/" aria-current="portal" target="_self" data-module="test_platform_01">An Anchor Link</a>
 		);
 	}
 }

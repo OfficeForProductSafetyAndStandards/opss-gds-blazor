@@ -3,8 +3,7 @@
 <li class="govuk-service-navigation__item @((Active == true || Current == true) ? "govuk-service-navigation__item--active" : "")">
     <AnchorLink Classes="govuk-service-navigation__link"
         Href=@Href
-        @attributes=@Attributes
-        AriaCurrent=@ariaCurrent
+        Attributes=@linkAttributes
     >
         @if (Active == true || Current == true)
         {
@@ -37,6 +36,23 @@
     #endregion
 
     #region Private Properties
+    private Dictionary<string, object> linkAttributes
+    {
+        get
+        {
+            if (Current == true)
+            {
+                Attributes!.Add("aria-current", "page");
+            }
+            if (Active == true)
+            {
+                Attributes!.Add("aria-current", "true");
+            }
+
+            return Attributes!;
+        }
+    }
+
     private string? ariaCurrent
     {
         get

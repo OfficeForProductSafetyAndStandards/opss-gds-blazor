@@ -1,6 +1,6 @@
 ﻿@inherits GdsWithHref
 
-<AnchorLink id=@Id
+<AnchorLink Id=@Id
     Classes=@classes
     Href=@Href
     Attributes=@linkAttributes>
@@ -40,13 +40,11 @@
         public bool IsOnDarkBackground { get; set; }
     #endregion
 
-        #region Private Properties
+    #region Private Properties
     private Dictionary<string, object> linkAttributes
     {
         get
         {
-            if(!string.IsNullOrEmpty(Id)) Attributes!.Add("id", Id);
-
             if (OpenInNewTab) 
             {
                 Attributes!.Add("target", "_blank");
