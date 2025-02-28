@@ -291,6 +291,29 @@
     }
 
     [Fact]
+    public void WhenErrorTemplateSet_ThenRendersErrorTemplateAndSetsDescribedBy()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsTextInput Id="event-name"
+                       Name="eventName">
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>Enter an event name</GdsErrorMessage>
+        </ErrorMessageTemplate>
+    </GdsTextInput>
+    );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group govuk-form-group--error">
+        <p id="event-name-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter an event name
+        </p>
+        <input class="govuk-input govuk-input--error" id="event-name" name="eventName" type="text" aria-describedby="event-name-error">
+    </div>
+        );
+    }
+
+    [Fact]
     public void WhenErrorTemplateAndHintTemplateSet_ThenRendersErrorTemplateAndHintTemplateAndSetsDescribedBy()
     {
         // Arrange
@@ -375,5 +398,18 @@
     );
     }
 
-    // event handler
+    [Fact]
+    public void WhenEventHandlerSetAndEventTriggered_ThenHandlerCalled()
+    {
+        // Arrange
+        var expectedValue = "this is a new value";
+		var actualValue = string.Empty;
+        var component = Render<GdsTextInput>(builder => builder.Add(input => input.ValueChanged, val => actualValue = val));
+
+        // Act
+		component.Find("input").Input(expectedValue);
+
+		// Assert
+		Assert.Equal(expectedValue, actualValue);
+    }
 }
