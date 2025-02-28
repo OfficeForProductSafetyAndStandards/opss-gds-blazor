@@ -38,7 +38,7 @@
                    class="govuk-input @Classes @(ErrorMessageTemplate != null ? "govuk-input--error" : "")" 
                    name=@Name
                    type=@(Type ?? "text")
-                   spellcheck=@Spellcheck?.ToString().ToLower()
+				   spellcheck=@spellcheck
                    aria-describedby=@describedBy?.Trim()
                    autocomplete=@Autocomplete
                    pattern=@Pattern
@@ -221,7 +221,7 @@
             if (Inputmode == "numeric")
                 return false.ToString().ToLower();
 
-            return Spellcheck?.ToString().ToLower();
+            return null;
         }
     }
 
