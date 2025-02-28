@@ -1,8 +1,82 @@
 @inherits BunitContext
 
+<h3>Given a TextInput</h3>
+
+@*
+expected tests:
+
+basic render
+basic render with form group classes, attrs, 
+with/out labeltemplate
+with/out hinttemplate
+with/out errortemplate
+all templates
+prefix and suffix template
+all templates inc prefix and suffix together
+is page heading - no, this is a GdsLabel test.
+each type
+value changed
+spell check
+described by
+*@
+
 @code {
     [Fact]
-    public void OutputsQuestion_With_HeadingQuestion()
+    public void WhenNoOptionsSet_ThenOutputsMinimumMarkup()
+    {
+        // Arrange
+        var component = Render(@<GdsTextInput></GdsTextInput>);
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <input class="govuk-input" type="text">
+    </div>
+        );
+    }
+    
+    [Fact]
+    public void WhenAllOptionsSet_ThenOutputsFullMarkup()
+    {
+        // Arrange
+        var attrs = new Dictionary<string, object> { { "attr1", "value1" } };
+        var component = Render(
+            @<GdsTextInput
+                 Id="all"
+                 Name="all"
+                 Classes="some-css"
+                 Attributes=@attrs
+                 Inputmode="something"
+                 Value="a value"
+                 Disabled="true"
+                 DescribedBy="element2"
+                 FormGroupClasses="form-group-css"
+                 FormGroupAttributes=@attrs
+                 Autocomplete="yes please"
+                 Pattern="regex"
+                 Spellcheck="true"
+                 Autocapitalize="ok"
+                 InputWrapperClasses="input-wrapper-classes"></GdsTextInput>);
+        
+        component.MarkupMatches(
+            @<div class="govuk-form-group  form-group-css" attr1="value1">
+                <input id="all" 
+                    class="govuk-input some-css " 
+                    name="all" type="text" 
+                    spellcheck="true" 
+                    aria-describedby="element2" 
+                    autocomplete="yes please" 
+                    pattern="regex" 
+                    inputmode="something" 
+                    value="a value" 
+                    disabled="" 
+                    autocapitalize="ok" 
+                    attr1="value1">
+            </div>
+        );
+    }
+
+    [Fact]
+    public void WhenIsPageHeadingTrue_ThenOutputsHeading()
     {
         // Arrange
         var component = Render(
@@ -26,29 +100,7 @@
     }
 
     [Fact]
-    public void OutputsQuestion_With_TextQuestion()
-    {
-        // Arrange
-        var component = Render(
-    @<GdsTextInput Id="event-name" Name="eventName">
-        <LabelTemplate>
-            <GdsLabel>What is the name of the event?</GdsLabel>
-        </LabelTemplate>
-    </GdsTextInput>
-        );
-
-        component.MarkupMatches(
-    @<div class="govuk-form-group">
-        <label class="govuk-label" for="event-name">
-            What is the name of the event?
-        </label>
-        <input class="govuk-input" id="event-name" name="eventName" type="text">
-    </div>
-    );
-    }
-
-    [Fact]
-    public void OutputsQuestion_With_20CharacterWidth()
+    public void WhenClassesAdded_ThenIncludesCorrectCSS()
     {
         // Arrange
         var component = Render(
@@ -351,7 +403,7 @@
             </GdsLabel>
         </LabelTemplate>
         <HintTemplate>
-            <GdsHint>The name you’ll use on promotional material</GdsHint>
+            <GdsHint>The name youï¿½ll use on promotional material</GdsHint>
         </HintTemplate>
     </GdsTextInput>
         );
@@ -364,7 +416,7 @@
             </label>
         </h1>
         <div id="event-name-hint" class="govuk-hint">
-            The name you’ll use on promotional material
+            The name youï¿½ll use on promotional material
         </div>
         <input class="govuk-input" id="event-name" name="eventName" type="text" aria-describedby="event-name-hint">
     </div>
@@ -490,7 +542,7 @@
             </GdsLabel>
         </LabelTemplate>
         <PrefixTemplate>
-            <GdsPrefix>£</GdsPrefix>
+            <GdsPrefix>ï¿½</GdsPrefix>
         </PrefixTemplate>
         <SuffixTemplate>
             <GdsSuffix>per item</GdsSuffix>
@@ -506,7 +558,7 @@
             </label>
         </h1>
         <div class="govuk-input__wrapper">
-            <div class="govuk-input__prefix" aria-hidden="true">£</div>
+            <div class="govuk-input__prefix" aria-hidden="true">ï¿½</div>
             <input class="govuk-input govuk-input--width-5" id="cost-per-item" name="costPerItem" type="text" spellcheck="false">
             <div class="govuk-input__suffix" aria-hidden="true">per item</div>
         </div>
@@ -530,7 +582,7 @@
             </GdsLabel>
         </LabelTemplate>
         <PrefixTemplate>
-            <GdsPrefix>£</GdsPrefix>
+            <GdsPrefix>ï¿½</GdsPrefix>
         </PrefixTemplate>
     </GdsTextInput>
         );
@@ -543,7 +595,7 @@
             </label>
         </h1>
         <div class="govuk-input__wrapper">
-            <div class="govuk-input__prefix" aria-hidden="true">£</div>
+            <div class="govuk-input__prefix" aria-hidden="true">ï¿½</div>
             <input class="govuk-input govuk-input--width-5" id="cost" name="cost" type="text" spellcheck="false">
         </div>
     </div>
@@ -676,7 +728,7 @@
             <GdsLabel Classes="@LabelSize.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
         </LabelTemplate>
         <HintTemplate>
-            <GdsHint>The name you’ll use on promotional material</GdsHint>
+            <GdsHint>The name youï¿½ll use on promotional material</GdsHint>
         </HintTemplate>
         <ErrorMessageTemplate>
             <GdsErrorMessage>Enter an event name</GdsErrorMessage>
@@ -692,7 +744,7 @@
             </label>
         </h1>
         <div id="event-name-hint" class="govuk-hint">
-            The name you’ll use on promotional material
+            The name youï¿½ll use on promotional material
         </div>
         <p id="event-name-error" class="govuk-error-message">
             <span class="govuk-visually-hidden">Error:</span> Enter an event name
@@ -718,7 +770,7 @@
             </GdsLabel>
         </LabelTemplate>
         <PrefixTemplate>
-            <GdsPrefix>£</GdsPrefix>
+            <GdsPrefix>ï¿½</GdsPrefix>
         </PrefixTemplate>
         <SuffixTemplate>
             <GdsSuffix>per item</GdsSuffix>
@@ -742,7 +794,7 @@
             <span class="govuk-visually-hidden">Error:</span> Enter a cost per item, in pounds
         </p>
         <div class="govuk-input__wrapper">
-            <div class="govuk-input__prefix" aria-hidden="true">£</div>
+            <div class="govuk-input__prefix" aria-hidden="true">ï¿½</div>
             <input class="govuk-input govuk-input--width-5 govuk-input--error" id="cost-per-item-error" name="costPerItemError" type="text" spellcheck="false" aria-describedby="cost-per-item-error-error">
             <div class="govuk-input__suffix" aria-hidden="true">per item</div>
         </div>
