@@ -1,447 +1,101 @@
 @inherits BunitContext
 
+<h3>Given a TextInput</h3>
+
 @code {
     [Fact]
-    public void OutputsQuestion_With_HeadingQuestion()
+    public void WhenNoOptionsSet_ThenOutputsMinimumMarkup()
     {
         // Arrange
-        var component = Render(
-    @<GdsTextInput Id="event-name" Name="eventName">
-        <LabelTemplate>
-            <GdsLabel Classes="@LabelSize.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
-        </LabelTemplate>
-    </GdsTextInput>
-        );
+        var component = Render(@<GdsTextInput></GdsTextInput>);
 
         component.MarkupMatches(
     @<div class="govuk-form-group">
-        <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="event-name">
-                What is the name of the event?
-            </label>
-        </h1>
-        <input class="govuk-input" id="event-name" name="eventName" type="text">
+        <input class="govuk-input" type="text">
     </div>
-    );
+        );
     }
-
+    
     [Fact]
-    public void OutputsQuestion_With_TextQuestion()
+    public void WhenAllOptionsSet_ThenOutputsFullMarkup()
     {
         // Arrange
+        var attrs = new Dictionary<string, object> { { "attr1", "value1" } };
         var component = Render(
-    @<GdsTextInput Id="event-name" Name="eventName">
-        <LabelTemplate>
-            <GdsLabel>What is the name of the event?</GdsLabel>
-        </LabelTemplate>
-    </GdsTextInput>
-        );
-
+            @<GdsTextInput
+                 Id="all"
+                 Name="all"
+                 Classes="some-css"
+                 Attributes=@attrs
+                 Inputmode="something"
+                 Value="a value"
+                 Disabled="true"
+                 DescribedBy="element2"
+                 FormGroupClasses="form-group-css"
+                 FormGroupAttributes=@attrs
+                 Autocomplete="yes please"
+                 Pattern="regex"
+                 Spellcheck="true"
+                 Autocapitalize="ok"
+                 InputWrapperClasses="input-wrapper-classes"></GdsTextInput>);
+        
         component.MarkupMatches(
-    @<div class="govuk-form-group">
-        <label class="govuk-label" for="event-name">
-            What is the name of the event?
-        </label>
-        <input class="govuk-input" id="event-name" name="eventName" type="text">
-    </div>
-    );
+            @<div class="govuk-form-group  form-group-css" attr1="value1">
+                <input id="all" 
+                    class="govuk-input some-css " 
+                    name="all" type="text" 
+                    spellcheck="true" 
+                    aria-describedby="element2" 
+                    autocomplete="yes please" 
+                    pattern="regex" 
+                    inputmode="something" 
+                    value="a value" 
+                    disabled="" 
+                    autocapitalize="ok" 
+                    attr1="value1">
+            </div>
+        );
     }
 
     [Fact]
-    public void OutputsQuestion_With_20CharacterWidth()
-    {
-        // Arrange
-        var component = Render(
-    @<GdsTextInput Id="width-20"
-                       Name="width20"
-                       Classes="@TextInputWidth.Width20">
-        <LabelTemplate>
-            <GdsLabel>20 character width</GdsLabel>
-        </LabelTemplate>
-    </GdsTextInput>
-        );
-
-        component.MarkupMatches(
-    @<div class="govuk-form-group">
-        <label class="govuk-label" for="width-20">
-            20 character width
-        </label>
-        <input class="govuk-input govuk-input--width-20" id="width-20" name="width20" type="text">
-    </div>
-    );
-    }
-
-    [Fact]
-    public void OutputsQuestion_With_10CharacterWidth()
+    public void WhenClassesSetToTextInputWidth_ThenSetsCorrectly()
     {
         // Arrange
         var component = Render(
     @<GdsTextInput Id="width-10"
                        Name="width10"
                        Classes="@TextInputWidth.Width10">
-        <LabelTemplate>
-            <GdsLabel>10 character width</GdsLabel>
-        </LabelTemplate>
     </GdsTextInput>
         );
 
         component.MarkupMatches(
     @<div class="govuk-form-group">
-        <label class="govuk-label" for="width-10">
-            10 character width
-        </label>
         <input class="govuk-input govuk-input--width-10" id="width-10" name="width10" type="text">
     </div>
     );
     }
 
-    [Fact]
-    public void OutputsQuestion_With_5CharacterWidth()
-    {
-        // Arrange
-        var component = Render(
-    @<GdsTextInput Id="width-5"
-                       Name="width5"
-                       Classes="@TextInputWidth.Width5">
-        <LabelTemplate>
-            <GdsLabel>5 character width</GdsLabel>
-        </LabelTemplate>
-    </GdsTextInput>
-        );
-
-        component.MarkupMatches(
-    @<div class="govuk-form-group">
-        <label class="govuk-label" for="width-5">
-            5 character width
-        </label>
-        <input class="govuk-input govuk-input--width-5" id="width-5" name="width5" type="text">
-    </div>
-    );
-    }
 
     [Fact]
-    public void OutputsQuestion_With_4CharacterWidth()
-    {
-        // Arrange
-        var component = Render(
-    @<GdsTextInput Id="width-4"
-                       Name="width4"
-                       Classes="@TextInputWidth.Width4">
-        <LabelTemplate>
-            <GdsLabel>4 character width</GdsLabel>
-        </LabelTemplate>
-    </GdsTextInput>
-        );
-
-        component.MarkupMatches(
-    @<div class="govuk-form-group">
-        <label class="govuk-label" for="width-4">
-            4 character width
-        </label>
-        <input class="govuk-input govuk-input--width-4" id="width-4" name="width4" type="text">
-    </div>
-    );
-    }
-
-    [Fact]
-    public void OutputsQuestion_With_3CharacterWidth()
-    {
-        // Arrange
-        var component = Render(
-    @<GdsTextInput Id="width-3"
-                       Name="width3"
-                       Classes="@TextInputWidth.Width3">
-        <LabelTemplate>
-            <GdsLabel>3 character width</GdsLabel>
-        </LabelTemplate>
-    </GdsTextInput>
-        );
-
-        component.MarkupMatches(
-    @<div class="govuk-form-group">
-        <label class="govuk-label" for="width-3">
-            3 character width
-        </label>
-        <input class="govuk-input govuk-input--width-3" id="width-3" name="width3" type="text">
-    </div>
-    );
-    }
-
-    [Fact]
-    public void OutputsQuestion_With_2CharacterWidth()
-    {
-        // Arrange
-        var component = Render(
-    @<GdsTextInput Id="width-2"
-                       Name="width2"
-                       Classes="@TextInputWidth.Width2">
-        <LabelTemplate>
-            <GdsLabel>2 character width</GdsLabel>
-        </LabelTemplate>
-    </GdsTextInput>
-        );
-
-        component.MarkupMatches(
-    @<div class="govuk-form-group">
-        <label class="govuk-label" for="width-2">
-            2 character width
-        </label>
-        <input class="govuk-input govuk-input--width-2" id="width-2" name="width2" type="text">
-    </div>
-    );
-    }
-
-    [Fact]
-    public void OutputsQuestion_With_FullWidth()
-    {
-        // Arrange
-        var component = Render(
-    @<GdsTextInput Id="full"
-                       Name="full"
-                       Classes="@LayoutWidth.Full">
-        <LabelTemplate>
-            <GdsLabel>Full width</GdsLabel>
-        </LabelTemplate>
-    </GdsTextInput>
-        );
-
-        component.MarkupMatches(
-    @<div class="govuk-form-group">
-        <label class="govuk-label" for="full">
-            Full width
-        </label>
-        <input class="govuk-input govuk-!-width-full" id="full" name="full" type="text">
-    </div>
-    );
-    }
-
-    [Fact]
-    public void OutputsQuestion_With_ThreeQuartersWidth()
+    public void WhenClassesSetToLayoutWidth_ThenSetsCorrectly()
     {
         // Arrange
         var component = Render(
     @<GdsTextInput Id="three-quarters"
                        Name="threeQuarters"
                        Classes="@LayoutWidth.ThreeQuarters">
-        <LabelTemplate>
-            <GdsLabel>Three-quarters width</GdsLabel>
-        </LabelTemplate>
     </GdsTextInput>
         );
 
         component.MarkupMatches(
     @<div class="govuk-form-group">
-        <label class="govuk-label" for="three-quarters">
-            Three-quarters width
-        </label>
         <input class="govuk-input govuk-!-width-three-quarters" id="three-quarters" name="threeQuarters" type="text">
     </div>
     );
     }
 
     [Fact]
-    public void OutputsQuestion_With_TwoThirdsWidth()
-    {
-        // Arrange
-        var component = Render(
-    @<GdsTextInput Id="two-thirds"
-                       Name="twoThirds"
-                       Classes="@LayoutWidth.TwoThirds">
-        <LabelTemplate>
-            <GdsLabel>Two-thirds width</GdsLabel>
-        </LabelTemplate>
-    </GdsTextInput>
-        );
-
-        component.MarkupMatches(
-    @<div class="govuk-form-group">
-        <label class="govuk-label" for="two-thirds">
-            Two-thirds width
-        </label>
-        <input class="govuk-input govuk-!-width-two-thirds" id="two-thirds" name="twoThirds" type="text">
-    </div>
-    );
-    }
-
-    [Fact]
-    public void OutputsQuestion_With_OneHalfWidth()
-    {
-        // Arrange
-        var component = Render(
-    @<GdsTextInput Id="one-half"
-                       Name="oneHalf"
-                       Classes="@LayoutWidth.OneHalf">
-        <LabelTemplate>
-            <GdsLabel>One-half width</GdsLabel>
-        </LabelTemplate>
-    </GdsTextInput>
-        );
-
-        component.MarkupMatches(
-    @<div class="govuk-form-group">
-        <label class="govuk-label" for="one-half">
-            One-half width
-        </label>
-        <input class="govuk-input govuk-!-width-one-half" id="one-half" name="oneHalf" type="text">
-    </div>
-    );
-    }
-
-    [Fact]
-    public void OutputsQuestion_With_OneThirdWidth()
-    {
-        // Arrange
-        var component = Render(
-    @<GdsTextInput Id="one-third"
-                       Name="oneThird"
-                       Classes="@LayoutWidth.OneThird">
-        <LabelTemplate>
-            <GdsLabel>
-                One-third width
-            </GdsLabel>
-        </LabelTemplate>
-    </GdsTextInput>
-        );
-
-        component.MarkupMatches(
-    @<div class="govuk-form-group">
-        <label class="govuk-label" for="one-third">
-            One-third width
-        </label>
-        <input class="govuk-input govuk-!-width-one-third" id="one-third" name="oneThird" type="text">
-    </div>
-    );
-    }
-
-    [Fact]
-    public void OutputsQuestion_With_OneQuarterWidth()
-    {
-        // Arrange
-        var component = Render(
-    @<GdsTextInput Id="one-quarter"
-                       Name="oneQuarter"
-                       Classes="@LayoutWidth.OneQuarter">
-        <LabelTemplate>
-            <GdsLabel>One-quarter width</GdsLabel>
-        </LabelTemplate>
-    </GdsTextInput>
-        );
-
-        component.MarkupMatches(
-    @<div class="govuk-form-group">
-        <label class="govuk-label" for="one-quarter">
-            One-quarter width
-        </label>
-        <input class="govuk-input govuk-!-width-one-quarter" id="one-quarter" name="oneQuarter" type="text">
-    </div>
-    );
-    }
-
-    [Fact]
-    public void OutputsQuestion_With_HintText()
-    {
-        // Arrange
-        var component = Render(
-    @<GdsTextInput Id="event-name"
-                       Name="eventName">
-        <LabelTemplate>
-            <GdsLabel Classes="@LabelSize.Large"
-                      IsPageHeading="true">
-                What is the name of the event?
-            </GdsLabel>
-        </LabelTemplate>
-        <HintTemplate>
-            <GdsHint>The name you’ll use on promotional material</GdsHint>
-        </HintTemplate>
-    </GdsTextInput>
-        );
-
-        component.MarkupMatches(
-    @<div class="govuk-form-group">
-        <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="event-name">
-                What is the name of the event?
-            </label>
-        </h1>
-        <div id="event-name-hint" class="govuk-hint">
-            The name you’ll use on promotional material
-        </div>
-        <input class="govuk-input" id="event-name" name="eventName" type="text" aria-describedby="event-name-hint">
-    </div>
-    );
-    }
-
-    [Fact]
-    public void OutputsQuestion_With_Numeric()
-    {
-        // Arrange
-        var component = Render(
-    @<GdsTextInput Id="account-number"
-                       Name="accountNumber"
-                       Classes=@TextInputWidth.Width10
-                       Inputmode="numeric">
-        <LabelTemplate>
-            <GdsLabel Classes=@LabelSize.Large
-                      IsPageHeading="true">
-                What is your account number?
-            </GdsLabel>
-        </LabelTemplate>
-        <HintTemplate>
-            <GdsHint>Must be between 6 and 8 digits long</GdsHint>
-        </HintTemplate>
-    </GdsTextInput>
-        );
-
-        component.MarkupMatches(
-    @<div class="govuk-form-group">
-        <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="account-number">
-                What is your account number?
-            </label>
-        </h1>
-        <div id="account-number-hint" class="govuk-hint">
-            Must be between 6 and 8 digits long
-        </div>
-        <input class="govuk-input govuk-input--width-10" id="account-number" name="accountNumber" type="text" spellcheck="false" aria-describedby="account-number-hint" inputmode="numeric">
-    </div>
-    );
-    }
-
-    [Fact]
-    public void OutputsQuestion_With_DecimalNumbers()
-    {
-        // Arrange
-        var component = Render(
-    @<GdsTextInput Id="weight"
-                       Name="weight"
-                       Classes="@TextInputWidth.Width5"
-                       spellcheck="@false">
-        <LabelTemplate>
-            <GdsLabel>
-                Weight, in kilograms
-            </GdsLabel>
-        </LabelTemplate>
-        <SuffixTemplate>
-            <GdsSuffix>kg</GdsSuffix>
-        </SuffixTemplate>
-    </GdsTextInput>
-        );
-
-        component.MarkupMatches(
-    @<div class="govuk-form-group">
-        <label class="govuk-label" for="weight">
-            Weight, in kilograms
-        </label>
-        <div class="govuk-input__wrapper">
-            <input class="govuk-input govuk-input--width-5" id="weight" name="weight" type="text" spellcheck="false">
-            <div class="govuk-input__suffix" aria-hidden="true">kg</div>
-        </div>
-    </div>
-    );
-    }
-
-    [Fact]
-    public void OutputsQuestion_With_Code()
+    public void WhenValueSet_ThenRendersWithValue()
     {
         // Arrange
         var component = Render(
@@ -450,47 +104,28 @@
                        Classes=@(@TextInputWidth.Width5 + " " + @TextInputLettering.ExtraLetterWidth)
                        Value="NC1701"
                        Spellcheck="@false">
-        <LabelTemplate>
-            <GdsLabel>
-                Company authentication code
-            </GdsLabel>
-        </LabelTemplate>
-        <HintTemplate>
-            <GdsHint>This is on the company incorporation letter sent to the registered office address</GdsHint>
-        </HintTemplate>
     </GdsTextInput>
         );
 
         component.MarkupMatches(
     @<div class="govuk-form-group">
-        <label class="govuk-label" for="authentication-code">
-            Company authentication code
-        </label>
-        <div id="authentication-code-hint" class="govuk-hint">
-            This is on the company incorporation letter sent to the registered office address
-        </div>
-        <input class="govuk-input govuk-input--width-5 govuk-input--extra-letter-spacing" id="authentication-code" name="authenticationCode" type="text" spellcheck="false" value="NC1701" aria-describedby="authentication-code-hint">
+        <input class="govuk-input govuk-input--width-5 govuk-input--extra-letter-spacing" id="authentication-code" name="authenticationCode" type="text" spellcheck="false" value="NC1701">
     </div>
     );
     }
 
     [Fact]
-    public void OutputsQuestion_With_PrefixAndSuffix()
+    public void WhenBothPrefixAndSuffixSet_ThenRendersBothAndSetsInputWrapperClasses()
     {
         // Arrange
         var component = Render(
     @<GdsTextInput Id="cost-per-item"
                        Name="costPerItem"
                        Classes="@TextInputWidth.Width5"
-                       spellcheck="@false">
-        <LabelTemplate>
-            <GdsLabel Classes="@LabelSize.Large"
-                      IsPageHeading="true">
-                What is the cost per item, in pounds?
-            </GdsLabel>
-        </LabelTemplate>
+                       Spellcheck="@false" 
+                       InputWrapperClasses="input-wrapper-classes">
         <PrefixTemplate>
-            <GdsPrefix>£</GdsPrefix>
+            <GdsPrefix>ï¿½</GdsPrefix>
         </PrefixTemplate>
         <SuffixTemplate>
             <GdsSuffix>per item</GdsSuffix>
@@ -500,13 +135,8 @@
 
         component.MarkupMatches(
     @<div class="govuk-form-group">
-        <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="cost-per-item">
-                What is the cost per item, in pounds?
-            </label>
-        </h1>
-        <div class="govuk-input__wrapper">
-            <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <div class="govuk-input__wrapper input-wrapper-classes">
+            <div class="govuk-input__prefix" aria-hidden="true">ï¿½</div>
             <input class="govuk-input govuk-input--width-5" id="cost-per-item" name="costPerItem" type="text" spellcheck="false">
             <div class="govuk-input__suffix" aria-hidden="true">per item</div>
         </div>
@@ -515,35 +145,25 @@
     }
 
     [Fact]
-    public void OutputsQuestion_With_Prefix()
+    public void WhenPrefixSet_ThenRendersPrefixAndSetsInputWrapperClasses()
     {
         // Arrange
         var component = Render(
     @<GdsTextInput Id="cost"
                        Name="cost"
                        Classes="@TextInputWidth.Width5"
-                       spellcheck="@false">
-        <LabelTemplate>
-            <GdsLabel Classes="@LabelSize.Large"
-                      IsPageHeading="true">
-                What is the cost in pounds?
-            </GdsLabel>
-        </LabelTemplate>
+                       spellcheck="@false"
+                       InputWrapperClasses="input-wrapper-classes">
         <PrefixTemplate>
-            <GdsPrefix>£</GdsPrefix>
+            <GdsPrefix>ï¿½</GdsPrefix>
         </PrefixTemplate>
     </GdsTextInput>
         );
 
         component.MarkupMatches(
     @<div class="govuk-form-group">
-        <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="cost">
-                What is the cost in pounds?
-            </label>
-        </h1>
-        <div class="govuk-input__wrapper">
-            <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <div class="govuk-input__wrapper input-wrapper-classes">
+            <div class="govuk-input__prefix" aria-hidden="true">ï¿½</div>
             <input class="govuk-input govuk-input--width-5" id="cost" name="cost" type="text" spellcheck="false">
         </div>
     </div>
@@ -551,20 +171,15 @@
     }
 
     [Fact]
-    public void OutputsQuestion_With_Suffix()
+    public void WhenSuffixSet_ThenRendersSuffixAndSetsInputWrapperClasses()
     {
         // Arrange
         var component = Render(
     @<GdsTextInput Id="weight"
                        Name="weight"
                        Classes="@TextInputWidth.Width5"
-                       spellcheck="@false">
-        <LabelTemplate>
-            <GdsLabel Classes="@LabelSize.Large"
-                      IsPageHeading="true">
-                What is the weight in kilograms?
-            </GdsLabel>
-        </LabelTemplate>
+                       spellcheck="@false"
+                       InputWrapperClasses="input-wrapper-classes">
         <SuffixTemplate>
             <GdsSuffix>kg</GdsSuffix>
         </SuffixTemplate>
@@ -573,12 +188,7 @@
 
         component.MarkupMatches(
     @<div class="govuk-form-group">
-        <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="weight">
-                What is the weight in kilograms?
-            </label>
-        </h1>
-        <div class="govuk-input__wrapper">
+        <div class="govuk-input__wrapper input-wrapper-classes">
             <input class="govuk-input govuk-input--width-5" id="weight" name="weight" type="text" spellcheck="false">
             <div class="govuk-input__suffix" aria-hidden="true">kg</div>
         </div>
@@ -587,96 +197,131 @@
     }
 
     [Fact]
-    public void OutputsQuestion_With_Autocomplete()
-    {
-        // Arrange
-        var component = Render(
-    @<GdsTextInput Id="postcode"
-                       Name="postcode"
-                       Classes="@TextInputWidth.Width10"
-                       Autocomplete="postal-code">
-        <LabelTemplate>
-            <GdsLabel>
-                Postcode
-            </GdsLabel>
-        </LabelTemplate>
-    </GdsTextInput>
-        );
-
-        component.MarkupMatches(
-    @<div class="govuk-form-group">
-        <label class="govuk-label" for="postcode">
-            Postcode
-        </label>
-        <input class="govuk-input govuk-input--width-10" id="postcode" name="postcode" type="text" autocomplete="postal-code">
-    </div>
-    );
-    }
-
-    [Fact]
-    public void OutputsQuestion_Without_Spellcheck()
+    public void WhenSpellcheckFalse_ThenSetsToFalse()
     {
         // Arrange
         var component = Render(
     @<GdsTextInput Id="reference-number"
                        Name="referenceNumber"
                        Spellcheck="false">
-        <LabelTemplate>
-            <GdsLabel>
-                Reference number
-            </GdsLabel>
-        </LabelTemplate>
     </GdsTextInput>
         );
 
         component.MarkupMatches(
     @<div class="govuk-form-group">
-        <label class="govuk-label" for="reference-number">
-            Reference number
-        </label>
         <input class="govuk-input" id="reference-number" name="referenceNumber" type="text" spellcheck="false">
     </div>
     );
     }
 
     [Fact]
-    public void OutputsQuestion_With_Spellcheck()
+    public void WhenSpellcheckTrue_ThenSetsToTrue()
     {
         // Arrange
         var component = Render(
     @<GdsTextInput Id="details"
                        Name="details"
                        Spellcheck="true">
-        <LabelTemplate>
-            <GdsLabel>
-                Details
-            </GdsLabel>
-        </LabelTemplate>
     </GdsTextInput>
         );
 
         component.MarkupMatches(
     @<div class="govuk-form-group">
-        <label class="govuk-label" for="details">
-            Details
-        </label>
         <input class="govuk-input" id="details" name="details" type="text" spellcheck="true">
     </div>
     );
     }
 
     [Fact]
-    public void OutputsQuestion_With_ErrorMessage()
+    public void WhenSpellcheckNotSet_ThenNoSpellcheckRendered()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsTextInput Id="details"
+                       Name="details">
+    </GdsTextInput>
+    );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <input class="govuk-input" id="details" name="details" type="text">
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenSpellcheckNotSetAndInputmodeIsNumeric_ThenSpellcheckIsFalse()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsTextInput Id="details"
+                       Name="details"
+                       Inputmode="numeric">
+    </GdsTextInput>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <input class="govuk-input" id="details" name="details" type="text" inputmode="numeric" spellcheck="false">
+    </div>
+    );
+    }
+
+    [Fact]
+    public void WhenHintTemplateSet_ThenRendersHintTextAndSetsAriaDescribedBy()
     {
         // Arrange
         var component = Render(
     @<GdsTextInput Id="event-name"
                        Name="eventName">
-        <LabelTemplate>
-            <GdsLabel Classes="@LabelSize.Large" IsPageHeading="true">What is the name of the event?</GdsLabel>
-        </LabelTemplate>
         <HintTemplate>
-            <GdsHint>The name you’ll use on promotional material</GdsHint>
+            <GdsHint>The name youï¿½ll use on promotional material</GdsHint>
+        </HintTemplate>
+    </GdsTextInput>
+    );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <div id="event-name-hint" class="govuk-hint">
+            The name youï¿½ll use on promotional material
+        </div>
+        <input class="govuk-input" id="event-name" name="eventName" type="text" aria-describedby="event-name-hint">
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenErrorTemplateSet_ThenRendersErrorTemplateAndSetsDescribedBy()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsTextInput Id="event-name"
+                       Name="eventName">
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>Enter an event name</GdsErrorMessage>
+        </ErrorMessageTemplate>
+    </GdsTextInput>
+    );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group govuk-form-group--error">
+        <p id="event-name-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter an event name
+        </p>
+        <input class="govuk-input govuk-input--error" id="event-name" name="eventName" type="text" aria-describedby="event-name-error">
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenErrorTemplateAndHintTemplateSet_ThenRendersErrorTemplateAndHintTemplateAndSetsDescribedBy()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsTextInput Id="event-name"
+                       Name="eventName">
+        <HintTemplate>
+            <GdsHint>The name youï¿½ll use on promotional material</GdsHint>
         </HintTemplate>
         <ErrorMessageTemplate>
             <GdsErrorMessage>Enter an event name</GdsErrorMessage>
@@ -686,13 +331,8 @@
 
         component.MarkupMatches(
     @<div class="govuk-form-group govuk-form-group--error">
-        <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="event-name">
-                What is the name of the event?
-            </label>
-        </h1>
         <div id="event-name-hint" class="govuk-hint">
-            The name you’ll use on promotional material
+            The name youï¿½ll use on promotional material
         </div>
         <p id="event-name-error" class="govuk-error-message">
             <span class="govuk-visually-hidden">Error:</span> Enter an event name
@@ -703,7 +343,7 @@
     }
 
     [Fact]
-    public void OutputsQuestion_With_PrefixAndSuffixErrorMessage()
+    public void WhenAllTemplatesSet_RendersAllTemplates()
     {
         // Arrange
         var component = Render(
@@ -718,7 +358,7 @@
             </GdsLabel>
         </LabelTemplate>
         <PrefixTemplate>
-            <GdsPrefix>£</GdsPrefix>
+            <GdsPrefix>ï¿½</GdsPrefix>
         </PrefixTemplate>
         <SuffixTemplate>
             <GdsSuffix>per item</GdsSuffix>
@@ -728,6 +368,11 @@
                 Enter a cost per item, in pounds
             </GdsErrorMessage>
         </ErrorMessageTemplate>
+		<HintTemplate>
+			<GdsHint>
+				The cost per item is the price of each item
+			</GdsHint>
+		</HintTemplate>
     </GdsTextInput>
         );
 
@@ -738,44 +383,33 @@
                 What is the cost per item, in pounds?
             </label>
         </h1>
+        <div id="cost-per-item-error-hint" class="govuk-hint">
+            The cost per item is the price of each item
+        </div>
         <p id="cost-per-item-error-error" class="govuk-error-message">
             <span class="govuk-visually-hidden">Error:</span> Enter a cost per item, in pounds
         </p>
         <div class="govuk-input__wrapper">
-            <div class="govuk-input__prefix" aria-hidden="true">£</div>
-            <input class="govuk-input govuk-input--width-5 govuk-input--error" id="cost-per-item-error" name="costPerItemError" type="text" spellcheck="false" aria-describedby="cost-per-item-error-error">
+            <div class="govuk-input__prefix" aria-hidden="true">ï¿½</div>
+            <input class="govuk-input govuk-input--width-5 govuk-input--error" id="cost-per-item-error" name="costPerItemError" type="text" spellcheck="false" aria-describedby="cost-per-item-error-hint cost-per-item-error-error">
             <div class="govuk-input__suffix" aria-hidden="true">per item</div>
         </div>
     </div>
     );
     }
 
-    /// <summary>
-    /// A test to demonstrate how one could conditionally include / exclude a child component
-    /// </summary>
     [Fact]
-    public void OutputsQuestion_With_ConditionalLabel()
+    public void WhenEventHandlerSetAndEventTriggered_ThenHandlerCalled()
     {
         // Arrange
-        var component = Render(
-    @<GdsTextInput Id="postcode"
-                       Name="postcode"
-                       Classes="@TextInputWidth.Width10"
-                       Autocomplete="postal-code">
-        <LabelTemplate>
-            @if(false){
-            <GdsLabel>
-                Postcode
-            </GdsLabel>
-        }
-        </LabelTemplate>
-    </GdsTextInput>
-        );
+        var expectedValue = "this is a new value";
+		var actualValue = string.Empty;
+        var component = Render<GdsTextInput>(builder => builder.Add(input => input.ValueChanged, val => actualValue = val));
 
-        component.MarkupMatches(
-    @<div class="govuk-form-group">
-        <input class="govuk-input govuk-input--width-10" id="postcode" name="postcode" type="text" autocomplete="postal-code">
-    </div>
-        );
+        // Act
+		component.Find("input").Input(expectedValue);
+
+		// Assert
+		Assert.Equal(expectedValue, actualValue);
     }
 }
