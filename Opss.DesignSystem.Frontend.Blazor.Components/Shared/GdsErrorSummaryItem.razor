@@ -5,12 +5,9 @@
     {
         @ChildContent
     } else {
-        <a class=@Classes
-           href=@Href
-           @attributes=@Attributes
-        >
+        <AnchorLink Classes=@Classes Href=@Href @attributes=@Attributes>
             @ChildContent
-        </a>
+        </AnchorLink>
     }
 </li>
 

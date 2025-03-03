@@ -1,0 +1,67 @@
+﻿@inherits BunitContext
+
+@code {
+
+	[Fact]
+	public void WhenHrefIsHyperlink_ThenOutputsAHyperlink()
+	{
+		// Arrange // Act
+		var component = Render(
+			@<AnchorLink Href="https://test-link.com/">An Anchor Link</AnchorLink>
+		);
+
+		// Assert
+		component.MarkupMatches(
+			@<a href="https://test-link.com/">An Anchor Link</a>
+		);
+	}
+
+	[Fact]
+	public void WhenHrefIsAnchor_ThenOutputsAnchorLink()
+	{
+		// Arrange // Act
+		var component = Render(
+			@<AnchorLink Href="#a-test-anchor">An Anchor Link</AnchorLink>
+		);
+
+		// Assert
+		component.MarkupMatches(
+			@<a href="#a-test-anchor">An Anchor Link</a>
+		);
+	}
+
+	[Fact]
+	public void WhenClassesIsSet_ThenOutputsAHyperlink_WithClasses()
+	{
+		// Arrange // Act
+		var component = Render(
+			@<AnchorLink Href="https://test-link.com/" Classes="class1 class2">An Anchor Link</AnchorLink>
+		);
+
+		// Assert
+		component.MarkupMatches(
+			@<a href="https://test-link.com/" class="class1 class2">An Anchor Link</a>
+		);
+	}
+
+	[Fact]
+	public void WhenCustomAttributesSet_ThenOutputsAHyperlink_WithCustomAttributes()
+	{
+		// Arrange // Act
+		var linkCustomAttributes = new Dictionary<string, object>
+		{
+			{ "aria-current", "portal" },
+			{ "target", "_self" },
+			{ "data-module", "test_platform_01" }
+		};
+
+		var component = Render(
+			@<AnchorLink Href="https://test-link.com/" Attributes=@linkCustomAttributes>An Anchor Link</AnchorLink>
+		);
+
+		// Assert
+		component.MarkupMatches(
+			@<a href="https://test-link.com/" aria-current="portal" target="_self" data-module="test_platform_01">An Anchor Link</a>
+		);
+	}
+}
