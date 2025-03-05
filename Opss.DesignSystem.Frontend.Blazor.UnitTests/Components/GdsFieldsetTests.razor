@@ -6,7 +6,7 @@
     {
         // Arrange
         var component = Render(
-    @<GdsFieldset>
+    @<GdsFieldset DataTestId="GdsFieldset">
         <LegendTemplate>
             <GdsLegend Classes=@FieldsetLegendSize.Large
                        IsPageHeading=@true>
@@ -48,7 +48,7 @@
     </GdsFieldset>);
 
         component.MarkupMatches(
-    @<fieldset class="govuk-fieldset">
+    @<fieldset class="govuk-fieldset" data-testid="GdsFieldset">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
         <h1 class="govuk-fieldset__heading">
             What is your address?

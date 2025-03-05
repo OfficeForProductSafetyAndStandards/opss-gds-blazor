@@ -6,14 +6,14 @@
     {
         // Arrange, Act
         var component = Render(
-    @<GdsTable>
+    @<GdsTable DataTestId="GdsTable">
         <HeadTemplate>
-            <GdsTableCell>Heading 1</GdsTableCell>
+            <GdsTableCell DataTestId="GdsTableCell">Heading 1</GdsTableCell>
             <GdsTableCell>Heading 2</GdsTableCell>
             <GdsTableCell>Heading 3</GdsTableCell>
         </HeadTemplate>
         <RowsTemplate>
-            <GdsTableRow>
+            <GdsTableRow DataTestId="GdsTableRow">
                 <GdsTableCell>Row</GdsTableCell>
                 <GdsTableCell>Row</GdsTableCell>
                 <GdsTableCell>41</GdsTableCell>
@@ -29,16 +29,16 @@
 
         // Assert
         component.MarkupMatches(
-    @<table class=@TableClasses.Table>
+    @<table class=@TableClasses.Table data-testid="GdsTable">
         <thead class=@TableClasses.Head>
             <tr class=@TableClasses.Row>
-                <th scope="col" class=@TableClasses.HeaderCell>Heading 1</th>
+            <th scope="col" class=@TableClasses.HeaderCell data-testid="GdsTableCell">Heading 1</th>
                 <th scope="col" class=@TableClasses.HeaderCell>Heading 2</th>
                 <th scope="col" class=@TableClasses.HeaderCell>Heading 3</th>
             </tr>
         </thead>
         <tbody class=@TableClasses.Body>
-            <tr class=@TableClasses.Row>
+        <tr class=@TableClasses.Row data-testid="GdsTableRow">
                 <td class=@TableClasses.Cell>Row</td>
                 <td class=@TableClasses.Cell>Row</td>
                 <td class=@TableClasses.Cell>41</td>

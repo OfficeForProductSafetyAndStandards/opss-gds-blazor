@@ -5,7 +5,8 @@
     The sections within the accordion.
 </summary> *@
 
-<div class="govuk-accordion__section@(Expanded ? " govuk-accordion__section--expanded" : "")">
+<div class="govuk-accordion__section@(Expanded ? " govuk-accordion__section--expanded" : "")"
+     data-testid=@DataTestId>
     <div class="govuk-accordion__section-header">
         <GdsHeading HeadingLevel=@HeadingLevel Classes="govuk-accordion__section-heading">
             <span id="@(Parent?.Id)-heading-@Index" 

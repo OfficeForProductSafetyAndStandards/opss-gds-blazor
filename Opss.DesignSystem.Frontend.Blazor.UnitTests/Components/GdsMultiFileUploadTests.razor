@@ -7,14 +7,14 @@
     public void OutputsMultiFileUpload()
     {
         // Arrange
-        var component = Render(@<GdsMultiFileUpload Id="documents" Name="documents">
+        var component = Render(@<GdsMultiFileUpload DataTestId="GdsMultiFileUpload" Id="documents" Name="documents" InputDataTestId="InputTestId">
         <LabelTemplate>
             <GdsLabel Classes=@LabelSize.Medium>Upload a file</GdsLabel>
         </LabelTemplate>
     </GdsMultiFileUpload>);
 
         component.MarkupMatches(
-    @<div class="moj-multi-file-upload">
+    @<div class="moj-multi-file-upload" data-testid="GdsMultiFileUpload">
         <div class="moj-multi-file__uploaded-files ">
             <h2 class="govuk-heading-m">Files added</h2>
             <div class="govuk-summary-list moj-multi-file-upload__list">
@@ -27,7 +27,7 @@
                     Upload a file
                 </label>
                 <div class="moj-multi-file-upload__dropzone">
-                    <input class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" type="file" multiple=""/>
+                    <input class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" type="file" multiple="" data-testid="InputTestId" />
                     <p class="govuk-body">Drag and drop files here or</p>
                     <label for="documents" class="govuk-button govuk-button--secondary">Choose files</label>
                     <div aria-live="polite" role="status" class="govuk-visually-hidden"></div>

@@ -5,8 +5,8 @@
     public void OutputsCommonStatuses()
     {
         var component = Render(
-    @<GdsTaskList Id="tasklist-test">
-        <GdsTaskListItem Href="/task-page-1">
+    @<GdsTaskList Id="tasklist-test" DataTestId="GdsTaskList">
+        <GdsTaskListItem Href="/task-page-1" DataTestId="GdsTaskListItem">
             <TaskTitleTemplate>The completed task</TaskTitleTemplate>
             <StatusTemplate>Completed</StatusTemplate>
         </GdsTaskListItem>
@@ -45,8 +45,8 @@
     );
 
         component.MarkupMatches(
-@<ul class="govuk-task-list">
-    <li class="govuk-task-list__item govuk-task-list__item--with-link">
+@<ul class="govuk-task-list" data-testid="GdsTaskList">
+    <li class="govuk-task-list__item govuk-task-list__item--with-link" data-testid="GdsTaskListItem">
         <div class="govuk-task-list__name-and-hint">
             <a class="govuk-link govuk-task-list__link" href="/task-page-1" aria-describedby="tasklist-test-1-status">
                 The completed task

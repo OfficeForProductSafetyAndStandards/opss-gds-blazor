@@ -1,186 +1,186 @@
 ﻿@inherits GdsWithContent
 
-@if(isHeaderCell || isHeaderRow)
+@if (isHeaderCell || isHeaderRow)
 {
-<th class=@classes(TableClasses.HeaderCell)
-    colspan=@ColSpan
-    rowspan=@RowSpan
-    scope=@scope
-    aria-sort=@ariaSort
-    @attributes=@Attributes        
->
-    @if (showSortButton)
-    {
-        <GdsButton Type="button" OnClick="sortTable">
-            @ChildContent
-        </GdsButton>
-    }
-    else
-    {
-        @ChildContent
-    }
-</th>
+	<th class=@classes(TableClasses.HeaderCell)
+		colspan=@ColSpan
+		rowspan=@RowSpan
+		scope=@scope
+		aria-sort=@ariaSort
+		data-testid=@DataTestId
+		@attributes=@Attributes>
+		@if (showSortButton)
+		{
+			<GdsButton Type="button" OnClick="sortTable">
+				@ChildContent
+			</GdsButton>
+		}
+		else
+		{
+			@ChildContent
+		}
+	</th>
 }
 else
 {
-<td class=@classes(TableClasses.Cell)
-    colspan=@ColSpan
-    rowspan=@RowSpan
-    @attributes=@Attributes
->
-    @ChildContent
-</td>
+	<td class=@classes(TableClasses.Cell)
+		colspan=@ColSpan
+		rowspan=@RowSpan
+		data-testid=@DataTestId
+		@attributes=@Attributes>
+		@ChildContent
+	</td>
 }
 
 @code {
-    #region Public Parameters
-    /// <summary>
-    /// Specifies how many rows a cell extends.
-    /// </summary>
-    [Parameter]
-    public int? RowSpan { get; set; }
+	#region Public Parameters
+	/// <summary>
+	/// Specifies how many rows a cell extends.
+	/// </summary>
+	[Parameter]
+	public int? RowSpan { get; set; }
 
-    /// <summary>
-    /// Specifies how many columns a cell extends.
-    /// </summary>
-    [Parameter]
-    public int? ColSpan { get; set; }
+	/// <summary>
+	/// Specifies how many columns a cell extends.
+	/// </summary>
+	[Parameter]
+	public int? ColSpan { get; set; }
 
-    /// <summary>
-    /// Specify format of a cell. Currently only “numeric” is in use.
-    /// </summary>
-    [Parameter]
-    public string? Format { get; set; }
+	/// <summary>
+	/// Specify format of a cell. Currently only “numeric” is in use.
+	/// </summary>
+	[Parameter]
+	public string? Format { get; set; }
 
-    /// <summary>
-    /// The name of the column in the data source to sort by.
-    /// </summary>
-    /// <remarks>
-    /// This must map to a column (or sort function) in the data source.
-    /// If no name is specified, no sort button will be rendered.
-    /// Sort buttons will only render in a table header.
-    /// The content within the sort column cells must be text only.
-    /// </remarks>
-    [Parameter]
-    public string? SortColumnName { get; set; }
-    #endregion
+	/// <summary>
+	/// The name of the column in the data source to sort by.
+	/// </summary>
+	/// <remarks>
+	/// This must map to a column (or sort function) in the data source.
+	/// If no name is specified, no sort button will be rendered.
+	/// Sort buttons will only render in a table header.
+	/// The content within the sort column cells must be text only.
+	/// </remarks>
+	[Parameter]
+	public string? SortColumnName { get; set; }
+	#endregion
 
-    #region Event handlers (private)
-    private async Task sortTable()
-    {
-        ariaSort = ariaSort switch
-        {
-            TableSortOrder.Ascending => TableSortOrder.Descending,
-            _ => TableSortOrder.Ascending
-        };
+	#region Event handlers (private)
+	private async Task sortTable()
+	{
+		ariaSort = ariaSort switch
+		{
+			TableSortOrder.Ascending => TableSortOrder.Descending,
+			_ => TableSortOrder.Ascending
+		};
 
-        if (ParentTable != null)
-        {
-            ParentTable.ClearAllSortOrders();
-            ParentTable.SetSortOrder(new(SortColumnName!, ariaSort));
+		if (ParentTable != null)
+		{
+			ParentTable.ClearAllSortOrders();
+			ParentTable.SetSortOrder(new(SortColumnName!, ariaSort));
 
-            await ParentTable.OnTableSort.InvokeAsync(new TableSortArgs(SortColumnName!, ariaSort));
-        }
-    }
-    #endregion
+			await ParentTable.OnTableSort.InvokeAsync(new TableSortArgs(SortColumnName!, ariaSort));
+		}
+	}
+	#endregion
 
-    #region Private Properties
-    /// <summary>
-    /// Indicates the cell is the first, and a header, in the containing parent <see cref="GdsTableRow" />.
-    /// </summary>
-    private bool isHeaderCell;
+	#region Private Properties
+	/// <summary>
+	/// Indicates the cell is the first, and a header, in the containing parent <see cref="GdsTableRow" />.
+	/// </summary>
+	private bool isHeaderCell;
 
-    /// <summary>
-    /// Indicates the parent of this cell is a <see cref="GdsTable" /> component, and this cell is in a table head row.
-    /// </summary>
-    /// <remarks>
-    /// This parameter is set automatically when this component is nested inside a <seealso cref="GdsTable.HeadTemplate"/>.
-    ///  </remarks>
-    private bool isHeaderRow;
+	/// <summary>
+	/// Indicates the parent of this cell is a <see cref="GdsTable" /> component, and this cell is in a table head row.
+	/// </summary>
+	/// <remarks>
+	/// This parameter is set automatically when this component is nested inside a <seealso cref="GdsTable.HeadTemplate"/>.
+	///  </remarks>
+	private bool isHeaderRow;
 
-    private string? scope
-    {
-        get
-        {
-            if (isHeaderRow) return TableScopes.Col;
-            if (isHeaderCell) return TableScopes.Row;
-            return null;
-        }
-    }
+	private string? scope
+	{
+		get
+		{
+			if (isHeaderRow) return TableScopes.Col;
+			if (isHeaderCell) return TableScopes.Row;
+			return null;
+		}
+	}
 
-    private bool isNumeric => Format == TableCellFormat.Numeric;
+	private bool isNumeric => Format == TableCellFormat.Numeric;
 
-    private string? ariaSort;
+	private string? ariaSort;
 
-    private bool showSortButton;
-    #endregion
+	private bool showSortButton;
+	#endregion
 
-    #region Private Methods 
-    private string classes(string initialClass)
-    {
-        var classBuilder = initialClass;
+	#region Private Methods
+	private string classes(string initialClass)
+	{
+		var classBuilder = initialClass;
 
-        if (isNumeric)
-        {
-            classBuilder += 
-                (isHeaderCell || isHeaderRow)
-                    ? $" {TableClasses.NumericHeaderCell}"
-                    : $" {TableClasses.NumericCell}";
-        }
+		if (isNumeric)
+		{
+			classBuilder +=
+				(isHeaderCell || isHeaderRow)
+					? $" {TableClasses.NumericHeaderCell}"
+					: $" {TableClasses.NumericCell}";
+		}
 
-        if (!string.IsNullOrWhiteSpace(base.Classes))
-            classBuilder += $" {base.Classes}";
+		if (!string.IsNullOrWhiteSpace(base.Classes))
+			classBuilder += $" {base.Classes}";
 
-        return classBuilder;
-    }
+		return classBuilder;
+	}
 
-    private TableSortArgs initialSortOrder()
-    {
-        if (ParentTable?.InitialSortOrder != null && ParentTable?.InitialSortOrder.Name == SortColumnName)
-        {
-            return ParentTable?.InitialSortOrder!;
-        }
-        
-        return new(SortColumnName!);
-    }
+	private TableSortArgs initialSortOrder()
+	{
+		if (ParentTable?.InitialSortOrder != null && ParentTable?.InitialSortOrder.Name == SortColumnName)
+		{
+			return ParentTable?.InitialSortOrder!;
+		}
 
-    #endregion
+		return new(SortColumnName!);
+	}
 
-    #region Parameter Validation
-    protected override void OnParametersSet()
-    {
-        if (showSortButton)
-        { 
-            ariaSort = ParentTable!.GetSortOrder(SortColumnName!);
-        }
+	#endregion
 
-        base.OnParametersSet();
-    }
-    #endregion
+	#region Parameter Validation
+	protected override void OnParametersSet()
+	{
+		if (showSortButton)
+		{
+			ariaSort = ParentTable!.GetSortOrder(SortColumnName!);
+		}
 
-    #region Cascading Value - Parent(s)
-    protected override void OnInitialized()
-    {
-        if (ParentRow == null && ParentTable == null)
-            throw new ArgumentNullException($"{nameof(ParentRow)} or {nameof(ParentTable)}", "GdsTableCell must exist within a GdsTable or a GdsTableRow");
+		base.OnParametersSet();
+	}
+	#endregion
 
-        isHeaderCell = ParentRow?.FirstCellIsHeader ?? false;
-        isHeaderRow = ParentTable != null;
-        showSortButton = (ParentTable?.IsSortable ?? false) && !string.IsNullOrEmpty(SortColumnName);
+	#region Cascading Value - Parent(s)
+	protected override void OnInitialized()
+	{
+		if (ParentRow == null && ParentTable == null)
+			throw new ArgumentNullException($"{nameof(ParentRow)} or {nameof(ParentTable)}", "GdsTableCell must exist within a GdsTable or a GdsTableRow");
 
-        if (RowSpan <= 1) RowSpan = null;
-        if (ColSpan <= 1) ColSpan = null;
+		isHeaderCell = ParentRow?.FirstCellIsHeader ?? false;
+		isHeaderRow = ParentTable != null;
+		showSortButton = (ParentTable?.IsSortable ?? false) && !string.IsNullOrEmpty(SortColumnName);
 
-        base.OnInitialized();
-        
-        ParentRow?.ClearFirstCellIsHeaderFlag(this);
-        if (showSortButton) ParentTable?.SetSortOrder(initialSortOrder());
-    }
+		if (RowSpan <= 1) RowSpan = null;
+		if (ColSpan <= 1) ColSpan = null;
 
-    [CascadingParameter(Name = "ParentRow")]
-    private GdsTableRow? ParentRow { get; set; }
+		base.OnInitialized();
 
-    [CascadingParameter(Name = "ParentTable")]
-    private GdsTable? ParentTable { get; set; }
-    #endregion
+		ParentRow?.ClearFirstCellIsHeaderFlag(this);
+		if (showSortButton) ParentTable?.SetSortOrder(initialSortOrder());
+	}
+
+	[CascadingParameter(Name = "ParentRow")]
+	private GdsTableRow? ParentRow { get; set; }
+
+	[CascadingParameter(Name = "ParentTable")]
+	private GdsTable? ParentTable { get; set; }
+	#endregion
 }

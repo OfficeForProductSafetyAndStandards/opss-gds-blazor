@@ -6,7 +6,7 @@
     {
         // Arrange
         var component = Render(
-    @<GdsNotificationBanner>
+    @<GdsNotificationBanner DataTestId="GdsNotificationBanner">
         <p class=@NotificationBannerClasses.Heading>
             You have 7 days left to send your application.
             <a class=@NotificationBannerClasses.Link href="#">View application</a>.
@@ -14,7 +14,7 @@
     </GdsNotificationBanner>);
 
         component.MarkupMatches(
-    @<div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+    @<div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner" data-testid="GdsNotificationBanner">
         <div class="govuk-notification-banner__header">
             <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
                 Important

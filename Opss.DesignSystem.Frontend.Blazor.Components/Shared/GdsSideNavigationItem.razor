@@ -1,6 +1,7 @@
 ﻿@inherits GdsWithHref
 
-<li class="moj-side-navigation__item @(Active == true ? "moj-side-navigation__item--active" : null)">
+<li class="moj-side-navigation__item @(Active == true ? "moj-side-navigation__item--active" : null)"
+    data-testid=@DataTestId>
     <AnchorLink Href=@Href Attributes=@linkAttributes>
         @ChildContent
     </AnchorLink>

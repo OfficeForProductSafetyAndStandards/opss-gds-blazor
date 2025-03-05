@@ -7,8 +7,8 @@
     {
         // Arrange
         var component = Render(
-    @<GdsSummaryList>
-        <GdsSummaryListRow>
+    @<GdsSummaryList DataTestId="GdsSummaryList">
+        <GdsSummaryListRow DataTestId="GdsSummaryListRow">
             <KeyTemplate>
                 Name
             </KeyTemplate>
@@ -48,8 +48,8 @@
         );
 
         component.MarkupMatches(
-    @<dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
+    @<dl class="govuk-summary-list" data-testid="GdsSummaryList">
+    <div class="govuk-summary-list__row" data-testid="GdsSummaryListRow">
         <dt class="govuk-summary-list__key">
             Name
         </dt>

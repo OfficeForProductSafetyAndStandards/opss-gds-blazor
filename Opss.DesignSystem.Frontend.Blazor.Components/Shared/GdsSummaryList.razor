@@ -2,7 +2,8 @@
 
 @if (isSummaryCard)
 {
-    <div class="govuk-summary-card @Classes">
+    <div class="govuk-summary-card @Classes"
+         data-testid=@DataTestId>
         @if (CardTitleTemplate != null)
         {
             <div class="govuk-summary-card__title-wrapper">
@@ -30,7 +31,8 @@
 }
 else
 {
-    <dl class="govuk-summary-list @Classes">
+    <dl class="govuk-summary-list @Classes"
+        data-testid=@DataTestId>
         <CascadingValue Value=@this>
             @ChildContent
         </CascadingValue>

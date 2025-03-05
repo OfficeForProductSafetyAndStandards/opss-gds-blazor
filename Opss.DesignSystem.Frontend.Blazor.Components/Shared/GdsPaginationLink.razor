@@ -5,7 +5,8 @@
 }
 else if (Ellipsis == true)
 {
-    <li class="govuk-pagination__item govuk-pagination__item--ellipses">
+    <li class="govuk-pagination__item govuk-pagination__item--ellipses"
+        data-testid=@DataTestId>
 
         ⋯
 
@@ -13,7 +14,9 @@ else if (Ellipsis == true)
 }
 else
 {
-    <li class="govuk-pagination__item @(Current == true ? " govuk-pagination__item--current" : "")" @attributes=@Attributes>
+    <li class="govuk-pagination__item @(Current == true ? " govuk-pagination__item--current" : "")"
+        data-testid=@DataTestId
+        @attributes =@Attributes>
         <a class="govuk-link govuk-pagination__link"
            href="#"
            @onclick="@OnClick"

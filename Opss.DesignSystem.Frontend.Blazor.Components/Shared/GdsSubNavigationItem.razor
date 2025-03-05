@@ -1,6 +1,8 @@
 ﻿@inherits GdsWithHref
 
-<li class="moj-sub-navigation__item @Classes" @attributes=@Attributes>
+<li class="moj-sub-navigation__item @Classes"
+    data-testid=@DataTestId
+    @attributes =@Attributes>
     <AnchorLink Classes="moj-sub-navigation__link"
         href=@Href 
         Attributes=@linkAttributes

@@ -7,7 +7,9 @@
         // Arrange
         var component = Render(
     @<GdsTextarea Id="more-detail"
-                      Name="moreDetail">
+                      Name="moreDetail"
+                      DataTestId="GdsTextarea"
+                      TextareaDataTestId="TextareaTestId">
         <LabelTemplate>
             <GdsLabel Classes=@LabelSize.Large
                       IsPageHeading="true">
@@ -23,7 +25,7 @@
         );
 
         component.MarkupMatches(
-    @<div diff:whitespace="Normalize" class="govuk-form-group">
+    @<div diff:whitespace="Normalize" class="govuk-form-group" data-testid="GdsTextarea">
         <h1 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--l" for="more-detail">
                 Can you provide more detail?
@@ -32,7 +34,9 @@
         <div id="more-detail-hint" class="govuk-hint">
             Do not include personal or financial information, like your National Insurance number or credit card details
         </div>
-        <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint"></textarea>
+        <textarea class="govuk-textarea" id="more-detail" name="moreDetail" 
+                  rows="5" aria-describedby="more-detail-hint"
+                  data-testid="TextareaTestId"></textarea>
     </div>
         );
     }

@@ -5,23 +5,23 @@
     public void OutputsPagination()
     {
         // Arrange
-        var component = Render(@<GdsPagination ActivePageNumber="2">
+        var component = Render(@<GdsPagination DataTestId="GdsPagination" ActivePageNumber="2">
         <PreviousTemplate>
-            <GdsPaginationPreviousLink />
+            <GdsPaginationPreviousLink DataTestId="GdsPaginationPreviousLink" />
         </PreviousTemplate>
         <ChildContent>
-            <GdsPaginationLink Number="1" />
+            <GdsPaginationLink Number="1" DataTestId="GdsPaginationLink" />
             <GdsPaginationLink Number="2" />
             <GdsPaginationLink Number="3" />
         </ChildContent>
         <NextTemplate>
-            <GdsPaginationNextLink />
+            <GdsPaginationNextLink DataTestId="GdsPaginationNextLink" />
         </NextTemplate>
     </GdsPagination>);
 
         component.MarkupMatches(
-    @<nav class="govuk-pagination" aria-label="Pagination">
-        <div class="govuk-pagination__prev">
+    @<nav class="govuk-pagination" aria-label="Pagination" data-testid="GdsPagination">
+        <div class="govuk-pagination__prev" data-testid="GdsPaginationPreviousLink">
             <a class="govuk-link govuk-pagination__link" href="#" rel="prev">
                 <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
                     <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
@@ -32,7 +32,7 @@
             </a>
         </div>
         <ul class="govuk-pagination__list">
-            <li class="govuk-pagination__item">
+            <li class="govuk-pagination__item" data-testid="GdsPaginationLink">
                 <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1">
                     1
                 </a>
@@ -48,7 +48,7 @@
                 </a>
             </li>
         </ul>
-        <div class="govuk-pagination__next">
+        <div class="govuk-pagination__next" data-testid="GdsPaginationNextLink">
             <a class="govuk-link govuk-pagination__link" href="#" rel="next">
                 <span class="govuk-pagination__link-title">
                     Next<span class="govuk-visually-hidden"> page</span>

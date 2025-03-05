@@ -6,14 +6,14 @@
     {
         // Arrange
         var component = Render(
-    @<GdsRadios Name="outputPageHeading">
+    @<GdsRadios Name="outputPageHeading" DataTestId="GdsRadios">
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
                 Where do you live?
             </GdsLegend>
         </LegendTemplate>
         <ChildContent>
-            <GdsRadio Value="england">England</GdsRadio>
+            <GdsRadio Value="england" DataTestId="GdsRadio" InputDataTestId="RadioTestId">England</GdsRadio>
             <GdsRadio Value="scotland">Scotland</GdsRadio>
             <GdsRadio Value="wales">Wales</GdsRadio>
             <GdsRadio Value="northern-ireland">Northern Ireland</GdsRadio>
@@ -22,7 +22,7 @@
     );
 
         component.MarkupMatches(
-    @<div class="govuk-form-group">
+    @<div class="govuk-form-group" data-testid="GdsRadios">
         <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
@@ -30,8 +30,9 @@
                 </h1>
             </legend>
             <div class="govuk-radios" data-module="govuk-radios">
-                <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="outputPageHeading" name="outputPageHeading" type="radio" value="england">
+                <div class="govuk-radios__item" data-testid="GdsRadio">
+                    <input class="govuk-radios__input" id="outputPageHeading" name="outputPageHeading" type="radio" value="england"
+                           data-testid="RadioTestId">
                     <label class="govuk-label govuk-radios__label" for="outputPageHeading">
                         England
                     </label>

@@ -6,12 +6,12 @@
     {
         // Arrange
         var component = Render(
-    @<GdsSelect Id="sort" Name="sort">
+    @<GdsSelect Id="sort" Name="sort" DataTestId="GdsSelect" SelectDataTestId="SelectTestId">
         <LabelTemplate>
             <GdsLabel>Sort by</GdsLabel>
         </LabelTemplate>
         <ChildContent>
-            <GdsSelectOption Value="published">Recently published</GdsSelectOption>
+            <GdsSelectOption Value="published" DataTestId="GdsSelectOption">Recently published</GdsSelectOption>
             <GdsSelectOption Value="updated" Selected=@true>Recently updated</GdsSelectOption>
             <GdsSelectOption Value="views">Most views</GdsSelectOption>
             <GdsSelectOption Value="comments">Most comments</GdsSelectOption>
@@ -20,12 +20,12 @@
     );
 
         component.MarkupMatches(
-    @<div class="govuk-form-group">
+    @<div class="govuk-form-group" data-testid="GdsSelect">
         <label class="govuk-label" for="sort">
             Sort by
         </label>
-        <select class="govuk-select" id="sort" name="sort">
-            <option value="published">Recently published</option>
+        <select class="govuk-select" id="sort" name="sort" data-testid="SelectTestId">
+            <option data-testid="GdsSelectOption" value="published">Recently published</option>
             <option value="updated" selected>Recently updated</option>
             <option value="views">Most views</option>
             <option value="comments">Most comments</option>

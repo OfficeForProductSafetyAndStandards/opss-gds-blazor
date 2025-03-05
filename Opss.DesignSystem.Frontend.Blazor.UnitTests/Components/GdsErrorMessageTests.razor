@@ -7,11 +7,11 @@
         // Arrange
         var id = "hello-world";
         var message = "Hello World";
-        var component = Render(@<CascadingValue Value=@id><GdsErrorMessage>@message</GdsErrorMessage></CascadingValue>);
+        var component = Render(@<CascadingValue Value=@id><GdsErrorMessage DataTestId="GdsErrorMessage">@message</GdsErrorMessage></CascadingValue>);
 
         // Assert that content of the paragraph shows counter at zero
         component.MarkupMatches(
-    @<p id="@id-error" class="govuk-error-message">
+    @<p id="@id-error" class="govuk-error-message" data-testid="GdsErrorMessage">
         <span class="govuk-visually-hidden">Error:</span>
         @message
     </p>

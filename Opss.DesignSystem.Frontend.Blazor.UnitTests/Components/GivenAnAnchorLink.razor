@@ -45,6 +45,20 @@
 	}
 
 	[Fact]
+	public void WhenDataTestId_ThenOutputsAHyperlink_WithClasses()
+	{
+		// Arrange // Act
+		var component = Render(
+			@<AnchorLink Href="https://test-link.com/" DataTestId="AnchorLink">An Anchor Link</AnchorLink>
+			);
+
+		// Assert
+		component.MarkupMatches(
+			@<a href="https://test-link.com/" data-testid="AnchorLink">An Anchor Link</a>
+			);
+	}
+
+	[Fact]
 	public void WhenCustomAttributesSet_ThenOutputsAHyperlink_WithCustomAttributes()
 	{
 		// Arrange // Act

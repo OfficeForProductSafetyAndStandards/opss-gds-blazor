@@ -14,6 +14,7 @@
            role="button"
            data-module="govuk-button"
            draggable="false"
+           data-testid=@DataTestId
            @attributes=@Attributes
         >
            @ChildContent
@@ -40,6 +41,7 @@
                 aria-disabled=@(Disabled ? "true" : null)
                 data-prevent-double-click=@(PreventDoubleClick ? "true" : null)
                 data-module="govuk-button"
+                data-testid=@DataTestId
                 @onclick=@OnClick
                 @attributes=@Attributes
         >
@@ -67,6 +69,7 @@
                @onclick=@OnClick
                disabled=@(Disabled ? "disabled" : null)
                aria-disabled=@(Disabled ? "true" : null)
+               data-testid=@DataTestId
                data-prevent-double-click=@(PreventDoubleClick ? "true" : null)
                data-module="govuk-button"
                @attributes=@Attributes

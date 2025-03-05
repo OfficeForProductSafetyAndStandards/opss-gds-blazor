@@ -6,6 +6,7 @@
 </summary> *@
 
 <div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses"
+     data-testid=@DataTestId
      @attributes=@FormGroupAttributes>
     @if (LabelTemplate != null)
     {
@@ -38,6 +39,7 @@
               aria-describedby=@describedBy
               autocomplete=@Autocomplete
               disabled=@Disabled
+              data-testid=@TextareaDataTestId
               @oninput=OnValueChanged
               @attributes=@Attributes
     >
@@ -56,6 +58,12 @@
     /// </summary>
     [Parameter]
     public string? Id { get; set; }
+
+    /// <summary>
+    /// Applies the supplied value to the textarea's data-testid attribute
+    /// </summary>
+    [Parameter]
+    public string? TextareaDataTestId { get; set; }
 
     /// <summary>
     /// Required. The name of the input, which is submitted with the form data.

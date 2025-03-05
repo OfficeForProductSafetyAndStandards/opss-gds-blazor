@@ -1,6 +1,7 @@
 ﻿@inherits GdsWithHref
 
-<li class="govuk-service-navigation__item @((Active == true || Current == true) ? "govuk-service-navigation__item--active" : "")">
+<li class="govuk-service-navigation__item @((Active == true || Current == true) ? "govuk-service-navigation__item--active" : "")"
+    data-testid=@DataTestId>
     <AnchorLink Classes="govuk-service-navigation__link"
         Href=@Href
         Attributes=@linkAttributes

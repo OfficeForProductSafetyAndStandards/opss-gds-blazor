@@ -9,10 +9,10 @@
         var message = "Hello World";
         var href = "/linky";
 
-        var component = Render(@<GdsLink Id=@id Href=@href>@message</GdsLink>);
+        var component = Render(@<GdsLink Id=@id Href=@href DataTestId="GdsLink">@message</GdsLink>);
 
         component.MarkupMatches(
-    @<a id=@id class="govuk-link" href=@href>
+    @<a id=@id class="govuk-link" href=@href data-testid="GdsLink">
         @message
     </a>
         );

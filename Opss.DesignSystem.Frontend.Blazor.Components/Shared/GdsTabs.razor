@@ -6,7 +6,9 @@
 @inject NavigationManager Nav
 @inject IJSRuntime Js
 
-<div id="@Id" class="govuk-tabs @Classes" @attributes="@Attributes">
+<div id="@Id" class="govuk-tabs @Classes"
+     data-testid=@DataTestId
+     @attributes="@Attributes">
     <a id="focus-parking_@Id" @ref="@_dummyFocusElementRef" tabindex="-1" aria-hidden="true"></a>
     <h2 class="govuk-tabs__title">@Title</h2>
     <ul class="govuk-tabs__list" role="tablist">
