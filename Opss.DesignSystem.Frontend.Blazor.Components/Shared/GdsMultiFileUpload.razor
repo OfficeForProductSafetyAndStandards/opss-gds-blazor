@@ -6,7 +6,8 @@
     the same time, on a regular basis. For example, in a caseworking system.
 </summary> *@
 
-<div class="moj-multi-file-upload">
+<div class="moj-multi-file-upload"
+     data-testid=@DataTestId>
     <div class="moj-multi-file__uploaded-files">
         <h2 class="govuk-heading-m">Files added</h2>
         <div class="govuk-summary-list moj-multi-file-upload__list">
@@ -39,7 +40,7 @@
                 </CascadingValue>
             }
             <div class="moj-multi-file-upload__dropzone">
-                <InputFile OnChange="@LoadFilesAsync" class="govuk-file-upload moj-multi-file-upload__input" id=@Id name=@Name multiple @attributes=@Attributes />
+                <InputFile data-testid=@InputDataTestId OnChange="@LoadFilesAsync" class="govuk-file-upload moj-multi-file-upload__input" id=@Id name=@Name multiple @attributes=@Attributes />
                 <p class="govuk-body">Drag and drop files here or</p><label for=@Id class="govuk-button govuk-button--secondary">Choose files</label>
                 <div aria-live="polite" role="status" class="govuk-visually-hidden">
                     @if (_fileUploading)
@@ -60,6 +61,12 @@
     /// </summary>
     [Parameter]
     public string? Id { get; set; }
+
+    /// <summary>
+    /// Applies the supplied value to the input's data-testid attribute
+    /// </summary>
+    [Parameter]
+    public string? InputDataTestId { get; set; }
 
     /// <summary>
     /// The name of the input, which is submitted with the form data.

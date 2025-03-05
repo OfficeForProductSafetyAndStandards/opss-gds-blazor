@@ -1,6 +1,8 @@
 ﻿@inherits GdsAttributes
 
-<div class="govuk-pagination__next" @attributes=@Attributes>
+<div class="govuk-pagination__next"
+     data-testid=@DataTestId
+     @attributes =@Attributes>
     <a class="govuk-link govuk-pagination__link" href="#" @onclick="@OnClick" @onclick:preventDefault rel="next">
         @if (Parent?.UseBlockStyle == true)
         {

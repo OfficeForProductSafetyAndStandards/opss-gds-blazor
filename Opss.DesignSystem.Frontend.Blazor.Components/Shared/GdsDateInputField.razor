@@ -1,6 +1,7 @@
 ﻿@inherits GdsWithContent
 
-<div class="govuk-date-input__item">
+<div class="govuk-date-input__item"
+     data-testid=@DataTestId>
     <div class="govuk-form-group">
         <label class="govuk-label govuk-date-input__label"
                for=@id>
@@ -21,6 +22,7 @@
                autocomplete=@Autocomplete
                pattern=@Pattern
                value=@Value
+               data-testid=@InputDataTestId
                @oninput=OnValueChanged
                @attributes=@Attributes>
     </div>
@@ -34,6 +36,12 @@
     /// </summary>
     [Parameter]
     public string? Id { get; set; }
+
+    /// <summary>
+    /// Applies the supplied value to the input's data-testid attribute
+    /// </summary>
+    [Parameter]
+    public string? InputDataTestId { get; set; }
 
     /// <summary>
     /// If set, the error classes will be set

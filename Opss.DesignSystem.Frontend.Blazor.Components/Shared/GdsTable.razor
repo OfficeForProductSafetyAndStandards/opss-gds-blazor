@@ -4,9 +4,10 @@
     The table component makes information easier to compare and scan.
 </summary>*@
 
-<table class="@tableClasses" 
-    aria-label=@Label
-    @attributes=@Attributes
+<table class="@tableClasses"
+       aria-label=@Label
+       data-testid=@DataTestId
+        @attributes=@Attributes
 >
     @if(!string.IsNullOrWhiteSpace(CaptionText)) 
     {

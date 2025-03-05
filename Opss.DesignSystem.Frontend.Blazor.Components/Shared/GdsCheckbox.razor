@@ -1,21 +1,23 @@
 ﻿@inherits GdsWithContent
 
-<div class="govuk-checkboxes__item">
+<div class="govuk-checkboxes__item"
+data-testid=@DataTestId>
     <input id=@id
-           class="govuk-checkboxes__input @Classes"
-           name=@(Name ?? Parent?.Name)
-           type="checkbox"
-           value=@Value
-           aria-describedby=@describedBy
-           data-behaviour=@(IsExclusive ? "exclusive" : null)
-           checked=@isChecked
-           data-aria-controls=@conditionalId
-           disabled=@Disabled
-           @oninput=CheckboxChanged
-           @attributes=@Attributes />
+    class="govuk-checkboxes__input @Classes"
+    name=@(Name ?? Parent?.Name)
+    type="checkbox"
+    value=@Value
+    aria-describedby=@describedBy
+    data-behaviour=@(IsExclusive ? "exclusive" : null)
+    checked=@isChecked
+    data-aria-controls=@conditionalId
+    disabled=@Disabled
+    data-testid=@InputDataTestId
+    @oninput=CheckboxChanged
+    @attributes=@Attributes />
 
     <label class="govuk-label govuk-checkboxes__label"
-           for=@id>
+    for=@id>
         @if (Text != null)
             @Text
         else
@@ -31,7 +33,8 @@
 @if (ConditionalTemplate != null)
 {
     <div id=@conditionalId
-         class="govuk-checkboxes__conditional @(isChecked == true ? "" : "govuk-checkboxes__conditional--hidden")">
+    class="govuk-checkboxes__conditional @(isChecked == true ? "" : "govuk-checkboxes__conditional--hidden")"
+    data-testid=@conditionalDataTestId>
         @ConditionalTemplate
     </div>
 }
@@ -44,6 +47,12 @@
     /// </summary>
     [Parameter]
     public string? Id { get; set; }
+
+    /// <summary>
+    /// Applies the supplied value to the input's data-testid attribute
+    /// </summary>
+    [Parameter]
+    public string? InputDataTestId { get; set; }
 
     /// <summary>
     /// Required. Value for the checkbox input.
@@ -169,6 +178,15 @@
             if (ConditionalTemplate == null) return null;
 
             return $"conditional-{id}";
+        }
+    }
+
+    private string? conditionalDataTestId
+    {
+        get{
+            if (DataTestId == null) return null;
+
+            return $"conditional-{DataTestId}";
         }
     }
 

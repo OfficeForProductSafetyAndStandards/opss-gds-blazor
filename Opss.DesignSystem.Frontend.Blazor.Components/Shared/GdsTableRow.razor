@@ -1,37 +1,39 @@
 ﻿@inherits GdsWithContent
 
-<tr class="@TableClasses.Row @Classes" @attributes=@Attributes>
-    <CascadingValue Value=this Name="ParentRow" ChildContent=@ChildContent />        
+<tr class="@TableClasses.Row @Classes"
+	data-testid=@DataTestId
+	@attributes=@Attributes>
+	<CascadingValue Value=this Name="ParentRow" ChildContent=@ChildContent />
 </tr>
 
 @code {
-    #region Public Parameter
-    /// <summary>
-    /// Whether the first cell in the row will be a header cell.
-    /// Only applies to the table body. 
-    /// Cascaded with this parent object to the child cells.
-    /// </summary>
-    [Parameter]
-    public bool FirstCellIsHeader { get; set; }
-    #endregion
+	#region Public Parameter
+	/// <summary>
+	/// Whether the first cell in the row will be a header cell.
+	/// Only applies to the table body.
+	/// Cascaded with this parent object to the child cells.
+	/// </summary>
+	[Parameter]
+	public bool FirstCellIsHeader { get; set; }
+	#endregion
 
-    #region Cascading Value - Parent
-    protected override void OnInitialized()
-    {
-        if (Parent == null)
-            throw new ArgumentNullException(nameof(Parent), "GdsTableRow must exist within a GdsTable");
+	#region Cascading Value - Parent
+	protected override void OnInitialized()
+	{
+		if (Parent == null)
+			throw new ArgumentNullException(nameof(Parent), "GdsTableRow must exist within a GdsTable");
 
-        FirstCellIsHeader = Parent?.FirstCellIsHeader ?? false;
+		FirstCellIsHeader = Parent?.FirstCellIsHeader ?? false;
 
-        base.OnInitialized();
-    }
+		base.OnInitialized();
+	}
 
-    [CascadingParameter]
-    private GdsTable? Parent { get; set; }
-    #endregion
+	[CascadingParameter]
+	private GdsTable? Parent { get; set; }
+	#endregion
 
-    internal void ClearFirstCellIsHeaderFlag(GdsTableCell item)
-    {
-        FirstCellIsHeader = false;
-    }
+	internal void ClearFirstCellIsHeaderFlag(GdsTableCell item)
+	{
+		FirstCellIsHeader = false;
+	}
 }

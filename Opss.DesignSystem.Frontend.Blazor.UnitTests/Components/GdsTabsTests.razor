@@ -16,12 +16,12 @@
         
         // Act
         var component = Render(
-            @<GdsTabs Id="@id" IdPrefix="some-id-prefix" Title="@title" Classes="@classes" Attributes="@attributes"></GdsTabs>
+            @<GdsTabs Id="@id" IdPrefix="some-id-prefix" Title="@title" Classes="@classes" Attributes="@attributes" DataTestId="GdsTabs"></GdsTabs>
         );
 
         // Assert
         component.MarkupMatches(
-            @<div id="@id" class="govuk-tabs @classes" attr1="value1" attr2="value2">
+            @<div id="@id" class="govuk-tabs @classes" attr1="value1" attr2="value2" data-testid="GdsTabs">
                 <a id="focus-parking_@id" tabindex="-1" aria-hidden="true"></a>
                 <h2 class="govuk-tabs__title">@title</h2>
                 <ul class="govuk-tabs__list" role="tablist">

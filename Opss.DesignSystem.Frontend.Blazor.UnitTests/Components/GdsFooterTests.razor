@@ -6,10 +6,10 @@
     {
         // Arrange
         var component = Render(
-    @<GdsFooter />);
+    @<GdsFooter DataTestId="GdsFooter" />);
 
         component.MarkupMatches(
-    @<footer class="govuk-footer">
+    @<footer class="govuk-footer" data-testid="GdsFooter">
         <div class="govuk-width-container">
             <div class="govuk-footer__meta">
                 <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
@@ -51,7 +51,7 @@
         <MetaTemplate>
             <GdsFooterMeta>
                 <ItemsTemplate>
-                    <GdsFooterMetaItem Href="#">Item 1</GdsFooterMetaItem>
+                    <GdsFooterMetaItem DataTestId="GdsFooterMetaItem" Href="#">Item 1</GdsFooterMetaItem>
                     <GdsFooterMetaItem Href="#">Item 2</GdsFooterMetaItem>
                     <GdsFooterMetaItem Href="#">Item 3</GdsFooterMetaItem>
                 </ItemsTemplate>
@@ -67,7 +67,7 @@
                 <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
                     <h2 class="govuk-visually-hidden">Support links</h2>
                     <ul class="govuk-footer__inline-list">
-                        <li class="govuk-footer__inline-list-item">
+                        <li class="govuk-footer__inline-list-item" data-testid="GdsFooterMetaItem">
                             <a class="govuk-footer__link" href="#">
                                 Item 1
                             </a>
@@ -122,7 +122,7 @@
             <GdsFooterNavigation Title="Two column list"
                                  Width=@FooterNavigationWidth.TwoThirds
                                  Columns="2">
-                <GdsFooterNavigationItem Href="#">
+                <GdsFooterNavigationItem Href="#" DataTestId="GdsFooterNavigationItem">
                     Navigation item 1
                 </GdsFooterNavigationItem>
                 <GdsFooterNavigationItem Href="#">
@@ -164,7 +164,7 @@
                 <div class="govuk-footer__section govuk-grid-column-two-thirds">
                     <h2 class="govuk-footer__heading govuk-heading-m">Two column list</h2>
                     <ul class="govuk-footer__list govuk-footer__list--columns-2">
-                        <li class="govuk-footer__list-item">
+                        <li class="govuk-footer__list-item" data-testid="GdsFooterNavigationItem">
                             <a class="govuk-footer__link" href="#">
                                 Navigation item 1
                             </a>

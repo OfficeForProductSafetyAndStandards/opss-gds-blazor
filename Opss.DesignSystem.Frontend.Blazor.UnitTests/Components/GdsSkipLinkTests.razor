@@ -6,11 +6,11 @@
     {
         // Arrange
         var component = Render(
-    @<GdsSkipLink Href="#">Skip to main content</GdsSkipLink>
+    @<GdsSkipLink Href="#" DataTestId="GdsSkipLink">Skip to main content</GdsSkipLink>
     );
 
         component.MarkupMatches(
-    @<a href="#" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+    @<a href="#" class="govuk-skip-link" data-module="govuk-skip-link" data-testid="GdsSkipLink">Skip to main content</a>
     );
     }
 }

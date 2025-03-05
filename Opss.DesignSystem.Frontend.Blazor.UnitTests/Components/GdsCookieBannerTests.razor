@@ -6,8 +6,8 @@
     {
         // Arrange
         var component = Render(
-    @<GdsCookieBanner AriaLabel="Cookies on [name of service]">
-        <GdsCookieBannerMessage HeadingText="Cookies on [name of service]">
+    @<GdsCookieBanner AriaLabel="Cookies on [name of service]" DataTestId="GdsCookieBanner">
+        <GdsCookieBannerMessage HeadingText="Cookies on [name of service]" DataTestId="GdsCookieBannerMessage">
             <ChildContent>
                 <p class="govuk-body">
                     We use some essential cookies to make this service work.
@@ -18,7 +18,7 @@
                 </p>
             </ChildContent>
             <ActionsTemplate>
-                <GdsCookieBannerAction Type=@CookieBannerActionTypes.Button>
+                <GdsCookieBannerAction Type=@CookieBannerActionTypes.Button DataTestId="GdsCookieBannerAction">
                     Accept analytics cookies
                 </GdsCookieBannerAction>
                 <GdsCookieBannerAction Type=@CookieBannerActionTypes.Button>
@@ -33,8 +33,8 @@
         );
 
         component.MarkupMatches(
-    @<div class="govuk-cookie-banner" data-nosnippet role="region" aria-label="Cookies on [name of service]">
-        <div class="govuk-cookie-banner__message govuk-width-container">
+    @<div class="govuk-cookie-banner" data-nosnippet role="region" aria-label="Cookies on [name of service]" data-testid="GdsCookieBanner">
+        <div class="govuk-cookie-banner__message govuk-width-container" data-testid="GdsCookieBannerMessage">
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds">
                     <h2 class="govuk-cookie-banner__heading govuk-heading-m">
@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="govuk-button-group">
-                <button type="button" class="govuk-button" data-module="govuk-button">
+                <button type="button" class="govuk-button" data-module="govuk-button" data-testid="GdsCookieBannerAction">
                     Accept analytics cookies
                 </button>
                 <button type="button" class="govuk-button" data-module="govuk-button">

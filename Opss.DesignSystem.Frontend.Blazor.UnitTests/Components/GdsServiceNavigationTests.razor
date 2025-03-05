@@ -6,8 +6,8 @@
     {
         // Arrange
         var component = Render(
-    @<GdsServiceNavigation>
-        <GdsServiceNavigationItem Href="#">
+    @<GdsServiceNavigation DataTestId="GdsServiceNavigation">
+        <GdsServiceNavigationItem Href="#" DataTestId="GdsServiceNavigationItem">
             Navigation item 1
         </GdsServiceNavigationItem>
         <GdsServiceNavigationItem Href="#" Active=@true>
@@ -21,7 +21,8 @@
 
         component.MarkupMatches(
     @<div class="govuk-service-navigation"
-              data-module="govuk-service-navigation">
+              data-module="govuk-service-navigation"
+              data-testid="GdsServiceNavigation">
         <div class="govuk-width-container">
             <div class="govuk-service-navigation__container">
                 <nav aria-label="Menu" class="govuk-service-navigation__wrapper">
@@ -29,7 +30,7 @@
                         Menu
                     </button>
                     <ul class="govuk-service-navigation__list" id="navigation">
-                        <li class="govuk-service-navigation__item">
+                        <li class="govuk-service-navigation__item" data-testid="GdsServiceNavigationItem">
                             <a class="govuk-service-navigation__link" href="#">
                                 Navigation item 1
                             </a>

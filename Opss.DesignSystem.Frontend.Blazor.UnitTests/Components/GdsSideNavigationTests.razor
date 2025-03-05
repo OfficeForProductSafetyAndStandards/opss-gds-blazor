@@ -6,9 +6,9 @@
     {
         // Arrange
         var component = Render(
-    @<GdsSideNavigation Label="Side navigation">
+    @<GdsSideNavigation Label="Side navigation" DataTestId="GdsSideNavigation">
         <ItemsTemplate>
-            <GdsSideNavigationItem Href="#1" Active=@true>
+            <GdsSideNavigationItem Href="#1" Active=@true DataTestId="GdsSideNavigationItem">
                 Nav item 1
             </GdsSideNavigationItem>
             <GdsSideNavigationItem Href="#2">
@@ -22,9 +22,9 @@
         );
 
         component.MarkupMatches(
-    @<nav class="moj-side-navigation" aria-label="Side navigation">
+    @<nav class="moj-side-navigation" aria-label="Side navigation" data-testid="GdsSideNavigation">
         <ul class="moj-side-navigation__list">
-            <li class="moj-side-navigation__item moj-side-navigation__item--active">
+            <li class="moj-side-navigation__item moj-side-navigation__item--active" data-testid="GdsSideNavigationItem">
                 <a href="#1" aria-current="location">Nav item 1</a>
             </li>
 

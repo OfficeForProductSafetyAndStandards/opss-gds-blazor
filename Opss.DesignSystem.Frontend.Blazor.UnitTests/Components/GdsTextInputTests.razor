@@ -37,10 +37,13 @@
                  Pattern="regex"
                  Spellcheck="true"
                  Autocapitalize="ok"
-                 InputWrapperClasses="input-wrapper-classes"></GdsTextInput>);
+                 InputWrapperClasses="input-wrapper-classes"
+                               DataTestId="GdsTextInput"
+                               InputDataTestId="InputTestId"></GdsTextInput>);
         
         component.MarkupMatches(
-            @<div class="govuk-form-group  form-group-css" attr1="value1">
+	@<div class="govuk-form-group  form-group-css" attr1="value1"
+				  	data-testid="GdsTextInput">
                 <input id="all" 
                     class="govuk-input some-css " 
                     name="all" type="text" 
@@ -52,7 +55,8 @@
                     value="a value" 
                     disabled="" 
                     autocapitalize="ok" 
-                    attr1="value1">
+                    attr1="value1"
+               data-testid="InputTestId">
             </div>
         );
     }

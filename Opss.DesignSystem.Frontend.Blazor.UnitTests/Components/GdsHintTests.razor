@@ -7,10 +7,10 @@
         // Arrange
         var id = "hello-world";
         var message = "Hello World";
-        var component = Render(@<CascadingValue Value=@id><GdsHint>@message</GdsHint></CascadingValue>);
+        var component = Render(@<CascadingValue Value=@id><GdsHint DataTestId="GdsHint">@message</GdsHint></CascadingValue>);
 
         component.MarkupMatches(
-    @<div id="@id-hint" class="govuk-hint">
+    @<div id="@id-hint" class="govuk-hint" data-testid="GdsHint">
         @message
     </div>
         );

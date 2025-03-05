@@ -9,10 +9,10 @@
         var message = "Hello World";
         var forValue = "Hello";
 
-        var component = Render(@<GdsLabel Id=@id For=@forValue>@message</GdsLabel>);
+        var component = Render(@<GdsLabel DataTestId="GdsLabel" Id=@id For=@forValue>@message</GdsLabel>);
 
         component.MarkupMatches(
-    @<label id=@id class="govuk-label" for=@forValue>
+    @<label id=@id class="govuk-label" for=@forValue data-testid="GdsLabel">
         @message
     </label>
         );

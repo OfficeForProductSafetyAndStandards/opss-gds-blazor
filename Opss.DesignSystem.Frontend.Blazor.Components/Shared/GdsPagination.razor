@@ -7,6 +7,7 @@
 
 <nav class="govuk-pagination @Classes @(UseBlockStyle == true ? " govuk-pagination--block" : "")"
      aria-label="Pagination"
+     data-testid=@DataTestId
      @attributes=@Attributes>
     @if (PreviousTemplate != null && (currentIndex > 0 || UseBlockStyle == true))
     {

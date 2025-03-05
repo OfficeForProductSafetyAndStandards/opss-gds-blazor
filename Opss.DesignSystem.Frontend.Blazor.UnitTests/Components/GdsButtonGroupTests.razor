@@ -5,14 +5,14 @@
     public void OutputsButtonGroup()
     {
         // Arrange
-        var component = Render(@<GdsButtonGroup>
-        <GdsButton Type="submit">Save and continue</GdsButton>
+        var component = Render(@<GdsButtonGroup DataTestId="GdsButtonGroup">
+        <GdsButton Type="submit" DataTestId="GdsButton">Save and continue</GdsButton>
         <GdsButton Type="submit" Classes=@ButtonStyle.Secondary>Save as draft</GdsButton>
     </GdsButtonGroup>);
 
         component.MarkupMatches(
-    @<div class="govuk-button-group">
-        <button type="submit" class="govuk-button" data-module="govuk-button">
+    @<div class="govuk-button-group" data-testid="GdsButtonGroup">
+        <button type="submit" class="govuk-button" data-module="govuk-button" data-testid="GdsButton">
             Save and continue
         </button>
         <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">

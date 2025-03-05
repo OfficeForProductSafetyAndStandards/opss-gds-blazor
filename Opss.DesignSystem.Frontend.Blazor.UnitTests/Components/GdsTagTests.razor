@@ -6,11 +6,11 @@
     {
         // Arrange
         var component = Render(
-    @<GdsTag>Completed</GdsTag>
+    @<GdsTag DataTestId="GdsTag">Completed</GdsTag>
     );
 
         component.MarkupMatches(
-    @<strong class="govuk-tag">
+    @<strong class="govuk-tag" data-testid="GdsTag">
         Completed
     </strong>
         );

@@ -5,10 +5,10 @@
     public void OutputsButton()
     {
         // Arrange
-        var component = Render(@<GdsButton Type="submit">Save and continue</GdsButton>);
+        var component = Render(@<GdsButton Type="submit" DataTestId="GdsButton">Save and continue</GdsButton>);
 
         component.MarkupMatches(
-    @<button type="submit" class="govuk-button" data-module="govuk-button">
+    @<button type="submit" class="govuk-button" data-module="govuk-button" data-testid="GdsButton">
         Save and continue
     </button>
         );
@@ -96,10 +96,10 @@
     public void OutputsButtonWithHref()
     {
         // Arrange
-        var component = Render(@<GdsButton Href="https://example.com">Go to Example</GdsButton>);
+        var component = Render(@<GdsButton Href="https://example.com" DataTestId="GdsButton">Go to Example</GdsButton>);
 
         component.MarkupMatches(
-    @<a href="https://example.com" role="button" class="govuk-button" data-module="govuk-button" draggable="false">
+    @<a href="https://example.com" role="button" class="govuk-button" data-module="govuk-button" draggable="false" data-testid="GdsButton">
         Go to Example
     </a>
         );

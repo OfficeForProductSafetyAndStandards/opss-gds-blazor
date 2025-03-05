@@ -7,7 +7,7 @@
     {
         // Arrange
         var component = Render(
-    @<GdsCheckboxes Name="waste">
+    @<GdsCheckboxes Name="waste" DataTestId="GdsCheckboxes">
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
                 Which types of waste do you transport?
@@ -19,7 +19,7 @@
             </GdsHint>
         </HintTemplate>
         <ChildContent>
-            <GdsCheckbox Value="carcasses">Waste from animal carcasses</GdsCheckbox>
+            <GdsCheckbox Value="carcasses" DataTestId="GdsCheckbox" InputDataTestId="InputDataTestId">Waste from animal carcasses</GdsCheckbox>
             <GdsCheckbox Value="mines">Waste from mines or quarries</GdsCheckbox>
             <GdsCheckbox Value="farm">Farm or agricultural waste</GdsCheckbox>
         </ChildContent>
@@ -27,7 +27,7 @@
     );
 
         component.MarkupMatches(
-    @<div class="govuk-form-group">
+    @<div class="govuk-form-group" data-testid="GdsCheckboxes">
         <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
@@ -38,9 +38,9 @@
                 Select all that apply
             </div>
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-                <div class="govuk-checkboxes__item">
+                <div class="govuk-checkboxes__item" data-testid="GdsCheckbox">
                     <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox"
-                           value="carcasses">
+                           value="carcasses" data-testid="InputDataTestId">
                     <label class="govuk-label govuk-checkboxes__label" for="waste">
                         Waste from animal carcasses
                     </label>

@@ -9,6 +9,7 @@
 
 <a class="govuk-back-link @(IsOnDarkBackground ? "govuk-back-link--inverse" : "") @Classes"
    href=@Href
+   data-testid=@DataTestId
    @attributes=@Attributes
 >
     @if (ChildContent != null)

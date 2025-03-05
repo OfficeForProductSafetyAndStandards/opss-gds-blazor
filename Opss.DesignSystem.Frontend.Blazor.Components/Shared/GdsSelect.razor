@@ -6,8 +6,9 @@
     to use.
 </summary> *@
 
-<div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses" 
-@attributes=@FormGroupAttributes
+<div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses"
+     data-testid=@DataTestId
+    @attributes=@FormGroupAttributes
 >
     @if (LabelTemplate != null)
     {
@@ -36,6 +37,7 @@
         name=@Name
         disabled=@Disabled
         aria-describedby=@describedBy
+        data-testid=@SelectDataTestId
         @onchange=@OnChange
         @attributes=@Attributes
     >
@@ -56,6 +58,12 @@
     /// </summary>
     [Parameter]
     public string? Id { get; set; }
+
+    /// <summary>
+    /// Applies the supplied value to the select's data-testid attribute
+    /// </summary>
+    [Parameter]
+    public string? SelectDataTestId { get; set; }
 
     /// <summary>
     /// Required. Name property for the select.

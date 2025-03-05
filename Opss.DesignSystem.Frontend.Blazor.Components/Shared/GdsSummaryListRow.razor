@@ -1,5 +1,5 @@
 ﻿
-<div class="govuk-summary-list__row @noActionsClass @Classes">
+<div class="govuk-summary-list__row @noActionsClass @Classes" data-testid=@DataTestId>
     <dt class="govuk-summary-list__key @KeyClasses">
         <CascadingValue Value=this>
             @KeyTemplate
@@ -38,6 +38,12 @@
     /// </summary>
     [Parameter]
     public string? Classes { get; set; }
+
+    /// <summary>
+    /// Sets the data-testid attribute
+    /// </summary>
+    [Parameter]
+    public string? DataTestId { get; set; }
 
     /// <summary>
     /// Required. The reference content (key) for each row item in the summary list component.
