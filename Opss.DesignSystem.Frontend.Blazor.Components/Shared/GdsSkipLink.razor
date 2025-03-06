@@ -5,34 +5,39 @@
     main content on a page.
 </summary> *@
 
-<AnchorLink 
-    Classes=@classes 
-    Href=@Href 
-    Attributes=@linkAttributes 
-    DataTestId=@DataTestId>
-    @ChildContent
+<AnchorLink Classes=@classes
+			Href=@Href
+			Attributes=@Attributes
+			DataTestId=@DataTestId>
+	@ChildContent
 </AnchorLink>
 
 @code {
-    #region Private Properties
-    private string classes
-    {
-        get
-        {          
-            var classBuilder = "govuk-skip-link";
-            if (!string.IsNullOrEmpty(Classes)) classBuilder += $" {Classes}";
-            return classBuilder;
-        }
-    }
+	#region Private Properties
+	private string classes
+	{
+		get
+		{
+			var classBuilder = "govuk-skip-link";
+			if (!string.IsNullOrEmpty(Classes)) classBuilder += $" {Classes}";
+			return classBuilder;
+		}
+	}
 
-    private Dictionary<string, object> linkAttributes
-    {
-        get
-        {
-            Attributes!.Add("data-module", "govuk-skip-link");
+	protected override async Task OnInitializedAsync()
+	{
+		if (Attributes is null)
+		{
+			Attributes = new Dictionary<string, object>{
+				{"data-module", "govuk-skip-link" }
+			};
+			return;
+		}
 
-            return Attributes!;
-        }
-    }
-    #endregion
+		if (Attributes.ContainsKey("data-module"))
+			return;
+
+		Attributes.Add("data-module", "govuk-skip-link");
+	}
+	#endregion
 }
