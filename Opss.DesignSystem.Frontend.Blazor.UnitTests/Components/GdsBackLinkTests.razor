@@ -56,6 +56,20 @@
     }
 
     [Fact]
+    public void OutputsBackLinkWithDataTestId()
+    {
+        // Arrange
+        var dataTestId = "custom-back";
+        var component = Render(@<GdsBackLink Href="#" DataTestId=@dataTestId></GdsBackLink>);
+
+        component.MarkupMatches(
+    @<a href="#" class="govuk-back-link" data-testId="@dataTestId">
+        Back
+    </a>
+    );
+    }
+
+    [Fact]
     public void OutputsBackLinkWithAdditionalAttributes()
     {
         // Arrange

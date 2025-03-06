@@ -4,7 +4,9 @@
     Use the tag component to show users the status of something.
 </summary> *@
 
-<strong class="govuk-tag @Classes" @attributes=@Attributes>
+<strong class="govuk-tag @Classes"
+     data-testid=@DataTestId
+     @attributes=@Attributes>
     @ChildContent
 </strong>
 

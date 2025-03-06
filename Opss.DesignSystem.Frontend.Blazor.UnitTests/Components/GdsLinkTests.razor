@@ -2,24 +2,24 @@
 
 @code {
     [Fact]
-    public void OutputsLink()
+    public void ThenOutputsLinkWithIdAndHref()
     {
         // Arrange
         var id = "hello-world";
         var message = "Hello World";
         var href = "/linky";
 
-        var component = Render(@<GdsLink Id=@id Href=@href>@message</GdsLink>);
+        var component = Render(@<GdsLink Id=@id Href=@href DataTestId="GdsLink">@message</GdsLink>);
 
         component.MarkupMatches(
-    @<a id=@id class="govuk-link" href=@href>
+    @<a id=@id class="govuk-link" href=@href data-testid="GdsLink">
         @message
     </a>
         );
     }
 
     [Fact]
-    public void OutputsLinkWithNoVisitedState()
+    public void WhenNoVisitedStateClassIsSet_ThenOutputsLinkWithNoVisitedStateClass()
     {
         // Arrange
         var id = "hello-world";
@@ -36,7 +36,7 @@
     }
 
     [Fact]
-    public void OutputsLinkInNewTab()
+    public void WhenOpenInNewTabIsSetToTrue_ThenOutputsAttributesForOpeningALinkInNewTab()
     {
         // Arrange
         var id = "hello-world";
@@ -53,7 +53,7 @@
     }
 
     [Fact]
-    public void OutputsLinkForDarkBackground()
+    public void WhenIsOnDarkBackgroundIsSet_ThenOutputsLinkForDarkBackground()
     {
         // Arrange
         var id = "hello-world";
@@ -70,7 +70,7 @@
     }
 
     [Fact]
-    public void OutputsLinkWithNoUnderline()
+    public void WhenNoUnderlineClassIsSet_ThenOutputsLinkWithNoUnderlineClass()
     {
         // Arrange
         var id = "hello-world";

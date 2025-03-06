@@ -6,8 +6,9 @@
     to use.
 </summary> *@
 
-<div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses" 
-@attributes=@FormGroupAttributes
+<div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses"
+     data-testid=@DataTestId
+    @attributes=@FormGroupAttributes
 >
     @if (LabelTemplate != null)
     {
@@ -27,17 +28,27 @@
             @ErrorMessageTemplate
         </CascadingValue>
     }
+    @if (BeforeInputTemplate != null)
+    {
+        @BeforeInputTemplate
+    }
     <select class="govuk-select @(ErrorMessageTemplate != null ? "govuk-select--error" : "")  @Classes"
-    id=@Id
-    name=@Name
-    disabled=@Disabled
-    aria-describedby=@describedBy?.Trim()
-    @onchange=@OnChange
-    @attributes=@Attributes>
+        id=@Id
+        name=@Name
+        disabled=@Disabled
+        aria-describedby=@describedBy
+        data-testid=@SelectDataTestId
+        @onchange=@OnChange
+        @attributes=@Attributes
+    >
         <CascadingValue Value=this>
             @ChildContent
         </CascadingValue>
     </select>
+    @if (AfterInputTemplate != null)
+    {
+        @AfterInputTemplate
+    }
 </div>
 
 @code {
@@ -47,6 +58,12 @@
     /// </summary>
     [Parameter]
     public string? Id { get; set; }
+
+    /// <summary>
+    /// Applies the supplied value to the select's data-testid attribute
+    /// </summary>
+    [Parameter]
+    public string? SelectDataTestId { get; set; }
 
     /// <summary>
     /// Required. Name property for the select.
@@ -131,6 +148,7 @@
         var value = e.Value?.ToString();
         return ValueChanged.InvokeAsync(value);
     }
+
     #endregion
 
     #region Private Properties
@@ -141,25 +159,26 @@
             var fullText = DescribedBy;
             if (HintTemplate != null) fullText += $" {Id}-hint";
             if (ErrorMessageTemplate != null) fullText += $" {Id}-error";
-            return string.IsNullOrWhiteSpace(fullText) ? null : fullText;
+            return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
         }
     }
     #endregion
 
     #region Cascading Value - Child Items
-    private List<GdsSelectOption> items = new List<GdsSelectOption>();
+    private List<GdsSelectOption> selectOptions = new List<GdsSelectOption>();
 
     public void Register(GdsSelectOption selectItem)
     {
         if (selectItem.Selected == true)
         {
-            ValueChanged.InvokeAsync(selectItem.Value);
+            Value = selectItem.Value;
+            selectOptions.ForEach((o) => o.UnSelect());
         }
-        if (selectItem.Value == Value)
+        else if (selectItem.Value == Value)
         {
             selectItem.Select();
         }
-        items.Add(selectItem);
+        selectOptions.Add(selectItem);
     }
     #endregion
 }

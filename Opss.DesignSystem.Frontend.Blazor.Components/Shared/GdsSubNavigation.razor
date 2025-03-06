@@ -2,6 +2,7 @@
 
 <nav class="moj-sub-navigation @Classes"
      aria-label=@(string.IsNullOrEmpty(Label) ? "Secondary navigation region" : Label)
+     data-testid=@DataTestId
      @attributes=@Attributes
 >
     @if (ChildContent != null)

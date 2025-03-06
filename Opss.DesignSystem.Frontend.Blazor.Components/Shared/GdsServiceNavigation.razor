@@ -3,9 +3,10 @@
 @if (string.IsNullOrEmpty(ServiceName))
 {
     <div class="govuk-service-navigation @Classes"
-    data-module="govuk-service-navigation"
-    aria-label=@ariaLabel
-    @attributes=@Attributes>
+         data-testid=@DataTestId
+        data-module="govuk-service-navigation"
+        aria-label=@ariaLabel
+        @attributes=@Attributes>
         <div class="govuk-width-container">
             <div class="govuk-service-navigation__container">
                 @if (ChildContent != null)
@@ -34,6 +35,7 @@
 else
 {
     <section class="govuk-service-navigation @Classes"
+             data-testid=@DataTestId
          data-module="govuk-service-navigation"
          aria-label=@ariaLabel
          @attributes=@Attributes>

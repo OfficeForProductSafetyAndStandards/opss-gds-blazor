@@ -4,7 +4,9 @@
     The GOV.UK footer provides copyright, licensing and other information about your service.
 </summary> *@
 
-<footer class="govuk-footer @Classes" @attributes=@Attributes>
+<footer class="govuk-footer @Classes"
+        data-testid=@DataTestId
+        @attributes=@Attributes>
     <div class="govuk-width-container @ContainerClasses">
 
         @if (NavigationTemplate != null)

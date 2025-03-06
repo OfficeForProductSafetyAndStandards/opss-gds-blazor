@@ -4,7 +4,8 @@
 {
     if (IsPageHeading)
     {
-        <h1 class="govuk-label-wrapper">
+        <h1 class="govuk-label-wrapper"
+            data-testid=@DataTestId>
             <label id=@Id
                    class="govuk-label @Classes"
                    for=@(ParentId ?? For)
@@ -19,6 +20,7 @@
         <label id=@Id
                class="govuk-label @Classes"
                for=@(ParentId ?? For)
+               data-testid=@DataTestId
                @attributes=@Attributes
         >
             @ChildContent

@@ -1,16 +1,13 @@
 ﻿@inherits GdsWithHref
 
-<li>
+<li data-testid=@DataTestId>
     @if (string.IsNullOrEmpty(Href))
     {
         @ChildContent
     } else {
-        <a class=@Classes
-           href=@Href
-           @attributes=@Attributes
-        >
+        <AnchorLink Classes=@Classes Href=@Href @attributes=@Attributes>
             @ChildContent
-        </a>
+        </AnchorLink>
     }
 </li>
 

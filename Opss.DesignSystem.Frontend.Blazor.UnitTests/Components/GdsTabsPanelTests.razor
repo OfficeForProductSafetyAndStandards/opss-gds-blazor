@@ -14,18 +14,18 @@
         };
         
         var component = Render(
-            @<GdsTabs>
-                <GdsTabsPanel Id="hello" Label="some title" Classes="@classes" Attributes="@attributes">@content</GdsTabsPanel>
+            @<GdsTabs DataTestId="GdsTabs">
+        <GdsTabsPanel Id="hello" Label="some title" Classes="@classes" Attributes="@attributes" DataTestId="GdsTabsPanel">@content</GdsTabsPanel>
             </GdsTabs>
         );
 
         // Assert
         component.MarkupMatches(
-            @<div class="govuk-tabs">
+            @<div class="govuk-tabs" data-testid="GdsTabs">
                 <a diff:ignore></a>
                 <h2 diff:ignore></h2>
                 <ul diff:ignore></ul>
-                <div id="hello" class="govuk-tabs__panel @classes" role="tabpanel" aria-labelledby="tab_hello" attr1="value1" attr2="value2">
+                <div id="hello" class="govuk-tabs__panel @classes" role="tabpanel" aria-labelledby="tab_hello" attr1="value1" attr2="value2" data-testid="GdsTabsPanel">
                     @content
                 </div>
             </div>

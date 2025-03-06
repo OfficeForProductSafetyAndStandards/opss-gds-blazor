@@ -3,7 +3,7 @@
 <option value=@Value 
         selected=@isSelected
         disabled=@Disabled
->
+        data-testid=@DataTestId>
     @ChildContent
 </option>
 
@@ -41,6 +41,11 @@
     /// Mark the item as selected.
     /// </summary>
     public void Select() => isSelected = true;
+
+    /// <summary>
+    /// Mark the item as unselected.
+    /// </summary>
+    public void UnSelect() => isSelected = false;
     #endregion
 
     #region Private Properties

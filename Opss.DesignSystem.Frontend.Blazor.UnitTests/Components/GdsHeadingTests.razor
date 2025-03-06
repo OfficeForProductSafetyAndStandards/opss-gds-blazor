@@ -6,10 +6,10 @@
     public void OutputsHeading1()
     {
         // Arrange
-        var component = Render(@<GdsHeading HeadingLevel="1" Classes="@HeadingSize.Large">govuk-heading-l</GdsHeading>);
+        var component = Render(@<GdsHeading DataTestId="GdsHeading" HeadingLevel="1" Classes="@HeadingSize.Large">govuk-heading-l</GdsHeading>);
 
         component.MarkupMatches(
-            @<h1 class="govuk-heading-l">govuk-heading-l</h1>
+    @<h1 class="govuk-heading-l" data-testid="GdsHeading">govuk-heading-l</h1>
         );
     }
 

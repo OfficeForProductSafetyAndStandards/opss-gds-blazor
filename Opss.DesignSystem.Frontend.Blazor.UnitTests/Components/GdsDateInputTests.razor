@@ -6,7 +6,7 @@
     {
         // Arrange
         var component = Render(
-    @<GdsDateInput Id="passport-issued" NamePrefix="passport-issued">
+    @<GdsDateInput Id="passport-issued" NamePrefix="passport-issued" DataTestId="GdsDateInput">
         <LegendTemplate>
             <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
                 When was your passport issued?
@@ -16,7 +16,7 @@
             <GdsHint>For example, 27 3 2007</GdsHint>
         </HintTemplate>
         <ChildContent>
-            <GdsDateInputField DatePart="@DateInputFieldType.Day" />
+            <GdsDateInputField DataTestId="GdsDateInputField" InputDataTestId="InputDataTestId" DatePart="@DateInputFieldType.Day" />
             <GdsDateInputField DatePart="@DateInputFieldType.Month" />
             <GdsDateInputField DatePart="@DateInputFieldType.Year" />
         </ChildContent>
@@ -24,7 +24,7 @@
         );
 
         component.MarkupMatches(
-    @<div class="govuk-form-group">
+    @<div class="govuk-form-group" data-testid="GdsDateInput">
         <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
@@ -35,12 +35,12 @@
                 For example, 27 3 2007
             </div>
             <div class="govuk-date-input" id="passport-issued">
-                <div class="govuk-date-input__item">
+				<div class="govuk-date-input__item" data-testid="GdsDateInputField">
                     <div class="govuk-form-group">
                         <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
                             Day
                         </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="passport-issued-day" type="text" inputmode="numeric">
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="passport-issued-day" type="text" inputmode="numeric" data-testid="InputDataTestId">
                     </div>
                 </div>
                 <div class="govuk-date-input__item">

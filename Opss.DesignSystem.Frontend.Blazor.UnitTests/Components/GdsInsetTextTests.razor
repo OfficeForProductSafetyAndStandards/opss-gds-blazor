@@ -6,13 +6,13 @@
     {
         // Arrange
         var component = Render(
-    @<GdsInsetText>
+    @<GdsInsetText DataTestId="GdsInsetText">
         It can take up to 8 weeks to register a lasting power of attorney if
         there are no mistakes in the application.
     </GdsInsetText>);
 
         component.MarkupMatches(
-    @<div class="govuk-inset-text">
+    @<div class="govuk-inset-text" data-testid="GdsInsetText">
         It can take up to 8 weeks to register a lasting power of attorney if there are no mistakes in the application.
     </div>
         );

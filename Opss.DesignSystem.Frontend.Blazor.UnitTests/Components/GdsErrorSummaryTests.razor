@@ -6,20 +6,20 @@
     {
         // Arrange
         var component = Render(
-    @<GdsErrorSummary>
-        <GdsErrorSummaryItem Href="#">Enter your full name</GdsErrorSummaryItem>
+    @<GdsErrorSummary DataTestId="GdsErrorSummary">
+        <GdsErrorSummaryItem Href="#" DataTestId="GdsErrorSummaryItem">Enter your full name</GdsErrorSummaryItem>
         <GdsErrorSummaryItem Href="#">The date your passport was issued must be in the past</GdsErrorSummaryItem>
     </GdsErrorSummary>);
 
         component.MarkupMatches(
-    @<div class="govuk-error-summary" data-module="govuk-error-summary">
+    @<div class="govuk-error-summary" data-module="govuk-error-summary" data-testid="GdsErrorSummary">
         <div role="alert">
             <h2 class="govuk-error-summary__title">
                 There is a problem
             </h2>
             <div class="govuk-error-summary__body">
                 <ul class="govuk-list govuk-error-summary__list">
-                    <li>
+                    <li data-testid="GdsErrorSummaryItem">
                         <a href="#">Enter your full name</a>
                     </li>
                     <li>

@@ -1,19 +1,21 @@
 ﻿@inherits GdsWithContent
 
-<div class="govuk-warning-text @Classes" @attributes=@Attributes>
-    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-    <strong class="govuk-warning-text__text">
-        <span class="govuk-visually-hidden">@IconFallbackText</span>
-        @ChildContent
-    </strong>
+<div class="govuk-warning-text @Classes"
+	 data-testid=@DataTestId
+	 @attributes=@Attributes>
+	<span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+	<strong class="govuk-warning-text__text">
+		<span class="govuk-visually-hidden">@IconFallbackText</span>
+		@ChildContent
+	</strong>
 </div>
 
 @code {
-    #region Public Parameters
-    /// <summary>
-    /// The fallback text for the icon. Defaults to "Warning".
-    /// </summary>
-    [Parameter]
-    public string? IconFallbackText { get; set; } = "Warning";
-    #endregion
+	#region Public Parameters
+	/// <summary>
+	/// The fallback text for the icon. Defaults to "Warning".
+	/// </summary>
+	[Parameter]
+	public string? IconFallbackText { get; set; } = "Warning";
+	#endregion
 }

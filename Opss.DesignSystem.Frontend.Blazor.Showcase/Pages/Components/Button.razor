@@ -10,49 +10,61 @@
     A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/button/" class="govuk-link">Button</a>.
 </p>
 
-<Example CodeExampleContent="@(@"<GdsButton Type=""submit"">Save and continue</GdsButton>")">
+<Example BlazorExampleContent="@(@"<GdsButton Type=""submit"">Save and continue</GdsButton>")">
     <GdsButton Type="submit">Save and continue</GdsButton>
 </Example>
 
 <h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
 
-<Example CodeExampleContent="@(@"<GdsButton Type=""submit"">Save and continue</GdsButton>")">
-    <GdsButton Type="submit">Save and continue</GdsButton>
+<Example BlazorExampleContent="@(@"<GdsButton Type=""submit"" OnClick=@OnClick>Save and continue</GdsButton>")"
+         CodeExampleContent="@(@"@code{
+    protected void OnClick()
+    {
+        /* Code here */
+    }
+}")">
+    <GdsButton Type="submit" OnClick=@OnClick>Save and continue</GdsButton>
 </Example>
+@code{
+    protected void OnClick()
+    {
+        /* Code here */
+    }
+}
 
 <h3 class="govuk-heading-m" id="start-buttons">Start buttons</h3>
 
-<Example CodeExampleContent="@(@"<GdsButton Href=""#"" IsStartButton=@true>Start now</GdsButton>")">
+<Example BlazorExampleContent="@(@"<GdsButton Href=""#"" IsStartButton=@true>Start now</GdsButton>")">
     <GdsButton Href="#" IsStartButton=@true>Start now</GdsButton>
 </Example>
 
 <h3 class="govuk-heading-m" id="secondary-buttons">Secondary buttons</h3>
 
-<Example CodeExampleContent="@(@"<GdsButton Type=""submit"" Classes=@ButtonColours.Secondary>Find address</GdsButton>")">
+<Example BlazorExampleContent="@(@"<GdsButton Type=""submit"" Classes=@ButtonStyle.Secondary>Find address</GdsButton>")">
     <GdsButton Type="submit" Classes=@ButtonStyle.Secondary>Find address</GdsButton>
 </Example>
 
 <h3 class="govuk-heading-m" id="warning-buttons">Warning buttons</h3>
 
-<Example CodeExampleContent="@(@"<GdsButton Type=""submit"" Classes=@ButtonColours.Warning>Delete account</GdsButton>")">
+<Example BlazorExampleContent="@(@"<GdsButton Type=""submit"" Classes=@ButtonStyle.Warning>Delete account</GdsButton>")">
     <GdsButton Type="submit" Classes=@ButtonStyle.Warning>Delete account</GdsButton>
 </Example>
 
 <h3 class="govuk-heading-m" id="buttons-on-dark-backgrounds">Buttons on dark backgrounds</h3>
 
-<Example CodeExampleContent="@(@"<GdsButton Type=""submit"" IsOnDarkBackground=@true>Create an account</GdsButton>")" Classes="dark-background">
+<Example BlazorExampleContent="@(@"<GdsButton Type=""submit"" IsOnDarkBackground=@true>Create an account</GdsButton>")" Classes="dark-background">
     <GdsButton Type="submit" IsOnDarkBackground=@true>Create an account</GdsButton>
 </Example>
 
 <h3 class="govuk-heading-m" id="disabled-buttons">Disabled buttons</h3>
 
-<Example CodeExampleContent="@(@"<GdsButton Type=""submit"" Disabled=@true>Disabled button</GdsButton>")">
+<Example BlazorExampleContent="@(@"<GdsButton Type=""submit"" Disabled=@true>Disabled button</GdsButton>")">
     <GdsButton Type="submit" Disabled=@true>Disabled button</GdsButton>
 </Example>
 
 <h3 class="govuk-heading-m" id="input-element-buttons">Input element buttons</h3>
 
-<Example CodeExampleContent="@(@"<GdsButtonGroup>
+<Example BlazorExampleContent="@(@"<GdsButtonGroup>
     <GdsButton Element=ButtonType.Input Type=""submit"" Value=""Input submit""></GdsButton>
     <GdsButton Element=ButtonType.Input Type=""reset"" Value=""Input reset""></GdsButton>
     <GdsButton Element=ButtonType.Input Type=""button"" Value=""Input button""></GdsButton>
@@ -68,9 +80,9 @@
 
 <h3 class="govuk-heading-m" id="grouping-buttons">Grouping buttons</h3>
 
-<Example CodeExampleContent="@(@"<GdsButtonGroup>
+<Example BlazorExampleContent="@(@"<GdsButtonGroup>
     <GdsButton Type=""submit"">Save and continue</GdsButton>
-    <GdsButton Type=""submit"" Classes=@ButtonColours.Secondary>Save as draft</GdsButton>
+    <GdsButton Type=""submit"" Classes=@ButtonStyle.Secondary>Save as draft</GdsButton>
 </GdsButtonGroup>")">
     <GdsButtonGroup>
         <GdsButton Type="submit">Save and continue</GdsButton>
@@ -78,7 +90,7 @@
     </GdsButtonGroup>
 </Example>
 
-<Example CodeExampleContent="@(@"<GdsButtonGroup>
+<Example BlazorExampleContent="@(@"<GdsButtonGroup>
     <GdsButton Type=""submit"">Continue</GdsButton>
     <GdsLink Href=""#"">Cancel</GdsLink>
 </GdsButtonGroup>")">
@@ -90,7 +102,7 @@
 
 <h3 class="govuk-heading-m" id="stop-users-submitting-twice">Stop users from accidentally sending information more than once</h3>
 
-<Example CodeExampleContent="@(@"<GdsButton Type=""submit"" PreventDoubleClick=@true>Confirm and send</GdsButton>")">
+<Example BlazorExampleContent="@(@"<GdsButton Type=""submit"" PreventDoubleClick=@true>Confirm and send</GdsButton>")">
     <GdsButton Type="submit" PreventDoubleClick=@true>Confirm and send</GdsButton>
 </Example>
 

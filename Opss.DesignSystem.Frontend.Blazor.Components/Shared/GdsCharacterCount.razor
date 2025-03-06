@@ -6,23 +6,23 @@
 </summary> *@
 
 <div class=@classes
-     data-module="govuk-character-count"
-     data-maxlength=@MaxLength
-     data-threshold=@Threshold
-     data-maxwords=@MaxWords
-     data-i18n.characters-under-limit=@replaceCountTemplate(CharactersUnderLimitText)
-     data-i18n.characters-at-limit=@CharactersAtLimitText
-     data-i18n.characters-over-limit=@replaceCountTemplate(CharactersOverLimitText)
-     data-i18n.words-under-limit=@replaceCountTemplate(WordsUnderLimitText)
-     data-i18n.words-at-limit=@WordsAtLimitText
-     data-i18n.words-over-limit=@replaceCountTemplate(WordsOverLimitText)
-     @attributes=@FormGroupAttributes>
-    @if (LabelTemplate != null)
-    {
-        <CascadingValue Value=@Id>
-            @LabelTemplate
-        </CascadingValue>
-    }
+data-testid=@DataTestId
+data-module="govuk-character-count"
+data-maxlength=@MaxLength
+data-threshold=@Threshold
+data-maxwords=@MaxWords
+data-i18n.characters-under-limit=@replaceCountTemplate(CharactersUnderLimitText)
+data-i18n.characters-at-limit=@CharactersAtLimitText
+data-i18n.characters-over-limit=@replaceCountTemplate(CharactersOverLimitText)
+data-i18n.words-under-limit=@replaceCountTemplate(WordsUnderLimitText)
+data-i18n.words-at-limit=@WordsAtLimitText
+data-i18n.words-over-limit=@replaceCountTemplate(WordsOverLimitText)
+@attributes=@FormGroupAttributes>
+
+    <CascadingValue Value=@Id>
+        @LabelTemplate
+    </CascadingValue>
+
     @if (HintTemplate != null)
     {
         <CascadingValue Value=@Id>
@@ -41,14 +41,15 @@
         @BeforeInputTemplate
     }
     <textarea id=@Id
-              class=@textAreaClasses
-              name=@Name
-              rows=@(Rows ?? 5)
-              spellcheck=@Spellcheck?.ToString().ToLower()
-              aria-describedby=@describedBy
-              autocomplete=@Autocomplete
-              @oninput="OnValueChanged"
-              @attributes=@Attributes
+    class=@textAreaClasses
+    name=@Name
+    rows=@(Rows ?? 5)
+    spellcheck=@Spellcheck?.ToString().ToLower()
+    aria-describedby=@describedBy
+    autocomplete=@Autocomplete
+    data-testid=@TextareaDataTestId
+    @oninput="OnValueChanged"
+    @attributes=@Attributes
     >
         @Value
     </textarea>
@@ -59,7 +60,7 @@
         </div>
     }
     <GdsHint OverrideId=@(Id + "-info")
-             Classes=@("govuk-character-count__message " + CountMessageClasses ?? "")>
+    Classes=@("govuk-character-count__message " + CountMessageClasses ?? "")>
         @remainingCharacterHintText
     </GdsHint>
     @if (AfterInputTemplate != null)
@@ -69,6 +70,8 @@
 </div>
 @code {
     #region Public Parameters
+    [Parameter]
+    public string? TextareaDataTestId { get; set; }
     /// <summary>
     /// Required. The Id of the textarea.
     /// </summary>
@@ -156,18 +159,6 @@
     /// </summary>
     [Parameter]
     public RenderFragment? AfterInputTemplate { get; set; }
-
-    /// <summary>
-    /// Content to add before all checkbox items within the checkboxes component.
-    /// </summary>
-    [Parameter]
-    public RenderFragment? BeforeInputsTemplate { get; set; }
-
-    /// <summary>
-    /// Content to add after all checkbox items within the checkboxes component.
-    /// </summary>
-    [Parameter]
-    public RenderFragment? AfterInputsTemplate { get; set; }
 
     /// <summary>
     /// Optional field to enable or disable the spellcheck attribute on the input.
@@ -316,6 +307,19 @@
     private string? replaceCountTemplate(string? template)
     {
         return template?.Replace("%{count}", (MaxWords ?? MaxLength ?? 0).ToString());
+    }
+    #endregion
+
+    #region Parameter Validation
+    protected override void OnParametersSet()
+    {
+        if (MaxLength == null && MaxWords == null)
+            throw new ArgumentNullException($"{nameof(MaxLength)} and {nameof(MaxWords)}", "GdsCharacterCount must have either maximum number of characters or maximum number of words provided.");
+
+        if (LabelTemplate == null)
+            throw new ArgumentNullException(nameof(LabelTemplate), "GdsCharacterCount must have label template provided.");
+
+        base.OnParametersSet();
     }
     #endregion
 }

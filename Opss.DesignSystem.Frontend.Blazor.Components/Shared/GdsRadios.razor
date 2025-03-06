@@ -5,6 +5,7 @@
 </summary> *@
 
 <div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses"
+     data-testid=@DataTestId
      @attributes=@FormGroupAttributes
 >
     @if (includeFieldset)
@@ -150,13 +151,13 @@
     public Dictionary<string, object>? FormGroupAttributes { get; set; } = new Dictionary<string, object>();
 
     /// <summary>
-    /// Content to add before all radio items within the checkboxes component.
+    /// Content to add before all radio items within the radios component.
     /// </summary>
     [Parameter]
     public RenderFragment? BeforeInputsTemplate { get; set; }
 
     /// <summary>
-    /// Content to add after all radio items within the checkboxes component.
+    /// Content to add after all radio items within the radios component.
     /// </summary>
     [Parameter]
     public RenderFragment? AfterInputsTemplate { get; set; }
@@ -188,7 +189,7 @@
     [Parameter]
     public EventCallback<string> ValueChanged { get; set; }
 
-    public Task RadioChanged(string? value)
+    public Task OnRadioChanged(string? value)
     {
         return ValueChanged.InvokeAsync(value);
     }
@@ -203,7 +204,7 @@
     {
         get
         {
-            if (LegendTemplate != null || FieldsetClasses != null || FieldsetRole != null || FieldsetAttributes != null)
+            if (LegendTemplate != null || FieldsetClasses != null || FieldsetRole != null || FieldsetAttributes?.Count > 0)
                 return true;
 
             return IncludeFieldset ?? false;
@@ -248,9 +249,10 @@
     {
         if (radio.Checked == true)
         {
-            RadioChanged(radio.Value);
+            Value = radio.Value;
+            radios.ForEach((r) => r.UnCheck());
         }
-        if(radio.Value == Value)
+        else if(radio.Value == Value)
         {
             radio.Check();
         }

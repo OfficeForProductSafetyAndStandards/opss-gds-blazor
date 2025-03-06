@@ -1,44 +1,71 @@
 ﻿@inherits GdsWithHref
 
-<a id=@Id
-   class="govuk-link @(IsOnDarkBackground ? "govuk-link--inverse" : "") @Classes"
-   href=@Href
-   target=@(OpenInNewTab ? "_blank" : null)
-   rel=@(OpenInNewTab ? "noreferrer noopener" : null)
-   @attributes=@Attributes>
+<AnchorLink Id=@Id
+    Classes=@classes
+    Href=@Href
+    DataTestId=@DataTestId
+    Attributes=@linkAttributes>
     @ChildContent
 
     @if (!string.IsNullOrEmpty(VisuallyHiddenText))
     {
         <span class="govuk-visually-hidden">@VisuallyHiddenText</span>
     }
-</a>
+</AnchorLink>
 
 @code {
-    #region Public Parameters
-    /// <summary>
-    /// The Id attached to the link element.
-    /// </summary>
-    [Parameter]
-    public string? Id { get; set; }
+        #region Public Parameters
+        /// <summary>
+        /// The Id attached to the link element.
+        /// </summary>
+        [Parameter]
+        public string? Id { get; set; }
 
-    /// <summary>
-    /// A visually hidden prefix used after the link.
-    /// </summary>
-    [Parameter]
-    public string? VisuallyHiddenText { get; set; }
+        /// <summary>
+        /// A visually hidden prefix used after the link.
+        /// </summary>
+        [Parameter]
+        public string? VisuallyHiddenText { get; set; }
 
-    /// <summary>
-    /// Indicates that the link should open in a new tab:
-    /// Includes rel="noreferrer noopener" along with target="_blank" to reduce the risk of reverse tabnabbing.
-    /// </summary>
-    [Parameter]
-    public bool OpenInNewTab { get; set; }
+        /// <summary>
+        /// Indicates that the link should open in a new tab:
+        /// Includes rel="noreferrer noopener" along with target="_blank" to reduce the risk of reverse tabnabbing.
+        /// </summary>
+        [Parameter]
+        public bool OpenInNewTab { get; set; }
 
-    /// <summary>
-    /// Indicates that the component is on a dark background and should utilise the inverse class
-    /// </summary>
-    [Parameter]
-    public bool IsOnDarkBackground { get; set; }
+        /// <summary>
+        /// Indicates that the component is on a dark background and should utilise the inverse class
+        /// </summary>
+        [Parameter]
+        public bool IsOnDarkBackground { get; set; }
+    #endregion
+
+    #region Private Properties
+    private Dictionary<string, object> linkAttributes
+    {
+        get
+        {
+            if (OpenInNewTab) 
+            {
+                Attributes!.Add("target", "_blank");
+                Attributes!.Add("rel", "noreferrer noopener");
+            }
+
+            return Attributes!;
+        }
+    }
+
+    private string classes
+    {
+        get
+        {
+            var classBuilder = "govuk-link";
+            if (IsOnDarkBackground) classBuilder += " govuk-link--inverse";
+            if(!string.IsNullOrEmpty(Classes)) classBuilder += $" {Classes}";
+
+            return classBuilder;
+        }
+    }
     #endregion
 }

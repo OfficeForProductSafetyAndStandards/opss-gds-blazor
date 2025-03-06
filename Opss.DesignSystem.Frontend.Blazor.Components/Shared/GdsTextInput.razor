@@ -6,6 +6,7 @@
 </summary> *@
 
 <div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "") @FormGroupClasses"
+     data-testid=@DataTestId
      @attributes=@FormGroupAttributes>
     @if (LabelTemplate != null)
     {
@@ -38,7 +39,7 @@
                    class="govuk-input @Classes @(ErrorMessageTemplate != null ? "govuk-input--error" : "")" 
                    name=@Name
                    type=@(Type ?? "text")
-                   spellcheck=@Spellcheck?.ToString().ToLower()
+				   spellcheck=@spellcheck
                    aria-describedby=@describedBy?.Trim()
                    autocomplete=@Autocomplete
                    pattern=@Pattern
@@ -46,6 +47,7 @@
                    value=@Value
                    disabled=@Disabled
                    autocapitalize=@Autocapitalize
+                   data-testid=@InputDataTestId
                    @oninput=OnValueChanged
                    @attributes=@Attributes
             />
@@ -70,6 +72,7 @@
                value=@Value
                disabled=@Disabled
                autocapitalize=@Autocapitalize
+               data-testid=@InputDataTestId
                @oninput=OnValueChanged
                @attributes=@Attributes
         />
@@ -83,6 +86,12 @@
     /// </summary>
     [Parameter]
     public string? Id { get; set; }
+
+    /// <summary>
+    /// Applies the supplied value to the input's data-testid attribute
+    /// </summary>
+    [Parameter]
+    public string? InputDataTestId { get; set; }
 
     /// <summary>
     /// The name of the input, which is submitted with the form data.
@@ -221,7 +230,7 @@
             if (Inputmode == "numeric")
                 return false.ToString().ToLower();
 
-            return Spellcheck?.ToString().ToLower();
+            return null;
         }
     }
 

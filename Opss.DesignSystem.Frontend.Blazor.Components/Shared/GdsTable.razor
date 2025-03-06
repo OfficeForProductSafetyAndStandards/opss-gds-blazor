@@ -4,9 +4,10 @@
     The table component makes information easier to compare and scan.
 </summary>*@
 
-<table 
-class="@tableClasses" 
-@attributes=@Attributes
+<table class="@tableClasses"
+       aria-label=@Label
+       data-testid=@DataTestId
+        @attributes=@Attributes
 >
     @if(!string.IsNullOrWhiteSpace(CaptionText)) 
     {
@@ -37,16 +38,38 @@ class="@tableClasses"
     public string? CaptionText { get; set; }
 
     /// <summary>
+    /// The aria-label attribute to add to the table. 
+    /// </summary>
+    [Parameter]
+    public string? Label { get; set; }
+
+    /// <summary>
     /// Table caption text classes, as specified in TableClasses.
     /// </summary>
     [Parameter]
     public string? CaptionTextClasses { get; set; }
 
     /// <summary>
-    /// Whether the first cell in each row of the table body will be a header.
+    /// If true, the first cell in each row of the table body will be a header.
     /// </summary>
     [Parameter]
     public bool FirstCellIsHeader { get; set; }
+
+    /// <summary>
+    /// If true, the sort functionality is enabled. 
+    /// The <see cref="GdsTable.OnTableSort" /> event handler, and the <see cref="GdsTableCell.SortColumnName" /> on the table cells in the table header must be set.
+    /// </summary>
+    [Parameter]
+    public bool IsSortable { get; set; }
+
+    /// <summary>
+    /// The initial/default sort order to apply to the table. 
+    /// </summary>
+    /// <remarks>
+    /// The same sort order must be applied to the data source in the initial/default state as well.
+    /// </remarks>
+    [Parameter]
+    public TableSortArgs? InitialSortOrder { get; set; }
 
     /// <summary>
     /// Table cells for the head row
@@ -55,14 +78,44 @@ class="@tableClasses"
     public RenderFragment? HeadTemplate { get; set; }
 
     /// <summary>
-    /// Table Rows for the table body
+    /// Table rows for the table body
     /// </summary>
     [Parameter]
     public RenderFragment? RowsTemplate { get; set; }
     #endregion
 
-    #region Private Parameters 
-    public string captionClasses
+    #region Event Handlers
+    [Parameter]
+    public EventCallback<TableSortArgs> OnTableSort { get; set; }
+
+    internal void SetSortOrder(TableSortArgs args)
+    {
+        if (string.IsNullOrEmpty(args.Name)) return;
+        sortOrders[args.Name] = args.Order;    
+    }
+
+    internal string? GetSortOrder(string columnName)
+    { 
+        if (string.IsNullOrEmpty(columnName)) return null;
+        return sortOrders[columnName];
+    }
+
+    internal void ClearAllSortOrders()
+    {
+        foreach (string key in sortOrders.Keys)
+        { 
+            sortOrders[key] = TableSortOrder.None;        
+        }
+    }
+    #endregion
+
+    #region Private Properties
+    /// <summary>
+    /// Current sorting orders for all sort columns in the table.
+    /// </summary>
+    private Dictionary<string, string> sortOrders = new();
+
+    private string captionClasses
     {
         get
         {
@@ -75,7 +128,7 @@ class="@tableClasses"
         }
     }
 
-    public string tableClasses
+    private string tableClasses
     {
         get
         {

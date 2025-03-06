@@ -6,7 +6,8 @@
     the same time, on a regular basis. For example, in a caseworking system.
 </summary> *@
 
-<div class="moj-multi-file-upload">
+<div class="moj-multi-file-upload"
+     data-testid=@DataTestId>
     <div class="moj-multi-file__uploaded-files">
         <h2 class="govuk-heading-m">Files added</h2>
         <div class="govuk-summary-list moj-multi-file-upload__list">
@@ -25,15 +26,21 @@
 
     <div class="moj-multi-file-upload__upload">
 
-        <div class="govuk-form-group">
+        <div class="govuk-form-group @(ErrorMessageTemplate != null ? "govuk-form-group--error" : "")">
             @if (LabelTemplate != null)
             {
                 <CascadingValue Value=@Id>
                     @LabelTemplate
                 </CascadingValue>
             }
+            @if (ErrorMessageTemplate != null)
+            {
+                <CascadingValue Value=@Id>
+                    @ErrorMessageTemplate
+                </CascadingValue>
+            }
             <div class="moj-multi-file-upload__dropzone">
-                <InputFile OnChange="@LoadFilesAsync" class="govuk-file-upload moj-multi-file-upload__input" id=@Id name=@Name multiple @attributes=@Attributes />
+                <InputFile data-testid=@InputDataTestId OnChange="@LoadFilesAsync" class="govuk-file-upload moj-multi-file-upload__input" id=@Id name=@Name multiple @attributes=@Attributes />
                 <p class="govuk-body">Drag and drop files here or</p><label for=@Id class="govuk-button govuk-button--secondary">Choose files</label>
                 <div aria-live="polite" role="status" class="govuk-visually-hidden">
                     @if (_fileUploading)
@@ -56,6 +63,12 @@
     public string? Id { get; set; }
 
     /// <summary>
+    /// Applies the supplied value to the input's data-testid attribute
+    /// </summary>
+    [Parameter]
+    public string? InputDataTestId { get; set; }
+
+    /// <summary>
     /// The name of the input, which is submitted with the form data.
     /// </summary>
     [Parameter]
@@ -66,6 +79,12 @@
     /// </summary>
     [Parameter]
     public RenderFragment? LabelTemplate { get; set; }
+
+    /// <summary>
+    /// Can be used to add an error message to the radios component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ErrorMessageTemplate { get; set; }
     #endregion
 
     #region Private Properties

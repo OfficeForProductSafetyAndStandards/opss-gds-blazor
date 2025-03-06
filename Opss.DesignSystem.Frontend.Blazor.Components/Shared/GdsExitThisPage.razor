@@ -9,6 +9,7 @@
     case ExitPageType.Button:
         <div id=@Id
              class="govuk-exit-this-page @Classes"
+             data-testid=@DataTestId
              data-module="govuk-exit-this-page"
              data-i18n.activated=@ActivatedText
              data-i18n.timed-out=@TimedOutText
@@ -38,6 +39,7 @@
            href=@Href
            class="govuk-skip-link govuk-js-exit-this-page-skiplink @Classes"
            rel="nofollow noreferrer"
+           data-testid=@DataTestId
            data-module="govuk-skip-link"
            @attributes=@Attributes
         >

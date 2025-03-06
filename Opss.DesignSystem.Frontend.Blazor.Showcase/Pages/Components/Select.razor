@@ -10,7 +10,7 @@
     A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/select/" class="govuk-link">Select</a>.
 </p>
 
-<Example CodeExampleContent="@(@"<GdsSelect Id=""sort"" Name=""sort"">
+<Example BlazorExampleContent="@(@"<GdsSelect Id=""sort"" Name=""sort"">
     <LabelTemplate>
         <GdsLabel>Sort by</GdsLabel>
     </LabelTemplate>
@@ -36,7 +36,7 @@
 
 <h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
 
-<Example CodeExampleContent="@(@"<GdsSelect Id=""sort"" Name=""sort"">
+<Example BlazorExampleContent="@(@"<GdsSelect Id=""sort"" Name=""sort"" @bind-Value=@Value>
     <LabelTemplate>
         <GdsLabel>Sort by</GdsLabel>
     </LabelTemplate>
@@ -46,8 +46,11 @@
         <GdsSelectOption Value=""views"">Most views</GdsSelectOption>
         <GdsSelectOption Value=""comments"">Most comments</GdsSelectOption>
     </ChildContent>
-</GdsSelect>")">
-    <GdsSelect Id="sort" Name="sort">
+</GdsSelect>")"
+         CodeExampleContent="@(@"@code{
+    string? Value { get; set; }
+}")">
+    <GdsSelect Id="sort" Name="sort" @bind-Value=@Value>
         <LabelTemplate>
             <GdsLabel>Sort by</GdsLabel>
         </LabelTemplate>
@@ -59,10 +62,13 @@
         </ChildContent>
     </GdsSelect>
 </Example>
+@code{
+    string? Value { get; set; }
+}
 
 <h3 class="govuk-heading-m" id="select-with-hint">Select with hint</h3>
 
-<Example CodeExampleContent="@(@"<GdsSelect Id=""location"" Name=""location"">
+<Example BlazorExampleContent="@(@"<GdsSelect Id=""location"" Name=""location"">
     <LabelTemplate>
         <GdsLabel>Choose location</GdsLabel>
     </LabelTemplate>
@@ -106,7 +112,7 @@
 
 <h3 class="govuk-heading-m" id="error-messages">Error messages</h3>
 
-<Example CodeExampleContent="@(@"<GdsSelect Id=""location"" Name=""location"">
+<Example BlazorExampleContent="@(@"<GdsSelect Id=""location"" Name=""location"">
     <LabelTemplate>
         <GdsLabel>Choose location</GdsLabel>
     </LabelTemplate>

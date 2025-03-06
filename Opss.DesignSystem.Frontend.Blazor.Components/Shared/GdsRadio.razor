@@ -5,7 +5,8 @@
     The radio item within the radios component.
 </summary> *@
 
-<div class="govuk-radios__item">
+<div class="govuk-radios__item"
+     data-testid=@DataTestId>
     <input class="govuk-radios__input" 
            id=@id
            name=@Parent?.Name
@@ -15,6 +16,7 @@
            checked=@isChecked
            data-aria-controls=@conditionalId
            aria-describedBy=@describedBy?.Trim()
+           data-testid=@InputDataTestId
            @oninput=RadioChanged
            @attributes=@Attributes
     >
@@ -37,7 +39,8 @@
 @if (ConditionalTemplate != null)
 {
     <div id=@conditionalId
-         class="govuk-radios__conditional @(isChecked == true ? "" : "govuk-radios__conditional--hidden")">
+         class="govuk-radios__conditional @(isChecked == true ? "" : "govuk-radios__conditional--hidden")"
+         data-testid=@conditionalDataTestId>
         @ConditionalTemplate
     </div>
 }
@@ -50,6 +53,12 @@
     /// </summary>
     [Parameter]
     public string? Id { get; set; }
+
+    /// <summary>
+    /// Applies the supplied value to the input's data-testid attribute
+    /// </summary>
+    [Parameter]
+    public string? InputDataTestId { get; set; }
 
     /// <summary>
     /// Required. Value for the radio input.
@@ -113,12 +122,17 @@
     /// Mark the checkbox as checked.
     /// </summary>
     public void Check() => isChecked = true;
+
+    /// <summary>
+    /// Mark the item as unchecked.
+    /// </summary>
+    public void UnCheck() => isChecked = false;
     #endregion
 
     #region Event Handlers
     private Task RadioChanged(ChangeEventArgs e)
     {
-        return Parent!.RadioChanged(Value);
+        return Parent!.OnRadioChanged(Value);
     }
     #endregion
 
@@ -157,6 +171,16 @@
             if (ConditionalTemplate == null) return null;
 
             return $"conditional-{id}";
+        }
+    }
+
+    private string? conditionalDataTestId
+    {
+        get
+        {
+            if (DataTestId == null) return null;
+
+            return $"conditional-{DataTestId}";
         }
     }
 

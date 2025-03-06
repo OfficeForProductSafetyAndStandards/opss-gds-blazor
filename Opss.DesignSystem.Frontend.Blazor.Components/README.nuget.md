@@ -9,8 +9,8 @@ It is based on:
 
 ## Dependencies
 Beyond the .NET dependencies (which you can find in the relevant section of the nuget page) this component also uses the following node packages (contained within):
-- govuk-frontend: 5.7.1
-- @ministryofjustice/frontend: 3.0.3
+- govuk-frontend: 5.8.0
+- @ministryofjustice/frontend: 3.3.1
 
 ## Usage
 

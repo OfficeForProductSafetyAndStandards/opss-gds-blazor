@@ -10,7 +10,7 @@
     A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/components/text-area/" class="govuk-link">Textarea</a>.
 </p>
 
-<Example CodeExampleContent="@(@"<GdsTextarea Id=""more-detail""
+<Example BlazorExampleContent="@(@"<GdsTextarea Id=""more-detail""
                 Name=""moreDetail"">
     <LabelTemplate>
         <GdsLabel Classes=""@LabelSize.Large"" 
@@ -27,10 +27,10 @@
     </HintTemplate>
 </GdsTextarea>")">
     <GdsTextarea Id="more-detail"
-                 Name="moreDetail">
+    Name="moreDetail">
         <LabelTemplate>
             <GdsLabel Classes="@LabelSize.Large" 
-                      IsPageHeading="true">
+            IsPageHeading="true">
                 Can you provide more detail?
             </GdsLabel>
         </LabelTemplate>
@@ -46,8 +46,9 @@
 
 <h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
 
-<Example CodeExampleContent="@(@"<GdsTextarea Id=""more-detail""
-                Name=""moreDetail"">
+<Example BlazorExampleContent="@(@"<GdsTextarea Id=""more-detail""
+                Name=""moreDetail""
+                @bind-Value=@Value>
     <LabelTemplate>
         <GdsLabel Classes=""@LabelSize.Large""
                     IsPageHeading=""true"">
@@ -61,12 +62,16 @@
             details
         </GdsHint>
     </HintTemplate>
-</GdsTextarea>")">
+</GdsTextarea>")"
+         CodeExampleContent="@(@"@code{
+    string? Value { get; set; }
+}")">
     <GdsTextarea Id="more-detail"
-                 Name="moreDetail">
+    Name="moreDetail"
+    @bind-Value=@Value>
         <LabelTemplate>
             <GdsLabel Classes="@LabelSize.Large"
-                      IsPageHeading="true">
+            IsPageHeading="true">
                 Can you provide more detail?
             </GdsLabel>
         </LabelTemplate>
@@ -79,10 +84,13 @@
         </HintTemplate>
     </GdsTextarea>
 </Example>
+@code{
+    string? Value { get; set; }
+}
 
 <h3 class="govuk-heading-m" id="use-appropriately-sized">Use appropriately-sized textareas</h3>
 
-<Example CodeExampleContent="@(@"<GdsTextarea Id=""more-detail""
+<Example BlazorExampleContent="@(@"<GdsTextarea Id=""more-detail""
                 Name=""moreDetail""
                 Rows=""8"">
     <LabelTemplate>
@@ -122,7 +130,7 @@
     If you’re asking more than one question on the page
 </h3>
 
-<Example CodeExampleContent="@(@"<GdsTextarea Id=""more-detail""
+<Example BlazorExampleContent="@(@"<GdsTextarea Id=""more-detail""
                 Name=""moreDetail"">
     <LabelTemplate>
         <GdsLabel>
@@ -144,7 +152,7 @@
     Error messages
 </h3>
 
-<Example CodeExampleContent="@(@"<GdsTextarea Id=""more-detail""
+<Example BlazorExampleContent="@(@"<GdsTextarea Id=""more-detail""
                 Name=""moreDetail"">
     <LabelTemplate>
         <GdsLabel Classes=""@LabelSize.Large""

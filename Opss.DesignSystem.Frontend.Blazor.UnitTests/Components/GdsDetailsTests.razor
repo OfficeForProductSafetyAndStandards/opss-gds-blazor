@@ -7,13 +7,13 @@
     {
         // Arrange
         var component = Render(
-            @<GdsDetails SummaryText="Help with nationality">
+    @<GdsDetails SummaryText="Help with nationality" DataTestId="GdsDetails">
                 We need to know your nationality so we can work out which elections
             </GdsDetails>);
 
         // Assert
         component.MarkupMatches(
-            @<details class="govuk-details">
+    @<details class="govuk-details" data-testid="GdsDetails">
                 <summary class="govuk-details__summary">
                     <span class="govuk-details__summary-text">
                         Help with nationality
