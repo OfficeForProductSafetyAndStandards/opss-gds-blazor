@@ -1,0 +1,40 @@
+﻿@page "/Components/Header"
+@layout _ComponentsLayout
+
+<PageTitle>GOV.UK Header</PageTitle>
+
+<span class="govuk-caption-xl">Components</span>
+<h1 class="govuk-heading-xl">GOV.UK Header</h1>
+
+<p class="govuk-body">
+	A blazor implementation of the <a href="https://design-system.service.gov.uk/components/header/" class="govuk-link">GOV.UK header</a> as a GDS component.
+</p>
+
+
+<Example BlazorExampleContent="@(@"<GdsHeader />")">
+	<GdsHeader />
+</Example>
+
+<h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
+
+<h3 class="govuk-heading-m" id="header-without-homepagelink">Header without homepage link</h3>
+
+<Example BlazorExampleContent="@(@"<GdsHeader />")">
+	<GdsHeader />
+</Example>
+
+<h3 class="govuk-heading-m" id="header-witha-homepagelink">Header with homepage link</h3>
+
+<Example BlazorExampleContent="@(@"<GdsHeader HomepageUrl=""/Components"" />")">
+	<GdsHeader HomepageUrl="/Components" />
+</Example>
+
+<h3 class="govuk-heading-m" id="header-witha-productname">Header with Product Name</h3>
+
+<Example BlazorExampleContent="@(@"<GdsHeader HomepageUrl=""/Components"" ProductName=""Transport Department""/>")">
+	<GdsHeader HomepageUrl="/Components" ProductName="Transport Department" />
+</Example>
+
+@code {
+
+}
