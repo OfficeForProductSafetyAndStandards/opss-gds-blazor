@@ -5,18 +5,19 @@
 </summary> *@
 
 <div id=@Id
-     class="govuk-accordion @Classes" 
-     data-testid=@DataTestId
-     data-module="govuk-accordion" 
-     data-remember-expanded=@RememberExpanded
-     data-i18n.hide-all-sections=@HideAllSectionsText
-     data-i18n.hide-section=@HideSectionText
-     data-i18n.hide-section-aria-label=@HideSectionAriaLabelText
-     data-i18n.show-all-sections=@ShowAllSectionsText
-     data-i18n.show-section=@ShowSectionText
-     data-i18n.show-section-aria-label=@ShowSectionAriaLabelText
-     @attributes=@Attributes
->
+class="govuk-accordion @Classes" 
+data-testid=@DataTestId
+data-module="govuk-accordion" 
+@attributes=@Attributes>
+    <div class="govuk-accordion__controls">
+        <button type="button"
+        class="govuk-accordion__show-all"
+        aria-expanded=@allItemsExpanded 
+        @onclick=@ToggleExpandAll>
+            <span class="govuk-accordion-nav__chevron@(allItemsExpanded ? "" : " govuk-accordion-nav__chevron--down")"></span>
+            <span class="govuk-accordion__show-all-text">@(allItemsExpanded ? HideAllSectionsText : ShowAllSectionsText)</span>
+        </button>
+    </div>
     <CascadingValue Value=this>
         @ChildContent
     </CascadingValue>
@@ -34,7 +35,7 @@
     /// be the target of aria-control attributes.
     /// </summary>
     [Parameter]
-    public string? Id { get; set; }
+    public required string Id { get; set; }
 
     /// <summary>
     /// Whether the expanded/collapsed state of the accordion 
@@ -49,14 +50,14 @@
     /// top of the accordion when all sections are expanded.
     /// </summary>
     [Parameter]
-    public string? HideAllSectionsText { get; set; }
+    public string? HideAllSectionsText { get; set; } = "Hide all sections";
 
     /// <summary>
     /// The text content of the ‘Hide’ button within each section
     /// of the accordion, which is visible when the section is expanded.
     /// </summary>
     [Parameter]
-    public string? HideSectionText { get; set; }
+    public string? HideSectionText { get; set; } = "Hide";
 
     /// <summary>
     /// Text made available to assistive technologies, like screen-readers, 
@@ -64,21 +65,21 @@
     /// is expanded. Defaults to "Hide this section".
     /// </summary>
     [Parameter]
-    public string? HideSectionAriaLabelText { get; set; }
+    public string? HideSectionAriaLabelText { get; set; } = "Hide this section";
 
     /// <summary>
     /// The text content of the ‘Show all sections’ button at the top
     /// of the accordion when at least one section is collapsed.
     /// </summary>
     [Parameter]
-    public string? ShowAllSectionsText { get; set; }
+    public string? ShowAllSectionsText { get; set; } = "Show all sections";
 
     /// <summary>
     /// The text content of the ‘Show’ button within each section of 
     /// the accordion, which is visible when the section is collapsed.
     /// </summary>
     [Parameter]
-    public string? ShowSectionText { get; set; }
+    public string? ShowSectionText { get; set; } = "Show";
 
     /// <summary>
     /// Text made available to assistive technologies, like screen-readers,
@@ -86,7 +87,106 @@
     /// is collapsed. Defaults to "Show this section".
     /// </summary>
     [Parameter]
-    public string? ShowSectionAriaLabelText{ get; set; }
+    public string? ShowSectionAriaLabelText { get; set; } = "Show this section";
+
+    [Parameter]
+    public Dictionary<int, bool> ItemStates { get; set; } = new();
+
+    [Parameter]
+    public EventCallback<Dictionary<int, bool>> OnItemStatesChanged { get; set; }
+    #endregion
+
+    #region Event Handlers 
+    private async Task ToggleExpandAll()
+    {
+        //allItemsExpanded = GetAllItemsExpanded();
+        allItemsExpanded = !allItemsExpanded;
+
+        if(rememberExpanded)
+            ItemStates.Clear();
+
+        items.ForEach(i => 
+        { 
+            i.SetExpanded(allItemsExpanded); 
+
+            if(rememberExpanded)
+                ItemStates.Add(i.Index, i.GetExpanded());
+        });
+
+        if (rememberExpanded)
+            await OnItemStatesChanged.InvokeAsync(ItemStates);
+    }
+
+    internal async Task SaveItemState(int index, bool expanded)
+    {
+        allItemsExpanded = GetAllItemsExpanded();
+        ItemStates[index] = expanded;
+
+        if (rememberExpanded)
+        {
+            await OnItemStatesChanged.InvokeAsync(ItemStates);
+        }
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        items.ForEach(i =>
+        {
+            if (firstRender && rememberExpanded)
+            {
+                i.SetExpanded(
+                     ItemStates.Keys.Contains(i.Index)
+                         ? ItemStates[i.Index]
+                         : (i.Expanded ?? false)
+                 );
+            }
+        });
+
+        Console.WriteLine($"{Id}: all expanded: {allItemsExpanded}");
+        base.OnAfterRender(firstRender);
+    }
+
+    private bool GetAllItemsExpanded() => items.All(i => i.GetExpanded() == true);
+    #endregion
+
+    #region Private Properties 
+    private bool rememberExpanded
+    {
+        get
+        {
+            return RememberExpanded ?? false;
+        }
+    }
+
+    private bool allItemsExpanded { get; set; }
+    #endregion
+
+    #region Parameter Validation
+    protected override void OnParametersSet()
+    {
+        if (string.IsNullOrWhiteSpace(Id))
+            throw new ArgumentNullException(nameof(Id), "GdsAccordion must have an Id");
+
+        if (string.IsNullOrWhiteSpace(HideAllSectionsText))
+            throw new ArgumentNullException(nameof(HideAllSectionsText), "GdsAccordion must have text for the ‘Hide all sections’ button");
+
+        if (string.IsNullOrWhiteSpace(ShowAllSectionsText))
+            throw new ArgumentNullException(nameof(ShowAllSectionsText), "GdsAccordion must have text for the ‘Show all sections’ button");
+
+        if (string.IsNullOrWhiteSpace(HideSectionText))
+            throw new ArgumentNullException(nameof(HideSectionText), "GdsAccordion must have text for the ‘Hide’ buttons");
+
+        if (string.IsNullOrWhiteSpace(ShowSectionText))
+            throw new ArgumentNullException(nameof(ShowSectionText), "GdsAccordion must have text for the ‘Show’ buttons");
+
+        if (string.IsNullOrWhiteSpace(HideSectionAriaLabelText))
+            throw new ArgumentNullException(nameof(HideSectionAriaLabelText), "GdsAccordion must have text for the ‘Hide this section’ aria label text");
+
+        if (string.IsNullOrWhiteSpace(ShowSectionAriaLabelText))
+            throw new ArgumentNullException(nameof(ShowSectionAriaLabelText), "GdsAccordion must have text for the ‘Show this section’ aria label text");
+
+        base.OnParametersSet();
+    }
     #endregion
 
     #region Cascading Value - Child Items

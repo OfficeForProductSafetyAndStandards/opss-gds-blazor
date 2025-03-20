@@ -43,6 +43,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Content Update="Components\GivenGdsAccordionComponent.razor">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      </Content>
       <Content Update="Components\GdsHintTests.razor">
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       </Content>

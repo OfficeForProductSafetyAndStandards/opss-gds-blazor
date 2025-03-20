@@ -1,0 +1,82 @@
+﻿@inherits BunitContext
+
+@code {
+
+    [Fact]
+    public void WhenIdIsNotSet_ThenThrowsException()
+    {
+        // Arrange Act Assert
+
+        Assert.Throws<ArgumentNullException>(
+            "Id", () => { 
+                var component = Render(@<GdsAccordion></GdsAccordion>);            
+            }
+        );
+    }
+
+    [Fact]
+    public void WhenItemHeadingNotSet_ThenThrowsException()
+    {
+        // Arrange Act Assert
+        Assert.Throws<ArgumentNullException>(
+            "Heading",
+            () => {
+                var component = Render(
+    @<GdsAccordion Id="accordion-no-headings">
+        <GdsAccordionItem Summary="No heading 1">
+            <p class="govuk-body">no heading</p>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Has a heading" Summary="Heading 2">
+            <p class="govuk-body">has heading</p>
+        </GdsAccordionItem>
+    </GdsAccordion>
+    );
+        }
+    );        
+    }
+
+    [Fact]
+    public void WhenInvalidHeadingLevelSet_ThenThrowsException()
+    {
+        // Arrange Act Assert
+        Assert.Throws<ArgumentOutOfRangeException>(
+    "HeadingLevel",
+        () =>
+        {
+            var component = Render(
+    @<GdsAccordion Id="accordion-invalid-heading-level">
+        <GdsAccordionItem Heading="Invalid Heading Level" Summary="Invalid Heading Level" HeadingLevel="8">
+            <p class="govuk-body">invalid heading level heading</p>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Has a heading" Summary="Heading 2">
+            <p class="govuk-body">has heading</p>
+        </GdsAccordionItem>
+    </GdsAccordion>
+    );
+        }
+    );
+    }
+
+    [Fact]
+    public void WhenItemContentIsEmpty_ThenThrowsException()
+    {
+        // Arrange Act Assert
+        Assert.Throws<ArgumentNullException>(
+        "ChildContent",
+        () =>
+        {
+            var component = Render(
+        @<GdsAccordion Id="accordion-empty-content">
+            <GdsAccordionItem Heading="No content" Summary="No content">
+            </GdsAccordionItem>
+            <GdsAccordionItem Heading="Content" Summary="Content 2">
+                <p class="govuk-body">content</p>
+            </GdsAccordionItem>
+        </GdsAccordion>
+        );
+        }
+    );
+    }
+
+
+}
