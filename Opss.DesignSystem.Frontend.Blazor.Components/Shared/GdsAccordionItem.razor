@@ -6,15 +6,15 @@
 </summary> *@
 
 <div class="govuk-accordion__section@(expanded ? " govuk-accordion__section--expanded" : "")"
-data-testid=@DataTestId>
+    data-testid=@DataTestId>
     <div class="govuk-accordion__section-header">
         <GdsHeading HeadingLevel=@HeadingLevel Classes="govuk-accordion__section-heading">
             <button type="button" 
-            aria-controls="@(Parent?.Id)-content-@Index" 
-            class="govuk-accordion__section-button" 
-            aria-expanded=@expanded
-            aria-label=@sectionAriaLabelText
-            @onclick=@ToggleExpand
+                    aria-controls="@(Parent?.Id)-content-@Index" 
+                    class="govuk-accordion__section-button" 
+                    aria-expanded=@(expanded ? "true" : "false")
+                    aria-label=@sectionAriaLabelText
+                    @onclick=@ToggleExpand
             >
                 <span class="govuk-accordion__section-heading-text" id="@(Parent?.Id)-heading-@Index">
                     <span class="govuk-accordion__section-heading-text-focus">
