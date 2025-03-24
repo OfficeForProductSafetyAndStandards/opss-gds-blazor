@@ -5,15 +5,15 @@
 </summary> *@
 
 <div id=@Id
-     class="govuk-accordion @Classes" 
-     data-testid=@DataTestId
-     data-module="govuk-accordion" 
-     @attributes=@Attributes>
+class="govuk-accordion @Classes" 
+data-testid=@DataTestId
+data-module="govuk-accordion" 
+@attributes=@Attributes>
     <div class="govuk-accordion__controls">
         <button type="button"
-                class="govuk-accordion__show-all"
-                aria-expanded=@allItemsExpanded.ToString().ToLower()
-                @onclick=@ToggleExpandAll>
+        class="govuk-accordion__show-all"
+        aria-expanded=@allItemsExpanded.ToString().ToLower()
+        @onclick=@ToggleExpandAll>
             <span class="govuk-accordion-nav__chevron@(allItemsExpanded ? "" : " govuk-accordion-nav__chevron--down")"></span>
             <span class="govuk-accordion__show-all-text">@(allItemsExpanded ? HideAllSectionsText : ShowAllSectionsText)</span>
         </button>
@@ -40,10 +40,13 @@
     /// <summary>
     /// Whether the expanded/collapsed state of the accordion 
     /// should be saved when a user leaves the page and restored
-    /// when they return. Default is true.
+    /// when they return. Default is false.
     /// </summary>
+    /// <remarks>
+    /// Setting this value to true requires a data storage implementation in place. 
+    /// </remarks>
     [Parameter]
-    public bool RememberExpanded { get; set; } = false;
+    public bool RememberExpanded { get; set; }
 
     /// <summary>
     /// The text content of the ‘Hide all sections’ button at the 
