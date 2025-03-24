@@ -5,14 +5,14 @@
     The sections within the accordion.
 </summary> *@
 
-<div class="govuk-accordion__section@(expanded ? " govuk-accordion__section--expanded" : "")"
-    data-testid=@DataTestId>
+<div class="govuk-accordion__section@(IsExpanded ? " govuk-accordion__section--expanded" : "")"
+     data-testid=@DataTestId>
     <div class="govuk-accordion__section-header">
         <GdsHeading HeadingLevel=@HeadingLevel Classes="govuk-accordion__section-heading">
             <button type="button" 
                     aria-controls="@(Parent?.Id)-content-@Index" 
                     class="govuk-accordion__section-button" 
-                    aria-expanded=@(expanded ? "true" : "false")
+                    aria-expanded=@IsExpanded.ToString().ToLower()
                     aria-label=@sectionAriaLabelText
                     @onclick=@ToggleExpand
             >
@@ -33,18 +33,16 @@
                 }
                 <span class="govuk-accordion__section-toggle">
                     <span class="govuk-accordion__section-toggle-focus">
-                        <span class="govuk-accordion-nav__chevron@(expanded ? "" : " govuk-accordion-nav__chevron--down")"></span>
+                        <span class="govuk-accordion-nav__chevron@(IsExpanded ? "" : " govuk-accordion-nav__chevron--down")"></span>
                         <span class="govuk-accordion__section-toggle-text">@sectionButtonText</span>
                     </span>
                 </span>
             </button>
         </GdsHeading>
     </div>
-    @if(expanded)
+    @if(IsExpanded)
     {
-        <div id="@(Parent?.Id)-content-@Index" 
-        class="govuk-accordion__section-content"
-        >
+        <div id="@(Parent?.Id)-content-@Index"  class="govuk-accordion__section-content">
             @ChildContent
         </div>
     }
@@ -88,19 +86,9 @@
     #region Event Handlers 
     private void ToggleExpand()
     {
-        expanded = !expanded;
-        Parent?.SaveItemState(this.Index, expanded);
+        IsExpanded = !IsExpanded;
+        Parent?.SaveItemState(this.Index, IsExpanded);
     }
-
-    /// <summary>
-    /// Sets the expanded state
-    /// </summary>
-    internal void SetExpanded(bool value) => expanded = value;
-
-    /// <summary>
-    /// Gets the expanded state
-    /// </summary>
-    internal bool GetExpanded() => expanded;
     #endregion 
 
     #region Private Properties 
@@ -108,7 +96,7 @@
     {
         get
         {
-            return (expanded ? Parent?.HideSectionText! : Parent?.ShowSectionText!);
+            return (IsExpanded ? Parent?.HideSectionText! : Parent?.ShowSectionText!);
         }
     }
 
@@ -116,11 +104,14 @@
     {
         get
         {
-            return $"{Heading}, {(expanded ? Parent?.HideSectionAriaLabelText! : Parent?.ShowSectionAriaLabelText!)}";
+            return $"{Heading}, {(IsExpanded ? Parent?.HideSectionAriaLabelText! : Parent?.ShowSectionAriaLabelText!)}";
         }
     }
 
-    private bool expanded;
+    /// <summary>
+    /// The CURRENT expanded/collapsed state of the accordion item
+    /// </summary>
+    internal bool IsExpanded;
     #endregion
 
     #region Parameter Validation
@@ -145,7 +136,7 @@
         if (Parent == null)
             throw new ArgumentNullException(nameof(Parent), "GdsAccordionItem must exist within a GdsAccordion");
 
-        expanded = Expanded ?? false;
+        IsExpanded = Expanded ?? false;
 
         base.OnInitialized();
         Parent.AddItem(this);

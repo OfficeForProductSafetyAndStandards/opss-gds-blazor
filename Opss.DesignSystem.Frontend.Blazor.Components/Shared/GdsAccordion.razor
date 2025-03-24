@@ -12,7 +12,7 @@
     <div class="govuk-accordion__controls">
         <button type="button"
                 class="govuk-accordion__show-all"
-                aria-expanded=@(allItemsExpanded ? "true" : "false")
+                aria-expanded=@allItemsExpanded.ToString().ToLower()
                 @onclick=@ToggleExpandAll>
             <span class="govuk-accordion-nav__chevron@(allItemsExpanded ? "" : " govuk-accordion-nav__chevron--down")"></span>
             <span class="govuk-accordion__show-all-text">@(allItemsExpanded ? HideAllSectionsText : ShowAllSectionsText)</span>
@@ -43,21 +43,21 @@
     /// when they return. Default is true.
     /// </summary>
     [Parameter]
-    public bool? RememberExpanded { get; set; }
+    public bool RememberExpanded { get; set; } = false;
 
     /// <summary>
     /// The text content of the ‘Hide all sections’ button at the 
     /// top of the accordion when all sections are expanded.
     /// </summary>
     [Parameter]
-    public string? HideAllSectionsText { get; set; } = "Hide all sections";
+    public string HideAllSectionsText { get; set; } = "Hide all sections";
 
     /// <summary>
     /// The text content of the ‘Hide’ button within each section
     /// of the accordion, which is visible when the section is expanded.
     /// </summary>
     [Parameter]
-    public string? HideSectionText { get; set; } = "Hide";
+    public string HideSectionText { get; set; } = "Hide";
 
     /// <summary>
     /// Text made available to assistive technologies, like screen-readers, 
@@ -65,21 +65,21 @@
     /// is expanded. Defaults to "Hide this section".
     /// </summary>
     [Parameter]
-    public string? HideSectionAriaLabelText { get; set; } = "Hide this section";
+    public string HideSectionAriaLabelText { get; set; } = "Hide this section";
 
     /// <summary>
     /// The text content of the ‘Show all sections’ button at the top
     /// of the accordion when at least one section is collapsed.
     /// </summary>
     [Parameter]
-    public string? ShowAllSectionsText { get; set; } = "Show all sections";
+    public string ShowAllSectionsText { get; set; } = "Show all sections";
 
     /// <summary>
     /// The text content of the ‘Show’ button within each section of 
     /// the accordion, which is visible when the section is collapsed.
     /// </summary>
     [Parameter]
-    public string? ShowSectionText { get; set; } = "Show";
+    public string ShowSectionText { get; set; } = "Show";
 
     /// <summary>
     /// Text made available to assistive technologies, like screen-readers,
@@ -99,28 +99,26 @@
     #region Event Handlers 
     private async Task ToggleExpandAll()
     {
-        allItemsExpanded = !allItemsExpanded;
+        var toggledAllItemsExpanded = !allItemsExpanded;
 
-        if(rememberExpanded)
+        if(RememberExpanded)
             ItemStates.Clear();
 
         items.ForEach(i => 
         { 
-            i.SetExpanded(allItemsExpanded); 
+            i.IsExpanded = toggledAllItemsExpanded;
 
-            if(rememberExpanded)
-                ItemStates.Add(i.Index, i.GetExpanded());
+            if(RememberExpanded)
+                ItemStates.Add(i.Index, i.IsExpanded);
         });
 
-        if (rememberExpanded)
+        if (RememberExpanded)
             await OnItemStatesChanged.InvokeAsync(ItemStates);
     }
 
     internal async Task SaveItemState(int index, bool expanded)
     {
-        allItemsExpanded = GetAllItemsExpanded();
-
-        if (rememberExpanded)
+        if (RememberExpanded)
         {
             ItemStates[index] = expanded;
             await OnItemStatesChanged.InvokeAsync(ItemStates);
@@ -133,26 +131,19 @@
     {
         if (firstRender) 
         { 
-            allItemsExpanded = GetAllItemsExpanded();
             StateHasChanged();
         }
 
         base.OnAfterRender(firstRender);
     }
-
-    private bool GetAllItemsExpanded() => items.All(i => i.GetExpanded() == true);
     #endregion
 
     #region Private Properties 
-    private bool rememberExpanded
-    {
-        get
-        {
-            return RememberExpanded ?? false;
+    private bool allItemsExpanded {
+        get { 
+            return items.All(i => i.IsExpanded);
         }
     }
-
-    private bool allItemsExpanded { get; set; }
     #endregion
 
     #region Parameter Validation
@@ -189,11 +180,10 @@
     internal void AddItem(GdsAccordionItem item)
     {
         item.Index = items.Count + 1;
-        item.SetExpanded(
-            ItemStates.ContainsKey(item.Index)
-                ? ItemStates[item.Index]
-                : (item.Expanded ?? false)
-        );
+        item.IsExpanded = ItemStates.ContainsKey(item.Index)
+                            ? ItemStates[item.Index]
+                            : (item.Expanded ?? false);
+
         items.Add(item);
         StateHasChanged();
     }
