@@ -43,7 +43,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Update="Components\GivenGdsAccordionComponent.razor">
+      <Content Update="Components\GivenGdsAccordion.razor">
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       </Content>
       <Content Update="Components\GdsHintTests.razor">

@@ -2,7 +2,7 @@
 
 @code {
     [Fact]
-    public void OutputsTextarea()
+    public void ThenOutputsTextarea()
     {
         // Arrange
         var component = Render(
@@ -42,7 +42,7 @@
     }
 
     [Fact]
-    public void OutputsTextareaWithSetRows()
+    public void WhenRowsIsSet_ThenOutputsTextareaWithSetRows()
     {
         // Arrange
         var component = Render(
@@ -81,7 +81,7 @@
     }
 
     [Fact]
-    public void OutputsTextareaWithNoHeading()
+    public void WhenLabelHasNoHead_ThenOutputsTextareaWithNoHeading()
     {
         // Arrange
         var component = Render(
@@ -106,7 +106,7 @@
     }
 
     [Fact]
-    public void OutputsTextareaWithErrorMessage()
+    public void WhenErrorMessgeTemplateIsSet_ThenOutputsTextareaWithErrorMessage()
     {
         // Arrange
         var component = Render(
