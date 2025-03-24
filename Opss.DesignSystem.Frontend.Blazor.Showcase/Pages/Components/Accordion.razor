@@ -254,7 +254,7 @@
             </li>
         </ul>
     </GdsAccordionItem>
-    <GdsAccordionItem Heading=""Working with agile methods"" Summary=""Workspaces, tools and techniques, user stories, planning."" Expanded>
+    <GdsAccordionItem Heading=""Working with agile methods"" Summary=""Workspaces, tools and techniques, user stories, planning."" Expanded=@true>
         <ul class=""govuk-list"">
             <li>
                 <a class=""govuk-link"" href=""#"">Creating an agile working environment</a>
@@ -292,7 +292,7 @@
                 </li>
             </ul>
         </GdsAccordionItem>
-        <GdsAccordionItem Heading="Working with agile methods" Summary="Workspaces, tools and techniques, user stories, planning." Expanded>
+        <GdsAccordionItem Heading="Working with agile methods" Summary="Workspaces, tools and techniques, user stories, planning." Expanded=@true>
             <ul class="govuk-list">
                 <li>
                     <a class="govuk-link" href="#">Creating an agile working environment</a>
@@ -321,7 +321,7 @@
 
 <h3 class="govuk-heading-m" id="custom-text-in-show-hide-buttons">Custom text in show and hide buttons</h3>
 
-<Example BlazorExampleContent="@(@"<GdsAccordion Id=""accordion-default"" HideAllSectionsText=""(custom text) hide all sections"" HideSectionText=""(custom text) hide section"" HideSectionAriaLabelText=""(custom text) hide section - aria label"" ShowAllSectionsText=""(custom text) show all sections"" ShowSectionText=""(custom text) show section"" ShowSectionAriaLabelText=""(custom text) show section - aria label"">
+<Example BlazorExampleContent="@(@"<GdsAccordion Id=""accordion-custom-text"" HideAllSectionsText=""(custom text) hide all sections"" HideSectionText=""(custom text) hide section"" HideSectionAriaLabelText=""(custom text) hide section - aria label"" ShowAllSectionsText=""(custom text) show all sections"" ShowSectionText=""(custom text) show section"" ShowSectionAriaLabelText=""(custom text) show section - aria label"">
     <GdsAccordionItem Heading=""Writing well for the web"">
         <p class=""govuk-body"">This is the content for Writing well for the web.</p>
     </GdsAccordionItem>
@@ -332,7 +332,51 @@
         <p class=""govuk-body"">This is the content for Know your audience.</p>
     </GdsAccordionItem>
 </GdsAccordion>")">
-    <GdsAccordion Id="accordion-default" HideAllSectionsText="(custom text) hide all sections" HideSectionText="(custom text) hide section" HideSectionAriaLabelText="(custom text) hide section - aria label" ShowAllSectionsText="(custom text) show all sections" ShowSectionText="(custom text) show section" ShowSectionAriaLabelText="(custom text) show section - aria label">
+    <GdsAccordion Id="accordion-custom-text" HideAllSectionsText="(custom text) hide all sections" HideSectionText="(custom text) hide section" HideSectionAriaLabelText="(custom text) hide section - aria label" ShowAllSectionsText="(custom text) show all sections" ShowSectionText="(custom text) show section" ShowSectionAriaLabelText="(custom text) show section - aria label">
+        <GdsAccordionItem Heading="Writing well for the web">
+            <p class="govuk-body">This is the content for Writing well for the web.</p>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Writing well for specialists">
+            <p class="govuk-body">This is the content for Writing well for specialists.</p>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Know your audience">
+            <p class="govuk-body">This is the content for Know your audience.</p>
+        </GdsAccordionItem>
+    </GdsAccordion>
+</Example>
+
+<h3 class="govuk-heading-m" id="remember-expanded-set">Remember Expanded set</h3>
+
+<Example BlazorExampleContent="@(@"<GdsAccordion Id=""accordion-remember-expanded"" RememberExpanded=@true ItemStates=@ItemStates OnItemStatesChanged=@ItemStatesChanged>
+    <GdsAccordionItem Heading=""Writing well for the web"">
+        <p class=""govuk-body"">This is the content for Writing well for the web.</p>
+    </GdsAccordionItem>
+    <GdsAccordionItem Heading=""Writing well for specialists"">
+        <p class=""govuk-body"">This is the content for Writing well for specialists.</p>
+    </GdsAccordionItem>
+    <GdsAccordionItem Heading=""Know your audience"">
+        <p class=""govuk-body"">This is the content for Know your audience.</p>
+    </GdsAccordionItem>
+</GdsAccordion>")" CodeExampleContent="@(@"
+    //your local variable for the item states
+    private Dictionary<int, bool> ItemStates = null!;
+
+    protected override void OnInitialized()
+    {
+        // load persisted Expand/Collapse item states        
+        ItemStates = yourDataStorage.GetPersistedStatesForThisAccordion();
+
+        base.OnInitialized();
+    }
+
+    private void ItemStatesChanged(Dictionary<int, bool> newStates)
+    {
+        // save persisted Expand/Collapse item states
+        yourDataStorage.SavePersistedStatesForThisAccordion(newState);
+    }
+
+")">
+    <GdsAccordion Id="accordion-remember-expanded" RememberExpanded=@true ItemStates=@ItemStates OnItemStatesChanged=@ItemStatesChanged>
         <GdsAccordionItem Heading="Writing well for the web">
             <p class="govuk-body">This is the content for Writing well for the web.</p>
         </GdsAccordionItem>
@@ -346,4 +390,24 @@
 </Example>
 @code {
 
+    #region Persisting the Accordion Expand/Collapse states
+
+    private Dictionary<int, bool> ItemStates = null!;
+
+    protected override void OnInitialized()
+    {
+        // load persisted Expand/Collapse item states
+        //ItemStates = new();
+        //ItemStates = new() { { 1, true }, { 2, true }, { 3, true } };
+        ItemStates = new() { { 2, true } };
+
+        base.OnInitialized();
+    }
+
+    private void ItemStatesChanged(Dictionary<int, bool> newStates)
+    {
+        // save persisted Expand/Collapse item states
+
+    }
+    #endregion
 }
