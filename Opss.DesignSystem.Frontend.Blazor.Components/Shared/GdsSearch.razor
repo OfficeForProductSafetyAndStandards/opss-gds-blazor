@@ -26,7 +26,7 @@
                type="search"
                value=@Value
                @oninput=OnValueChanged
-               aria-describedby="search-hint" 
+               aria-describedby=@describedBy
                @attributes=@Attributes>
     </div>
 
@@ -111,7 +111,7 @@
         {
             var fullText = DescribedBy;
             if (HintTemplate != null) fullText += $" {Id}-hint";
-            return string.IsNullOrWhiteSpace(fullText) ? null : fullText;
+            return string.IsNullOrWhiteSpace(fullText) ? null : fullText.Trim();
         }
     }
     #endregion

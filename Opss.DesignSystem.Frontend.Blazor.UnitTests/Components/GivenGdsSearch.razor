@@ -1,0 +1,331 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void ThenOutputsSearch()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSearch DataTestId="GdsSearch" Id="search" Name="search">
+        <LabelTemplate>
+            <GdsLabel Classes="moj-search__label govuk-!-font-weight-bold">
+                Find a person
+            </GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint Classes="govuk-hint moj-search__hint">
+                You can search by name, date of birth or national insurance number
+            </GdsHint>
+        </HintTemplate>
+    </GdsSearch>
+    );
+
+        component.MarkupMatches(
+    @<div class="moj-search" data-testid="GdsSearch">
+        <div class="govuk-form-group">
+            <label class="govuk-label moj-search__label govuk-!-font-weight-bold" for="search">
+                Find a person
+            </label>
+
+            <div id="search-hint" class="govuk-hint moj-search__hint ">
+                You can search by name, date of birth or national insurance number
+            </div>
+
+            <input class="govuk-input moj-search__input " id="search" name="search" type="search" aria-describedby="search-hint">
+
+        </div>
+
+        <button type="submit" class="govuk-button moj-search__button " data-module="govuk-button">
+            Search
+        </button>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void WhenLabelNotSet_ThenOutputsSearchWithNoLabel()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSearch DataTestId="GdsSearch" Id="search" Name="search">
+        <HintTemplate>
+            <GdsHint Classes="govuk-hint moj-search__hint">
+                You can search by name, date of birth or national insurance number
+            </GdsHint>
+        </HintTemplate>
+    </GdsSearch>
+        );
+
+        component.MarkupMatches(
+    @<div class="moj-search" data-testid="GdsSearch">
+        <div class="govuk-form-group">
+            <div id="search-hint" class="govuk-hint moj-search__hint ">
+                You can search by name, date of birth or national insurance number
+            </div>
+
+            <input class="govuk-input moj-search__input " id="search" name="search" type="search" aria-describedby="search-hint">
+        </div>
+
+        <button type="submit" class="govuk-button moj-search__button " data-module="govuk-button">
+            Search
+        </button>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void WhenHintNotSet_ThenOutputsSearchWithNoHint()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSearch DataTestId="GdsSearch" Id="search" Name="search">
+        <LabelTemplate>
+            <GdsLabel Classes="moj-search__label govuk-!-font-weight-bold">
+                Find a person
+            </GdsLabel>
+        </LabelTemplate>
+    </GdsSearch>
+        );
+
+        component.MarkupMatches(
+    @<div class="moj-search" data-testid="GdsSearch">
+        <div class="govuk-form-group">
+            <label class="govuk-label moj-search__label govuk-!-font-weight-bold" for="search">
+                Find a person
+            </label>
+            <input class="govuk-input moj-search__input " id="search" name="search" type="search" />
+        </div>
+        <button type="submit" class="govuk-button moj-search__button " data-module="govuk-button">
+            Search
+        </button>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void WhenNoHintAndNoLabel_ThenOutputsSearchWithNoHintAndNoLabel()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSearch DataTestId="GdsSearch" Id="search" Name="search"></GdsSearch>
+        );
+
+        component.MarkupMatches(
+    @<div class="moj-search" data-testid="GdsSearch">
+        <div class="govuk-form-group">           
+            <input class="govuk-input moj-search__input" id="search" name="search" type="search" />
+        </div>
+        <button type="submit" class="govuk-button moj-search__button" data-module="govuk-button">
+            Search
+        </button>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void WhenClassesIsSet_ThenOutputsSearchWithClasses()
+    {
+        // Arrange
+        var classes = "additional-class1 class2";
+
+        var component = Render(
+    @<GdsSearch DataTestId="GdsSearch" Id="search" Name="search" Classes=@classes></GdsSearch>
+        );
+
+        component.MarkupMatches(
+    @<div class="moj-search" data-testid="GdsSearch">
+        <div class="govuk-form-group">
+            <input class="govuk-input moj-search__input additional-class1 class2" id="search" name="search" type="search" />
+        </div>
+        <button type="submit" class="govuk-button moj-search__button" data-module="govuk-button">
+            Search
+        </button>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void WhenButtonClassesIsSet_ThenOutputsSearchWithButtonClasses()
+    {
+        // Arrange
+        var classes = "additional-class1 class2";
+
+        var component = Render(
+    @<GdsSearch DataTestId="GdsSearch" Id="search" Name="search" ButtonClasses=@classes></GdsSearch>
+        );
+
+        component.MarkupMatches(
+    @<div class="moj-search" data-testid="GdsSearch">
+        <div class="govuk-form-group">
+            <input class="govuk-input moj-search__input" id="search" name="search" type="search" />
+        </div>
+        <button type="submit" class="govuk-button moj-search__button additional-class1 class2" data-module="govuk-button">
+            Search
+        </button>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void WhenFormGroupClassesIsSet_ThenOutputsSearchWithFormGroupClasses()
+    {
+        // Arrange
+        var classes = "additional-class1 class2";
+
+        var component = Render(
+    @<GdsSearch DataTestId="GdsSearch" Id="search" Name="search" FormGroupClasses=@classes></GdsSearch>
+        );
+
+        component.MarkupMatches(
+    @<div class="moj-search" data-testid="GdsSearch">
+        <div class="govuk-form-group additional-class1 class2">
+            <input class="govuk-input moj-search__input" id="search" name="search" type="search" />
+        </div>
+        <button type="submit" class="govuk-button moj-search__button" data-module="govuk-button">
+            Search
+        </button>
+    </div>
+
+    );
+    }
+
+    [Fact]
+    public void WhenAttributesIsSet_ThenOutputsSearchWithAttributes()
+    {
+        // Arrange
+        var attributes = new Dictionary<string, object> { { "attribute1", "value" }, { "attribute2", "value" } };
+
+
+        var component = Render(
+    @<GdsSearch DataTestId="GdsSearch" Id="search" Name="search" Attributes=@attributes></GdsSearch>
+        );
+
+        component.MarkupMatches(
+    @<div class="moj-search" data-testid="GdsSearch">
+        <div class="govuk-form-group">
+            <input class="govuk-input moj-search__input" id="search" name="search" type="search" attribute1="value" attribute2="value" />
+        </div>
+        <button type="submit" class="govuk-button moj-search__button" data-module="govuk-button">
+            Search
+        </button>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void WhenNoHintAndDescribedByIsSet_ThenOutputsDescribedBy()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSearch DataTestId="GdsSearch" Id="search" Name="search" DescribedBy="some-description"></GdsSearch>
+    );
+
+        component.MarkupMatches(
+    @<div class="moj-search" data-testid="GdsSearch">
+        <div class="govuk-form-group">
+            <input class="govuk-input moj-search__input" id="search" name="search" type="search" aria-describedby="some-description" />
+        </div>
+        <button type="submit" class="govuk-button moj-search__button" data-module="govuk-button">
+            Search
+        </button>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void WhenHintAndDescribedBySet_ThenOutputsSearchWithDescribedBy()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSearch DataTestId="GdsSearch" Id="search" Name="search" DescribedBy="some-description">
+        <HintTemplate>
+            <GdsHint Classes="govuk-hint moj-search__hint">
+                You can search by name, date of birth or national insurance number
+            </GdsHint>
+        </HintTemplate>
+    </GdsSearch>
+    );
+
+        component.MarkupMatches(
+    @<div class="moj-search" data-testid="GdsSearch">
+        <div class="govuk-form-group">
+            <div id="search-hint" class="govuk-hint moj-search__hint ">
+                You can search by name, date of birth or national insurance number
+            </div>
+
+            <input class="govuk-input moj-search__input " id="search" name="search" type="search" aria-describedby="some-description search-hint">
+        </div>
+
+        <button type="submit" class="govuk-button moj-search__button " data-module="govuk-button">
+            Search
+        </button>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void WhenInputValueChanged_ThenValueChangedTriggered()
+    {
+        // Arrange
+        var newValue = "some new value";
+        var changedValue = string.Empty;
+
+        var component = Render(
+    @<GdsSearch DataTestId="GdsSearch" Id="search" Name="search" ValueChanged=@((value) => changedValue = value ) Value="nothing"></GdsSearch>
+    );
+
+        //Act
+        var input = component.Find("input");
+        input.Input(new() { Value = newValue });
+
+        //Assert
+        component.MarkupMatches(
+    @<div class="moj-search" data-testid="GdsSearch">
+        <div class="govuk-form-group">
+            <input class="govuk-input moj-search__input" id="search" name="search" type="search" value=@newValue />
+        </div>
+        <button type="submit" class="govuk-button moj-search__button" data-module="govuk-button">
+            Search
+        </button>
+    </div>
+    );
+
+        Assert.Equal(newValue, changedValue);
+    }
+
+    [Fact]
+    public void WhenSearchButtonClicked_ThenOnOnClickTriggered()
+    {
+        // Arrange
+        var newValue = "the button has been clicked at ";
+        var args = new MouseEventArgs { ScreenX = 3, ScreenY = 56, AltKey = true };
+        var changedValue = string.Empty;
+
+        var onClick = (MouseEventArgs args) =>
+        {
+            changedValue = $"{newValue} ScreenX:{args.ScreenX} ScreenY:{args.ScreenY} AltKey:{args.AltKey} ShiftKey:{args.ShiftKey}";
+        };
+
+        var component = Render(
+    @<GdsSearch DataTestId="GdsSearch" Id="search" Name="search" OnClick=@onClick></GdsSearch>
+        );
+
+        //Act
+        var button = component.Find("button");
+        button.Click(args);
+
+        //Assert
+        component.MarkupMatches(
+    @<div class="moj-search" data-testid="GdsSearch">
+        <div class="govuk-form-group">
+            <input class="govuk-input moj-search__input" id="search" name="search" type="search" />
+        </div>
+        <button type="submit" class="govuk-button moj-search__button" data-module="govuk-button">
+            Search
+        </button>
+    </div>
+    );
+
+        Assert.Equal($"{newValue} ScreenX:{args.ScreenX} ScreenY:{args.ScreenY} AltKey:{args.AltKey} ShiftKey:{args.ShiftKey}", changedValue);
+    }
+}
