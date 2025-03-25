@@ -10,7 +10,18 @@
     A blazor implementation of the MoJ GDS <a href="https://design-patterns.service.justice.gov.uk/components/search/" class="govuk-link">Search</a>.
 </p>
 
-<Example BlazorExampleContent="@(@"")">
+<Example BlazorExampleContent="@(@"<GdsSearch Id=""search"" Name=""search"">
+    <LabelTemplate>
+        <GdsLabel Classes=""moj-search__label govuk-!-font-weight-bold"">
+            Find a person
+        </GdsLabel>
+    </LabelTemplate>
+    <HintTemplate>
+        <GdsHint Classes=""govuk-hint moj-search__hint"">
+            You can search by name, date of birth or national insurance number
+        </GdsHint>
+    </HintTemplate>
+</GdsSearch>")">
     <GdsSearch Id="search" Name="search">
         <LabelTemplate>
             <GdsLabel Classes="moj-search__label govuk-!-font-weight-bold">
@@ -25,6 +36,101 @@
     </GdsSearch>
 </Example>
 
+<h2 class="govuk-heading-l" id="how-it-works">How it works</h2>
+<p class="govuk-body">The MOJ Search can be configured to show a label and a hint, depending on your use case. </p>
+<Example BlazorExampleContent="@(@"<GdsSearch Id=""search-works"" Name=""search-works"">
+    <LabelTemplate>
+        <GdsLabel Classes=""moj-search__label govuk-!-font-weight-bold"">
+            Find a person
+        </GdsLabel>
+    </LabelTemplate>
+    <HintTemplate>
+        <GdsHint Classes=""govuk-hint moj-search__hint"">
+            You can search by name, date of birth or national insurance number
+        </GdsHint>
+    </HintTemplate>
+</GdsSearch>")">
+    <GdsSearch Id="search-works" Name="search-works">
+        <LabelTemplate>
+            <GdsLabel Classes="moj-search__label govuk-!-font-weight-bold">
+                Find a person
+            </GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint Classes="govuk-hint moj-search__hint">
+                You can search by name, date of birth or national insurance number
+            </GdsHint>
+        </HintTemplate>
+    </GdsSearch>
+</Example>
+
+<h3 class="govuk-heading-m" id="just-a-label">With just a label</h3>
+<Example BlazorExampleContent="@(@"<GdsSearch Id=""search-label"" Name=""search-label"">
+    <LabelTemplate>
+        <GdsLabel Classes=""moj-search__label govuk-!-font-weight-bold"">
+            Find a person
+        </GdsLabel>
+    </LabelTemplate>
+</GdsSearch>")">
+    <GdsSearch Id="search-label" Name="search-label">
+        <LabelTemplate>
+            <GdsLabel Classes="moj-search__label govuk-!-font-weight-bold">
+                Find a person
+            </GdsLabel>
+        </LabelTemplate>
+    </GdsSearch>
+</Example>
+
+<h3 class="govuk-heading-m" id="just-search">With just a search input</h3>
+<Example BlazorExampleContent="@(@"<GdsSearch Id=""search-input"" Name=""search-input""></GdsSearch>")">
+    <GdsSearch Id="search-input" Name="search-input"></GdsSearch>
+</Example>
+
+<h3 class="govuk-heading-m" id="search-error">Show Error state</h3>
+<Example BlazorExampleContent="@(@"<GdsSearch Id=""search-error"" Name=""search-error"" FormGroupClasses=""govuk-form-group--error"">
+        <LabelTemplate>
+            <GdsLabel Classes=""moj-search__label govuk-!-font-weight-bold"">
+                Find a person
+            </GdsLabel>
+        </LabelTemplate>
+    </GdsSearch>")">
+    <GdsSearch Id="search-error" Name="search-error" FormGroupClasses="govuk-form-group--error">
+        <LabelTemplate>
+            <GdsLabel Classes="moj-search__label govuk-!-font-weight-bold">
+                Find a person
+            </GdsLabel>
+        </LabelTemplate>
+    </GdsSearch>
+</Example>
+
+<h3 class="govuk-heading-m" id="search-events">Trigger search and value change events</h3>
+<Example BlazorExampleContent="@(@"<GdsSearch Id=""search-events"" Name=""search-events"" OnClick=@onClick ValueChanged=@onValueChanged></GdsSearch>")" CodeExampleContent="@(@"
+   private void onClick(MouseEventArgs args)
+    {
+        //raise your search event
+    }
+
+    private void onValueChanged(string value) 
+    {
+        //raise the event to trigger when the search value changes
+    }
+
+")">
+    <GdsSearch Id="search-events" Name="search-events" OnClick=@onClick ValueChanged=@onValueChanged></GdsSearch>
+</Example>
+
+<p class="govuk-body">@triggerString</p>
+
+<p class="govuk-body">The search term is: @valueString</p>
 @code {
+    private string triggerString = "Click the Search.";
+    private string valueString = "Enter a new search value...";
+
+    private void onClick(MouseEventArgs args)
+    {
+        triggerString = $"On Click has been triggered: ScreenX:{args.ScreenX} ScreenY:{args.ScreenY} AltKey:{args.AltKey} ShiftKey:{args.ShiftKey}";
+    }
+
+    private void onValueChanged(string value) => valueString = value;
 
 }
