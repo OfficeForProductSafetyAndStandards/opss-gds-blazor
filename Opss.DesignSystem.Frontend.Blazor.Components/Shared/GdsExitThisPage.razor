@@ -6,7 +6,7 @@
 
 @switch (ButtonType)
 {
-    case ExitPageType.Button:
+    case GdsExitThisPageButtonType.Button:
         <div id=@Id
              class="govuk-exit-this-page @Classes"
              data-testid=@DataTestId
@@ -34,7 +34,7 @@
             </a>
         </div>
         break;
-    case ExitPageType.SkipLink:
+    case GdsExitThisPageButtonType.SkipLink:
         <a id=@Id
            href=@Href
            class="govuk-skip-link govuk-js-exit-this-page-skiplink @Classes"
@@ -67,7 +67,7 @@
     /// Defaults to Button
     /// </summary>
     [Parameter]
-    public ExitPageType ButtonType { get; set; } = ExitPageType.Button;
+    public GdsExitThisPageButtonType ButtonType { get; set; } = GdsExitThisPageButtonType.Button;
 
     /// <summary>
     /// Text announced by screen readers when Exit this Page has been

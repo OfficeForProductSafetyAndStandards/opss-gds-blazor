@@ -12,22 +12,22 @@
 
 <Example BlazorExampleContent="@(@"<GdsButtonMenu MenuTitle=""Menu title"">
     <GdsButton Type=""submit"" 
-               Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+               Classes=""@(GdsButtonClasses.ButtonMenuItem + "" "" + GdsButtonClasses.Secondary)"">
         Menu item 1
     </GdsButton>
     <GdsButton Type=""submit"" 
-               Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+               Classes=""@(GdsButtonClasses.ButtonMenuItem + "" "" + GdsButtonClasses.Secondary)"">
         Menu item 2
     </GdsButton>
     <GdsButton Type=""submit""
-               Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+               Classes=""@(GdsButtonClasses.ButtonMenuItem + "" "" + GdsButtonClasses.Secondary)"">
         Menu item 3
     </GdsButton>
 </GdsButtonMenu>")">
     <GdsButtonMenu MenuTitle="Menu title">
-        <GdsButton Type="submit" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Menu item 1</GdsButton>
-        <GdsButton Type="submit" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Menu item 2</GdsButton>
-        <GdsButton Type="submit" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Menu item 3</GdsButton>
+        <GdsButton Type="submit" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Menu item 1</GdsButton>
+        <GdsButton Type="submit" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Menu item 2</GdsButton>
+        <GdsButton Type="submit" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Menu item 3</GdsButton>
     </GdsButtonMenu>
 </Example>
 
@@ -35,47 +35,47 @@
 
 <h3 class="govuk-heading-m" id="left-aligned-menu-items">Left-aligned menu items</h3>
 
-<Example BlazorExampleContent="@(@"<GdsButtonMenu MenuTitle=""Review"" Classes=@ButtonStyle.Secondary>
+<Example BlazorExampleContent="@(@"<GdsButtonMenu MenuTitle=""Review"" Classes=@GdsButtonClasses.Secondary>
     <GdsButton Href=""#""
-               Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+               Classes=""@(GdsButtonClasses.ButtonMenuItem + "" "" + GdsButtonClasses.Secondary)"">
         Menu item 1
     </GdsButton>
     <GdsButton Href=""#""
-               Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+               Classes=""@(GdsButtonClasses.ButtonMenuItem + "" "" + GdsButtonClasses.Secondary)"">
         Menu item 2
     </GdsButton>
     <GdsButton Href=""#""
-               Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+               Classes=""@(GdsButtonClasses.ButtonMenuItem + "" "" + GdsButtonClasses.Secondary)"">
         Menu item 3
     </GdsButton>
 </GdsButtonMenu>")">
-    <GdsButtonMenu MenuTitle="Review" Classes=@ButtonStyle.Secondary>
-        <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Approve</GdsButton>
-        <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Request more information</GdsButton>
-        <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Reject with reason</GdsButton>
+    <GdsButtonMenu MenuTitle="Review" Classes=@GdsButtonClasses.Secondary>
+        <GdsButton Href="#" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Approve</GdsButton>
+        <GdsButton Href="#" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Request more information</GdsButton>
+        <GdsButton Href="#" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Reject with reason</GdsButton>
     </GdsButtonMenu>
 </Example>
 
 <h3 class="govuk-heading-m" id="right-aligned-menu-items">Right-aligned menu items</h3>
-<Example BlazorExampleContent="@(@"<GdsButtonMenu MenuTitle=""Review"" Classes=@ButtonStyle.Secondary RightAlignMenu=@true>
+<Example BlazorExampleContent="@(@"<GdsButtonMenu MenuTitle=""Review"" Classes=@GdsButtonClasses.Secondary RightAlignMenu=@true>
     <GdsButton Href=""#""
-               Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+               Classes=""@(GdsButtonClasses.ButtonMenuItem + "" "" + GdsButtonClasses.Secondary)"">
         Menu item 1
     </GdsButton>
     <GdsButton Href=""#""
-               Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+               Classes=""@(GdsButtonClasses.ButtonMenuItem + "" "" + GdsButtonClasses.Secondary)"">
         Menu item 2
     </GdsButton>
     <GdsButton Href=""#""
-               Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+               Classes=""@(GdsButtonClasses.ButtonMenuItem + "" "" + GdsButtonClasses.Secondary)"">
         Menu item 3
     </GdsButton>
 </GdsButtonMenu>")">
     <div style="display: flex; flex-direction: row-reverse;">
-    <GdsButtonMenu MenuTitle="Review" Classes=@ButtonStyle.Secondary RightAlignMenu=@true>
-        <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Approve</GdsButton>
-        <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Request more information</GdsButton>
-        <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Reject with reason</GdsButton>
+    <GdsButtonMenu MenuTitle="Review" Classes=@GdsButtonClasses.Secondary RightAlignMenu=@true>
+        <GdsButton Href="#" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Approve</GdsButton>
+        <GdsButton Href="#" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Request more information</GdsButton>
+        <GdsButton Href="#" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Reject with reason</GdsButton>
     </GdsButtonMenu>
     </div>
 </Example>
@@ -84,27 +84,27 @@
 
 <Example BlazorExampleContent="@(@"<div class=""moj-button-group moj-button-group--inline"">
     <GdsButton Type=""submit"">Accept booking</GdsButton>
-    <GdsButtonMenu MenuTitle=""Review booking"" Classes=@ButtonStyle.Secondary>
+    <GdsButtonMenu MenuTitle=""Review booking"" Classes=@GdsButtonClasses.Secondary>
         <GdsButton Href=""#"" 
-                   Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+                   Classes=""@(GdsButtonClasses.ButtonMenuItem + "" "" + GdsButtonClasses.Secondary)"">
             Cancel
         </GdsButton>
         <GdsButton Href=""#"" 
-                   Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+                   Classes=""@(GdsButtonClasses.ButtonMenuItem + "" "" + GdsButtonClasses.Secondary)"">
             Put on hold
         </GdsButton>
         <GdsButton Href=""#"" 
-                   Classes=""@(ButtonStyle.ButtonMenuItem + "" "" + ButtonStyle.Secondary)"">
+                   Classes=""@(GdsButtonClasses.ButtonMenuItem + "" "" + GdsButtonClasses.Secondary)"">
             Request more information
         </GdsButton>
     </GdsButtonMenu>
 </div>")">
     <div class="moj-button-group moj-button-group--inline">
         <GdsButton Type="submit">Accept booking</GdsButton>
-        <GdsButtonMenu MenuTitle="Review booking" Classes=@ButtonStyle.Secondary>
-            <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Cancel</GdsButton>
-            <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Put on hold</GdsButton>
-            <GdsButton Href="#" Classes="@(ButtonStyle.ButtonMenuItem + " " + ButtonStyle.Secondary)">Request more information</GdsButton>
+        <GdsButtonMenu MenuTitle="Review booking" Classes=@GdsButtonClasses.Secondary>
+            <GdsButton Href="#" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Cancel</GdsButton>
+            <GdsButton Href="#" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Put on hold</GdsButton>
+            <GdsButton Href="#" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Request more information</GdsButton>
         </GdsButtonMenu>
     </div>
 </Example>

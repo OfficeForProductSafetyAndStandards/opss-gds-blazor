@@ -7,9 +7,9 @@
         // Arrange
         var component = Render(
     @<GdsNotificationBanner DataTestId="GdsNotificationBanner">
-        <p class=@NotificationBannerClasses.Heading>
+        <p class=@GdsNotificationBannerClasses.Heading>
             You have 7 days left to send your application.
-            <a class=@NotificationBannerClasses.Link href="#">View application</a>.
+            <a class=@GdsNotificationBannerClasses.Link href="#">View application</a>.
         </p>
     </GdsNotificationBanner>);
 
@@ -59,11 +59,11 @@
     {
         // Arrange
         var component = Render(
-    @<GdsNotificationBanner Type=NotificationBannerType.Success>
-        <GdsHeading HeadingLevel="3" Classes=@NotificationBannerClasses.Heading>
+    @<GdsNotificationBanner Type=GdsNotificationBannerType.Success>
+        <GdsHeading HeadingLevel="3" Classes=@GdsNotificationBannerClasses.Heading>
             Training outcome recorded and trainee withdrawn
         </GdsHeading>
-        <p class="govuk-body">Contact <a class=@NotificationBannerClasses.Link href="#">example@department.gov.uk</a> if you think there’s a problem.</p>
+        <p class="govuk-body">Contact <a class=@GdsNotificationBannerClasses.Link href="#">example@department.gov.uk</a> if you think there’s a problem.</p>
     </GdsNotificationBanner>
     );
 

@@ -157,7 +157,7 @@
 
 
 <h3 class="govuk-heading-m" id="caption">Table with extra large caption size</h3>
-<Example BlazorExampleContent="@(@"<GdsTable CaptionText=""Outstanding tasks to be done"" CaptionTextClasses=@TableClasses.CaptionTextExtraLarge>
+<Example BlazorExampleContent="@(@"<GdsTable CaptionText=""Outstanding tasks to be done"" CaptionTextClasses=@GdsTableCaptionClasses.ExtraLarge>
     <HeadTemplate>
         <GdsTableCell>Task</GdsTableCell>
         <GdsTableCell>Days left</GdsTableCell>
@@ -176,7 +176,7 @@
         </GdsTableRow>
     </RowsTemplate>
 </GdsTable>")">
-    <GdsTable CaptionText="Outstanding tasks to be done" CaptionTextClasses=@TableClasses.CaptionTextExtraLarge>
+    <GdsTable CaptionText="Outstanding tasks to be done" CaptionTextClasses=@GdsTableCaptionClasses.ExtraLarge>
         <HeadTemplate>
             <GdsTableCell>Task</GdsTableCell>
             <GdsTableCell>Days left</GdsTableCell>
@@ -492,24 +492,24 @@
     <GdsTable>
         <HeadTemplate>
             <GdsTableCell>Task</GdsTableCell>
-            <GdsTableCell Format=@TableCellFormat.Numeric>Days due</GdsTableCell>
-            <GdsTableCell Format=@TableCellFormat.Numeric>Cost</GdsTableCell>
+            <GdsTableCell Format=@GdsTableCellFormat.Numeric>Days due</GdsTableCell>
+            <GdsTableCell Format=@GdsTableCellFormat.Numeric>Cost</GdsTableCell>
         </HeadTemplate>
         <RowsTemplate>
             <GdsTableRow>
                 <GdsTableCell>Eligibility check</GdsTableCell>
-                <GdsTableCell Format=@TableCellFormat.Numeric>23</GdsTableCell>
-                <GdsTableCell Format=@TableCellFormat.Numeric>£45.50</GdsTableCell>
+                <GdsTableCell Format=@GdsTableCellFormat.Numeric>23</GdsTableCell>
+                <GdsTableCell Format=@GdsTableCellFormat.Numeric>£45.50</GdsTableCell>
             </GdsTableRow>
             <GdsTableRow>
                 <GdsTableCell>Travel requirements</GdsTableCell>
-                <GdsTableCell Format=@TableCellFormat.Numeric>624</GdsTableCell>
-                <GdsTableCell Format=@TableCellFormat.Numeric>£2,234.33</GdsTableCell>
+                <GdsTableCell Format=@GdsTableCellFormat.Numeric>624</GdsTableCell>
+                <GdsTableCell Format=@GdsTableCellFormat.Numeric>£2,234.33</GdsTableCell>
             </GdsTableRow>
             <GdsTableRow>
                 <GdsTableCell>Family checks</GdsTableCell>
-                <GdsTableCell Format=@TableCellFormat.Numeric>13</GdsTableCell>
-                <GdsTableCell Format=@TableCellFormat.Numeric>£142.50</GdsTableCell>
+                <GdsTableCell Format=@GdsTableCellFormat.Numeric>13</GdsTableCell>
+                <GdsTableCell Format=@GdsTableCellFormat.Numeric>£142.50</GdsTableCell>
             </GdsTableRow>
         </RowsTemplate>
     </GdsTable>

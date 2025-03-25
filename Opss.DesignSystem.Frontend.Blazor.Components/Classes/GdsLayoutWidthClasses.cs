@@ -1,6 +1,6 @@
 ﻿namespace Opss.DesignSystem.Frontend.Blazor.Components.Classes;
 
-public static class LayoutWidth
+public static class GdsLayoutWidthClasses
 {
     public const string Full = "govuk-!-width-full";
     public const string ThreeQuarters = "govuk-!-width-three-quarters";

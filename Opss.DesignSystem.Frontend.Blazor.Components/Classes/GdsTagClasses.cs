@@ -1,9 +1,6 @@
-﻿using System.Net.NetworkInformation;
-using System;
+﻿namespace Opss.DesignSystem.Frontend.Blazor.Components.Classes;
 
-namespace Opss.DesignSystem.Frontend.Blazor.Components.Classes;
-
-public static class TagClasses
+public static class GdsTagClasses
 {
     public const string Grey = "govuk-tag--grey";
     public const string Green = "govuk-tag--green";

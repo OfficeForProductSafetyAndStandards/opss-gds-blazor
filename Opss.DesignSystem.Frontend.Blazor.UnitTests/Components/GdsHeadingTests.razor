@@ -6,7 +6,7 @@
     public void OutputsHeading1()
     {
         // Arrange
-        var component = Render(@<GdsHeading DataTestId="GdsHeading" HeadingLevel="1" Classes="@HeadingSize.Large">govuk-heading-l</GdsHeading>);
+        var component = Render(@<GdsHeading DataTestId="GdsHeading" HeadingLevel="1" Classes="@GdsHeadingClasses.Large">govuk-heading-l</GdsHeading>);
 
         component.MarkupMatches(
     @<h1 class="govuk-heading-l" data-testid="GdsHeading">govuk-heading-l</h1>
@@ -17,7 +17,7 @@
     public void OutputsHeading2()
     {
         // Arrange
-        var component = Render(@<GdsHeading HeadingLevel="2" Classes="@HeadingSize.Medium">govuk-heading-m
+        var component = Render(@<GdsHeading HeadingLevel="2" Classes="@GdsHeadingClasses.Medium">govuk-heading-m
             </GdsHeading>);
 
         component.MarkupMatches(
@@ -29,7 +29,7 @@
     public void OutputsHeading3()
     {
         // Arrange
-        var component = Render(@<GdsHeading HeadingLevel="3" Classes="@HeadingSize.Small">govuk-heading-s</GdsHeading>);
+        var component = Render(@<GdsHeading HeadingLevel="3" Classes="@GdsHeadingClasses.Small">govuk-heading-s</GdsHeading>);
 
         component.MarkupMatches(
             @<h3 class="govuk-heading-s">govuk-heading-s</h3>
@@ -41,8 +41,8 @@
     {
         // Arrange
         var component = Render(
-            @<GdsHeading HeadingLevel="1" Classes="@HeadingSize.Large">
-                <GdsCaption Classes="@CaptionSize.Large">govuk-caption-l</GdsCaption>
+            @<GdsHeading HeadingLevel="1" Classes="@GdsHeadingClasses.Large">
+                <GdsCaption Classes="@GdsCaptionClasses.Large">govuk-caption-l</GdsCaption>
                 govuk-heading-l
             </GdsHeading>);
 
@@ -58,7 +58,7 @@
     public void OutputsHeading4()
     {
         // Arrange
-        var component = Render(@<GdsHeading HeadingLevel="4" Classes="@HeadingSize.Small">govuk-heading-s</GdsHeading>);
+        var component = Render(@<GdsHeading HeadingLevel="4" Classes="@GdsHeadingClasses.Small">govuk-heading-s</GdsHeading>);
 
         component.MarkupMatches(
             @<h4 class="govuk-heading-s">govuk-heading-s</h4>
@@ -71,7 +71,7 @@
         // Act & Assert
         var exception = Assert.Throws<ArgumentException>(() =>
         {
-            Render(@<GdsHeading HeadingLevel="7" Classes="@HeadingSize.Large">Invalid Heading</GdsHeading>);
+            Render(@<GdsHeading HeadingLevel="7" Classes="@GdsHeadingClasses.Large">Invalid Heading</GdsHeading>);
         });
 
         Assert.Equal("HeadingLevel must be between 1 and 6 (Parameter 'HeadingLevel')", exception.Message);
@@ -81,7 +81,7 @@
     public void OutputsHeading5()
     {
         // Arrange
-        var component = Render(@<GdsHeading HeadingLevel="5" Classes="@HeadingSize.Small">govuk-heading-s</GdsHeading>);
+        var component = Render(@<GdsHeading HeadingLevel="5" Classes="@GdsHeadingClasses.Small">govuk-heading-s</GdsHeading>);
 
         component.MarkupMatches(
             @<h5 class="govuk-heading-s">govuk-heading-s</h5>
@@ -92,7 +92,7 @@
     public void OutputsHeading6()
     {
         // Arrange
-        var component = Render(@<GdsHeading HeadingLevel="6" Classes="@HeadingSize.Small">govuk-heading-s</GdsHeading>);
+        var component = Render(@<GdsHeading HeadingLevel="6" Classes="@GdsHeadingClasses.Small">govuk-heading-s</GdsHeading>);
 
         component.MarkupMatches(
             @<h6 class="govuk-heading-s">govuk-heading-s</h6>
@@ -105,7 +105,7 @@
         // Act & Assert
         var exception = Assert.Throws<ArgumentNullException>(() =>
         {
-            Render(@<GdsHeading HeadingLevel="1" Classes="@HeadingSize.Large"></GdsHeading>);
+            Render(@<GdsHeading HeadingLevel="1" Classes="@GdsHeadingClasses.Large"></GdsHeading>);
         });
 
         Assert.Equal("ChildContent cannot be null (Parameter 'ChildContent')", exception.Message);

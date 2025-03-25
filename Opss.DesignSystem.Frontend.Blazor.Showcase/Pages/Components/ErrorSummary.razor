@@ -93,7 +93,7 @@
 </GdsErrorSummary>
 <GdsDateInput Id=""passport-issued"" NamePrefix=""passport-issued"">
     <LegendTemplate>
-        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+        <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
             When was your passport issued?
         </GdsLegend>
     </LegendTemplate>
@@ -106,9 +106,9 @@
         </GdsErrorMessage>
     </ErrorMessageTemplate>
     <ChildContent>
-        <GdsDateInputField DatePart=""@DateInputFieldType.Day"" Value=""6"" />
-        <GdsDateInputField DatePart=""@DateInputFieldType.Month"" Value=""3"" />
-        <GdsDateInputField HasError=@true DatePart=""@DateInputFieldType.Year"" />
+        <GdsDateInputField DatePart=""@GdsDateInputDatePart.Day"" Value=""6"" />
+        <GdsDateInputField DatePart=""@GdsDateInputDatePart.Month"" Value=""3"" />
+        <GdsDateInputField HasError=@true DatePart=""@GdsDateInputDatePart.Year"" />
     </ChildContent>
 </GdsDateInput>")">
     <GdsErrorSummary>
@@ -118,7 +118,7 @@
     </GdsErrorSummary>
     <GdsDateInput Id="passport-issued" NamePrefix="passport-issued">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 When was your passport issued?
             </GdsLegend>
         </LegendTemplate>
@@ -131,9 +131,9 @@
             </GdsErrorMessage>
         </ErrorMessageTemplate>
         <ChildContent>
-            <GdsDateInputField DatePart="@DateInputFieldType.Day" Value="6" />
-            <GdsDateInputField DatePart="@DateInputFieldType.Month" Value="3" />
-            <GdsDateInputField HasError=@true DatePart="@DateInputFieldType.Year" />
+            <GdsDateInputField DatePart="@GdsDateInputDatePart.Day" Value="6" />
+            <GdsDateInputField DatePart="@GdsDateInputDatePart.Month" Value="3" />
+            <GdsDateInputField HasError=@true DatePart="@GdsDateInputDatePart.Year" />
         </ChildContent>
     </GdsDateInput>
 </Example>
@@ -145,7 +145,7 @@
 </GdsErrorSummary>
 <GdsCheckboxes Name=""nationality"">
     <LegendTemplate>
-        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+        <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
             What is your nationality?
         </GdsLegend>
     </LegendTemplate>
@@ -174,7 +174,7 @@
     </GdsErrorSummary>
     <GdsCheckboxes Name="nationality">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 What is your nationality?
             </GdsLegend>
         </LegendTemplate>

@@ -40,14 +40,14 @@
 
 <h3 class="govuk-heading-m" id="secondary-buttons">Secondary buttons</h3>
 
-<Example BlazorExampleContent="@(@"<GdsButton Type=""submit"" Classes=@ButtonStyle.Secondary>Find address</GdsButton>")">
-    <GdsButton Type="submit" Classes=@ButtonStyle.Secondary>Find address</GdsButton>
+<Example BlazorExampleContent="@(@"<GdsButton Type=""submit"" Classes=@GdsButtonClasses.Secondary>Find address</GdsButton>")">
+    <GdsButton Type="submit" Classes=@GdsButtonClasses.Secondary>Find address</GdsButton>
 </Example>
 
 <h3 class="govuk-heading-m" id="warning-buttons">Warning buttons</h3>
 
-<Example BlazorExampleContent="@(@"<GdsButton Type=""submit"" Classes=@ButtonStyle.Warning>Delete account</GdsButton>")">
-    <GdsButton Type="submit" Classes=@ButtonStyle.Warning>Delete account</GdsButton>
+<Example BlazorExampleContent="@(@"<GdsButton Type=""submit"" Classes=@GdsButtonClasses.Warning>Delete account</GdsButton>")">
+    <GdsButton Type="submit" Classes=@GdsButtonClasses.Warning>Delete account</GdsButton>
 </Example>
 
 <h3 class="govuk-heading-m" id="buttons-on-dark-backgrounds">Buttons on dark backgrounds</h3>
@@ -65,16 +65,16 @@
 <h3 class="govuk-heading-m" id="input-element-buttons">Input element buttons</h3>
 
 <Example BlazorExampleContent="@(@"<GdsButtonGroup>
-    <GdsButton Element=ButtonType.Input Type=""submit"" Value=""Input submit""></GdsButton>
-    <GdsButton Element=ButtonType.Input Type=""reset"" Value=""Input reset""></GdsButton>
-    <GdsButton Element=ButtonType.Input Type=""button"" Value=""Input button""></GdsButton>
-    <GdsButton Element=ButtonType.Input Type=""button"" Value=""Input button disabled"" Disabled></GdsButton>
+    <GdsButton Element=GdsButtonElement.Input Type=""submit"" Value=""Input submit""></GdsButton>
+    <GdsButton Element=GdsButtonElement.Input Type=""reset"" Value=""Input reset""></GdsButton>
+    <GdsButton Element=GdsButtonElement.Input Type=""button"" Value=""Input button""></GdsButton>
+    <GdsButton Element=GdsButtonElement.Input Type=""button"" Value=""Input button disabled"" Disabled></GdsButton>
 </GdsButtonGroup>")">
     <GdsButtonGroup>
-        <GdsButton Element=ButtonType.Input Type="submit" Value="Input submit"></GdsButton>
-        <GdsButton Element=ButtonType.Input Type="reset" Value="Input reset" />
-        <GdsButton Element=ButtonType.Input Type="button" Value="Input button" />
-        <GdsButton Element=ButtonType.Input Type="button" Value="Input button disabled" Disabled />
+        <GdsButton Element=GdsButtonElement.Input Type="submit" Value="Input submit"></GdsButton>
+        <GdsButton Element=GdsButtonElement.Input Type="reset" Value="Input reset" />
+        <GdsButton Element=GdsButtonElement.Input Type="button" Value="Input button" />
+        <GdsButton Element=GdsButtonElement.Input Type="button" Value="Input button disabled" Disabled />
     </GdsButtonGroup>
 </Example>
 
@@ -82,11 +82,11 @@
 
 <Example BlazorExampleContent="@(@"<GdsButtonGroup>
     <GdsButton Type=""submit"">Save and continue</GdsButton>
-    <GdsButton Type=""submit"" Classes=@ButtonStyle.Secondary>Save as draft</GdsButton>
+    <GdsButton Type=""submit"" Classes=@GdsButtonClasses.Secondary>Save as draft</GdsButton>
 </GdsButtonGroup>")">
     <GdsButtonGroup>
         <GdsButton Type="submit">Save and continue</GdsButton>
-        <GdsButton Type="submit" Classes=@ButtonStyle.Secondary>Save as draft</GdsButton>
+        <GdsButton Type="submit" Classes=@GdsButtonClasses.Secondary>Save as draft</GdsButton>
     </GdsButtonGroup>
 </Example>
 

@@ -1,6 +1,6 @@
 ﻿namespace Opss.DesignSystem.Frontend.Blazor.Components.Classes;
 
-public static class CaptionSize
+public static class GdsCaptionClasses
 {
     public const string Small = "govuk-caption-s";
     public const string Medium = "govuk-caption-m";

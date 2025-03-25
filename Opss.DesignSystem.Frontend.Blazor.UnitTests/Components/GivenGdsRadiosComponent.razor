@@ -8,7 +8,7 @@
         var component = Render(
     @<GdsRadios Name="outputPageHeading" DataTestId="GdsRadios">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 Where do you live?
             </GdsLegend>
         </LegendTemplate>
@@ -123,9 +123,9 @@
     {
         // Arrange
         var component = Render(
-    @<GdsRadios Name="inlineClass" Classes=@RadioClasses.Inline>
+    @<GdsRadios Name="inlineClass" Classes=@GdsRadioClasses.Inline>
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 Have you changed your name?
             </GdsLegend>
         </LegendTemplate>
@@ -178,7 +178,7 @@
         var component = Render(
     @<GdsRadios Name="hintOnEachRadio">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 How do you want to sign in?
             </GdsLegend>
         </LegendTemplate>
@@ -256,7 +256,7 @@
         var component = Render(
     @<GdsRadios Name="aDivider">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 Where do you live?
             </GdsLegend>
         </LegendTemplate>
@@ -324,7 +324,7 @@
         var component = Render(
     @<GdsRadios Name="contact">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 How would you prefer to be contacted?
             </GdsLegend>
         </LegendTemplate>
@@ -334,7 +334,7 @@
         <ChildContent>
             <GdsRadio Value="email" Text="Email">
                 <ConditionalTemplate>
-                    <GdsTextInput Id="contact-by-email" Name="contactByEmail" Type="email" Autocomplete="email" Spellcheck="false" Classes=@LayoutWidth.OneThird>
+                    <GdsTextInput Id="contact-by-email" Name="contactByEmail" Type="email" Autocomplete="email" Spellcheck="false" Classes=@GdsLayoutWidthClasses.OneThird>
                         <LabelTemplate>
                             <GdsLabel>Email address</GdsLabel>
                         </LabelTemplate>
@@ -343,7 +343,7 @@
             </GdsRadio>
             <GdsRadio Value="phone" Text="Phone">
                 <ConditionalTemplate>
-                    <GdsTextInput Id="contact-by-phone" Name="contactByPhone" Type="tel" Autocomplete="tel" Classes=@LayoutWidth.OneThird>
+                    <GdsTextInput Id="contact-by-phone" Name="contactByPhone" Type="tel" Autocomplete="tel" Classes=@GdsLayoutWidthClasses.OneThird>
                         <LabelTemplate>
                             <GdsLabel>Phone number</GdsLabel>
                         </LabelTemplate>
@@ -352,7 +352,7 @@
             </GdsRadio>
             <GdsRadio Value="text" Text="Text message">
                 <ConditionalTemplate>
-                    <GdsTextInput Id="contact-by-text" Name="contactByText" Type="tel" Autocomplete="tel" Classes=@LayoutWidth.OneThird>
+                    <GdsTextInput Id="contact-by-text" Name="contactByText" Type="tel" Autocomplete="tel" Classes=@GdsLayoutWidthClasses.OneThird>
                         <LabelTemplate>
                             <GdsLabel>Mobile phone number</GdsLabel>
                         </LabelTemplate>
@@ -428,9 +428,9 @@
     {
         // Arrange
         var component = Render(
-    @<GdsRadios Name="smallInput" Classes=@RadioClasses.Small>
+    @<GdsRadios Name="smallInput" Classes=@GdsRadioClasses.Small>
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Medium>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Medium>
                 Filter
             </GdsLegend>
         </LegendTemplate>
@@ -475,7 +475,7 @@
         var component = Render(
     @<GdsRadios Name="whereDoYouLive">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 Where do you live?
             </GdsLegend>
         </LegendTemplate>
@@ -645,7 +645,7 @@
         var component = Render(
     @<GdsRadios Name="whereDoYouLive" FieldsetDescribedBy="default-location-overriding">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 Where do you live?
             </GdsLegend>
         </LegendTemplate>
@@ -718,7 +718,7 @@
         var component = Render(
     @<GdsRadios Name="contact">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 How would you prefer to be contacted?
             </GdsLegend>
         </LegendTemplate>
@@ -728,7 +728,7 @@
         <ChildContent>
             <GdsRadio Value="email" Text="Email" Checked=@true>
                 <ConditionalTemplate>
-                    <GdsTextInput Id="contact-by-email" Name="contactByEmail" Type="email" Autocomplete="email" Spellcheck="false" Classes=@LayoutWidth.OneHalf>
+                    <GdsTextInput Id="contact-by-email" Name="contactByEmail" Type="email" Autocomplete="email" Spellcheck="false" Classes=@GdsLayoutWidthClasses.OneHalf>
                         <LabelTemplate>
                             <GdsLabel>Email address</GdsLabel>
                         </LabelTemplate>
@@ -740,7 +740,7 @@
             </GdsRadio>
             <GdsRadio Value="phone" Text="Phone">
                 <ConditionalTemplate>
-                    <GdsTextInput Id="contact-by-phone" Name="contactByPhone" Type="tel" Autocomplete="tel" Classes=@LayoutWidth.OneThird>
+                    <GdsTextInput Id="contact-by-phone" Name="contactByPhone" Type="tel" Autocomplete="tel" Classes=@GdsLayoutWidthClasses.OneThird>
                         <LabelTemplate>
                             <GdsLabel>Phone number</GdsLabel>
                         </LabelTemplate>
@@ -749,7 +749,7 @@
             </GdsRadio>
             <GdsRadio Value="text" Text="Text message">
                 <ConditionalTemplate>
-                    <GdsTextInput Id="contact-by-text" Name="contactByText" Type="tel" Autocomplete="tel" Classes=@LayoutWidth.OneThird>
+                    <GdsTextInput Id="contact-by-text" Name="contactByText" Type="tel" Autocomplete="tel" Classes=@GdsLayoutWidthClasses.OneThird>
                         <LabelTemplate>
                             <GdsLabel>Mobile phone number</GdsLabel>
                         </LabelTemplate>

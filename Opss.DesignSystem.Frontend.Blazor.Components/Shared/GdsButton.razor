@@ -7,7 +7,7 @@
 @* Bit of a mess, nunjucks combines some of this but it's still crazy due to the three different elements that can be rendered *@
 @switch (element)
 {
-    case ButtonType.Anchor:
+    case GdsButtonElement.Anchor:
         <a id=@Id
            class=@classes
            href=@(Href ?? "#")
@@ -32,7 +32,7 @@
             }
         </a>
         break;
-    case ButtonType.Button:
+    case GdsButtonElement.Button:
         <button id=@Id
                 class=@classes
                 type=@Type
@@ -60,7 +60,7 @@
             }
         </button>
         break;
-    case ButtonType.Input:
+    case GdsButtonElement.Input:
         <input id=@Id
                class=@classes
                value=@Value
@@ -81,13 +81,13 @@
     #region Public Parameters
 
     /// <summary>
-    /// Whether to use an <see cref="ButtonType.Input"/>, <see cref="ButtonType.Button"/> or <see cref="ButtonType.Anchor"/> to create the GDS button (should be GdsButtonType)
+    /// Whether to use an <see cref="GdsButtonElement.Input"/>, <see cref="GdsButtonElement.Button"/> or <see cref="GdsButtonElement.Anchor"/> to create the GDS button (should be GdsButtonType)
     /// In most cases you will not need to set this as it will be configured automatically.
-    /// Set to <see cref="ButtonType.Input"/> to explicitly output an input element. 
-    /// The <see cref="Value"/> field is required if set to <see cref="ButtonType.Input"/>.
+    /// Set to <see cref="GdsButtonElement.Input"/> to explicitly output an input element. 
+    /// The <see cref="Value"/> field is required if set to <see cref="GdsButtonElement.Input"/>.
     /// </summary>
     [Parameter]
-    public ButtonType? Element { get; set; }
+    public GdsButtonElement? Element { get; set; }
 
     /// <summary>
     /// Name for the input or button.
@@ -151,11 +151,11 @@
     #endregion
 
     #region Private Properties
-    private ButtonType? element
+    private GdsButtonElement? element
     {
         get
         {
-            return Element ?? (string.IsNullOrEmpty(Href) ? ButtonType.Button : ButtonType.Anchor);
+            return Element ?? (string.IsNullOrEmpty(Href) ? GdsButtonElement.Button : GdsButtonElement.Anchor);
         }
     }
 
@@ -178,10 +178,10 @@
 
     protected override void OnParametersSet()
     {
-        if ((element == ButtonType.Anchor || element == ButtonType.Button) && ChildContent == null)
+        if ((element == GdsButtonElement.Anchor || element == GdsButtonElement.Button) && ChildContent == null)
             throw new ArgumentNullException(nameof(ChildContent), "GdsButton link or button must have child content provided.");
 
-        if (element == ButtonType.Input && string.IsNullOrWhiteSpace(Value))
+        if (element == GdsButtonElement.Input && string.IsNullOrWhiteSpace(Value))
             throw new ArgumentNullException(nameof(Value), "GdsButton input must have a value.");
 
         if (!(new[] { "button", "submit", "reset" }).Contains(Type))
