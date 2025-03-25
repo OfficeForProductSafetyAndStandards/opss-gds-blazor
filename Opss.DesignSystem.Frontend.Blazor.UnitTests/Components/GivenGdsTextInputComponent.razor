@@ -68,7 +68,7 @@
         var component = Render(
     @<GdsTextInput Id="width-10"
                        Name="width10"
-                       Classes="@TextInputWidth.Width10">
+                       Classes="@GdsTextInputClasses.Width10">
     </GdsTextInput>
         );
 
@@ -87,7 +87,7 @@
         var component = Render(
     @<GdsTextInput Id="three-quarters"
                        Name="threeQuarters"
-                       Classes="@LayoutWidth.ThreeQuarters">
+                       Classes="@GdsLayoutWidthClasses.ThreeQuarters">
     </GdsTextInput>
         );
 
@@ -105,7 +105,7 @@
         var component = Render(
     @<GdsTextInput Id="authentication-code"
                        Name="authenticationCode"
-                       Classes=@(@TextInputWidth.Width5 + " " + @TextInputLettering.ExtraLetterWidth)
+                       Classes=@(GdsTextInputClasses.Width5 + " " + GdsTextInputClasses.ExtraLetterWidth)
                        Value="NC1701"
                        Spellcheck="@false">
     </GdsTextInput>
@@ -125,7 +125,7 @@
         var component = Render(
     @<GdsTextInput Id="cost-per-item"
                        Name="costPerItem"
-                       Classes="@TextInputWidth.Width5"
+                       Classes="@GdsTextInputClasses.Width5"
                        Spellcheck="@false" 
                        InputWrapperClasses="input-wrapper-classes">
         <PrefixTemplate>
@@ -155,7 +155,7 @@
         var component = Render(
     @<GdsTextInput Id="cost"
                        Name="cost"
-                       Classes="@TextInputWidth.Width5"
+                       Classes="@GdsTextInputClasses.Width5"
                        spellcheck="@false"
                        InputWrapperClasses="input-wrapper-classes">
         <PrefixTemplate>
@@ -181,7 +181,7 @@
         var component = Render(
     @<GdsTextInput Id="weight"
                        Name="weight"
-                       Classes="@TextInputWidth.Width5"
+                       Classes="@GdsTextInputClasses.Width5"
                        spellcheck="@false"
                        InputWrapperClasses="input-wrapper-classes">
         <SuffixTemplate>
@@ -353,10 +353,10 @@
         var component = Render(
     @<GdsTextInput Id="cost-per-item-error"
                        Name="costPerItemError"
-                       Classes="@TextInputWidth.Width5"
+                       Classes="@GdsTextInputClasses.Width5"
                        spellcheck="@false">
         <LabelTemplate>
-            <GdsLabel Classes="@LabelSize.Large"
+            <GdsLabel Classes="@GdsLabelClasses.Large"
                       IsPageHeading="true">
                 What is the cost per item, in pounds?
             </GdsLabel>

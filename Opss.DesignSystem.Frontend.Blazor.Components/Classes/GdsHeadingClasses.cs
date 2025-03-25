@@ -1,6 +1,6 @@
 ﻿namespace Opss.DesignSystem.Frontend.Blazor.Components.Classes;
 
-public static class HeadingSize
+public static class GdsHeadingClasses
 {
     public const string Small = "govuk-heading-s";
     public const string Medium = "govuk-heading-m";

@@ -8,7 +8,7 @@
         var component = Render(
     @<GdsFieldset DataTestId="GdsFieldset">
         <LegendTemplate>
-            <GdsLegend Classes=@FieldsetLegendSize.Large
+            <GdsLegend Classes=@GdsLegendClasses.Large
                        IsPageHeading=@true>
                 What is your address?
             </GdsLegend>
@@ -31,7 +31,7 @@
             <GdsTextInput Id="address-town"
                           Name="addressTown"
                           Autocomplete="address-level2"
-                          Classes=@LayoutWidth.TwoThirds>
+                          Classes=@GdsLayoutWidthClasses.TwoThirds>
                 <LabelTemplate>
                     <GdsLabel>Town or city</GdsLabel>
                 </LabelTemplate>
@@ -39,7 +39,7 @@
             <GdsTextInput Id="address-postcode"
                           Name="addressPostcode"
                           Autocomplete="postal-code"
-                          Classes=@TextInputWidth.Width10>
+                          Classes=@GdsTextInputClasses.Width10>
                 <LabelTemplate>
                     <GdsLabel>Postcode</GdsLabel>
                 </LabelTemplate>
@@ -89,7 +89,7 @@
         var component = Render(
     @<GdsFieldset>
         <LegendTemplate>
-            <GdsLegend Classes=@FieldsetLegendSize.Large
+            <GdsLegend Classes=@GdsLegendClasses.Large
                        IsPageHeading=@true>
                 Legend as page heading
             </GdsLegend>

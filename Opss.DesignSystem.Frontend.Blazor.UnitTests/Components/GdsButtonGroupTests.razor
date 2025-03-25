@@ -7,7 +7,7 @@
         // Arrange
         var component = Render(@<GdsButtonGroup DataTestId="GdsButtonGroup">
         <GdsButton Type="submit" DataTestId="GdsButton">Save and continue</GdsButton>
-        <GdsButton Type="submit" Classes=@ButtonStyle.Secondary>Save as draft</GdsButton>
+        <GdsButton Type="submit" Classes=@GdsButtonClasses.Secondary>Save as draft</GdsButton>
     </GdsButtonGroup>);
 
         component.MarkupMatches(

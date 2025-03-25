@@ -1,6 +1,6 @@
 ﻿namespace Opss.DesignSystem.Frontend.Blazor.Components.Enums;
 
-public enum ButtonType
+public enum GdsButtonElement
 {
     Anchor = 0,
     Button = 1,

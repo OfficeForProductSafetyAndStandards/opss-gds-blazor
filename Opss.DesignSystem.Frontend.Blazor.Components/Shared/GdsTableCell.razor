@@ -2,7 +2,7 @@
 
 @if (isHeaderCell || isHeaderRow)
 {
-	<th class=@classes(TableClasses.HeaderCell)
+	<th class=@classes(GdsTableClasses.HeaderCell)
 		colspan=@ColSpan
 		rowspan=@RowSpan
 		scope=@scope
@@ -23,7 +23,7 @@
 }
 else
 {
-	<td class=@classes(TableClasses.Cell)
+	<td class=@classes(GdsTableClasses.Cell)
 		colspan=@ColSpan
 		rowspan=@RowSpan
 		data-testid=@DataTestId
@@ -102,13 +102,13 @@ else
 	{
 		get
 		{
-			if (isHeaderRow) return TableScopes.Col;
-			if (isHeaderCell) return TableScopes.Row;
+			if (isHeaderRow) return GdsTableScope.Col;
+			if (isHeaderCell) return GdsTableScope.Row;
 			return null;
 		}
 	}
 
-	private bool isNumeric => Format == TableCellFormat.Numeric;
+	private bool isNumeric => Format == GdsTableCellFormat.Numeric;
 
 	private string? ariaSort;
 
@@ -124,8 +124,8 @@ else
 		{
 			classBuilder +=
 				(isHeaderCell || isHeaderRow)
-					? $" {TableClasses.NumericHeaderCell}"
-					: $" {TableClasses.NumericCell}";
+					? $" {GdsTableClasses.NumericHeaderCell}"
+					: $" {GdsTableClasses.NumericCell}";
 		}
 
 		if (!string.IsNullOrWhiteSpace(base.Classes))

@@ -10,60 +10,60 @@
     A blazor implementation of the GDS <a href="https://design-system.service.gov.uk/styles/headings/" class="govuk-link">Heading</a>.
 </p>
 
-<Example BlazorExampleContent="@(@"<GdsHeading HeadingLevel=""1"" Classes=""@HeadingSize.Large"">govuk-heading-l</GdsHeading>
-<GdsHeading HeadingLevel=""2"" Classes=""@HeadingSize.Medium"">govuk-heading-m</GdsHeading>
-<GdsHeading HeadingLevel=""3"" Classes=""@HeadingSize.Small"">govuk-heading-s</GdsHeading>")">
-    <GdsHeading HeadingLevel="1" Classes="@HeadingSize.Large">govuk-heading-l</GdsHeading>
-    <GdsHeading HeadingLevel="2" Classes="@HeadingSize.Medium">govuk-heading-m</GdsHeading>
-    <GdsHeading HeadingLevel="3" Classes="@HeadingSize.Small">govuk-heading-s</GdsHeading>
+<Example BlazorExampleContent="@(@"<GdsHeading HeadingLevel=""1"" Classes=""@GdsHeadingClasses.Large"">govuk-heading-l</GdsHeading>
+<GdsHeading HeadingLevel=""2"" Classes=""@GdsHeadingClasses.Medium"">govuk-heading-m</GdsHeading>
+<GdsHeading HeadingLevel=""3"" Classes=""@GdsHeadingClasses.Small"">govuk-heading-s</GdsHeading>")">
+    <GdsHeading HeadingLevel="1" Classes="@GdsHeadingClasses.Large">govuk-heading-l</GdsHeading>
+    <GdsHeading HeadingLevel="2" Classes="@GdsHeadingClasses.Medium">govuk-heading-m</GdsHeading>
+    <GdsHeading HeadingLevel="3" Classes="@GdsHeadingClasses.Small">govuk-heading-s</GdsHeading>
 </Example>
 
-<Example BlazorExampleContent="@(@"<GdsHeading HeadingLevel=""1"" Classes=""@HeadingSize.ExtraLarge"">govuk-heading-xl</GdsHeading>
-<GdsHeading HeadingLevel=""2"" Classes=""@HeadingSize.Large"">govuk-heading-l</GdsHeading>
-<GdsHeading HeadingLevel=""3"" Classes=""@HeadingSize.Medium"">govuk-heading-m</GdsHeading>")">
-    <GdsHeading HeadingLevel="1" Classes="@HeadingSize.ExtraLarge">govuk-heading-xl</GdsHeading>
-    <GdsHeading HeadingLevel="2" Classes="@HeadingSize.Large">govuk-heading-l</GdsHeading>
-    <GdsHeading HeadingLevel="3" Classes="@HeadingSize.Medium">govuk-heading-m</GdsHeading>
+<Example BlazorExampleContent="@(@"<GdsHeading HeadingLevel=""1"" Classes=""@GdsHeadingClasses.ExtraLarge"">govuk-heading-xl</GdsHeading>
+<GdsHeading HeadingLevel=""2"" Classes=""@GdsHeadingClasses.Large"">govuk-heading-l</GdsHeading>
+<GdsHeading HeadingLevel=""3"" Classes=""@GdsHeadingClasses.Medium"">govuk-heading-m</GdsHeading>")">
+    <GdsHeading HeadingLevel="1" Classes="@GdsHeadingClasses.ExtraLarge">govuk-heading-xl</GdsHeading>
+    <GdsHeading HeadingLevel="2" Classes="@GdsHeadingClasses.Large">govuk-heading-l</GdsHeading>
+    <GdsHeading HeadingLevel="3" Classes="@GdsHeadingClasses.Medium">govuk-heading-m</GdsHeading>
 </Example>
 
 <h2 class="govuk-heading-l" id="headings-with-captions">Headings with captions</h2>
 
-<Example BlazorExampleContent="@(@"<GdsCaption Classes=""@CaptionSize.ExtraLarge"">govuk-caption-xl</GdsCaption>
-<GdsHeading HeadingLevel=""1"" Classes=""@HeadingSize.ExtraLarge"">govuk-heading-xl</GdsHeading>
-<GdsCaption Classes=""@CaptionSize.Large"">govuk-caption-xl</GdsCaption>
-<GdsHeading HeadingLevel=""2"" Classes=""@HeadingSize.Large"">govuk-heading-l</GdsHeading>
-<GdsCaption Classes=""@CaptionSize.Medium"">govuk-caption-xl</GdsCaption>
-<GdsHeading HeadingLevel=""3"" Classes=""@HeadingSize.Medium"">govuk-heading-m</GdsHeading>")">
-    <GdsCaption Classes="@CaptionSize.ExtraLarge">govuk-caption-xl</GdsCaption>
-    <GdsHeading HeadingLevel="1" Classes="@HeadingSize.ExtraLarge">govuk-heading-xl</GdsHeading>
-    <GdsCaption Classes="@CaptionSize.Large">govuk-caption-xl</GdsCaption>
-    <GdsHeading HeadingLevel="2" Classes="@HeadingSize.Large">govuk-heading-l</GdsHeading>
-    <GdsCaption Classes="@CaptionSize.Medium">govuk-caption-xl</GdsCaption>
-    <GdsHeading HeadingLevel="3" Classes="@HeadingSize.Medium">govuk-heading-m</GdsHeading>
+<Example BlazorExampleContent="@(@"<GdsCaption Classes=""@GdsCaptionClasses.ExtraLarge"">govuk-caption-xl</GdsCaption>
+<GdsHeading HeadingLevel=""1"" Classes=""@GdsHeadingClasses.ExtraLarge"">govuk-heading-xl</GdsHeading>
+<GdsCaption Classes=""@GdsCaptionClasses.Large"">govuk-caption-xl</GdsCaption>
+<GdsHeading HeadingLevel=""2"" Classes=""@GdsHeadingClasses.Large"">govuk-heading-l</GdsHeading>
+<GdsCaption Classes=""@GdsCaptionClasses.Medium"">govuk-caption-xl</GdsCaption>
+<GdsHeading HeadingLevel=""3"" Classes=""@GdsHeadingClasses.Medium"">govuk-heading-m</GdsHeading>")">
+    <GdsCaption Classes="@GdsCaptionClasses.ExtraLarge">govuk-caption-xl</GdsCaption>
+    <GdsHeading HeadingLevel="1" Classes="@GdsHeadingClasses.ExtraLarge">govuk-heading-xl</GdsHeading>
+    <GdsCaption Classes="@GdsCaptionClasses.Large">govuk-caption-xl</GdsCaption>
+    <GdsHeading HeadingLevel="2" Classes="@GdsHeadingClasses.Large">govuk-heading-l</GdsHeading>
+    <GdsCaption Classes="@GdsCaptionClasses.Medium">govuk-caption-xl</GdsCaption>
+    <GdsHeading HeadingLevel="3" Classes="@GdsHeadingClasses.Medium">govuk-heading-m</GdsHeading>
 </Example>
 
-<Example BlazorExampleContent="@(@"<GdsHeading HeadingLevel=""1"" Classes=""@HeadingSize.ExtraLarge"">
-    <GdsCaption Classes=""@CaptionSize.ExtraLarge"">govuk-caption-xl</GdsCaption>
+<Example BlazorExampleContent="@(@"<GdsHeading HeadingLevel=""1"" Classes=""@GdsHeadingClasses.ExtraLarge"">
+    <GdsCaption Classes=""@GdsCaptionClasses.ExtraLarge"">govuk-caption-xl</GdsCaption>
     govuk-heading-xl
 </GdsHeading>
-<GdsHeading HeadingLevel=""2"" Classes=""@HeadingSize.Large"">
-    <GdsCaption Classes=""@CaptionSize.Large"">govuk-caption-xl</GdsCaption>
+<GdsHeading HeadingLevel=""2"" Classes=""@GdsHeadingClasses.Large"">
+    <GdsCaption Classes=""@GdsCaptionClasses.Large"">govuk-caption-xl</GdsCaption>
     govuk-heading-l
 </GdsHeading>
-<GdsHeading HeadingLevel=""3"" Classes=""@HeadingSize.Medium"">
-    <GdsCaption Classes=""@CaptionSize.Medium"">govuk-caption-xl</GdsCaption>
+<GdsHeading HeadingLevel=""3"" Classes=""@GdsHeadingClasses.Medium"">
+    <GdsCaption Classes=""@GdsCaptionClasses.Medium"">govuk-caption-xl</GdsCaption>
     govuk-heading-m
 </GdsHeading>")">    
-    <GdsHeading HeadingLevel="1" Classes="@HeadingSize.ExtraLarge">
-        <GdsCaption Classes="@CaptionSize.ExtraLarge">govuk-caption-xl</GdsCaption>
+    <GdsHeading HeadingLevel="1" Classes="@GdsHeadingClasses.ExtraLarge">
+        <GdsCaption Classes="@GdsCaptionClasses.ExtraLarge">govuk-caption-xl</GdsCaption>
         govuk-heading-xl
     </GdsHeading>
-    <GdsHeading HeadingLevel="2" Classes="@HeadingSize.Large">
-        <GdsCaption Classes="@CaptionSize.Large">govuk-caption-xl</GdsCaption>
+    <GdsHeading HeadingLevel="2" Classes="@GdsHeadingClasses.Large">
+        <GdsCaption Classes="@GdsCaptionClasses.Large">govuk-caption-xl</GdsCaption>
         govuk-heading-l
     </GdsHeading>
-    <GdsHeading HeadingLevel="3" Classes="@HeadingSize.Medium">
-        <GdsCaption Classes="@CaptionSize.Medium">govuk-caption-xl</GdsCaption>
+    <GdsHeading HeadingLevel="3" Classes="@GdsHeadingClasses.Medium">
+        <GdsCaption Classes="@GdsCaptionClasses.Medium">govuk-caption-xl</GdsCaption>
         govuk-heading-m
     </GdsHeading>
 </Example>

@@ -9,7 +9,7 @@
         var component = Render(
     @<GdsCheckboxes Name="waste" DataTestId="GdsCheckboxes">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 Which types of waste do you transport?
             </GdsLegend>
         </LegendTemplate>
@@ -133,7 +133,7 @@
         var component = Render(
     @<GdsCheckboxes Name="nationality">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 What is your nationality?
             </GdsLegend>
         </LegendTemplate>
@@ -207,7 +207,7 @@
         var component = Render(
     @<GdsCheckboxes Name="countries">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 Will you be travelling to any of these countries?
             </GdsLegend>
         </LegendTemplate>
@@ -282,7 +282,7 @@
         var component = Render(
     @<GdsCheckboxes Name="countries" Values=@(new List<string> { "france", "none" })>
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 Will you be travelling to any of these countries?
             </GdsLegend>
         </LegendTemplate>
@@ -349,7 +349,7 @@
         var component = Render(
     @<GdsCheckboxes Name="contact">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 How would you like to be contacted?
             </GdsLegend>
         </LegendTemplate>
@@ -362,7 +362,7 @@
             <GdsCheckbox Value="email" Text="Email">
                 <ConditionalTemplate>
                     <GdsTextInput Id="contact-by-email" Name="contactByEmail" Type="email" Autocomplete="email"
-                                  Spellcheck="false" Classes=@LayoutWidth.OneThird>
+                                  Spellcheck="false" Classes=@GdsLayoutWidthClasses.OneThird>
                         <LabelTemplate>
                             <GdsLabel>Email address</GdsLabel>
                         </LabelTemplate>
@@ -372,7 +372,7 @@
             <GdsCheckbox Value="phone" Text="Phone">
                 <ConditionalTemplate>
                     <GdsTextInput Id="contact-by-phone" Name="contactByPhone" Type="tel" Autocomplete="tel"
-                                  Classes=@LayoutWidth.OneThird>
+                                  Classes=@GdsLayoutWidthClasses.OneThird>
                         <LabelTemplate>
                             <GdsLabel>Phone number</GdsLabel>
                         </LabelTemplate>
@@ -382,7 +382,7 @@
             <GdsCheckbox Value="text message" Text="Text message">
                 <ConditionalTemplate>
                     <GdsTextInput Id="contact-by-text" Name="contactByText" Type="tel" Autocomplete="tel"
-                                  Classes=@LayoutWidth.OneThird>
+                                  Classes=@GdsLayoutWidthClasses.OneThird>
                         <LabelTemplate>
                             <GdsLabel>Mobile phone number</GdsLabel>
                         </LabelTemplate>
@@ -468,9 +468,9 @@
     {
         // Arrange
         var component = Render(
-    @<GdsCheckboxes Name="organisation" Classes=@CheckboxSize.Small>
+    @<GdsCheckboxes Name="organisation" Classes=@GdsCheckboxClasses.Small>
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Medium>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Medium>
                 Organisation
             </GdsLegend>
         </LegendTemplate>
@@ -535,7 +535,7 @@
         var component = Render(
     @<GdsCheckboxes Name="nationality">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 What is your nationality?
             </GdsLegend>
         </LegendTemplate>

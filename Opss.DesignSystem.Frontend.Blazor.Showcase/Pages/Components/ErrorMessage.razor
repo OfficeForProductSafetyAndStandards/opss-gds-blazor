@@ -12,7 +12,7 @@
 
 <Example BlazorExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
     <LegendTemplate>
-        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+        <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
             When was your passport issued?
         </GdsLegend>
     </LegendTemplate>
@@ -25,14 +25,14 @@
         </GdsErrorMessage>
     </ErrorMessageTemplate>
     <ChildContent>
-        <GdsDateInputField HasError=@true DatePart=""@DateInputFieldType.Day"" Value=""6"" />
-        <GdsDateInputField HasError=@true DatePart=""@DateInputFieldType.Month"" Value=""3"" />
-        <GdsDateInputField HasError=@true DatePart=""@DateInputFieldType.Year"" Value=""2076"" />
+        <GdsDateInputField HasError=@true DatePart=""@GdsDateInputDatePart.Day"" Value=""6"" />
+        <GdsDateInputField HasError=@true DatePart=""@GdsDateInputDatePart.Month"" Value=""3"" />
+        <GdsDateInputField HasError=@true DatePart=""@GdsDateInputDatePart.Year"" Value=""2076"" />
     </ChildContent>
 </GdsDateInput>")">
     <GdsDateInput Id="passport-issued" NamePrefix="passport-issued">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 When was your passport issued?
             </GdsLegend>
         </LegendTemplate>
@@ -45,9 +45,9 @@
             </GdsErrorMessage>
         </ErrorMessageTemplate>
         <ChildContent>
-            <GdsDateInputField HasError=@true DatePart="@DateInputFieldType.Day" Value="6" />
-            <GdsDateInputField HasError=@true DatePart="@DateInputFieldType.Month" Value="3" />
-            <GdsDateInputField HasError=@true DatePart="@DateInputFieldType.Year" Value="2076" />
+            <GdsDateInputField HasError=@true DatePart="@GdsDateInputDatePart.Day" Value="6" />
+            <GdsDateInputField HasError=@true DatePart="@GdsDateInputDatePart.Month" Value="3" />
+            <GdsDateInputField HasError=@true DatePart="@GdsDateInputDatePart.Year" Value="2076" />
         </ChildContent>
     </GdsDateInput>
 </Example>
@@ -63,7 +63,7 @@
 
 <Example BlazorExampleContent="@(@"<GdsCheckboxes Name=""nationality"">
     <LegendTemplate>
-        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+        <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
             What is your nationality?
         </GdsLegend>
     </LegendTemplate>
@@ -87,7 +87,7 @@
 </GdsCheckboxes>")">
     <GdsCheckboxes Name="nationality">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 What is your nationality?
             </GdsLegend>
         </LegendTemplate>

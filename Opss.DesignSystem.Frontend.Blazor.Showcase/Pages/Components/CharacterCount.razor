@@ -47,7 +47,7 @@
 <h3 class="govuk-heading-m" id="label-as-page-heading">Label as page heading</h3>
 <Example BlazorExampleContent="@(@"<GdsCharacterCount Id=""label-as-page-heading"" Name=""labelAsPageHeading"" MaxLength=""200"">
     <LabelTemplate>
-        <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+        <GdsLabel Classes=@GdsLabelClasses.Large IsPageHeading=@true>
             Can you provide more detail?
         </GdsLabel>
     </LabelTemplate>
@@ -59,7 +59,7 @@
 </GdsCharacterCount>")">
     <GdsCharacterCount Id="label-as-page-heading" Name="labelAsPageHeading" MaxLength="200">
         <LabelTemplate>
-            <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+            <GdsLabel Classes=@GdsLabelClasses.Large IsPageHeading=@true>
                 Can you provide more detail?
             </GdsLabel>
         </LabelTemplate>
@@ -79,7 +79,7 @@
                     Threshold=""8""
                     Value=""This example of a textarea has a character limit of 15 characters."">
     <LabelTemplate>
-        <GdsLabel Classes=@LabelSize.Large
+        <GdsLabel Classes=@GdsLabelClasses.Large
                     IsPageHeading=@true>
             Can you provide more detail?
         </GdsLabel>
@@ -91,7 +91,7 @@
                        Threshold="8"
                        Value="This example of a textarea has a character limit of 15 characters.">
         <LabelTemplate>
-            <GdsLabel Classes=@LabelSize.Large
+            <GdsLabel Classes=@GdsLabelClasses.Large
                       IsPageHeading=@true>
                 Can you provide more detail?
             </GdsLabel>
@@ -230,7 +230,7 @@
                    MaxLength=""15""
                    Value=""A content designer works on the end-to-end journey of a service to help users complete their goal."">
     <LabelTemplate>
-        <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+        <GdsLabel Classes=@GdsLabelClasses.Large IsPageHeading=@true>
             Enter a job description
         </GdsLabel>
     </LabelTemplate>
@@ -245,7 +245,7 @@
                        MaxLength="15"
                        Value="A content designer works on the end-to-end journey of a service to help users complete their goal.">
         <LabelTemplate>
-            <GdsLabel Classes=@LabelSize.Large IsPageHeading=@true>
+            <GdsLabel Classes=@GdsLabelClasses.Large IsPageHeading=@true>
                 Enter a job description
             </GdsLabel>
         </LabelTemplate>
@@ -316,7 +316,7 @@
                        CountMessageClasses="count-message"
                        Value="The styles shown are for the demonstration of the functionality of this component. Ensure the styles used follow the GDS guidelines for the task you are trying to achieve.">
         <LabelTemplate>
-            <GdsLabel Classes=@LabelSize.Large
+            <GdsLabel Classes=@GdsLabelClasses.Large
                       IsPageHeading=@true>
                 Enter a job description
             </GdsLabel>

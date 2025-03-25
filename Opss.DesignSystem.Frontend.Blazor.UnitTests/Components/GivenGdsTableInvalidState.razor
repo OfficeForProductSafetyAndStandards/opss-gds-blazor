@@ -23,18 +23,18 @@
 
         // Assert
         component.MarkupMatches(
-    @<table class=@TableClasses.Table>
-        <thead class=@TableClasses.Head>
-            <tr class=@TableClasses.Row>
-                <th scope="col" class=@TableClasses.HeaderCell>Heading 1</th>
+    @<table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Heading 1</th>
             </tr>
         </thead>
-        <tbody class=@TableClasses.Body>
-            <tr class=@TableClasses.Row>
-                <td class=@TableClasses.Cell>Row 1</td>
+        <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Row 1</td>
             </tr>
-            <tr class=@TableClasses.Row>
-                <td class=@TableClasses.Cell>Row 2</td>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Row 2</td>
             </tr>
         </tbody>
     </table>
@@ -63,18 +63,18 @@
 
         // Assert
         component.MarkupMatches(
-    @<table class=@TableClasses.Table>
-        <thead class=@TableClasses.Head>
-            <tr class=@TableClasses.Row>
-                <th scope="col" class=@TableClasses.HeaderCell>Heading 1</th>
+    @<table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Heading 1</th>
             </tr>
         </thead>
-        <tbody class=@TableClasses.Body>
-            <tr class=@TableClasses.Row>
-                <td class=@TableClasses.Cell>Row 1</td>
+        <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Row 1</td>
             </tr>
-            <tr class=@TableClasses.Row>
-                <td class=@TableClasses.Cell>Row 2</td>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Row 2</td>
             </tr>
         </tbody>
     </table>
@@ -92,8 +92,8 @@
 
         // Assert
         component.MarkupMatches(
-    @<table class=@TableClasses.Table>
-        <tbody class=@TableClasses.Body></tbody>
+    @<table class="govuk-table">
+        <tbody class="govuk-table__body"></tbody>
     </table>
         );
     }
@@ -109,11 +109,11 @@
 
         // Assert
         component.MarkupMatches(
-    @<table class=@TableClasses.Table>
-        <thead class=@TableClasses.Head>
-            <tr class=@TableClasses.Row></tr>
+    @<table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row"></tr>
         </thead>
-        <tbody class=@TableClasses.Body></tbody>
+        <tbody class="govuk-table__body"></tbody>
     </table>
         );
     }

@@ -11,7 +11,7 @@
                       DataTestId="GdsTextarea"
                       TextareaDataTestId="TextareaTestId">
         <LabelTemplate>
-            <GdsLabel Classes=@LabelSize.Large
+            <GdsLabel Classes=@GdsLabelClasses.Large
                       IsPageHeading="true">
                 Can you provide more detail?
             </GdsLabel>
@@ -50,7 +50,7 @@
                       Name="moreDetail"
                       Rows="8">
         <LabelTemplate>
-            <GdsLabel Classes=@LabelSize.Large
+            <GdsLabel Classes=@GdsLabelClasses.Large
                       IsPageHeading="true">
                 Can you provide more detail?
             </GdsLabel>
@@ -113,7 +113,7 @@
     @<GdsTextarea Id="more-detail"
                       Name="moreDetail">
         <LabelTemplate>
-            <GdsLabel Classes="@LabelSize.Large"
+            <GdsLabel Classes="@GdsLabelClasses.Large"
                       IsPageHeading="true">
                 Can you provide more detail?
             </GdsLabel>
@@ -156,7 +156,7 @@
         var component = Render(
     @<GdsTextarea Id="before-after-inputs" Name="beforeafterInputs">
         <LabelTemplate>
-            <GdsLabel Classes="@LabelSize.Large" IsPageHeading="true">
+            <GdsLabel Classes="@GdsLabelClasses.Large" IsPageHeading="true">
                 Can you provide more detail?
             </GdsLabel>
         </LabelTemplate>
@@ -206,7 +206,7 @@
         var component = Render(
     @<GdsTextarea Id="group-attr-inputs" Name="formgroupAttr" FormGroupAttributes=@extraAttributes>
         <LabelTemplate>
-            <GdsLabel Classes="@LabelSize.Large" IsPageHeading="true">
+            <GdsLabel Classes="@GdsLabelClasses.Large" IsPageHeading="true">
                 Can you provide more detail?
             </GdsLabel>
         </LabelTemplate>
@@ -234,7 +234,7 @@
         var component = Render(
     @<GdsTextarea Id="form-group-classes" Name="beforeafterInputs" FormGroupClasses=@classes>
         <LabelTemplate>
-            <GdsLabel Classes="@LabelSize.Large" IsPageHeading="true">
+            <GdsLabel Classes="@GdsLabelClasses.Large" IsPageHeading="true">
                 Can you provide more detail?
             </GdsLabel>
         </LabelTemplate>
@@ -269,7 +269,7 @@
         var component = Render(
     @<GdsTextarea Id="form-group-classes" Name="beforeafterInputs" ValueChanged=@((value) => changedValue = value ) Value="nothing">
         <LabelTemplate>
-            <GdsLabel Classes="@LabelSize.Large" IsPageHeading="true">
+            <GdsLabel Classes="@GdsLabelClasses.Large" IsPageHeading="true">
                 Can you provide more detail?
             </GdsLabel>
         </LabelTemplate>

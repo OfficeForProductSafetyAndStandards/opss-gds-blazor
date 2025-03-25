@@ -12,7 +12,7 @@
 
 <Example BlazorExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
     <LegendTemplate>
-        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+        <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
             When was your passport issued?
         </GdsLegend>
     </LegendTemplate>
@@ -20,14 +20,14 @@
         <GdsHint>For example, 27 3 2007</GdsHint>
     </HintTemplate>
     <ChildContent>
-        <GdsDateInputField DatePart=""@DateInputFieldType.Day"" />
-        <GdsDateInputField DatePart=""@DateInputFieldType.Month"" />
-        <GdsDateInputField DatePart=""@DateInputFieldType.Year"" />
+        <GdsDateInputField DatePart=""@GdsDateInputDatePart.Day"" />
+        <GdsDateInputField DatePart=""@GdsDateInputDatePart.Month"" />
+        <GdsDateInputField DatePart=""@GdsDateInputDatePart.Year"" />
     </ChildContent>
 </GdsDateInput>")">
     <GdsDateInput Id="passport-issued" NamePrefix="passport-issued">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 When was your passport issued?
             </GdsLegend>
         </LegendTemplate>
@@ -35,9 +35,9 @@
             <GdsHint>For example, 27 3 2007</GdsHint>
         </HintTemplate>
         <ChildContent>
-            <GdsDateInputField DatePart="@DateInputFieldType.Day" />
-            <GdsDateInputField DatePart="@DateInputFieldType.Month" />
-            <GdsDateInputField DatePart="@DateInputFieldType.Year" />
+            <GdsDateInputField DatePart="@GdsDateInputDatePart.Day" />
+            <GdsDateInputField DatePart="@GdsDateInputDatePart.Month" />
+            <GdsDateInputField DatePart="@GdsDateInputDatePart.Year" />
         </ChildContent>
     </GdsDateInput>
 </Example>
@@ -46,7 +46,7 @@
 
 <Example BlazorExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
     <LegendTemplate>
-        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+        <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
             When was your passport issued?
         </GdsLegend>
     </LegendTemplate>
@@ -54,9 +54,9 @@
         <GdsHint>For example, 27 3 2007</GdsHint>
     </HintTemplate>
     <ChildContent>
-        <GdsDateInputField DatePart=""@DateInputFieldType.Day"" @bind-Value=@Day />
-        <GdsDateInputField DatePart=""@DateInputFieldType.Month"" @bind-Value=@Month />
-        <GdsDateInputField DatePart=""@DateInputFieldType.Year"" @bind-Value=@Year />
+        <GdsDateInputField DatePart=""@GdsDateInputDatePart.Day"" @bind-Value=@Day />
+        <GdsDateInputField DatePart=""@GdsDateInputDatePart.Month"" @bind-Value=@Month />
+        <GdsDateInputField DatePart=""@GdsDateInputDatePart.Year"" @bind-Value=@Year />
     </ChildContent>
 </GdsDateInput>")"
          CodeExampleContent="@(@"@code{
@@ -66,7 +66,7 @@
 }")">
     <GdsDateInput Id="passport-issued" NamePrefix="passport-issued">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 When was your passport issued?
             </GdsLegend>
         </LegendTemplate>
@@ -74,9 +74,9 @@
             <GdsHint>For example, 27 3 2007</GdsHint>
         </HintTemplate>
         <ChildContent>
-            <GdsDateInputField DatePart="@DateInputFieldType.Day" @bind-Value=@Day />
-            <GdsDateInputField DatePart="@DateInputFieldType.Month" @bind-Value=@Month />
-            <GdsDateInputField DatePart="@DateInputFieldType.Year" @bind-Value=@Year />
+            <GdsDateInputField DatePart="@GdsDateInputDatePart.Day" @bind-Value=@Day />
+            <GdsDateInputField DatePart="@GdsDateInputDatePart.Month" @bind-Value=@Month />
+            <GdsDateInputField DatePart="@GdsDateInputDatePart.Year" @bind-Value=@Year />
         </ChildContent>
     </GdsDateInput>
 </Example>
@@ -98,9 +98,9 @@
         <GdsHint>For example, 27 3 2007</GdsHint>
     </HintTemplate>
     <ChildContent>
-        <GdsDateInputField DatePart=""@DateInputFieldType.Day"" />
-        <GdsDateInputField DatePart=""@DateInputFieldType.Month"" />
-        <GdsDateInputField DatePart=""@DateInputFieldType.Year"" />
+        <GdsDateInputField DatePart=""@GdsDateInputDatePart.Day"" />
+        <GdsDateInputField DatePart=""@GdsDateInputDatePart.Month"" />
+        <GdsDateInputField DatePart=""@GdsDateInputDatePart.Year"" />
     </ChildContent>
 </GdsDateInput>")">
     <GdsDateInput Id="passport-issued" NamePrefix="passport-issued">
@@ -113,9 +113,9 @@
             <GdsHint>For example, 27 3 2007</GdsHint>
         </HintTemplate>
         <ChildContent>
-            <GdsDateInputField DatePart="@DateInputFieldType.Day" />
-            <GdsDateInputField DatePart="@DateInputFieldType.Month" />
-            <GdsDateInputField DatePart="@DateInputFieldType.Year" />
+            <GdsDateInputField DatePart="@GdsDateInputDatePart.Day" />
+            <GdsDateInputField DatePart="@GdsDateInputDatePart.Month" />
+            <GdsDateInputField DatePart="@GdsDateInputDatePart.Year" />
         </ChildContent>
     </GdsDateInput>
 </Example>
@@ -124,7 +124,7 @@
 
 <Example BlazorExampleContent="@(@"<GdsDateInput Id=""dob"" Name=""dob"">
     <LegendTemplate>
-        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+        <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
             What is your date of birth?
         </GdsLegend>
     </LegendTemplate>
@@ -132,14 +132,14 @@
         <GdsHint>For example, 31 3 1980</GdsHint>
     </HintTemplate>
     <ChildContent>
-        <GdsDateInputField DatePart=""@DateInputFieldType.Day"" Autocomplete=""bday-day"" />
-        <GdsDateInputField DatePart=""@DateInputFieldType.Month"" Autocomplete=""bday-month"" />
-        <GdsDateInputField DatePart=""@DateInputFieldType.Year"" Autocomplete=""bday-year"" />
+        <GdsDateInputField DatePart=""@GdsDateInputDatePart.Day"" Autocomplete=""bday-day"" />
+        <GdsDateInputField DatePart=""@GdsDateInputDatePart.Month"" Autocomplete=""bday-month"" />
+        <GdsDateInputField DatePart=""@GdsDateInputDatePart.Year"" Autocomplete=""bday-year"" />
     </ChildContent>
 </GdsDateInput>")">
     <GdsDateInput Id="dob" NamePrefix="dob">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 What is your date of birth?
             </GdsLegend>
         </LegendTemplate>
@@ -147,9 +147,9 @@
             <GdsHint>For example, 31 3 1980</GdsHint>
         </HintTemplate>
         <ChildContent>
-            <GdsDateInputField DatePart="@DateInputFieldType.Day" Autocomplete="bday-day" />
-            <GdsDateInputField DatePart="@DateInputFieldType.Month" Autocomplete="bday-month" />
-            <GdsDateInputField DatePart="@DateInputFieldType.Year" Autocomplete="bday-year" />
+            <GdsDateInputField DatePart="@GdsDateInputDatePart.Day" Autocomplete="bday-day" />
+            <GdsDateInputField DatePart="@GdsDateInputDatePart.Month" Autocomplete="bday-month" />
+            <GdsDateInputField DatePart="@GdsDateInputDatePart.Year" Autocomplete="bday-year" />
         </ChildContent>
     </GdsDateInput>
 </Example>
@@ -158,7 +158,7 @@
 
 <Example BlazorExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
     <LegendTemplate>
-        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+        <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
             When was your passport issued?
         </GdsLegend>
     </LegendTemplate>
@@ -171,14 +171,14 @@
         </GdsErrorMessage>
     </ErrorMessageTemplate>
     <ChildContent>
-        <GdsDateInputField HasError=@true DatePart=""@DateInputFieldType.Day"" Value=""6"" />
-        <GdsDateInputField HasError=@true DatePart=""@DateInputFieldType.Month"" Value=""3"" />
-        <GdsDateInputField HasError=@true DatePart=""@DateInputFieldType.Year"" Value=""2076"" />
+        <GdsDateInputField HasError=@true DatePart=""@GdsDateInputDatePart.Day"" Value=""6"" />
+        <GdsDateInputField HasError=@true DatePart=""@GdsDateInputDatePart.Month"" Value=""3"" />
+        <GdsDateInputField HasError=@true DatePart=""@GdsDateInputDatePart.Year"" Value=""2076"" />
     </ChildContent>
 </GdsDateInput>")">
     <GdsDateInput Id="passport-issued" NamePrefix="passport-issued">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 When was your passport issued?
             </GdsLegend>
         </LegendTemplate>
@@ -191,16 +191,16 @@
             </GdsErrorMessage>
         </ErrorMessageTemplate>
         <ChildContent>
-            <GdsDateInputField HasError=@true DatePart="@DateInputFieldType.Day" Value="6" />
-            <GdsDateInputField HasError=@true DatePart="@DateInputFieldType.Month" Value="3" />
-            <GdsDateInputField HasError=@true DatePart="@DateInputFieldType.Year" Value="2076" />
+            <GdsDateInputField HasError=@true DatePart="@GdsDateInputDatePart.Day" Value="6" />
+            <GdsDateInputField HasError=@true DatePart="@GdsDateInputDatePart.Month" Value="3" />
+            <GdsDateInputField HasError=@true DatePart="@GdsDateInputDatePart.Year" Value="2076" />
         </ChildContent>
     </GdsDateInput>
 </Example>
 
 <Example BlazorExampleContent="@(@"<GdsDateInput Id=""passport-issued"" Name=""passport-issued"">
     <LegendTemplate>
-        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+        <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
             When was your passport issued?
         </GdsLegend>
     </LegendTemplate>
@@ -213,14 +213,14 @@
         </GdsErrorMessage>
     </ErrorMessageTemplate>
     <ChildContent>
-        <GdsDateInputField DatePart=""@DateInputFieldType.Day"" Value=""6"" />
-        <GdsDateInputField DatePart=""@DateInputFieldType.Month"" Value=""3"" />
+        <GdsDateInputField DatePart=""@GdsDateInputDatePart.Day"" Value=""6"" />
+        <GdsDateInputField DatePart=""@GdsDateInputDatePart.Month"" Value=""3"" />
         <GdsDateInputField HasError=@true DateInputFieldType=""@DateParts.Year"" />
     </ChildContent>
 </GdsDateInput>")">
     <GdsDateInput Id="passport-issued" NamePrefix="passport-issued">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 When was your passport issued?
             </GdsLegend>
         </LegendTemplate>
@@ -233,9 +233,9 @@
             </GdsErrorMessage>
         </ErrorMessageTemplate>
         <ChildContent>
-            <GdsDateInputField DatePart="@DateInputFieldType.Day" Value="6" />
-            <GdsDateInputField DatePart="@DateInputFieldType.Month" Value="3" />
-            <GdsDateInputField HasError=@true DatePart="@DateInputFieldType.Year" />
+            <GdsDateInputField DatePart="@GdsDateInputDatePart.Day" Value="6" />
+            <GdsDateInputField DatePart="@GdsDateInputDatePart.Month" Value="3" />
+            <GdsDateInputField HasError=@true DatePart="@GdsDateInputDatePart.Year" />
         </ChildContent>
     </GdsDateInput>
 </Example>

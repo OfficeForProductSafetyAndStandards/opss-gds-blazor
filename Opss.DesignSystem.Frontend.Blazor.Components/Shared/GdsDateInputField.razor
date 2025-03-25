@@ -53,7 +53,7 @@
     /// Set the part of the date to input.
     /// </summary>
     [Parameter]
-    public DateInputFieldType? DatePart { get; set; }
+    public GdsDateInputDatePart? DatePart { get; set; }
 
     /// <summary>
     /// Value of the input.
@@ -157,10 +157,10 @@
         {
             switch (DatePart)
             {
-                case DateInputFieldType.Day:
-                case DateInputFieldType.Month:
+                case GdsDateInputDatePart.Day:
+                case GdsDateInputDatePart.Month:
                     return "govuk-input--width-2";
-                case DateInputFieldType.Year:
+                case GdsDateInputDatePart.Year:
                     return "govuk-input--width-4";
                 default:
                     return "";
@@ -174,11 +174,11 @@
         {
             switch (DatePart)
             {
-                case DateInputFieldType.Day:
+                case GdsDateInputDatePart.Day:
                     return "Day";
-                case DateInputFieldType.Month:
+                case GdsDateInputDatePart.Month:
                     return "Month";
-                case DateInputFieldType.Year:
+                case GdsDateInputDatePart.Year:
                     return "Year";
                 default:
                     return "";

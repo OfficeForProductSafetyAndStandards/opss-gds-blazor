@@ -1,6 +1,6 @@
 ﻿namespace Opss.DesignSystem.Frontend.Blazor.Components.Classes;
 
-public static class ButtonStyle
+public static class GdsButtonClasses
 {
     public const string Secondary = "govuk-button--secondary";
     public const string Warning = "govuk-button--warning";
