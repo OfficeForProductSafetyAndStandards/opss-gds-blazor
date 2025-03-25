@@ -1,0 +1,300 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void ThenOutputsTextarea()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsTextarea Id="more-detail"
+                      Name="moreDetail"
+                      DataTestId="GdsTextarea"
+                      TextareaDataTestId="TextareaTestId">
+        <LabelTemplate>
+            <GdsLabel Classes=@LabelSize.Large
+                      IsPageHeading="true">
+                Can you provide more detail?
+            </GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint>
+                Do not include personal or financial information, like your National Insurance number or credit card details
+            </GdsHint>
+        </HintTemplate>
+    </GdsTextarea>
+        );
+
+        component.MarkupMatches(
+    @<div diff:whitespace="Normalize" class="govuk-form-group" data-testid="GdsTextarea">
+        <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="more-detail">
+                Can you provide more detail?
+            </label>
+        </h1>
+        <div id="more-detail-hint" class="govuk-hint">
+            Do not include personal or financial information, like your National Insurance number or credit card details
+        </div>
+        <textarea class="govuk-textarea" id="more-detail" name="moreDetail" 
+                  rows="5" aria-describedby="more-detail-hint"
+                  data-testid="TextareaTestId"></textarea>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenRowsIsSet_ThenOutputsTextareaWithSetRows()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsTextarea Id="more-detail"
+                      Name="moreDetail"
+                      Rows="8">
+        <LabelTemplate>
+            <GdsLabel Classes=@LabelSize.Large
+                      IsPageHeading="true">
+                Can you provide more detail?
+            </GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint>
+                Do not include personal or financial information,
+                like your National Insurance number or credit card
+                details
+            </GdsHint>
+        </HintTemplate>
+    </GdsTextarea>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="more-detail">
+                Can you provide more detail?
+            </label>
+        </h1>
+        <div id="more-detail-hint" class="govuk-hint">
+            Do not include personal or financial information, like your National Insurance number or credit card details
+        </div>
+        <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="8" aria-describedby="more-detail-hint"></textarea>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenLabelHasNoHead_ThenOutputsTextareaWithNoHeading()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsTextarea Id="more-detail"
+                      Name="moreDetail">
+        <LabelTemplate>
+            <GdsLabel>
+                Can you provide more detail?
+            </GdsLabel>
+        </LabelTemplate>
+    </GdsTextarea>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <label class="govuk-label" for="more-detail">
+            Can you provide more detail?
+        </label>
+        <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5"></textarea>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenErrorMessgeTemplateIsSet_ThenOutputsTextareaWithErrorMessage()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsTextarea Id="more-detail"
+                      Name="moreDetail">
+        <LabelTemplate>
+            <GdsLabel Classes="@LabelSize.Large"
+                      IsPageHeading="true">
+                Can you provide more detail?
+            </GdsLabel>
+        </LabelTemplate>
+        <HintTemplate>
+            <GdsHint>
+                Do not include personal or financial information,
+                like your National Insurance number or credit card
+                details
+            </GdsHint>
+        </HintTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>Enter more detail</GdsErrorMessage>
+        </ErrorMessageTemplate>
+    </GdsTextarea>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group govuk-form-group--error">
+        <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="more-detail">
+                Can you provide more detail?
+            </label>
+        </h1>
+        <div id="more-detail-hint" class="govuk-hint">
+            Do not include personal or financial information, like your National Insurance number or credit card details
+        </div>
+        <p id="more-detail-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter more detail
+        </p>
+        <textarea class="govuk-textarea govuk-textarea--error" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint more-detail-error"></textarea>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenBeforeAfterInputsTemplatesSet_ThenOutputsTextareaWithBeforeAndAfterInputText()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsTextarea Id="before-after-inputs" Name="beforeafterInputs">
+        <LabelTemplate>
+            <GdsLabel Classes="@LabelSize.Large" IsPageHeading="true">
+                Can you provide more detail?
+            </GdsLabel>
+        </LabelTemplate>
+        <BeforeInputsTemplate>
+            <p class="govuk-body">
+                Do not include personal or financial information,
+                like your National Insurance number or credit card
+                details
+            </p>
+        </BeforeInputsTemplate>
+        <AfterInputsTemplate>
+            <p class="govuk-body">Provide your work, career and social life information.</p>
+        </AfterInputsTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>Enter more detail</GdsErrorMessage>
+        </ErrorMessageTemplate>
+    </GdsTextarea>
+    );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group govuk-form-group--error">
+        <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="before-after-inputs">
+                Can you provide more detail?
+            </label>
+        </h1>
+        <p id="before-after-inputs-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter more detail
+        </p>
+        <p class="govuk-body">
+            Do not include personal or financial information,
+            like your National Insurance number or credit card
+            details
+        </p>
+        <textarea class="govuk-textarea govuk-textarea--error" id="before-after-inputs" name="beforeafterInputs" rows="5" aria-describedby="before-after-inputs-error"></textarea>
+        <p class="govuk-body">Provide your work, career and social life information.</p>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenFormGroupAttributesSet_ThenOutputsTextareaWithFormGroupAttributes()
+    {
+        // Arrange
+        var extraAttributes = new Dictionary<string, object> { { "attribute", "value" } };
+
+        var component = Render(
+    @<GdsTextarea Id="group-attr-inputs" Name="formgroupAttr" FormGroupAttributes=@extraAttributes>
+        <LabelTemplate>
+            <GdsLabel Classes="@LabelSize.Large" IsPageHeading="true">
+                Can you provide more detail?
+            </GdsLabel>
+        </LabelTemplate>
+    </GdsTextarea>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group" attribute="value">
+        <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="group-attr-inputs">
+                Can you provide more detail?
+            </label>
+        </h1>
+        <textarea class="govuk-textarea" id="group-attr-inputs" name="formgroupAttr" rows="5"></textarea>
+    </div>
+        );
+    }
+
+    [Fact]
+    public void WhenFormGroupClassesSet_ThenOutputsTextareaWithFormGroupClasses()
+    {
+        // Arrange
+        var classes = "additional-class1 class2";
+
+        var component = Render(
+    @<GdsTextarea Id="form-group-classes" Name="beforeafterInputs" FormGroupClasses=@classes>
+        <LabelTemplate>
+            <GdsLabel Classes="@LabelSize.Large" IsPageHeading="true">
+                Can you provide more detail?
+            </GdsLabel>
+        </LabelTemplate>
+        <ErrorMessageTemplate>
+            <GdsErrorMessage>Enter more detail</GdsErrorMessage>
+        </ErrorMessageTemplate>
+    </GdsTextarea>
+        );
+
+        component.MarkupMatches(
+    @<div class="govuk-form-group govuk-form-group--error additional-class1 class2">
+        <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="form-group-classes">
+                Can you provide more detail?
+            </label>
+        </h1>
+        <p id="form-group-classes-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter more detail
+        </p>
+        <textarea class="govuk-textarea govuk-textarea--error" id="form-group-classes" name="beforeafterInputs" rows="5" aria-describedby="form-group-classes-error"></textarea>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void WhenTextAreaValueChanged_ThenOnValueChangedIsTriggered()
+    {
+        // Arrange
+        var newValue = "some value change";
+        var changedValue = string.Empty;
+
+        var component = Render(
+    @<GdsTextarea Id="form-group-classes" Name="beforeafterInputs" ValueChanged=@((value) => changedValue = value ) Value="nothing">
+        <LabelTemplate>
+            <GdsLabel Classes="@LabelSize.Large" IsPageHeading="true">
+                Can you provide more detail?
+            </GdsLabel>
+        </LabelTemplate>
+    </GdsTextarea>
+    );
+
+        //Act 
+        var textarea = component.Find("textarea");
+
+        textarea.Input(new() { Value = newValue });
+
+        //Assert
+        component.MarkupMatches(
+    @<div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="form-group-classes">
+                Can you provide more detail?
+            </label>
+        </h1>
+        <textarea class="govuk-textarea" id="form-group-classes" name="beforeafterInputs" rows="5">@newValue</textarea>
+    </div>
+    );
+
+        Assert.Equal(newValue, changedValue);
+    }
+
+    // OnValueChange check
+}
