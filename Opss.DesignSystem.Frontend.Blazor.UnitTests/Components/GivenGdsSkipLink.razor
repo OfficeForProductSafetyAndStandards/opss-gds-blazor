@@ -1,0 +1,48 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void ThenOutputsSkipLink()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSkipLink Href="#" DataTestId="GdsSkipLink">Skip to main content</GdsSkipLink>
+        );
+
+        component.MarkupMatches(
+    @<a href="#" class="govuk-skip-link" data-module="govuk-skip-link" data-testid="GdsSkipLink">Skip to main content</a>
+        );
+    }
+
+    [Fact]
+    public void WhenClassesIsSet_ThenOutputsClasses()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSkipLink Href="#" Classes="class1 class2">Skip to main content</GdsSkipLink>
+        );
+
+        component.MarkupMatches(
+    @<a href="#" class="govuk-skip-link class1 class2" data-module="govuk-skip-link">Skip to main content</a>
+        );
+    }
+
+    [Fact]
+    public void WhenAttributesSet_ThenOutputsAttributes()
+    {
+        // Arrange
+        var attributes = new Dictionary<string, object>
+            {
+                { "aria-current", "portal" },
+                { "target", "_self" }
+            };
+
+        var component = Render(
+    @<GdsSkipLink Href="#" Attributes=@attributes>Skip to main content</GdsSkipLink>
+        );
+
+        component.MarkupMatches(
+    @<a href="#" class="govuk-skip-link" data-module="govuk-skip-link" aria-current="portal" target="_self">Skip to main content</a>
+        );
+    }
+}
