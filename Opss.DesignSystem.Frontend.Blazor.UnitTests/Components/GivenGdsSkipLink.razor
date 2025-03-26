@@ -2,16 +2,29 @@
 
 @code {
     [Fact]
-    public void ThenOutputsSkipLink()
+    public void WhenNoParametersSet_ThenOutputsMinimalSkipLink()
     {
         // Arrange
         var component = Render(
-    @<GdsSkipLink Href="#" DataTestId="GdsSkipLink">Skip to main content</GdsSkipLink>
+    @<GdsSkipLink>Skip to main content</GdsSkipLink>
         );
 
         component.MarkupMatches(
-    @<a href="#" class="govuk-skip-link" data-module="govuk-skip-link" data-testid="GdsSkipLink">Skip to main content</a>
+    @<a class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
         );
+    }
+
+    [Fact]
+    public void WhenHrefSet_ThenOutputsSkipLink()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsSkipLink Href="#some-content-link" DataTestId="GdsSkipLink">Skip to main content</GdsSkipLink>
+    );
+
+        component.MarkupMatches(
+    @<a href="#some-content-link" class="govuk-skip-link" data-module="govuk-skip-link" data-testid="GdsSkipLink">Skip to main content</a>
+    );
     }
 
     [Fact]
@@ -28,7 +41,7 @@
     }
 
     [Fact]
-    public void WhenAttributesSet_ThenOutputsAttributes()
+    public void WhenAttributesWithNODATAMODULESet_ThenOutputsAttributes()
     {
         // Arrange
         var attributes = new Dictionary<string, object>
@@ -45,4 +58,26 @@
     @<a href="#" class="govuk-skip-link" data-module="govuk-skip-link" aria-current="portal" target="_self">Skip to main content</a>
         );
     }
+
+
+    [Fact]
+    public void WhenAllParametersSet_ThenOutputsCompleteSkipLink()
+    {
+        var attributes = new Dictionary<string, object>
+            {
+                { "aria-current", "portal" },
+                { "target", "_self" },
+                { "data-module", "govuk-skip-link" }
+            };
+
+        // Arrange
+        var component = Render(
+	@<GdsSkipLink Href="#some-content-link" Attributes=@attributes Classes="class1 class2">Skip to main content</GdsSkipLink>
+        );
+
+        component.MarkupMatches(
+	@<a href="#some-content-link" class="govuk-skip-link class1 class2" data-module="govuk-skip-link" aria-current="portal" target="_self">Skip to main content</a>
+    );
+    }
+
 }
