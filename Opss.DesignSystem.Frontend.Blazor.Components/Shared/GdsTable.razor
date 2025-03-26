@@ -18,13 +18,13 @@
 
     @if (HeadTemplate != null)
     {
-        <thead class=@TableClasses.Head>
-            <tr class=@TableClasses.Row>
+        <thead class=@GdsTableClasses.Head>
+            <tr class=@GdsTableClasses.Row>
                 <CascadingValue Value=this Name="ParentTable" ChildContent=@HeadTemplate />
             </tr>
         </thead>
     }
-    <tbody class=@TableClasses.Body>
+    <tbody class=@GdsTableClasses.Body>
         <CascadingValue Value=this ChildContent=@RowsTemplate />
     </tbody>
 </table>
@@ -119,7 +119,7 @@
     {
         get
         {
-            var classBuilder = TableClasses.Caption;
+            var classBuilder = GdsTableClasses.Caption;
 
             if (!string.IsNullOrWhiteSpace(CaptionTextClasses))
                 classBuilder += $" {CaptionTextClasses}";
@@ -132,7 +132,7 @@
     {
         get
         {
-            var classBuilder = TableClasses.Table;
+            var classBuilder = GdsTableClasses.Table;
 
             if (!string.IsNullOrWhiteSpace(Classes))
                 classBuilder += $" {Classes}";

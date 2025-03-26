@@ -20,7 +20,7 @@
     public void OutputsExitThisPageSecondary()
     {
         // Arrange
-        var component = Render(@<GdsExitThisPage Href="https://bbc.co.uk/weather/" ButtonType="ExitPageType.SkipLink"></GdsExitThisPage>);
+        var component = Render(@<GdsExitThisPage Href="https://bbc.co.uk/weather/" ButtonType="GdsExitThisPageButtonType.SkipLink"></GdsExitThisPage>);
 
         component.MarkupMatches(
     @<a href="https://bbc.co.uk/weather/" class="govuk-skip-link govuk-js-exit-this-page-skiplink" rel="nofollow noreferrer" data-module="govuk-skip-link">Exit this page</a>

@@ -18,7 +18,7 @@
     public void OutputsSecondaryButton()
     {
         // Arrange
-        var component = Render(@<GdsButton Type="submit" Classes=@ButtonStyle.Secondary>Find address</GdsButton>);
+        var component = Render(@<GdsButton Type="submit" Classes=@GdsButtonClasses.Secondary>Find address</GdsButton>);
 
         component.MarkupMatches(
     @<button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
@@ -31,7 +31,7 @@
     public void OutputsWarningButton()
     {
         // Arrange
-        var component = Render(@<GdsButton Type="submit" Classes=@ButtonStyle.Warning>Delete account</GdsButton>);
+        var component = Render(@<GdsButton Type="submit" Classes=@GdsButtonClasses.Warning>Delete account</GdsButton>);
 
         component.MarkupMatches(
     @<button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button">
@@ -149,9 +149,9 @@
     }
 
     [Theory]
-    [InlineData(ButtonType.Anchor)]
-    [InlineData(ButtonType.Button)]
-    public void ThrowsErrorWhenContentMissing(ButtonType buttonType)
+    [InlineData(GdsButtonElement.Anchor)]
+    [InlineData(GdsButtonElement.Button)]
+    public void ThrowsErrorWhenContentMissing(GdsButtonElement buttonType)
     {
         // Act & Assert
         var exception = Assert.Throws<ArgumentNullException>(() =>
@@ -180,7 +180,7 @@
         // Act & Assert
         var exception = Assert.Throws<ArgumentNullException>(() =>
         {
-            Render(@<GdsButton Element=ButtonType.Input />);
+            Render(@<GdsButton Element=GdsButtonElement.Input />);
         });
 
         Assert.Equal("GdsButton input must have a value. (Parameter 'Value')", exception.Message);
@@ -297,7 +297,7 @@
     {
         // Arrange
         MouseEventArgs onClickEventArgs = null!;
-        var component = Render(@<GdsButton Element=ButtonType.Input Value="Event Test" OnClick="(args)=>{ onClickEventArgs = args; }">Test Event</GdsButton>);
+        var component = Render(@<GdsButton Element=GdsButtonElement.Input Value="Event Test" OnClick="(args)=>{ onClickEventArgs = args; }">Test Event</GdsButton>);
 
         // Act
         component

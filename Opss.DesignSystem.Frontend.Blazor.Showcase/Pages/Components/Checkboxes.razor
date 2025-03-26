@@ -12,7 +12,7 @@
 
 <Example BlazorExampleContent="@(@"<GdsCheckboxes Name=""waste"">
     <LegendTemplate>
-        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+        <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
             Which types of waste do you transport?
         </GdsLegend>
     </LegendTemplate>
@@ -29,7 +29,7 @@
 </GdsCheckboxes>")">
     <GdsCheckboxes Name="waste">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 Which types of waste do you transport?
             </GdsLegend>
         </LegendTemplate>
@@ -52,7 +52,7 @@
 
 <Example BlazorExampleContent="@(@"<GdsCheckboxes Name=""waste"" @bind-Values=@Values>
     <LegendTemplate>
-        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+        <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
             Which types of waste do you transport?
         </GdsLegend>
     </LegendTemplate>
@@ -72,7 +72,7 @@
 }")">
     <GdsCheckboxes Name="waste" @bind-Values=@Values>
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 Which types of waste do you transport?
             </GdsLegend>
         </LegendTemplate>
@@ -134,7 +134,7 @@
 
 <Example BlazorExampleContent="@(@"<GdsCheckboxes Name=""nationality"">
     <LegendTemplate>
-        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+        <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
             What is your nationality?
         </GdsLegend>
     </LegendTemplate>
@@ -156,7 +156,7 @@
 </GdsCheckboxes>")">
     <GdsCheckboxes Name="nationality">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 What is your nationality?
             </GdsLegend>
         </LegendTemplate>
@@ -182,7 +182,7 @@
 
 <Example BlazorExampleContent="@(@"<GdsCheckboxes Name=""countries"">
     <LegendTemplate>
-        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+        <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
             Will you be travelling to any of these countries?
         </GdsLegend>
     </LegendTemplate>
@@ -201,7 +201,7 @@
 </GdsCheckboxes>")">
     <GdsCheckboxes Name="countries">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 Will you be travelling to any of these countries?
             </GdsLegend>
         </LegendTemplate>
@@ -222,7 +222,7 @@
 
 <Example BlazorExampleContent="@(@"<GdsCheckboxes Id=""countries"" Name=""countries"" Values=""@countryValues"">
     <LegendTemplate>
-        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+        <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
             Will you be travelling to any of these countries?
         </GdsLegend>
     </LegendTemplate>
@@ -245,7 +245,7 @@
 }")">
     <GdsCheckboxes Name="countries" Values="@countryValues">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 Will you be travelling to any of these countries?
             </GdsLegend>
         </LegendTemplate>
@@ -272,7 +272,7 @@
 
 <Example BlazorExampleContent="@(@"<GdsCheckboxes Name=""contact"">
     <LegendTemplate>
-        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+        <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
             How would you like to be contacted?
         </GdsLegend>
     </LegendTemplate>
@@ -284,7 +284,7 @@
     <ChildContent>
         <GdsCheckbox Value=""email"" Text=""Email"">
             <ConditionalTemplate>
-                <GdsTextInput Id=""contact-by-email"" Name=""contactByEmail"" Type=""email"" Autocomplete=""email"" Spellcheck=""false"" Classes=@LayoutWidth.OneThird>
+                <GdsTextInput Id=""contact-by-email"" Name=""contactByEmail"" Type=""email"" Autocomplete=""email"" Spellcheck=""false"" Classes=@GdsLayoutWidthClasses.OneThird>
                     <LabelTemplate>
                         <GdsLabel>Email address</GdsLabel>
                     </LabelTemplate>
@@ -293,7 +293,7 @@
         </GdsCheckbox>
         <GdsCheckbox Value=""phone"" Text=""Phone"">
             <ConditionalTemplate>
-                <GdsTextInput Id=""contact-by-phone"" Name=""contactByPhone"" Type=""tel"" Autocomplete=""tel"" Classes=@LayoutWidth.OneThird>
+                <GdsTextInput Id=""contact-by-phone"" Name=""contactByPhone"" Type=""tel"" Autocomplete=""tel"" Classes=@GdsLayoutWidthClasses.OneThird>
                     <LabelTemplate>
                         <GdsLabel>Phone number</GdsLabel>
                     </LabelTemplate>
@@ -302,7 +302,7 @@
         </GdsCheckbox>
         <GdsCheckbox Value=""text message"" Text=""Text message"">
             <ConditionalTemplate>
-                <GdsTextInput Id=""contact-by-text"" Name=""contactByText"" Type=""tel"" Autocomplete=""tel"" Classes=@LayoutWidth.OneThird>
+                <GdsTextInput Id=""contact-by-text"" Name=""contactByText"" Type=""tel"" Autocomplete=""tel"" Classes=@GdsLayoutWidthClasses.OneThird>
                     <LabelTemplate>
                         <GdsLabel>Mobile phone number</GdsLabel>
                     </LabelTemplate>
@@ -313,7 +313,7 @@
 </GdsCheckboxes>")">
     <GdsCheckboxes Name="contact">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 How would you like to be contacted?
             </GdsLegend>
         </LegendTemplate>
@@ -325,7 +325,7 @@
         <ChildContent>
             <GdsCheckbox Value="email" Text="Email">
                 <ConditionalTemplate>
-                    <GdsTextInput Id="contact-by-email" Name="contactByEmail" Type="email" Autocomplete="email" Spellcheck="false" Classes=@LayoutWidth.OneThird>
+                    <GdsTextInput Id="contact-by-email" Name="contactByEmail" Type="email" Autocomplete="email" Spellcheck="false" Classes=@GdsLayoutWidthClasses.OneThird>
                         <LabelTemplate>
                             <GdsLabel>Email address</GdsLabel>
                         </LabelTemplate>
@@ -334,7 +334,7 @@
             </GdsCheckbox>
             <GdsCheckbox Value="phone" Text="Phone">
                 <ConditionalTemplate>
-                    <GdsTextInput Id="contact-by-phone" Name="contactByPhone" Type="tel" Autocomplete="tel" Classes=@LayoutWidth.OneThird>
+                    <GdsTextInput Id="contact-by-phone" Name="contactByPhone" Type="tel" Autocomplete="tel" Classes=@GdsLayoutWidthClasses.OneThird>
                         <LabelTemplate>
                             <GdsLabel>Phone number</GdsLabel>
                         </LabelTemplate>
@@ -343,7 +343,7 @@
             </GdsCheckbox>
             <GdsCheckbox Value="text message" Text="Text message">
                 <ConditionalTemplate>
-                    <GdsTextInput Id="contact-by-text" Name="contactByText" Type="tel" Autocomplete="tel" Classes=@LayoutWidth.OneThird>
+                    <GdsTextInput Id="contact-by-text" Name="contactByText" Type="tel" Autocomplete="tel" Classes=@GdsLayoutWidthClasses.OneThird>
                         <LabelTemplate>
                             <GdsLabel>Mobile phone number</GdsLabel>
                         </LabelTemplate>
@@ -356,9 +356,9 @@
 
 <h3 class="govuk-heading-m" id="smaller-checkboxes">Smaller checkboxes</h3>
 
-<Example BlazorExampleContent="@(@"<GdsCheckboxes Name=""organisation"" Classes=@CheckboxSize.Small>
+<Example BlazorExampleContent="@(@"<GdsCheckboxes Name=""organisation"" Classes=@GdsCheckboxClasses.Small>
     <LegendTemplate>
-        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Medium>
+        <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Medium>
             Organisation
         </GdsLegend>
     </LegendTemplate>
@@ -371,9 +371,9 @@
         <GdsCheckbox Value=""DfT"">Department for Transport</GdsCheckbox>
     </ChildContent>
 </GdsCheckboxes>")">
-    <GdsCheckboxes Name="organisation" Classes=@CheckboxSize.Small>
+    <GdsCheckboxes Name="organisation" Classes=@GdsCheckboxClasses.Small>
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Medium>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Medium>
                 Organisation
             </GdsLegend>
         </LegendTemplate>
@@ -392,7 +392,7 @@
 
 <Example BlazorExampleContent="@(@"<GdsCheckboxes Name=""nationality"">
     <LegendTemplate>
-        <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+        <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
             What is your nationality?
         </GdsLegend>
     </LegendTemplate>
@@ -416,7 +416,7 @@
 </GdsCheckboxes>")">
     <GdsCheckboxes Name="nationality">
         <LegendTemplate>
-            <GdsLegend IsPageHeading=@true Classes=@FieldsetLegendSize.Large>
+            <GdsLegend IsPageHeading=@true Classes=@GdsLegendClasses.Large>
                 What is your nationality?
             </GdsLegend>
         </LegendTemplate>

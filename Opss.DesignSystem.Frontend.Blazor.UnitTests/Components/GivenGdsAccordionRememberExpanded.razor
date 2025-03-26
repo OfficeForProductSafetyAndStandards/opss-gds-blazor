@@ -1,0 +1,450 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void ThenOutputsAccordionWithItemsHidden()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsAccordion Id="accordion-remember-expanded" RememberExpanded="true">
+        <GdsAccordionItem Heading="First item heading">
+            <p class="govuk-body">First item</p>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Second item heading">
+            <p class="govuk-body">Second item</p>
+        </GdsAccordionItem>
+    </GdsAccordion>
+         );
+
+        // Act Assert
+        component.MarkupMatches(
+    @<div id="accordion-remember-expanded" class="govuk-accordion" data-module="govuk-accordion">
+        <div class="govuk-accordion__controls">
+            <button type="button" class="govuk-accordion__show-all" aria-expanded="false">
+                <span class="govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down"></span>
+                <span class="govuk-accordion__show-all-text">Show all sections</span>
+            </button>
+        </div>
+        <div class="govuk-accordion__section">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                    <button type="button" aria-controls="accordion-remember-expanded-content-1" class="govuk-accordion__section-button" aria-expanded="false" aria-label="First item heading, Show this section">
+                        <span class="govuk-accordion__section-heading-text" id="accordion-remember-expanded-heading-1">
+                            <span class="govuk-accordion__section-heading-text-focus">First item heading</span>
+                        </span>
+                        <span class="govuk-visually-hidden govuk-accordion__section-heading-divider">, </span>
+                        <span class="govuk-accordion__section-toggle">
+                            <span class="govuk-accordion__section-toggle-focus">
+                                <span class="govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down"></span>
+                                <span class="govuk-accordion__section-toggle-text">Show</span>
+                            </span>
+                        </span>
+                    </button>
+                </h2>
+            </div>
+        </div>
+        <div class="govuk-accordion__section">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                    <button type="button" aria-controls="accordion-remember-expanded-content-2" class="govuk-accordion__section-button" aria-expanded="false" aria-label="Second item heading, Show this section">
+                        <span class="govuk-accordion__section-heading-text" id="accordion-remember-expanded-heading-2">
+                            <span class="govuk-accordion__section-heading-text-focus">Second item heading</span>
+                        </span>
+                        <span class="govuk-visually-hidden govuk-accordion__section-heading-divider">, </span>
+                        <span class="govuk-accordion__section-toggle">
+                            <span class="govuk-accordion__section-toggle-focus">
+                                <span class="govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down"></span>
+                                <span class="govuk-accordion__section-toggle-text">Show</span>
+                            </span>
+                        </span>
+                    </button>
+                </h2>
+            </div>
+        </div>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void WhenItemsStatesSet_ThenSectionsAreShown()
+    {
+        // Arrange
+        var itemStates = new Dictionary<int, bool>() { { 2, true }, { 4, true } };
+
+        var component = Render(
+    @<GdsAccordion Id="accordion-itemstates" RememberExpanded="true" ItemStates="itemStates">
+        <GdsAccordionItem Heading="First item heading">
+            <p class="govuk-body">First item</p>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Second item heading">
+            <p class="govuk-body">Second item</p>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Third item heading">
+            <p class="govuk-body">Third item</p>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Fourth item heading">
+            <p class="govuk-body">Fourth item</p>
+        </GdsAccordionItem>
+    </GdsAccordion>
+     );
+
+        // Act Assert
+        component.MarkupMatches(
+    @<div id="accordion-itemstates" class="govuk-accordion" data-module="govuk-accordion">
+        <div class="govuk-accordion__controls">
+            <button type="button" class="govuk-accordion__show-all" aria-expanded="false">
+                <span class="govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down"></span>
+                <span class="govuk-accordion__show-all-text">Show all sections</span>
+            </button>
+        </div>
+        <div class="govuk-accordion__section">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                    <button type="button" aria-controls="accordion-itemstates-content-1" class="govuk-accordion__section-button" aria-expanded="false" aria-label="First item heading, Show this section">
+                        <span class="govuk-accordion__section-heading-text" id="accordion-itemstates-heading-1">
+                            <span class="govuk-accordion__section-heading-text-focus">First item heading</span>
+                        </span>
+                        <span class="govuk-visually-hidden govuk-accordion__section-heading-divider">, </span>
+                        <span class="govuk-accordion__section-toggle">
+                            <span class="govuk-accordion__section-toggle-focus">
+                                <span class="govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down"></span>
+                                <span class="govuk-accordion__section-toggle-text">Show</span>
+                            </span>
+                        </span>
+                    </button>
+                </h2>
+            </div>
+        </div>
+        <div class="govuk-accordion__section govuk-accordion__section--expanded">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                    <button type="button" aria-controls="accordion-itemstates-content-2" class="govuk-accordion__section-button" aria-expanded="true" aria-label="Second item heading, Hide this section">
+                        <span class="govuk-accordion__section-heading-text" id="accordion-itemstates-heading-2">
+                            <span class="govuk-accordion__section-heading-text-focus">Second item heading</span>
+                        </span>
+                        <span class="govuk-visually-hidden govuk-accordion__section-heading-divider">, </span>
+                        <span class="govuk-accordion__section-toggle">
+                            <span class="govuk-accordion__section-toggle-focus">
+                                <span class="govuk-accordion-nav__chevron"></span>
+                                <span class="govuk-accordion__section-toggle-text">Hide</span>
+                            </span>
+                        </span>
+                    </button>
+                </h2>
+            </div>
+            <div id="accordion-itemstates-content-2" class="govuk-accordion__section-content">
+                <p class="govuk-body">Second item</p>
+            </div>
+        </div>
+        <div class="govuk-accordion__section">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                    <button type="button" aria-controls="accordion-itemstates-content-3" class="govuk-accordion__section-button" aria-expanded="false" aria-label="Third item heading, Show this section">
+                        <span class="govuk-accordion__section-heading-text" id="accordion-itemstates-heading-3">
+                            <span class="govuk-accordion__section-heading-text-focus">Third item heading</span>
+                        </span>
+                        <span class="govuk-visually-hidden govuk-accordion__section-heading-divider">, </span>
+                        <span class="govuk-accordion__section-toggle">
+                            <span class="govuk-accordion__section-toggle-focus">
+                                <span class="govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down"></span>
+                                <span class="govuk-accordion__section-toggle-text">Show</span>
+                            </span>
+                        </span>
+                    </button>
+                </h2>
+            </div>
+        </div>
+        <div class="govuk-accordion__section govuk-accordion__section--expanded">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                    <button type="button" aria-controls="accordion-itemstates-content-4" class="govuk-accordion__section-button" aria-expanded="true" aria-label="Fourth item heading, Hide this section">
+                        <span class="govuk-accordion__section-heading-text" id="accordion-itemstates-heading-4">
+                            <span class="govuk-accordion__section-heading-text-focus">Fourth item heading</span>
+                        </span>
+                        <span class="govuk-visually-hidden govuk-accordion__section-heading-divider">, </span>
+                        <span class="govuk-accordion__section-toggle">
+                            <span class="govuk-accordion__section-toggle-focus">
+                                <span class="govuk-accordion-nav__chevron"></span>
+                                <span class="govuk-accordion__section-toggle-text">Hide</span>
+                            </span>
+                        </span>
+                    </button>
+                </h2>
+            </div>
+            <div id="accordion-itemstates-content-4" class="govuk-accordion__section-content">
+                <p class="govuk-body">Fourth item</p>
+            </div>
+        </div>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void WhenItemsStatesSetAndSectionClicked_ThenSectionShownAndOnItemStatesChangedTriggered()
+    {
+        // Arrange
+        var itemStates = new Dictionary<int, bool>() { { 2, true }, { 4, true } };
+        var callCount = 0;
+
+        var itemStatesChanged = (Dictionary<int, bool> states) => 
+        { 
+            itemStates = states;
+            callCount++;
+        };
+
+        // Act
+        var component = Render(
+    @<GdsAccordion Id="accordion-itemchanged-triggered" RememberExpanded="true" ItemStates="itemStates" OnItemStatesChanged="itemStatesChanged">
+        <GdsAccordionItem Heading="First item heading">
+            <p class="govuk-body">First item, element 0, index 1</p>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Second item heading">
+            <p class="govuk-body">Second item, element 1, index 2</p>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Third item heading">
+            <p class="govuk-body">Third item, element 2, index 3</p>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Fourth item heading">
+            <p class="govuk-body">Fourth item</p>
+        </GdsAccordionItem>
+    </GdsAccordion>
+    );
+
+        var buttons = component.FindAll(".govuk-accordion__section-button");
+        buttons.ElementAt(2).Click();
+        buttons.ElementAt(3).Click();
+
+        // Assert
+        Assert.Equal(2, callCount);
+        Assert.Equal(3, itemStates.Count);
+        Assert.True(itemStates[2]);
+        Assert.True(itemStates[3]);
+        Assert.False(itemStates[4]);
+
+        component.MarkupMatches(
+    @<div id="accordion-itemchanged-triggered" class="govuk-accordion" data-module="govuk-accordion">
+        <div class="govuk-accordion__controls">
+            <button type="button" class="govuk-accordion__show-all" aria-expanded="false">
+                <span class="govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down"></span>
+                <span class="govuk-accordion__show-all-text">Show all sections</span>
+            </button>
+        </div>
+        <div class="govuk-accordion__section">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                    <button type="button" aria-controls="accordion-itemchanged-triggered-content-1" class="govuk-accordion__section-button" aria-expanded="false" aria-label="First item heading, Show this section">
+                        <span class="govuk-accordion__section-heading-text" id="accordion-itemchanged-triggered-heading-1">
+                            <span class="govuk-accordion__section-heading-text-focus">First item heading</span>
+                        </span>
+                        <span class="govuk-visually-hidden govuk-accordion__section-heading-divider">, </span>
+                        <span class="govuk-accordion__section-toggle">
+                            <span class="govuk-accordion__section-toggle-focus">
+                                <span class="govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down"></span>
+                                <span class="govuk-accordion__section-toggle-text">Show</span>
+                            </span>
+                        </span>
+                    </button>
+                </h2>
+            </div>
+        </div>
+        <div class="govuk-accordion__section govuk-accordion__section--expanded">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                    <button type="button" aria-controls="accordion-itemchanged-triggered-content-2" class="govuk-accordion__section-button" aria-expanded="true" aria-label="Second item heading, Hide this section">
+                        <span class="govuk-accordion__section-heading-text" id="accordion-itemchanged-triggered-heading-2">
+                            <span class="govuk-accordion__section-heading-text-focus">Second item heading</span>
+                        </span>
+                        <span class="govuk-visually-hidden govuk-accordion__section-heading-divider">, </span>
+                        <span class="govuk-accordion__section-toggle">
+                            <span class="govuk-accordion__section-toggle-focus">
+                                <span class="govuk-accordion-nav__chevron"></span>
+                                <span class="govuk-accordion__section-toggle-text">Hide</span>
+                            </span>
+                        </span>
+                    </button>
+                </h2>
+            </div>
+            <div id="accordion-itemchanged-triggered-content-2" class="govuk-accordion__section-content">
+                <p class="govuk-body">Second item, element 1, index 2</p>
+            </div>
+        </div>
+        <div class="govuk-accordion__section govuk-accordion__section--expanded">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                    <button type="button" aria-controls="accordion-itemchanged-triggered-content-3" class="govuk-accordion__section-button" aria-expanded="true" aria-label="Third item heading, Hide this section">
+                        <span class="govuk-accordion__section-heading-text" id="accordion-itemchanged-triggered-heading-3">
+                            <span class="govuk-accordion__section-heading-text-focus">Third item heading</span>
+                        </span>
+                        <span class="govuk-visually-hidden govuk-accordion__section-heading-divider">, </span>
+                        <span class="govuk-accordion__section-toggle">
+                            <span class="govuk-accordion__section-toggle-focus">
+                                <span class="govuk-accordion-nav__chevron"></span>
+                                <span class="govuk-accordion__section-toggle-text">Hide</span>
+                            </span>
+                        </span>
+                    </button>
+                </h2>
+            </div>
+            <div id="accordion-itemchanged-triggered-content-3" class="govuk-accordion__section-content">
+                <p class="govuk-body">Third item, element 2, index 3</p>
+            </div>
+        </div>
+        <div class="govuk-accordion__section">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                    <button type="button" aria-controls="accordion-itemchanged-triggered-content-4" class="govuk-accordion__section-button" aria-expanded="false" aria-label="Fourth item heading, Show this section">
+                        <span class="govuk-accordion__section-heading-text" id="accordion-itemchanged-triggered-heading-4">
+                            <span class="govuk-accordion__section-heading-text-focus">Fourth item heading</span>
+                        </span>
+                        <span class="govuk-visually-hidden govuk-accordion__section-heading-divider">, </span>
+                        <span class="govuk-accordion__section-toggle">
+                            <span class="govuk-accordion__section-toggle-focus">
+                                <span class="govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down"></span>
+                                <span class="govuk-accordion__section-toggle-text">Show</span>
+                            </span>
+                        </span>
+                    </button>
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    );
+    }
+
+    [Fact]
+    public void WhenItemsStatesSetAndShowAllSectionClicked_ThenAllSectionsShownAndOnItemStatesChangedTriggered()
+    {
+        // Arrange
+        var itemStates = new Dictionary<int, bool>() { { 2, true }, { 4, true } };
+        var callCount = 0;
+
+        var itemStatesChanged = (Dictionary<int, bool> states) =>
+        {
+            itemStates = states;
+            callCount++;
+        };
+
+        // Act
+        var component = Render(
+    @<GdsAccordion Id="accordion-itemchanged-triggered-showall" RememberExpanded="true" ItemStates="itemStates" OnItemStatesChanged="itemStatesChanged">
+        <GdsAccordionItem Heading="First item heading">
+            <p class="govuk-body">First item</p>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Second item heading">
+            <p class="govuk-body">Second item</p>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Third item heading">
+            <p class="govuk-body">Third item</p>
+        </GdsAccordionItem>
+        <GdsAccordionItem Heading="Fourth item heading">
+            <p class="govuk-body">Fourth item</p>
+        </GdsAccordionItem>
+    </GdsAccordion>
+    );
+        var showAllButton = component.Find("button.govuk-accordion__show-all");
+        showAllButton.Click();
+
+        // Assert
+        Assert.Equal(1, callCount);
+        Assert.Equal(4, itemStates.Count);
+        Assert.True(itemStates.All(kvp => kvp.Value == true));
+
+        component.MarkupMatches(
+    @<div id="accordion-itemchanged-triggered-showall" class="govuk-accordion" data-module="govuk-accordion">
+        <div class="govuk-accordion__controls">
+            <button type="button" class="govuk-accordion__show-all" aria-expanded="true">
+                <span class="govuk-accordion-nav__chevron"></span>
+                <span class="govuk-accordion__show-all-text">Hide all sections</span>
+            </button>
+        </div>
+        <div class="govuk-accordion__section govuk-accordion__section--expanded">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                    <button type="button" aria-controls="accordion-itemchanged-triggered-showall-content-1" class="govuk-accordion__section-button" aria-expanded="true" aria-label="First item heading, Hide this section">
+                        <span class="govuk-accordion__section-heading-text" id="accordion-itemchanged-triggered-showall-heading-1">
+                            <span class="govuk-accordion__section-heading-text-focus">First item heading</span>
+                        </span>
+                        <span class="govuk-visually-hidden govuk-accordion__section-heading-divider">, </span>
+                        <span class="govuk-accordion__section-toggle">
+                            <span class="govuk-accordion__section-toggle-focus">
+                                <span class="govuk-accordion-nav__chevron"></span>
+                                <span class="govuk-accordion__section-toggle-text">Hide</span>
+                            </span>
+                        </span>
+                    </button>
+                </h2>
+            </div>
+            <div id="accordion-itemchanged-triggered-showall-content-1" class="govuk-accordion__section-content">
+                <p class="govuk-body">First item</p>
+            </div>
+        </div>
+        <div class="govuk-accordion__section govuk-accordion__section--expanded">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                    <button type="button" aria-controls="accordion-itemchanged-triggered-showall-content-2" class="govuk-accordion__section-button" aria-expanded="true" aria-label="Second item heading, Hide this section">
+                        <span class="govuk-accordion__section-heading-text" id="accordion-itemchanged-triggered-showall-heading-2">
+                            <span class="govuk-accordion__section-heading-text-focus">Second item heading</span>
+                        </span>
+                        <span class="govuk-visually-hidden govuk-accordion__section-heading-divider">, </span>
+                        <span class="govuk-accordion__section-toggle">
+                            <span class="govuk-accordion__section-toggle-focus">
+                                <span class="govuk-accordion-nav__chevron"></span>
+                                <span class="govuk-accordion__section-toggle-text">Hide</span>
+                            </span>
+                        </span>
+                    </button>
+                </h2>
+            </div>
+            <div id="accordion-itemchanged-triggered-showall-content-2" class="govuk-accordion__section-content">
+                <p class="govuk-body">Second item</p>
+            </div>
+        </div>
+        <div class="govuk-accordion__section govuk-accordion__section--expanded">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                    <button type="button" aria-controls="accordion-itemchanged-triggered-showall-content-3" class="govuk-accordion__section-button" aria-expanded="true" aria-label="Third item heading, Hide this section">
+                        <span class="govuk-accordion__section-heading-text" id="accordion-itemchanged-triggered-showall-heading-3">
+                            <span class="govuk-accordion__section-heading-text-focus">Third item heading</span>
+                        </span>
+                        <span class="govuk-visually-hidden govuk-accordion__section-heading-divider">, </span>
+                        <span class="govuk-accordion__section-toggle">
+                            <span class="govuk-accordion__section-toggle-focus">
+                                <span class="govuk-accordion-nav__chevron"></span>
+                                <span class="govuk-accordion__section-toggle-text">Hide</span>
+                            </span>
+                        </span>
+                    </button>
+                </h2>
+            </div>
+            <div id="accordion-itemchanged-triggered-showall-content-3" class="govuk-accordion__section-content">
+                <p class="govuk-body">Third item</p>
+            </div>
+        </div>
+        <div class="govuk-accordion__section govuk-accordion__section--expanded">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                    <button type="button" aria-controls="accordion-itemchanged-triggered-showall-content-4" class="govuk-accordion__section-button" aria-expanded="true" aria-label="Fourth item heading, Hide this section">
+                        <span class="govuk-accordion__section-heading-text" id="accordion-itemchanged-triggered-showall-heading-4">
+                            <span class="govuk-accordion__section-heading-text-focus">Fourth item heading</span>
+                        </span>
+                        <span class="govuk-visually-hidden govuk-accordion__section-heading-divider">, </span>
+                        <span class="govuk-accordion__section-toggle">
+                            <span class="govuk-accordion__section-toggle-focus">
+                                <span class="govuk-accordion-nav__chevron"></span>
+                                <span class="govuk-accordion__section-toggle-text">Hide</span>
+                            </span>
+                        </span>
+                    </button>
+                </h2>
+            </div>
+            <div id="accordion-itemchanged-triggered-showall-content-4" class="govuk-accordion__section-content">
+                <p class="govuk-body">Fourth item</p>
+            </div>
+        </div>
+    </div>
+    );
+    }
+
+
+}

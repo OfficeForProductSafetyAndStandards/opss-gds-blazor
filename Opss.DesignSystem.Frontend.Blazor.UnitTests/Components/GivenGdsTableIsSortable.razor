@@ -1,0 +1,147 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void ThenOutputsHeaderWithSortButtons()
+    {
+        // Arrange, Act
+        var component = Render(
+    @<GdsTable IsSortable OnTableSort="(sortArgs) => {}">
+        <HeadTemplate>
+            <GdsTableCell SortColumnName="First">Head column</GdsTableCell>
+            <GdsTableCell SortColumnName="Number">Number column</GdsTableCell>
+        </HeadTemplate>
+        <RowsTemplate>
+            <GdsTableRow>
+                <GdsTableCell>First data row</GdsTableCell>
+                <GdsTableCell>12</GdsTableCell>
+            </GdsTableRow>
+            <GdsTableRow>
+                <GdsTableCell>another row</GdsTableCell>
+                <GdsTableCell>345</GdsTableCell>
+            </GdsTableRow>
+        </RowsTemplate>
+    </GdsTable>
+    );
+
+        // Assert
+        component.MarkupMatches(
+    @<table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header" aria-sort="none">
+                    <button class="govuk-button" type="button" data-module="govuk-button">Head column</button>
+                </th>
+                <th scope="col" class="govuk-table__header" aria-sort="none">
+                    <button class="govuk-button" type="button" data-module="govuk-button">Number column</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">First data row</td>
+                <td class="govuk-table__cell">12</td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell">another row</td>
+                <td class="govuk-table__cell">345</td>
+            </tr>
+        </tbody>
+    </table>
+        );
+    }
+
+    [Fact]
+    public void WhenTableSortButtonsClicked_ThenOnTableSortEventIsTriggered()
+    {
+        // Arrange
+        TableSortArgs sortArgs = null!;
+
+        var component = Render(
+    @<GdsTable IsSortable OnTableSort=@((args) => sortArgs = args)>
+        <HeadTemplate>
+            <GdsTableCell SortColumnName="First">Head column</GdsTableCell>
+            <GdsTableCell SortColumnName="Number">Number column</GdsTableCell>
+        </HeadTemplate>
+    </GdsTable>
+    );
+
+        var sortButtons = component.FindAll("button");
+        var firstButton = sortButtons.First();
+        var secondButton = sortButtons.ElementAt(1);
+
+        // Act: click first column: asc
+        firstButton.Click();
+
+        // Assert
+        Assert.NotNull(sortArgs);
+        Assert.Equal("First", sortArgs.Name);
+        Assert.Equal("ascending", sortArgs.Order);
+
+        // Act: click first column again: desc
+        firstButton.Click();
+
+        // Assert
+        Assert.NotNull(sortArgs);
+        Assert.Equal("First", sortArgs.Name);
+        Assert.Equal("descending", sortArgs.Order);
+
+        component.MarkupMatches(
+    @<table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header" aria-sort="descending">
+                    <button class="govuk-button" type="button" data-module="govuk-button">Head column</button>
+                </th>
+                <th scope="col" class="govuk-table__header" aria-sort="none">
+                    <button class="govuk-button" type="button" data-module="govuk-button">Number column</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body"></tbody>
+    </table>
+        );
+
+        // Act: click second column: asc
+        secondButton.Click();
+
+        // Assert
+        Assert.NotNull(sortArgs);
+        Assert.Equal("Number", sortArgs.Name);
+        Assert.Equal("ascending", sortArgs.Order);
+    }
+
+    [Fact]
+    public void WhenInitialSortOrderIsSet_ThenOutputsSortButtonsWithCorrectSortButtonAndColumnSet()
+    {
+        // Arrange
+        TableSortArgs initSortOrder = new("Number", TableSortOrder.Descending);
+
+        var component = Render(
+    @<GdsTable IsSortable OnTableSort="(args) => {}" InitialSortOrder=@initSortOrder>
+        <HeadTemplate>
+            <GdsTableCell SortColumnName="First">Head column</GdsTableCell>
+            <GdsTableCell SortColumnName="Number">Number column</GdsTableCell>
+        </HeadTemplate>
+    </GdsTable>
+        );
+
+        component.MarkupMatches(
+    @<table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+			    <th scope="col" class="govuk-table__header" aria-sort="none">
+                    <button class="govuk-button" type="button" data-module="govuk-button">Head column</button>
+                </th>
+			    <th scope="col" class="govuk-table__header" aria-sort="descending">
+                    <button class="govuk-button" type="button" data-module="govuk-button">Number column</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body"></tbody>
+    </table>
+        );
+    }
+
+
+}

@@ -78,7 +78,7 @@
     /// sets role to "region".
     /// </summary>
     [Parameter]
-    public NotificationBannerType Type { get; set; } = NotificationBannerType.Important;
+    public GdsNotificationBannerType Type { get; set; } = GdsNotificationBannerType.Important;
 
     /// <summary>
     /// Overrides the value of the role attribute for the notification
@@ -117,7 +117,7 @@
     {
         get
         {
-            return (Type == NotificationBannerType.Success) ? "govuk-notification-banner--success" : "";
+            return (Type == GdsNotificationBannerType.Success) ? "govuk-notification-banner--success" : "";
         }
     }
 
@@ -128,7 +128,7 @@
             if (!string.IsNullOrEmpty(Role))
                 return role;
 
-            return (Type == NotificationBannerType.Success) ? "alert" : "region";
+            return (Type == GdsNotificationBannerType.Success) ? "alert" : "region";
         }
     }
 
@@ -139,7 +139,7 @@
             if (!string.IsNullOrEmpty(TitleText))
                 return TitleText;
 
-            return (Type == NotificationBannerType.Success) ? "Success" : "Important";
+            return (Type == GdsNotificationBannerType.Success) ? "Success" : "Important";
         }
     }
     #endregion
