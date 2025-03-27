@@ -25,9 +25,10 @@
     </GdsButton>
 </GdsButtonMenu>")">
     <GdsButtonMenu MenuTitle="Menu title">
-        <GdsButton Type="submit" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Menu item 1</GdsButton>
-        <GdsButton Type="submit" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Menu item 2</GdsButton>
-        <GdsButton Type="submit" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Menu item 3</GdsButton>
+        <GdsButtonMenuItem Type="submit" Classes=@GdsButtonClasses.Secondary>Menu item 1</GdsButtonMenuItem>
+        <GdsButtonMenuItem Type="submit" Classes=@GdsButtonClasses.Secondary>Menu item 2</GdsButtonMenuItem>
+        <GdsButtonMenuItem Type="submit" Classes=@GdsButtonClasses.Secondary>Menu item 4</GdsButtonMenuItem>
+        <GdsButtonMenuItem Type="submit" Classes=@GdsButtonClasses.Secondary>Menu item 3</GdsButtonMenuItem>
     </GdsButtonMenu>
 </Example>
 
@@ -50,9 +51,9 @@
     </GdsButton>
 </GdsButtonMenu>")">
     <GdsButtonMenu MenuTitle="Review" Classes=@GdsButtonClasses.Secondary>
-        <GdsButton Href="#" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Approve</GdsButton>
-        <GdsButton Href="#" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Request more information</GdsButton>
-        <GdsButton Href="#" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Reject with reason</GdsButton>
+        <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary Href="#">Approve</GdsButtonMenuItem>
+        <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary Href="#">Request more information</GdsButtonMenuItem>
+        <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary Href="#">Reject with reason</GdsButtonMenuItem>
     </GdsButtonMenu>
 </Example>
 
@@ -71,13 +72,13 @@
         Menu item 3
     </GdsButton>
 </GdsButtonMenu>")">
-    <div style="display: flex; flex-direction: row-reverse;">
+    
     <GdsButtonMenu MenuTitle="Review" Classes=@GdsButtonClasses.Secondary RightAlignMenu=@true>
-        <GdsButton Href="#" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Approve</GdsButton>
-        <GdsButton Href="#" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Request more information</GdsButton>
-        <GdsButton Href="#" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Reject with reason</GdsButton>
+        <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary Href="#">Approve</GdsButtonMenuItem>
+        <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary Href="#">Request more information</GdsButtonMenuItem>
+        <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary Href="#">Reject with reason</GdsButtonMenuItem>
     </GdsButtonMenu>
-    </div>
+    
 </Example>
 
 <h3 class="govuk-heading-m" id="grouping buttons">Grouping buttons</h3>
@@ -102,9 +103,9 @@
     <div class="moj-button-group moj-button-group--inline">
         <GdsButton Type="submit">Accept booking</GdsButton>
         <GdsButtonMenu MenuTitle="Review booking" Classes=@GdsButtonClasses.Secondary>
-            <GdsButton Href="#" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Cancel</GdsButton>
-            <GdsButton Href="#" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Put on hold</GdsButton>
-            <GdsButton Href="#" Classes="@(GdsButtonClasses.ButtonMenuItem + " " + GdsButtonClasses.Secondary)">Request more information</GdsButton>
+            <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary>Approve</GdsButtonMenuItem>
+            <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary>Request more information</GdsButtonMenuItem>
+            <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary>Reject with reason</GdsButtonMenuItem>
         </GdsButtonMenu>
     </div>
 </Example>
