@@ -4,6 +4,7 @@
     The button menu item component must be used as a child of the button menu component.
     This component represents the individual button items in the menu drop-down.
 </summary> *@
+
 <li>
 	<GdsButton Id=@Id 
 			   Name=@Name 
@@ -41,7 +42,6 @@
 		if (Parent == null)
 			throw new ArgumentNullException(nameof(Parent), "GdsButtonMenuItem must exist within a GdsButtonMenu");
 		base.OnInitialized();
-		Parent.AddItem(this);
 	}
 
 	[CascadingParameter]

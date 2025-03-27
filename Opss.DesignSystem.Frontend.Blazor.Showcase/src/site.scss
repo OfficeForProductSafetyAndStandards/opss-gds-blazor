@@ -63,6 +63,6 @@
     transform: rotate(180deg);
 }
 
-.moj-button-menu__toggle-button[aria-expanded] svg {
+.moj-button-menu__toggle-button[aria-expanded=true] svg {
     transform: rotate(0deg);
 }
