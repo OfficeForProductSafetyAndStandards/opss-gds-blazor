@@ -21,9 +21,10 @@
 	{
 		if (!string.IsNullOrEmpty(Href) && Href.StartsWith("#"))
 		{
-			var uri = navigationManager.Uri
-				.Replace(Href, string.Empty)
-				.Replace("http://localhost/", string.Empty);
+			var navUri = new Uri(navigationManager.Uri, UriKind.RelativeOrAbsolute);
+			string uriString = navUri.IsAbsoluteUri ? navUri.PathAndQuery : navigationManager.Uri;
+
+			var uri = uriString.Replace(Href, string.Empty);
 
 			Href = $"{uri}{Href}";
 		}
