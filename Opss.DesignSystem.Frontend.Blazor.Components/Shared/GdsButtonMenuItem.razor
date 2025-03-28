@@ -1,0 +1,50 @@
+﻿@inherits GdsButton
+
+@* <summary>
+    The button menu item component must be used as a child of the button menu component.
+    This component represents the individual button items in the menu drop-down.
+</summary> *@
+
+<li>
+	<GdsButton Id=@Id 
+			   Name=@Name 
+			   Attributes=@Attributes 
+			   Classes=@classes
+			   DataTestId=@DataTestId 
+			   Disabled=@Disabled 
+			   Href=@Href 
+			   Element=@Element 
+			   IsOnDarkBackground=@IsOnDarkBackground 
+			   OnClick=@OnClick 
+			   PreventDoubleClick=@PreventDoubleClick 
+			   Type=@Type 
+			   Value=@Value>
+		@ChildContent
+	</GdsButton>
+</li>
+
+@code {
+	#region Private Properties
+	private string classes
+	{
+		get
+		{
+			var classBuilder = GdsButtonClasses.ButtonMenuItem;
+			if (!string.IsNullOrEmpty(Classes)) classBuilder += $" {Classes}";
+			return classBuilder;
+		}
+	}
+	#endregion
+
+	#region Cascading Value - Parent
+	protected override void OnInitialized()
+	{
+		if (Parent == null)
+			throw new ArgumentNullException(nameof(Parent), "GdsButtonMenuItem must exist within a GdsButtonMenu");
+		base.OnInitialized();
+	}
+
+	[CascadingParameter]
+	private GdsButtonMenu? Parent { get; set; }
+	#endregion
+}

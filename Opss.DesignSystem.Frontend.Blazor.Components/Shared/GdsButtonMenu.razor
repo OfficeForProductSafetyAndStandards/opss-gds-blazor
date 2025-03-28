@@ -4,21 +4,36 @@
     The button menu is a versatile component that allows users to view tasks as buttons in a collapsible menu.
 </summary> *@
 
-<div class="moj-button-menu"
-     data-testid=@DataTestId
-     data-module="moj-button-menu"
-     data-button-text=@MenuTitle
-     data-button-classes=@(string.IsNullOrEmpty(Classes) ? null : Classes)
-     data-align-menu=@(RightAlignMenu ? "right" : null )
-     @attributes=@Attributes
->
-    @ChildContent
+<div class=@(RightAlignMenu ? "button-menu-align--right" : null) data-testid=@DataTestId>
+    <div class="moj-button-menu @Classes"
+         data-module="moj-button-menu"
+         @attributes=@Attributes>
+        <GdsButton Classes=@menuTitleButtonClasses 
+                   Attributes=@menuTitleButtonAttributes 
+                   OnClick=@((args) => isExpanded = !isExpanded)
+                   DataTestId=@MenuTitleButtonDataTestId>
+            <span>
+                @MenuTitle
+                <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.5 0L11 5L0 5L5.5 0Z" fill="currentColor"></path>
+                </svg>
+            </span>
+        </GdsButton>
+        @if(isExpanded)
+        {
+            <ul role="list" class=@($"moj-button-menu__wrapper{(RightAlignMenu ? " moj-button-menu__wrapper--right" : "")}")>
+                <CascadingValue Value=this>
+                    @ChildContent
+                </CascadingValue>
+            </ul>
+        }
+    </div>
 </div>
 
 @code {
     #region Public Parameters
     /// <summary>
-    /// Text for the menu title button.
+    /// Required. Text for the menu title button.
     /// </summary>
     [Parameter]
     public string? MenuTitle { get; set; }
@@ -28,5 +43,51 @@
     /// </summary>
     [Parameter]
     public bool RightAlignMenu { get; set; }
+
+    /// <summary>
+    /// Apply additional Gov.UK/MOJ classes to the Menu Title button. 
+    /// </summary>
+    /// <remarks>
+    /// The <see cref="GdsViewModel.Classes" /> properties on this component are redundant. 
+    /// </remarks>
+    [Parameter]
+    public string? MenuTitleButtonClasses { get; set; }
+
+    [Parameter]
+    public string? MenuTitleButtonDataTestId { get; set; }
+    #endregion
+
+    #region Private Properties
+    private bool isExpanded;
+
+    private Dictionary<string, object> menuTitleButtonAttributes
+    {
+        get
+        {
+            return new Dictionary<string, object>()
+            {
+                {"aria-haspopup", "true" },
+                {"aria-expanded", isExpanded.ToString().ToLower()}
+            };
+        }
+    }
+
+    private string menuTitleButtonClasses
+    {
+        get
+        {
+            return $"moj-button-menu__toggle-button {(MenuTitleButtonClasses ?? "")}";
+        }
+    }
+    #endregion
+
+    #region Parameter Validation
+    protected override void OnParametersSet()
+    {
+        if (string.IsNullOrEmpty(MenuTitle))
+            throw new ArgumentNullException(nameof(MenuTitle), "The MenuTitle parameter is required.");
+
+        base.OnParametersSet();
+    }
     #endregion
 }
