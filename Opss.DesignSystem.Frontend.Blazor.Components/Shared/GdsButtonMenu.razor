@@ -6,13 +6,13 @@
 
 <div class=@(RightAlignMenu ? "button-menu-align--right" : null)>
     <div class="moj-button-menu @Classes"
-         data-module="moj-button-menu"
-         data-testid=@DataTestId
-         @attributes=@Attributes>
+    data-module="moj-button-menu"
+    data-testid=@DataTestId
+    @attributes=@Attributes>
         <GdsButton Classes=@menuTitleButtonClasses 
-                   Attributes=@menuTitleButtonAttributes 
-                   OnClick=@((args) => isExpanded = !isExpanded)
-                   DataTestId=@MenuTitleButtonDataTestId>
+        Attributes=@menuTitleButtonAttributes 
+        OnClick=@((args) => isExpanded = !isExpanded)
+        DataTestId=@MenuTitleButtonDataTestId>
             <span>
                 @MenuTitle
                 <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
@@ -46,8 +46,11 @@
     public bool RightAlignMenu { get; set; }
 
     /// <summary>
-    /// Apply additional classes to the Menu Title button. 
+    /// Apply additional Gov.UK/MOJ classes to the Menu Title button. 
     /// </summary>
+    /// <remarks>
+    /// The <see cref="GdsViewModel.Classes" /> properties on this component are redundant. 
+    /// </remarks>
     [Parameter]
     public string? MenuTitleButtonClasses { get; set; }
 
