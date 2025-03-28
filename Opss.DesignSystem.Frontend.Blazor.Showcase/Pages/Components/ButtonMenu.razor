@@ -11,46 +11,76 @@
 </p>
 
 <Example BlazorExampleContent="@(@"<GdsButtonMenu MenuTitle=""Menu title"">
-        <GdsButtonMenuItem Type=""submit"">Menu item 1</GdsButtonMenuItem>
-        <GdsButtonMenuItem Type=""submit"">Menu item 2</GdsButtonMenuItem>
-        <GdsButtonMenuItem Type=""submit"" Classes=@GdsButtonClasses.Secondary>Menu item 4</GdsButtonMenuItem>
-        <GdsButtonMenuItem Type=""submit"" Classes=@GdsButtonClasses.Secondary>Menu item 3</GdsButtonMenuItem>
+        <GdsButtonMenuItem>Menu item 1</GdsButtonMenuItem>
+        <GdsButtonMenuItem>Menu item 2</GdsButtonMenuItem>
+        <GdsButtonMenuItem>Menu item 4</GdsButtonMenuItem>
+        <GdsButtonMenuItem>Menu item 3</GdsButtonMenuItem>
 </GdsButtonMenu>")">
     <GdsButtonMenu MenuTitle="Menu title">
-        <GdsButtonMenuItem Type="submit">Menu item 1</GdsButtonMenuItem>
-        <GdsButtonMenuItem Type="submit">Menu item 2</GdsButtonMenuItem>
-        <GdsButtonMenuItem Type="submit" Classes=@GdsButtonClasses.Secondary>Menu item 4</GdsButtonMenuItem>
-        <GdsButtonMenuItem Type="submit" Classes=@GdsButtonClasses.Secondary>Menu item 3</GdsButtonMenuItem>
+        <GdsButtonMenuItem>Menu item 1</GdsButtonMenuItem>
+        <GdsButtonMenuItem>Menu item 2</GdsButtonMenuItem>
+        <GdsButtonMenuItem>Menu item 4</GdsButtonMenuItem>
+        <GdsButtonMenuItem>Menu item 3</GdsButtonMenuItem>
     </GdsButtonMenu>
 </Example>
 
 <h2 class="govuk-heading-l" id="how-to-use">How to use</h2>
 
+<h3 class="govuk-heading-m" id="various-button-types">Various button types</h3>
+
+<Example BlazorExampleContent="@(@"<GdsButtonMenu MenuTitle=""Review"">
+    <GdsButtonMenuItem>Submit</GdsButtonMenuItem>
+    <GdsButtonMenuItem Href=""#"">Link</GdsButtonMenuItem>
+    <GdsButtonMenuItem Type=""button"">Button</GdsButtonMenuItem>
+    <GdsButtonMenuItem Type=""reset"">Reset</GdsButtonMenuItem>
+</GdsButtonMenu>")">
+    <GdsButtonMenu MenuTitle="Button types">
+        <GdsButtonMenuItem>Submit</GdsButtonMenuItem>
+        <GdsButtonMenuItem Href="#">Link</GdsButtonMenuItem>
+        <GdsButtonMenuItem Type="button">Button</GdsButtonMenuItem>
+        <GdsButtonMenuItem Type="reset">Reset</GdsButtonMenuItem>
+    </GdsButtonMenu>
+</Example>
+
+<h3 class="govuk-heading-m" id="secondary-menu-button">A secondary menu button</h3>
+
+<Example BlazorExampleContent="@(@"<GdsButtonMenu MenuTitle=""Review"" MenuTitleButtonClasses=@GdsButtonClasses.Secondary>
+        <GdsButtonMenuItem Href=""#"">Approve</GdsButtonMenuItem>
+        <GdsButtonMenuItem Href=""#"">Request more information</GdsButtonMenuItem>
+        <GdsButtonMenuItem Href=""#"">Reject with reason</GdsButtonMenuItem>
+</GdsButtonMenu>")">
+    <GdsButtonMenu MenuTitle="Review" MenuTitleButtonClasses=@GdsButtonClasses.Secondary>
+        <GdsButtonMenuItem Href="#">Approve</GdsButtonMenuItem>
+        <GdsButtonMenuItem Href="#">Request more information</GdsButtonMenuItem>
+        <GdsButtonMenuItem Href="#">Reject with reason</GdsButtonMenuItem>
+    </GdsButtonMenu>
+</Example>
+
 <h3 class="govuk-heading-m" id="left-aligned-menu-items">Left-aligned menu items</h3>
 
-<Example BlazorExampleContent="@(@"<GdsButtonMenu MenuTitle=""Review"" Classes=@GdsButtonClasses.Secondary>
-        <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary Href=""#"">Approve</GdsButtonMenuItem>
-        <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary Href=""#"">Request more information</GdsButtonMenuItem>
-        <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary Href=""#"">Reject with reason</GdsButtonMenuItem>
+<Example BlazorExampleContent="@(@"<GdsButtonMenu MenuTitle=""Review"" MenuTitleButtonClasses=@GdsButtonClasses.Secondary>
+        <GdsButtonMenuItem Href=""#"">Approve</GdsButtonMenuItem>
+        <GdsButtonMenuItem Href=""#"">Request more information</GdsButtonMenuItem>
+        <GdsButtonMenuItem Href=""#"">Reject with reason</GdsButtonMenuItem>
 </GdsButtonMenu>")">
-    <GdsButtonMenu MenuTitle="Review" Classes=@GdsButtonClasses.Secondary>
-        <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary Href="#">Approve</GdsButtonMenuItem>
-        <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary Href="#">Request more information</GdsButtonMenuItem>
-        <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary Href="#">Reject with reason</GdsButtonMenuItem>
+    <GdsButtonMenu MenuTitle="Review" MenuTitleButtonClasses=@GdsButtonClasses.Secondary>
+        <GdsButtonMenuItem Href="#">Approve</GdsButtonMenuItem>
+        <GdsButtonMenuItem Href="#">Request more information</GdsButtonMenuItem>
+        <GdsButtonMenuItem Href="#">Reject with reason</GdsButtonMenuItem>
     </GdsButtonMenu>
 </Example>
 
 <h3 class="govuk-heading-m" id="right-aligned-menu-items">Right-aligned menu items</h3>
-<Example BlazorExampleContent="@(@"<GdsButtonMenu MenuTitle=""Review"" Classes=@GdsButtonClasses.Secondary RightAlignMenu=@true>
-        <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary Href=""#"">Approve</GdsButtonMenuItem>
-        <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary Href=""#"">Request more information</GdsButtonMenuItem>
-        <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary Href=""#"">Reject with reason</GdsButtonMenuItem>
+<Example BlazorExampleContent="@(@"<GdsButtonMenu MenuTitle=""Review"" RightAlignMenu=@true>
+        <GdsButtonMenuItem Href=""#"">Approve</GdsButtonMenuItem>
+        <GdsButtonMenuItem Href=""#"">Request more information</GdsButtonMenuItem>
+        <GdsButtonMenuItem Href=""#"">Reject with reason</GdsButtonMenuItem>
 </GdsButtonMenu>")">
     
-    <GdsButtonMenu MenuTitle="Review" Classes=@GdsButtonClasses.Secondary RightAlignMenu>
-        <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary Href="#">Approve</GdsButtonMenuItem>
-        <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary Href="#">Request more information</GdsButtonMenuItem>
-        <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary Href="#">Reject with reason</GdsButtonMenuItem>
+    <GdsButtonMenu MenuTitle="Review" RightAlignMenu>
+        <GdsButtonMenuItem Href="#">Approve</GdsButtonMenuItem>
+        <GdsButtonMenuItem Href="#">Request more information</GdsButtonMenuItem>
+        <GdsButtonMenuItem Href="#">Reject with reason</GdsButtonMenuItem>
     </GdsButtonMenu>
     
 </Example>
@@ -59,21 +89,26 @@
 
 <Example BlazorExampleContent="@(@"<div class=""moj-button-group moj-button-group--inline"">
     <GdsButton Type=""submit"">Accept booking</GdsButton>
-    <GdsButtonMenu MenuTitle=""Review booking"" Classes=@GdsButtonClasses.Secondary>
-            <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary>Approve</GdsButtonMenuItem>
-            <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary>Request more information</GdsButtonMenuItem>
-            <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary>Reject with reason</GdsButtonMenuItem>
+    <GdsButtonMenu MenuTitle=""Review booking"" MenuTitleButtonClasses=@GdsButtonClasses.Secondary>
+            <GdsButtonMenuItem>Approve</GdsButtonMenuItem>
+            <GdsButtonMenuItem>Request more information</GdsButtonMenuItem>
+            <GdsButtonMenuItem>Reject with reason</GdsButtonMenuItem>
     </GdsButtonMenu>
 </div>")">
     <div class="moj-button-group moj-button-group--inline">
         <GdsButton Type="submit">Accept booking</GdsButton>
-        <GdsButtonMenu MenuTitle="Review booking" Classes=@GdsButtonClasses.Secondary>
-            <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary>Approve</GdsButtonMenuItem>
-            <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary>Request more information</GdsButtonMenuItem>
-            <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary>Reject with reason</GdsButtonMenuItem>
+        <GdsButtonMenu MenuTitle="Review booking" MenuTitleButtonClasses=@GdsButtonClasses.Secondary>
+            <GdsButtonMenuItem>Approve</GdsButtonMenuItem>
+            <GdsButtonMenuItem>Request more information</GdsButtonMenuItem>
+            <GdsButtonMenuItem>Reject with reason</GdsButtonMenuItem>
         </GdsButtonMenu>
     </div>
 </Example>
+
+<h3 class="govuk-heading-m" id="note">Note</h3>
+<p class="govuk-body">The <b>Classes</b> fields are redundant.</p>
+
+
 @code {
 
 }

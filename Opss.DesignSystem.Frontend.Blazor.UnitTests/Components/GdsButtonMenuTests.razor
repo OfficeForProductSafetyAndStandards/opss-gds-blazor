@@ -10,7 +10,7 @@
         component.MarkupMatches(
             @<div>
                 <div class="moj-button-menu" data-module="moj-button-menu">
-                    <button class="govuk-button moj-button-menu__toggle-button govuk-button--secondary" type="submit" data-module="govuk-button" aria-haspopup="true" aria-expanded="false">
+                    <button class="govuk-button moj-button-menu__toggle-button" type="submit" data-module="govuk-button" aria-haspopup="true" aria-expanded="false">
                         <span>
                             Menu title
                             <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
@@ -29,16 +29,16 @@
         // Arrange
         var component = Render(
             @<GdsButtonMenu MenuTitle="Menu title" DataTestId="GdsButtonMenu" MenuTitleButtonDataTestId="MenuTitleButton">
-                <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary>Menu item 1</GdsButtonMenuItem>
-                <GdsButtonMenuItem Type="submit" Classes=@GdsButtonClasses.Secondary>Menu item 2</GdsButtonMenuItem>
-                <GdsButtonMenuItem Type="submit" Classes=@GdsButtonClasses.Secondary>Menu item 3</GdsButtonMenuItem>
+                <GdsButtonMenuItem>Menu item 1</GdsButtonMenuItem>
+                <GdsButtonMenuItem>Menu item 2</GdsButtonMenuItem>
+                <GdsButtonMenuItem>Menu item 3</GdsButtonMenuItem>
             </GdsButtonMenu>
         );
 
         component.MarkupMatches(
             @<div>
                 <div class="moj-button-menu" data-module="moj-button-menu" data-testid="GdsButtonMenu">
-                    <button class="govuk-button moj-button-menu__toggle-button govuk-button--secondary" type="submit" data-module="govuk-button" data-testid="MenuTitleButton" aria-haspopup="true" aria-expanded="false">
+                    <button class="govuk-button moj-button-menu__toggle-button" type="submit" data-module="govuk-button" data-testid="MenuTitleButton" aria-haspopup="true" aria-expanded="false">
                         <span>
                             Menu title
                             <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
@@ -58,8 +58,8 @@
         var component = Render(
             @<GdsButtonMenu MenuTitle="Menu title" DataTestId="GdsButtonMenu" MenuTitleButtonDataTestId="MenuTitleButton">
                 <GdsButtonMenuItem Href="#">Menu item 1</GdsButtonMenuItem>
-                <GdsButtonMenuItem Href="#" Classes=@GdsButtonClasses.Secondary>Menu item 2</GdsButtonMenuItem>
-                <GdsButtonMenuItem Href="#" Classes=@GdsButtonClasses.Secondary>Menu item 3</GdsButtonMenuItem>
+                <GdsButtonMenuItem Href="#">Menu item 2</GdsButtonMenuItem>
+                <GdsButtonMenuItem Href="#">Menu item 3</GdsButtonMenuItem>
             </GdsButtonMenu>
         );
 
@@ -71,7 +71,7 @@
         component.MarkupMatches(
             @<div>
                 <div class="moj-button-menu" data-module="moj-button-menu" data-testid="GdsButtonMenu">
-                    <button class="govuk-button moj-button-menu__toggle-button govuk-button--secondary" type="submit" data-module="govuk-button" data-testid="MenuTitleButton" aria-haspopup="true" aria-expanded="true">
+                    <button class="govuk-button moj-button-menu__toggle-button" type="submit" data-module="govuk-button" data-testid="MenuTitleButton" aria-haspopup="true" aria-expanded="true">
                         <span>
                             Menu title
                             <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
@@ -84,10 +84,10 @@
                             <a class="govuk-button moj-button-menu__item" href="#" role="button" data-module="govuk-button" draggable="false">Menu item 1</a>
                         </li>
                         <li>
-                            <a class="govuk-button moj-button-menu__item govuk-button--secondary" href="#" role="button" data-module="govuk-button" draggable="false">Menu item 2</a>
+                            <a class="govuk-button moj-button-menu__item" href="#" role="button" data-module="govuk-button" draggable="false">Menu item 2</a>
                         </li>
                         <li>
-                            <a class="govuk-button moj-button-menu__item govuk-button--secondary" href="#" role="button" data-module="govuk-button" draggable="false">Menu item 3</a>
+                            <a class="govuk-button moj-button-menu__item" href="#" role="button" data-module="govuk-button" draggable="false">Menu item 3</a>
                         </li>
                     </ul>
 		        </div>
@@ -101,9 +101,9 @@
         // Arrange
         var component = Render(
             @<GdsButtonMenu MenuTitle="Menu title" MenuTitleButtonDataTestId="MenuTitleButton" RightAlignMenu>
-                <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary>Menu item 1</GdsButtonMenuItem>
-                <GdsButtonMenuItem Type="submit" Classes=@GdsButtonClasses.Secondary>Menu item 2</GdsButtonMenuItem>
-                <GdsButtonMenuItem Type="submit" Classes=@GdsButtonClasses.Secondary>Menu item 3</GdsButtonMenuItem>
+                <GdsButtonMenuItem>Menu item 1</GdsButtonMenuItem>
+                <GdsButtonMenuItem>Menu item 2</GdsButtonMenuItem>
+                <GdsButtonMenuItem>Menu item 3</GdsButtonMenuItem>
             </GdsButtonMenu>
         );
 
@@ -115,7 +115,7 @@
         component.MarkupMatches(
             @<div class="button-menu-align--right">
                 <div class="moj-button-menu" data-module="moj-button-menu">
-                    <button class="govuk-button moj-button-menu__toggle-button govuk-button--secondary" type="submit" data-module="govuk-button" data-testid="MenuTitleButton" aria-haspopup="true" aria-expanded="true">
+                    <button class="govuk-button moj-button-menu__toggle-button" type="submit" data-module="govuk-button" data-testid="MenuTitleButton" aria-haspopup="true" aria-expanded="true">
                         <span>
                             Menu title
                             <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
@@ -125,13 +125,238 @@
                     </button>
                     <ul role="list" class="moj-button-menu__wrapper moj-button-menu__wrapper--right">
                         <li>
-                            <button class="govuk-button moj-button-menu__item govuk-button--secondary" type="submit" data-module="govuk-button">Menu item 1</button>
+                            <button class="govuk-button moj-button-menu__item" type="submit" data-module="govuk-button">Menu item 1</button>
                         </li>
                         <li>
-                            <button class="govuk-button moj-button-menu__item govuk-button--secondary" type="submit" data-module="govuk-button">Menu item 2</button>
+                            <button class="govuk-button moj-button-menu__item" type="submit" data-module="govuk-button">Menu item 2</button>
                         </li>
                         <li>
-                            <button class="govuk-button moj-button-menu__item govuk-button--secondary" type="submit" data-module="govuk-button">Menu item 3</button>
+                            <button class="govuk-button moj-button-menu__item" type="submit" data-module="govuk-button">Menu item 3</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        );
+    }
+
+    [Fact]
+    public void WhenButtonMenuItemDefaltsAreSet_ThenOutputsButtonsInDefaultState()
+    {
+        // Arrange
+        var component = Render(
+            @<GdsButtonMenu MenuTitle="Menu title" MenuTitleButtonDataTestId="MenuTitleButton">
+                <GdsButtonMenuItem>Menu item 1</GdsButtonMenuItem>
+                <GdsButtonMenuItem>Menu item 2</GdsButtonMenuItem>
+                <GdsButtonMenuItem>Menu item 3</GdsButtonMenuItem>
+            </GdsButtonMenu>
+        );
+
+        var button = component.Find("[data-testid=MenuTitleButton]");
+        button.Click(new());
+
+        // Act
+        // Assert
+        component.MarkupMatches(
+            @<div>
+                <div class="moj-button-menu" data-module="moj-button-menu">
+                    <button class="govuk-button moj-button-menu__toggle-button" type="submit" data-module="govuk-button" data-testid="MenuTitleButton" aria-haspopup="true" aria-expanded="true">
+                        <span>
+                            Menu title
+                            <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.5 0L11 5L0 5L5.5 0Z" fill="currentColor"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul role="list" class="moj-button-menu__wrapper">
+                        <li>
+                            <button class="govuk-button moj-button-menu__item" type="submit" data-module="govuk-button">Menu item 1</button>
+                        </li>
+                        <li>
+                            <button class="govuk-button moj-button-menu__item" type="submit" data-module="govuk-button">Menu item 2</button>
+                        </li>
+                        <li>
+                            <button class="govuk-button moj-button-menu__item" type="submit" data-module="govuk-button">Menu item 3</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        );
+    }
+
+    [Fact]
+    public void WhenButtonMenuItemButtonTypesAreSet_ThenOutputsButtonsWithTypeSetToButton()
+    {
+        // Arrange
+        var component = Render(
+            @<GdsButtonMenu MenuTitle="Menu title" MenuTitleButtonDataTestId="MenuTitleButton">
+                <GdsButtonMenuItem Type="button">Menu item 1</GdsButtonMenuItem>
+		        <GdsButtonMenuItem Type="button">Menu item 2</GdsButtonMenuItem>
+		        <GdsButtonMenuItem Type="button">Menu item 3</GdsButtonMenuItem>
+            </GdsButtonMenu>
+        );
+
+        var button = component.Find("[data-testid=MenuTitleButton]");
+        button.Click(new());
+
+        // Act
+        // Assert
+        component.MarkupMatches(
+            @<div>
+                <div class="moj-button-menu" data-module="moj-button-menu">
+                    <button class="govuk-button moj-button-menu__toggle-button" type="submit" data-module="govuk-button" data-testid="MenuTitleButton" aria-haspopup="true" aria-expanded="true">
+                        <span>
+                            Menu title
+                            <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.5 0L11 5L0 5L5.5 0Z" fill="currentColor"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul role="list" class="moj-button-menu__wrapper">
+                        <li>
+                            <button class="govuk-button moj-button-menu__item" type="button" data-module="govuk-button">Menu item 1</button>
+                        </li>
+                        <li>
+                            <button class="govuk-button moj-button-menu__item" type="button" data-module="govuk-button">Menu item 2</button>
+                        </li>
+                        <li>
+                            <button class="govuk-button moj-button-menu__item" type="button" data-module="govuk-button">Menu item 3</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        );
+    }
+
+    [Fact]
+    public void WhenButtonMenuItemHRefsAreSet_ThenOutputsButtonsAsHrefs()
+    {
+        // Arrange
+        var component = Render(
+            @<GdsButtonMenu MenuTitle="Menu title" MenuTitleButtonDataTestId="MenuTitleButton">
+                <GdsButtonMenuItem Href="#link1">Menu item 1</GdsButtonMenuItem>
+                <GdsButtonMenuItem Href="#link2">Menu item 2</GdsButtonMenuItem>
+                <GdsButtonMenuItem Href="#link3">Menu item 3</GdsButtonMenuItem>
+            </GdsButtonMenu>
+        );
+
+        var button = component.Find("[data-testid=MenuTitleButton]");
+        button.Click(new());
+
+        // Act
+        // Assert
+        component.MarkupMatches(
+            @<div>
+                <div class="moj-button-menu" data-module="moj-button-menu">
+                    <button class="govuk-button moj-button-menu__toggle-button" type="submit" data-module="govuk-button" data-testid="MenuTitleButton" aria-haspopup="true" aria-expanded="true">
+                        <span>
+                            Menu title
+                            <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.5 0L11 5L0 5L5.5 0Z" fill="currentColor"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul role="list" class="moj-button-menu__wrapper">
+                        <li>
+                            <a class="govuk-button moj-button-menu__item" href="#link1" role="button" data-module="govuk-button" draggable="false">Menu item 1</a>
+                        </li>
+                        <li>
+                            <a class="govuk-button moj-button-menu__item" href="#link2" role="button" data-module="govuk-button" draggable="false">Menu item 2</a>
+                        </li>
+                        <li>
+                            <a class="govuk-button moj-button-menu__item" href="#link3" role="button" data-module="govuk-button" draggable="false">Menu item 3</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        );
+    }
+
+    [Fact]
+    public void WhenButtonMenuItemButtonClassesSet_ThenOutputsButtonsWithClasses()
+    {
+        // Arrange
+        var someButtonClasses = $"{GdsButtonClasses.Secondary} another-class";
+
+        var component = Render(
+            @<GdsButtonMenu MenuTitle="Menu title" MenuTitleButtonDataTestId="MenuTitleButton">
+                <GdsButtonMenuItem Classes=@someButtonClasses>Menu item 1</GdsButtonMenuItem>
+                <GdsButtonMenuItem Classes=@someButtonClasses>Menu item 2</GdsButtonMenuItem>
+                <GdsButtonMenuItem Classes=@someButtonClasses>Menu item 3</GdsButtonMenuItem>
+            </GdsButtonMenu>
+        );
+
+        var button = component.Find("[data-testid=MenuTitleButton]");
+        button.Click(new());
+
+        // Act
+        // Assert
+        component.MarkupMatches(
+    @<div>
+        <div class="moj-button-menu" data-module="moj-button-menu">
+            <button class="govuk-button moj-button-menu__toggle-button" type="submit" data-module="govuk-button" data-testid="MenuTitleButton" aria-haspopup="true" aria-expanded="true">
+                <span>
+                    Menu title
+                    <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.5 0L11 5L0 5L5.5 0Z" fill="currentColor"></path>
+                    </svg>
+                </span>
+            </button>
+            <ul role="list" class="moj-button-menu__wrapper">
+                <li>
+                    <button class="govuk-button moj-button-menu__item govuk-button--secondary another-class" type="submit" data-module="govuk-button">Menu item 1</button>
+                </li>
+                <li>
+                    <button class="govuk-button moj-button-menu__item govuk-button--secondary another-class" type="submit" data-module="govuk-button">Menu item 2</button>
+                </li>
+                <li>
+                    <button class="govuk-button moj-button-menu__item govuk-button--secondary another-class" type="submit" data-module="govuk-button">Menu item 3</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    );
+    }
+
+    [Fact]
+    public void WhenButtonMenuItemHRefsClassesSet_ThenOutputsButtonsHrefsWithClasses()
+    {
+        // Arrange
+        
+        var someButtonClasses = $"{GdsButtonClasses.Secondary} another-class";
+        
+        var component = Render(
+            @<GdsButtonMenu MenuTitle="Menu title" MenuTitleButtonDataTestId="MenuTitleButton">
+                <GdsButtonMenuItem Href="#link1" Classes=@someButtonClasses>Menu item 1</GdsButtonMenuItem>
+                <GdsButtonMenuItem Href="#link2" Classes=@someButtonClasses>Menu item 2</GdsButtonMenuItem>
+                <GdsButtonMenuItem Href="#link3" Classes=@someButtonClasses>Menu item 3</GdsButtonMenuItem>
+            </GdsButtonMenu>
+        );
+
+        var button = component.Find("[data-testid=MenuTitleButton]");
+        button.Click(new());
+
+        // Act
+        // Assert
+        component.MarkupMatches(
+            @<div>
+                <div class="moj-button-menu" data-module="moj-button-menu">
+                    <button class="govuk-button moj-button-menu__toggle-button" type="submit" data-module="govuk-button" data-testid="MenuTitleButton" aria-haspopup="true" aria-expanded="true">
+                        <span>
+                            Menu title
+                            <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.5 0L11 5L0 5L5.5 0Z" fill="currentColor"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul role="list" class="moj-button-menu__wrapper">
+                        <li>
+                            <a class="govuk-button moj-button-menu__item govuk-button--secondary another-class" href="#link1" role="button" data-module="govuk-button" draggable="false">Menu item 1</a>
+                        </li>
+                        <li>
+                            <a class="govuk-button moj-button-menu__item govuk-button--secondary another-class" href="#link2" role="button" data-module="govuk-button" draggable="false">Menu item 2</a>
+                        </li>
+                        <li>
+                            <a class="govuk-button moj-button-menu__item govuk-button--secondary another-class" href="#link3" role="button" data-module="govuk-button" draggable="false">Menu item 3</a>
                         </li>
                     </ul>
                 </div>
@@ -144,10 +369,10 @@
     {
         // Arrange
         var component = Render(
-            @<GdsButtonMenu MenuTitle="Menu title" MenuTitleButtonDataTestId="MenuTitleButton" MenuTitleButtonClasses=@(GdsButtonClasses.Warning + " other-class")>
-                <GdsButtonMenuItem Classes=@GdsButtonClasses.Secondary>Menu item 1</GdsButtonMenuItem>
-                <GdsButtonMenuItem Type="submit" Classes=@GdsButtonClasses.Secondary>Menu item 2</GdsButtonMenuItem>
-                <GdsButtonMenuItem Type="submit" Classes=@GdsButtonClasses.Secondary>Menu item 3</GdsButtonMenuItem>
+            @<GdsButtonMenu MenuTitle="Menu title" MenuTitleButtonDataTestId="MenuTitleButton" MenuTitleButtonClasses=@(GdsButtonClasses.Secondary + " other-class")>
+                <GdsButtonMenuItem>Menu item 1</GdsButtonMenuItem>
+                <GdsButtonMenuItem>Menu item 2</GdsButtonMenuItem>
+                <GdsButtonMenuItem>Menu item 3</GdsButtonMenuItem>
             </GdsButtonMenu>
         );
 
@@ -156,7 +381,7 @@
         component.MarkupMatches(
             @<div>
                 <div class="moj-button-menu" data-module="moj-button-menu">
-                    <button class="govuk-button moj-button-menu__toggle-button govuk-button--warning other-class" type="submit" data-module="govuk-button" data-testid="MenuTitleButton" aria-haspopup="true" aria-expanded="false">
+                    <button class="govuk-button moj-button-menu__toggle-button govuk-button--secondary other-class" type="submit" data-module="govuk-button" data-testid="MenuTitleButton" aria-haspopup="true" aria-expanded="false">
                         <span>
                             Menu title
                             <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
@@ -178,7 +403,4 @@
             @<GdsButtonMenu></GdsButtonMenu>
         ));
     }
-
-    //MenuTitleButtonClasses
-    //
 }

@@ -4,7 +4,7 @@
     The button menu is a versatile component that allows users to view tasks as buttons in a collapsible menu.
 </summary> *@
 
-<div class=@(RightAlignMenu ? "button-menu-align--right": null)>
+<div class=@(RightAlignMenu ? "button-menu-align--right" : null)>
     <div class="moj-button-menu @Classes"
          data-module="moj-button-menu"
          data-testid=@DataTestId
@@ -48,11 +48,11 @@
     /// <summary>
     /// Apply additional classes to the Menu Title button. 
     /// </summary>
-    /// <remarks>
+    /// <remark>
     /// The default value is <see href="GdsButtonClasses.Secondary">.
-    /// </remarks>
+    /// </remark>
     [Parameter]
-    public string? MenuTitleButtonClasses { get; set; } = GdsButtonClasses.Secondary;
+    public string? MenuTitleButtonClasses { get; set; }
 
     [Parameter]
     public string? MenuTitleButtonDataTestId { get; set; }
@@ -73,7 +73,13 @@
         }
     }
 
-    private string menuTitleButtonClasses => $"moj-button-menu__toggle-button {MenuTitleButtonClasses}";
+    private string menuTitleButtonClasses
+    {
+        get
+        {
+            return $"moj-button-menu__toggle-button {(MenuTitleButtonClasses ?? "")}";
+        }
+    }
     #endregion
 
     #region Parameter Validation
