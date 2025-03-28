@@ -48,8 +48,12 @@
         {
             if (OpenInNewTab) 
             {
-                Attributes!.Add("target", "_blank");
-                Attributes!.Add("rel", "noreferrer noopener");
+                var attr = Attributes;
+
+                attr!.Add("target", "_blank");
+                attr!.Add("rel", "noreferrer noopener");
+
+                return attr;
             }
 
             return Attributes!;
