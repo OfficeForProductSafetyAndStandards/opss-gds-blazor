@@ -4,15 +4,14 @@
     The button menu is a versatile component that allows users to view tasks as buttons in a collapsible menu.
 </summary> *@
 
-<div class=@(RightAlignMenu ? "button-menu-align--right" : null)>
+<div class=@(RightAlignMenu ? "button-menu-align--right" : null) data-testid=@DataTestId>
     <div class="moj-button-menu @Classes"
-    data-module="moj-button-menu"
-    data-testid=@DataTestId
-    @attributes=@Attributes>
+         data-module="moj-button-menu"
+         @attributes=@Attributes>
         <GdsButton Classes=@menuTitleButtonClasses 
-        Attributes=@menuTitleButtonAttributes 
-        OnClick=@((args) => isExpanded = !isExpanded)
-        DataTestId=@MenuTitleButtonDataTestId>
+                   Attributes=@menuTitleButtonAttributes 
+                   OnClick=@((args) => isExpanded = !isExpanded)
+                   DataTestId=@MenuTitleButtonDataTestId>
             <span>
                 @MenuTitle
                 <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">

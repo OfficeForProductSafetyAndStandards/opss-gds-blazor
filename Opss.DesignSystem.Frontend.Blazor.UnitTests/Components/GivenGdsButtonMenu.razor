@@ -36,8 +36,8 @@
         );
 
         component.MarkupMatches(
-            @<div>
-                <div class="moj-button-menu" data-module="moj-button-menu" data-testid="GdsButtonMenu">
+	@<div data-testid="GdsButtonMenu">
+                <div class="moj-button-menu" data-module="moj-button-menu">
                     <button class="govuk-button moj-button-menu__toggle-button" type="submit" data-module="govuk-button" data-testid="MenuTitleButton" aria-haspopup="true" aria-expanded="false">
                         <span>
                             Menu title
@@ -56,7 +56,7 @@
     {
         // Arrange
         var component = Render(
-            @<GdsButtonMenu MenuTitle="Menu title" DataTestId="GdsButtonMenu" MenuTitleButtonDataTestId="MenuTitleButton">
+            @<GdsButtonMenu MenuTitle="Menu title" MenuTitleButtonDataTestId="MenuTitleButton">
                 <GdsButtonMenuItem Href="#">Menu item 1</GdsButtonMenuItem>
                 <GdsButtonMenuItem Href="#">Menu item 2</GdsButtonMenuItem>
                 <GdsButtonMenuItem Href="#">Menu item 3</GdsButtonMenuItem>
@@ -70,7 +70,7 @@
         // Assert
         component.MarkupMatches(
             @<div>
-                <div class="moj-button-menu" data-module="moj-button-menu" data-testid="GdsButtonMenu">
+                <div class="moj-button-menu" data-module="moj-button-menu">
                     <button class="govuk-button moj-button-menu__toggle-button" type="submit" data-module="govuk-button" data-testid="MenuTitleButton" aria-haspopup="true" aria-expanded="true">
                         <span>
                             Menu title
