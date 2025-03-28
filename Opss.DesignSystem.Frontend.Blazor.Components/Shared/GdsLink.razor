@@ -46,14 +46,13 @@
     {
         get
         {
-            if (OpenInNewTab) 
+            if (OpenInNewTab && Attributes is not null)
             {
-                var attr = Attributes;
-
-                attr!.Add("target", "_blank");
-                attr!.Add("rel", "noreferrer noopener");
-
-                return attr;
+                return new Dictionary<string, object>(Attributes)
+                            {
+                                { "target", "_blank" },
+                                { "rel", "noreferrer noopener" }
+                            };
             }
 
             return Attributes!;
