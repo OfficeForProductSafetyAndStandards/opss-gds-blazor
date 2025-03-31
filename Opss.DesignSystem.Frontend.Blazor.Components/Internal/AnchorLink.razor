@@ -1,13 +1,11 @@
 ﻿@inherits GdsWithHref
-@inject Microsoft.JSInterop.IJSRuntime JS
+@inject NavigationManager navigationManager
 
 <a id=@Id
-	 class=@Classes
-	 href=@Href
-	 data-testid=@DataTestId
-	 @attributes=@Attributes
-	 @onclick=@AnchorOnClickAsync
-	 @onclick:preventDefault=@preventDefault
+   class=@Classes
+   href=@href
+   data-testid=@DataTestId
+   @attributes=@Attributes
 >
 	@ChildContent
 </a>
@@ -18,28 +16,27 @@
 	public string? Id { get; set; }
 	#endregion
 
-	#region Private Properties
-	private string? targetId = null;
-	private bool preventDefault = false;
-	#endregion
-
-	#region Event Handlers
-	private async Task AnchorOnClickAsync()
-	{
-		if (string.IsNullOrEmpty(targetId)) return;
-
-		await JS.InvokeAsync<string>("anchorLink.scrollIntoView", [targetId]);
-	}
+	#region Private Properties 
+	private string? href;
 	#endregion
 
 	#region Parameter Validation / Event Overriding
 	protected override void OnParametersSet()
 	{
-		if (!string.IsNullOrEmpty(this.Href) && this.Href.StartsWith("#"))
+		if (!string.IsNullOrEmpty(Href) && Href.StartsWith("#"))
 		{
-			targetId = Href.Substring(1);
-			preventDefault = true;
+			var navUri = new Uri(navigationManager.Uri, UriKind.RelativeOrAbsolute);
+			string uriString = navUri.IsAbsoluteUri ? navUri.PathAndQuery : navigationManager.Uri;
+
+			var uri = uriString.Replace(Href, string.Empty);
+
+			href = $"{uri}{Href}";
 		}
+		else
+		{
+			href = Href;
+		}
+
 		base.OnParametersSet();
 	}
 	#endregion
