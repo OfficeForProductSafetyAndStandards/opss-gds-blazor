@@ -2,7 +2,7 @@
 
 @code {
     [Fact]
-    public void OutputsButtonGroup()
+    public void WhenContentWithButtonsIsSet_OutputsButtonGroupWithContent()
     {
         // Arrange
         var component = Render(@<GdsButtonGroup DataTestId="GdsButtonGroup">
@@ -23,7 +23,7 @@
     }
 
     [Fact]
-    public void OutputsButtonGroupWithLink()
+    public void WhenContentWithButtonLinkIsSet_OutputsButtonGroupWithLinkContent()
     {
         // Arrange
         var component = Render(@<GdsButtonGroup>
@@ -42,7 +42,7 @@
     }
 
     [Fact]
-    public void OutputsEmptyButtonGroup()
+    public void WhenNoParametersSet_ThenOutputsEmptyButtonGroup()
     {
         // Arrange
         var component = Render(@<GdsButtonGroup></GdsButtonGroup>);
@@ -53,7 +53,7 @@
     }
 
     [Fact]
-    public void OutputsCustomAttributes()
+    public void WhenCustomAttributesSet_ThenOutputsButtonGroupWithCustomAttributes()
     {
         // Arrange
         var customAttributes = new Dictionary<string, object>() {
@@ -65,6 +65,17 @@
 
         component.MarkupMatches(
     @<div aria-label="Custom Label" class="govuk-button-group" data-my-field="my data"></div>
+        );
+    }
+
+    [Fact]
+    public void WhenClassesSet_ThenOutputsButtonGroupWithCustomClasses()
+    {
+        // Arrange
+        var component = Render(@<GdsButtonGroup Classes="class1 class2 class3"></GdsButtonGroup>);
+
+        component.MarkupMatches(
+    @<div class="govuk-button-group class1 class2 class3"></div>
         );
     }
 
