@@ -42,14 +42,28 @@
     </GdsButtonMenu>
 </Example>
 
-<h3 class="govuk-heading-m" id="secondary-menu-button">A secondary menu button</h3>
+<h3 class="govuk-heading-m" id="menu-title-button-classes">Apply styles to menu button</h3>
 
+<h4 class="govuk-heading-s" id="secondary-menu-button">A secondary menu button</h4>
 <Example BlazorExampleContent="@(@"<GdsButtonMenu MenuTitle=""Review"" MenuTitleButtonClasses=@GdsButtonClasses.Secondary>
         <GdsButtonMenuItem Href=""#"">Approve</GdsButtonMenuItem>
         <GdsButtonMenuItem Href=""#"">Request more information</GdsButtonMenuItem>
         <GdsButtonMenuItem Href=""#"">Reject with reason</GdsButtonMenuItem>
 </GdsButtonMenu>")">
     <GdsButtonMenu MenuTitle="Review" MenuTitleButtonClasses=@GdsButtonClasses.Secondary>
+        <GdsButtonMenuItem Href="#">Approve</GdsButtonMenuItem>
+        <GdsButtonMenuItem Href="#">Request more information</GdsButtonMenuItem>
+        <GdsButtonMenuItem Href="#">Reject with reason</GdsButtonMenuItem>
+    </GdsButtonMenu>
+</Example>
+
+<h4 class="govuk-heading-s" id="warning-menu-button">A warning menu button</h4>
+<Example BlazorExampleContent="@(@"<GdsButtonMenu MenuTitle=""Review"" MenuTitleButtonClasses=@GdsButtonClasses.Warning>
+        <GdsButtonMenuItem Href=""#"">Approve</GdsButtonMenuItem>
+        <GdsButtonMenuItem Href=""#"">Request more information</GdsButtonMenuItem>
+        <GdsButtonMenuItem Href=""#"">Reject with reason</GdsButtonMenuItem>
+</GdsButtonMenu>")">
+    <GdsButtonMenu MenuTitle="Review" MenuTitleButtonClasses=@GdsButtonClasses.Warning>
         <GdsButtonMenuItem Href="#">Approve</GdsButtonMenuItem>
         <GdsButtonMenuItem Href="#">Request more information</GdsButtonMenuItem>
         <GdsButtonMenuItem Href="#">Reject with reason</GdsButtonMenuItem>
@@ -106,9 +120,7 @@
 </Example>
 
 <h3 class="govuk-heading-m" id="note">Note</h3>
-<p class="govuk-body">The <b>Classes</b> fields are redundant.</p>
-
-
+<p class="govuk-body">The <b>Classes</b> fields on both related components demoed on this page are redundant.</p>
 @code {
 
 }
