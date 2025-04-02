@@ -101,9 +101,7 @@
     {
         currentIndex--;
 
-        if (UseBlockStyle != true 
-            && links.Any() 
-            && links.ElementAtOrDefault(currentIndex) != null)
+        if (links.Any() && links.ElementAtOrDefault(currentIndex) != null)
             SetCurrentLink(links[currentIndex].Number);
     }
 
@@ -111,9 +109,7 @@
     {
         currentIndex++;
 
-        if (UseBlockStyle != true
-            && links.Any()
-            && links.ElementAtOrDefault(currentIndex) != null)
+        if (links.Any() && links.ElementAtOrDefault(currentIndex) != null)
             SetCurrentLink(links[currentIndex].Number);
     }
 
