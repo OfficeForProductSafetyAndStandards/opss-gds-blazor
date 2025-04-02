@@ -2,6 +2,17 @@
 
 @code {
     [Fact]
+    public void ThenOutputsEmptyLink()
+    {
+        // Arrange
+        var component = Render(@<GdsLink></GdsLink>);
+
+        component.MarkupMatches(
+    @<a class="govuk-link"></a>
+        );
+    }
+
+    [Fact]
     public void ThenOutputsLinkWithIdAndHref()
     {
         // Arrange
@@ -82,6 +93,25 @@
         component.MarkupMatches(
     @<a id=@id class="govuk-link govuk-link--no-underline" href=@href>
         @message
+    </a>
+    );
+    }
+
+    [Fact]
+    public void WhenVisuallyHiddenTextIsSet_ThenOutputsLinkSetText()
+    {
+        // Arrange
+        var id = "hello-world";
+        var message = "Hello World";
+        var href = "/linky";
+        var hiddenText = "SOME HIDDEN TEXT";
+
+        var component = Render(@<GdsLink Id=@id Href=@href VisuallyHiddenText=@hiddenText>@message</GdsLink>);
+
+        component.MarkupMatches(
+    @<a id=@id class="govuk-link" href=@href>
+        @message
+        <span class="govuk-visually-hidden">@hiddenText</span>
     </a>
         );
     }
