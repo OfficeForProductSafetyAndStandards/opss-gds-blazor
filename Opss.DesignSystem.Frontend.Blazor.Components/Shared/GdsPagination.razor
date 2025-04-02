@@ -6,9 +6,9 @@
 </summary> *@
 
 <nav class="govuk-pagination @Classes @(UseBlockStyle == true ? " govuk-pagination--block" : "")"
-     aria-label="Pagination"
-     data-testid=@DataTestId
-     @attributes=@Attributes>
+    aria-label="Pagination"
+    data-testid=@DataTestId
+    @attributes=@Attributes>
     @if (PreviousTemplate != null && (currentIndex > 0 || UseBlockStyle == true))
     {
         <CascadingValue Value=this>
@@ -56,18 +56,16 @@
 
     /// <summary>
     /// Show an appropriate number of pages to fit the horizontal space available.
-    /// For smaller screens, set to 0. To show page numbers for:
-    ///
-    /// the current page
-    /// previous and next pages
-    /// first and last pages
-    ///
-    /// For larger screens (default), set to 1. To show page numbers for:
-    ///
-    /// the current page
-    /// at least one page immediately before and after the current page
-    /// first and last pages
     /// </summary>
+    /// <remarks>
+    /// For smaller screens, set to 0. To show page numbers for:
+    /// <para />the current page<para />previous and next pages<para />first and last pages
+    /// <para />
+    /// For larger screens (default), set to 1. To show page numbers for:
+    /// <para />the current page
+    /// <para />at least one page immediately before and after the current page
+    /// <para />first and last pages
+    /// </remarks>
     [Parameter]
     public int NumberOfPagesToShowBesideActive { get; set; } = 1;
 
@@ -85,6 +83,10 @@
     #endregion
 
     #region Event Handlers
+    /// <summary>
+    /// Called on a page change, will return the page number. 
+    /// This is for databinding of the active page number and in this context is required in addition to the OnPageChanged event.
+    /// </summary>
     [Parameter]
     public EventCallback<string?> ActivePageNumberChanged { get; set; }
     #endregion
@@ -98,13 +100,17 @@
     public void Previous()
     {
         currentIndex--;
-        SetCurrentLink(links[currentIndex].Number);
+
+        if (links.Any() && links.ElementAtOrDefault(currentIndex) != null)
+            SetCurrentLink(links[currentIndex].Number);
     }
 
     public void Next()
     {
         currentIndex++;
-        SetCurrentLink(links[currentIndex].Number);
+
+        if (links.Any() && links.ElementAtOrDefault(currentIndex) != null)
+            SetCurrentLink(links[currentIndex].Number);
     }
 
     public void NavigatePage(string? number)
@@ -160,7 +166,7 @@
     {
         if (maxPageIndex == 2)
             this.links.ElementAt(maxPageIndex).Ellipsis = true;
-
+             
         if (maxPageIndex > 2)
             this.links.ElementAt(maxPageIndex).Hide = true;
 

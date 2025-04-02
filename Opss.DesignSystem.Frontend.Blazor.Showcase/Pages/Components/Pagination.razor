@@ -23,7 +23,7 @@
         <GdsPaginationNextLink />
     </NextTemplate>
 </GdsPagination>")"
-        CodeExampleContent="@(@"@code{
+CodeExampleContent="@(@"@code{
     string activePageNumber = ""2"";
     public void PageChanged(string pageNumber){
         /* Code here */
@@ -55,21 +55,45 @@
 
 <Example BlazorExampleContent="@(@"<GdsPagination UseBlockStyle=@true>
     <PreviousTemplate>
-        <GdsPaginationPreviousLink LabelText=""Applying for a provisional lorry or bus licence"" />
+        <GdsPaginationPreviousLink OnPreviousClick=@NavigateToPrev LabelText=""Applying for a provisional lorry or bus licence"" />
     </PreviousTemplate>
     <NextTemplate>
-        <GdsPaginationNextLink LabelText=""Driver CPC part 1 test: theory"" />
+        <GdsPaginationNextLink OnNextClick=@NavigateToNext LabelText=""Driver CPC part 1 test: theory"" />
     </NextTemplate>
-</GdsPagination>")">
+</GdsPagination>")" CodeExampleContent="@(@"
+    private void NavigateToNext (MouseEventArgs args) {
+        /* Code to navigate to Next Page here */
+    }
+
+    private void NavigateToPrev (MouseEventArgs args)
+    {
+        /* Code to navigate to Previous Page here */
+    }
+")">
     <GdsPagination UseBlockStyle=@true>
         <PreviousTemplate>
-            <GdsPaginationPreviousLink LabelText="Applying for a provisional lorry or bus licence" />
+            <GdsPaginationPreviousLink OnPreviousClick=@NavigateToPrev LabelText="Applying for a provisional lorry or bus licence" />
         </PreviousTemplate>
         <NextTemplate>
-            <GdsPaginationNextLink LabelText="Driver CPC part 1 test: theory" />
+            <GdsPaginationNextLink OnNextClick=@NavigateToNext LabelText="Driver CPC part 1 test: theory" />
         </NextTemplate>
     </GdsPagination>
+    <p class="govuk-body">@navigateResult</p>
 </Example>
+@code {
+    private string? navigateResult;
+
+    private void NavigateToNext (MouseEventArgs args) {
+        /* Code to navigate to Next Page here */
+        navigateResult = "You have navigated to the next page: Driver CPC part 1 test: theory.";
+    }
+
+    private void NavigateToPrev (MouseEventArgs args)
+    {
+        /* Code to navigate to Previous Page here */
+        navigateResult = "You have navigated to the previous page: Applying for a provisional lorry or bus licence.";
+    }
+}
 
 <h2 class="govuk-heading-l" id="for-navigating-between-pages-of-items">For navigating between pages of items</h2>
 
@@ -197,6 +221,36 @@
         </ChildContent>
         <NextTemplate>
             <GdsPaginationNextLink />
+        </NextTemplate>
+    </GdsPagination>
+</Example>
+
+<h3 class="govuk-heading-m" id="prev-next-text">Custom content for Previous and Next</h3>
+
+<Example BlazorExampleContent="@(@"<GdsPagination ActivePageNumber=""3"">
+    <PreviousTemplate>
+        <GdsPaginationPreviousLink>GO TO THE PREVIOUS</GdsPaginationPreviousLink>
+    </PreviousTemplate>
+    <ChildContent>
+        <GdsPaginationLink Number=""1"" />
+        <GdsPaginationLink Number=""2"" />
+        <GdsPaginationLink Number=""3"" />
+    </ChildContent>
+    <NextTemplate>
+        <GdsPaginationNextLink>GO TO THE NEXT</GdsPaginationNextLink>
+    </NextTemplate>
+</GdsPagination>")">
+    <GdsPagination>
+        <PreviousTemplate>
+            <GdsPaginationPreviousLink>GO TO THE PREVIOUS</GdsPaginationPreviousLink>
+        </PreviousTemplate>
+        <ChildContent>
+            <GdsPaginationLink Number="1" />
+            <GdsPaginationLink Number="2" />
+            <GdsPaginationLink Number="3" />
+        </ChildContent>
+        <NextTemplate>
+			<GdsPaginationNextLink>GO TO THE NEXT</GdsPaginationNextLink>
         </NextTemplate>
     </GdsPagination>
 </Example>
