@@ -2,7 +2,7 @@
 
 @code {
     [Fact]
-    public void OutputsPagination()
+    public void ThenOutputsPagination()
     {
         // Arrange
         var component = Render(@<GdsPagination DataTestId="GdsPagination" ActivePageNumber="2">
@@ -33,19 +33,13 @@
         </div>
         <ul class="govuk-pagination__list">
             <li class="govuk-pagination__item" data-testid="GdsPaginationLink">
-                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1">
-                    1
-                </a>
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1">1</a>
             </li>
             <li class="govuk-pagination__item govuk-pagination__item--current">
-                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 2" aria-current="page">
-                    2
-                </a>
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 2" aria-current="page">2</a>
             </li>
             <li class="govuk-pagination__item">
-                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 3">
-                    3
-                </a>
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 3">3</a>
             </li>
         </ul>
         <div class="govuk-pagination__next" data-testid="GdsPaginationNextLink">
@@ -63,7 +57,7 @@
     }
 
     [Fact]
-    public void OutputsPaginationWithBlockStyle()
+    public void WhenUseBlockStyleIsSet_ThenOutputsPaginationWithBlockStyle()
     {
         // Arrange
         var component = Render(@<GdsPagination UseBlockStyle=@true>
@@ -106,97 +100,46 @@
     }
 
     [Fact]
-    public void OutputsPaginationWithLongList()
+    public void WhenUseBlockStyleIsSetAndLinksHaveContent_ThenOutputsPaginationWithBlockStyleAndContentInLinks()
     {
         // Arrange
-        var component = Render(@<GdsPagination ActivePageNumber="7">
+        var component = Render(@<GdsPagination UseBlockStyle=@true>
         <PreviousTemplate>
-            <GdsPaginationPreviousLink />
+            <GdsPaginationPreviousLink LabelText="Applying for a provisional lorry or bus licence">
+            APPLY FORM
+            </GdsPaginationPreviousLink>
         </PreviousTemplate>
-        <ChildContent>
-            <GdsPaginationLink Number="1" />
-            <GdsPaginationLink Number="2" />
-            <GdsPaginationLink Number="3" />
-            <GdsPaginationLink Number="4" />
-            <GdsPaginationLink Number="5" />
-            <GdsPaginationLink Number="6" />
-            <GdsPaginationLink Number="7" />
-            <GdsPaginationLink Number="8" />
-            <GdsPaginationLink Number="9" />
-            <GdsPaginationLink Number="10" />
-            <GdsPaginationLink Number="11" />
-            <GdsPaginationLink Number="12" />
-            <GdsPaginationLink Number="13" />
-            <GdsPaginationLink Number="14" />
-            <GdsPaginationLink Number="15" />
-            <GdsPaginationLink Number="16" />
-            <GdsPaginationLink Number="17" />
-            <GdsPaginationLink Number="18" />
-            <GdsPaginationLink Number="19" />
-            <GdsPaginationLink Number="20" />
-            <GdsPaginationLink Number="21" />
-            <GdsPaginationLink Number="22" />
-            <GdsPaginationLink Number="23" />
-            <GdsPaginationLink Number="24" />
-        </ChildContent>
         <NextTemplate>
-            <GdsPaginationNextLink />
+            <GdsPaginationNextLink LabelText="Driver CPC part 1 test: theory">
+                THEORY TEST<span class="govuk-visually-hidden"> page</span>
+            </GdsPaginationNextLink>
         </NextTemplate>
     </GdsPagination>);
 
         component.MarkupMatches(
-    @<nav class="govuk-pagination" aria-label="Pagination">
+    @<nav class="govuk-pagination govuk-pagination--block" aria-label="Pagination">
         <div class="govuk-pagination__prev">
             <a class="govuk-link govuk-pagination__link" href="#" rel="prev">
                 <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
                     <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
                 </svg>
                 <span class="govuk-pagination__link-title">
-                    Previous<span class="govuk-visually-hidden"> page</span>
+                    APPLY FORM
                 </span>
+                <span class="govuk-visually-hidden">:</span>
+                <span class="govuk-pagination__link-label">Applying for a provisional lorry or bus licence</span>
             </a>
         </div>
-        <ul class="govuk-pagination__list">
-            <li class="govuk-pagination__item">
-                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1">
-                    1
-                </a>
-            </li>
-            <li class="govuk-pagination__item govuk-pagination__item--ellipses">
-                &ctdot;
-            </li>
-            <li class="govuk-pagination__item">
-                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 6">
-                    6
-                </a>
-            </li>
-            <li class="govuk-pagination__item govuk-pagination__item--current">
-                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 7" aria-current="page">
-                    7
-                </a>
-            </li>
-            <li class="govuk-pagination__item">
-                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 8">
-                    8
-                </a>
-            </li>
-            <li class="govuk-pagination__item govuk-pagination__item--ellipses">
-                &ctdot;
-            </li>
-            <li class="govuk-pagination__item">
-                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 24">
-                    24
-                </a>
-            </li>
-        </ul>
         <div class="govuk-pagination__next">
             <a class="govuk-link govuk-pagination__link" href="#" rel="next">
-                <span class="govuk-pagination__link-title">
-                    Next<span class="govuk-visually-hidden"> page</span>
-                </span>
                 <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
                     <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
                 </svg>
+                <span class="govuk-pagination__link-title">
+                    THEORY TEST<span class="govuk-visually-hidden"> page</span>
+                </span>
+                <span class="govuk-visually-hidden">:</span>
+                <span class="govuk-pagination__link-label">Driver CPC part 1 test: theory</span>
             </a>
         </div>
     </nav>
@@ -204,7 +147,7 @@
     }
 
     [Fact]
-    public void OutputsPaginationOnPage1()
+    public void WhenNoPageIsSet_ThenOutputsPaginationOnFirstPage()
     {
         // Arrange
         var component = Render(@<GdsPagination>
@@ -255,7 +198,7 @@
     }
 
     [Fact]
-    public void OutputsPaginationOnLastPage()
+    public void WhenLastPageIsSet_ThenOutputsPaginationOnLastPage()
     {
         // Arrange
         var component = Render(@<GdsPagination ActivePageNumber="3">
@@ -304,4 +247,818 @@
     </nav>
         );
     }
+
+    [Fact]
+    public void WhenNumberOfPagesToShowBesideActiveSetToDefault_ThenOutputsCorrectActivePageWithDefaultElipses()
+    {
+        // Arrange
+        var count = 30;
+
+        var component = Render(@<GdsPagination ActivePageNumber="7" NumberOfPagesToShowBesideActive="1">
+        <PreviousTemplate>
+            <GdsPaginationPreviousLink />
+        </PreviousTemplate>
+        <ChildContent>
+        @for(var pageNumber = 1; pageNumber<count+1; pageNumber++)
+        {
+            <GdsPaginationLink Number=@pageNumber.ToString() />
+        }
+        </ChildContent>
+        <NextTemplate>
+            <GdsPaginationNextLink />
+        </NextTemplate>
+    </GdsPagination>);
+
+        component.MarkupMatches(
+    @<nav class="govuk-pagination" aria-label="Pagination">
+        <div class="govuk-pagination__prev">
+            <a class="govuk-link govuk-pagination__link" href="#" rel="prev">
+                <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                    <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+                </svg>
+                <span class="govuk-pagination__link-title">
+                    Previous<span class="govuk-visually-hidden"> page</span>
+                </span>
+            </a>
+        </div>
+        <ul class="govuk-pagination__list">
+            <li class="govuk-pagination__item">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1">
+                    1
+                </a>
+            </li>
+            <li class="govuk-pagination__item govuk-pagination__item--ellipses">
+                &ctdot;
+            </li>
+            <li class="govuk-pagination__item">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 6">
+                    6
+                </a>
+            </li>
+            <li class="govuk-pagination__item govuk-pagination__item--current">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 7" aria-current="page">
+                    7
+                </a>
+            </li>
+            <li class="govuk-pagination__item">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 8">
+                    8
+                </a>
+            </li>
+            <li class="govuk-pagination__item govuk-pagination__item--ellipses">
+                &ctdot;
+            </li>
+            <li class="govuk-pagination__item">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 30">
+                    30
+                </a>
+            </li>
+        </ul>
+        <div class="govuk-pagination__next">
+            <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+                <span class="govuk-pagination__link-title">
+                    Next<span class="govuk-visually-hidden"> page</span>
+                </span>
+                <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                    <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+        );
+    }
+
+    [Fact]
+    public void WhenNumberOfPagesToShowBesideActiveSetTo0_ThenOutputsMinimalPagesAndEllipses()
+    {
+        // Arrange
+        var count = 40;
+
+        var component = Render(@<GdsPagination ActivePageNumber="7" NumberOfPagesToShowBesideActive="0">
+        <PreviousTemplate>
+            <GdsPaginationPreviousLink />
+        </PreviousTemplate>
+        <ChildContent>
+        @for(var pageNumber = 1; pageNumber<count+1; pageNumber++)
+        {
+            <GdsPaginationLink Number=@pageNumber.ToString() />
+        }
+        </ChildContent>
+        <NextTemplate>
+            <GdsPaginationNextLink />
+        </NextTemplate>
+    </GdsPagination>);
+
+        component.MarkupMatches(
+    @<nav class="govuk-pagination" aria-label="Pagination">
+        <div class="govuk-pagination__prev">
+            <a class="govuk-link govuk-pagination__link" href="#" rel="prev">
+                <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                    <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+                </svg>
+                <span class="govuk-pagination__link-title">
+                    Previous<span class="govuk-visually-hidden"> page</span>
+                </span>
+            </a>
+        </div>
+        <ul class="govuk-pagination__list">
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1">1</a>
+            </li>
+            <li class="govuk-pagination__item govuk-pagination__item--ellipses">
+                &ctdot;
+            </li>
+            <li class="govuk-pagination__item  govuk-pagination__item--current">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 7" aria-current="page">7</a>
+            </li>
+            <li class="govuk-pagination__item govuk-pagination__item--ellipses">
+                &ctdot;
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 40">40</a>
+            </li>
+        </ul>
+        <div class="govuk-pagination__next">
+            <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+                <span class="govuk-pagination__link-title">
+                    Next<span class="govuk-visually-hidden">
+                        page
+                    </span>
+                </span>
+                <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                    <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+        );
+    }
+
+    [Fact]
+    public void WhenNumberOfPagesToShowBesideActiveSetTo3_ThenOutputsCorrectNumberOfPagesAndEllipses()
+    {
+        // Arrange
+        var count = 60;
+
+        var component = Render(@<GdsPagination ActivePageNumber="7" NumberOfPagesToShowBesideActive="3">
+        <PreviousTemplate>
+            <GdsPaginationPreviousLink />
+        </PreviousTemplate>
+        <ChildContent>
+        @for(var pageNumber = 1; pageNumber<count+1; pageNumber++)
+        {
+            <GdsPaginationLink Number=@pageNumber.ToString() />
+        }
+        </ChildContent>
+        <NextTemplate>
+            <GdsPaginationNextLink />
+        </NextTemplate>
+    </GdsPagination>);
+
+        component.MarkupMatches(
+    @<nav class="govuk-pagination" aria-label="Pagination">
+        <div class="govuk-pagination__prev">
+            <a class="govuk-link govuk-pagination__link" href="#" rel="prev">
+                <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                    <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+                </svg>
+                <span class="govuk-pagination__link-title">
+                    Previous<span class="govuk-visually-hidden"> page</span>
+                </span>
+            </a>
+        </div>
+        <ul class="govuk-pagination__list">
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1">1</a>
+            </li>
+            <li class="govuk-pagination__item govuk-pagination__item--ellipses">
+                ⋯
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 4">4</a>
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 5">5</a>
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 6">6</a>
+            </li>
+            <li class="govuk-pagination__item  govuk-pagination__item--current">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 7" aria-current="page">7</a>
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 8">8</a>
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 9">9</a>
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 10">10</a>
+            </li>
+            <li class="govuk-pagination__item govuk-pagination__item--ellipses">
+                ⋯
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 60">60</a>
+            </li>
+        </ul>
+        <div class="govuk-pagination__next">
+            <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+                <span class="govuk-pagination__link-title">
+                    Next<span class="govuk-visually-hidden"> page</span>
+                </span>
+                <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                    <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+    );
+    }
+
+    [Fact]
+    public void WhenNumberOfPagesToShowBesideActiveSetTo5_ThenOutputsCorrectNumberOfPagesAndEllipses()
+    {
+        // Arrange
+        var count = 25;
+
+        var component = Render(@<GdsPagination ActivePageNumber="7" NumberOfPagesToShowBesideActive="5">
+        <PreviousTemplate>
+            <GdsPaginationPreviousLink />
+        </PreviousTemplate>
+        <ChildContent>
+        @for(var pageNumber = 1; pageNumber<count+1; pageNumber++)
+        {
+            <GdsPaginationLink Number=@pageNumber.ToString() />
+        }
+        </ChildContent>
+        <NextTemplate>
+            <GdsPaginationNextLink />
+        </NextTemplate>
+    </GdsPagination>);
+
+        component.MarkupMatches(
+    @<nav class="govuk-pagination" aria-label="Pagination">
+        <div class="govuk-pagination__prev">
+            <a class="govuk-link govuk-pagination__link" href="#" rel="prev">
+                <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                    <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+                </svg>
+                <span class="govuk-pagination__link-title">
+                    Previous<span class="govuk-visually-hidden"> page</span>
+                </span>
+            </a>
+        </div>
+        <ul class="govuk-pagination__list">
+            <li class="govuk-pagination__item">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1">1</a>
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 2">2</a>
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 3">3</a>
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 4">4</a>
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 5">5</a>
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 6">6</a>
+            </li>
+            <li class="govuk-pagination__item  govuk-pagination__item--current">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 7" aria-current="page">7</a>
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 8">8</a>
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 9">9</a>
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 10">10</a>
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 11">11</a>
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 12">12</a>
+            </li>
+            <li class="govuk-pagination__item govuk-pagination__item--ellipses">
+                &ctdot;
+            </li>
+            <li class="govuk-pagination__item ">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 25">25</a>
+            </li>
+        </ul>
+        <div class="govuk-pagination__next">
+            <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+                <span class="govuk-pagination__link-title">
+                    Next<span class="govuk-visually-hidden"> page</span>
+                </span>
+                <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                    <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+        );
+    }
+
+    [Fact]
+    public void WhenActivePageNumberBindSet_ThenOnPageChangeEventRaisedAndOutputsCorrectActivePage()
+    {
+        // Arrange
+        var activePageNumber = "3";
+        var newPage = "UNSET";
+
+        // Act
+        var component = Render(@<GdsPagination @bind-ActivePageNumber=@activePageNumber OnPageChanged=@((string page) => { newPage = page;})>
+            <PreviousTemplate>
+                <GdsPaginationPreviousLink />
+            </PreviousTemplate>
+            <ChildContent>
+                <GdsPaginationLink Number="1" />
+                <GdsPaginationLink Number="2" />
+                <GdsPaginationLink Number="3" />
+            </ChildContent>
+            <NextTemplate>
+                <GdsPaginationNextLink />
+            </NextTemplate>
+        </GdsPagination>);
+
+        // Assert
+        component.MarkupMatches(
+        @<nav class="govuk-pagination" aria-label="Pagination">
+            <div class="govuk-pagination__prev">
+                <a class="govuk-link govuk-pagination__link" href="#" rel="prev">
+                    <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                        <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+                    </svg>
+                    <span class="govuk-pagination__link-title">
+                        Previous<span class="govuk-visually-hidden"> page</span>
+                    </span>
+                </a>
+            </div>
+            <ul class="govuk-pagination__list">
+                <li class="govuk-pagination__item">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1">1</a>
+                </li>
+                <li class="govuk-pagination__item">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 2">2</a>
+                </li>
+			    <li class="govuk-pagination__item govuk-pagination__item--current">
+				    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 3" aria-current="page">3</a>
+			    </li>
+		    </ul>
+        </nav>
+    );
+
+        Assert.Equal("3", newPage);
+        Assert.Equal("3", activePageNumber);
+    }
+
+    [Fact]
+    public void WhenWithPagesAndPreviousLinkClicked_ThenEventsRaisedAndOutputsCorrectActivePage()
+    {
+        // Arrange
+        var activePageNumber = "3";
+        var newPage = "UNSET";
+        var previousLinkClicked = false;
+
+        var component = Render(@<GdsPagination @bind-ActivePageNumber=@activePageNumber 
+            OnPageChanged=@((string page) => { newPage = page;})>
+            <PreviousTemplate>
+                <GdsPaginationPreviousLink OnPreviousClick=@((args) => {previousLinkClicked = true; }) />
+            </PreviousTemplate>
+            <ChildContent>
+                <GdsPaginationLink Number="1" />
+                <GdsPaginationLink Number="2" />
+                <GdsPaginationLink Number="3" />
+            </ChildContent>
+            <NextTemplate>
+                <GdsPaginationNextLink />
+            </NextTemplate>
+        </GdsPagination>);
+
+        // Act
+        var link = component.Find("[rel=prev]");
+        link.Click(new());
+
+        // Assert
+        component.MarkupMatches(
+        @<nav class="govuk-pagination" aria-label="Pagination">
+            <div class="govuk-pagination__prev">
+                <a class="govuk-link govuk-pagination__link" href="#" rel="prev">
+                    <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                        <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+                    </svg>
+                    <span class="govuk-pagination__link-title">
+                        Previous<span class="govuk-visually-hidden"> page</span>
+                    </span>
+                </a>
+            </div>
+            <ul class="govuk-pagination__list">
+                <li class="govuk-pagination__item">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1">1</a>
+                </li>
+                <li class="govuk-pagination__item govuk-pagination__item--current">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 2" aria-current="page">2</a>
+                </li>
+                <li class="govuk-pagination__item">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 3">3</a>
+                </li>
+            </ul>
+            <div class="govuk-pagination__next">
+                <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+                    <span class="govuk-pagination__link-title">
+                        Next<span class="govuk-visually-hidden"> page</span>
+                    </span>
+                    <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                        <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+                    </svg>
+                </a>
+            </div>
+        </nav>
+        );
+
+        Assert.Equal("2", newPage);
+        Assert.Equal("2", activePageNumber);
+        Assert.True(previousLinkClicked);
+    }
+
+    [Fact]
+    public void WhenWithPagesAndNextLinkClicked_ThenEventRaisedAndOutputsCorrectActivePage()
+    {
+        // Arrange
+        var activePageNumber = "2";
+        var newPage = "UNSET";
+        var nextLinkClicked = false;
+
+        var component = Render(@<GdsPagination @bind-ActivePageNumber=@activePageNumber 
+            OnPageChanged=@((string page) => { newPage = page;})>
+            <PreviousTemplate>
+                <GdsPaginationPreviousLink />
+            </PreviousTemplate>
+            <ChildContent>
+                <GdsPaginationLink Number="1" />
+                <GdsPaginationLink Number="2" />
+                <GdsPaginationLink Number="3" />
+            </ChildContent>
+            <NextTemplate>
+			    <GdsPaginationNextLink OnNextClick=@((args) => {nextLinkClicked = true; }) />
+            </NextTemplate>
+        </GdsPagination>);
+
+        // Act
+        var link = component.Find("[rel=next]");
+        link.Click(new());
+
+        // Assert
+        component.MarkupMatches(
+        @<nav class="govuk-pagination" aria-label="Pagination">
+            <div class="govuk-pagination__prev">
+                <a class="govuk-link govuk-pagination__link" href="#" rel="prev">
+                    <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                        <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+                    </svg>
+                    <span class="govuk-pagination__link-title">
+                        Previous<span class="govuk-visually-hidden"> page</span>
+                    </span>
+                </a>
+            </div>
+            <ul class="govuk-pagination__list">
+                <li class="govuk-pagination__item">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1">1</a>
+                </li>
+                <li class="govuk-pagination__item">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 2">2</a>
+                </li>
+                <li class="govuk-pagination__item govuk-pagination__item--current">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 3" aria-current="page">3</a>
+                </li>
+            </ul>
+        </nav>
+            );
+        Assert.Equal("3", newPage);
+        Assert.Equal("3", activePageNumber);
+        Assert.True(nextLinkClicked);
+    }
+
+    [Fact]
+    public void WhenUseBlockStyleIsSetAndPrewviousLinkClicked_ThenOnlyOnPreviousEventIsRaised()
+    {
+        // Arrange
+        var activePageNumber = "UNSET";
+        var newPage = "UNSET";
+        var previousLinkClicked = false;
+        var nextLinkClicked = false;
+
+        var component = Render(@<GdsPagination UseBlockStyle=@true @bind-ActivePageNumber=@activePageNumber
+                                                   OnPageChanged=@((string page) => { newPage = page;})>
+            <PreviousTemplate>
+                <GdsPaginationPreviousLink LabelText="Applying for a provisional lorry or bus licence" OnPreviousClick=@((args) => {previousLinkClicked = true; }) />
+            </PreviousTemplate>
+            <NextTemplate>
+			    <GdsPaginationNextLink LabelText="Driver CPC part 1 test: theory" OnNextClick=@((args) => {nextLinkClicked = true; }) />
+            </NextTemplate>
+        </GdsPagination>);
+
+        // Act
+        var link = component.Find("[rel=prev]");
+        link.Click(new());
+
+        // Assert
+        Assert.Equal("UNSET", newPage);
+        Assert.Equal("UNSET", activePageNumber);
+        Assert.True(previousLinkClicked);
+        Assert.False(nextLinkClicked);
+    }
+
+    [Fact]
+    public void WhenUseBlockStyleIsSetAndNextLinkClicked_ThenOnlyOnNextEventIsRaised()
+    {
+        // Arrange
+        var activePageNumber = "UNSET";
+        var newPage = "UNSET";
+        var previousLinkClicked = false;
+        var nextLinkClicked = false;
+
+        var component = Render(@<GdsPagination UseBlockStyle=@true @bind-ActivePageNumber=@activePageNumber
+                                                   OnPageChanged=@((string page) => { newPage = page;})>
+            <PreviousTemplate>
+			    <GdsPaginationPreviousLink LabelText="Applying for a provisional lorry or bus licence" OnPreviousClick=@((args) => {previousLinkClicked = true; }) />
+            </PreviousTemplate>
+            <NextTemplate>
+			    <GdsPaginationNextLink LabelText="Driver CPC part 1 test: theory" OnNextClick=@((args) => {nextLinkClicked = true; }) />
+            </NextTemplate>
+        </GdsPagination>);
+
+        // Act
+        var link = component.Find("[rel=next]");
+        link.Click(new());
+
+        // Assert
+        Assert.Equal("UNSET", newPage);
+        Assert.Equal("UNSET", activePageNumber);
+        Assert.False(previousLinkClicked);
+        Assert.True(nextLinkClicked);
+    }
+
+    [Fact]
+    public void WhenALinkClicked_ThenOnPageChangeEventRaisedAndOutputsCorrectActivePage()
+    {
+        // Arrange
+        var count = 25;
+        var activePageNumber = "7";
+        var newPage = "UNSET";
+
+		var component = Render(@<GdsPagination 
+                @bind-ActivePageNumber=@activePageNumber 
+                NumberOfPagesToShowBesideActive ="5" 
+                OnPageChanged=@((string page) => { newPage = page;})>
+            <PreviousTemplate>
+                <GdsPaginationPreviousLink />
+            </PreviousTemplate>
+            <ChildContent>
+                @for(var pageNumber = 1; pageNumber<count+1; pageNumber++)
+            {
+                <GdsPaginationLink Number=@pageNumber.ToString() />
+            }
+            </ChildContent>
+            <NextTemplate>
+                <GdsPaginationNextLink />
+            </NextTemplate>
+        </GdsPagination>);
+
+        // Act
+        var link = component.Find("[aria-label='Page 10']");
+        link.Click(new());
+
+        // Assert
+        component.MarkupMatches(
+        @<nav class="govuk-pagination  " aria-label="Pagination">
+            <div class="govuk-pagination__prev">
+                <a class="govuk-link govuk-pagination__link" href="#" rel="prev">
+                    <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                        <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+                    </svg>
+                    <span class="govuk-pagination__link-title">Previous<span class="govuk-visually-hidden"> page</span></span>
+                </a>
+            </div>
+            <ul class="govuk-pagination__list">
+                <li class="govuk-pagination__item ">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1">1</a>
+                </li>
+                <li class="govuk-pagination__item govuk-pagination__item--ellipses">&ctdot;</li>
+                <li class="govuk-pagination__item ">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 5">5</a>
+                </li>
+                <li class="govuk-pagination__item ">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 6">6</a>
+                </li>
+                <li class="govuk-pagination__item ">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 7">7</a>
+                </li>
+                <li class="govuk-pagination__item ">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 8">8</a>
+                </li>
+                <li class="govuk-pagination__item ">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 9">9</a>
+                </li>
+                <li class="govuk-pagination__item govuk-pagination__item--current">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 10" aria-current="page">10</a>
+                </li>
+                <li class="govuk-pagination__item ">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 11">11</a>
+                </li>
+                <li class="govuk-pagination__item ">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 12">12</a>
+                </li>
+                <li class="govuk-pagination__item ">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 13">13</a>
+                </li>
+                <li class="govuk-pagination__item ">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 14">14</a>
+                </li>
+                <li class="govuk-pagination__item ">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 15">15</a>
+                </li>
+                <li class="govuk-pagination__item govuk-pagination__item--ellipses">&ctdot;</li>
+                <li class="govuk-pagination__item ">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 25">25</a>
+                </li>
+            </ul>
+            <div class="govuk-pagination__next">
+                <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+                    <span class="govuk-pagination__link-title">Next<span class="govuk-visually-hidden"> page</span></span>
+                    <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                        <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+                    </svg>
+                </a>
+            </div>
+        </nav>
+        );
+
+        Assert.Equal("10", newPage);
+        Assert.Equal("10", activePageNumber);
+    }
+        
+    [Fact]
+    public void WhenInvalidPageIsSet_ThenOutputsPaginationSetToFirstPage()
+    {
+        // Arrange
+        var component = Render(@<GdsPagination DataTestId="GdsPagination" ActivePageNumber="16">
+        <PreviousTemplate>
+            <GdsPaginationPreviousLink DataTestId="GdsPaginationPreviousLink" />
+        </PreviousTemplate>
+        <ChildContent>
+            <GdsPaginationLink Number="1" DataTestId="GdsPaginationLink" />
+            <GdsPaginationLink Number="2" />
+            <GdsPaginationLink Number="3" />
+        </ChildContent>
+        <NextTemplate>
+            <GdsPaginationNextLink DataTestId="GdsPaginationNextLink" />
+        </NextTemplate>
+    </GdsPagination>);
+
+        //Act Assert
+        component.MarkupMatches(
+        @<nav class="govuk-pagination" aria-label="Pagination" data-testid="GdsPagination">
+            <ul class="govuk-pagination__list">
+                <li class="govuk-pagination__item  govuk-pagination__item--current" data-testid="GdsPaginationLink">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1" aria-current="page">1</a>
+                </li>
+                <li class="govuk-pagination__item">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 2">2</a>
+                </li>
+                <li class="govuk-pagination__item">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 3">3</a>
+                </li>
+            </ul>
+            <div class="govuk-pagination__next" data-testid="GdsPaginationNextLink">
+                <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+                    <span class="govuk-pagination__link-title">
+                        Next<span class="govuk-visually-hidden"> page</span>
+                    </span>
+                    <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                        <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+                    </svg>
+                </a>
+            </div>
+        </nav>
+        );
+    }
+
+    [Fact]
+    public void WhenVisuallyHiddenTextIsSet_ThenOutputsPaginationWithVisuallyHiddenText()
+    {
+        // Arrange
+        var component = Render(@<GdsPagination DataTestId="GdsPagination">
+        <PreviousTemplate>
+            <GdsPaginationPreviousLink DataTestId="GdsPaginationPreviousLink" />
+        </PreviousTemplate>
+        <ChildContent>
+            <GdsPaginationLink Number="ONE" VisuallyHiddenText="HIDDEN TEXT FOR PAGE ONE" />
+            <GdsPaginationLink Number="TWO" VisuallyHiddenText="HIDDEN TEXT FOR PAGE TWO" />
+            <GdsPaginationLink Number="THREE" VisuallyHiddenText="HIDDEN TEXT FOR PAGE THREE" />
+        </ChildContent>
+        <NextTemplate>
+            <GdsPaginationNextLink DataTestId="GdsPaginationNextLink" />
+        </NextTemplate>
+    </GdsPagination>);
+
+        //Act Assert
+        component.MarkupMatches(
+    @<nav class="govuk-pagination" aria-label="Pagination" data-testid="GdsPagination">
+        <ul class="govuk-pagination__list">
+			<li class="govuk-pagination__item govuk-pagination__item--current">
+				<a class="govuk-link govuk-pagination__link" href="#" aria-label="HIDDEN TEXT FOR PAGE ONE" aria-current="page">ONE</a>
+            </li>
+            <li class="govuk-pagination__item">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="HIDDEN TEXT FOR PAGE TWO">TWO</a>
+            </li>
+            <li class="govuk-pagination__item">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="HIDDEN TEXT FOR PAGE THREE">THREE</a>
+            </li>
+        </ul>
+        <div class="govuk-pagination__next" data-testid="GdsPaginationNextLink">
+            <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+                <span class="govuk-pagination__link-title">
+                    Next<span class="govuk-visually-hidden"> page</span>
+                </span>
+                <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                    <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+        );
+    }
+
+    [Fact]
+    public void WhenContentOnLinksIsSet_ThenOutputsPaginationWithContentInPrevNextLinks()
+    {
+        // Arrange
+        var component = Render(@<GdsPagination ActivePageNumber="2">
+            <PreviousTemplate>
+                <GdsPaginationPreviousLink>Go to the PREVIOUS PAGE</GdsPaginationPreviousLink>
+            </PreviousTemplate>
+            <ChildContent>
+                <GdsPaginationLink Number="1" />
+                <GdsPaginationLink Number="2" />
+                <GdsPaginationLink Number="3" />
+            </ChildContent>
+            <NextTemplate>
+                <GdsPaginationNextLink>Go to the NEXT PAGE</GdsPaginationNextLink>
+            </NextTemplate>
+        </GdsPagination>);
+
+        //Act Assert
+        component.MarkupMatches(
+        @<nav class="govuk-pagination" aria-label="Pagination">
+            <div class="govuk-pagination__prev">
+                <a class="govuk-link govuk-pagination__link" href="#" rel="prev">
+                    <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                        <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+                    </svg>
+                <span class="govuk-pagination__link-title">Go to the PREVIOUS PAGE</span>
+                </a>
+            </div>
+            <ul class="govuk-pagination__list">
+                <li class="govuk-pagination__item">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1">1</a>
+                </li>
+			    <li class="govuk-pagination__item govuk-pagination__item--current">
+				    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 2" aria-current="page">2</a>
+                </li>
+                <li class="govuk-pagination__item">
+                    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 3">3</a>
+                </li>
+            </ul>
+            <div class="govuk-pagination__next">
+                <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+                    <span class="govuk-pagination__link-title">Go to the NEXT PAGE</span>
+                    <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                        <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+                    </svg>
+                </a>
+            </div>
+        </nav>
+            );
+    }
+
+    [Fact]
+    public void WhenNoParametersSet_ThenOutputsEmptyPagination()
+    {
+        // Arrange
+        var component = Render(@<GdsPagination></GdsPagination>);
+
+        component.MarkupMatches(
+    @<nav class="govuk-pagination" aria-label="Pagination"></nav>
+        );
+    }
+
 }
