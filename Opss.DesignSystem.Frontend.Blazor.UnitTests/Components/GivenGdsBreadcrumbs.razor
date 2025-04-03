@@ -2,7 +2,7 @@
 
 @code {
     [Fact]
-    public void OutputsBreadcrumbs()
+    public void ThenOutputsBreadcrumbs()
     {
         // Arrange
         var component = Render(
@@ -36,7 +36,7 @@
     }
 
     [Fact]
-    public void OutputsBreadcrumbsWithCollapseOnMobile()
+    public void WhenCollapseOnMobileIsSet_ThenOutputsBreadcrumbsWithCollapseOnMobile()
     {
         // Arrange
         var component = Render(
@@ -82,7 +82,7 @@
     }
 
     [Fact]
-    public void OutputsBreadcrumbsOnDarkBackground()
+    public void WhenOnDarkBackgroundIsSet_ThenOutputsBreadcrumbsOnDarkBackground()
     {
         // Arrange
         var component = Render(
@@ -146,7 +146,7 @@
     }
 
     [Fact]
-    public void WhenClassesAndOtherSettingsSet_ThenOutputsBreadcrumbsWithClasses()
+    public void WhenClassesAndOtherSettingsSet_ThenOutputsBreadcrumbsWithCorrectClasses()
     {
         // Arrange
         var component = Render(
