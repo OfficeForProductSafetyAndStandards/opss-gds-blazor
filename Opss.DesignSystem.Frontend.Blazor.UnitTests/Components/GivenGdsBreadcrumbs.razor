@@ -1,0 +1,348 @@
+﻿@inherits BunitContext
+
+@code {
+    [Fact]
+    public void ThenOutputsBreadcrumbs()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsBreadcrumbs DataTestId="GdsBreadcrumbs">
+        <GdsBreadcrumbLink Href="#" DataTestId="GdsBreadcrumbLink">
+            Home
+        </GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="#">
+            Passports, travel and living abroad
+        </GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="#">
+            Travel abroad
+        </GdsBreadcrumbLink>
+    </GdsBreadcrumbs>);
+
+        component.MarkupMatches(
+    @<nav class="govuk-breadcrumbs" aria-label="Breadcrumb" data-testid="GdsBreadcrumbs">
+        <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item" data-testid="GdsBreadcrumbLink">
+                <a class="govuk-breadcrumbs__link" href="/#">Home</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Passports, travel and living abroad</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Travel abroad</a>
+            </li>
+        </ol>
+    </nav>
+    );
+    }
+
+    [Fact]
+    public void WhenCollapseOnMobileIsSet_ThenOutputsBreadcrumbsWithCollapseOnMobile()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsBreadcrumbs CollapseOnMobile=@true>
+        <GdsBreadcrumbLink Href="#">
+            Home
+        </GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="#">
+            Environment
+        </GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="#">
+            Rural and countryside
+        </GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="#">
+            Rural development and land management
+        </GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="#">
+            Economic growth in rural areas
+        </GdsBreadcrumbLink>
+    </GdsBreadcrumbs>);
+
+        component.MarkupMatches(
+    @<nav class="govuk-breadcrumbs govuk-breadcrumbs--collapse-on-mobile" aria-label="Breadcrumb">
+        <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Home</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Environment</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Rural and countryside</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Rural development and land management</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Economic growth in rural areas</a>
+            </li>
+        </ol>
+    </nav>
+    );
+    }
+
+    [Fact]
+    public void WhenOnDarkBackgroundIsSet_ThenOutputsBreadcrumbsOnDarkBackground()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsBreadcrumbs IsOnDarkBackground=@true>
+        <GdsBreadcrumbLink Href="#">
+            Home
+        </GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="#">
+            Passports, travel and living abroad
+        </GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="#">
+            Travel abroad
+        </GdsBreadcrumbLink>
+    </GdsBreadcrumbs>);
+
+        component.MarkupMatches(
+    @<nav class="govuk-breadcrumbs govuk-breadcrumbs--inverse" aria-label="Breadcrumb">
+        <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Home</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Passports, travel and living abroad</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Travel abroad</a>
+            </li>
+        </ol>
+    </nav>
+        );
+    }
+
+    [Fact]
+    public void WhenAttributesSet_ThenOutputsBreadcrumbsWithAttributes()
+    {
+        // Arrange
+        var attributes = new Dictionary<string, object> { { "attribute1", "value" }, { "attribute2", "value" } };
+
+        var component = Render(
+    @<GdsBreadcrumbs Attributes=@attributes>
+        <GdsBreadcrumbLink Href="#">
+            Home
+        </GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="#">
+            Passports, travel and living abroad
+        </GdsBreadcrumbLink>
+    </GdsBreadcrumbs>);
+
+        component.MarkupMatches(
+    @<nav class="govuk-breadcrumbs" aria-label="Breadcrumb" attribute1="value" attribute2="value">
+        <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Home</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Passports, travel and living abroad</a>
+            </li>
+        </ol>
+    </nav>
+        );
+    }
+
+    [Fact]
+    public void WhenClassesAndOtherSettingsSet_ThenOutputsBreadcrumbsWithCorrectClasses()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsBreadcrumbs IsOnDarkBackground=@true CollapseOnMobile=@true Classes="class1 class2">
+        <GdsBreadcrumbLink Href="#">
+            Home
+        </GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="#">
+            Passports, travel and living abroad
+        </GdsBreadcrumbLink>
+    </GdsBreadcrumbs>);
+
+        component.MarkupMatches(
+    @<nav class="govuk-breadcrumbs govuk-breadcrumbs--collapse-on-mobile govuk-breadcrumbs--inverse class1 class2" aria-label="Breadcrumb">
+        <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Home</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Passports, travel and living abroad</a>
+            </li>
+        </ol>
+    </nav>
+        );
+    }
+
+    [Fact]
+    public void WhenClassesSet_ThenOutputsBreadcrumbsWithClasses()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsBreadcrumbs Classes="class1 class2">
+        <GdsBreadcrumbLink Href="#">
+            Home
+        </GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="#">
+            Passports, travel and living abroad
+        </GdsBreadcrumbLink>
+    </GdsBreadcrumbs>);
+
+        component.MarkupMatches(
+    @<nav class="govuk-breadcrumbs class1 class2" aria-label="Breadcrumb">
+        <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Home</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Passports, travel and living abroad</a>
+            </li>
+        </ol>
+    </nav>
+    );
+    }
+
+    [Fact]
+    public void WhenLabelTextSet_ThenOutputsBreadcrumbsWithSpecifiedLabelText()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsBreadcrumbs LabelText="Signposting">
+        <GdsBreadcrumbLink Href="#">
+            Home
+        </GdsBreadcrumbLink>
+    </GdsBreadcrumbs>);
+
+        component.MarkupMatches(
+    @<nav class="govuk-breadcrumbs" aria-label="Signposting">
+        <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Home</a>
+            </li>
+        </ol>
+    </nav>
+        );
+    }
+
+    [Fact]
+    public void WhenNoParametersSet_ThenOutputsEmptyBreadcrumbs()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsBreadcrumbs></GdsBreadcrumbs>);
+
+        component.MarkupMatches(
+    @<nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+        <ol class="govuk-breadcrumbs__list">
+        </ol>
+    </nav>
+        );
+    }
+
+    [Fact]
+    public void WhenAttributesSetOnLinks_ThenOutputsAttributesOnLinks()
+    {
+        // Arrange
+        var linkAttributes1 = new Dictionary<string, object> { { "attribute1", "link-value-1" } };
+        var linkAttributes2 = new Dictionary<string, object> { { "attribute1", "link-value-2" }, { "attribute2", "link-value-2" } };
+
+        var component = Render(
+	@<GdsBreadcrumbs>
+		<GdsBreadcrumbLink Href="#" Attributes=@linkAttributes1>
+            Home
+        </GdsBreadcrumbLink>
+		<GdsBreadcrumbLink Href="#" Attributes=@linkAttributes1>
+            Passports, travel and living abroad
+        </GdsBreadcrumbLink>
+		<GdsBreadcrumbLink Href="#" Attributes=@linkAttributes2>
+            Travel abroad
+        </GdsBreadcrumbLink>
+    </GdsBreadcrumbs>);
+
+        component.MarkupMatches(
+    @<nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+        <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#" attribute1="link-value-1">Home</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+				<a class="govuk-breadcrumbs__link" href="/#" attribute1="link-value-1">Passports, travel and living abroad</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#" attribute1="link-value-2" attribute2="link-value-2">Travel abroad</a>
+            </li>
+        </ol>
+    </nav>
+        );
+    }
+
+    [Fact]
+    public void WhenClassesSetOnLinks_ThenOutputsClassesOnLinks()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsBreadcrumbs>
+        <GdsBreadcrumbLink Href="#" Classes="class1 class2">
+            Home
+        </GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="#" Classes="class3">
+            Passports, travel and living abroad
+        </GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="#">
+            Travel abroad
+        </GdsBreadcrumbLink>
+    </GdsBreadcrumbs>);
+
+        component.MarkupMatches(
+    @<nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+        <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link class1 class2" href="/#">Home</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link class3" href="/#">Passports, travel and living abroad</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Travel abroad</a>
+            </li>
+        </ol>
+    </nav>
+        );
+    }
+
+    [Fact]
+    public void WhenHrefIsNotSetOnLink_ThenOutputsContent()
+    {
+        // Arrange
+        var component = Render(
+    @<GdsBreadcrumbs>
+        <GdsBreadcrumbLink Href="#">
+            Home
+        </GdsBreadcrumbLink>
+        <GdsBreadcrumbLink Href="#">
+            Passports, travel and living abroad
+        </GdsBreadcrumbLink>
+        <GdsBreadcrumbLink>
+            Travel abroad
+        </GdsBreadcrumbLink>
+    </GdsBreadcrumbs>);
+
+        component.MarkupMatches(
+    @<nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+        <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Home</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/#">Passports, travel and living abroad</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                Travel abroad
+            </li>
+        </ol>
+    </nav>
+        );
+    }
+
+
+
+}
