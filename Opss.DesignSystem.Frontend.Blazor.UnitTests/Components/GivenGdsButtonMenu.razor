@@ -140,6 +140,38 @@
     }
 
     [Fact]
+    public void WhenAttributesSet_ThenOutputsButtonMenuAttributes()
+    {
+        // Arrange
+        var attributes = new Dictionary<string, object> { { "attribute1", "value" }, { "attribute2", "value" } };
+
+         var component = Render(
+            @<GdsButtonMenu MenuTitle="Menu title" Attributes=@attributes>
+                <GdsButtonMenuItem>Menu item 1</GdsButtonMenuItem>
+                <GdsButtonMenuItem>Menu item 2</GdsButtonMenuItem>
+                <GdsButtonMenuItem>Menu item 3</GdsButtonMenuItem>
+            </GdsButtonMenu>
+        );
+
+        // Act
+        // Assert
+        component.MarkupMatches(
+            @<div>
+                <div class="moj-button-menu" data-module="moj-button-menu" attribute1="value" attribute2="value">
+                    <button class="govuk-button moj-button-menu__toggle-button" type="submit" data-module="govuk-button" aria-haspopup="true" aria-expanded="false">
+                        <span>
+                            Menu title
+                            <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.5 0L11 5L0 5L5.5 0Z" fill="currentColor"></path>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+    [Fact]
     public void WhenButtonMenuItemDefaltsAreSet_ThenOutputsButtonsInDefaultState()
     {
         // Arrange
@@ -291,30 +323,77 @@
         // Act
         // Assert
         component.MarkupMatches(
-    @<div>
-        <div class="moj-button-menu" data-module="moj-button-menu">
-            <button class="govuk-button moj-button-menu__toggle-button" type="submit" data-module="govuk-button" data-testid="MenuTitleButton" aria-haspopup="true" aria-expanded="true">
-                <span>
-                    Menu title
-                    <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5.5 0L11 5L0 5L5.5 0Z" fill="currentColor"></path>
-                    </svg>
-                </span>
-            </button>
-            <ul role="list" class="moj-button-menu__wrapper">
-                <li>
-                    <button class="govuk-button moj-button-menu__item govuk-button--secondary another-class" type="submit" data-module="govuk-button">Menu item 1</button>
-                </li>
-                <li>
-                    <button class="govuk-button moj-button-menu__item govuk-button--secondary another-class" type="submit" data-module="govuk-button">Menu item 2</button>
-                </li>
-                <li>
-                    <button class="govuk-button moj-button-menu__item govuk-button--secondary another-class" type="submit" data-module="govuk-button">Menu item 3</button>
-                </li>
-            </ul>
-        </div>
-    </div>
+            @<div>
+                <div class="moj-button-menu" data-module="moj-button-menu">
+                    <button class="govuk-button moj-button-menu__toggle-button" type="submit" data-module="govuk-button" data-testid="MenuTitleButton" aria-haspopup="true" aria-expanded="true">
+                        <span>
+                            Menu title
+                            <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.5 0L11 5L0 5L5.5 0Z" fill="currentColor"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul role="list" class="moj-button-menu__wrapper">
+                        <li>
+                            <button class="govuk-button moj-button-menu__item govuk-button--secondary another-class" type="submit" data-module="govuk-button">Menu item 1</button>
+                        </li>
+                        <li>
+                            <button class="govuk-button moj-button-menu__item govuk-button--secondary another-class" type="submit" data-module="govuk-button">Menu item 2</button>
+                        </li>
+                        <li>
+                            <button class="govuk-button moj-button-menu__item govuk-button--secondary another-class" type="submit" data-module="govuk-button">Menu item 3</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
     );
+    }
+
+    [Fact]
+    public void WhenButtonMenuItemButtonAttributesSet_ThenOutputsButtonsWithAttributes()
+    {
+        // Arrange
+        var itemAttributes1 = new Dictionary<string, object> { { "attribute1", "1" } };
+        var itemAttributes2 = new Dictionary<string, object> { { "attribute1", "2" }, { "attribute2", "200" } };
+
+        var component = Render(
+            @<GdsButtonMenu MenuTitle="Menu title" MenuTitleButtonDataTestId="MenuTitleButton">
+                <GdsButtonMenuItem Attributes=@itemAttributes1>Menu item 1</GdsButtonMenuItem>
+                <GdsButtonMenuItem Attributes=@itemAttributes1>Menu item 2</GdsButtonMenuItem>
+                <GdsButtonMenuItem Attributes=@itemAttributes2>Menu item 3</GdsButtonMenuItem>
+            </GdsButtonMenu>
+        );
+
+        var button = component.Find("[data-testid=MenuTitleButton]");
+        button.Click(new());
+
+        // Act
+        // Assert
+        component.MarkupMatches(
+            @<div>
+                <div class="moj-button-menu" data-module="moj-button-menu">
+                    <button class="govuk-button moj-button-menu__toggle-button" type="submit" data-module="govuk-button" data-testid="MenuTitleButton" aria-haspopup="true" aria-expanded="true">
+                        <span>
+                            Menu title
+                            <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.5 0L11 5L0 5L5.5 0Z" fill="currentColor"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul role="list" class="moj-button-menu__wrapper">
+                        <li>
+                            <button class="govuk-button moj-button-menu__item" type="submit" data-module="govuk-button" attribute1="1">Menu item 1</button>
+                        </li>
+                        <li>
+					        <button class="govuk-button moj-button-menu__item" type="submit" data-module="govuk-button" attribute1="1">Menu item 2</button>
+                        </li>
+                        <li>
+					        <button class="govuk-button moj-button-menu__item" type="submit" data-module="govuk-button" attribute1="2" attribute2="200">Menu item 3</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        );
     }
 
     [Fact]

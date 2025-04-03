@@ -5,13 +5,12 @@
     The items within breadcrumbs.
 </summary> *@
 
-<li class="govuk-breadcrumbs__list-item"
-    data-testid=@DataTestId>
+<li class="govuk-breadcrumbs__list-item" data-testid=@DataTestId>
     @if (string.IsNullOrEmpty(Href))
     {
         @ChildContent
     } else {
-        <AnchorLink Classes=@classes Href=@Href @attributes=@Attributes>
+        <AnchorLink Classes=@classes Href=@Href Attributes=@Attributes>
             @ChildContent
         </AnchorLink>
     }
